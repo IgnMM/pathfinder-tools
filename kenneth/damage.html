@@ -176,8 +176,8 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
 </div>
 
 <div class="effect">
-<input id="vitalStrike" type="checkbox">
-<div><b>Vital Strike</b><div class="note">Only when making a single attack with the attack action (not a full attack or a charge). Rolls the weapon's damage dice one extra time; the extra dice are not multiplied on a critical hit.</div></div>
+<input id="furiousFocus" type="checkbox">
+<div><b>Furious Focus</b><div class="note">Requires Power Attack. No Power Attack penalty on your first attack of the turn (later iterative attacks in a full attack still take the penalty).</div></div>
 <span class="tag standard">Standard</span>
 </div>
 
@@ -361,17 +361,14 @@ function update(){
     partsAtk.push("Haste +1");
   }
 
+  let powerAttackPenalty=0;
   if(active("powerAttack")){
     const pa=powerAttackValues(bab,two);
+    powerAttackPenalty=pa.atk;
     atk+=pa.atk;
     powerAttackDamage=pa.dmg;
     partsAtk.push(`Power Attack ${signed(pa.atk)}`);
     comments.push(`House rule: Power Attack adds ${signed(pa.dmg)} damage, but is NOT multiplied on a critical hit.`);
-  }
-
-  if(active("vitalStrike")){
-    extraDice.push(w.dice+" Vital Strike");
-    comments.push(`Vital Strike: rolls ${w.dice} one extra time (not multiplied on a critical hit). Only valid on a single attack with the attack action — not a full attack or a charge.`);
   }
 
   if(active("smite") && isEvil(enemy)){
@@ -412,7 +409,14 @@ function update(){
   if(active("haste") && !active("charge")) iteratives.unshift(atk);
   if(active("charge")) iteratives=[atk];
 
-  document.getElementById("toHit").textContent=signed(atk);
+  const furiousFocusActive=active("powerAttack") && active("furiousFocus");
+  const atkFirst = furiousFocusActive ? atk-powerAttackPenalty : atk;
+  if(furiousFocusActive){
+    comments.push(`Furious Focus: no Power Attack penalty on your first attack of the turn (${signed(atkFirst)} instead of ${signed(atk)}); later iterative attacks still take the penalty.`);
+  }
+  if(iteratives.length) iteratives[0]=atkFirst;
+
+  document.getElementById("toHit").textContent=signed(atkFirst);
   document.getElementById("fullAttack").textContent=iteratives.map(signed).join(" / ");
   document.getElementById("damage").textContent=normal;
   document.getElementById("firstSmite").textContent=first;
