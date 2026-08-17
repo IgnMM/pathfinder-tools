@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel — Calculadora de Ataque y Daño</title>
+<style>
+:root{
+  --bg:#10151d; --panel:#18212c; --panel2:#202b38; --text:#edf3f8;
+  --muted:#aebdcc; --gold:#d6b35f; --red:#d76a63; --green:#72c69c;
+  --blue:#6aa8d9; --line:#344354;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#0d1218,#141c26);color:var(--text)}
+.wrap{max-width:1200px;margin:auto;padding:20px}
+header{padding:18px 20px;border:1px solid var(--line);background:rgba(24,33,44,.96);border-radius:16px;margin-bottom:18px}
+h1{margin:0 0 4px;font-size:28px}
+.subtitle{color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1.35fr;gap:18px}
+.card{background:rgba(24,33,44,.97);border:1px solid var(--line);border-radius:16px;padding:18px}
+h2{font-size:19px;margin:0 0 14px;color:var(--gold)}
+h3{font-size:15px;margin:18px 0 10px;color:#fff}
+.row{display:grid;grid-template-columns:1fr 120px;gap:10px;align-items:center;margin:8px 0}
+.row.wide{grid-template-columns:1fr 1fr}
+label{color:var(--muted)}
+input,select{width:100%;background:#0f161f;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--gold)}
+.effect{display:grid;grid-template-columns:28px 1fr auto;gap:10px;padding:10px 0;border-bottom:1px solid #273442;align-items:start}
+.effect:last-child{border-bottom:0}
+.effect b{display:block;margin-bottom:3px}
+.note{font-size:12px;color:var(--muted);line-height:1.35}
+.tag{font-size:11px;padding:3px 7px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.auto{color:var(--green)} .swift{color:var(--blue)} .standard{color:var(--red)}
+.resultBox{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.result{background:#0e151e;border:1px solid var(--line);border-radius:12px;padding:14px}
+.result .big{font-size:26px;font-weight:800;margin-top:4px;color:#fff}
+.result .small{font-size:12px;color:var(--muted)}
+.full{grid-column:1/-1}
+.breakdown{font-family:Consolas,monospace;white-space:pre-wrap;background:#0d131b;border:1px solid var(--line);padding:12px;border-radius:10px;line-height:1.5}
+.warn{color:#ffd27c}.ok{color:var(--green)}
+button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:11px 14px;font-weight:700;cursor:pointer}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.resultBox{grid-template-columns:1fr}}
+
+.hero-head{display:flex;gap:18px;align-items:center}
+.hero-portrait{width:118px;height:118px;object-fit:cover;border-radius:16px;border:1px solid var(--line);box-shadow:0 8px 24px rgba(0,0,0,.28)}
+@media(max-width:620px){.hero-head{align-items:flex-start}.hero-portrait{width:92px;height:92px}}
+
+</style>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#10151d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gabriel">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Gabriel</h1>
+  <div class="subtitle">Calculadora de ataque y daño — Pathfinder 1e</div>
+</header>
+
+<div class="grid">
+<section class="card">
+<h2>Datos del personaje y del arma</h2>
+
+<div class="row"><label>Nivel de paladín</label><input id="palLvl" type="number" min="1" max="20" value="6"></div>
+<div class="row"><label>Fuerza</label><input id="str" type="number" min="1" value="20"></div>
+<div class="row"><label>Carisma</label><input id="cha" type="number" min="1" value="20"></div>
+<div class="row"><label>Nivel de bardo de Barry</label><input id="bardLvl" type="number" min="1" max="20" value="5"></div>
+
+<h3>Arma</h3>
+<div class="row"><label>Tipo de arma</label>
+<select id="weapon">
+  <option value="longsword" selected>Espada larga — 1d8, 19–20/×2</option>
+  <option value="shortsword">Espada corta — 1d6, 19–20/×2</option>
+  <option value="greatsword">Espadón — 2d6, 19–20/×2</option>
+  <option value="falchion">Falción — 2d4, 18–20/×2</option>
+  <option value="scimitar">Cimitarra — 1d6, 18–20/×2</option>
+  <option value="rapier">Estoque — 1d6, 18–20/×2</option>
+  <option value="lightMace">Maza ligera — 1d6, ×2</option>
+  <option value="heavyMace">Maza pesada — 1d8, ×2</option>
+  <option value="morningstar">Lucero del alba — 1d8, ×2</option>
+  <option value="warhammer">Martillo de guerra — 1d8, ×3</option>
+  <option value="lightFlail">Mangual ligero — 1d8, ×2</option>
+  <option value="heavyFlail">Mangual pesado — 1d10, 19–20/×2</option>
+  <option value="battleaxe">Hacha de batalla — 1d8, ×3</option>
+  <option value="greataxe">Gran hacha — 1d12, ×3</option>
+  <option value="spear">Lanza — 1d8, ×3</option>
+  <option value="longspear">Lanza larga — 1d8, ×3</option>
+  <option value="lance">Lanza de caballería — 1d8, ×3</option>
+  <option value="glaive">Guja — 1d10, ×3</option>
+  <option value="halberd">Alabarda — 1d10, ×3</option>
+  <option value="greatclub">Gran clava — 1d10, ×2</option>
+  <option value="custom">Personalizada</option>
+</select></div>
+
+<div id="customWeapon" style="display:none">
+  <div class="row"><label>Dados base</label><input id="customDice" value="1d8"></div>
+  <div class="row"><label>Rango de amenaza</label><input id="customThreat" value="20"></div>
+</div>
+
+<div class="row"><label>Uso del arma</label>
+<select id="hands">
+  <option value="1">Una mano</option>
+  <option value="2" selected>Dos manos</option>
+</select></div>
+
+<div class="row"><label>Bonos mágicos del arma</label><input id="enh" type="number" min="0" max="10" value="2"></div>
+<div class="row"><label>Multiplicador crítico actual</label>
+<select id="critMult">
+  <option value="2" selected>×2</option>
+  <option value="3">×3</option>
+  <option value="4">×4</option>
+</select></div>
+
+<h3>Objetivo</h3>
+<div class="row"><label>Tipo de enemigo</label>
+<select id="enemy">
+  <option value="other">Otro</option>
+  <option value="evil">Maligno</option>
+  <option value="undead">No muerto maligno</option>
+  <option value="evilDragon">Dragón maligno</option>
+  <option value="evilOutsider">Extraplanar maligno</option>
+  <option value="demon" selected>Demonio</option>
+</select></div>
+
+<h2 style="margin-top:22px">Bonos y efectos activos</h2>
+<div id="effects">
+
+
+
+
+<div class="effect">
+<input id="barry" type="checkbox" checked>
+<div><b>Barry — Inspire Courage</b><div class="note">Competence al ataque y daño. Escala por nivel de bardo.</div></div>
+<span class="tag auto">Performance</span>
+</div>
+
+<div class="effect">
+<input id="bless" type="checkbox">
+<div><b>Bless</b><div class="note">+1 morale al ataque. No se acumula con Demon Hunter.</div></div>
+<span class="tag standard">Standard</span>
+</div>
+
+<div class="effect">
+<input id="prayer" type="checkbox">
+<div><b>Prayer</b><div class="note">+1 luck al ataque y daño.</div></div>
+<span class="tag standard">Standard</span>
+</div>
+
+<div class="effect">
+<input id="haste" type="checkbox">
+<div><b>Haste</b><div class="note">+1 al ataque y un ataque adicional al BAB máximo en full attack.</div></div>
+<span class="tag standard">Standard</span>
+</div>
+
+<div class="effect">
+<input id="powerAttack" type="checkbox" checked>
+<div><b>Power Attack</b><div class="note">Penalización al ataque y bono al daño según BAB y uso a una/dos manos.</div></div>
+<span class="tag auto">Elección</span>
+</div>
+
+<div class="effect">
+<input id="smite" type="checkbox" checked>
+<div><b>Smite Evil</b><div class="note">CHA al ataque y nivel de paladín al daño. El primer impacto duplica el bono de daño contra evil outsider, undead o evil dragon.</div></div>
+<span class="tag swift">Swift</span>
+</div>
+
+
+<div class="effect">
+<input id="charge" type="checkbox">
+<div><b>Carga</b><div class="note">+2 al ataque y −2 AC hasta el inicio de tu siguiente turno. Un solo ataque.</div></div>
+<span class="tag auto">Full-round</span>
+</div>
+
+</div>
+</section>
+
+<section class="card">
+<h2>Resultado</h2>
+
+<div class="resultBox">
+  <div class="result">
+    <div class="small">Ataque normal</div>
+    <div class="big" id="toHit">+0</div>
+  </div>
+  <div class="result">
+    <div class="small">Full attack</div>
+    <div class="big" id="fullAttack">+0</div>
+  </div>
+  <div class="result">
+    <div class="small">Daño normal</div>
+    <div class="big" id="damage">—</div>
+  </div>
+  <div class="result">
+    <div class="small">Primer impacto de Smite</div>
+    <div class="big" id="firstSmite">—</div>
+  </div>
+  <div class="result">
+    <div class="small">Crítico</div>
+    <div class="big" id="critical">—</div>
+  </div>
+  <div class="result">
+    <div class="small">Primer impacto crítico de Smite</div>
+    <div class="big" id="firstCritical">—</div>
+  </div>
+  <div class="result full">
+    <div class="small">Acción y observaciones</div>
+    <div id="actionInfo" style="margin-top:8px;line-height:1.5"></div>
+  </div>
+</div>
+
+<h3>Desglose</h3>
+<div id="breakdown" class="breakdown"></div>
+</section>
+</div>
+</div>
+
+<script>
+const weapons = {
+  longsword:{dice:"1d8",threat:"19–20",mult:2},
+  shortsword:{dice:"1d6",threat:"19–20",mult:2},
+  greatsword:{dice:"2d6",threat:"19–20",mult:2},
+  falchion:{dice:"2d4",threat:"18–20",mult:2},
+  scimitar:{dice:"1d6",threat:"18–20",mult:2},
+  rapier:{dice:"1d6",threat:"18–20",mult:2},
+  lightMace:{dice:"1d6",threat:"20",mult:2},
+  heavyMace:{dice:"1d8",threat:"20",mult:2},
+  morningstar:{dice:"1d8",threat:"20",mult:2},
+  warhammer:{dice:"1d8",threat:"20",mult:3},
+  lightFlail:{dice:"1d8",threat:"20",mult:2},
+  heavyFlail:{dice:"1d10",threat:"19–20",mult:2},
+  battleaxe:{dice:"1d8",threat:"20",mult:3},
+  greataxe:{dice:"1d12",threat:"20",mult:3},
+  spear:{dice:"1d8",threat:"20",mult:3},
+  longspear:{dice:"1d8",threat:"20",mult:3},
+  lance:{dice:"1d8",threat:"20",mult:3},
+  glaive:{dice:"1d10",threat:"20",mult:3},
+  halberd:{dice:"1d10",threat:"20",mult:3},
+  greatclub:{dice:"1d10",threat:"20",mult:2}
+};
+
+function mod(score){ return Math.floor((Number(score)-10)/2); }
+function signed(n){ return (n>=0?"+":"")+n; }
+
+function bardBonus(level){
+  level=Number(level);
+  if(level>=17) return 4;
+  if(level>=11) return 3;
+  if(level>=5) return 2;
+  return 1;
+}
+
+function powerAttackValues(bab,twoHanded){
+  const step = 1 + Math.floor((bab-1)/4);
+  return {atk:-step,dmg:(twoHanded?3:2)*step};
+}
+
+function diceMultiply(dice,mult){
+  const m = String(dice).match(/^(\d+)d(\d+)$/i);
+  if(!m) return dice+" ×"+mult;
+  return (Number(m[1])*mult)+"d"+m[2];
+}
+
+function isEvilOutsider(enemy){ return enemy==="evilOutsider" || enemy==="demon"; }
+function isSpecialSmite(enemy){ return isEvilOutsider(enemy) || enemy==="undead" || enemy==="evilDragon"; }
+function isEvil(enemy){ return enemy!=="other"; }
+
+function update(){
+  const palLvl=Number(document.getElementById("palLvl").value);
+  const bab=palLvl;
+  const strMod=mod(document.getElementById("str").value);
+  const chaMod=mod(document.getElementById("cha").value);
+  const bardLvl=Number(document.getElementById("bardLvl").value);
+  const hands=Number(document.getElementById("hands").value);
+  const two=hands===2;
+  const enemy=document.getElementById("enemy").value;
+  const critMult=Number(document.getElementById("critMult").value);
+  const enh=Number(document.getElementById("enh").value);
+
+  const weaponKey=document.getElementById("weapon").value;
+  const w = weaponKey==="custom"
+    ? {dice:document.getElementById("customDice").value || "1d8", threat:document.getElementById("customThreat").value || "20"}
+    : weapons[weaponKey];
+
+  const active=id=>{ const el=document.getElementById(id); return el ? el.checked : false; };
+
+  let atk=bab+strMod;
+  let fixed=two ? Math.floor(strMod*1.5) : strMod;
+  let fixedFirst=fixed;
+  let extraDice=[];
+  let comments=[];
+  let partsAtk=[`BAB ${signed(bab)}`,`FUE ${signed(strMod)}`];
+  let partsDmg=[`FUE ${signed(two?Math.floor(strMod*1.5):strMod)}`];
+
+  let effectiveEnh=0;
+  if(active("radiance")) effectiveEnh=enh;
+  if(active("bane") && isEvilOutsider(enemy)){
+    effectiveEnh += 2;
+    extraDice.push("2d6 Bane");
+    comments.push("Bane activo: +2 enhancement efectivo y +2d6 no multiplicables.");
+  }
+  if(effectiveEnh){
+    atk+=effectiveEnh; fixed+=effectiveEnh; fixedFirst+=effectiveEnh;
+    partsAtk.push(`enhancement ${signed(effectiveEnh)}`);
+    partsDmg.push(`enhancement ${signed(effectiveEnh)}`);
+  }
+
+  const moraleOptions=[];
+  if(active("bless")) moraleOptions.push({v:1,n:"Bless"});
+  if(active("demonHunter") && enemy==="demon") moraleOptions.push({v:2,n:"Demon Hunter"});
+  if(moraleOptions.length){
+    moraleOptions.sort((a,b)=>b.v-a.v);
+    atk+=moraleOptions[0].v;
+    partsAtk.push(`morale ${signed(moraleOptions[0].v)} (${moraleOptions[0].n})`);
+    if(moraleOptions.length>1) comments.push("Bless no se acumula con Demon Hunter: se aplica solo el mayor bono morale.");
+  }
+
+  if(active("barry")){
+    const b=bardBonus(bardLvl);
+    atk+=b; fixed+=b; fixedFirst+=b;
+    partsAtk.push(`competence ${signed(b)} (Barry)`);
+    partsDmg.push(`competence ${signed(b)} (Barry)`);
+  }
+
+  if(active("prayer")){
+    atk+=1; fixed+=1; fixedFirst+=1;
+    partsAtk.push("luck +1 (Prayer)");
+    partsDmg.push("luck +1 (Prayer)");
+  }
+
+  if(active("haste")){
+    atk+=1;
+    partsAtk.push("Haste +1");
+  }
+
+  if(active("powerAttack")){
+    const pa=powerAttackValues(bab,two);
+    atk+=pa.atk; fixed+=pa.dmg; fixedFirst+=pa.dmg;
+    partsAtk.push(`Power Attack ${signed(pa.atk)}`);
+    partsDmg.push(`Power Attack ${signed(pa.dmg)}`);
+  }
+
+  if(active("smite") && isEvil(enemy)){
+    atk+=chaMod;
+    fixed+=palLvl;
+    fixedFirst+=isSpecialSmite(enemy)?palLvl*2:palLvl;
+    partsAtk.push(`Smite CHA ${signed(chaMod)}`);
+    partsDmg.push(`Smite ${signed(palLvl)}`);
+    if(isSpecialSmite(enemy)) comments.push(`Primer impacto de Smite: ${signed(palLvl*2)} daño de Smite.`);
+  } else if(active("smite") && !isEvil(enemy)){
+    comments.push("Smite Evil no aporta bonos: el objetivo no es maligno.");
+  }
+
+  if(active("charge")){
+    atk+=2;
+    partsAtk.push("carga +2");
+  }
+
+  const normal = `${w.dice} ${signed(fixed)}${extraDice.length?" + "+extraDice.join(" + "):""}`;
+  const first = `${w.dice} ${signed(fixedFirst)}${extraDice.length?" + "+extraDice.join(" + "):""}`;
+
+  let critFixed=fixed*critMult;
+  let critFirstFixed=fixedFirst*critMult;
+  let beaconExtra=0;
+  if(active("beacon") && enemy==="demon"){
+    beaconExtra=critMult;
+    comments.push(`A Shining Beacon añade +${critMult} después de totalizar el crítico.`);
+  }
+
+  const critDice=diceMultiply(w.dice,critMult);
+  const crit = `${critDice} ${signed(critFixed)}${extraDice.length?" + "+extraDice.join(" + "):""}${beaconExtra?` + ${beaconExtra} Beacon`:""}`;
+  const firstCrit = `${critDice} ${signed(critFirstFixed)}${extraDice.length?" + "+extraDice.join(" + "):""}${beaconExtra?` + ${beaconExtra} Beacon`:""}`;
+
+  let iteratives=[];
+  for(let b=bab;b>0;b-=5){
+    iteratives.push(atk-(bab-b));
+  }
+  if(active("haste") && !active("charge")) iteratives.unshift(atk);
+  if(active("charge")) iteratives=[atk];
+
+  document.getElementById("toHit").textContent=signed(atk);
+  document.getElementById("fullAttack").textContent=iteratives.map(signed).join(" / ");
+  document.getElementById("damage").textContent=normal;
+  document.getElementById("firstSmite").textContent=first;
+  document.getElementById("critical").textContent=crit;
+  document.getElementById("firstCritical").textContent=firstCrit;
+
+  let action=[];
+  if(active("charge")){
+    action.push("<b>Carga:</b> full-round action y un solo ataque.");
+    action.push('<span class="warn">Aplica −2 AC hasta el inicio de tu siguiente turno.</span>');
+  } else {
+    action.push("<b>Ataque normal:</b> standard action. <b>Full attack:</b> full-round action.");
+  }
+  if(active("smite")) action.push("<b>Smite Evil:</b> swift action para seleccionar el objetivo.");
+  if(active("bane")) action.push("<b>Bane:</b> se asume activado previamente como standard action.");
+  document.getElementById("actionInfo").innerHTML=action.join("<br>");
+
+  document.getElementById("breakdown").textContent =
+`ATAQUE
+${partsAtk.join(" + ")}
+= ${signed(atk)}
+
+DAÑO FIJO MULTIPLICABLE
+${partsDmg.join(" + ")}
+= ${signed(fixed)}
+
+CRÍTICO
+${w.dice} → ${critDice}
+Bono fijo ${signed(fixed)} × ${critMult} = ${signed(critFixed)}
+${extraDice.length ? extraDice.join(" + ")+" no se multiplica.\n" : ""}${beaconExtra ? `A Shining Beacon: +${beaconExtra} después del total.\n` : ""}
+Rango de amenaza: ${w.threat} / ×${critMult}
+
+OBSERVACIONES
+${comments.length?comments.map(x=>"• "+x).join("\n"):"• Sin observaciones especiales."}`;
+}
+
+document.querySelectorAll("input,select").forEach(el=>el.addEventListener("input",update));
+document.getElementById("weapon").addEventListener("change",()=>{
+  const key=document.getElementById("weapon").value;
+  document.getElementById("customWeapon").style.display=key==="custom"?"block":"none";
+  if(key!=="custom") document.getElementById("critMult").value=weapons[key].mult;
+  update();
+});
+update();
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch(console.error);
+  });
+}
+</script>
+
+</body>
+</html>
