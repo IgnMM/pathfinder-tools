@@ -1,4 +1,5 @@
 const CACHE_NAME = "pathfinder-paladins-flat-v4";
+
 const ASSETS = [
   "./",
   "./index.html",
@@ -17,7 +18,9 @@ const ASSETS = [
 ];
 
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+  );
   self.skipWaiting();
 });
 
@@ -37,37 +40,41 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
-  const url = new URL(event.request.url);
-  const isHtml =
-    event.request.mode === "navigate" ||
-    url.pathname.endsWith(".html") ||
-    url.pathname.endsWith(".webmanifest");
+  const request = event.request;
 
-  if (isHtml) {
+  const isHTML =
+    request.mode === "navigate" ||
+    request.destination === "document" ||
+    request.url.endsWith(".html") ||
+    request.url.endsWith("/");
+
+  // HTML: network first, cache only as fallback.
+  // This prevents old versions of Damage/Spells from getting stuck.
+  if (isHTML) {
     event.respondWith(
-      fetch(event.request)
+      fetch(request)
         .then(response => {
           const copy = response.clone();
-          caches.open(CACHE_NAME).then(cache =>
-            cache.put(event.request, copy)
-          );
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(request, copy);
+          });
           return response;
         })
-        .catch(() => caches.match(event.request))
+        .catch(() => caches.match(request))
     );
     return;
   }
 
+  // Other resources: cache first.
   event.respondWith(
-    caches.match(event.request).then(cached =>
-      cached ||
-      fetch(event.request).then(response => {
+    caches.match(request).then(cached => {
+      return cached || fetch(request).then(response => {
         const copy = response.clone();
-        caches.open(CACHE_NAME).then(cache =>
-          cache.put(event.request, copy)
-        );
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(request, copy);
+        });
         return response;
-      })
-    )
+      });
+    })
   );
 });
