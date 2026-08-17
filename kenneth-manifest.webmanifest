@@ -1,0 +1,22 @@
+{
+  "name": "Kenneth Pathfinder Tools",
+  "short_name": "Kenneth",
+  "start_url": "./kenneth.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#10151d",
+  "theme_color": "#10151d",
+  "icons": [
+    {
+      "src": "kenneth-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "kenneth-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "id": "./kenneth.html"
+}

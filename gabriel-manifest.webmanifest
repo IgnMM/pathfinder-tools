@@ -1,0 +1,22 @@
+{
+  "name": "Gabriel Pathfinder Tools",
+  "short_name": "Gabriel",
+  "start_url": "./gabriel.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#10151d",
+  "theme_color": "#10151d",
+  "icons": [
+    {
+      "src": "gabriel-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "gabriel-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "id": "./gabriel.html"
+}
