@@ -43,9 +43,11 @@ for(let i=8;i<=30;i++)$('wis').add(new Option(i,i));
 $('level').value=state.level;$('wis').value=state.wis;$('alignment').value=state.alignment;
 RACES.forEach(n=>{let o=document.createElement('option');o.value=n;$('raceList').appendChild(o)});
 $('race').value=state.race;
+['race','domain1','subdomain1','domain2','subdomain2'].forEach(alwaysOpenDatalist);
 DOMAIN_NAMES.forEach(n=>{let o=document.createElement('option');o.value=n;$('domainList').appendChild(o)});
 $('domain1').value=state.domain1;$('domain2').value=state.domain2;
 
+function alwaysOpenDatalist(id){let el=$(id);el.addEventListener('focus',()=>{el.dataset.prev=el.value;el.value=''});el.addEventListener('blur',()=>{if(!el.value)el.value=el.dataset.prev||''})}
 function refreshSubdomainList(domainInputId,listId,subdomainInputId){
   let dom=$(domainInputId).value.trim();
   let list=$(listId);list.innerHTML='';
