@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Universal Damage Calculator</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#10151d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Damage Calc">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --bg:#10151d; --panel:#18212c; --panel2:#202b38; --text:#edf3f8;
+  --muted:#aebdcc; --gold:#d6b35f; --gold2:#f1d78b; --red:#d76a63; --green:#72c69c;
+  --blue:#6aa8d9; --line:#344354; --border:#313949;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#0d1218,#141c26);color:var(--text)}
+.wrap{max-width:1300px;margin:auto;padding:16px}
+header{padding:14px 18px;border:1px solid var(--line);background:rgba(24,33,44,.96);border-radius:16px;margin-bottom:14px}
+h1{margin:0 0 4px;font-size:24px}
+.subtitle{color:var(--muted);font-size:.85rem}
+h2{font-size:17px;margin:0 0 12px;color:var(--gold)}
+h3{font-size:14px;margin:14px 0 8px;color:#fff}
+.card{background:rgba(24,33,44,.97);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+.row{display:grid;grid-template-columns:1fr 110px;gap:8px;align-items:center;margin:7px 0}
+label{color:var(--muted);font-size:.85rem}
+input,select{width:100%;background:#0f161f;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px;font-size:.9rem}
+button{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:8px 12px;cursor:pointer;font-size:.85rem}
+button.primary{background:var(--gold);color:#151515;border:0;font-weight:700}
+button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
+.statsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}
+.profileBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.profileBar select{width:auto;min-width:160px}
+.mainGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:900px){.mainGrid{grid-template-columns:1fr}}
+.catBlock{border:1px solid var(--border);border-radius:12px;padding:10px;margin-bottom:10px}
+.catBlock h3{margin:0 0 8px;display:flex;justify-content:space-between;align-items:center}
+.catBlock h3 span.count{font-size:.7rem;color:var(--muted);font-weight:400}
+.addRow{display:flex;gap:6px;margin-bottom:8px}
+.addRow input{flex:1}
+.activeItem{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px 10px;margin-bottom:6px}
+.activeItem .head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.activeItem .name{font-weight:700;font-size:.88rem}
+.activeItem .desc{font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.3}
+.activeItem .cfg{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.activeItem .cfg label{font-size:.68rem}
+.activeItem .cfg input{width:70px;padding:4px 6px;font-size:.8rem}
+.activeItem button.rm{background:none;border:none;color:#e07a7a;font-size:1.1rem;cursor:pointer;line-height:1;padding:0 4px}
+.typeTag{font-size:.62rem;padding:2px 6px;border-radius:999px;border:1px solid var(--border);color:var(--muted);white-space:nowrap}
+.breakTable{width:100%;border-collapse:collapse;font-size:.82rem}
+.breakTable th,.breakTable td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border)}
+.breakTable th{color:var(--gold2);font-weight:700;font-size:.72rem}
+.breakTable .num{text-align:right;font-variant-numeric:tabular-nums}
+.suppressed{opacity:.4;text-decoration:line-through}
+.resultBox{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.result{background:#0e151e;border:1px solid var(--line);border-radius:12px;padding:14px}
+.result .big{font-size:24px;font-weight:800;margin-top:4px;color:#fff}
+.result .small{font-size:12px;color:var(--muted)}
+.full{grid-column:1/-1}
+.datalistInputWrap{position:relative}
+.emptyNote{font-size:.72rem;color:var(--muted);font-style:italic;padding:4px 2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Universal Damage Calculator</h1>
+  <div class="subtitle">Pathfinder 1e — attack/damage modifiers with correct bonus-type stacking. Save this sheet under different names, one per character.</div>
+  <div class="profileBar" style="margin-top:10px">
+    <label style="margin:0">Character:</label>
+    <select id="profileSelect"></select>
+    <button id="newProfile">New</button>
+    <button id="dupProfile">Duplicate</button>
+    <button id="renameProfile">Rename</button>
+    <button class="danger" id="deleteProfile">Delete</button>
+  </div>
+</header>
+
+<div class="mainGrid">
+<div>
+<section class="card">
+<h2>Character &amp; Weapon</h2>
+<div class="row"><label>BAB</label><input id="bab" type="number" min="0" value="6"></div>
+<h3>Ability Scores</h3>
+<div class="statsGrid">
+<div><label>STR</label><input id="str" type="number" value="20"></div>
+<div><label>DEX</label><input id="dex" type="number" value="12"></div>
+<div><label>CON</label><input id="con" type="number" value="14"></div>
+<div><label>INT</label><input id="int" type="number" value="10"></div>
+<div><label>WIS</label><input id="wis" type="number" value="10"></div>
+<div><label>CHA</label><input id="cha" type="number" value="18"></div>
+</div>
+<h3>Weapon</h3>
+<div class="row"><label>Weapon Type</label>
+<select id="weapon">
+  <option value="longsword" selected>Longsword — 1d8, 19–20/×2</option>
+  <option value="shortsword">Shortsword — 1d6, 19–20/×2</option>
+  <option value="greatsword">Greatsword — 2d6, 19–20/×2</option>
+  <option value="falchion">Falchion — 2d4, 18–20/×2</option>
+  <option value="scimitar">Scimitar — 1d6, 18–20/×2</option>
+  <option value="rapier">Rapier — 1d6, 18–20/×2</option>
+  <option value="lightMace">Light Mace — 1d6, ×2</option>
+  <option value="heavyMace">Heavy Mace — 1d8, ×2</option>
+  <option value="morningstar">Morningstar — 1d8, ×2</option>
+  <option value="warhammer">Warhammer — 1d8, ×3</option>
+  <option value="lightFlail">Light Flail — 1d8, ×2</option>
+  <option value="heavyFlail">Heavy Flail — 1d10, 19–20/×2</option>
+  <option value="battleaxe">Battleaxe — 1d8, ×3</option>
+  <option value="greataxe">Greataxe — 1d12, ×3</option>
+  <option value="spear">Spear — 1d8, ×3</option>
+  <option value="longspear">Longspear — 1d8, ×3</option>
+  <option value="lance">Lance — 1d8, ×3</option>
+  <option value="glaive">Glaive — 1d10, ×3</option>
+  <option value="halberd">Halberd — 1d10, ×3</option>
+  <option value="greatclub">Greatclub — 1d10, ×2</option>
+  <option value="custom">Custom</option>
+</select></div>
+<div id="customWeapon" style="display:none">
+  <div class="row"><label>Base Damage Dice</label><input id="customDice" value="1d8"></div>
+  <div class="row"><label>Threat Range</label><input id="customThreat" value="20"></div>
+</div>
+<div class="row"><label>Weapon Grip</label>
+<select id="hands">
+  <option value="1">One-Handed</option>
+  <option value="2" selected>Two-Handed</option>
+</select></div>
+<div class="row"><label>Weapon Base Enhancement (+X)</label><input id="enh" type="number" min="0" max="10" value="2"></div>
+<div class="row"><label>Critical Multiplier</label>
+<select id="critMult">
+  <option value="2" selected>×2</option>
+  <option value="3">×3</option>
+  <option value="4">×4</option>
+</select></div>
+</section>
+</div>
+
+<div>
+<section class="card">
+<h2>Modifiers <span style="font-size:.7rem;color:var(--muted);font-weight:400">— pick from the catalog per category, or add a custom one</span></h2>
+<div id="categories"></div>
+</section>
+</div>
+</div>
+
+<section class="card">
+<h2>Active Effects</h2>
+<div id="breakdownTables"></div>
+</section>
+
+<section class="card">
+<h2>Results</h2>
+<div class="resultBox">
+  <div class="result"><div class="small">Single Attack (first attack)</div><div class="big" id="toHit">+0</div></div>
+  <div class="result"><div class="small">Full Attack</div><div class="big" id="fullAttack">+0</div></div>
+  <div class="result"><div class="small">Normal Damage</div><div class="big" id="dmgNormal">—</div></div>
+  <div class="result"><div class="small">Critical Damage</div><div class="big" id="dmgCrit">—</div></div>
+  <div class="result full"><div class="small">Notes</div><div id="notes" style="margin-top:6px;line-height:1.5;font-size:.85rem"></div></div>
+</div>
+</section>
+
+</div>
+<script>
+const WEAPONS={
+  longsword:{dice:"1d8",threat:"19–20",mult:2}, shortsword:{dice:"1d6",threat:"19–20",mult:2},
+  greatsword:{dice:"2d6",threat:"19–20",mult:2}, falchion:{dice:"2d4",threat:"18–20",mult:2},
+  scimitar:{dice:"1d6",threat:"18–20",mult:2}, rapier:{dice:"1d6",threat:"18–20",mult:2},
+  lightMace:{dice:"1d6",threat:"20",mult:2}, heavyMace:{dice:"1d8",threat:"20",mult:2},
+  morningstar:{dice:"1d8",threat:"20",mult:2}, warhammer:{dice:"1d8",threat:"20",mult:3},
+  lightFlail:{dice:"1d8",threat:"20",mult:2}, heavyFlail:{dice:"1d10",threat:"19–20",mult:2},
+  battleaxe:{dice:"1d8",threat:"20",mult:3}, greataxe:{dice:"1d12",threat:"20",mult:3},
+  spear:{dice:"1d8",threat:"20",mult:3}, longspear:{dice:"1d8",threat:"20",mult:3},
+  lance:{dice:"1d8",threat:"20",mult:3}, glaive:{dice:"1d10",threat:"20",mult:3},
+  halberd:{dice:"1d10",threat:"20",mult:3}, greatclub:{dice:"1d10",threat:"20",mult:2}
+};
+
+const MODIFIERS = [
+// ---------------- FEATS ----------------
+{id:'power-attack',name:'Power Attack',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
+ desc:'Trade attack for damage. Penalty/bonus scale with BAB; damage bonus is x1.5 two-handed, not multiplied on a crit (house rule already used elsewhere in this project — vanilla RAW *does* multiply it on a crit; toggle off if your table uses RAW).',
+ compute:(ctx)=>{let step=1+Math.floor((Math.max(1,ctx.bab)-1)/4);return {attack:-step,damage:(ctx.hands===2?3:2)*step,note:'-'+step+' atk / +'+((ctx.hands===2?3:2)*step)+' dmg'}}},
+{id:'furious-focus',name:'Furious Focus',category:'feat',source:'Advanced Player\'s Guide',appliesTo:['attack'],type:'special',
+ desc:'Requires Power Attack. No Power Attack penalty on your FIRST attack of the turn only (handled specially in the summary, not in the flat total below).',
+ special:'furious-focus', compute:()=>({attack:0,damage:0,note:'applied to first attack only — see summary'})},
+{id:'deadly-aim',name:'Deadly Aim',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
+ desc:'Ranged version of Power Attack. Same BAB-based scaling, no two-handed x1.5.',
+ compute:(ctx)=>{let step=1+Math.floor((Math.max(1,ctx.bab)-1)/4);return {attack:-step,damage:2*step,note:'-'+step+' atk / +'+(2*step)+' dmg'}}},
+{id:'weapon-focus',name:'Weapon Focus',category:'feat',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
+ desc:'+1 on attack rolls with the selected weapon.',
+ compute:()=>({attack:1,damage:0,note:'+1 atk'})},
+{id:'greater-weapon-focus',name:'Weapon Focus, Greater',category:'feat',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
+ desc:'Fighter 8th level. +1 more on attack rolls with the selected weapon (stacks with Weapon Focus — separate untyped feat bonus).',
+ compute:()=>({attack:1,damage:0,note:'+1 atk'})},
+{id:'weapon-specialization',name:'Weapon Specialization',category:'feat',source:'Core Rulebook',appliesTo:['damage'],type:'untyped',
+ desc:'Fighter 4th level. +2 damage with the selected weapon.',
+ compute:()=>({attack:0,damage:2,note:'+2 dmg'})},
+{id:'greater-weapon-specialization',name:'Weapon Specialization, Greater',category:'feat',source:'Core Rulebook',appliesTo:['damage'],type:'untyped',
+ desc:'Fighter 12th level. +2 more damage (stacks with Weapon Specialization).',
+ compute:()=>({attack:0,damage:2,note:'+2 dmg'})},
+{id:'point-blank-shot',name:'Point-Blank Shot',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
+ desc:'+1 attack and damage with ranged weapons, target within 30 ft.',
+ compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg'})},
+{id:'rapid-shot',name:'Rapid Shot',category:'feat',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
+ desc:'-2 on all ranged attacks this turn, in exchange for one extra attack (extra attack not modeled here — add manually to iteratives).',
+ compute:()=>({attack:-2,damage:0,note:'-2 atk (all attacks)'})},
+
+// ---------------- SPELLS ----------------
+{id:'bless',name:'Bless',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack'],type:'morale',
+ desc:'+1 morale bonus on attack rolls (and vs. fear saves, not modeled here).',
+ compute:()=>({attack:1,damage:0,note:'+1 atk (morale)'})},
+{id:'divine-favor',name:'Divine Favor',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'luck',
+ desc:'+1 luck bonus per 3 caster levels (max +3) on attack and weapon damage rolls.',
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:5}],
+ compute:(ctx,cfg)=>{let b=Math.min(3,Math.floor((cfg.cl||1)/3));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (luck)'}}},
+{id:'prayer',name:'Prayer',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'luck',
+ desc:'+1 luck bonus on attack and weapon damage rolls (does not stack with Divine Favor — both are luck).',
+ compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (luck)'})},
+{id:'haste',name:'Haste',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'untyped',
+ desc:'+1 on attack rolls (untyped). Also grants an extra attack at full BAB on a full attack — add that manually to iteratives.',
+ compute:()=>({attack:1,damage:0,note:'+1 atk'})},
+{id:'magic-weapon',name:'Magic Weapon',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'enhancement',
+ desc:'+1 enhancement bonus to the weapon (does not stack with a weapon that already has an enhancement bonus — same type).',
+ compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement)'})},
+{id:'greater-magic-weapon',name:'Magic Weapon, Greater',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
+ desc:'+1 enhancement bonus per 4 caster levels (max +5).',
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:8}],
+ compute:(ctx,cfg)=>{let b=Math.min(5,Math.max(1,Math.floor((cfg.cl||1)/4)));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement)'}}},
+
+// ---------------- OTHER (class features / combat rules) ----------------
+{id:'smite-evil',name:'Smite Evil',category:'other',source:'Paladin class feature',appliesTo:['attack','damage'],type:'untyped',
+ desc:'CHA bonus to attack, paladin level to damage vs the smited target (untyped — no named bonus type given in the rules text).',
+ configFields:[{key:'palLvl',label:'Paladin level',type:'number',default:7}],
+ compute:(ctx,cfg)=>({attack:ctx.cha,damage:cfg.palLvl||0,note:'+'+ctx.cha+' atk / +'+(cfg.palLvl||0)+' dmg (untyped)'})},
+{id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
+ desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls.',
+ configFields:[{key:'bardLvl',label:'Bard level',type:'number',default:5}],
+ compute:(ctx,cfg)=>{let l=cfg.bardLvl||1,b=l>=17?4:l>=11?3:l>=5?2:1;return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (competence)'}}},
+{id:'charge',name:'Charge',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'untyped',
+ desc:'+2 on the attack roll (and -2 AC, not modeled here). One attack only, full-round action.',
+ compute:()=>({attack:2,damage:0,note:'+2 atk'})},
+{id:'flanking',name:'Flanking',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'untyped',
+ desc:'+2 on melee attack rolls when you and an ally threaten opposite sides of the target.',
+ compute:()=>({attack:2,damage:0,note:'+2 atk'})},
+];
+
+const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'skill',label:'Skills'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'}];
+
+const $=id=>document.getElementById(id);
+function mod(score){return Math.floor((Number(score)-10)/2)}
+function signed(n){return (n>=0?'+':'')+n}
+
+// ---------- Profiles ----------
+const STORE_KEY='pf1_universal_damage_calc_profiles_v1';
+function loadStore(){ let s=JSON.parse(localStorage.getItem(STORE_KEY)||'null'); if(!s||!s.profiles||!s.profiles.length){ s={active:'New Character',profiles:[defaultProfile('New Character')]}; } return s; }
+function saveStore(){ localStorage.setItem(STORE_KEY, JSON.stringify(store)); }
+function defaultProfile(name){
+  return {name, bab:6, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
+    hands:2, enh:2, critMult:2, active:[], custom:[]};
+}
+let store=loadStore();
+function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
+
+function populateProfileSelect(){
+  let sel=$('profileSelect'); sel.innerHTML='';
+  store.profiles.forEach(p=>{ let o=document.createElement('option'); o.value=p.name; o.textContent=p.name; sel.appendChild(o); });
+  sel.value=store.active;
+}
+
+function loadProfileIntoUI(){
+  let p=currentProfile();
+  $('bab').value=p.bab; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
+  $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
+  $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
+  $('hands').value=p.hands; $('enh').value=p.enh; $('critMult').value=p.critMult;
+  $('customWeapon').style.display = p.weapon==='custom' ? 'block' : 'none';
+  renderCategories();
+  compute();
+}
+
+function syncUIIntoProfile(){
+  let p=currentProfile();
+  p.bab=+$('bab').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
+  p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
+  p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
+  p.hands=+$('hands').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
+  saveStore();
+}
+
+$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); };
+$('newProfile').onclick=()=>{
+  let name=prompt('Name for the new character sheet:','New Character');
+  if(!name) return;
+  if(store.profiles.some(p=>p.name===name)){ alert('A character with that name already exists.'); return; }
+  store.profiles.push(defaultProfile(name)); store.active=name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
+};
+$('dupProfile').onclick=()=>{
+  let src=currentProfile();
+  let name=prompt('Name for the duplicate:', src.name+' (copy)');
+  if(!name) return;
+  if(store.profiles.some(p=>p.name===name)){ alert('A character with that name already exists.'); return; }
+  let copy=JSON.parse(JSON.stringify(src)); copy.name=name;
+  store.profiles.push(copy); store.active=name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
+};
+$('renameProfile').onclick=()=>{
+  let p=currentProfile();
+  let name=prompt('New name:', p.name);
+  if(!name || name===p.name) return;
+  if(store.profiles.some(x=>x.name===name)){ alert('A character with that name already exists.'); return; }
+  p.name=name; store.active=name; saveStore(); populateProfileSelect();
+};
+$('deleteProfile').onclick=()=>{
+  if(store.profiles.length<=1){ alert('At least one character sheet must remain.'); return; }
+  if(!confirm('Delete "'+currentProfile().name+'"? This cannot be undone.')) return;
+  store.profiles=store.profiles.filter(p=>p.name!==store.active);
+  store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
+};
+
+['bab','str','dex','con','int','wis','cha','weapon','customDice','customThreat','hands','enh','critMult'].forEach(id=>{
+  $(id).addEventListener('input', ()=>{
+    if(id==='weapon'){
+      $('customWeapon').style.display = $('weapon').value==='custom' ? 'block' : 'none';
+      let w=WEAPONS[$('weapon').value];
+      if(w) $('critMult').value=w.mult;
+    }
+    syncUIIntoProfile(); compute();
+  });
+});
+
+// ---------- Modifier catalog UI ----------
+function renderCategories(){
+  let box=$('categories'); box.innerHTML='';
+  let p=currentProfile();
+  CATS.forEach(cat=>{
+    let block=document.createElement('div'); block.className='catBlock';
+    let activeInCat=p.active.filter(a=>{ let m=MODIFIERS.find(x=>x.id===a.id); return m && m.category===cat.k; });
+    let customInCat=p.custom.filter(c=>c.category===cat.k);
+    block.innerHTML=`<h3>${cat.label} <span class="count">${activeInCat.length+customInCat.length} active</span></h3>`;
+    let addRow=document.createElement('div'); addRow.className='addRow';
+    let listId='dl_'+cat.k;
+    addRow.innerHTML=`<input list="${listId}" placeholder="Search ${cat.label.toLowerCase()} to add..." id="add_${cat.k}"><datalist id="${listId}"></datalist><button data-cat="${cat.k}" class="addBtn">Add</button><button data-cat="${cat.k}" class="addCustomBtn">+ Custom</button>`;
+    block.appendChild(addRow);
+    let dl=addRow.querySelector('datalist');
+    MODIFIERS.filter(m=>m.category===cat.k && !p.active.some(a=>a.id===m.id)).forEach(m=>{
+      let o=document.createElement('option'); o.value=m.name; dl.appendChild(o);
+    });
+    if(!MODIFIERS.some(m=>m.category===cat.k)){
+      let n=document.createElement('div'); n.className='emptyNote';
+      n.textContent='Catalog for this category is still being researched — use "+ Custom" to add anything not listed yet.';
+      block.appendChild(n);
+    }
+    activeInCat.forEach(a=>{
+      let m=MODIFIERS.find(x=>x.id===a.id);
+      block.appendChild(buildActiveItem(m,a,cat.k,false));
+    });
+    customInCat.forEach(c=>{
+      block.appendChild(buildActiveItem(c,c,cat.k,true));
+    });
+    box.appendChild(block);
+  });
+  box.querySelectorAll('.addBtn').forEach(btn=>btn.onclick=()=>{
+    let cat=btn.dataset.cat, inputEl=$('add_'+cat), name=inputEl.value.trim();
+    let m=MODIFIERS.find(x=>x.category===cat && x.name===name);
+    if(!m){ if(name) alert('No catalog entry named "'+name+'" in '+cat+'. Use "+ Custom" instead.'); return; }
+    let p=currentProfile();
+    let cfg={}; (m.configFields||[]).forEach(f=>cfg[f.key]=f.default);
+    p.active.push({id:m.id, cfg, on:true});
+    saveStore(); renderCategories(); compute();
+  });
+  box.querySelectorAll('.addCustomBtn').forEach(btn=>btn.onclick=()=>{
+    let cat=btn.dataset.cat;
+    let name=prompt('Name of this custom '+cat+':'); if(!name) return;
+    let atk=Number(prompt('Attack roll bonus (number, can be negative, 0 if none):','0'))||0;
+    let dmg=Number(prompt('Damage bonus (number, can be negative, 0 if none):','0'))||0;
+    let type=prompt('Bonus type (untyped / dodge / morale / luck / sacred / profane / competence / insight / enhancement / circumstance / trait / other-named-type):','untyped')||'untyped';
+    let note=prompt('Optional note:','')||'';
+    let p=currentProfile();
+    p.custom.push({id:'custom-'+Date.now(), name, category:cat, appliesTo:['attack','damage'], type, atk, dmg, note, on:true, custom:true});
+    saveStore(); renderCategories(); compute();
+  });
+}
+
+function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
+  let div=document.createElement('div'); div.className='activeItem';
+  let cfgHtml='';
+  if(!isCustom && defOrCustom.configFields){
+    cfgHtml='<div class="cfg">'+defOrCustom.configFields.map(f=>`<label>${f.label}<br><input type="number" data-key="${f.key}" value="${activeRec.cfg[f.key]}"></label>`).join('')+'</div>';
+  }
+  div.innerHTML=`<div class="head"><div><div class="name">${isCustom?defOrCustom.name:defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div></div><button class="rm">✕ remove</button></div>${cfgHtml}`;
+  div.querySelector('.rm').onclick=()=>{
+    let p=currentProfile();
+    if(isCustom) p.custom=p.custom.filter(c=>c.id!==defOrCustom.id);
+    else p.active=p.active.filter(a=>a.id!==defOrCustom.id);
+    saveStore(); renderCategories(); compute();
+  };
+  if(!isCustom && defOrCustom.configFields){
+    div.querySelectorAll('input[data-key]').forEach(inp=>{
+      inp.addEventListener('input',()=>{ activeRec.cfg[inp.dataset.key]=Number(inp.value); saveStore(); compute(); });
+    });
+  }
+  return div;
+}
+
+// ---------- Stacking engine ----------
+function stackTotal(entries){
+  // entries: [{value, type, source}]
+  let dodgeAndUntyped=0, penalties=0;
+  let byType={};
+  entries.forEach(e=>{
+    if(e.value<0){ penalties+=e.value; return; }
+    if(e.type==='untyped'||e.type==='dodge'||e.type==='circumstance'||e.type==='special'){ dodgeAndUntyped+=e.value; return; }
+    byType[e.type]=Math.max(byType[e.type]||0, e.value);
+  });
+  let typedSum=Object.values(byType).reduce((a,b)=>a+b,0);
+  return dodgeAndUntyped+typedSum+penalties;
+}
+
+function collectContributions(ctx){
+  let p=currentProfile();
+  let atkEntries=[], dmgEntries=[]; let breakdown=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0;
+  p.active.forEach(a=>{
+    let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
+    if(m.special==='furious-focus'){ furiousFocusOn=true; breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Cancels Power Attack penalty on first attack only',suppressed:false}); return; }
+    let r=m.compute(ctx,a.cfg||{});
+    if(m.id==='power-attack'||m.id==='deadly-aim'){ powerAttackOn=true; powerAttackAtkVal=r.attack; }
+    if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:m.type,source:m.name});
+    if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:m.type,source:m.name});
+    breakdown.push({name:m.name,category:m.category,type:m.type,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:r.note,suppressed:false});
+  });
+  p.custom.forEach(c=>{
+    if(c.atk) atkEntries.push({value:c.atk,type:c.type,source:c.name});
+    if(c.dmg) dmgEntries.push({value:c.dmg,type:c.type,source:c.name});
+    breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:c.note,suppressed:false});
+  });
+  return {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal};
+}
+
+function markSuppressed(entries,breakdown){
+  // Mark, per type group, which named-type entries don't actually count toward the
+  // total (informational only for the table) — including ties: only the FIRST
+  // entry that reaches the group's max is "active", every other one (whether
+  // lower or tied) is redundant per the same-type stacking rule.
+  let byType={};
+  entries.forEach(e=>{ if(e.value>0 && e.type!=='untyped'&&e.type!=='dodge'&&e.type!=='circumstance'&&e.type!=='special'){ (byType[e.type]=byType[e.type]||[]).push(e); } });
+  let suppressedSources=new Set();
+  Object.values(byType).forEach(list=>{
+    if(list.length<2) return;
+    let max=Math.max(...list.map(x=>x.value));
+    let keptOne=false;
+    list.forEach(x=>{
+      if(x.value===max && !keptOne){ keptOne=true; return; }
+      suppressedSources.add(x.source);
+    });
+  });
+  breakdown.forEach(b=>{ if(suppressedSources.has(b.name)||suppressedSources.has(b.name.replace(' (custom)',''))) b.suppressed=true; });
+}
+
+function renderBreakdown(breakdown){
+  let box=$('breakdownTables'); box.innerHTML='';
+  if(!breakdown.length){ box.innerHTML='<div class="emptyNote">No modifiers active yet — add some from the categories above.</div>'; return; }
+  let t=document.createElement('table'); t.className='breakTable';
+  t.innerHTML='<thead><tr><th>Effect</th><th>Category</th><th>Type</th><th class="num">Atk</th><th class="num">Dmg</th><th>Note</th></tr></thead>';
+  let tbody=document.createElement('tbody');
+  breakdown.forEach(b=>{
+    let tr=document.createElement('tr'); if(b.suppressed) tr.className='suppressed';
+    tr.innerHTML=`<td>${b.name}</td><td>${b.category}</td><td><span class="typeTag">${b.type}</span></td><td class="num">${b.atk===null?'—':signed(b.atk)}</td><td class="num">${b.dmg===null?'—':signed(b.dmg)}</td><td style="font-size:.7rem;color:var(--muted)">${b.note||''}${b.suppressed?' — does not stack (same type as another active effect)':''}</td>`;
+    tbody.appendChild(tr);
+  });
+  t.appendChild(tbody); box.appendChild(t);
+}
+
+function diceMultiply(dice,mult){
+  const m=String(dice).match(/^(\d+)d(\d+)$/i);
+  if(!m) return dice+' ×'+mult;
+  return (Number(m[1])*mult)+'d'+m[2];
+}
+
+function compute(){
+  let p=currentProfile();
+  let bab=+$('bab').value, hands=+$('hands').value, enh=+$('enh').value, critMult=+$('critMult').value;
+  let ctx={bab, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), hands};
+  let weaponKey=$('weapon').value;
+  let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
+
+  let {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal}=collectContributions(ctx);
+  markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
+  markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
+  renderBreakdown(breakdown);
+
+  let strDmgMod = hands===2 ? Math.floor(ctx.str*1.5) : ctx.str;
+  let baseAtk = bab + ctx.str + enh;
+  let baseDmg = strDmgMod + enh;
+
+  let atkFromMods = stackTotal(atkEntries);
+  let dmgFromMods = stackTotal(dmgEntries);
+
+  let atk = baseAtk + atkFromMods;
+  let dmg = baseDmg + dmgFromMods;
+
+  let atkFirst = atk;
+  let notes=[];
+  if(furiousFocusOn && powerAttackOn){
+    atkFirst = atk - powerAttackAtkVal; // cancel just the power-attack penalty on the first attack
+    notes.push('Furious Focus: first attack uses '+signed(atkFirst)+' instead of '+signed(atk)+' (Power Attack penalty waived once).');
+  }
+
+  let iteratives=[];
+  for(let b=bab;b>0;b-=5) iteratives.push(atk-(bab-b));
+  if(iteratives.length) iteratives[0]=atkFirst;
+  if(!iteratives.length) iteratives=[atkFirst];
+
+  let critDice=diceMultiply(w.dice,critMult);
+  let critDmg=dmg*critMult;
+
+  $('toHit').textContent=signed(atkFirst);
+  $('fullAttack').textContent=iteratives.map(signed).join(' / ');
+  $('dmgNormal').textContent=`${w.dice} ${signed(dmg)}`;
+  $('dmgCrit').textContent=`${critDice} ${signed(critDmg)} (threat ${w.threat}/×${critMult})`;
+
+  notes.push('Base attack: BAB '+signed(bab)+' + STR '+signed(ctx.str)+' + enhancement '+signed(enh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
+  notes.push('Base damage: STR '+signed(strDmgMod)+(hands===2?' (×1.5, two-handed)':'')+' + enhancement '+signed(enh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
+  $('notes').innerHTML=notes.map(n=>'• '+n).join('<br>');
+}
+
+populateProfileSelect();
+loadProfileIntoUI();
+
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
+}
+</script>
+</body>
+</html>
