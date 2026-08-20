@@ -50,7 +50,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .activeItem .cfg input{width:70px;padding:4px 6px;font-size:.8rem}
 .activeItem button.rm{background:none;border:none;color:#e07a7a;font-size:1.1rem;cursor:pointer;line-height:1;padding:0 4px}
 .typeTag{font-size:.62rem;padding:2px 6px;border-radius:999px;border:1px solid var(--border);color:var(--muted);white-space:nowrap}
-.breakTable{width:100%;border-collapse:collapse;font-size:.82rem}
+#breakdownTables{overflow-x:auto}
+.breakTable{width:100%;border-collapse:collapse;font-size:.82rem;min-width:520px}
 .breakTable th,.breakTable td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border)}
 .breakTable th{color:var(--gold2);font-weight:700;font-size:.72rem}
 .breakTable .num{text-align:right;font-variant-numeric:tabular-nums}
@@ -62,6 +63,9 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .full{grid-column:1/-1}
 .datalistInputWrap{position:relative}
 .emptyNote{font-size:.72rem;color:var(--muted);font-style:italic;padding:4px 2px}
+.sourcesbox{position:relative}.sourcesbox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-size:.78rem;list-style:none;white-space:nowrap}.sourcesbox summary::-webkit-details-marker{display:none}.sourcesbox[open] summary{border-color:var(--gold)}.sourcesPanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px;z-index:20;max-height:320px;overflow-y:auto;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.sourcesPanel label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);padding:3px 0;cursor:pointer}.sourcesPanel input{width:auto}.sourcesPanel .srcActions{display:flex;gap:6px;margin-bottom:6px}.sourcesPanel .srcActions button{font-size:.65rem;padding:4px 7px}
+.raceNote{font-size:.68rem;color:var(--muted);margin:2px 0 6px}
+.offhandBox{border:1px dashed var(--border);border-radius:10px;padding:8px;margin-top:8px}
 </style>
 </head>
 <body>
@@ -76,6 +80,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
     <button id="dupProfile">Duplicate</button>
     <button id="renameProfile">Rename</button>
     <button class="danger" id="deleteProfile">Delete</button>
+    <details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button></div><div id="sourceList"></div></div></details>
   </div>
 </header>
 
@@ -93,6 +98,16 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div><label>WIS</label><input id="wis" type="number" value="10"></div>
 <div><label>CHA</label><input id="cha" type="number" value="18"></div>
 </div>
+<h3>Character</h3>
+<div class="row"><label>Race</label><input id="race" list="raceList" placeholder="Search race..." autocomplete="off"><datalist id="raceList"></datalist></div>
+<div class="raceNote">Selecting a race automatically excludes race-specific sourcebooks that don't match it (see the Sources panel above) — same rule as the spellbooks.</div>
+<div class="row"><label>Alignment</label>
+<select id="alignment">
+  <option value="">— unset —</option>
+  <option value="LG">Lawful Good</option><option value="NG">Neutral Good</option><option value="CG">Chaotic Good</option>
+  <option value="LN">Lawful Neutral</option><option value="TN">True Neutral</option><option value="CN">Chaotic Neutral</option>
+  <option value="LE">Lawful Evil</option><option value="NE">Neutral Evil</option><option value="CE">Chaotic Evil</option>
+</select></div>
 <h3>Weapon</h3>
 <div class="row"><label>Weapon Type</label>
 <select id="weapon">
@@ -122,12 +137,27 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div class="row"><label>Base Damage Dice</label><input id="customDice" value="1d8"></div>
   <div class="row"><label>Threat Range</label><input id="customThreat" value="20"></div>
 </div>
-<div class="row"><label>Weapon Grip</label>
-<select id="hands">
-  <option value="1">One-Handed</option>
-  <option value="2" selected>Two-Handed</option>
+<div class="row"><label>Fighting Style</label>
+<select id="style">
+  <option value="twoHanded" selected>Two-Handed (melee)</option>
+  <option value="oneHanded">One-Handed (melee, free off hand)</option>
+  <option value="twf">Two-Weapon Fighting (melee)</option>
+  <option value="ranged">Ranged</option>
 </select></div>
+<div class="row" id="atkAbilityRow"><label>Attack/Damage Ability</label>
+<select id="atkAbility">
+  <option value="str" selected>Strength (normal)</option>
+  <option value="dexAtkOnly">Dexterity to attack (Weapon Finesse) — Str still to damage</option>
+  <option value="dexBoth">Dexterity to attack and damage (Agile / Slashing Grace)</option>
+</select></div>
+<div class="emptyNote" id="atkAbilityNote">Only applies to light or finesse-qualified melee weapons — the calculator doesn't check weapon-by-weapon eligibility, so pick the option that matches your build. Ranged weapons always use Dexterity to attack, regardless of this setting.</div>
 <div class="row"><label>Weapon Base Enhancement (+X)</label><input id="enh" type="number" min="0" max="10" value="2"></div>
+<div id="offhandBox" class="offhandBox" style="display:none">
+  <h3 style="margin-top:0">Off-Hand Weapon</h3>
+  <div class="row"><label>Off-Hand Enhancement (+X)</label><input id="offEnh" type="number" min="0" max="10" value="0"></div>
+  <div class="row"><label>Off-Hand Weapon Is Light</label><input id="offLight" type="checkbox" checked style="width:auto;justify-self:start"></div>
+  <div class="emptyNote">Attack penalties follow the standard two-weapon-fighting table (-6/-10 normal, -4/-4 light) and are automatically reduced if you add the "Two-Weapon Fighting" feat below; off-hand damage uses half your Strength bonus unless "Double Slice" is active. Off-hand weapon is assumed to use the same base damage dice as your main weapon above — adjust manually if different.</div>
+</div>
 <div class="row"><label>Critical Multiplier</label>
 <select id="critMult">
   <option value="2" selected>×2</option>
@@ -157,6 +187,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div class="result"><div class="small">Full Attack</div><div class="big" id="fullAttack">+0</div></div>
   <div class="result"><div class="small">Normal Damage</div><div class="big" id="dmgNormal">—</div></div>
   <div class="result"><div class="small">Critical Damage</div><div class="big" id="dmgCrit">—</div></div>
+  <div class="result" id="offAtkBox" style="display:none"><div class="small">Off-Hand Attack</div><div class="big" id="offAtk">+0</div></div>
+  <div class="result" id="offDmgBox" style="display:none"><div class="small">Off-Hand Damage</div><div class="big" id="offDmg">—</div></div>
   <div class="result full"><div class="small">Notes</div><div id="notes" style="margin-top:6px;line-height:1.5;font-size:.85rem"></div></div>
 </div>
 </section>
@@ -176,11 +208,15 @@ const WEAPONS={
   halberd:{dice:"1d10",threat:"20",mult:3}, greatclub:{dice:"1d10",threat:"20",mult:2}
 };
 
+const RACES=["Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Aasimar","Adaro","Android","Aphorite","Aquatic Elf","Astomoi","Being of Ib","Boggard","Caligni","Catfolk","Cecaelia","Changeling","Deep One Hybrid","Dhampir","Drow","Drow Noble","Duergar","Duskwalker","Fetchling","Ganzi","Gathlain","Ghoran","Gillman","Goblin","Green Martian","Grindylow","Grippli","Hobgoblin","Ifrit","Kasatha","Kitsune","Kobold","Kuru","Lashunta","Locathah","Merfolk","Monkey Goblin","Munavri","Nagaji","Naiad","Orang-Pendak","Orc","Oread","Primitive Human","Ratfolk","Reborn Samsaran","Reptoid","Rougarou","Sahuagin","Samsaran","Shabti","Skinwalker","Strix","Suli","Svirfneblin","Sylph","Syrinx","Tengu","Tiefling","Triaxian","Triton","Trox","Undine","Vanara","Vine Leshy","Vishkanya","Wayang","Wyrwood","Wyvaran","Yaddithian"];
+const RACE_SOURCE_MAP={"Dwarf":["Dwarves of Golarion"],"Goblin":["Goblins of Golarion"],"Kobold":["Kobolds of Golarion"],"Orc":["Orcs of Golarion"],"Half-Orc":["Orcs of Golarion"],"Human":["Humans of Golarion"]};
+const RACE_ONLY_SOURCES=[...new Set(Object.values(RACE_SOURCE_MAP).flat())];
+
 const MODIFIERS = [
 // ---------------- FEATS ----------------
 {id:'power-attack',name:'Power Attack',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
  desc:'Trade attack for damage. Penalty/bonus scale with BAB; damage bonus is x1.5 two-handed, not multiplied on a crit (house rule already used elsewhere in this project — vanilla RAW *does* multiply it on a crit; toggle off if your table uses RAW).',
- compute:(ctx)=>{let step=1+Math.floor((Math.max(1,ctx.bab)-1)/4);return {attack:-step,damage:(ctx.hands===2?3:2)*step,note:'-'+step+' atk / +'+((ctx.hands===2?3:2)*step)+' dmg'}}},
+ compute:(ctx)=>{let step=1+Math.floor((Math.max(1,ctx.bab)-1)/4);let mult=ctx.style==='twoHanded'?1.5:1;let d=Math.floor(mult*step);return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg'+(ctx.style==='twf'?' (applied to both hands here for simplicity — off-hand Power Attack damage is normally halved, ×0.5, not ×1)':'')}}},
 {id:'furious-focus',name:'Furious Focus',category:'feat',source:'Advanced Player\'s Guide',appliesTo:['attack'],type:'special',
  desc:'Requires Power Attack. No Power Attack penalty on your FIRST attack of the turn only (handled specially in the summary, not in the flat total below).',
  special:'furious-focus', compute:()=>({attack:0,damage:0,note:'applied to first attack only — see summary'})},
@@ -206,6 +242,53 @@ const MODIFIERS = [
  desc:'-2 on all ranged attacks this turn, in exchange for one extra attack (extra attack not modeled here — add manually to iteratives).',
  compute:()=>({attack:-2,damage:0,note:'-2 atk (all attacks)'})},
 
+// ---------------- FEATS (batch 2) ----------------
+{id:"combat-expertise",name:"Combat Expertise",category:"feat",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
+ desc:"Trade a self-imposed penalty on melee attack rolls (and CMB) for an equal dodge bonus to AC; the penalty/bonus scale together every 4 points of BAB.",
+ compute:(ctx)=>{let step=1+Math.floor(Math.max(0,ctx.bab)/4);return {attack:-step,damage:0,note:'-'+step+' atk (self-imposed, trades for equal dodge AC bonus)'}}},
+{id:"two-weapon-fighting",name:"Two-Weapon Fighting",category:"feat",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
+ desc:"Reduces the attack-roll penalties for fighting with a weapon in each hand. Automatically applied to the Two-Weapon Fighting off-hand math above when this feat is active — no separate numeric entry needed here.",
+ compute:()=>({attack:0,damage:0,note:'applied automatically to Two-Weapon Fighting penalties above'})},
+{id:"vital-strike",name:"Vital Strike",category:"feat",source:"Core Rulebook",appliesTo:["damage"],type:"untyped",
+ desc:"Make a single attack-action strike that rolls the weapon's base damage dice twice. Only usable when taking the attack action (a single attack, not a full attack). Non-dice bonuses (Str, enhancement, precision, etc.) are added only once, not doubled. Not multiplied on a critical hit.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"vital-strike-improved",name:"Vital Strike, Improved",category:"feat",source:"Core Rulebook",appliesTo:["damage"],type:"untyped",
+ desc:"Upgrade to Vital Strike: a single attack-action strike rolls the weapon's base damage dice three times. Requires Vital Strike, BAB +11.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"vital-strike-greater",name:"Vital Strike, Greater",category:"feat",source:"Core Rulebook",appliesTo:["damage"],type:"untyped",
+ desc:"Upgrade to Improved Vital Strike: a single attack-action strike rolls the weapon's base damage dice four times. Requires Improved Vital Strike, BAB +16.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"precise-shot",name:"Precise Shot",category:"feat",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:4}],
+ desc:"Removes the -4 penalty for firing a ranged weapon into melee.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:4);return {attack:v,damage:0,note:signed(v)+' '+"untyped"}}},
+{id:"far-shot",name:"Far Shot",category:"feat",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
+ desc:"Halves the per-range-increment attack penalty for ranged weapons (-1 instead of -2 per increment). Scales with distance to target, so it isn't a single flat number.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"mounted-archery",name:"Mounted Archery",category:"feat",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
+ desc:"Halves the attack penalty for firing a ranged weapon while mounted (only applies while mounted). Requires Ride 1 rank, Mounted Combat.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"spirited-charge",name:"Spirited Charge",category:"feat",source:"Core Rulebook",appliesTo:["damage"],type:"untyped",
+ desc:"Doubles (or with a lance, triples) melee damage on a mounted charge. A multiplier on the whole damage roll, not an additive bonus. Requires Ride 1 rank, Mounted Combat, Ride-By Attack.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"double-slice",name:"Double Slice",category:"feat",source:"Core Rulebook",appliesTo:["damage"],type:"untyped",
+ desc:"Off-hand weapon attacks add your full Strength bonus to damage instead of only half. Requires Dex 15, Two-Weapon Fighting. Automatically applied to off-hand damage in the Two-Weapon Fighting math above when this feat is active.",
+ compute:()=>({attack:0,damage:0,note:'applied automatically to off-hand damage above'})},
+{id:"outflank",name:"Outflank",category:"feat",source:"Advanced Player's Guide",appliesTo:["attack"],type:"untyped",
+ desc:"When flanking the same target as an ally who also has this feat, your flanking bonus on attack rolls increases from +2 to +4 (replaces the Flanking modifier's +2, don't stack both). Requires BAB +4.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"precise-strike",name:"Precise Strike",category:"feat",source:"Advanced Player's Guide",appliesTo:["damage"],type:"untyped",
+ desc:"While flanking the same target as an ally who also has this feat, deal an extra 1d6 precision damage on melee hits. Teamwork feat, requires Dex 13, BAB +1.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"paired-opportunists",name:"Paired Opportunists",category:"feat",source:"Advanced Player's Guide",appliesTo:["attack"],type:"circumstance",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:4}],
+ desc:"Teamwork feat: +4 circumstance bonus on attacks of opportunity against a creature threatened by you and an adjacent ally who also has this feat.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:4);return {attack:v,damage:0,note:signed(v)+' '+"circumstance"}}},
+{id:"dazing-assault",name:"Dazing Assault",category:"feat",source:"Advanced Player's Guide",appliesTo:["attack"],type:"untyped",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:-5}],
+ desc:"Take a -5 penalty on all melee attack rolls this round in exchange for a chance to daze anyone you hit. Requires Str 13, Power Attack, BAB +11.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:-5);return {attack:v,damage:0,note:signed(v)+' '+"untyped"}}},
+
 // ---------------- SPELLS ----------------
 {id:'bless',name:'Bless',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack'],type:'morale',
  desc:'+1 morale bonus on attack rolls (and vs. fear saves, not modeled here).',
@@ -228,6 +311,135 @@ const MODIFIERS = [
  configFields:[{key:'cl',label:'Caster level',type:'number',default:8}],
  compute:(ctx,cfg)=>{let b=Math.min(5,Math.max(1,Math.floor((cfg.cl||1)/4)));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement)'}}},
 
+// ---------------- SPELLS (batch 2) ----------------
+{id:"aid",name:"Aid",category:"spell",source:"Core Rulebook",appliesTo:["attack"],type:"morale",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"+1 morale bonus on attack rolls (also grants a save bonus vs. fear and temporary hit points, not modeled here).",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"morale"}}},
+{id:"aura-of-cannibalism",name:"Aura of Cannibalism",category:"spell",source:"Monster Codex",appliesTo:["attack"],type:"competence",
+ desc:"Self-only competence bonus to attack rolls, gated by temporary HP accumulated from the spell's life-draining aura: +1 at 5+ temp HP, +2 at 15+ (cap 10+CL).",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"blade-of-light",name:"Blade of Light",category:"spell",source:"Adventurer's Guide",appliesTo:["attack","damage"],type:"sacred",
+ desc:"Weapon is infused with sunlight: +2 sacred bonus on attack rolls and +1d6 damage, but only against undead foes.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"blessed-fist",name:"Blessed Fist",category:"spell",source:"Advanced Class Guide",appliesTo:["attack","damage"],type:"enhancement",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"+1 enhancement bonus on attack and damage rolls with unarmed strikes (requires the ability to attack unarmed without provoking AoOs).",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"enhancement"}}},
+{id:"blessing-of-fervor",name:"Blessing of Fervor",category:"spell",source:"Advanced Player's Guide",appliesTo:["attack"],type:"untyped",
+ desc:"Each round an affected ally picks one option; if they pick the +2 attack option, +2 untyped bonus on attack rolls that round (doesn't stack with haste). Paladin 3rd / cleric 4th.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"blood-scent",name:"Blood Scent",category:"spell",source:"Advanced Race Guide",appliesTo:["attack","damage"],type:"morale",
+ desc:"Orcs and raging creatures get +2 (or +4 vs. badly wounded/bleeding foes) morale bonus on attack and damage rolls against creatures they can smell.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"bloodsworn-retribution",name:"Bloodsworn Retribution",category:"spell",source:"Dwarves of Golarion",appliesTo:["attack"],type:"morale",
+ desc:"Self-inflicted-damage-scaled morale bonus (damage taken ÷ 5, max +5) on attack rolls the GM rules as related to your sworn oath of retribution. Paladin 4th / cleric 6th.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"bone-fists",name:"Bone Fists",category:"spell",source:"Magic Tactics Toolbox",appliesTo:["damage"],type:"untyped",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"+2 untyped bonus on damage rolls with natural weapons.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:signed(v)+' '+"untyped"}}},
+{id:"burst-of-glory",name:"Burst of Glory",category:"spell",source:"Inner Sea Gods",appliesTo:["attack"],type:"sacred",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"+1 sacred bonus on attack rolls for allies present when the spell is cast. Paladin 4th / cleric 5th.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"sacred"}}},
+{id:"challenge-evil",name:"Challenge Evil",category:"spell",source:"Advanced Player's Guide",appliesTo:["attack"],type:"sacred",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"+2 sacred bonus on melee attack rolls, but only against the specific evil creature you challenge.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"sacred"}}},
+{id:"contagious-zeal",name:"Contagious Zeal",category:"spell",source:"Occult Adventures",appliesTo:["attack","damage"],type:"morale",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"+2 morale bonus on attack rolls and weapon damage rolls; the target can spread the same bonus to one other ally each round.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"morale"}}},
+{id:"coward-s-cowl",name:"Coward's Cowl",category:"spell",source:"Agents of Evil",appliesTo:["attack"],type:"morale",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"+1 morale bonus on attack rolls made as readied actions or attacks of opportunity, conditional on staying defensive.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"morale"}}},
+{id:"deadly-juggernaut",name:"Deadly Juggernaut",category:"spell",source:"Ultimate Combat",appliesTo:["attack","damage"],type:"luck",
+ desc:"Cumulative luck bonus (+1 per qualifying kill, melee only, max +5) on melee attack and damage rolls.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"emblem-of-greed",name:"Emblem of Greed",category:"spell",source:"Arcane Anthology",appliesTo:["attack","damage"],type:"enhancement",
+ desc:"Turns a weapon into a magical glaive with a scaling enhancement bonus (+1, then +2 at CL15, +3 at CL19) plus escalating special abilities.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"gorum-s-armor",name:"Gorum's Armor",category:"spell",source:"Inner Sea World Guide",appliesTo:["attack","damage"],type:"enhancement",
+ desc:"Armor/shield spikes gain a scaling enhancement bonus at higher caster levels (0 below CL5, +1 at CL5, +2 at CL10).",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"guidance",name:"Guidance",category:"spell",source:"Core Rulebook",appliesTo:["attack"],type:"competence",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"+1 competence bonus usable on one attack roll (or a save/skill check instead), chosen before the roll. One-time use.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"competence"}}},
+{id:"heroes-feast",name:"Heroes' Feast",category:"spell",source:"Core Rulebook",appliesTo:["attack"],type:"morale",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"+1 morale bonus on attack rolls for 12 hours to everyone who partakes of the feast.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"morale"}}},
+{id:"holy-whisper",name:"Holy Whisper",category:"spell",source:"Advanced Player's Guide",appliesTo:["attack","damage"],type:"sacred",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"+2 sacred bonus on attack and damage rolls for good-aligned creatures in the burst, lasting only 1 round.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"sacred"}}},
+{id:"hunter-s-blessing",name:"Hunter's Blessing",category:"spell",source:"Inner Sea Gods",appliesTo:["attack","damage"],type:"sacred",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"+2 sacred bonus on attack and damage rolls against a chosen favored-enemy creature type.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"sacred"}}},
+{id:"inheritor-s-smite",name:"Inheritor's Smite",category:"spell",source:"Inner Sea Gods",appliesTo:["attack"],type:"sacred",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:5}],
+ desc:"+5 sacred bonus on the attack roll, but only for your next single melee attack.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:5);return {attack:v,damage:0,note:signed(v)+' '+"sacred"}}},
+{id:"inspiring-recovery",name:"Inspiring Recovery",category:"spell",source:"Healer's Handbook",appliesTo:["attack","damage"],type:"morale",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"+2 morale bonus on attack, damage, and save rolls for 1 minute, but only for allies who witness you revive a very recently-slain creature.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"morale"}}},
+{id:"invoke-deity",name:"Invoke Deity",category:"spell",source:"Planar Adventures",appliesTo:["attack"],type:"insight",
+ desc:"If you choose the War domain option, +2 insight bonus on attack rolls with your deity's favored weapon and +1d6 damage per hit with it. Paladin 4th / cleric 6th.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"magic-boulder",name:"Magic Boulder",category:"spell",source:"Monster Codex",appliesTo:["attack","damage"],type:"enhancement",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"+1 enhancement bonus on attack and damage rolls for up to 3 transmuted boulders used for rock-throwing or as siege ammunition.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"enhancement"}}},
+{id:"magic-stone",name:"Magic Stone",category:"spell",source:"Core Rulebook",appliesTo:["attack","damage"],type:"enhancement",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"+1 enhancement bonus on attack and damage rolls for up to 3 enchanted thrown/slung pebbles.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"enhancement"}}},
+{id:"marid-s-mastery",name:"Marid's Mastery",category:"spell",source:"Advanced Race Guide",appliesTo:["attack","damage"],type:"untyped",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"+1 untyped bonus on attack and damage rolls while fighting in water (becomes a -4 penalty if either combatant touches the ground).",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
+{id:"rally-point",name:"Rally Point",category:"spell",source:"Advanced Player's Guide",appliesTo:["attack"],type:"morale",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"+2 morale bonus on attack rolls for 1 round to any good creature that enters the warded square.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"morale"}}},
+{id:"reaper-s-coterie",name:"Reaper's Coterie",category:"spell",source:"Melee Tactics Toolbox",appliesTo:["damage"],type:"profane",
+ desc:"Cumulative +1 profane bonus on damage rolls with the enchanted weapon per kill, up to half your caster level.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"righteous-vigor",name:"Righteous Vigor",category:"spell",source:"Advanced Player's Guide",appliesTo:["attack"],type:"morale",
+ desc:"Attack-roll bonus that climbs +1 with each successive melee hit (max +4) and resets to 0 after a miss.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"saddle-surge",name:"Saddle Surge",category:"spell",source:"Advanced Player's Guide",appliesTo:["damage"],type:"morale",
+ desc:"Mounted-only: +1 morale damage bonus per 5 ft the mount moved this round, capped at caster level.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"umbral-infusion",name:"Umbral Infusion",category:"spell",source:"Blood of Shadows",appliesTo:["attack","damage"],type:"untyped",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"+2 untyped bonus on all rolls for a mindless undead creature you empower.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
+{id:"unhallowed-blows",name:"Unhallowed Blows",category:"spell",source:"People of the Wastes",appliesTo:["attack","damage"],type:"enhancement",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"+1 enhancement bonus on attack and damage rolls with one natural attack or unarmed strike — undead creatures only.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"enhancement"}}},
+{id:"untold-wonder",name:"Untold Wonder",category:"spell",source:"Heroes from the Fringe",appliesTo:["attack"],type:"morale",
+ desc:"Converts emotion-effect penalties into morale bonuses (half value) and boosts any existing morale bonus by +1; does nothing on its own.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"vigor",name:"Vigor",category:"spell",source:"Orcs of Golarion",appliesTo:["damage"],type:"competence",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"+1 competence bonus usable on one melee damage roll, declared before the roll. One-time use.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"competence"}}},
+{id:"weapon-of-awe",name:"Weapon of Awe",category:"spell",source:"Advanced Player's Guide",appliesTo:["damage"],type:"sacred",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"+2 sacred bonus on damage rolls with one chosen weapon; also inflicts shaken on a critical hit.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:signed(v)+' '+"sacred"}}},
+{id:"wrath",name:"Wrath",category:"spell",source:"Advanced Player's Guide",appliesTo:["attack","damage"],type:"morale",
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:9}],
+ desc:"+1 morale bonus per 3 caster levels (min +1, max +3) on attack and weapon damage rolls, but only against one designated enemy.",
+ compute:(ctx,cfg)=>{let cl=cfg.cl||1;let b=Math.min(3,Math.max(1,Math.floor(cl/3)));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (morale, vs designated enemy)'}}},
+
 // ---------------- OTHER (class features / combat rules) ----------------
 {id:'smite-evil',name:'Smite Evil',category:'other',source:'Paladin class feature',appliesTo:['attack','damage'],type:'untyped',
  desc:'CHA bonus to attack, paladin level to damage vs the smited target (untyped — no named bonus type given in the rules text).',
@@ -243,6 +455,238 @@ const MODIFIERS = [
 {id:'flanking',name:'Flanking',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'untyped',
  desc:'+2 on melee attack rolls when you and an ally threaten opposite sides of the target.',
  compute:()=>({attack:2,damage:0,note:'+2 atk'})},
+
+// ---------------- OTHER (batch 2 — class features / combat rules) ----------------
+{id:"rage",name:"Rage",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"morale",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Barbarian rage grants a morale bonus to Strength and Constitution (+4 base → +2 to the modifier, +6 Greater Rage → +3, +8 Mighty Rage → +4), indirectly boosting melee attack/damage via the Strength modifier. The value below is already the resulting modifier bonus, not the raw ability score bonus — route it through here rather than editing STR directly to avoid double-counting.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"morale"}}},
+{id:"sneak-attack",name:"Sneak Attack",category:"other",source:"Core Rulebook",appliesTo:["damage"],type:"none",
+ desc:"Extra precision damage dice (1d6 per two rogue levels) against flat-footed or flanked targets; not multiplied on a critical hit; many creature types are immune to precision damage.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"favored-enemy",name:"Favored Enemy",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"untyped",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Untyped bonus (starting at +2, scaling +2 every 5 ranger levels) on weapon attack and damage rolls against creatures of a selected favored enemy type.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
+{id:"judgment-destruction",name:"Judgment (Destruction)",category:"other",source:"Advanced Player's Guide",appliesTo:["damage"],type:"sacred",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Inquisitor's Destruction judgment: sacred (or profane, if evil) bonus to all weapon damage rolls while active, +1 per 3 inquisitor levels.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);let t=ctx.alignment&&ctx.alignment.charAt(1)==='E'?'profane':'sacred';return {attack:0,damage:v,type:t,note:signed(v)+' '+t}}},
+{id:"judgment-justice",name:"Judgment (Justice)",category:"other",source:"Advanced Player's Guide",appliesTo:["attack"],type:"sacred",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Inquisitor's Justice judgment: sacred (or profane, if evil) bonus to attack rolls while active, +1 per 5 inquisitor levels (doubled on a confirmed crit at 10th+).",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);let t=ctx.alignment&&ctx.alignment.charAt(1)==='E'?'profane':'sacred';return {attack:v,damage:0,type:t,note:signed(v)+' '+t}}},
+{id:"studied-target",name:"Studied Target",category:"other",source:"Advanced Class Guide",appliesTo:["attack","damage"],type:"untyped",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Slayer's untyped bonus to attack and damage rolls against a studied target, +1 at 1st/5th/10th/15th/20th slayer levels.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
+{id:"weapon-training",name:"Weapon Training",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"untyped",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Fighter's untyped bonus to attack and damage rolls with weapons from a trained weapon group; bonuses from overlapping groups don't stack (use the highest).",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
+{id:"bane",name:"Bane",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"enhancement",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Bane weapon: +2 enhancement bonus to attack rolls and an extra 2d6 damage (dice, not a flat number) against its designated foe type.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"enhancement"+" (plus 2d6 extra damage, not modeled as a flat number — see description)"}}},
+{id:"aid-another-combat",name:"Aid Another (Combat)",category:"other",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"A character who succeeds on a melee attack roll against AC 10 can grant an ally a +2 untyped bonus on their next attack roll against the same opponent.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"untyped"}}},
+{id:"inspire-greatness-bardic-performance",name:"Inspire Greatness (Bardic Performance)",category:"other",source:"Core Rulebook",appliesTo:["attack"],type:"competence",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Bardic Inspire Greatness performance: +2 competence bonus on attack rolls (no damage bonus) to allies while maintained. 9th-level bard ability, separate from Inspire Courage.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"competence"}}},
+
+// ---------------- TRAITS ----------------
+{id:"absalom-bouncer",name:"Absalom Bouncer",category:"trait",source:"Advanced Class Origins",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"You gain +1 damage on nonlethal unarmed-strike attacks from your bouncer training.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"ambush-training",name:"Ambush Training",category:"trait",source:"Pathfinder Society Primer",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"You strike harder in the surprise round thanks to your ambush training.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"arodenite-sword-training",name:"Arodenite Sword Training",category:"trait",source:"Arcane Anthology",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Family sword training with longswords sharpens your attacks of opportunity.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"axe-to-grind",name:"Axe to Grind",category:"trait",source:"Ultimate Campaign",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"A burning grudge fuels extra damage against foes only you threaten.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"back-for-more",name:"Back for More",category:"trait",source:"Agents of Evil",appliesTo:["attack","damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Getting critically hit only fuels your retaliation against that foe.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"blade-of-the-society",name:"Blade of the Society",category:"trait",source:"Shattered Star Player's Guide",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Society charts of anatomical weak points sharpen your sneak attacks.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"born-under-the-cradle",name:"Born under the Cradle",category:"trait",source:"People of the Stars",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Your birth sign grants a knack for the aid another combat action.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"bullied",name:"Bullied",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Childhood bullying left you always ready to strike back bare-handed.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"clockwork-engineer",name:"Clockwork Engineer",category:"trait",source:"People of the Wastes",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Your understanding of clockwork guardians lets you strike their weak points.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"cold-and-calculating",name:"Cold and Calculating",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"You strike hardest against related favored enemies before they can react.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"dedicated-defender",name:"Dedicated Defender",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"You fight harder when a companion at your side is down.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"demon-smiter",name:"Demon Smiter",category:"trait",source:"Champions of Purity",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:4}],
+ desc:"Stories of demon-hunters taught you their weaknesses, once per day.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:4);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"dispelled-battler",name:"Dispelled Battler",category:"trait",source:"Ultimate Campaign",appliesTo:["attack","damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Losing your magic only makes you fight harder with steel.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"easy-way-or-the-hard-way",name:"Easy Way or the Hard Way",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"You know how to pull your blows against favored enemies without losing accuracy.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"fencer",name:"Fencer",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Long hours of blade training make your attacks of opportunity with swords more precise.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"firebug",name:"Firebug",category:"trait",source:"Quests & Campaigns",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"A childhood spent around alchemical experiments made you deadly with bombs and splash weapons.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"hellknight-initiate",name:"Hellknight Initiate",category:"trait",source:"Monster Summoner's Handbook",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Hellknight training focuses your strikes against summoned outsiders.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"hidden-hand",name:"Hidden Hand",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"A concealed light weapon strikes fast and true when a fight begins by surprise.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"hunter-s-knack",name:"Hunter's Knack",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Waiting and watching before you strike makes your readied attacks against favored enemies more accurate.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"indelible-ire",name:"Indelible Ire",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Being grievously wounded only sharpens your combat focus for a round.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"inspiring-rush",name:"Inspiring Rush",category:"trait",source:"Knights of the Inner Sea",appliesTo:["attack","damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Your inspiring charge grants a once-daily bonus to your own attack and damage.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"just-like-new",name:"Just Like New",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"You know how to keep firing a broken firearm more reliably than most.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"lastwall-defender",name:"Lastwall Defender",category:"trait",source:"Advanced Class Origins",appliesTo:["attack","damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Military training in Lastwall taught you to fight undead you've identified.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"monk-weapon-skill",name:"Monk Weapon Skill",category:"trait",source:"Weapon Master's Handbook",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Training from the Houses of Perfection makes your chosen monk weapon deadlier.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"obari-veteran",name:"Obari Veteran",category:"trait",source:"Merchant's Manifest",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Years at sea taught you where to strike aquatic creatures.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"ozem-inspired",name:"Ozem-Inspired",category:"trait",source:"Weapon Master's Handbook",appliesTo:["attack","damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Tales of the Knights of Ozem taught you to strike reflexively at the undead.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"performer-s-surprise",name:"Performer's Surprise",category:"trait",source:"Weapon Master's Handbook",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Varisian wanderer tricks let you strike harder against caught-off-guard foes.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"punish-insurrection",name:"Punish Insurrection",category:"trait",source:"Champions of Corruption",appliesTo:["attack","damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"You relish reminding subordinates and defiant underlings who's in charge.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"reckless-contempt",name:"Reckless Contempt",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"You don't fear the opening you give foes by firing your gun.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"savanna-hunter",name:"Savanna Hunter",category:"trait",source:"Sargava, the Lost Colony",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"You've hunted the open plains with a shortspear since birth.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"scarred-by-space-pirates",name:"Scarred by Space Pirates",category:"trait",source:"People of the Stars",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"A youthful pirate attack taught you to fight off-world humanoids.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"siege-defender",name:"Siege Defender",category:"trait",source:"Arcane Anthology",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Absalom siege lore taught you to strike harder from the high ground.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"spirit-of-the-law",name:"Spirit of the Law",category:"trait",source:"Antihero's Handbook",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Watching the law twisted by those in power made you wary of lawful humanoids.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"surprise-weapon",name:"Surprise Weapon",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"You're skilled at fighting with objects not traditionally considered weapons.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"sworn-enemy",name:"Sworn Enemy",category:"trait",source:"Quests & Campaigns",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Childhood defiance or hatred trained you to punish one type of foe.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"tactician",name:"Tactician",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"You know how to punish enemies unprepared for your attacks of opportunity.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"tar-taargadth-trained",name:"Tar Taargadth Trained",category:"trait",source:"Blood of the Ancients",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Ancient Tar Taargadth fighting techniques improve your damage with dwarven weapons.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"tarnished-halls-runner",name:"Tarnished Halls Runner",category:"trait",source:"Black Markets",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Evading Technic League patrols taught you to shoot better on the move.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"threatening-defender",name:"Threatening Defender",category:"trait",source:"Cheliax, Empire of Devils",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"You know how to keep your offense sharp even while fighting defensively.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"unpredictable-reactions",name:"Unpredictable Reactions",category:"trait",source:"Champions of Balance",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Your reactions when combat begins aren't what people expect.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"vengeful-combat",name:"Vengeful (Combat)",category:"trait",source:"Quests & Campaigns",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"A history of abuse fuels retaliation against whoever hurt you most recently.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"youthful-infiltrator",name:"Youthful Infiltrator",category:"trait",source:"Spymaster's Handbook",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Trained from youth to ambush enemies of your organization while they're flat-footed.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"bloodthirsty",name:"Bloodthirsty",category:"trait",source:"Ultimate Campaign",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"A vicious streak lets you land extra, crit-multiplied damage on killing or critical blows.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"dirty-fighter",name:"Dirty Fighter",category:"trait",source:"Ultimate Campaign",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"A trusted companion's distraction lets you land extra damage while flanking.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"killer",name:"Killer",category:"trait",source:"Ultimate Campaign",appliesTo:["damage"],type:"trait",
+ desc:"You take pride in maximizing pain on a well-placed critical hit. The bonus equals your weapon's critical hit multiplier minus 1 (x2 weapon: +1, x3: +2, x4: +3), added after the crit multiplier is applied.",
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:"weapon-of-peace",name:"Weapon of Peace",category:"trait",source:"Champions of Purity",appliesTo:["attack"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"You prefer disabling foes to killing them, and you've trained to do it without losing accuracy.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+
+// ---------------- SKILLS ----------------
+{id:"knowledge-skill-unlock-10-ranks",name:"Knowledge Skill Unlock (10 Ranks)",category:"skill",source:"Pathfinder Unchained, pg. 85",appliesTo:["attack"],type:"competence",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"At 10+ ranks in a Knowledge skill, successfully identifying a creature grants a +1 (scaling) competence bonus on your own attack rolls against that specific kind of creature for 1 minute. Requires the Skill Unlocks subsystem.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"competence"}}},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'skill',label:'Skills'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'}];
@@ -257,9 +701,20 @@ function loadStore(){ let s=JSON.parse(localStorage.getItem(STORE_KEY)||'null');
 function saveStore(){ localStorage.setItem(STORE_KEY, JSON.stringify(store)); }
 function defaultProfile(name){
   return {name, bab:6, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
-    hands:2, enh:2, critMult:2, active:[], custom:[]};
+    style:'twoHanded', atkAbility:'str', offEnh:0, offLight:true,
+    enh:2, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
 }
 let store=loadStore();
+// migrate profiles saved before the Fighting Style / Race / Alignment / Sources features existed
+store.profiles.forEach(p=>{
+  if(!p.style) p.style = (p.hands===1) ? 'oneHanded' : 'twoHanded';
+  if(!p.atkAbility) p.atkAbility='str';
+  if(p.offEnh===undefined) p.offEnh=0;
+  if(p.offLight===undefined) p.offLight=true;
+  if(!p.excludedSources) p.excludedSources={};
+  if(p.race===undefined) p.race='';
+  if(p.alignment===undefined) p.alignment='';
+});
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
 function populateProfileSelect(){
@@ -273,8 +728,13 @@ function loadProfileIntoUI(){
   $('bab').value=p.bab; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
-  $('hands').value=p.hands; $('enh').value=p.enh; $('critMult').value=p.critMult;
+  $('style').value=p.style; $('atkAbility').value=p.atkAbility; $('enh').value=p.enh; $('critMult').value=p.critMult;
+  $('offEnh').value=p.offEnh; $('offLight').checked=!!p.offLight;
+  $('race').value=p.race||''; $('alignment').value=p.alignment||'';
   $('customWeapon').style.display = p.weapon==='custom' ? 'block' : 'none';
+  $('offhandBox').style.display = p.style==='twf' ? 'block' : 'none';
+  applyRaceSourceExclusions();
+  renderSources();
   renderCategories();
   compute();
 }
@@ -284,7 +744,9 @@ function syncUIIntoProfile(){
   p.bab=+$('bab').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
   p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
-  p.hands=+$('hands').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
+  p.style=$('style').value; p.atkAbility=$('atkAbility').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
+  p.offEnh=+$('offEnh').value; p.offLight=$('offLight').checked;
+  p.race=$('race').value.trim(); p.alignment=$('alignment').value;
   saveStore();
 }
 
@@ -317,16 +779,58 @@ $('deleteProfile').onclick=()=>{
   store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 
-['bab','str','dex','con','int','wis','cha','weapon','customDice','customThreat','hands','enh','critMult'].forEach(id=>{
+['bab','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkAbility','offEnh','offLight','enh','critMult'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'block' : 'none';
       let w=WEAPONS[$('weapon').value];
       if(w) $('critMult').value=w.mult;
     }
+    if(id==='style'){
+      $('offhandBox').style.display = $('style').value==='twf' ? 'block' : 'none';
+    }
     syncUIIntoProfile(); compute();
   });
 });
+$('race').addEventListener('input', ()=>{
+  syncUIIntoProfile();
+  applyRaceSourceExclusions();
+  saveStore();
+  renderSources(); renderCategories(); compute();
+});
+$('alignment').addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); });
+
+// ---------- Race / Sources ----------
+(function populateRaceList(){
+  let dl=$('raceList');
+  RACES.forEach(r=>{ let o=document.createElement('option'); o.value=r; dl.appendChild(o); });
+})();
+
+function applyRaceSourceExclusions(){
+  let p=currentProfile();
+  RACE_ONLY_SOURCES.forEach(src=>{
+    let allowed = RACE_SOURCE_MAP[p.race] && RACE_SOURCE_MAP[p.race].includes(src);
+    if(allowed) delete p.excludedSources[src]; else p.excludedSources[src]=true;
+  });
+}
+
+function renderSources(){
+  let p=currentProfile();
+  let box=$('sourceList'); box.innerHTML='';
+  let all=[...new Set(MODIFIERS.map(m=>m.source||'Unknown'))].sort();
+  all.forEach(src=>{
+    let lbl=document.createElement('label');
+    let cb=document.createElement('input'); cb.type='checkbox'; cb.checked=!p.excludedSources[src];
+    cb.onchange=()=>{
+      if(cb.checked) delete p.excludedSources[src]; else p.excludedSources[src]=true;
+      saveStore(); renderCategories(); compute();
+    };
+    lbl.appendChild(cb); lbl.appendChild(document.createTextNode(src));
+    box.appendChild(lbl);
+  });
+}
+$('srcAll').onclick=()=>{ let p=currentProfile(); p.excludedSources={}; applyRaceSourceExclusions(); saveStore(); renderSources(); renderCategories(); compute(); };
+$('srcNone').onclick=()=>{ let p=currentProfile(); [...new Set(MODIFIERS.map(m=>m.source||'Unknown'))].forEach(src=>p.excludedSources[src]=true); saveStore(); renderSources(); renderCategories(); compute(); };
 
 // ---------- Modifier catalog UI ----------
 function renderCategories(){
@@ -342,12 +846,16 @@ function renderCategories(){
     addRow.innerHTML=`<input list="${listId}" placeholder="Search ${cat.label.toLowerCase()} to add..." id="add_${cat.k}"><datalist id="${listId}"></datalist><button data-cat="${cat.k}" class="addBtn">Add</button><button data-cat="${cat.k}" class="addCustomBtn">+ Custom</button>`;
     block.appendChild(addRow);
     let dl=addRow.querySelector('datalist');
-    MODIFIERS.filter(m=>m.category===cat.k && !p.active.some(a=>a.id===m.id)).forEach(m=>{
+    MODIFIERS.filter(m=>m.category===cat.k && !p.active.some(a=>a.id===m.id) && !p.excludedSources[m.source]).forEach(m=>{
       let o=document.createElement('option'); o.value=m.name; dl.appendChild(o);
     });
     if(!MODIFIERS.some(m=>m.category===cat.k)){
       let n=document.createElement('div'); n.className='emptyNote';
       n.textContent='Catalog for this category is still being researched — use "+ Custom" to add anything not listed yet.';
+      block.appendChild(n);
+    } else if(!MODIFIERS.some(m=>m.category===cat.k && !p.excludedSources[m.source])){
+      let n=document.createElement('div'); n.className='emptyNote';
+      n.textContent='Every catalog entry in this category belongs to a source you\'ve excluded — check the Sources panel above, or use "+ Custom".';
       block.appendChild(n);
     }
     activeInCat.forEach(a=>{
@@ -364,6 +872,7 @@ function renderCategories(){
     let m=MODIFIERS.find(x=>x.category===cat && x.name===name);
     if(!m){ if(name) alert('No catalog entry named "'+name+'" in '+cat+'. Use "+ Custom" instead.'); return; }
     let p=currentProfile();
+    if(p.excludedSources[m.source]){ alert('"'+m.name+'" is from '+m.source+', which is excluded in Sources. Re-enable that source first if you want to add it.'); return; }
     let cfg={}; (m.configFields||[]).forEach(f=>cfg[f.key]=f.default);
     p.active.push({id:m.id, cfg, on:true});
     saveStore(); renderCategories(); compute();
@@ -423,10 +932,11 @@ function collectContributions(ctx){
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
     if(m.special==='furious-focus'){ furiousFocusOn=true; breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Cancels Power Attack penalty on first attack only',suppressed:false}); return; }
     let r=m.compute(ctx,a.cfg||{});
+    let effType=r.type||m.type;
     if(m.id==='power-attack'||m.id==='deadly-aim'){ powerAttackOn=true; powerAttackAtkVal=r.attack; }
-    if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:m.type,source:m.name});
-    if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:m.type,source:m.name});
-    breakdown.push({name:m.name,category:m.category,type:m.type,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:r.note,suppressed:false});
+    if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name});
+    if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name});
+    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:r.note,suppressed:false});
   });
   p.custom.forEach(c=>{
     if(c.atk) atkEntries.push({value:c.atk,type:c.type,source:c.name});
@@ -476,10 +986,13 @@ function diceMultiply(dice,mult){
   return (Number(m[1])*mult)+'d'+m[2];
 }
 
+const TWF_PENALTIES={ normal:{noFeat:{main:-6,off:-10}, feat:{main:-4,off:-4}}, light:{noFeat:{main:-4,off:-4}, feat:{main:-2,off:-2}} };
+
 function compute(){
   let p=currentProfile();
-  let bab=+$('bab').value, hands=+$('hands').value, enh=+$('enh').value, critMult=+$('critMult').value;
-  let ctx={bab, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), hands};
+  let bab=+$('bab').value, enh=+$('enh').value, critMult=+$('critMult').value;
+  let style=$('style').value, atkAbility=$('atkAbility').value;
+  let ctx={bab, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value};
   let weaponKey=$('weapon').value;
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
 
@@ -488,8 +1001,10 @@ function compute(){
   markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
   renderBreakdown(breakdown);
 
-  let strDmgMod = hands===2 ? Math.floor(ctx.str*1.5) : ctx.str;
-  let baseAtk = bab + ctx.str + enh;
+  let atkAbilityMod = (style==='ranged') ? ctx.dex : (atkAbility==='str' ? ctx.str : ctx.dex);
+  let dmgAbilityMod = (style==='ranged') ? 0 : (atkAbility==='dexBoth' ? ctx.dex : ctx.str);
+  let strDmgMod = style==='twoHanded' ? Math.floor(dmgAbilityMod*1.5) : dmgAbilityMod;
+  let baseAtk = bab + atkAbilityMod + enh;
   let baseDmg = strDmgMod + enh;
 
   let atkFromMods = stackTotal(atkEntries);
@@ -518,8 +1033,33 @@ function compute(){
   $('dmgNormal').textContent=`${w.dice} ${signed(dmg)}`;
   $('dmgCrit').textContent=`${critDice} ${signed(critDmg)} (threat ${w.threat}/×${critMult})`;
 
-  notes.push('Base attack: BAB '+signed(bab)+' + STR '+signed(ctx.str)+' + enhancement '+signed(enh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
-  notes.push('Base damage: STR '+signed(strDmgMod)+(hands===2?' (×1.5, two-handed)':'')+' + enhancement '+signed(enh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
+  let atkAbilityLabel = (style==='ranged') ? 'DEX (ranged)' : (atkAbility==='str' ? 'STR' : 'DEX (finesse)');
+  notes.push('Base attack: BAB '+signed(bab)+' + '+atkAbilityLabel+' '+signed(atkAbilityMod)+' + enhancement '+signed(enh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
+  notes.push('Base damage: '+(style==='ranged'?'no ability modifier by default (ranged)':( (atkAbility==='dexBoth'?'DEX ':'STR ')+signed(dmgAbilityMod)+(style==='twoHanded'?' (×1.5, two-handed)':'')))+' + enhancement '+signed(enh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
+
+  $('offAtkBox').style.display='none'; $('offDmgBox').style.display='none';
+  if(style==='twf'){
+    let offEnh=+$('offEnh').value, offLight=$('offLight').checked;
+    let hasTWF = p.active.some(a=>a.id==='two-weapon-fighting');
+    let hasDoubleSlice = p.active.some(a=>a.id==='double-slice');
+    let pen = TWF_PENALTIES[offLight?'light':'normal'][hasTWF?'feat':'noFeat'];
+    let mainAtk = bab + atkAbilityMod + enh + pen.main + atkFromMods;
+    let offAtk = bab + atkAbilityMod + offEnh + pen.off + atkFromMods;
+    let offDmgAbility = hasDoubleSlice ? dmgAbilityMod : Math.floor(dmgAbilityMod/2);
+    let offDmg = offDmgAbility + offEnh + dmgFromMods;
+    iteratives=[]; for(let b=bab;b>0;b-=5) iteratives.push(mainAtk-(bab-b));
+    if(!iteratives.length) iteratives=[mainAtk];
+    if(furiousFocusOn && powerAttackOn) iteratives[0]=mainAtk-powerAttackAtkVal;
+    $('toHit').textContent=signed(iteratives[0]);
+    $('fullAttack').textContent=iteratives.map(signed).join(' / ');
+    $('offAtkBox').style.display='block'; $('offDmgBox').style.display='block';
+    $('offAtk').textContent=signed(offAtk);
+    $('offDmg').textContent=`${w.dice} ${signed(offDmg)}`;
+    notes.push('Two-Weapon Fighting: penalties '+pen.main+'/'+pen.off+' ('+(offLight?'light':'normal')+' off-hand'+(hasTWF?', Two-Weapon Fighting feat applied':'')+'). Off-hand damage uses '+(hasDoubleSlice?'full':'half')+' of your damage ability modifier'+(hasDoubleSlice?' (Double Slice active)':'')+'. The shared modifier total above ('+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg) is applied to both hands identically for simplicity.');
+  }
+  if(style==='ranged'){
+    notes.push('Ranged: attack uses Dexterity; damage does not include an ability modifier by default (add Strength manually via a Custom modifier for thrown weapons).');
+  }
   $('notes').innerHTML=notes.map(n=>'• '+n).join('<br>');
 }
 
