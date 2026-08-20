@@ -1,10 +1,10 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><title>Uran — Cleric Spellbook</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#10151d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Uran"><link rel="apple-touch-icon" href="icon-192.png">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><title>Universal Cleric Spellbook</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#10151d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Cleric"><link rel="apple-touch-icon" href="icon-192.png">
 <style>
-:root{--bg:#0f1117;--panel:#181c24;--panel2:#202633;--text:#eef2f7;--muted:#9ba7b7;--gold:#d5ad55;--gold2:#f1d78b;--red:#d66b6b;--border:#313949}*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-family:Inter,system-ui,sans-serif;background:#0f1117;color:var(--text)}header,main{max-width:1180px;margin:auto;padding:12px 16px}header{border-bottom:1px solid var(--border)}h1{margin:0;font-size:1.35rem}.sub{color:var(--muted);font-size:.78rem;margin:2px 0 8px}.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}label{font-size:.68rem;color:var(--muted);display:block;margin-bottom:2px}select,input{width:100%;background:#121721;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px}.oathval{width:100%;box-sizing:border-box;padding:7px 0;color:var(--text);font-weight:700}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:7px}.stat{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:6px 8px}.stat b{color:var(--gold2);font-size:1rem}.stat span{display:block;color:var(--muted);font-size:.62rem}.levels{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}button{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 9px;cursor:pointer}button.active,button.primary{background:#5a4318;border-color:#816427;color:#fff1c2}.toolbar{display:grid;grid-template-columns:1fr 160px auto auto;gap:6px;margin-bottom:8px}.slotbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(56px,1fr));gap:6px;margin-bottom:8px;position:sticky;top:0;z-index:5;background:#0f1117;padding:6px 0;box-shadow:0 4px 6px -4px rgba(0,0,0,.4)}.slot{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:6px}.slot small{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px}section{margin:8px 0 14px}h2{font-size:.95rem;color:var(--gold2);margin:6px 0}.dc{font-size:.68rem;color:var(--muted);font-weight:400;margin-left:6px}.card{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px}.card.oath{border-color:#816427}.head{display:flex;justify-content:space-between;gap:8px}.name{font-weight:750}.badge{font-size:.58rem;color:var(--gold2)}.savebadge{font-size:.58rem;color:var(--muted);margin-top:2px}.sourcebadge{font-size:.56rem;color:#7d8aa3;margin-top:2px;font-style:italic}.reasontag{font-size:.58rem;color:#e0a05a;margin-top:2px}.ineligibleToggle{display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--muted);cursor:pointer;white-space:nowrap}.ineligibleToggle input{width:auto}.ineligibleSep{grid-column:1/-1;font-size:.68rem;color:var(--muted);border-top:1px solid var(--border);padding-top:6px;margin-top:4px}.card.ineligible{opacity:.42}.forbidbtn{background:none;border:none;font-size:1rem;line-height:1;cursor:pointer;padding:0 4px;color:var(--muted);opacity:.5}.forbidbtn.active{color:#e07a7a;opacity:1}.desc{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.25}.desc summary{cursor:pointer;color:var(--gold2);font-size:.68rem;list-style:none}.desc summary::-webkit-details-marker{display:none}.desc summary:before{content:"▸ ";display:inline-block}.desc[open] summary:before{content:"▾ "}.desc[open] summary{margin-bottom:3px}.stat-block{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:5px 7px;margin-bottom:5px}.stat-row{font-size:.68rem;line-height:1.5}.stat-row b{color:var(--gold2);font-weight:700;margin-right:4px}.effect-text p{margin:0 0 6px}.effect-text p:last-child{margin-bottom:0}.prep{display:flex;align-items:center;gap:4px}.count{min-width:22px;text-align:center;color:var(--gold2);font-weight:700}.disabled{opacity:.45}.blockedtag{font-size:.58rem;color:#e07a7a;margin-top:2px;display:block}.sourcesbox{position:relative}.sourcesbox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-size:.78rem;list-style:none;white-space:nowrap}.sourcesbox summary::-webkit-details-marker{display:none}.sourcesbox[open] summary{border-color:var(--gold)}.sourcesPanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px;z-index:20;max-height:260px;overflow-y:auto;min-width:220px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.sourcesPanel label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);padding:3px 0;cursor:pointer}.sourcesPanel input{width:auto}.sourcesPanel .srcActions{display:flex;gap:6px;margin-bottom:6px}.sourcesPanel .srcActions button{font-size:.65rem;padding:4px 7px}.warn{color:#ffd27c;font-size:.68rem;margin-top:5px}.pips{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:6px;cursor:pointer}.pipdots{display:flex;gap:4px;flex-wrap:wrap}.pip{width:14px;height:14px;border-radius:50%;border:1px solid #6b7688;background:#222a37}.pip.used{background:#7a3036;border-color:#c25c66}.pipcount{font-size:.62rem;color:var(--muted)}.rulenote{margin-top:5px}.rulenote summary{cursor:pointer;color:var(--muted);font-size:.62rem;list-style:none;display:inline-block}.rulenote summary::-webkit-details-marker{display:none}.rulenote #ruleNote{color:#ffd27c;font-size:.68rem;margin-top:4px}.favbtn{background:none;border:none;font-size:1.05rem;line-height:1;cursor:pointer;padding:0 4px;color:var(--muted)}.favbtn.active{color:var(--gold2)}
+:root{--bg:#0f1117;--panel:#181c24;--panel2:#202633;--text:#eef2f7;--muted:#9ba7b7;--gold:#d5ad55;--gold2:#f1d78b;--red:#d66b6b;--border:#313949}*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-family:Inter,system-ui,sans-serif;background:#0f1117;color:var(--text)}header,main{max-width:1180px;margin:auto;padding:12px 16px}header{border-bottom:1px solid var(--border)}h1{margin:0;font-size:1.35rem}.sub{color:var(--muted);font-size:.78rem;margin:2px 0 8px}.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}label{font-size:.68rem;color:var(--muted);display:block;margin-bottom:2px}select,input{width:100%;background:#121721;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px}.oathval{width:100%;box-sizing:border-box;padding:7px 0;color:var(--text);font-weight:700}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:7px}.stat{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:6px 8px}.stat b{color:var(--gold2);font-size:1rem}.stat span{display:block;color:var(--muted);font-size:.62rem}.levels{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}button{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 9px;cursor:pointer}button.active,button.primary{background:#5a4318;border-color:#816427;color:#fff1c2}.toolbar{display:grid;grid-template-columns:1fr 160px auto auto;gap:6px;margin-bottom:8px}.slotbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(56px,1fr));gap:6px;margin-bottom:8px;position:sticky;top:0;z-index:5;background:#0f1117;padding:6px 0;box-shadow:0 4px 6px -4px rgba(0,0,0,.4)}.slot{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:6px}.slot small{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px}section{margin:8px 0 14px}h2{font-size:.95rem;color:var(--gold2);margin:6px 0}.dc{font-size:.68rem;color:var(--muted);font-weight:400;margin-left:6px}.card{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px}.card.oath{border-color:#816427}.head{display:flex;justify-content:space-between;gap:8px}.name{font-weight:750}.badge{font-size:.58rem;color:var(--gold2)}.savebadge{font-size:.58rem;color:var(--muted);margin-top:2px}.sourcebadge{font-size:.56rem;color:#7d8aa3;margin-top:2px;font-style:italic}.reasontag{font-size:.58rem;color:#e0a05a;margin-top:2px}.ineligibleToggle{display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--muted);cursor:pointer;white-space:nowrap}.ineligibleToggle input{width:auto}.ineligibleSep{grid-column:1/-1;font-size:.68rem;color:var(--muted);border-top:1px solid var(--border);padding-top:6px;margin-top:4px}.card.ineligible{opacity:.42}.forbidbtn{background:none;border:none;font-size:1rem;line-height:1;cursor:pointer;padding:0 4px;color:var(--muted);opacity:.5}.forbidbtn.active{color:#e07a7a;opacity:1}.desc{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.25}.desc summary{cursor:pointer;color:var(--gold2);font-size:.68rem;list-style:none}.desc summary::-webkit-details-marker{display:none}.desc summary:before{content:"▸ ";display:inline-block}.desc[open] summary:before{content:"▾ "}.desc[open] summary{margin-bottom:3px}.stat-block{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:5px 7px;margin-bottom:5px}.stat-row{font-size:.68rem;line-height:1.5}.stat-row b{color:var(--gold2);font-weight:700;margin-right:4px}.effect-text p{margin:0 0 6px}.effect-text p:last-child{margin-bottom:0}.prep{display:flex;align-items:center;gap:4px}.count{min-width:22px;text-align:center;color:var(--gold2);font-weight:700}.disabled{opacity:.45}.blockedtag{font-size:.58rem;color:#e07a7a;margin-top:2px;display:block}.sourcesbox{position:relative}.sourcesbox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-size:.78rem;list-style:none;white-space:nowrap}.sourcesbox summary::-webkit-details-marker{display:none}.sourcesbox[open] summary{border-color:var(--gold)}.sourcesPanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px;z-index:20;max-height:260px;overflow-y:auto;min-width:220px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.sourcesPanel label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);padding:3px 0;cursor:pointer}.sourcesPanel input{width:auto}.sourcesPanel .srcActions{display:flex;gap:6px;margin-bottom:6px}.sourcesPanel .srcActions button{font-size:.65rem;padding:4px 7px}.warn{color:#ffd27c;font-size:.68rem;margin-top:5px}.pips{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:6px;cursor:pointer}.pipdots{display:flex;gap:4px;flex-wrap:wrap}.pip{width:14px;height:14px;border-radius:50%;border:1px solid #6b7688;background:#222a37}.pip.used{background:#7a3036;border-color:#c25c66}.pipcount{font-size:.62rem;color:var(--muted)}.rulenote{margin-top:5px}.rulenote summary{cursor:pointer;color:var(--muted);font-size:.62rem;list-style:none;display:inline-block}.rulenote summary::-webkit-details-marker{display:none}.rulenote #ruleNote{color:#ffd27c;font-size:.68rem;margin-top:4px}.favbtn{background:none;border:none;font-size:1.05rem;line-height:1;cursor:pointer;padding:0 4px;color:var(--muted)}.favbtn.active{color:var(--gold2)}.profileBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0}.profileBar select{width:auto;min-width:150px}.profileBar label{display:inline;margin:0}button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}.saveIndicator{font-size:.68rem;color:#72c69c;opacity:0;transition:opacity .25s ease}.saveIndicator.show{opacity:1}
 @media(max-width:780px){header,main{padding:5px 7px}h1{display:none}.sub{display:none}.controls{grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:3px}label{font-size:.45rem}select,input{height:23px;padding:2px 4px;font-size:.6rem}.stats{gap:2px;margin-top:3px}.stat{padding:2px;text-align:center;min-height:29px}.stat b{font-size:.68rem}.stat span{font-size:.38rem}.levels{margin:3px 0;gap:2px}button{padding:3px 5px;font-size:.55rem}.slotbar{gap:2px;margin-bottom:4px}.slot{padding:3px;font-size:.58rem}.slot small{font-size:.42rem}.toolbar{grid-template-columns:1fr 100px auto auto;gap:3px;margin-bottom:4px}.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:3px}section{margin:4px 0 8px}h2{font-size:.72rem;margin:3px 0}.card{padding:5px}.name{font-size:.74rem}.desc{font-size:.58rem}.desc summary{font-size:.55rem}.stat-row{font-size:.55rem}.stat-block{padding:4px 5px}.badge{font-size:.45rem}}
 </style>
 </head>
-<body><header><h1>Uran — Cleric Spellbook</h1><div class="sub">Pathfinder 1e full Paizo cleric spell list + domain spells (reusable for any cleric)</div><div class="controls">
+<body><header><h1>Universal Cleric Spellbook</h1><div class="profileBar"><label>Character:</label><select id="profileSelect"></select><button id="newProfile">New</button><button id="dupProfile">Save As…</button><button id="renameProfile">Rename</button><button class="danger" id="deleteProfile">Delete</button><span id="saveIndicator" class="saveIndicator">✓ Saved</span></div><div class="sub">Pathfinder 1e full Paizo cleric spell list + domain spells — reusable for any cleric, save each one under their own name.</div><div class="controls">
 <div><label>Cleric Level</label><select id="level"></select></div>
 <div><label>Wisdom</label><select id="wis"></select></div>
 <div><label>Alignment</label><select id="alignment">
@@ -30,22 +30,26 @@ const DOMAIN_NAMES=["Air","Animal","Artifice","Chaos","Charm","Community","Darkn
 const ALIGN={LG:{law:'L',moral:'G'},NG:{law:'N',moral:'G'},CG:{law:'C',moral:'G'},LN:{law:'L',moral:'N'},TN:{law:'N',moral:'N'},CN:{law:'C',moral:'N'},LE:{law:'L',moral:'E'},NE:{law:'N',moral:'E'},CE:{law:'C',moral:'E'}};
 const BASE={"1":[3,1,0,0,0,0,0,0,0,0],"2":[4,2,0,0,0,0,0,0,0,0],"3":[4,2,1,0,0,0,0,0,0,0],"4":[4,3,2,0,0,0,0,0,0,0],"5":[4,3,2,1,0,0,0,0,0,0],"6":[4,3,3,2,0,0,0,0,0,0],"7":[4,4,3,2,1,0,0,0,0,0],"8":[4,4,3,3,2,0,0,0,0,0],"9":[4,4,4,3,2,1,0,0,0,0],"10":[4,4,4,3,3,2,0,0,0,0],"11":[4,4,4,4,3,2,1,0,0,0],"12":[4,4,4,4,3,3,2,0,0,0],"13":[4,4,4,4,4,3,2,1,0,0],"14":[4,4,4,4,4,3,3,2,0,0],"15":[4,4,4,4,4,4,3,2,1,0],"16":[4,4,4,4,4,4,3,3,2,0],"17":[4,4,4,4,4,4,4,3,2,1],"18":[4,4,4,4,4,4,4,3,3,2],"19":[4,4,4,4,4,4,4,4,3,3],"20":[4,4,4,4,4,4,4,4,4,4]};
 const MIN_LEVEL={0:1,1:1,2:3,3:5,4:7,5:9,6:11,7:13,8:15,9:17};
-const KEY='uranClericSpellbookPF1V1';
+const STORE_KEY='clericUniversalSpellbookPF1V1';
 const $=id=>document.getElementById(id);
 function statRow(label,val){return val?`<div class="stat-row"><b>${label}</b> ${val}</div>`:''}
-let state=JSON.parse(localStorage.getItem(KEY)||'{}');
-state.level??=7;state.wis??=20;state.alignment??='LG';
-state.race??='';state.domain1??='Good';state.subdomain1??='Archon';state.domain2??='';state.subdomain2??='';
-state.prep??={};state.domainPrep??={};state.used??=[0,0,0,0,0,0,0,0,0,0];state.show??=[0,1,2,3,4,5,6,7,8,9];state.fav??={};state.cast??={};state.excludedSources??={};state.showIneligible??=false;state.forbidden??={};
+function defaultState(){return {level:1,wis:10,alignment:'TN',race:'',domain1:'',subdomain1:'',domain2:'',subdomain2:'',prep:{},domainPrep:{},used:[0,0,0,0,0,0,0,0,0,0],show:[0,1,2,3,4,5,6,7,8,9],fav:{},cast:{},excludedSources:{},showIneligible:false,forbidden:{}};}
+function applyDefaultsToState(s){let d=defaultState();Object.keys(d).forEach(k=>{if(s[k]===undefined)s[k]=d[k]});return s}
+function loadStore(){
+  let raw=localStorage.getItem(STORE_KEY);
+  if(raw){try{let s=JSON.parse(raw);if(s&&s.profiles&&Object.keys(s.profiles).length)return s}catch(e){}}
+  return {active:'New Cleric',profiles:{'New Cleric':defaultState()}};
+}
+let store=loadStore();
+if(!store.profiles[store.active])store.active=Object.keys(store.profiles)[0];
+Object.values(store.profiles).forEach(applyDefaultsToState);
+let state=store.profiles[store.active];
 
 for(let i=1;i<=20;i++)$('level').add(new Option(i,i));
 for(let i=8;i<=30;i++)$('wis').add(new Option(i,i));
-$('level').value=state.level;$('wis').value=state.wis;$('alignment').value=state.alignment;
 RACES.forEach(n=>{let o=document.createElement('option');o.value=n;$('raceList').appendChild(o)});
-$('race').value=state.race;
-['race','domain1','subdomain1','domain2','subdomain2'].forEach(alwaysOpenDatalist);
 DOMAIN_NAMES.forEach(n=>{let o=document.createElement('option');o.value=n;$('domainList').appendChild(o)});
-$('domain1').value=state.domain1;$('domain2').value=state.domain2;
+['race','domain1','subdomain1','domain2','subdomain2'].forEach(alwaysOpenDatalist);
 
 function alwaysOpenDatalist(id){let el=$(id);el.addEventListener('focus',()=>{el.dataset.prev=el.value;el.value=''});el.addEventListener('blur',()=>{if(!el.value)el.value=el.dataset.prev||''})}
 function refreshSubdomainList(domainInputId,listId,subdomainInputId){
@@ -54,11 +58,55 @@ function refreshSubdomainList(domainInputId,listId,subdomainInputId){
   let d=DOMAINS[dom];
   if(d&&d.subdomains)d.subdomains.forEach(s=>{let o=document.createElement('option');o.value=s;list.appendChild(o)});
 }
-refreshSubdomainList('domain1','subdomainList1','subdomain1');
-refreshSubdomainList('domain2','subdomainList2','subdomain2');
-$('subdomain1').value=state.subdomain1;$('subdomain2').value=state.subdomain2;
 
-function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+let saveIndicatorTimer=null;
+function save(){
+  store.profiles[store.active]=state;
+  localStorage.setItem(STORE_KEY,JSON.stringify(store));
+  let el=$('saveIndicator');
+  if(el){el.classList.add('show');clearTimeout(saveIndicatorTimer);saveIndicatorTimer=setTimeout(()=>el.classList.remove('show'),1200);}
+}
+function populateProfileSelect(){
+  let sel=$('profileSelect');sel.innerHTML='';
+  Object.keys(store.profiles).forEach(name=>{let o=document.createElement('option');o.value=name;o.textContent=name;sel.appendChild(o)});
+  sel.value=store.active;
+}
+function loadProfileIntoUI(){
+  $('level').value=state.level;$('wis').value=state.wis;$('alignment').value=state.alignment;
+  $('race').value=state.race;
+  $('domain1').value=state.domain1;$('domain2').value=state.domain2;
+  refreshSubdomainList('domain1','subdomainList1','subdomain1');
+  refreshSubdomainList('domain2','subdomainList2','subdomain2');
+  $('subdomain1').value=state.subdomain1;$('subdomain2').value=state.subdomain2;
+  $('showIneligible').checked=state.showIneligible;
+  applyRaceSourceExclusions();
+  render();
+}
+$('profileSelect').onchange=()=>{store.active=$('profileSelect').value;state=store.profiles[store.active];loadProfileIntoUI()};
+$('newProfile').onclick=()=>{
+  let name=prompt('Name for the new cleric:','New Cleric');
+  if(!name)return;
+  if(store.profiles[name]){alert('A character with that name already exists.');return;}
+  store.profiles[name]=defaultState();store.active=name;state=store.profiles[store.active];save();populateProfileSelect();loadProfileIntoUI();
+};
+$('dupProfile').onclick=()=>{
+  let name=prompt('Save the current sheet as a new character named:',store.active+' (copy)');
+  if(!name)return;
+  if(store.profiles[name]){alert('A character with that name already exists.');return;}
+  store.profiles[name]=JSON.parse(JSON.stringify(state));store.active=name;state=store.profiles[store.active];save();populateProfileSelect();loadProfileIntoUI();
+};
+$('renameProfile').onclick=()=>{
+  let name=prompt('New name:',store.active);
+  if(!name||name===store.active)return;
+  if(store.profiles[name]){alert('A character with that name already exists.');return;}
+  store.profiles[name]=state;delete store.profiles[store.active];store.active=name;save();populateProfileSelect();
+};
+$('deleteProfile').onclick=()=>{
+  if(Object.keys(store.profiles).length<=1){alert('At least one character sheet must remain.');return;}
+  if(!confirm('Delete "'+store.active+'"? This cannot be undone.'))return;
+  delete store.profiles[store.active];store.active=Object.keys(store.profiles)[0];state=store.profiles[store.active];save();populateProfileSelect();loadProfileIntoUI();
+};
+populateProfileSelect();
 function mod(){return Math.floor((state.wis-10)/2)}
 function bonus(l){let m=mod();if(m<l)return 0;return 1+Math.floor((m-l)/4)}
 function baseSlots(l){return (BASE[state.level]||[0,0,0,0,0,0,0,0,0,0])[l]||0}
@@ -189,7 +237,6 @@ function applyRaceSourceExclusions(){
     if(allowed)delete state.excludedSources[src];else state.excludedSources[src]=true;
   });
 }
-applyRaceSourceExclusions();
 $('race').oninput=()=>{state.race=$('race').value.trim();applyRaceSourceExclusions();save();renderSources();render()};
 $('domain1').oninput=()=>{state.domain1=$('domain1').value.trim();refreshSubdomainList('domain1','subdomainList1','subdomain1');save();render()};
 $('domain2').oninput=()=>{state.domain2=$('domain2').value.trim();refreshSubdomainList('domain2','subdomainList2','subdomain2');save();render()};
@@ -199,7 +246,7 @@ $('search').oninput=renderList;$('filter').onchange=renderList;$('showIneligible
 $('srcAll').onclick=()=>{state.excludedSources={};save();renderSources();renderList()};$('srcNone').onclick=()=>{[...new Set(SPELLS.map(s=>s.source||'Unknown'))].forEach(src=>state.excludedSources[src]=true);save();renderSources();renderList()};
 $('newDay').onclick=()=>{state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};save();render()};
 $('clear').onclick=()=>{state.prep={};state.domainPrep={};state.cast={};save();render()};
-render();
+loadProfileIntoUI();
 if("serviceWorker" in navigator){
   window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
 }
