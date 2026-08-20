@@ -42,7 +42,11 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .addRow{display:flex;gap:6px;margin-bottom:8px}
 .addRow input{flex:1}
 .activeItem{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px 10px;margin-bottom:6px}
-.activeItem .head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.activeItem.off{opacity:.45}
+.activeItem .head{display:flex;align-items:flex-start;gap:8px}
+.activeItem .head>div{flex:1}
+.onToggle{display:flex;align-items:center;padding-top:2px;cursor:pointer}
+.onToggle input{width:auto;cursor:pointer}
 .activeItem .name{font-weight:700;font-size:.88rem}
 .activeItem .desc{font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.3}
 .activeItem .cfg{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
@@ -56,6 +60,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .breakTable th{color:var(--gold2);font-weight:700;font-size:.72rem}
 .breakTable .num{text-align:right;font-variant-numeric:tabular-nums}
 .suppressed{opacity:.4;text-decoration:line-through}
+.breakTable tr.off{opacity:.4;text-decoration:line-through}
 .resultBox{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .result{background:#0e151e;border:1px solid var(--line);border-radius:12px;padding:14px}
 .result .big{font-size:24px;font-weight:800;margin-top:4px;color:#fff}
@@ -1112,18 +1117,23 @@ function renderCategories(){
 }
 
 function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
-  let div=document.createElement('div'); div.className='activeItem';
+  let div=document.createElement('div'); div.className='activeItem'+(activeRec.on===false?' off':'');
   let cfgHtml='';
   if(!isCustom && defOrCustom.configFields){
     cfgHtml='<div class="cfg">'+defOrCustom.configFields.map(f=>`<label>${f.label}<br><input type="number" data-key="${f.key}" value="${activeRec.cfg[f.key]}"></label>`).join('')+'</div>';
   }
-  div.innerHTML=`<div class="head"><div><div class="name">${isCustom?defOrCustom.name:defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div></div><button class="rm">✕ remove</button></div>${cfgHtml}`;
+  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off between turns without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}></label><div><div class="name">${isCustom?defOrCustom.name:defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div></div><button class="rm">✕ remove</button></div>${cfgHtml}`;
   div.querySelector('.rm').onclick=()=>{
     let p=currentProfile();
     if(isCustom) p.custom=p.custom.filter(c=>c.id!==defOrCustom.id);
     else p.active=p.active.filter(a=>a.id!==defOrCustom.id);
     saveStore(); renderCategories(); compute();
   };
+  div.querySelector('.onChk').addEventListener('change',(e)=>{
+    activeRec.on=e.target.checked;
+    div.classList.toggle('off', !activeRec.on);
+    saveStore(); compute();
+  });
   if(!isCustom && defOrCustom.configFields){
     div.querySelectorAll('input[data-key]').forEach(inp=>{
       inp.addEventListener('input',()=>{ activeRec.cfg[inp.dataset.key]=Number(inp.value); saveStore(); compute(); });
@@ -1151,19 +1161,30 @@ function collectContributions(ctx){
   let atkEntries=[], dmgEntries=[]; let breakdown=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0, powerAttackDmgVal=0;
   p.active.forEach(a=>{
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
-    if(m.special==='furious-focus'){ furiousFocusOn=true; breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Cancels Power Attack penalty on first attack only',suppressed:false}); return; }
+    let isOff=a.on===false;
+    if(m.special==='furious-focus'){
+      if(!isOff) furiousFocusOn=true;
+      breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Cancels Power Attack penalty on first attack only'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
+      return;
+    }
     let r=m.compute(ctx,a.cfg||{});
     let effType=r.type||m.type;
-    if(m.id==='power-attack'||m.id==='deadly-aim'){ powerAttackOn=true; powerAttackAtkVal=r.attack; powerAttackDmgVal=r.damage; }
-    if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name});
-    if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name});
+    if(!isOff && (m.id==='power-attack'||m.id==='deadly-aim')){ powerAttackOn=true; powerAttackAtkVal=r.attack; powerAttackDmgVal=r.damage; }
+    if(!isOff){
+      if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name});
+      if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name});
+    }
     let noteText = (r.note && r.note.startsWith('special')) ? m.desc : r.note;
-    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:noteText,suppressed:false});
+    if(isOff) noteText = (noteText||'')+' (not active this turn)';
+    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:noteText,suppressed:false,off:isOff});
   });
   p.custom.forEach(c=>{
-    if(c.atk) atkEntries.push({value:c.atk,type:c.type,source:c.name});
-    if(c.dmg) dmgEntries.push({value:c.dmg,type:c.type,source:c.name});
-    breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:c.note,suppressed:false});
+    let isOff=c.on===false;
+    if(!isOff){
+      if(c.atk) atkEntries.push({value:c.atk,type:c.type,source:c.name});
+      if(c.dmg) dmgEntries.push({value:c.dmg,type:c.type,source:c.name});
+    }
+    breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
   });
   return {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal};
 }
@@ -1195,7 +1216,7 @@ function renderBreakdown(breakdown){
   t.innerHTML='<thead><tr><th>Effect</th><th>Category</th><th>Type</th><th class="num">Atk</th><th class="num">Dmg</th><th>Note</th></tr></thead>';
   let tbody=document.createElement('tbody');
   breakdown.forEach(b=>{
-    let tr=document.createElement('tr'); if(b.suppressed) tr.className='suppressed';
+    let tr=document.createElement('tr'); if(b.suppressed) tr.className='suppressed'; if(b.off) tr.className=(tr.className?tr.className+' ':'')+'off';
     tr.innerHTML=`<td>${b.name}</td><td>${b.category}</td><td><span class="typeTag">${b.type}</span></td><td class="num">${b.atk===null?'—':signed(b.atk)}</td><td class="num">${b.dmg===null?'—':signed(b.dmg)}</td><td style="font-size:.7rem;color:var(--muted)">${b.note||''}${b.suppressed?' — does not stack (same type as another active effect)':''}</td>`;
     tbody.appendChild(tr);
   });
@@ -1253,27 +1274,39 @@ function compute(){
 
   let critDice=diceMultiply(w.dice,critMult);
   let critDmg=dmg*critMult;
-  let paNoCritMult = p.active.some(a=>a.id==='hr-pa-no-crit');
+  let paNoCritMult = p.active.some(a=>a.id==='hr-pa-no-crit' && a.on!==false);
   if(paNoCritMult && powerAttackOn && powerAttackDmgVal){
     critDmg = (dmg-powerAttackDmgVal)*critMult + powerAttackDmgVal;
   }
 
+  let vsMultMap={'vital-strike':2,'vital-strike-improved':3,'vital-strike-greater':4};
+  let vsActive=p.active.filter(a=>a.on!==false && vsMultMap[a.id]);
+  let vsMult=vsActive.length?Math.max(...vsActive.map(a=>vsMultMap[a.id])):0;
+  let dmgNormalDice=w.dice, dmgCritDiceStr=critDice;
+  if(vsMult){
+    dmgNormalDice=diceMultiply(w.dice,vsMult);
+    dmgCritDiceStr=critDice+(vsMult>1?' + '+diceMultiply(w.dice,vsMult-1)+' (Vital Strike, unmultiplied)':'');
+  }
+
   $('toHit').textContent=signed(atkFirst);
   $('fullAttack').textContent=iteratives.map(signed).join(' / ');
-  $('dmgNormal').textContent=`${w.dice} ${signed(dmg)}`;
-  $('dmgCrit').textContent=`${critDice} ${signed(critDmg)} (threat ${w.threat}/×${critMult})`;
+  $('dmgNormal').textContent=`${dmgNormalDice} ${signed(dmg)}`;
+  $('dmgCrit').textContent=`${dmgCritDiceStr} ${signed(critDmg)} (threat ${w.threat}/×${critMult})`;
 
   notes.push('Base attack: BAB '+signed(bab)+' + '+ABIL_LABEL[atkStat]+' '+signed(atkAbilityMod)+' + enhancement '+signed(enh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
   notes.push('Base damage: '+ABIL_LABEL[dmgStat]+' '+signed(dmgAbilityMod)+(style==='twoHanded'&&dmgStat!=='none'?' (×1.5, two-handed)':'')+' + enhancement '+signed(enh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
   if(paNoCritMult && powerAttackOn && powerAttackDmgVal){
     notes.push('House rule: Power Attack/Deadly Aim damage ('+signed(powerAttackDmgVal)+') excluded from the ×'+critMult+' crit multiplier — added once instead of being multiplied like the rest of Critical Damage.');
   }
+  if(vsMult){
+    notes.push('Vital Strike is active: Normal/Critical Damage above already include the extra weapon dice. This is a single attack-action strike, not part of a full attack — the Full Attack line no longer applies this turn.');
+  }
 
   $('offAtkBox').style.display='none'; $('offDmgBox').style.display='none';
   if(style==='twf'){
     let offEnh=+$('offEnh').value, offLight=$('offLight').checked;
-    let hasTWF = p.active.some(a=>a.id==='two-weapon-fighting');
-    let hasDoubleSlice = p.active.some(a=>a.id==='double-slice');
+    let hasTWF = p.active.some(a=>a.id==='two-weapon-fighting' && a.on!==false);
+    let hasDoubleSlice = p.active.some(a=>a.id==='double-slice' && a.on!==false);
     let pen = TWF_PENALTIES[offLight?'light':'normal'][hasTWF?'feat':'noFeat'];
     let mainAtk = bab + atkAbilityMod + enh + pen.main + atkFromMods;
     let offAtk = bab + atkAbilityMod + offEnh + pen.off + atkFromMods;
