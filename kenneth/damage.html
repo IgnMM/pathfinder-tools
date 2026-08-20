@@ -176,12 +176,6 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
 </div>
 
 <div class="effect">
-<input id="furiousFocus" type="checkbox">
-<div><b>Furious Focus</b><div class="note">Requires Power Attack. No Power Attack penalty on your first attack of the turn (later iterative attacks in a full attack still take the penalty).</div></div>
-<span class="tag standard">Standard</span>
-</div>
-
-<div class="effect">
 <input id="smite" type="checkbox" checked>
 <div><b>Smite Evil</b><div class="note">Add your Charisma bonus to attack rolls and Paladin level to damage. On the first successful hit against an evil outsider, evil dragon, or undead, the Smite Evil damage bonus is doubled.</div></div>
 <span class="tag swift">Swift</span>
@@ -361,10 +355,8 @@ function update(){
     partsAtk.push("Haste +1");
   }
 
-  let powerAttackPenalty=0;
   if(active("powerAttack")){
     const pa=powerAttackValues(bab,two);
-    powerAttackPenalty=pa.atk;
     atk+=pa.atk;
     powerAttackDamage=pa.dmg;
     partsAtk.push(`Power Attack ${signed(pa.atk)}`);
@@ -409,11 +401,7 @@ function update(){
   if(active("haste") && !active("charge")) iteratives.unshift(atk);
   if(active("charge")) iteratives=[atk];
 
-  const furiousFocusActive=active("powerAttack") && active("furiousFocus");
-  const atkFirst = furiousFocusActive ? atk-powerAttackPenalty : atk;
-  if(furiousFocusActive){
-    comments.push(`Furious Focus: no Power Attack penalty on your first attack of the turn (${signed(atkFirst)} instead of ${signed(atk)}); later iterative attacks still take the penalty.`);
-  }
+  const atkFirst = atk;
   if(iteratives.length) iteratives[0]=atkFirst;
 
   document.getElementById("toHit").textContent=signed(atkFirst);
