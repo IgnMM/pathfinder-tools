@@ -94,8 +94,11 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <section class="card">
 <h2>Character &amp; Weapon</h2>
 <div class="row"><label>BAB</label><input id="bab" type="number" min="0" value="6"></div>
+<div class="row"><label>Play with Mythic rules?</label><input id="mythicEnabled" type="checkbox" style="width:auto;justify-self:start"></div>
+<div id="mythicTierBox" style="display:none">
 <div class="row"><label>Mythic Tier</label><input id="mythicTier" type="number" min="0" max="10" value="0"></div>
-<div class="emptyNote">0 = not a mythic character. Drives Surge's die size and any other tier-scaling Mythic entries below.</div>
+<div class="emptyNote">Drives Surge's die size and any other tier-scaling Mythic entries in the catalog below.</div>
+</div>
 <h3>Ability Scores</h3>
 <div class="statsGrid">
 <div><label>STR</label><input id="str" type="number" value="20"></div>
@@ -709,6 +712,151 @@ const MODIFIERS = [
  desc:"At 10+ ranks in a Knowledge skill, successfully identifying a creature grants a +1 (scaling) competence bonus on your own attack rolls against that specific kind of creature for 1 minute. Requires the Skill Unlocks subsystem.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"competence"}}},
 
+// ---------------- MYTHIC (Mythic Adventures) ----------------
+// Most mythic combat options are conditional, dice-based, mythic-power-gated, or
+// modify another entry's own formula (e.g. Mythic Power Attack changes Power
+// Attack's per-step damage rather than adding a separate number) — wiring those as
+// silent flat numbers risks double-counting or misrepresenting the rule, so they're
+// left as special/informational (full rules text in the description, contributes 0)
+// unless the effect is a clean, unconditional flat or mythic-tier-scaled number.
+{id:'mythic-power-attack',name:'Mythic Power Attack',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'untyped',
+ desc:'Requires Power Attack. Raises Power Attack\'s damage bonus from +2 to +3 per step (doubled on a confirmed critical hit, before the weapon\'s crit multiplier), and lets you spend 1 use of mythic power to ignore Power Attack\'s attack-roll penalty for 1 minute. Not modeled numerically here since it changes the Power Attack entry\'s own formula rather than adding a separate number — recompute Power Attack by hand using +3/step instead of +2 (or +4.5, i.e. ×1.5, two-handed) while this is active.',
+ compute:()=>({attack:0,damage:0,note:'special — modifies Power Attack\'s own formula, see description'})},
+{id:'mythic-deadly-aim',name:'Mythic Deadly Aim',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Requires Deadly Aim. Raises Deadly Aim\'s ranged damage bonus from +2 to +3 per step; the attack-roll penalty is unchanged. Not modeled numerically here since it changes the Deadly Aim entry\'s own formula — recompute Deadly Aim by hand using +3/step instead of +2 while this is active.',
+ compute:()=>({attack:0,damage:0,note:'special — modifies Deadly Aim\'s own formula, see description'})},
+{id:'mythic-vital-strike',name:'Mythic Vital Strike',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Covers Vital Strike, Improved Vital Strike, and Greater Vital Strike (no separate mythic feat exists for the Improved/Greater ranks). Multiplies your Strength/magic/etc. damage bonuses — the parts Vital Strike itself does NOT multiply — by the same ×2/×3/×4 used for the extra weapon damage dice.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-weapon-focus',name:'Mythic Weapon Focus',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'Doubles your combined Weapon Focus + Greater Weapon Focus attack bonus with the chosen weapon (e.g. +1 and +1 becomes +2 and +2). As a swift action, spend 1 use of mythic power for a further +½ tier on attack rolls with that weapon until end of turn.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-weapon-specialization',name:'Mythic Weapon Specialization',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Adds a damage bonus equal to half your Mythic Tier (rounded down) with your chosen weapon. Stacks with Weapon Specialization/Greater Weapon Specialization.',
+ compute:(ctx)=>{let v=Math.floor((ctx.mythicTier||0)/2);return {attack:0,damage:v,note:signed(v)+' (½ tier)'}}},
+{id:'mythic-two-weapon-fighting',name:'Mythic Two-Weapon Fighting',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'As an immediate action, spend 1 use of mythic power to negate the two-weapon-fighting attack roll penalties for a number of rounds equal to your tier.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-point-blank-shot',name:'Mythic Point-Blank Shot',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'untyped',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:'Raises Point-Blank Shot\'s bonus from +1 to +2 on attack and damage rolls with ranged weapons within 30 ft. This REPLACES the normal Point-Blank Shot entry\'s +1 — don\'t add both, or it double-counts. Swift action: spend 1 mythic power for a further +½ tier.',
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
+{id:'mythic-rapid-shot',name:'Mythic Rapid Shot',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'When using Rapid Shot, choose either: ignore its -2 penalty entirely, OR fire two extra attacks (each still at -2) instead of one. A per-use choice, not a stacking flat bonus.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-manyshot',name:'Mythic Manyshot',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'When full-attacking with a bow using Manyshot, your second attack also fires two arrows (normally only the first does).',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-combat-expertise',name:'Mythic Combat Expertise',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'Spend 1 use of mythic power to negate Combat Expertise\'s melee attack-roll and CMB penalty for 1 minute. (Also grants +2 dodge AC while using Combat Expertise — out of scope, AC isn\'t modeled here.)',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-improved-critical',name:'Mythic Improved Critical',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Requires BAB +8. Increases your chosen weapon\'s critical multiplier by 1 step (max ×6). Not an attack/damage number — bump the "Critical Multiplier" field above manually.',
+ compute:()=>({attack:0,damage:0,note:'special — adjust the Critical Multiplier field above, see description'})},
+{id:'mythic-death-from-above',name:'Mythic Death from Above',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Charging from higher ground (or from the air) increases your weapon\'s critical multiplier by 2 (max ×6); doesn\'t stack with other crit-multiplier increases. Not an attack/damage number — adjust the Critical Multiplier field above manually when this applies.',
+ compute:()=>({attack:0,damage:0,note:'special — adjust the Critical Multiplier field above, see description'})},
+{id:'mythic-weapon-finesse',name:'Mythic Weapon Finesse',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'While using Weapon Finesse, add Dexterity instead of Strength on damage rolls too (normally Finesse only affects the attack roll). Use the "Ability → Damage rolls" picker above (set it to Dexterity) instead of adding this as a separate bonus.',
+ compute:()=>({attack:0,damage:0,note:'special — use the Ability pickers above instead, see description'})},
+{id:'mythic-guided-hand',name:'Mythic Guided Hand',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Requires channel energy, Channel Smite, and proficiency with your deity\'s favored weapon. With that weapon, add Wisdom instead of Strength/Dexterity on damage rolls. Use the "Ability → Damage rolls" picker above (set it to Wisdom) instead of adding this as a separate bonus.',
+ compute:()=>({attack:0,damage:0,note:'special — use the Ability pickers above instead, see description'})},
+{id:'mythic-throw-anything',name:'Mythic Throw Anything',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'untyped',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:'+2 on attack and damage rolls with improvised thrown or splash weapons; stacks with the non-mythic Throw Anything feat.',
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
+{id:'mythic-catch-off-guard',name:'Mythic Catch Off-Guard',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Damage dealt with improvised weapons increases by your Mythic Tier.',
+ compute:(ctx)=>{let v=ctx.mythicTier||0;return {attack:0,damage:v,note:signed(v)+' (tier)'}}},
+{id:'mythic-channel-smite',name:'Mythic Channel Smite',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'sacred',
+ desc:'When using Channel Smite, gain a sacred (or profane, if channeling negative energy) bonus on the attack roll equal to your channel energy dice count. Variable by build — add the exact number via "+ Custom" if you use this often.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-improved-unarmed-strike',name:'Mythic Improved Unarmed Strike',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Adds half your Mythic Tier (rounded down) to unarmed strike damage rolls.',
+ compute:(ctx)=>{let v=Math.floor((ctx.mythicTier||0)/2);return {attack:0,damage:v,note:signed(v)+' (½ tier)'}}},
+{id:'mythic-two-weapon-rend',name:'Mythic Two-Weapon Rend',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Increases Two-Weapon Rend\'s bonus damage (once/round when both weapons hit the same target) from 1d10+1.5×Str to 2d8+2×Str; spend 1 mythic power for a further +2×tier. Dice-based, not modeled as a flat number.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-furious-focus',name:'Mythic Furious Focus',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'Removes Power Attack\'s attack penalty on attacks of opportunity automatically, and (spending 1 mythic power) on every melee attack for 1 round.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-lunge',name:'Mythic Lunge',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'While using Lunge, spending 1 mythic power negates its -2 AC penalty and grants +2 on attacks of opportunity made while it\'s in effect.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-mounted-archery',name:'Mythic Mounted Archery',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'While your mount moves, spend 1 mythic power to negate all mounted ranged-attack penalties until the start of your next turn.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-critical-focus',name:'Mythic Critical Focus',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'Automatically confirms critical hit threats against non-mythic opponents (no confirmation roll needed).',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-titan-strike',name:'Mythic Titan Strike',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Mythic-only (no non-mythic base feat); requires Mythic Improved Unarmed Strike. Your unarmed strike deals damage as if you were one size category larger — look up the new die on the unarmed-damage-by-size table.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-elemental-fist',name:'Mythic Elemental Fist',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Elemental Fist\'s bonus elemental damage die increases from 1d6 to 1d8, with more uses per day equal to your tier. Dice-based, not modeled as a flat number.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-knockout-artist',name:'Mythic Knockout Artist',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Requires sneak attack, Improved Unarmed Strike, Knockout Artist. Nonlethal unarmed sneak attack dice become d8s instead of d6s. Dice-based, not modeled as a flat number.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-monastic-legacy',name:'Mythic Monastic Legacy',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'Requires multiclass monk using Monastic Legacy. Spend 1 mythic power to raise your effective monk level by half your tier (for unarmed damage die purposes) until the start of your next turn.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+
+{id:'mythic-ever-ready',name:'Ever Ready',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'untyped',
+ desc:'1st-tier Champion/Guardian path ability: attacks of opportunity gain a bonus equal to your Mythic Tier on both the attack roll and the damage roll. Only applies to attacks of opportunity, not regular attacks.',
+ compute:(ctx)=>{let v=ctx.mythicTier||0;return {attack:v,damage:v,note:signed(v)+' (tier, AoO only)'}}},
+{id:'mythic-devastating-smash',name:'Devastating Smash',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'1st-tier Champion path ability: attacking a construct or object reduces its hardness/DR by 10 (0 if you spend 1 mythic power) and adds your tier (double, if spending power) to the damage roll. Constructs/objects only.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-precision',name:'Precision',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'3rd-tier Champion path ability: your iterative (extra) attacks from a high BAB gain +5 each, capped at your full BAB — doesn\'t affect your primary attack, so it can\'t be modeled as a flat bonus to "attack" here (it would wrongly apply to the first attack too). Selectable multiple times for +5 more each.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-elemental-fury',name:'Elemental Fury',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'3rd-tier Champion path ability: spend 1 mythic power to add 1d6 energy damage (3d6 on a crit) to your attacks for a number of rounds equal to your tier. Dice-based, not modeled as a flat number.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-maximized-critical',name:'Maximized Critical',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'3rd-tier Champion path ability: on a confirmed critical hit, your weapon\'s own (multiplied) damage dice are treated as rolling maximum instead of being rolled. Not an additive bonus.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-critical-master',name:'Critical Master',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'6th-tier Champion path ability: critical threats against non-mythic creatures (mythic too, if selected twice) auto-confirm and deal maximum damage.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-perfect-strike',name:'Perfect Strike',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'6th-tier Champion path ability: spend 1 mythic power on one attack at full BAB — if it hits, double damage, bypassing DR/hardness; if also a crit, multiplier +1. A ×2 multiplier, not an additive number.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-retributive-reach',name:'Retributive Reach',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'untyped',
+ desc:'1st-tier Guardian path ability: reach counts as 5 ft greater for attacks of opportunity; spending 1 mythic power adds your tier to both the attack and damage roll of an AoO made in that extra 5 ft only.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-heathen-slayer',name:'Heathen Slayer',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'untyped',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:'1st-tier Hierophant path ability: +2 (rising to +4 at 6th tier — edit the value above) bonus on weapon attack and damage rolls against a chosen rival deity\'s followers.',
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
+{id:'mythic-overflowing-grace',name:'Overflowing Grace',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack'],type:'sacred',
+ desc:'1st-tier Hierophant path ability: healing a creature to full HP with positive energy grants it +1 sacred (or profane, for undead healed with negative energy) on attack rolls and other checks/saves for 1 minute.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-distracting-assailant',name:'Distracting Assailant',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'1st-tier Marshal path ability: after you hit a foe, spending 1 mythic power raises allies\' flanking bonus against it from +2 to +4 for a scaling duration. Replaces the Flanking entry\'s +2 for those allies — don\'t stack both.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-deadly-guidance',name:'Deadly Guidance',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
+ desc:'1st-tier Marshal path ability: spend 1 mythic power to grant nearby allies sneak-attack-style damage (1d6, up to 4d6 with repeat selections) against a designated foe. Dice-based, not modeled as a flat number.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-inspiring-surge',name:'Inspiring Surge',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'untyped',
+ desc:'1st-tier Marshal path ability: using Surge grants nearby non-mythic allies a bonus (+1, or ½/full tier with repeat selections) on their next weapon attack and damage roll.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-press-the-advantage',name:'Press the Advantage',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'1st-tier Marshal path ability: after an ally\'s confirmed crit provokes and you land an attack of opportunity on the same foe, all your allies get +2 on attack rolls against it for 1 round.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-directed-assault',name:'Directed Assault',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'3rd-tier Marshal path ability: after you confirm a crit, nearby allies add your tier to their own crit-confirmation rolls (not ordinary attack rolls) against that foe.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+{id:'mythic-inspire-minions',name:'Inspire Minions',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'competence',
+ desc:'1st-tier Marshal/Trickster path ability: morale/competence bonuses you grant (e.g. Inspire Courage) are +2 higher against foes with 4+ fewer Hit Dice than you. Only boosts a bonus you\'re already granting elsewhere.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+
+{id:'mythic-surge',name:'Surge',category:'mythic',subcat:'universal',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'Universal path ability, every mythic character has it. Immediate action right after seeing a d20 roll\'s natural result: spend 1 use of mythic power to add a bonus die and re-total that roll. Die size scales with Mythic Tier: 1-3 = 1d6, 4-6 = 1d8, 7-9 = 1d10, 10 = 1d12. Never applies to damage rolls (those aren\'t d20 rolls) — dice-based and spent per-use, so not modeled as a flat number.',
+ compute:(ctx)=>{let t=ctx.mythicTier||0;let die=t>=10?'1d12':t>=7?'1d10':t>=4?'1d8':t>=1?'1d6':null;return {attack:0,damage:0,note: die ? ('special — spend 1 mythic power to add '+die+' to one attack roll after seeing the natural result (tier '+t+')') : 'special — set Mythic Tier above 0 first'}}},
+
 // ---------------- HOUSE RULES ----------------
 // Built-in, hand-wired rule-changes (not simple flat bonuses, so each needs its own
 // engine hook like furious-focus above). Use "+ Custom" in this category for a
@@ -745,7 +893,7 @@ function saveStore(){
 }
 function defaultProfile(name){
   return {name, bab:6, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
-    style:'twoHanded', atkStat:'str', dmgStat:'str', offEnh:0, offLight:true, mythicTier:0,
+    style:'twoHanded', atkStat:'str', dmgStat:'str', offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0,
     enh:2, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
 }
 let store=loadStore();
@@ -765,6 +913,7 @@ store.profiles.forEach(p=>{
   if(p.race===undefined) p.race='';
   if(p.alignment===undefined) p.alignment='';
   if(p.mythicTier===undefined) p.mythicTier=0;
+  if(p.mythicEnabled===undefined) p.mythicEnabled=false;
 });
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
@@ -776,7 +925,8 @@ function populateProfileSelect(){
 
 function loadProfileIntoUI(){
   let p=currentProfile();
-  $('bab').value=p.bab; $('mythicTier').value=p.mythicTier; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
+  $('bab').value=p.bab; $('mythicEnabled').checked=!!p.mythicEnabled; $('mythicTier').value=p.mythicTier; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
+  $('mythicTierBox').style.display = p.mythicEnabled ? 'block' : 'none';
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
   $('style').value=p.style; $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat; $('enh').value=p.enh; $('critMult').value=p.critMult;
@@ -792,7 +942,7 @@ function loadProfileIntoUI(){
 
 function syncUIIntoProfile(){
   let p=currentProfile();
-  p.bab=+$('bab').value; p.mythicTier=+$('mythicTier').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
+  p.bab=+$('bab').value; p.mythicEnabled=$('mythicEnabled').checked; p.mythicTier=+$('mythicTier').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
   p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
   p.style=$('style').value; p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
@@ -830,7 +980,7 @@ $('deleteProfile').onclick=()=>{
   store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 
-['bab','mythicTier','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','critMult'].forEach(id=>{
+['bab','mythicEnabled','mythicTier','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','critMult'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'block' : 'none';
@@ -840,7 +990,12 @@ $('deleteProfile').onclick=()=>{
     if(id==='style'){
       $('offhandBox').style.display = $('style').value==='twf' ? 'block' : 'none';
     }
-    syncUIIntoProfile(); compute();
+    syncUIIntoProfile();
+    if(id==='mythicEnabled'){
+      $('mythicTierBox').style.display = $('mythicEnabled').checked ? 'block' : 'none';
+      renderCategories();
+    }
+    compute();
   });
 });
 $('race').addEventListener('input', ()=>{
@@ -888,6 +1043,7 @@ function renderCategories(){
   let box=$('categories'); box.innerHTML='';
   let p=currentProfile();
   CATS.forEach(cat=>{
+    if(cat.k==='mythic' && !p.mythicEnabled) return;
     let block=document.createElement('div'); block.className='catBlock';
     let activeInCat=p.active.filter(a=>{ let m=MODIFIERS.find(x=>x.id===a.id); return m && m.category===cat.k; });
     let customInCat=p.custom.filter(c=>c.category===cat.k);
