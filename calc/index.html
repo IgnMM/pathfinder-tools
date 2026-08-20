@@ -1155,7 +1155,8 @@ function collectContributions(ctx){
     if(m.id==='power-attack'||m.id==='deadly-aim'){ powerAttackOn=true; powerAttackAtkVal=r.attack; powerAttackDmgVal=r.damage; }
     if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name});
     if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name});
-    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:r.note,suppressed:false});
+    let noteText = (r.note && r.note.startsWith('special')) ? m.desc : r.note;
+    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:noteText,suppressed:false});
   });
   p.custom.forEach(c=>{
     if(c.atk) atkEntries.push({value:c.atk,type:c.type,source:c.name});
