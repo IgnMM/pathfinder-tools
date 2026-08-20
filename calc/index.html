@@ -193,6 +193,19 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <option value="3">×3</option>
   <option value="4">×4</option>
 </select></div>
+<h3>Target</h3>
+<div class="row"><label>Current Target</label>
+<select id="currentTarget">
+  <option value="none" selected>— none / not relevant —</option>
+  <option value="evil">Evil (any type)</option>
+  <option value="undead">Undead</option>
+  <option value="evilUndead">Evil Undead</option>
+  <option value="evilDragon">Evil Dragon</option>
+  <option value="evilOutsider">Evil Outsider</option>
+  <option value="demon">Demon (Evil Outsider)</option>
+  <option value="construct">Construct / Object</option>
+</select></div>
+<div class="emptyNote">Modifiers that only work against a specific enemy type (Favored Enemy, Bane, Challenge Evil, etc.) check this — set it before a fight and they'll switch on/off automatically. Leave it on "none" and they behave as before (always on while active).</div>
 </section>
 </div>
 
@@ -240,6 +253,22 @@ const WEAPONS={
 const RACES=["Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Aasimar","Adaro","Android","Aphorite","Aquatic Elf","Astomoi","Being of Ib","Boggard","Caligni","Catfolk","Cecaelia","Changeling","Deep One Hybrid","Dhampir","Drow","Drow Noble","Duergar","Duskwalker","Fetchling","Ganzi","Gathlain","Ghoran","Gillman","Goblin","Green Martian","Grindylow","Grippli","Hobgoblin","Ifrit","Kasatha","Kitsune","Kobold","Kuru","Lashunta","Locathah","Merfolk","Monkey Goblin","Munavri","Nagaji","Naiad","Orang-Pendak","Orc","Oread","Primitive Human","Ratfolk","Reborn Samsaran","Reptoid","Rougarou","Sahuagin","Samsaran","Shabti","Skinwalker","Strix","Suli","Svirfneblin","Sylph","Syrinx","Tengu","Tiefling","Triaxian","Triton","Trox","Undine","Vanara","Vine Leshy","Vishkanya","Wayang","Wyrwood","Wyvaran","Yaddithian"];
 const RACE_SOURCE_MAP={"Dwarf":["Dwarves of Golarion"],"Goblin":["Goblins of Golarion"],"Kobold":["Kobolds of Golarion"],"Orc":["Orcs of Golarion"],"Half-Orc":["Orcs of Golarion"],"Human":["Humans of Golarion"]};
 const RACE_ONLY_SOURCES=[...new Set(Object.values(RACE_SOURCE_MAP).flat())];
+
+// Which flags a selected "Current Target" satisfies. A catalog entry (or a player-set
+// "vs enemy type" configField) declares a single required flag; it applies only when
+// the current target's flag set includes that flag. Target 'none' means "not specified"
+// and disables this gating entirely (every entry behaves as if unrestricted).
+const TARGET_FLAG_MAP={
+  none:{}, evil:{evil:true}, undead:{undead:true}, evilUndead:{evil:true,undead:true},
+  evilDragon:{evil:true,dragon:true}, evilOutsider:{evil:true,outsider:true},
+  demon:{evil:true,outsider:true,demon:true}, construct:{construct:true}
+};
+const VS_FLAG_OPTIONS=[{v:'',label:'— always (no restriction) —'},{v:'evil',label:'vs Evil'},{v:'undead',label:'vs Undead'},{v:'dragon',label:'vs Dragon'},{v:'outsider',label:'vs Outsider'},{v:'demon',label:'vs Demon'},{v:'construct',label:'vs Construct/Object'}];
+function targetMatches(ctx, vsFlag){
+  if(!vsFlag) return true;
+  if(!ctx.currentTarget || ctx.currentTarget==='none') return true;
+  return !!(TARGET_FLAG_MAP[ctx.currentTarget]||{})[vsFlag];
+}
 
 const MODIFIERS = [
 // ---------------- FEATS ----------------
@@ -374,8 +403,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"sacred"}}},
 {id:"challenge-evil",name:"Challenge Evil",category:"spell",source:"Advanced Player's Guide",appliesTo:["attack"],type:"sacred",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"+2 sacred bonus on melee attack rolls, but only against the specific evil creature you challenge.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"sacred"}}},
+ desc:"+2 sacred bonus on melee attack rolls, but only against the specific evil creature you challenge. Only applies while Current Target (above) is set to Evil or a more specific evil category.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,'evil'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Evil above'};return {attack:v,damage:0,note:signed(v)+' '+"sacred"}}},
 {id:"contagious-zeal",name:"Contagious Zeal",category:"spell",source:"Occult Adventures",appliesTo:["attack","damage"],type:"morale",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"+2 morale bonus on attack rolls and weapon damage rolls; the target can spread the same bonus to one other ally each round.",
@@ -406,9 +435,9 @@ const MODIFIERS = [
  desc:"+2 sacred bonus on attack and damage rolls for good-aligned creatures in the burst, lasting only 1 round.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"sacred"}}},
 {id:"hunter-s-blessing",name:"Hunter's Blessing",category:"spell",source:"Inner Sea Gods",appliesTo:["attack","damage"],type:"sacred",
- configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"+2 sacred bonus on attack and damage rolls against a chosen favored-enemy creature type.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"sacred"}}},
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:''}],
+ desc:"+2 sacred bonus on attack and damage rolls against a chosen favored-enemy creature type. Pick the type above so it turns on/off automatically with Current Target.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match your declared favored enemy type — see the field above'};return {attack:v,damage:v,note:signed(v)+' '+"sacred"}}},
 {id:"inheritor-s-smite",name:"Inheritor's Smite",category:"spell",source:"Inner Sea Gods",appliesTo:["attack"],type:"sacred",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:5}],
  desc:"+5 sacred bonus on the attack roll, but only for your next single melee attack.",
@@ -451,8 +480,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
 {id:"unhallowed-blows",name:"Unhallowed Blows",category:"spell",source:"People of the Wastes",appliesTo:["attack","damage"],type:"enhancement",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"+1 enhancement bonus on attack and damage rolls with one natural attack or unarmed strike — undead creatures only.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"enhancement"}}},
+ desc:"+1 enhancement bonus on attack and damage rolls with one natural attack or unarmed strike — undead creatures only. Only applies while Current Target (above) is set to Undead or an evil-undead category.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);if(!targetMatches(ctx,'undead'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Undead above'};return {attack:v,damage:v,note:signed(v)+' '+"enhancement"}}},
 {id:"untold-wonder",name:"Untold Wonder",category:"spell",source:"Heroes from the Fringe",appliesTo:["attack"],type:"morale",
  desc:"Converts emotion-effect penalties into morale bonuses (half value) and boosts any existing morale bonus by +1; does nothing on its own.",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
@@ -495,9 +524,9 @@ const MODIFIERS = [
  desc:"Extra precision damage dice (1d6 per two rogue levels) against flat-footed or flanked targets; not multiplied on a critical hit; many creature types are immune to precision damage.",
  compute:(ctx,cfg)=>{let lvl=cfg.rogueLevel||1;let n=Math.ceil(lvl/2);return {attack:0,damage:0,note:'Deals '+n+'d6 extra precision damage (rogue level '+lvl+') against a flat-footed or flanked target — not multiplied on a crit, and many creature types are immune to precision damage'}}},
 {id:"favored-enemy",name:"Favored Enemy",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"untyped",
- configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"Untyped bonus (starting at +2, scaling +2 every 5 ranger levels) on weapon attack and damage rolls against creatures of a selected favored enemy type.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:''}],
+ desc:"Untyped bonus (starting at +2, scaling +2 every 5 ranger levels) on weapon attack and damage rolls against creatures of a selected favored enemy type. Pick your favored enemy's type above if it matches one of the tracked categories, so it turns on/off automatically with Current Target — leave it on \"always\" if your favored enemy isn't one of these (e.g. a specific humanoid subtype) and toggle it by hand instead.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match your declared favored enemy type — see the "Vs enemy type" field above'};return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
 {id:"judgment-destruction",name:"Judgment (Destruction)",category:"other",source:"Advanced Player's Guide",appliesTo:["damage"],type:"sacred",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Inquisitor's Destruction judgment: sacred (or profane, if evil) bonus to all weapon damage rolls while active, +1 per 3 inquisitor levels.",
@@ -515,9 +544,9 @@ const MODIFIERS = [
  desc:"Fighter's untyped bonus to attack and damage rolls with weapons from a trained weapon group; bonuses from overlapping groups don't stack (use the highest).",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
 {id:"bane",name:"Bane",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"enhancement",
- configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"Bane weapon: +2 enhancement bonus to attack rolls and an extra 2d6 damage (dice, not a flat number) against its designated foe type.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"enhancement"+" (plus 2d6 extra damage, not modeled as a flat number — see description)"}}},
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Designated foe type',type:'select',options:VS_FLAG_OPTIONS,default:''}],
+ desc:"Bane weapon: +2 enhancement bonus to attack rolls and an extra 2d6 damage (dice, not a flat number) against its designated foe type. Pick the weapon's designated foe type above so it turns on/off automatically with Current Target.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match this weapon\'s designated foe type — see the field above'};return {attack:v,damage:0,note:signed(v)+' '+"enhancement"+" (plus 2d6 extra damage, not modeled as a flat number — see description)"}}},
 {id:"aid-another-combat",name:"Aid Another (Combat)",category:"other",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"A character who succeeds on a melee attack roll against AC 10 can grant an ally a +2 untyped bonus on their next attack roll against the same opponent.",
@@ -562,8 +591,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
 {id:"clockwork-engineer",name:"Clockwork Engineer",category:"trait",source:"People of the Wastes",appliesTo:["damage"],type:"trait",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"Your understanding of clockwork guardians lets you strike their weak points.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+ desc:"Your understanding of clockwork guardians lets you strike their weak points (clockwork subtype). Only applies while Current Target (above) is set to Construct/Object.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,'construct'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Construct/Object above'};return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
 {id:"cold-and-calculating",name:"Cold and Calculating",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"You strike hardest against related favored enemies before they can react.",
@@ -618,8 +647,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
 {id:"lastwall-defender",name:"Lastwall Defender",category:"trait",source:"Advanced Class Origins",appliesTo:["attack","damage"],type:"trait",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Military training in Lastwall taught you to fight undead you've identified.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"trait"}}},
+ desc:"Military training in Lastwall taught you to fight undead you've identified. Only applies while Current Target (above) is set to Undead or an evil-undead category.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);if(!targetMatches(ctx,'undead'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Undead above'};return {attack:v,damage:v,note:signed(v)+' '+"trait"}}},
 {id:"monk-weapon-skill",name:"Monk Weapon Skill",category:"trait",source:"Weapon Master's Handbook",appliesTo:["damage"],type:"trait",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Training from the Houses of Perfection makes your chosen monk weapon deadlier.",
@@ -630,8 +659,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
 {id:"ozem-inspired",name:"Ozem-Inspired",category:"trait",source:"Weapon Master's Handbook",appliesTo:["attack","damage"],type:"trait",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Tales of the Knights of Ozem taught you to strike reflexively at the undead.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"trait"}}},
+ desc:"Tales of the Knights of Ozem taught you to strike reflexively at the undead. Only applies while Current Target (above) is set to Undead or an evil-undead category.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);if(!targetMatches(ctx,'undead'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Undead above'};return {attack:v,damage:v,note:signed(v)+' '+"trait"}}},
 {id:"performer-s-surprise",name:"Performer's Surprise",category:"trait",source:"Weapon Master's Handbook",appliesTo:["damage"],type:"trait",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Varisian wanderer tricks let you strike harder against caught-off-guard foes.",
@@ -900,7 +929,7 @@ function saveStore(){
 }
 function defaultProfile(name){
   return {name, bab:6, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
-    style:'twoHanded', atkStat:'str', dmgStat:'str', offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0,
+    style:'twoHanded', atkStat:'str', dmgStat:'str', offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
     enh:2, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
 }
 let store=loadStore();
@@ -921,6 +950,7 @@ store.profiles.forEach(p=>{
   if(p.alignment===undefined) p.alignment='';
   if(p.mythicTier===undefined) p.mythicTier=0;
   if(p.mythicEnabled===undefined) p.mythicEnabled=false;
+  if(p.currentTarget===undefined) p.currentTarget='none';
 });
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
@@ -932,7 +962,7 @@ function populateProfileSelect(){
 
 function loadProfileIntoUI(){
   let p=currentProfile();
-  $('bab').value=p.bab; $('mythicEnabled').checked=!!p.mythicEnabled; $('mythicTier').value=p.mythicTier; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
+  $('bab').value=p.bab; $('mythicEnabled').checked=!!p.mythicEnabled; $('mythicTier').value=p.mythicTier; $('currentTarget').value=p.currentTarget; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
   $('mythicTierBox').style.display = p.mythicEnabled ? 'block' : 'none';
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
@@ -949,7 +979,7 @@ function loadProfileIntoUI(){
 
 function syncUIIntoProfile(){
   let p=currentProfile();
-  p.bab=+$('bab').value; p.mythicEnabled=$('mythicEnabled').checked; p.mythicTier=+$('mythicTier').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
+  p.bab=+$('bab').value; p.mythicEnabled=$('mythicEnabled').checked; p.mythicTier=+$('mythicTier').value; p.currentTarget=$('currentTarget').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
   p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
   p.style=$('style').value; p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
@@ -987,7 +1017,7 @@ $('deleteProfile').onclick=()=>{
   store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 
-['bab','mythicEnabled','mythicTier','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','critMult'].forEach(id=>{
+['bab','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','critMult'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'block' : 'none';
@@ -1120,7 +1150,13 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
   let div=document.createElement('div'); div.className='activeItem'+(activeRec.on===false?' off':'');
   let cfgHtml='';
   if(!isCustom && defOrCustom.configFields){
-    cfgHtml='<div class="cfg">'+defOrCustom.configFields.map(f=>`<label>${f.label}<br><input type="number" data-key="${f.key}" value="${activeRec.cfg[f.key]}"></label>`).join('')+'</div>';
+    cfgHtml='<div class="cfg">'+defOrCustom.configFields.map(f=>{
+      if(f.type==='select'){
+        let opts=f.options.map(o=>`<option value="${o.v}"${o.v===activeRec.cfg[f.key]?' selected':''}>${o.label}</option>`).join('');
+        return `<label>${f.label}<br><select data-key="${f.key}">${opts}</select></label>`;
+      }
+      return `<label>${f.label}<br><input type="number" data-key="${f.key}" value="${activeRec.cfg[f.key]}"></label>`;
+    }).join('')+'</div>';
   }
   div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off between turns without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}></label><div><div class="name">${isCustom?defOrCustom.name:defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div></div><button class="rm">✕ remove</button></div>${cfgHtml}`;
   div.querySelector('.rm').onclick=()=>{
@@ -1137,6 +1173,9 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
   if(!isCustom && defOrCustom.configFields){
     div.querySelectorAll('input[data-key]').forEach(inp=>{
       inp.addEventListener('input',()=>{ activeRec.cfg[inp.dataset.key]=Number(inp.value); saveStore(); compute(); });
+    });
+    div.querySelectorAll('select[data-key]').forEach(sel=>{
+      sel.addEventListener('change',()=>{ activeRec.cfg[sel.dataset.key]=sel.value; saveStore(); compute(); });
     });
   }
   return div;
@@ -1239,7 +1278,7 @@ function compute(){
   let style=$('style').value, atkStat=$('atkStat').value, dmgStat=$('dmgStat').value;
   let weaponKey=$('weapon').value;
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
-  let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice};
+  let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value};
 
   let {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal}=collectContributions(ctx);
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
