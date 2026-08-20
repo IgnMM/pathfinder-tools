@@ -144,19 +144,33 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <option value="twf">Two-Weapon Fighting (melee)</option>
   <option value="ranged">Ranged</option>
 </select></div>
-<div class="row" id="atkAbilityRow"><label>Attack/Damage Ability</label>
-<select id="atkAbility">
-  <option value="str" selected>Strength (normal)</option>
-  <option value="dexAtkOnly">Dexterity to attack (Weapon Finesse) — Str still to damage</option>
-  <option value="dexBoth">Dexterity to attack and damage (Agile / Slashing Grace)</option>
+<div class="row" id="atkStatRow"><label>Ability → Attack rolls</label>
+<select id="atkStat">
+  <option value="str" selected>Strength</option>
+  <option value="dex">Dexterity</option>
+  <option value="con">Constitution</option>
+  <option value="int">Intelligence</option>
+  <option value="wis">Wisdom</option>
+  <option value="cha">Charisma</option>
+  <option value="none">— none —</option>
 </select></div>
-<div class="emptyNote" id="atkAbilityNote">Only applies to light or finesse-qualified melee weapons — the calculator doesn't check weapon-by-weapon eligibility, so pick the option that matches your build. Ranged weapons always use Dexterity to attack, regardless of this setting.</div>
+<div class="row" id="dmgStatRow"><label>Ability → Damage rolls</label>
+<select id="dmgStat">
+  <option value="str" selected>Strength</option>
+  <option value="dex">Dexterity</option>
+  <option value="con">Constitution</option>
+  <option value="int">Intelligence</option>
+  <option value="wis">Wisdom</option>
+  <option value="cha">Charisma</option>
+  <option value="none">— none —</option>
+</select></div>
+<div class="emptyNote" id="atkAbilityNote">Pick whichever ability your build actually uses for each roll — they don't have to match, and you can pick the same one for both (e.g. Weapon Finesse: Dex to attack, Str to damage; Agile/Slashing Grace: Dex to both; a bow: Dex to attack, none to damage; a thrown weapon: Str to both). The calculator doesn't check weapon-by-weapon eligibility, so choose what fits your character.</div>
 <div class="row"><label>Weapon Base Enhancement (+X)</label><input id="enh" type="number" min="0" max="10" value="2"></div>
 <div id="offhandBox" class="offhandBox" style="display:none">
   <h3 style="margin-top:0">Off-Hand Weapon</h3>
   <div class="row"><label>Off-Hand Enhancement (+X)</label><input id="offEnh" type="number" min="0" max="10" value="0"></div>
   <div class="row"><label>Off-Hand Weapon Is Light</label><input id="offLight" type="checkbox" checked style="width:auto;justify-self:start"></div>
-  <div class="emptyNote">Attack penalties follow the standard two-weapon-fighting table (-6/-10 normal, -4/-4 light) and are automatically reduced if you add the "Two-Weapon Fighting" feat below; off-hand damage uses half your Strength bonus unless "Double Slice" is active. Off-hand weapon is assumed to use the same base damage dice as your main weapon above — adjust manually if different.</div>
+  <div class="emptyNote">Attack penalties follow the standard two-weapon-fighting table (-6/-10 normal, -4/-4 light) and are automatically reduced if you add the "Two-Weapon Fighting" feat below; off-hand damage uses half your damage-ability bonus (from "Ability → Damage rolls" above) unless "Double Slice" is active. Off-hand weapon is assumed to use the same base damage dice as your main weapon above — adjust manually if different.</div>
 </div>
 <div class="row"><label>Critical Multiplier</label>
 <select id="critMult">
@@ -701,14 +715,20 @@ function loadStore(){ let s=JSON.parse(localStorage.getItem(STORE_KEY)||'null');
 function saveStore(){ localStorage.setItem(STORE_KEY, JSON.stringify(store)); }
 function defaultProfile(name){
   return {name, bab:6, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
-    style:'twoHanded', atkAbility:'str', offEnh:0, offLight:true,
+    style:'twoHanded', atkStat:'str', dmgStat:'str', offEnh:0, offLight:true,
     enh:2, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
 }
 let store=loadStore();
-// migrate profiles saved before the Fighting Style / Race / Alignment / Sources features existed
+// migrate profiles saved before the Fighting Style / Ability picker / Race / Alignment / Sources features existed
 store.profiles.forEach(p=>{
   if(!p.style) p.style = (p.hands===1) ? 'oneHanded' : 'twoHanded';
-  if(!p.atkAbility) p.atkAbility='str';
+  if(!p.atkStat){
+    // old single "atkAbility" dropdown (str / dexAtkOnly / dexBoth) -> two independent pickers
+    if(p.atkAbility==='dexBoth'){ p.atkStat='dex'; p.dmgStat='dex'; }
+    else if(p.atkAbility==='dexAtkOnly'){ p.atkStat='dex'; p.dmgStat='str'; }
+    else { p.atkStat='str'; p.dmgStat='str'; }
+  }
+  if(!p.dmgStat) p.dmgStat='str';
   if(p.offEnh===undefined) p.offEnh=0;
   if(p.offLight===undefined) p.offLight=true;
   if(!p.excludedSources) p.excludedSources={};
@@ -728,7 +748,7 @@ function loadProfileIntoUI(){
   $('bab').value=p.bab; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
-  $('style').value=p.style; $('atkAbility').value=p.atkAbility; $('enh').value=p.enh; $('critMult').value=p.critMult;
+  $('style').value=p.style; $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat; $('enh').value=p.enh; $('critMult').value=p.critMult;
   $('offEnh').value=p.offEnh; $('offLight').checked=!!p.offLight;
   $('race').value=p.race||''; $('alignment').value=p.alignment||'';
   $('customWeapon').style.display = p.weapon==='custom' ? 'block' : 'none';
@@ -744,7 +764,7 @@ function syncUIIntoProfile(){
   p.bab=+$('bab').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
   p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
-  p.style=$('style').value; p.atkAbility=$('atkAbility').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
+  p.style=$('style').value; p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
   p.offEnh=+$('offEnh').value; p.offLight=$('offLight').checked;
   p.race=$('race').value.trim(); p.alignment=$('alignment').value;
   saveStore();
@@ -779,7 +799,7 @@ $('deleteProfile').onclick=()=>{
   store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 
-['bab','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkAbility','offEnh','offLight','enh','critMult'].forEach(id=>{
+['bab','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','critMult'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'block' : 'none';
@@ -988,10 +1008,12 @@ function diceMultiply(dice,mult){
 
 const TWF_PENALTIES={ normal:{noFeat:{main:-6,off:-10}, feat:{main:-4,off:-4}}, light:{noFeat:{main:-4,off:-4}, feat:{main:-2,off:-2}} };
 
+const ABIL_LABEL={str:'STR',dex:'DEX',con:'CON',int:'INT',wis:'WIS',cha:'CHA',none:'no ability'};
+
 function compute(){
   let p=currentProfile();
   let bab=+$('bab').value, enh=+$('enh').value, critMult=+$('critMult').value;
-  let style=$('style').value, atkAbility=$('atkAbility').value;
+  let style=$('style').value, atkStat=$('atkStat').value, dmgStat=$('dmgStat').value;
   let ctx={bab, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value};
   let weaponKey=$('weapon').value;
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
@@ -1001,8 +1023,8 @@ function compute(){
   markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
   renderBreakdown(breakdown);
 
-  let atkAbilityMod = (style==='ranged') ? ctx.dex : (atkAbility==='str' ? ctx.str : ctx.dex);
-  let dmgAbilityMod = (style==='ranged') ? 0 : (atkAbility==='dexBoth' ? ctx.dex : ctx.str);
+  let atkAbilityMod = atkStat==='none' ? 0 : ctx[atkStat];
+  let dmgAbilityMod = dmgStat==='none' ? 0 : ctx[dmgStat];
   let strDmgMod = style==='twoHanded' ? Math.floor(dmgAbilityMod*1.5) : dmgAbilityMod;
   let baseAtk = bab + atkAbilityMod + enh;
   let baseDmg = strDmgMod + enh;
@@ -1033,9 +1055,8 @@ function compute(){
   $('dmgNormal').textContent=`${w.dice} ${signed(dmg)}`;
   $('dmgCrit').textContent=`${critDice} ${signed(critDmg)} (threat ${w.threat}/×${critMult})`;
 
-  let atkAbilityLabel = (style==='ranged') ? 'DEX (ranged)' : (atkAbility==='str' ? 'STR' : 'DEX (finesse)');
-  notes.push('Base attack: BAB '+signed(bab)+' + '+atkAbilityLabel+' '+signed(atkAbilityMod)+' + enhancement '+signed(enh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
-  notes.push('Base damage: '+(style==='ranged'?'no ability modifier by default (ranged)':( (atkAbility==='dexBoth'?'DEX ':'STR ')+signed(dmgAbilityMod)+(style==='twoHanded'?' (×1.5, two-handed)':'')))+' + enhancement '+signed(enh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
+  notes.push('Base attack: BAB '+signed(bab)+' + '+ABIL_LABEL[atkStat]+' '+signed(atkAbilityMod)+' + enhancement '+signed(enh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
+  notes.push('Base damage: '+ABIL_LABEL[dmgStat]+' '+signed(dmgAbilityMod)+(style==='twoHanded'&&dmgStat!=='none'?' (×1.5, two-handed)':'')+' + enhancement '+signed(enh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
 
   $('offAtkBox').style.display='none'; $('offDmgBox').style.display='none';
   if(style==='twf'){
@@ -1056,9 +1077,6 @@ function compute(){
     $('offAtk').textContent=signed(offAtk);
     $('offDmg').textContent=`${w.dice} ${signed(offDmg)}`;
     notes.push('Two-Weapon Fighting: penalties '+pen.main+'/'+pen.off+' ('+(offLight?'light':'normal')+' off-hand'+(hasTWF?', Two-Weapon Fighting feat applied':'')+'). Off-hand damage uses '+(hasDoubleSlice?'full':'half')+' of your damage ability modifier'+(hasDoubleSlice?' (Double Slice active)':'')+'. The shared modifier total above ('+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg) is applied to both hands identically for simplicity.');
-  }
-  if(style==='ranged'){
-    notes.push('Ranged: attack uses Dexterity; damage does not include an ability modifier by default (add Strength manually via a Custom modifier for thrown weapons).');
   }
   $('notes').innerHTML=notes.map(n=>'• '+n).join('<br>');
 }
