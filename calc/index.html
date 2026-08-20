@@ -94,6 +94,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <section class="card">
 <h2>Character &amp; Weapon</h2>
 <div class="row"><label>BAB</label><input id="bab" type="number" min="0" value="6"></div>
+<div class="row"><label>Mythic Tier</label><input id="mythicTier" type="number" min="0" max="10" value="0"></div>
+<div class="emptyNote">0 = not a mythic character. Drives Surge's die size and any other tier-scaling Mythic entries below.</div>
 <h3>Ability Scores</h3>
 <div class="statsGrid">
 <div><label>STR</label><input id="str" type="number" value="20"></div>
@@ -743,7 +745,7 @@ function saveStore(){
 }
 function defaultProfile(name){
   return {name, bab:6, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
-    style:'twoHanded', atkStat:'str', dmgStat:'str', offEnh:0, offLight:true,
+    style:'twoHanded', atkStat:'str', dmgStat:'str', offEnh:0, offLight:true, mythicTier:0,
     enh:2, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
 }
 let store=loadStore();
@@ -762,6 +764,7 @@ store.profiles.forEach(p=>{
   if(!p.excludedSources) p.excludedSources={};
   if(p.race===undefined) p.race='';
   if(p.alignment===undefined) p.alignment='';
+  if(p.mythicTier===undefined) p.mythicTier=0;
 });
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
@@ -773,7 +776,7 @@ function populateProfileSelect(){
 
 function loadProfileIntoUI(){
   let p=currentProfile();
-  $('bab').value=p.bab; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
+  $('bab').value=p.bab; $('mythicTier').value=p.mythicTier; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
   $('style').value=p.style; $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat; $('enh').value=p.enh; $('critMult').value=p.critMult;
@@ -789,7 +792,7 @@ function loadProfileIntoUI(){
 
 function syncUIIntoProfile(){
   let p=currentProfile();
-  p.bab=+$('bab').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
+  p.bab=+$('bab').value; p.mythicTier=+$('mythicTier').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
   p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
   p.style=$('style').value; p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
@@ -827,7 +830,7 @@ $('deleteProfile').onclick=()=>{
   store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 
-['bab','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','critMult'].forEach(id=>{
+['bab','mythicTier','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','critMult'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'block' : 'none';
@@ -1054,7 +1057,7 @@ function compute(){
   let p=currentProfile();
   let bab=+$('bab').value, enh=+$('enh').value, critMult=+$('critMult').value;
   let style=$('style').value, atkStat=$('atkStat').value, dmgStat=$('dmgStat').value;
-  let ctx={bab, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value};
+  let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value};
   let weaponKey=$('weapon').value;
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
 
