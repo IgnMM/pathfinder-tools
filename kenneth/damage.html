@@ -128,12 +128,6 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
 <div id="effects">
 
 <div class="effect">
-<input id="radiance" type="checkbox" checked>
-<div><b>Radiance</b><div class="note">Applies the configured enhancement bonus to attack and damage rolls. The weapon is magical.</div></div>
-<span class="tag auto">Auto</span>
-</div>
-
-<div class="effect">
 <input id="demonHunter" type="checkbox" checked>
 <div><b>Demon Hunter</b><div class="note">+2 morale bonus on attack rolls against demons only. No damage bonus.</div></div>
 <span class="tag auto">Auto</span>
@@ -314,8 +308,7 @@ function update(){
   let partsAtk=[`BAB ${signed(bab)}`,`STR ${signed(strMod)}`];
   let partsDmg=[`STR ${signed(two?Math.floor(strMod*1.5):strMod)}`];
 
-  let effectiveEnh=0;
-  if(active("radiance")) effectiveEnh=enh;
+  let effectiveEnh=enh;
   if(active("bane") && isEvilOutsider(enemy)){
     effectiveEnh += 2;
     extraDice.push("2d6 Bane");
