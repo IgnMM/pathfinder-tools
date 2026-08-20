@@ -66,6 +66,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .sourcesbox{position:relative}.sourcesbox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-size:.78rem;list-style:none;white-space:nowrap}.sourcesbox summary::-webkit-details-marker{display:none}.sourcesbox[open] summary{border-color:var(--gold)}.sourcesPanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px;z-index:20;max-height:320px;overflow-y:auto;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.sourcesPanel label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);padding:3px 0;cursor:pointer}.sourcesPanel input{width:auto}.sourcesPanel .srcActions{display:flex;gap:6px;margin-bottom:6px}.sourcesPanel .srcActions button{font-size:.65rem;padding:4px 7px}
 .raceNote{font-size:.68rem;color:var(--muted);margin:2px 0 6px}
 .offhandBox{border:1px dashed var(--border);border-radius:10px;padding:8px;margin-top:8px}
+.subcatHeading{font-size:.68rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px;padding-top:6px;border-top:1px dashed var(--border)}
+.subcatHeading:first-of-type{border-top:none;padding-top:0;margin-top:2px}
 .saveIndicator{font-size:.72rem;color:var(--green);opacity:0;transition:opacity .25s ease}
 .saveIndicator.show{opacity:1}
 </style>
@@ -718,7 +720,9 @@ const MODIFIERS = [
  compute:()=>({attack:0,damage:0,note:'Power Attack/Deadly Aim damage excluded from the crit multiplier — see Critical Damage'})},
 ];
 
-const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'skill',label:'Skills'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},{k:'houserule',label:'House Rules'}];
+const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'skill',label:'Skills'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
+  {k:'mythic',label:'Mythic',subcats:[{k:'feat',label:'Mythic Feats'},{k:'path',label:'Path Abilities'},{k:'universal',label:'Universal (Surge, etc.)'},{k:'other',label:'Custom / Other'}]},
+  {k:'houserule',label:'House Rules'}];
 
 const $=id=>document.getElementById(id);
 function mod(score){return Math.floor((Number(score)-10)/2)}
@@ -902,13 +906,25 @@ function renderCategories(){
       n.textContent='Every catalog entry in this category belongs to a source you\'ve excluded — check the Sources panel above, or use "+ Custom".';
       block.appendChild(n);
     }
-    activeInCat.forEach(a=>{
-      let m=MODIFIERS.find(x=>x.id===a.id);
-      block.appendChild(buildActiveItem(m,a,cat.k,false));
-    });
-    customInCat.forEach(c=>{
-      block.appendChild(buildActiveItem(c,c,cat.k,true));
-    });
+    if(cat.subcats){
+      cat.subcats.forEach(sc=>{
+        let itemsA=activeInCat.filter(a=>{ let m=MODIFIERS.find(x=>x.id===a.id); return (m.subcat||'other')===sc.k; });
+        let itemsC=customInCat.filter(c=>(c.subcat||'other')===sc.k);
+        if(!itemsA.length && !itemsC.length) return;
+        let h=document.createElement('div'); h.className='subcatHeading'; h.textContent=sc.label;
+        block.appendChild(h);
+        itemsA.forEach(a=>{ let m=MODIFIERS.find(x=>x.id===a.id); block.appendChild(buildActiveItem(m,a,cat.k,false)); });
+        itemsC.forEach(c=>{ block.appendChild(buildActiveItem(c,c,cat.k,true)); });
+      });
+    } else {
+      activeInCat.forEach(a=>{
+        let m=MODIFIERS.find(x=>x.id===a.id);
+        block.appendChild(buildActiveItem(m,a,cat.k,false));
+      });
+      customInCat.forEach(c=>{
+        block.appendChild(buildActiveItem(c,c,cat.k,true));
+      });
+    }
     box.appendChild(block);
   });
   box.querySelectorAll('.addBtn').forEach(btn=>btn.onclick=()=>{
@@ -929,7 +945,7 @@ function renderCategories(){
     let type=prompt('Bonus type (untyped / dodge / morale / luck / sacred / profane / competence / insight / enhancement / circumstance / trait / other-named-type):','untyped')||'untyped';
     let note=prompt('Optional note:','')||'';
     let p=currentProfile();
-    p.custom.push({id:'custom-'+Date.now(), name, category:cat, appliesTo:['attack','damage'], type, atk, dmg, note, on:true, custom:true});
+    p.custom.push({id:'custom-'+Date.now(), name, category:cat, subcat:'other', appliesTo:['attack','damage'], type, atk, dmg, note, on:true, custom:true});
     saveStore(); renderCategories(); compute();
   });
 }
