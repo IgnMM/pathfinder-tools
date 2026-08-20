@@ -275,13 +275,13 @@ const MODIFIERS = [
  compute:()=>({attack:0,damage:0,note:'applied automatically to Two-Weapon Fighting penalties above'})},
 {id:"vital-strike",name:"Vital Strike",category:"feat",source:"Core Rulebook",appliesTo:["damage"],type:"untyped",
  desc:"Make a single attack-action strike that rolls the weapon's base damage dice twice. Only usable when taking the attack action (a single attack, not a full attack). Non-dice bonuses (Str, enhancement, precision, etc.) are added only once, not doubled. Not multiplied on a critical hit.",
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ compute:(ctx)=>{let d=ctx.weaponDice||'1d8';return {attack:0,damage:0,note:'Rolls '+d+' twice ('+diceMultiply(d,2)+' total) instead of once — everything else (Str, enhancement, etc.) is still added only once, not doubled, and this isn\'t multiplied on a crit'}}},
 {id:"vital-strike-improved",name:"Vital Strike, Improved",category:"feat",source:"Core Rulebook",appliesTo:["damage"],type:"untyped",
  desc:"Upgrade to Vital Strike: a single attack-action strike rolls the weapon's base damage dice three times. Requires Vital Strike, BAB +11.",
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ compute:(ctx)=>{let d=ctx.weaponDice||'1d8';return {attack:0,damage:0,note:'Rolls '+d+' three times ('+diceMultiply(d,3)+' total) instead of once — everything else is still added only once, not multiplied, and this isn\'t multiplied on a crit'}}},
 {id:"vital-strike-greater",name:"Vital Strike, Greater",category:"feat",source:"Core Rulebook",appliesTo:["damage"],type:"untyped",
  desc:"Upgrade to Improved Vital Strike: a single attack-action strike rolls the weapon's base damage dice four times. Requires Improved Vital Strike, BAB +16.",
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ compute:(ctx)=>{let d=ctx.weaponDice||'1d8';return {attack:0,damage:0,note:'Rolls '+d+' four times ('+diceMultiply(d,4)+' total) instead of once — everything else is still added only once, not multiplied, and this isn\'t multiplied on a crit'}}},
 {id:"precise-shot",name:"Precise Shot",category:"feat",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:4}],
  desc:"Removes the -4 penalty for firing a ranged weapon into melee.",
@@ -486,8 +486,9 @@ const MODIFIERS = [
  desc:"Barbarian rage grants a morale bonus to Strength and Constitution (+4 base → +2 to the modifier, +6 Greater Rage → +3, +8 Mighty Rage → +4), indirectly boosting melee attack/damage via the Strength modifier. The value below is already the resulting modifier bonus, not the raw ability score bonus — route it through here rather than editing STR directly to avoid double-counting.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"morale"}}},
 {id:"sneak-attack",name:"Sneak Attack",category:"other",source:"Core Rulebook",appliesTo:["damage"],type:"none",
+ configFields:[{key:'rogueLevel',label:'Rogue level',type:'number',default:1}],
  desc:"Extra precision damage dice (1d6 per two rogue levels) against flat-footed or flanked targets; not multiplied on a critical hit; many creature types are immune to precision damage.",
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ compute:(ctx,cfg)=>{let lvl=cfg.rogueLevel||1;let n=Math.ceil(lvl/2);return {attack:0,damage:0,note:'Deals '+n+'d6 extra precision damage (rogue level '+lvl+') against a flat-footed or flanked target — not multiplied on a crit, and many creature types are immune to precision damage'}}},
 {id:"favored-enemy",name:"Favored Enemy",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"untyped",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"Untyped bonus (starting at +2, scaling +2 every 5 ranger levels) on weapon attack and damage rolls against creatures of a selected favored enemy type.",
@@ -797,8 +798,9 @@ const MODIFIERS = [
  desc:'Elemental Fist\'s bonus elemental damage die increases from 1d6 to 1d8, with more uses per day equal to your tier. Dice-based, not modeled as a flat number.',
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 {id:'mythic-knockout-artist',name:'Mythic Knockout Artist',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
- desc:'Requires sneak attack, Improved Unarmed Strike, Knockout Artist. Nonlethal unarmed sneak attack dice become d8s instead of d6s. Dice-based, not modeled as a flat number.',
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ configFields:[{key:'rogueLevel',label:'Rogue level',type:'number',default:1}],
+ desc:'Requires sneak attack, Improved Unarmed Strike, Knockout Artist. Nonlethal unarmed sneak attack dice become d8s instead of d6s.',
+ compute:(ctx,cfg)=>{let lvl=cfg.rogueLevel||1;let n=Math.ceil(lvl/2);return {attack:0,damage:0,note:'Your '+n+'d6 sneak attack (rogue level '+lvl+') becomes '+n+'d8 for nonlethal unarmed sneak attacks'}}},
 {id:'mythic-monastic-legacy',name:'Mythic Monastic Legacy',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
  desc:'Requires multiclass monk using Monastic Legacy. Spend 1 mythic power to raise your effective monk level by half your tier (for unarmed damage die purposes) until the start of your next turn.',
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
@@ -1214,9 +1216,9 @@ function compute(){
   let p=currentProfile();
   let bab=+$('bab').value, enh=+$('enh').value, critMult=+$('critMult').value;
   let style=$('style').value, atkStat=$('atkStat').value, dmgStat=$('dmgStat').value;
-  let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value};
   let weaponKey=$('weapon').value;
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
+  let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice};
 
   let {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal}=collectContributions(ctx);
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
