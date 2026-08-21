@@ -297,13 +297,13 @@ const MODIFIERS = [
  desc:'+1 attack and damage with ranged weapons, target within 30 ft.',
  compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg'})},
 {id:'rapid-shot',name:'Rapid Shot',category:'feat',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
- desc:'-2 on all ranged attacks this turn, in exchange for one extra attack (extra attack not modeled here — add manually to iteratives).',
- compute:()=>({attack:-2,damage:0,note:'-2 atk (all attacks)'})},
+ desc:'-2 on all ranged attacks this turn, in exchange for one extra attack (extra attack not modeled here — add manually to iteratives). If Mythic Rapid Shot is also active, this penalty is waived (that mythic feat lets you choose to ignore it instead of gaining a second extra attack).',
+ compute:(ctx)=>{let v=ctx.mythicRapidShotOn?0:-2;return {attack:v,damage:0,note:v+' atk (all attacks)'+(ctx.mythicRapidShotOn?' (waived by Mythic Rapid Shot)':'')}}},
 
 // ---------------- FEATS (batch 2) ----------------
 {id:"combat-expertise",name:"Combat Expertise",category:"feat",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
- desc:"Trade a self-imposed penalty on melee attack rolls (and CMB) for an equal dodge bonus to AC; the penalty/bonus scale together every 4 points of BAB.",
- compute:(ctx)=>{let step=1+Math.floor(Math.max(0,ctx.bab)/4);return {attack:-step,damage:0,note:'-'+step+' atk (self-imposed, trades for equal dodge AC bonus)'}}},
+ desc:"Trade a self-imposed penalty on melee attack rolls (and CMB) for an equal dodge bonus to AC; the penalty/bonus scale together every 4 points of BAB. If Mythic Combat Expertise is also active, this penalty is waived (representing spending mythic power to negate it).",
+ compute:(ctx)=>{let step=1+Math.floor(Math.max(0,ctx.bab)/4);let v=ctx.mythicCombatExpertiseOn?0:-step;return {attack:v,damage:0,note:v+' atk (self-imposed, trades for equal dodge AC bonus)'+(ctx.mythicCombatExpertiseOn?' (waived by Mythic Combat Expertise)':'')}}},
 {id:"two-weapon-fighting",name:"Two-Weapon Fighting",category:"feat",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
  desc:"Reduces the attack-roll penalties for fighting with a weapon in each hand. Automatically applied to the Two-Weapon Fighting off-hand math above when this feat is active — no separate numeric entry needed here.",
  compute:()=>({attack:0,damage:0,note:'applied automatically to Two-Weapon Fighting penalties above'})},
@@ -764,27 +764,27 @@ const MODIFIERS = [
  desc:'Covers Vital Strike, Improved Vital Strike, and Greater Vital Strike (no separate mythic feat exists for the Improved/Greater ranks). Multiplies your Strength/magic/etc. damage bonuses — the parts Vital Strike itself does NOT multiply — by the same ×2/×3/×4 used for the extra weapon damage dice. Requires a Vital Strike tier to also be active; applied automatically to Normal/Critical Damage below.',
  compute:()=>({attack:0,damage:0,note:'applied automatically to Normal/Critical Damage above (requires a Vital Strike tier active too)'})},
 {id:'mythic-weapon-focus',name:'Mythic Weapon Focus',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
- desc:'Doubles your combined Weapon Focus + Greater Weapon Focus attack bonus with the chosen weapon (e.g. +1 and +1 becomes +2 and +2). As a swift action, spend 1 use of mythic power for a further +½ tier on attack rolls with that weapon until end of turn.',
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ desc:'Doubles your combined Weapon Focus + Greater Weapon Focus attack bonus with the chosen weapon (e.g. +1 and +1 becomes +2 and +2) — applied automatically above if Weapon Focus/Greater Weapon Focus are also active. As a swift action, spend 1 use of mythic power for a further +½ tier on attack rolls with that weapon until end of turn (that part is a per-use resource, not modeled automatically).',
+ compute:()=>({attack:0,damage:0,note:'applied automatically above if Weapon Focus/Greater Weapon Focus are also active'})},
 {id:'mythic-weapon-specialization',name:'Mythic Weapon Specialization',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
  desc:'Adds a damage bonus equal to half your Mythic Tier (rounded down) with your chosen weapon. Stacks with Weapon Specialization/Greater Weapon Specialization.',
  compute:(ctx)=>{let v=Math.floor((ctx.mythicTier||0)/2);return {attack:0,damage:v,note:signed(v)+' (½ tier)'}}},
 {id:'mythic-two-weapon-fighting',name:'Mythic Two-Weapon Fighting',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
- desc:'As an immediate action, spend 1 use of mythic power to negate the two-weapon-fighting attack roll penalties for a number of rounds equal to your tier.',
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ desc:'As an immediate action, spend 1 use of mythic power to negate the two-weapon-fighting attack roll penalties for a number of rounds equal to your tier. While active (Fighting Style = Two-Weapon Fighting), both hands\' penalties are set to 0 above instead of just reduced.',
+ compute:()=>({attack:0,damage:0,note:'applied automatically to the Two-Weapon Fighting penalties above'})},
 {id:'mythic-point-blank-shot',name:'Mythic Point-Blank Shot',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:'Raises Point-Blank Shot\'s bonus from +1 to +2 on attack and damage rolls with ranged weapons within 30 ft. This REPLACES the normal Point-Blank Shot entry\'s +1 — don\'t add both, or it double-counts. Swift action: spend 1 mythic power for a further +½ tier.',
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
 {id:'mythic-rapid-shot',name:'Mythic Rapid Shot',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
- desc:'When using Rapid Shot, choose either: ignore its -2 penalty entirely, OR fire two extra attacks (each still at -2) instead of one. A per-use choice, not a stacking flat bonus.',
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ desc:'When using Rapid Shot, choose either: ignore its -2 penalty entirely, OR fire two extra attacks (each still at -2) instead of one. This calculator models the "ignore the penalty" choice — Rapid Shot\'s -2 above becomes +0 while this is active; the extra-attack alternative isn\'t modeled (add it to Full Attack by hand if you pick that instead).',
+ compute:()=>({attack:0,damage:0,note:'applied automatically to Rapid Shot\'s penalty above (models the "ignore the penalty" choice)'})},
 {id:'mythic-manyshot',name:'Mythic Manyshot',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
  desc:'When full-attacking with a bow using Manyshot, your second attack also fires two arrows (normally only the first does).',
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 {id:'mythic-combat-expertise',name:'Mythic Combat Expertise',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
- desc:'Spend 1 use of mythic power to negate Combat Expertise\'s melee attack-roll and CMB penalty for 1 minute. (Also grants +2 dodge AC while using Combat Expertise — out of scope, AC isn\'t modeled here.)',
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ desc:'Spend 1 use of mythic power to negate Combat Expertise\'s melee attack-roll and CMB penalty for 1 minute — applied automatically to the Combat Expertise entry above while this is active. (Also grants +2 dodge AC while using Combat Expertise — out of scope, AC isn\'t modeled here.)',
+ compute:()=>({attack:0,damage:0,note:'applied automatically to Combat Expertise\'s penalty above'})},
 {id:'mythic-improved-critical',name:'Mythic Improved Critical',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
  desc:'Requires BAB +8. Increases your chosen weapon\'s critical multiplier by 1 step (max ×6). Not an attack/damage number — bump the "Critical Multiplier" field above manually.',
  compute:()=>({attack:0,damage:0,note:'special — adjust the Critical Multiplier field above, see description'})},
@@ -814,8 +814,8 @@ const MODIFIERS = [
  desc:'Increases Two-Weapon Rend\'s bonus damage (once/round when both weapons hit the same target) from 1d10+1.5×Str to 2d8+2×Str; spend 1 mythic power for a further +2×tier. Dice-based, not modeled as a flat number.',
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 {id:'mythic-furious-focus',name:'Mythic Furious Focus',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
- desc:'Removes Power Attack\'s attack penalty on attacks of opportunity automatically, and (spending 1 mythic power) on every melee attack for 1 round.',
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ desc:'Requires Furious Focus and Power Attack, both also active. Removes Power Attack\'s attack penalty on attacks of opportunity automatically, and (spending 1 mythic power) on every melee attack for 1 round — when all three are active, Single Attack/Full Attack above waive Power Attack\'s penalty on every attack, not just the first.',
+ compute:()=>({attack:0,damage:0,note:'applied automatically above (requires Furious Focus + Power Attack also active)'})},
 {id:'mythic-lunge',name:'Mythic Lunge',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
  desc:'While using Lunge, spending 1 mythic power negates its -2 AC penalty and grants +2 on attacks of opportunity made while it\'s in effect.',
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
@@ -843,20 +843,20 @@ const MODIFIERS = [
  desc:'1st-tier Champion/Guardian path ability: attacks of opportunity gain a bonus equal to your Mythic Tier on both the attack roll and the damage roll. Only applies to attacks of opportunity, not regular attacks.',
  compute:(ctx)=>{let v=ctx.mythicTier||0;return {attack:v,damage:v,note:signed(v)+' (tier, AoO only)'}}},
 {id:'mythic-devastating-smash',name:'Devastating Smash',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
- desc:'1st-tier Champion path ability: attacking a construct or object reduces its hardness/DR by 10 (0 if you spend 1 mythic power) and adds your tier (double, if spending power) to the damage roll. Constructs/objects only.',
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ desc:'1st-tier Champion path ability: attacking a construct or object reduces its hardness/DR by 10 (0 if you spend 1 mythic power) and adds your tier (double, if spending power) to the damage roll. Constructs/objects only — set Current Target above to Construct/Object. Models the base (no mythic power spent) version: +tier damage.',
+ compute:(ctx)=>{if(!targetMatches(ctx,'construct'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Construct/Object above'};let v=ctx.mythicTier||0;return {attack:0,damage:v,note:signed(v)+' (tier, vs constructs/objects)'}}},
 {id:'mythic-precision',name:'Precision',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
- desc:'3rd-tier Champion path ability: your iterative (extra) attacks from a high BAB gain +5 each, capped at your full BAB — doesn\'t affect your primary attack, so it can\'t be modeled as a flat bonus to "attack" here (it would wrongly apply to the first attack too). Selectable multiple times for +5 more each.',
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ desc:'3rd-tier Champion path ability: your iterative (extra) attacks from a high BAB gain +5 each, capped at your full base attack bonus — doesn\'t affect your primary attack. Applied automatically to the Full Attack line above (not Single Attack). Selectable multiple times in real Pathfinder for +5 more each; this calculator only models one selection.',
+ compute:()=>({attack:0,damage:0,note:'applied automatically to the Full Attack line above (not the first attack)'})},
 {id:'mythic-elemental-fury',name:'Elemental Fury',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
  desc:'3rd-tier Champion path ability: spend 1 mythic power to add 1d6 energy damage (3d6 on a crit) to your attacks for a number of rounds equal to your tier. Dice-based, not modeled as a flat number.',
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 {id:'mythic-maximized-critical',name:'Maximized Critical',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
- desc:'3rd-tier Champion path ability: on a confirmed critical hit, your weapon\'s own (multiplied) damage dice are treated as rolling maximum instead of being rolled. Not an additive bonus.',
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ desc:'3rd-tier Champion path ability: on a confirmed critical hit, your weapon\'s own (multiplied) damage dice are treated as rolling maximum instead of being rolled. Not an additive bonus — this calculator never resolves dice to a number, so it can\'t be added to the total, but the note shows what your weapon\'s dice would max out at.',
+ compute:(ctx)=>{let d=ctx.weaponDice||'1d8';let mtd=maxDiceValue(d);return {attack:0,damage:0,note:'On a crit, your weapon\'s own dice ('+d+') always roll their max: '+mtd+'. Not added to the total above — apply by hand if you want an exact number instead of the dice notation.'}}},
 {id:'mythic-critical-master',name:'Critical Master',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
- desc:'6th-tier Champion path ability: critical threats against non-mythic creatures (mythic too, if selected twice) auto-confirm and deal maximum damage.',
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ desc:'6th-tier Champion path ability: critical threats against non-mythic creatures (mythic too, if selected twice) auto-confirm and deal maximum damage. Not an additive bonus — this calculator never resolves dice to a number, but the note shows what your weapon\'s dice would max out at.',
+ compute:(ctx)=>{let d=ctx.weaponDice||'1d8';let mtd=maxDiceValue(d);return {attack:0,damage:0,note:'Qualifying critical threats auto-confirm and deal max damage: your weapon\'s own dice ('+d+') would show '+mtd+'. Not added to the total above.'}}},
 {id:'mythic-perfect-strike',name:'Perfect Strike',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
  desc:'6th-tier Champion path ability: spend 1 mythic power on one attack at full BAB — if it hits, double damage, bypassing DR/hardness; if also a crit, multiplier +1. A ×2 multiplier, not an additive number.',
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
@@ -1203,7 +1203,12 @@ function collectContributions(ctx){
   // order they appear in p.active — so scan for them first and pass as ctx flags.
   ctx.mythicPowerAttackOn = p.active.some(a=>a.id==='mythic-power-attack' && a.on!==false);
   ctx.mythicDeadlyAimOn = p.active.some(a=>a.id==='mythic-deadly-aim' && a.on!==false);
+  ctx.mythicRapidShotOn = p.active.some(a=>a.id==='mythic-rapid-shot' && a.on!==false);
+  ctx.mythicCombatExpertiseOn = p.active.some(a=>a.id==='mythic-combat-expertise' && a.on!==false);
   let mythicVitalStrikeOn = p.active.some(a=>a.id==='mythic-vital-strike' && a.on!==false);
+  let mythicFuriousFocusOn = p.active.some(a=>a.id==='mythic-furious-focus' && a.on!==false);
+  let mythicWeaponFocusOn = p.active.some(a=>a.id==='mythic-weapon-focus' && a.on!==false);
+  let mythicPrecisionOn = p.active.some(a=>a.id==='mythic-precision' && a.on!==false);
   p.active.forEach(a=>{
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
     let isOff=a.on===false;
@@ -1223,6 +1228,15 @@ function collectContributions(ctx){
     if(isOff) noteText = (noteText||'')+' (not active this turn)';
     breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:noteText,suppressed:false,off:isOff});
   });
+  if(mythicWeaponFocusOn){
+    let wfOn=p.active.some(a=>a.id==='weapon-focus' && a.on!==false);
+    let gwfOn=p.active.some(a=>a.id==='greater-weapon-focus' && a.on!==false);
+    let extra=(wfOn?1:0)+(gwfOn?1:0);
+    if(extra>0){
+      atkEntries.push({value:extra,type:'untyped',source:'Mythic Weapon Focus'});
+      breakdown.push({name:'Mythic Weapon Focus (doubling)',category:'mythic',type:'untyped',atk:extra,dmg:null,note:'+'+extra+' extra — doubles your Weapon Focus + Greater Weapon Focus total with this weapon',suppressed:false,off:false});
+    }
+  }
   p.custom.forEach(c=>{
     let isOff=c.on===false;
     if(!isOff){
@@ -1231,7 +1245,7 @@ function collectContributions(ctx){
     }
     breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
   });
-  return {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn};
+  return {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn};
 }
 
 function markSuppressed(entries,breakdown){
@@ -1273,6 +1287,11 @@ function diceMultiply(dice,mult){
   if(!m) return dice+' ×'+mult;
   return (Number(m[1])*mult)+'d'+m[2];
 }
+function maxDiceValue(dice){
+  const m=String(dice).match(/^(\d+)d(\d+)$/i);
+  if(!m) return dice;
+  return Number(m[1])*Number(m[2]);
+}
 
 const TWF_PENALTIES={ normal:{noFeat:{main:-6,off:-10}, feat:{main:-4,off:-4}}, light:{noFeat:{main:-4,off:-4}, feat:{main:-2,off:-2}} };
 
@@ -1286,7 +1305,7 @@ function compute(){
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
   let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value};
 
-  let {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn}=collectContributions(ctx);
+  let {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn}=collectContributions(ctx);
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
   markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
   renderBreakdown(breakdown);
@@ -1314,7 +1333,13 @@ function compute(){
 
   let atkFirst = atk;
   let notes=[];
-  if(furiousFocusOn && powerAttackOn){
+  if(furiousFocusOn && powerAttackOn && mythicFuriousFocusOn){
+    // Mythic Furious Focus: spend mythic power to waive Power Attack's penalty on
+    // every melee attack this round, not just the first.
+    atk = atk - powerAttackAtkVal;
+    atkFirst = atk;
+    notes.push('Mythic Furious Focus: Power Attack\'s penalty is waived on every attack this round (not just the first).');
+  } else if(furiousFocusOn && powerAttackOn){
     atkFirst = atk - powerAttackAtkVal; // cancel just the power-attack penalty on the first attack
     notes.push('Furious Focus: first attack uses '+signed(atkFirst)+' instead of '+signed(atk)+' (Power Attack penalty waived once).');
   }
@@ -1323,6 +1348,10 @@ function compute(){
   for(let b=bab;b>0;b-=5) iteratives.push(atk-(bab-b));
   if(iteratives.length) iteratives[0]=atkFirst;
   if(!iteratives.length) iteratives=[atkFirst];
+  if(mythicPrecisionOn && iteratives.length>1){
+    for(let i=1;i<iteratives.length;i++) iteratives[i]=Math.min(iteratives[i]+5, atkFirst);
+    notes.push('Precision (mythic path ability): +5 on your iterative attacks from a high BAB (not your first attack), capped at your full attack bonus.');
+  }
 
   let critDice=diceMultiply(w.dice,critMult);
   let critDmg=dmg*critMult;
@@ -1360,17 +1389,23 @@ function compute(){
   if(style==='twf'){
     let offEnh=+$('offEnh').value, offLight=$('offLight').checked;
     let hasTWF = p.active.some(a=>a.id==='two-weapon-fighting' && a.on!==false);
+    let hasMythicTWF = p.active.some(a=>a.id==='mythic-two-weapon-fighting' && a.on!==false);
     let hasDoubleSlice = p.active.some(a=>a.id==='double-slice' && a.on!==false);
-    let pen = TWF_PENALTIES[offLight?'light':'normal'][hasTWF?'feat':'noFeat'];
+    let pen = hasMythicTWF ? {main:0,off:0} : TWF_PENALTIES[offLight?'light':'normal'][hasTWF?'feat':'noFeat'];
     let mainAtk = bab + atkAbilityMod + enh + pen.main + atkFromMods;
     let offAtk = bab + atkAbilityMod + offEnh + pen.off + atkFromMods;
     // Off-hand damage uses half the damage ability bonus, rounded down — but a negative
     // modifier (a penalty) applies in full to both hands, it is not halved (RAW).
     let offDmgAbility = hasDoubleSlice ? dmgAbilityMod : (dmgAbilityMod<0 ? dmgAbilityMod : Math.floor(dmgAbilityMod/2));
     let offDmg = offDmgAbility + offEnh + dmgFromMods;
+    if(hasMythicTWF) notes.push('Mythic Two-Weapon Fighting: two-weapon attack penalties fully waived (spending mythic power) instead of just reduced.');
     iteratives=[]; for(let b=bab;b>0;b-=5) iteratives.push(mainAtk-(bab-b));
     if(!iteratives.length) iteratives=[mainAtk];
-    if(furiousFocusOn && powerAttackOn) iteratives[0]=mainAtk-powerAttackAtkVal;
+    if(furiousFocusOn && powerAttackOn && mythicFuriousFocusOn) iteratives=iteratives.map(v=>v-powerAttackAtkVal);
+    else if(furiousFocusOn && powerAttackOn) iteratives[0]=mainAtk-powerAttackAtkVal;
+    if(mythicPrecisionOn && iteratives.length>1){
+      for(let i=1;i<iteratives.length;i++) iteratives[i]=Math.min(iteratives[i]+5, iteratives[0]);
+    }
     $('toHit').textContent=signed(iteratives[0]);
     $('fullAttack').textContent=iteratives.map(signed).join(' / ');
     $('offAtkBox').style.display='block'; $('offDmgBox').style.display='block';
