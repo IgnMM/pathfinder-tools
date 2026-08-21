@@ -273,14 +273,14 @@ function targetMatches(ctx, vsFlag){
 const MODIFIERS = [
 // ---------------- FEATS ----------------
 {id:'power-attack',name:'Power Attack',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
- desc:'-1 atk / +2 dmg per step (1 step at BAB 1-3, +1 more step every 4 BAB thereafter); the +2 becomes +3 two-handed (×1.5), or +1 off-hand (×0.5). RAW: this damage bonus IS multiplied on a critical hit (it becomes part of the weapon\'s damage roll) — add the "Power Attack/Deadly Aim damage not multiplied on crit" House Rule below if your table plays it differently.',
- compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);let d=ctx.style==='twoHanded'?3*step:2*step;return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg'+(ctx.style==='twf'?' (this is the primary-hand rate, applied to both hands here for simplicity — off-hand Power Attack damage is normally half this, ×0.5 instead of the primary hand\'s ×1)':'')}}},
+ desc:'-1 atk / +2 dmg per step (1 step at BAB 1-3, +1 more step every 4 BAB thereafter); the +2 becomes +3 two-handed (×1.5), or +1 off-hand (×0.5). RAW: this damage bonus IS multiplied on a critical hit (it becomes part of the weapon\'s damage roll) — add the "Power Attack/Deadly Aim damage not multiplied on crit" House Rule below if your table plays it differently. If Mythic Power Attack is also active, the per-step damage rises from +2 to +3 (before the two-handed/off-hand multiplier) and is doubled again on a confirmed crit — see Critical Damage.',
+ compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);let perStep=ctx.mythicPowerAttackOn?3:2;let dPerStep=ctx.style==='twoHanded'?Math.floor(perStep*1.5):perStep;let d=dPerStep*step;return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg'+(ctx.mythicPowerAttackOn?' (Mythic Power Attack: +'+perStep+'/step)':'')+(ctx.style==='twf'?' (this is the primary-hand rate, applied to both hands here for simplicity — off-hand Power Attack damage is normally half this, ×0.5 instead of the primary hand\'s ×1)':'')}}},
 {id:'furious-focus',name:'Furious Focus',category:'feat',source:'Advanced Player\'s Guide',appliesTo:['attack'],type:'special',
  desc:'Requires Power Attack. No Power Attack penalty on your FIRST attack of the turn only (handled specially in the summary, not in the flat total below).',
  special:'furious-focus', compute:()=>({attack:0,damage:0,note:'applied to first attack only — see summary'})},
 {id:'deadly-aim',name:'Deadly Aim',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
- desc:'Ranged version of Power Attack. Same BAB-based scaling, no two-handed x1.5.',
- compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);return {attack:-step,damage:2*step,note:'-'+step+' atk / +'+(2*step)+' dmg'}}},
+ desc:'Ranged version of Power Attack. Same BAB-based scaling, no two-handed x1.5. If Mythic Deadly Aim is also active, the per-step damage rises from +2 to +3.',
+ compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);let perStep=ctx.mythicDeadlyAimOn?3:2;let d=perStep*step;return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg'+(ctx.mythicDeadlyAimOn?' (Mythic Deadly Aim: +'+perStep+'/step)':'')}}},
 {id:'weapon-focus',name:'Weapon Focus',category:'feat',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
  desc:'+1 on attack rolls with the selected weapon.',
  compute:()=>({attack:1,damage:0,note:'+1 atk'})},
@@ -755,14 +755,14 @@ const MODIFIERS = [
 // left as special/informational (full rules text in the description, contributes 0)
 // unless the effect is a clean, unconditional flat or mythic-tier-scaled number.
 {id:'mythic-power-attack',name:'Mythic Power Attack',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'untyped',
- desc:'Requires Power Attack. Raises Power Attack\'s damage bonus from +2 to +3 per step (doubled on a confirmed critical hit, before the weapon\'s crit multiplier), and lets you spend 1 use of mythic power to ignore Power Attack\'s attack-roll penalty for 1 minute. Not modeled numerically here since it changes the Power Attack entry\'s own formula rather than adding a separate number — recompute Power Attack by hand using +3/step instead of +2 (or +4.5, i.e. ×1.5, two-handed) while this is active.',
- compute:()=>({attack:0,damage:0,note:'special — modifies Power Attack\'s own formula, see description'})},
+ desc:'Requires Power Attack. Raises Power Attack\'s damage bonus from +2 to +3 per step (before the two-handed ×1.5/off-hand ×0.5 multiplier), doubled again before the weapon\'s crit multiplier on a confirmed critical hit — both are applied automatically to the Power Attack entry above and to Critical Damage below while this is active. Also lets you spend 1 use of mythic power to ignore Power Attack\'s attack-roll penalty for 1 minute — that part is a per-use resource, so it isn\'t modeled automatically; use Furious Focus\'s waived-first-attack behavior as a stand-in, or adjust Single Attack by hand.',
+ compute:()=>({attack:0,damage:0,note:'applied automatically to Power Attack\'s damage and to Critical Damage above'})},
 {id:'mythic-deadly-aim',name:'Mythic Deadly Aim',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
- desc:'Requires Deadly Aim. Raises Deadly Aim\'s ranged damage bonus from +2 to +3 per step; the attack-roll penalty is unchanged. Not modeled numerically here since it changes the Deadly Aim entry\'s own formula — recompute Deadly Aim by hand using +3/step instead of +2 while this is active.',
- compute:()=>({attack:0,damage:0,note:'special — modifies Deadly Aim\'s own formula, see description'})},
+ desc:'Requires Deadly Aim. Raises Deadly Aim\'s ranged damage bonus from +2 to +3 per step; the attack-roll penalty is unchanged. Applied automatically to the Deadly Aim entry above while this is active.',
+ compute:()=>({attack:0,damage:0,note:'applied automatically to Deadly Aim\'s damage above'})},
 {id:'mythic-vital-strike',name:'Mythic Vital Strike',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
- desc:'Covers Vital Strike, Improved Vital Strike, and Greater Vital Strike (no separate mythic feat exists for the Improved/Greater ranks). Multiplies your Strength/magic/etc. damage bonuses — the parts Vital Strike itself does NOT multiply — by the same ×2/×3/×4 used for the extra weapon damage dice.',
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ desc:'Covers Vital Strike, Improved Vital Strike, and Greater Vital Strike (no separate mythic feat exists for the Improved/Greater ranks). Multiplies your Strength/magic/etc. damage bonuses — the parts Vital Strike itself does NOT multiply — by the same ×2/×3/×4 used for the extra weapon damage dice. Requires a Vital Strike tier to also be active; applied automatically to Normal/Critical Damage below.',
+ compute:()=>({attack:0,damage:0,note:'applied automatically to Normal/Critical Damage above (requires a Vital Strike tier active too)'})},
 {id:'mythic-weapon-focus',name:'Mythic Weapon Focus',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
  desc:'Doubles your combined Weapon Focus + Greater Weapon Focus attack bonus with the chosen weapon (e.g. +1 and +1 becomes +2 and +2). As a swift action, spend 1 use of mythic power for a further +½ tier on attack rolls with that weapon until end of turn.',
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
@@ -1198,6 +1198,12 @@ function stackTotal(entries){
 function collectContributions(ctx){
   let p=currentProfile();
   let atkEntries=[], dmgEntries=[]; let breakdown=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0, powerAttackDmgVal=0;
+  // Mythic feats that modify another entry's own formula (Mythic Power Attack/Deadly
+  // Aim/Vital Strike) have to be known BEFORE that entry computes, regardless of which
+  // order they appear in p.active — so scan for them first and pass as ctx flags.
+  ctx.mythicPowerAttackOn = p.active.some(a=>a.id==='mythic-power-attack' && a.on!==false);
+  ctx.mythicDeadlyAimOn = p.active.some(a=>a.id==='mythic-deadly-aim' && a.on!==false);
+  let mythicVitalStrikeOn = p.active.some(a=>a.id==='mythic-vital-strike' && a.on!==false);
   p.active.forEach(a=>{
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
     let isOff=a.on===false;
@@ -1225,7 +1231,7 @@ function collectContributions(ctx){
     }
     breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
   });
-  return {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal};
+  return {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn};
 }
 
 function markSuppressed(entries,breakdown){
@@ -1280,7 +1286,7 @@ function compute(){
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
   let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value};
 
-  let {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal}=collectContributions(ctx);
+  let {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn}=collectContributions(ctx);
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
   markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
   renderBreakdown(breakdown);
@@ -1299,6 +1305,13 @@ function compute(){
   let atk = baseAtk + atkFromMods;
   let dmg = baseDmg + dmgFromMods;
 
+  let vsMultMap={'vital-strike':2,'vital-strike-improved':3,'vital-strike-greater':4};
+  let vsActive=p.active.filter(a=>a.on!==false && vsMultMap[a.id]);
+  let vsMult=vsActive.length?Math.max(...vsActive.map(a=>vsMultMap[a.id])):0;
+  if(vsMult && mythicVitalStrikeOn){
+    dmg = dmg*vsMult; // Mythic Vital Strike: Str/enhancement/etc. bonuses are multiplied too, not just weapon dice
+  }
+
   let atkFirst = atk;
   let notes=[];
   if(furiousFocusOn && powerAttackOn){
@@ -1316,11 +1329,11 @@ function compute(){
   let paNoCritMult = p.active.some(a=>a.id==='hr-pa-no-crit' && a.on!==false);
   if(paNoCritMult && powerAttackOn && powerAttackDmgVal){
     critDmg = (dmg-powerAttackDmgVal)*critMult + powerAttackDmgVal;
+  } else if(ctx.mythicPowerAttackOn && powerAttackOn && powerAttackDmgVal){
+    // Mythic Power Attack: its damage bonus is doubled again before the crit multiplier
+    critDmg += powerAttackDmgVal*critMult;
   }
 
-  let vsMultMap={'vital-strike':2,'vital-strike-improved':3,'vital-strike-greater':4};
-  let vsActive=p.active.filter(a=>a.on!==false && vsMultMap[a.id]);
-  let vsMult=vsActive.length?Math.max(...vsActive.map(a=>vsMultMap[a.id])):0;
   let dmgNormalDice=w.dice, dmgCritDiceStr=critDice;
   if(vsMult){
     dmgNormalDice=diceMultiply(w.dice,vsMult);
@@ -1336,9 +1349,11 @@ function compute(){
   notes.push('Base damage: '+ABIL_LABEL[dmgStat]+' '+signed(dmgAbilityMod)+(style==='twoHanded'&&dmgStat!=='none'?' (×1.5, two-handed)':'')+' + enhancement '+signed(enh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
   if(paNoCritMult && powerAttackOn && powerAttackDmgVal){
     notes.push('House rule: Power Attack/Deadly Aim damage ('+signed(powerAttackDmgVal)+') excluded from the ×'+critMult+' crit multiplier — added once instead of being multiplied like the rest of Critical Damage.');
+  } else if(ctx.mythicPowerAttackOn && powerAttackOn && powerAttackDmgVal){
+    notes.push('Mythic Power Attack: damage bonus doubled before the crit multiplier — an extra '+signed(powerAttackDmgVal*critMult)+' added to Critical Damage.');
   }
   if(vsMult){
-    notes.push('Vital Strike is active: Normal/Critical Damage above already include the extra weapon dice. This is a single attack-action strike, not part of a full attack — the Full Attack line no longer applies this turn.');
+    notes.push('Vital Strike is active: Normal/Critical Damage above already include the extra weapon dice'+(mythicVitalStrikeOn?' and, with Mythic Vital Strike, your Str/enhancement/etc. bonuses are multiplied ×'+vsMult+' too':'')+'. This is a single attack-action strike, not part of a full attack — the Full Attack line no longer applies this turn.');
   }
 
   $('offAtkBox').style.display='none'; $('offDmgBox').style.display='none';
