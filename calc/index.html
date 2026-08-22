@@ -332,8 +332,11 @@ const MODIFIERS = [
  desc:'+1 attack and damage with ranged weapons, target within 30 ft.',
  compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg'})},
 {id:'rapid-shot',name:'Rapid Shot',category:'feat',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
- desc:'-2 on all ranged attacks this turn, in exchange for one extra attack (extra attack not modeled here — add manually to iteratives). If Mythic Rapid Shot is also active, this penalty is waived (that mythic feat lets you choose to ignore it instead of gaining a second extra attack).',
- compute:(ctx)=>{let v=ctx.mythicRapidShotOn?0:-2;return {attack:v,damage:0,note:v+' atk (all attacks)'+(ctx.mythicRapidShotOn?' (waived by Mythic Rapid Shot)':'')}}},
+ desc:'-2 on all ranged attacks this turn, in exchange for one extra attack at your full base attack bonus — applied automatically to the Full Attack line above. Unlike Haste/a speed weapon/Blessing of Fervor (which are magical "extra-attack effects" that don\'t stack with each other), Rapid Shot is a mundane feat and DOES stack with those — its extra attack is added on top, not shared. If Mythic Rapid Shot is also active, choose there whether it waives this penalty instead, or upgrades to 2 extra attacks (each still at -2).',
+ compute:(ctx)=>{let waived=ctx.mythicRapidShotOn && ctx.mythicRapidShotChoice==='waive';let v=waived?0:-2;return {attack:v,damage:0,note:v+' atk (all attacks), plus extra attack(s) at full BAB — applied automatically to Full Attack above'+(waived?' (penalty waived by Mythic Rapid Shot)':'')}}},
+{id:'manyshot',name:'Manyshot',category:'feat',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'Requires Point-Blank Shot, Rapid Shot, BAB +6. Your FIRST ranged attack of a full-attack action fires two arrows instead of one — both count as a single attack roll (roll to hit once; if it hits, both arrows hit and each deals normal weapon damage separately). Only your first attack of the round gets this, not your other iteratives. Not modeled as a number here, since Normal/Critical Damage above represent a single generic attack, not specifically "your first attack of a full-attack round" — when you roll your first attack of a full-attack action, just deal the Normal/Critical Damage shown twice instead of once.',
+ compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 
 // ---------------- FEATS (batch 2) ----------------
 {id:"combat-expertise",name:"Combat Expertise",category:"feat",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
@@ -885,8 +888,9 @@ const MODIFIERS = [
  desc:'Raises Point-Blank Shot\'s bonus from +1 to +2 on attack and damage rolls with ranged weapons within 30 ft. This REPLACES the normal Point-Blank Shot entry\'s +1 — don\'t add both, or it double-counts. Swift action: spend 1 mythic power for a further +½ tier.',
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
 {id:'mythic-rapid-shot',name:'Mythic Rapid Shot',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
- desc:'When using Rapid Shot, choose either: ignore its -2 penalty entirely, OR fire two extra attacks (each still at -2) instead of one. This calculator models the "ignore the penalty" choice — Rapid Shot\'s -2 above becomes +0 while this is active; the extra-attack alternative isn\'t modeled (add it to Full Attack by hand if you pick that instead).',
- compute:()=>({attack:0,damage:0,note:'applied automatically to Rapid Shot\'s penalty above (models the "ignore the penalty" choice)'})},
+ configFields:[{key:'choice',label:'Choice',type:'select',options:[{v:'waive',label:'Ignore the -2 penalty'},{v:'extra',label:'2 extra attacks instead of 1 (penalty stays -2)'}],default:'waive'}],
+ desc:'Requires Rapid Shot. Choose either: ignore its -2 penalty entirely, OR fire two extra attacks (each still at -2) instead of one. Both options are modeled automatically above based on the choice selected — "Ignore the -2 penalty" zeroes out Rapid Shot\'s penalty above; "2 extra attacks" keeps the -2 but adds a second extra attack to Full Attack.',
+ compute:(ctx,cfg)=>{let choice=cfg.choice||'waive';return {attack:0,damage:0,note: choice==='extra' ? 'Rapid Shot fires 2 extra attacks instead of 1 (both applied automatically to Full Attack above); its -2 penalty stays active' : 'Rapid Shot\'s -2 penalty waived above (applied automatically)'}}},
 {id:'mythic-manyshot',name:'Mythic Manyshot',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
  desc:'When full-attacking with a bow using Manyshot, your second attack also fires two arrows (normally only the first does).',
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
@@ -1368,6 +1372,8 @@ function collectContributions(ctx){
   ctx.mythicPowerAttackOn = p.active.some(a=>a.id==='mythic-power-attack' && a.on!==false);
   ctx.mythicDeadlyAimOn = p.active.some(a=>a.id==='mythic-deadly-aim' && a.on!==false);
   ctx.mythicRapidShotOn = p.active.some(a=>a.id==='mythic-rapid-shot' && a.on!==false);
+  let mythicRapidShotRec = p.active.find(a=>a.id==='mythic-rapid-shot' && a.on!==false);
+  ctx.mythicRapidShotChoice = mythicRapidShotRec ? ((mythicRapidShotRec.cfg||{}).choice||'') : '';
   ctx.mythicCombatExpertiseOn = p.active.some(a=>a.id==='mythic-combat-expertise' && a.on!==false);
   ctx.hasteOn = p.active.some(a=>a.id==='haste' && a.on!==false);
   let mythicVitalStrikeOn = p.active.some(a=>a.id==='mythic-vital-strike' && a.on!==false);
@@ -1592,6 +1598,12 @@ function compute(){
     if(a.id==='blessing-of-fervor' && a.cfg && a.cfg.choice==='extraAttack') return true;
     return false;
   });
+  // Rapid Shot is a mundane feat, not a magical "extra-attack effect" like the ones
+  // above — it stacks with them instead of sharing the same single extra attack.
+  let rapidShotRec = p.active.find(a=>a.id==='rapid-shot' && a.on!==false);
+  let mythicRapidShotRec = p.active.find(a=>a.id==='mythic-rapid-shot' && a.on!==false);
+  let rapidShotChoice = mythicRapidShotRec ? ((mythicRapidShotRec.cfg||{}).choice||'waive') : '';
+  let rapidShotExtraCount = rapidShotRec ? ((mythicRapidShotRec && rapidShotChoice==='extra') ? 2 : 1) : 0;
 
   let iteratives=[];
   for(let b=bab;b>0;b-=5) iteratives.push(atk-(bab-b));
@@ -1604,6 +1616,10 @@ function compute(){
   if(hasExtraAttack){
     iteratives.push(atkFirst);
     notes.push('One extra attack at full BAB added to Full Attack above (Haste / a speed weapon / Blessing of Fervor\'s extra-attack option — only counted once even if more than one of these is active).');
+  }
+  for(let i=0;i<rapidShotExtraCount;i++) iteratives.push(atkFirst);
+  if(rapidShotExtraCount>0){
+    notes.push('Rapid Shot: '+rapidShotExtraCount+' extra attack'+(rapidShotExtraCount>1?'s':'')+' at full BAB added to Full Attack above'+(rapidShotExtraCount>1?' (Mythic Rapid Shot: 2 instead of 1)':'')+' — stacks with Haste/a speed weapon/Blessing of Fervor above, since Rapid Shot isn\'t a magical "extra-attack effect".');
   }
 
   let critDice=diceMultiply(w.dice,critMult);
@@ -1683,6 +1699,7 @@ function compute(){
       for(let i=1;i<iteratives.length;i++) iteratives[i]=Math.min(iteratives[i]+5, iteratives[0]);
     }
     if(hasExtraAttack) iteratives.push(iteratives[0]);
+    for(let i=0;i<rapidShotExtraCount;i++) iteratives.push(iteratives[0]);
     $('toHit').textContent=signed(iteratives[0]);
     $('fullAttack').textContent=iteratives.map(signed).join(' / ');
     $('offAtkBox').style.display='block'; $('offDmgBox').style.display='block';
