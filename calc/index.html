@@ -180,12 +180,17 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <option value="none">— none —</option>
 </select></div>
 <div class="emptyNote" id="atkAbilityNote">Pick whichever ability your build actually uses for each roll — they don't have to match, and you can pick the same one for both (e.g. Weapon Finesse: Dex to attack, Str to damage; Agile/Slashing Grace: Dex to both; a bow: Dex to attack, none to damage; a thrown weapon: Str to both). The calculator doesn't check weapon-by-weapon eligibility, so choose what fits your character.</div>
-<div class="row"><label>Weapon Base Enhancement (+X)</label><input id="enh" type="number" min="0" max="10" value="2"></div>
+<div class="row"><label id="enhLabel">Weapon Base Enhancement (+X)</label><input id="enh" type="number" min="0" max="10" value="2"></div>
 <div id="offhandBox" class="offhandBox" style="display:none">
   <h3 style="margin-top:0">Off-Hand Weapon</h3>
   <div class="row"><label>Off-Hand Enhancement (+X)</label><input id="offEnh" type="number" min="0" max="10" value="0"></div>
   <div class="row"><label>Off-Hand Weapon Is Light</label><input id="offLight" type="checkbox" checked style="width:auto;justify-self:start"></div>
   <div class="emptyNote">Attack penalties follow the standard two-weapon-fighting table (-6/-10 normal, -4/-4 light) and are automatically reduced if you add the "Two-Weapon Fighting" feat below; off-hand damage uses half your damage-ability bonus (from "Ability → Damage rolls" above) unless "Double Slice" is active. Off-hand weapon is assumed to use the same base damage dice as your main weapon above — adjust manually if different.</div>
+</div>
+<div id="ammoBox" class="offhandBox" style="display:none">
+  <h3 style="margin-top:0">Ammunition</h3>
+  <div class="row"><label>Ammunition Enhancement (+X)</label><input id="ammoEnh" type="number" min="0" max="10" value="0"></div>
+  <div class="emptyNote">RAW: a projectile weapon's own enhancement bonus (above) only helps overcome damage reduction — it is NOT added to attack or damage rolls. The bonus that IS added comes from the ammunition's own enhancement bonus, set here. Weapon Effects below (Flaming, Keen, Bane, etc.) can be tagged "Ammunition Only" / "Bow/Crossbow Only" for your own bookkeeping — informational only, since a ranged attack only produces one attack/damage total either way.</div>
 </div>
 <div class="row"><label>Critical Multiplier</label>
 <select id="critMult">
@@ -220,6 +225,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div>
 <section class="card">
 <h2>Modifiers <span style="font-size:.7rem;color:var(--muted);font-weight:400">— pick from the catalog per category, or add a custom one</span></h2>
+<div class="emptyNote">Spells and Other Effects boost the character in general. Weapon Effects (including enchanting spells like Magic Weapon) belong to a specific weapon or its ammunition — with Two-Weapon Fighting or Ranged selected as your Fighting Style, each Weapon Effect gets a small "Applies to" selector so you can mark which hand — or the ammunition — it's on.</div>
 <div id="categories"></div>
 </section>
 </div>
@@ -379,10 +385,10 @@ const MODIFIERS = [
 {id:'haste',name:'Haste',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'untyped',
  desc:'+1 on attack rolls (untyped). Also grants an extra attack at full BAB on a full attack — add that manually to iteratives.',
  compute:()=>({attack:1,damage:0,note:'+1 atk'})},
-{id:'magic-weapon',name:'Magic Weapon',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'enhancement',
+{id:'magic-weapon',name:'Magic Weapon',category:'weapon',subcat:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'enhancement',
  desc:'+1 enhancement bonus to the weapon (does not stack with a weapon that already has an enhancement bonus — same type).',
  compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement)'})},
-{id:'greater-magic-weapon',name:'Magic Weapon, Greater',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
+{id:'greater-magic-weapon',name:'Magic Weapon, Greater',category:'weapon',subcat:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
  desc:'+1 enhancement bonus per 4 caster levels (max +5).',
  configFields:[{key:'cl',label:'Caster level',type:'number',default:8}],
  compute:(ctx,cfg)=>{let b=Math.min(5,Math.floor((cfg.cl||1)/4));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement)'}}},
@@ -395,7 +401,7 @@ const MODIFIERS = [
 {id:"aura-of-cannibalism",name:"Aura of Cannibalism",category:"spell",source:"Monster Codex",appliesTo:["attack"],type:"competence",
  desc:"Self-only competence bonus to attack rolls, gated by temporary HP accumulated from the spell's life-draining aura: +1 at 5+ temp HP, +2 at 15+ (cap 10+CL).",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
-{id:"blade-of-light",name:"Blade of Light",category:"spell",source:"Adventurer's Guide",appliesTo:["attack","damage"],type:"sacred",
+{id:"blade-of-light",name:"Blade of Light",category:"weapon",subcat:"spell",source:"Adventurer's Guide",appliesTo:["attack","damage"],type:"sacred",
  desc:"Weapon is infused with sunlight: +2 sacred bonus on attack rolls and +1d6 damage, but only against undead foes.",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 {id:"blessed-fist",name:"Blessed Fist",category:"spell",source:"Advanced Class Guide",appliesTo:["attack","damage"],type:"enhancement",
@@ -434,10 +440,10 @@ const MODIFIERS = [
 {id:"deadly-juggernaut",name:"Deadly Juggernaut",category:"spell",source:"Ultimate Combat",appliesTo:["attack","damage"],type:"luck",
  desc:"Cumulative luck bonus (+1 per qualifying kill, melee only, max +5) on melee attack and damage rolls.",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
-{id:"emblem-of-greed",name:"Emblem of Greed",category:"spell",source:"Arcane Anthology",appliesTo:["attack","damage"],type:"enhancement",
+{id:"emblem-of-greed",name:"Emblem of Greed",category:"weapon",subcat:"spell",source:"Arcane Anthology",appliesTo:["attack","damage"],type:"enhancement",
  desc:"Turns a weapon into a magical glaive with a scaling enhancement bonus (+1, then +2 at CL15, +3 at CL19) plus escalating special abilities.",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
-{id:"gorum-s-armor",name:"Gorum's Armor",category:"spell",source:"Inner Sea World Guide",appliesTo:["attack","damage"],type:"enhancement",
+{id:"gorum-s-armor",name:"Gorum's Armor",category:"weapon",subcat:"spell",source:"Inner Sea World Guide",appliesTo:["attack","damage"],type:"enhancement",
  desc:"Armor/shield spikes gain a scaling enhancement bonus at higher caster levels (0 below CL5, +1 at CL5, +2 at CL10).",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 {id:"guidance",name:"Guidance",category:"spell",source:"Core Rulebook",appliesTo:["attack"],type:"competence",
@@ -467,11 +473,11 @@ const MODIFIERS = [
 {id:"invoke-deity",name:"Invoke Deity",category:"spell",source:"Planar Adventures",appliesTo:["attack"],type:"insight",
  desc:"If you choose the War domain option, +2 insight bonus on attack rolls with your deity's favored weapon and +1d6 damage per hit with it. Paladin 4th / cleric 6th.",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
-{id:"magic-boulder",name:"Magic Boulder",category:"spell",source:"Monster Codex",appliesTo:["attack","damage"],type:"enhancement",
+{id:"magic-boulder",name:"Magic Boulder",category:"weapon",subcat:"spell",source:"Monster Codex",appliesTo:["attack","damage"],type:"enhancement",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"+1 enhancement bonus on attack and damage rolls for up to 3 transmuted boulders used for rock-throwing or as siege ammunition.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"enhancement"}}},
-{id:"magic-stone",name:"Magic Stone",category:"spell",source:"Core Rulebook",appliesTo:["attack","damage"],type:"enhancement",
+{id:"magic-stone",name:"Magic Stone",category:"weapon",subcat:"spell",source:"Core Rulebook",appliesTo:["attack","damage"],type:"enhancement",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"+1 enhancement bonus on attack and damage rolls for up to 3 enchanted thrown/slung pebbles.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"enhancement"}}},
@@ -483,7 +489,7 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"+2 morale bonus on attack rolls for 1 round to any good creature that enters the warded square.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"morale"}}},
-{id:"reaper-s-coterie",name:"Reaper's Coterie",category:"spell",source:"Melee Tactics Toolbox",appliesTo:["damage"],type:"profane",
+{id:"reaper-s-coterie",name:"Reaper's Coterie",category:"weapon",subcat:"spell",source:"Melee Tactics Toolbox",appliesTo:["damage"],type:"profane",
  desc:"Cumulative +1 profane bonus on damage rolls with the enchanted weapon per kill, up to half your caster level.",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 {id:"righteous-vigor",name:"Righteous Vigor",category:"spell",source:"Advanced Player's Guide",appliesTo:["attack"],type:"morale",
@@ -507,7 +513,7 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"+1 competence bonus usable on one melee damage roll, declared before the roll. One-time use.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"competence"}}},
-{id:"weapon-of-awe",name:"Weapon of Awe",category:"spell",source:"Advanced Player's Guide",appliesTo:["damage"],type:"sacred",
+{id:"weapon-of-awe",name:"Weapon of Awe",category:"weapon",subcat:"spell",source:"Advanced Player's Guide",appliesTo:["damage"],type:"sacred",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"+2 sacred bonus on damage rolls with one chosen weapon; also inflicts shaken on a critical hit.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:signed(v)+' '+"sacred"}}},
@@ -564,7 +570,7 @@ const MODIFIERS = [
 {id:"bane",name:"Bane",category:"weapon",subcat:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"enhancement",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Designated foe type',type:'select',options:VS_FLAG_OPTIONS,default:''}],
  desc:"Bane weapon: +2 enhancement bonus to attack rolls and an extra 2d6 damage (dice, not a flat number) against its designated foe type. Pick the weapon's designated foe type above so it turns on/off automatically with Current Target.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match this weapon\'s designated foe type — see the field above'};return {attack:v,damage:0,note:signed(v)+' '+"enhancement"+" (plus 2d6 extra damage, not modeled as a flat number — see description)"}}},
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match this weapon\'s designated foe type — see the field above'};return {attack:v,damage:0,note:signed(v)+' '+"enhancement"+" (plus 2d6 extra damage, added to Normal/Critical Damage below as dice, not a flat number)",extraDice:{normal:'2d6 vs designated foe'}}}},
 
 // ---------------- WEAPON PROPERTIES ----------------
 // Extra damage dice from these are never multiplied on a crit (Core Rulebook pg. 468,
@@ -573,49 +579,49 @@ const MODIFIERS = [
 // the note, same pattern as Vital Strike/Sneak Attack.
 {id:'flaming',name:'Flaming',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'+1 equivalent. Extra 1d6 fire damage on every successful hit while active (command word); not multiplied on a crit.',
- compute:()=>({attack:0,damage:0,note:'+1d6 fire damage on every hit — not multiplied on a crit'})},
+ compute:()=>({attack:0,damage:0,note:'+1d6 fire damage on every hit — not multiplied on a crit — added to Normal/Critical Damage below as dice',extraDice:{normal:'1d6 fire'}})},
 {id:'frost',name:'Frost',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'+1 equivalent. Extra 1d6 cold damage on every successful hit while active (command word); not multiplied on a crit.',
- compute:()=>({attack:0,damage:0,note:'+1d6 cold damage on every hit — not multiplied on a crit'})},
+ compute:()=>({attack:0,damage:0,note:'+1d6 cold damage on every hit — not multiplied on a crit — added to Normal/Critical Damage below as dice',extraDice:{normal:'1d6 cold'}})},
 {id:'shock',name:'Shock',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'+1 equivalent. Extra 1d6 electricity damage on every successful hit while active (command word); not multiplied on a crit.',
- compute:()=>({attack:0,damage:0,note:'+1d6 electricity damage on every hit — not multiplied on a crit'})},
+ compute:()=>({attack:0,damage:0,note:'+1d6 electricity damage on every hit — not multiplied on a crit — added to Normal/Critical Damage below as dice',extraDice:{normal:'1d6 electricity'}})},
 {id:'corrosive',name:'Corrosive',category:'weapon',subcat:'elemental',source:'Ultimate Equipment / Advanced Player\'s Guide',appliesTo:['damage'],type:'none',
  desc:'+1 equivalent. Extra 1d6 acid damage on every successful hit while active (command word); not multiplied on a crit.',
- compute:()=>({attack:0,damage:0,note:'+1d6 acid damage on every hit — not multiplied on a crit'})},
+ compute:()=>({attack:0,damage:0,note:'+1d6 acid damage on every hit — not multiplied on a crit — added to Normal/Critical Damage below as dice',extraDice:{normal:'1d6 acid'}})},
 {id:'flaming-burst',name:'Flaming Burst',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'+2 equivalent. As Flaming (+1d6 fire on a hit while active), PLUS a separate fire burst on a confirmed critical hit (1d10/2d10/3d10 by ×2/×3/×4 crit multiplier) that fires even if Flaming isn\'t currently toggled on. The burst die is NOT simply double the base 1d6.',
- compute:(ctx)=>({attack:0,damage:0,note:'+1d6 fire on any hit (while active), plus +'+critDiceForMult(10,ctx.critMult||2)+' fire specifically on a confirmed crit (fires even if the base fire effect is off)'})},
+ compute:(ctx)=>{let c=critDiceForMult(10,ctx.critMult||2)+' fire';return {attack:0,damage:0,note:'+1d6 fire on any hit (while active), plus +'+c+' specifically on a confirmed crit (fires even if the base fire effect is off) — both added to Normal/Critical Damage below as dice',extraDice:{normal:'1d6 fire',crit:c}}}},
 {id:'icy-burst',name:'Icy Burst',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'+2 equivalent. The "burst" upgrade of Frost (its real item name is Icy Burst, not "Frost Burst"). As Frost (+1d6 cold on a hit while active), PLUS a separate cold burst on a confirmed critical hit (1d10/2d10/3d10 by ×2/×3/×4 crit multiplier) that fires even if Frost isn\'t currently toggled on.',
- compute:(ctx)=>({attack:0,damage:0,note:'+1d6 cold on any hit (while active), plus +'+critDiceForMult(10,ctx.critMult||2)+' cold specifically on a confirmed crit (fires even if the base cold effect is off)'})},
+ compute:(ctx)=>{let c=critDiceForMult(10,ctx.critMult||2)+' cold';return {attack:0,damage:0,note:'+1d6 cold on any hit (while active), plus +'+c+' specifically on a confirmed crit (fires even if the base cold effect is off) — both added to Normal/Critical Damage below as dice',extraDice:{normal:'1d6 cold',crit:c}}}},
 {id:'shocking-burst',name:'Shocking Burst',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'+2 equivalent. As Shock (+1d6 electricity on a hit while active), PLUS a separate electricity burst on a confirmed critical hit (1d10/2d10/3d10 by ×2/×3/×4 crit multiplier) that fires even if Shock isn\'t currently toggled on.',
- compute:(ctx)=>({attack:0,damage:0,note:'+1d6 electricity on any hit (while active), plus +'+critDiceForMult(10,ctx.critMult||2)+' electricity specifically on a confirmed crit (fires even if the base electricity effect is off)'})},
+ compute:(ctx)=>{let c=critDiceForMult(10,ctx.critMult||2)+' electricity';return {attack:0,damage:0,note:'+1d6 electricity on any hit (while active), plus +'+c+' specifically on a confirmed crit (fires even if the base electricity effect is off) — both added to Normal/Critical Damage below as dice',extraDice:{normal:'1d6 electricity',crit:c}}}},
 {id:'corrosive-burst',name:'Corrosive Burst',category:'weapon',subcat:'elemental',source:'Ultimate Equipment / Advanced Player\'s Guide',appliesTo:['damage'],type:'none',
  desc:'+2 equivalent. As Corrosive (+1d6 acid on a hit while active), PLUS a separate acid burst on a confirmed critical hit (1d10/2d10/3d10 by ×2/×3/×4 crit multiplier) that fires even if Corrosive isn\'t currently toggled on.',
- compute:(ctx)=>({attack:0,damage:0,note:'+1d6 acid on any hit (while active), plus +'+critDiceForMult(10,ctx.critMult||2)+' acid specifically on a confirmed crit (fires even if the base acid effect is off)'})},
+ compute:(ctx)=>{let c=critDiceForMult(10,ctx.critMult||2)+' acid';return {attack:0,damage:0,note:'+1d6 acid on any hit (while active), plus +'+c+' specifically on a confirmed crit (fires even if the base acid effect is off) — both added to Normal/Critical Damage below as dice',extraDice:{normal:'1d6 acid',crit:c}}}},
 {id:'thundering',name:'Thundering',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'+1 equivalent. No damage on a normal hit — deals extra sonic damage (1d8/2d8/3d8 by ×2/×3/×4 crit multiplier) only on a confirmed critical hit, and the target must succeed a DC 14 Fortitude save or be permanently deafened.',
- compute:(ctx)=>({attack:0,damage:0,note:'no bonus on a normal hit; +'+critDiceForMult(8,ctx.critMult||2)+' sonic only on a confirmed crit, plus DC 14 Fort save or permanent deafness'})},
+ compute:(ctx)=>{let c=critDiceForMult(8,ctx.critMult||2)+' sonic';return {attack:0,damage:0,note:'no bonus on a normal hit; +'+c+' only on a confirmed crit (added to Critical Damage below as dice), plus DC 14 Fort save or permanent deafness',extraDice:{crit:c}}}},
 {id:'keen',name:'Keen',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:[],type:'special',
  desc:'+1 equivalent. Doubles the weapon\'s threat range (piercing/slashing melee only) — e.g. 19–20 becomes 17–20, 18–20 becomes 15–20, 20 stays 19–20. Doesn\'t stack with Improved Critical or the keen edge spell (same effect, use the better one). Applied automatically to the threat range shown in Critical Damage below.',
  compute:()=>({attack:0,damage:0,note:'applied automatically to the threat range in Critical Damage below'})},
 {id:'holy',name:'Holy',category:'weapon',subcat:'alignment',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'+2 equivalent. Extra 2d6 damage against evil creatures only (not multiplied on a crit); also good-aligned (bypasses matching DR) and inflicts a permanent negative level on an evil wielder. Set Current Target above to Evil (or a more specific evil category).',
- compute:(ctx)=>{if(!targetMatches(ctx,'evil'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Evil above'};return {attack:0,damage:0,note:'+2d6 damage vs evil — not multiplied on a crit'}}},
+ compute:(ctx)=>{if(!targetMatches(ctx,'evil'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Evil above'};return {attack:0,damage:0,note:'+2d6 damage vs evil — not multiplied on a crit — added to Normal/Critical Damage below as dice',extraDice:{normal:'2d6 vs evil'}}}},
 {id:'unholy',name:'Unholy',category:'weapon',subcat:'alignment',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'+2 equivalent. Extra 2d6 damage against good creatures only (not multiplied on a crit); also evil-aligned (bypasses matching DR) and inflicts a permanent negative level on a good wielder. Set Current Target above to Good.',
- compute:(ctx)=>{if(!targetMatches(ctx,'good'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Good above'};return {attack:0,damage:0,note:'+2d6 damage vs good — not multiplied on a crit'}}},
+ compute:(ctx)=>{if(!targetMatches(ctx,'good'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Good above'};return {attack:0,damage:0,note:'+2d6 damage vs good — not multiplied on a crit — added to Normal/Critical Damage below as dice',extraDice:{normal:'2d6 vs good'}}}},
 {id:'axiomatic',name:'Axiomatic',category:'weapon',subcat:'alignment',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'+2 equivalent. Extra 2d6 damage against chaotic creatures only (not multiplied on a crit); also law-aligned (bypasses matching DR) and inflicts a permanent negative level on a chaotic wielder. Set Current Target above to Chaotic.',
- compute:(ctx)=>{if(!targetMatches(ctx,'chaotic'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Chaotic above'};return {attack:0,damage:0,note:'+2d6 damage vs chaotic — not multiplied on a crit'}}},
+ compute:(ctx)=>{if(!targetMatches(ctx,'chaotic'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Chaotic above'};return {attack:0,damage:0,note:'+2d6 damage vs chaotic — not multiplied on a crit — added to Normal/Critical Damage below as dice',extraDice:{normal:'2d6 vs chaotic'}}}},
 {id:'anarchic',name:'Anarchic',category:'weapon',subcat:'alignment',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'+2 equivalent. Extra 2d6 damage against lawful creatures only (not multiplied on a crit); also chaos-aligned (bypasses matching DR) and inflicts a permanent negative level on a lawful wielder. Set Current Target above to Lawful.',
- compute:(ctx)=>{if(!targetMatches(ctx,'lawful'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Lawful above'};return {attack:0,damage:0,note:'+2d6 damage vs lawful — not multiplied on a crit'}}},
+ compute:(ctx)=>{if(!targetMatches(ctx,'lawful'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Lawful above'};return {attack:0,damage:0,note:'+2d6 damage vs lawful — not multiplied on a crit — added to Normal/Critical Damage below as dice',extraDice:{normal:'2d6 vs lawful'}}}},
 {id:'vicious',name:'Vicious',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'Melee only. Extra 2d6 damage to the TARGET on every hit, but also 1d6 damage to YOU (the wielder) on every hit — no target-alignment condition.',
- compute:()=>({attack:0,damage:0,note:'+2d6 damage to the target AND +1d6 self-damage to you, every hit'})},
+ compute:()=>({attack:0,damage:0,note:'+2d6 damage to the target (added to Normal/Critical Damage below as dice) AND +1d6 self-damage to you, every hit (not shown below — that damage lands on you, not the target)',extraDice:{normal:'2d6'}})},
 {id:'wounding',name:'Wounding',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'Melee only. Each hit adds 1 point of ongoing bleed (stacks with repeated hits) — NOT a one-time damage bonus. The bleed is taken at the start of the target\'s own turn, not multiplied on a crit; cured by a DC 15 Heal check or any hit-point-curing spell; creatures immune to crits are immune to this too.',
  compute:()=>({attack:0,damage:0,note:'+1 stacking bleed/hit (taken on the target\'s turn, not yours) — not a one-time bonus'})},
@@ -627,7 +633,7 @@ const MODIFIERS = [
  compute:()=>({attack:0,damage:0,note:'decapitation on a confirmed nat-20 crit — not a numeric bonus'})},
 {id:'merciful',name:'Merciful',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:['damage'],type:'none',
  desc:'Extra 1d6 damage while active, but ALL of the weapon\'s damage becomes nonlethal while it is. Toggle it off (on command) to deal normal lethal damage without the bonus die.',
- compute:()=>({attack:0,damage:0,note:'+1d6 damage while active, but all damage becomes nonlethal while active'})},
+ compute:()=>({attack:0,damage:0,note:'+1d6 damage while active (added to Normal/Critical Damage below as dice), but all damage becomes nonlethal while active',extraDice:{normal:'1d6 nonlethal'}})},
 
 {id:"aid-another-combat",name:"Aid Another (Combat)",category:"other",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
@@ -989,7 +995,7 @@ const MODIFIERS = [
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'skill',label:'Skills'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
-  {k:'weapon',label:'Weapon Properties',subcats:[{k:'elemental',label:'Elemental'},{k:'alignment',label:'Alignment'},{k:'other',label:'Other Properties'}]},
+  {k:'weapon',label:'Weapon Effects',subcats:[{k:'spell',label:'Enchanting Spells'},{k:'elemental',label:'Elemental'},{k:'alignment',label:'Alignment'},{k:'other',label:'Other Properties'}]},
   {k:'mythic',label:'Mythic',subcats:[{k:'feat',label:'Mythic Feats'},{k:'path',label:'Path Abilities'},{k:'universal',label:'Universal (Surge, etc.)'},{k:'other',label:'Custom / Other'}]},
   {k:'houserule',label:'House Rules'}];
 
@@ -1013,7 +1019,7 @@ function saveStore(){
 function defaultProfile(name){
   return {name, bab:6, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
     style:'twoHanded', atkStat:'str', dmgStat:'str', offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
-    enh:2, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
+    enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
 }
 let store=loadStore();
 // migrate profiles saved before the Fighting Style / Ability picker / Race / Alignment / Sources features existed
@@ -1034,6 +1040,13 @@ store.profiles.forEach(p=>{
   if(p.mythicTier===undefined) p.mythicTier=0;
   if(p.mythicEnabled===undefined) p.mythicEnabled=false;
   if(p.currentTarget===undefined) p.currentTarget='none';
+  // Ranged weapons: the bow/crossbow's own enhancement bonus doesn't add to attack/damage
+  // (RAW — it only overcomes DR), the ammunition's does. Before this existed, `enh` was
+  // used for both roles at once for a ranged build, so copy its value into the new
+  // ammoEnh field on migration — this keeps every existing ranged character's totals
+  // exactly the same as before, while `enh` going forward only affects DR.
+  if(p.ammoEnh===undefined) p.ammoEnh = (p.style==='ranged') ? (p.enh||0) : 0;
+  if(p.active) p.active.forEach(a=>{ if(!a.weaponSlot) a.weaponSlot='both'; });
 });
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
@@ -1051,9 +1064,12 @@ function loadProfileIntoUI(){
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
   $('style').value=p.style; $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat; $('enh').value=p.enh; $('critMult').value=p.critMult;
   $('offEnh').value=p.offEnh; $('offLight').checked=!!p.offLight;
+  $('ammoEnh').value=p.ammoEnh;
   $('race').value=p.race||''; $('alignment').value=p.alignment||'';
   $('customWeapon').style.display = p.weapon==='custom' ? 'block' : 'none';
   $('offhandBox').style.display = p.style==='twf' ? 'block' : 'none';
+  $('ammoBox').style.display = p.style==='ranged' ? 'block' : 'none';
+  updateEnhLabel();
   applyRaceSourceExclusions();
   renderSources();
   renderCategories();
@@ -1067,8 +1083,12 @@ function syncUIIntoProfile(){
   p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
   p.style=$('style').value; p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
   p.offEnh=+$('offEnh').value; p.offLight=$('offLight').checked;
+  p.ammoEnh=+$('ammoEnh').value;
   p.race=$('race').value.trim(); p.alignment=$('alignment').value;
   saveStore();
+}
+function updateEnhLabel(){
+  $('enhLabel').textContent = $('style').value==='ranged' ? 'Bow/Crossbow Enhancement (+X, overcomes DR only)' : 'Weapon Base Enhancement (+X)';
 }
 
 $('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); };
@@ -1100,7 +1120,7 @@ $('deleteProfile').onclick=()=>{
   store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 
-['bab','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','critMult'].forEach(id=>{
+['bab','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','ammoEnh','critMult'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'block' : 'none';
@@ -1109,6 +1129,9 @@ $('deleteProfile').onclick=()=>{
     }
     if(id==='style'){
       $('offhandBox').style.display = $('style').value==='twf' ? 'block' : 'none';
+      $('ammoBox').style.display = $('style').value==='ranged' ? 'block' : 'none';
+      updateEnhLabel();
+      renderCategories();
     }
     syncUIIntoProfile();
     if(id==='mythicEnabled'){
@@ -1185,6 +1208,11 @@ function renderCategories(){
       n.textContent='Every catalog entry in this category belongs to a source you\'ve excluded — check the Sources panel above, or use "+ Custom".';
       block.appendChild(n);
     }
+    if(cat.k==='houserule'){
+      let n=document.createElement('div'); n.className='emptyNote';
+      n.textContent='"+ Custom" here (or in any category) DOES apply automatically — it adds a real flat attack/damage bonus to the totals below, no extra setup needed. What it can\'t do is change how the math itself works (e.g. "damage isn\'t multiplied on a crit") — that kind of rule needs to be coded by hand, like the one entry below. If your house rule is a simple flat number, "+ Custom" is the right tool; if it changes the shape of a formula, ask and it can be added properly.';
+      block.appendChild(n);
+    }
     if(cat.subcats){
       cat.subcats.forEach(sc=>{
         let itemsA=activeInCat.filter(a=>{ let m=MODIFIERS.find(x=>x.id===a.id); return (m.subcat||'other')===sc.k; });
@@ -1192,16 +1220,16 @@ function renderCategories(){
         if(!itemsA.length && !itemsC.length) return;
         let h=document.createElement('div'); h.className='subcatHeading'; h.textContent=sc.label;
         block.appendChild(h);
-        itemsA.forEach(a=>{ let m=MODIFIERS.find(x=>x.id===a.id); block.appendChild(buildActiveItem(m,a,cat.k,false)); });
-        itemsC.forEach(c=>{ block.appendChild(buildActiveItem(c,c,cat.k,true)); });
+        itemsA.forEach(a=>{ let m=MODIFIERS.find(x=>x.id===a.id); block.appendChild(buildActiveItem(m,a,cat.k,false,p.style)); });
+        itemsC.forEach(c=>{ block.appendChild(buildActiveItem(c,c,cat.k,true,p.style)); });
       });
     } else {
       activeInCat.forEach(a=>{
         let m=MODIFIERS.find(x=>x.id===a.id);
-        block.appendChild(buildActiveItem(m,a,cat.k,false));
+        block.appendChild(buildActiveItem(m,a,cat.k,false,p.style));
       });
       customInCat.forEach(c=>{
-        block.appendChild(buildActiveItem(c,c,cat.k,true));
+        block.appendChild(buildActiveItem(c,c,cat.k,true,p.style));
       });
     }
     box.appendChild(block);
@@ -1229,7 +1257,11 @@ function renderCategories(){
   });
 }
 
-function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
+const WEAPON_SLOT_OPTIONS={
+  twf:[{v:'both',l:'Both Hands'},{v:'main',l:'Main Hand Only'},{v:'off',l:'Off-Hand Only'}],
+  ranged:[{v:'both',l:'Weapon + Ammo'},{v:'ammo',l:'Ammunition Only'},{v:'weapon',l:'Bow/Crossbow Only'}]
+};
+function buildActiveItem(defOrCustom, activeRec, catKey, isCustom, pStyle){
   let div=document.createElement('div'); div.className='activeItem'+(activeRec.on===false?' off':'');
   let cfgHtml='';
   if(!isCustom && defOrCustom.configFields){
@@ -1241,7 +1273,14 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
       return `<label>${f.label}<br><input type="number" data-key="${f.key}" value="${activeRec.cfg[f.key]}"></label>`;
     }).join('')+'</div>';
   }
-  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off between turns without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}></label><div><div class="name">${isCustom?defOrCustom.name:defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div></div><button class="rm">✕ remove</button></div>${cfgHtml}`;
+  let slotHtml='';
+  let slotOpts = catKey==='weapon' ? WEAPON_SLOT_OPTIONS[pStyle] : null;
+  if(slotOpts){
+    let cur=activeRec.weaponSlot||'both';
+    let opts=slotOpts.map(o=>`<option value="${o.v}"${o.v===cur?' selected':''}>${o.l}</option>`).join('');
+    slotHtml=`<div class="cfg"><label>Applies to<br><select class="slotSel">${opts}</select></label></div>`;
+  }
+  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off between turns without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}></label><div><div class="name">${isCustom?defOrCustom.name:defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div></div><button class="rm">✕ remove</button></div>${cfgHtml}${slotHtml}`;
   div.querySelector('.rm').onclick=()=>{
     let p=currentProfile();
     if(isCustom) p.custom=p.custom.filter(c=>c.id!==defOrCustom.id);
@@ -1253,6 +1292,12 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
     div.classList.toggle('off', !activeRec.on);
     saveStore(); compute();
   });
+  if(slotOpts){
+    div.querySelector('.slotSel').addEventListener('change',(e)=>{
+      activeRec.weaponSlot=e.target.value;
+      saveStore(); compute();
+    });
+  }
   if(!isCustom && defOrCustom.configFields){
     div.querySelectorAll('input[data-key]').forEach(inp=>{
       inp.addEventListener('input',()=>{ activeRec.cfg[inp.dataset.key]=Number(inp.value); saveStore(); compute(); });
@@ -1280,7 +1325,7 @@ function stackTotal(entries){
 
 function collectContributions(ctx){
   let p=currentProfile();
-  let atkEntries=[], dmgEntries=[]; let breakdown=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0, powerAttackDmgVal=0;
+  let atkEntries=[], dmgEntries=[]; let breakdown=[]; let extraDiceList=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0, powerAttackDmgVal=0;
   // Mythic feats that modify another entry's own formula (Mythic Power Attack/Deadly
   // Aim/Vital Strike) have to be known BEFORE that entry computes, regardless of which
   // order they appear in p.active — so scan for them first and pass as ctx flags.
@@ -1306,8 +1351,17 @@ function collectContributions(ctx){
     if(!isOff){
       if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name});
       if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name});
+      if(r.extraDice) extraDiceList.push(r.extraDice);
     }
     let noteText = (r.note && r.note.startsWith('special')) ? m.desc : r.note;
+    if(m.category==='weapon' && !isOff){
+      let ws=a.weaponSlot||'both';
+      if(ctx.style==='twf' && ws!=='both'){
+        noteText=(noteText||'')+' — '+(ws==='main'?'Main Hand only':'Off-Hand only');
+      } else if(ctx.style==='ranged' && ws!=='both'){
+        noteText=(noteText||'')+' — tagged: '+(ws==='ammo'?'Ammunition':'Bow/Crossbow itself')+' (informational only, doesn\'t change the single Ranged total)';
+      }
+    }
     if(isOff) noteText = (noteText||'')+' (not active this turn)';
     breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:noteText,suppressed:false,off:isOff});
   });
@@ -1328,7 +1382,41 @@ function collectContributions(ctx){
     }
     breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
   });
-  return {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn};
+  return {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn};
+}
+
+// Recomputes atk/dmg/extraDice contributions filtered to one weapon slot ('main' or
+// 'off', used only when Fighting Style = Two-Weapon Fighting). Non-weapon-category
+// entries (feats, spells that buff the character, class features, mythic, etc.) always
+// count regardless of slot — only category:'weapon' entries respect a per-item
+// "Applies to" tag (default 'both', meaning no restriction — same as before this
+// feature existed, so old saved characters are unaffected).
+function collectSlotEntries(ctx, slot){
+  let p=currentProfile();
+  let atk=[], dmg=[], extraDice=[];
+  p.active.forEach(a=>{
+    if(a.on===false) return;
+    let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
+    if(m.category==='weapon'){
+      let ws=a.weaponSlot||'both';
+      if(ws!=='both' && ws!==slot) return;
+    }
+    let r=m.compute(ctx,a.cfg||{});
+    let effType=r.type||m.type;
+    if(m.appliesTo.includes('attack')) atk.push({value:r.attack,type:effType,source:m.name});
+    if(m.appliesTo.includes('damage')) dmg.push({value:r.damage,type:effType,source:m.name});
+    if(r.extraDice) extraDice.push(r.extraDice);
+  });
+  p.custom.forEach(c=>{
+    if(c.on===false) return;
+    if(c.category==='weapon'){
+      let ws=c.weaponSlot||'both';
+      if(ws!=='both' && ws!==slot) return;
+    }
+    if(c.atk) atk.push({value:c.atk,type:c.type,source:c.name});
+    if(c.dmg) dmg.push({value:c.dmg,type:c.type,source:c.name});
+  });
+  return {atk,dmg,extraDice};
 }
 
 function markSuppressed(entries,breakdown){
@@ -1397,13 +1485,13 @@ const ABIL_LABEL={str:'STR',dex:'DEX',con:'CON',int:'INT',wis:'WIS',cha:'CHA',no
 
 function compute(){
   let p=currentProfile();
-  let bab=+$('bab').value, enh=+$('enh').value, critMult=+$('critMult').value;
+  let bab=+$('bab').value, enh=+$('enh').value, ammoEnh=+$('ammoEnh').value, critMult=+$('critMult').value;
   let style=$('style').value, atkStat=$('atkStat').value, dmgStat=$('dmgStat').value;
   let weaponKey=$('weapon').value;
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
   let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value, critMult, weaponThreatLow:parseThreatLow(w.threat)};
 
-  let {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn}=collectContributions(ctx);
+  let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn}=collectContributions(ctx);
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
   markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
   renderBreakdown(breakdown);
@@ -1413,11 +1501,26 @@ function compute(){
   // The ×1.5 two-handed multiplier only applies to a positive ability bonus — a
   // negative modifier (a penalty) is not multiplied, it applies in full (RAW).
   let strDmgMod = (style==='twoHanded' && dmgAbilityMod>0) ? Math.floor(dmgAbilityMod*1.5) : dmgAbilityMod;
-  let baseAtk = bab + atkAbilityMod + enh;
-  let baseDmg = strDmgMod + enh;
+  // RAW: for a ranged weapon, only the ammunition's enhancement bonus is added to
+  // attack/damage — the bow/crossbow's own enhancement bonus only overcomes DR.
+  let effectiveEnh = style==='ranged' ? ammoEnh : enh;
+  let baseAtk = bab + atkAbilityMod + effectiveEnh;
+  let baseDmg = strDmgMod + effectiveEnh;
 
-  let atkFromMods = stackTotal(atkEntries);
-  let dmgFromMods = stackTotal(dmgEntries);
+  // Two-Weapon Fighting: Weapon Effects tagged "Main Hand Only"/"Off-Hand Only" above
+  // should only count for that hand, not both — recompute per-hand totals for TWF.
+  // Every other Fighting Style has only one weapon, so the shared (unfiltered) total
+  // is correct as before (nothing to split).
+  let atkFromMods, dmgFromMods, atkFromModsOff, dmgFromModsOff, extraDiceMain, extraDiceOff;
+  if(style==='twf'){
+    let mainSlot=collectSlotEntries(ctx,'main'), offSlot=collectSlotEntries(ctx,'off');
+    atkFromMods=stackTotal(mainSlot.atk); dmgFromMods=stackTotal(mainSlot.dmg); extraDiceMain=mainSlot.extraDice;
+    atkFromModsOff=stackTotal(offSlot.atk); dmgFromModsOff=stackTotal(offSlot.dmg); extraDiceOff=offSlot.extraDice;
+  } else {
+    atkFromMods = stackTotal(atkEntries);
+    dmgFromMods = stackTotal(dmgEntries);
+    extraDiceMain = extraDiceList;
+  }
 
   let atk = baseAtk + atkFromMods;
   let dmg = baseDmg + dmgFromMods;
@@ -1466,6 +1569,17 @@ function compute(){
     dmgNormalDice=diceMultiply(w.dice,vsMult);
     dmgCritDiceStr=critDice+(vsMult>1?' + '+diceMultiply(w.dice,vsMult-1)+' (Vital Strike, unmultiplied)':'');
   }
+  // Extra damage dice from active Weapon Effects (Flaming, Bane, Holy, etc.) are shown
+  // as dice terms alongside the weapon's own dice — never folded into the flat number,
+  // since this engine never resolves dice to a value. "normal" dice apply on any hit
+  // and are NOT multiplied on a crit (RAW), so they're appended to both lines as-is;
+  // "crit" dice (Flaming Burst's bonus die, Thundering, etc.) only fire on a confirmed
+  // crit, so they're appended to Critical Damage only.
+  let extraNormalTerms = (extraDiceMain||[]).filter(e=>e.normal).map(e=>e.normal);
+  let extraCritOnlyTerms = (extraDiceMain||[]).filter(e=>e.crit).map(e=>e.crit);
+  if(extraNormalTerms.length) dmgNormalDice += ' + ' + extraNormalTerms.join(' + ');
+  let critDiceTerms = extraNormalTerms.concat(extraCritOnlyTerms);
+  if(critDiceTerms.length) dmgCritDiceStr += ' + ' + critDiceTerms.join(' + ');
 
   let hasKeen = p.active.some(a=>a.id==='keen' && a.on!==false);
   let displayThreat = hasKeen ? keenThreatRange(ctx.weaponThreatLow) : w.threat;
@@ -1475,8 +1589,11 @@ function compute(){
   $('dmgNormal').textContent=`${dmgNormalDice} ${signed(dmg)}`;
   $('dmgCrit').textContent=`${dmgCritDiceStr} ${signed(critDmg)} (threat ${displayThreat}/×${critMult})`;
 
-  notes.push('Base attack: BAB '+signed(bab)+' + '+ABIL_LABEL[atkStat]+' '+signed(atkAbilityMod)+' + enhancement '+signed(enh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
-  notes.push('Base damage: '+ABIL_LABEL[dmgStat]+' '+signed(dmgAbilityMod)+(style==='twoHanded'&&dmgStat!=='none'?' (×1.5, two-handed)':'')+' + enhancement '+signed(enh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
+  notes.push('Base attack: BAB '+signed(bab)+' + '+ABIL_LABEL[atkStat]+' '+signed(atkAbilityMod)+' + enhancement '+signed(effectiveEnh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
+  notes.push('Base damage: '+ABIL_LABEL[dmgStat]+' '+signed(dmgAbilityMod)+(style==='twoHanded'&&dmgStat!=='none'?' (×1.5, two-handed)':'')+' + enhancement '+signed(effectiveEnh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
+  if(style==='ranged'){
+    notes.push('Ranged: only the ammunition\'s enhancement bonus (+'+ammoEnh+') is added to attack/damage above — the bow/crossbow\'s own enhancement bonus (+'+enh+') only helps overcome damage reduction, per RAW.');
+  }
   if(paNoCritMult && powerAttackOn && powerAttackDmgVal){
     notes.push('House rule: Power Attack/Deadly Aim damage ('+signed(powerAttackDmgVal)+') excluded from the ×'+critMult+' crit multiplier — added once instead of being multiplied like the rest of Critical Damage.');
   } else if(ctx.mythicPowerAttackOn && powerAttackOn && powerAttackDmgVal){
@@ -1500,11 +1617,11 @@ function compute(){
     let hasDoubleSlice = p.active.some(a=>a.id==='double-slice' && a.on!==false);
     let pen = hasMythicTWF ? {main:0,off:0} : TWF_PENALTIES[offLight?'light':'normal'][hasTWF?'feat':'noFeat'];
     let mainAtk = bab + atkAbilityMod + enh + pen.main + atkFromMods;
-    let offAtk = bab + atkAbilityMod + offEnh + pen.off + atkFromMods;
+    let offAtk = bab + atkAbilityMod + offEnh + pen.off + atkFromModsOff;
     // Off-hand damage uses half the damage ability bonus, rounded down — but a negative
     // modifier (a penalty) applies in full to both hands, it is not halved (RAW).
     let offDmgAbility = hasDoubleSlice ? dmgAbilityMod : (dmgAbilityMod<0 ? dmgAbilityMod : Math.floor(dmgAbilityMod/2));
-    let offDmg = offDmgAbility + offEnh + dmgFromMods;
+    let offDmg = offDmgAbility + offEnh + dmgFromModsOff;
     if(hasMythicTWF) notes.push('Mythic Two-Weapon Fighting: two-weapon attack penalties fully waived (spending mythic power) instead of just reduced.');
     iteratives=[]; for(let b=bab;b>0;b-=5) iteratives.push(mainAtk-(bab-b));
     if(!iteratives.length) iteratives=[mainAtk];
@@ -1517,8 +1634,10 @@ function compute(){
     $('fullAttack').textContent=iteratives.map(signed).join(' / ');
     $('offAtkBox').style.display='block'; $('offDmgBox').style.display='block';
     $('offAtk').textContent=signed(offAtk);
-    $('offDmg').textContent=`${w.dice} ${signed(offDmg)}`;
-    notes.push('Two-Weapon Fighting: penalties '+pen.main+'/'+pen.off+' ('+(offLight?'light':'normal')+' off-hand'+(hasTWF?', Two-Weapon Fighting feat applied':'')+'). Off-hand damage uses '+(hasDoubleSlice?'full':'half')+' of your damage ability modifier'+(hasDoubleSlice?' (Double Slice active)':'')+'. The shared modifier total above ('+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg) is applied to both hands identically for simplicity.');
+    let offExtraNormal=(extraDiceOff||[]).filter(e=>e.normal).map(e=>e.normal);
+    let offDmgDice = w.dice + (offExtraNormal.length ? ' + '+offExtraNormal.join(' + ') : '');
+    $('offDmg').textContent=`${offDmgDice} ${signed(offDmg)}`;
+    notes.push('Two-Weapon Fighting: penalties '+pen.main+'/'+pen.off+' ('+(offLight?'light':'normal')+' off-hand'+(hasTWF?', Two-Weapon Fighting feat applied':'')+'). Off-hand damage uses '+(hasDoubleSlice?'full':'half')+' of your damage ability modifier'+(hasDoubleSlice?' (Double Slice active)':'')+'. Modifier totals: main hand '+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg, off-hand '+signed(atkFromModsOff)+' atk / '+signed(dmgFromModsOff)+' dmg — Weapon Effects tagged "Main Hand Only"/"Off-Hand Only" above only count for that hand; everything else (and anything left on "Both Hands") counts for both.');
   }
   $('notes').innerHTML=notes.map(n=>'• '+n).join('<br>');
 }
