@@ -565,6 +565,11 @@ const MODIFIERS = [
  configFields:[{key:'monkLevel',label:'Monk level',type:'number',default:10,linkLevel:true}],
  desc:'Full-round action, replaces a normal full attack — only usable with unarmed strikes or monk special weapons (kama, nunchaku, sai, siangham, temple sword, etc.), not with a generic weapon. Uses its own attack-bonus progression instead of your normal BAB: for flurry purposes only, treat your attack bonus as equal to your MONK LEVEL (full progression, not the monk\'s normal ¾ BAB), then apply the usual "extra iterative every 5 points" rule to get your rungs, then duplicate the first 1 rung (levels 1–7), first 2 rungs (levels 8–14), or first 3 rungs (level 15+) — this grants the "one/two/three additional attacks" the class table describes. Finally apply a flat -2 penalty to every attack in the sequence. Everything else (Str bonus, feats, weapon enhancement, spells, etc.) still applies normally on top of this. Replaces ONLY the Full Attack line above — Single Attack (a lone attack outside a full-attack action) still uses your normal BAB, not this. Verified against the published Monk table (Core Rulebook) at levels 1/4/6/7/8/11/12/15/16/20.',
  compute:()=>({attack:0,damage:0,note:'special — replaces the Full Attack line above with its own progression, see description'})},
+{id:'zen-archer-flurry-of-blows',name:'Flurry of Blows (Zen Archer)',category:'other',source:'Zen Archer archetype (Advanced Player\'s Guide)',appliesTo:[],type:'special',
+ special:'flurry-of-blows-zen',
+ configFields:[{key:'monkLevel',label:'Monk level',type:'number',default:10,linkLevel:true}],
+ desc:'The Zen Archer archetype\'s version of Flurry of Blows, usable ONLY with a bow (not unarmed strikes or any other weapon) — otherwise it "functions as normal for a monk of his level," i.e. the exact same progression as the standard Flurry of Blows entry above, at the same monk level (same math: virtual full-BAB-by-monk-level, first 1/2/3 rungs duplicated, flat -2). Str bonus to damage only applies with a composite bow rated for your Strength. Cannot be combined with Rapid Shot or Manyshot — if either is also active below, remove it or don\'t rely on this calculator to add its bonus, since RAW forbids using them together.',
+ compute:()=>({attack:0,damage:0,note:'special — replaces the Full Attack line above with the standard Flurry of Blows progression (bow only), see description'})},
 
 // ---------------- OTHER (batch 2 — class features / combat rules) ----------------
 {id:"rage",name:"Rage",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"morale",
@@ -1370,7 +1375,7 @@ function stackTotal(entries){
 
 function collectContributions(ctx){
   let p=currentProfile();
-  let atkEntries=[], dmgEntries=[]; let breakdown=[]; let extraDiceList=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0, powerAttackDmgVal=0; let flurryOfBlowsOn=false, flurryMonkLevel=0;
+  let atkEntries=[], dmgEntries=[]; let breakdown=[]; let extraDiceList=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0, powerAttackDmgVal=0; let flurryOfBlowsOn=false, flurryMonkLevel=0, flurryIsZen=false;
   // Mythic feats that modify another entry's own formula (Mythic Power Attack/Deadly
   // Aim/Vital Strike) have to be known BEFORE that entry computes, regardless of which
   // order they appear in p.active — so scan for them first and pass as ctx flags.
@@ -1393,8 +1398,8 @@ function collectContributions(ctx){
       breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Cancels Power Attack penalty on first attack only'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
       return;
     }
-    if(m.special==='flurry-of-blows'){
-      if(!isOff){ flurryOfBlowsOn=true; flurryMonkLevel=(a.cfg&&a.cfg.monkLevel)||1; }
+    if(m.special==='flurry-of-blows' || m.special==='flurry-of-blows-zen'){
+      if(!isOff){ flurryOfBlowsOn=true; flurryMonkLevel=(a.cfg&&a.cfg.monkLevel)||1; flurryIsZen=(m.special==='flurry-of-blows-zen'); }
       breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Replaces the Full Attack line above with its own progression (monk level '+((a.cfg&&a.cfg.monkLevel)||1)+')'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
       return;
     }
@@ -1435,7 +1440,7 @@ function collectContributions(ctx){
     }
     breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
   });
-  return {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel};
+  return {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen};
 }
 
 // Recomputes atk/dmg/extraDice contributions filtered to one weapon slot ('main' or
@@ -1544,7 +1549,7 @@ function compute(){
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
   let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value, critMult, weaponThreatLow:parseThreatLow(w.threat)};
 
-  let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel}=collectContributions(ctx);
+  let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen}=collectContributions(ctx);
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
   markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
   renderBreakdown(breakdown);
@@ -1645,7 +1650,10 @@ function compute(){
     rungs.forEach((r,i)=>{ seq.push(r); if(i<extraCount) seq.push(r); });
     let nonBabPart = atkAbilityMod + enh + atkFromMods;
     iteratives = seq.map(r=>r+nonBabPart-2);
-    notes.push('Flurry of Blows (monk level '+lvl+'): Full Attack above replaced by its own progression — full-BAB-equivalent rungs '+rungs.join('/')+' (from monk level, not your normal BAB), first '+extraCount+' rung(s) duplicated per the Monk class table, flat -2 on every attack. Single Attack above is unaffected (still your normal BAB) — Flurry only replaces a full-attack action.'+((furiousFocusOn||mythicPrecisionOn)?' Furious Focus/Precision\'s normal-BAB-based adjustments aren\'t reconciled with this alternate sequence — apply by hand if relevant.':''));
+    notes.push((flurryIsZen?'Flurry of Blows (Zen Archer, monk level ':'Flurry of Blows (monk level ')+lvl+'): Full Attack above replaced by its own progression — full-BAB-equivalent rungs '+rungs.join('/')+' (from monk level, not your normal BAB), first '+extraCount+' rung(s) duplicated per the Monk class table, flat -2 on every attack. Single Attack above is unaffected (still your normal BAB) — Flurry only replaces a full-attack action.'+((furiousFocusOn||mythicPrecisionOn)?' Furious Focus/Precision\'s normal-BAB-based adjustments aren\'t reconciled with this alternate sequence — apply by hand if relevant.':''));
+    if(flurryIsZen && (p.active.some(a=>a.id==='rapid-shot'&&a.on!==false) || p.active.some(a=>a.id==='manyshot'&&a.on!==false))){
+      notes.push('WARNING: Rapid Shot and/or Manyshot are also active, but a Zen Archer cannot combine either with Flurry of Blows (RAW forbids it) — remove one or the other, since Full Attack above is currently including bonuses/extra attacks it shouldn\'t.');
+    }
   }
 
   let critDice=diceMultiply(w.dice,critMult);
