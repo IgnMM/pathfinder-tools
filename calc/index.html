@@ -560,6 +560,11 @@ const MODIFIERS = [
 {id:'flanking',name:'Flanking',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'untyped',
  desc:'+2 on melee attack rolls when you and an ally threaten opposite sides of the target.',
  compute:()=>({attack:2,damage:0,note:'+2 atk'})},
+{id:'flurry-of-blows',name:'Flurry of Blows',category:'other',source:'Monk class feature',appliesTo:[],type:'special',
+ special:'flurry-of-blows',
+ configFields:[{key:'monkLevel',label:'Monk level',type:'number',default:10,linkLevel:true}],
+ desc:'Full-round action, replaces a normal full attack — only usable with unarmed strikes or monk special weapons (kama, nunchaku, sai, siangham, temple sword, etc.), not with a generic weapon. Uses its own attack-bonus progression instead of your normal BAB: for flurry purposes only, treat your attack bonus as equal to your MONK LEVEL (full progression, not the monk\'s normal ¾ BAB), then apply the usual "extra iterative every 5 points" rule to get your rungs, then duplicate the first 1 rung (levels 1–7), first 2 rungs (levels 8–14), or first 3 rungs (level 15+) — this grants the "one/two/three additional attacks" the class table describes. Finally apply a flat -2 penalty to every attack in the sequence. Everything else (Str bonus, feats, weapon enhancement, spells, etc.) still applies normally on top of this. Replaces ONLY the Full Attack line above — Single Attack (a lone attack outside a full-attack action) still uses your normal BAB, not this. Verified against the published Monk table (Core Rulebook) at levels 1/4/6/7/8/11/12/15/16/20.',
+ compute:()=>({attack:0,damage:0,note:'special — replaces the Full Attack line above with its own progression, see description'})},
 
 // ---------------- OTHER (batch 2 — class features / combat rules) ----------------
 {id:"rage",name:"Rage",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"morale",
@@ -1365,7 +1370,7 @@ function stackTotal(entries){
 
 function collectContributions(ctx){
   let p=currentProfile();
-  let atkEntries=[], dmgEntries=[]; let breakdown=[]; let extraDiceList=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0, powerAttackDmgVal=0;
+  let atkEntries=[], dmgEntries=[]; let breakdown=[]; let extraDiceList=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0, powerAttackDmgVal=0; let flurryOfBlowsOn=false, flurryMonkLevel=0;
   // Mythic feats that modify another entry's own formula (Mythic Power Attack/Deadly
   // Aim/Vital Strike) have to be known BEFORE that entry computes, regardless of which
   // order they appear in p.active — so scan for them first and pass as ctx flags.
@@ -1386,6 +1391,11 @@ function collectContributions(ctx){
     if(m.special==='furious-focus'){
       if(!isOff) furiousFocusOn=true;
       breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Cancels Power Attack penalty on first attack only'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
+      return;
+    }
+    if(m.special==='flurry-of-blows'){
+      if(!isOff){ flurryOfBlowsOn=true; flurryMonkLevel=(a.cfg&&a.cfg.monkLevel)||1; }
+      breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Replaces the Full Attack line above with its own progression (monk level '+((a.cfg&&a.cfg.monkLevel)||1)+')'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
       return;
     }
     let r=m.compute(ctx,a.cfg||{});
@@ -1425,7 +1435,7 @@ function collectContributions(ctx){
     }
     breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
   });
-  return {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn};
+  return {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel};
 }
 
 // Recomputes atk/dmg/extraDice contributions filtered to one weapon slot ('main' or
@@ -1534,7 +1544,7 @@ function compute(){
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
   let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value, critMult, weaponThreatLow:parseThreatLow(w.threat)};
 
-  let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn}=collectContributions(ctx);
+  let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel}=collectContributions(ctx);
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
   markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
   renderBreakdown(breakdown);
@@ -1621,6 +1631,22 @@ function compute(){
   if(rapidShotExtraCount>0){
     notes.push('Rapid Shot: '+rapidShotExtraCount+' extra attack'+(rapidShotExtraCount>1?'s':'')+' at full BAB added to Full Attack above'+(rapidShotExtraCount>1?' (Mythic Rapid Shot: 2 instead of 1)':'')+' — stacks with Haste/a speed weapon/Blessing of Fervor above, since Rapid Shot isn\'t a magical "extra-attack effect".');
   }
+  if(flurryOfBlowsOn){
+    // Flurry replaces the whole Full Attack sequence with its own progression (see the
+    // catalog entry's description for the verified derivation): rungs from a virtual
+    // full-BAB-equal-to-monk-level, the first 1/2/3 rungs duplicated depending on monk
+    // level, then a flat -2 on every resulting attack. Everything else (ability mod,
+    // enhancement, feats/spells via atkFromMods) still applies on top, same as normal.
+    let lvl=flurryMonkLevel||1;
+    let rungs=[]; for(let b=lvl;b>0;b-=5) rungs.push(b);
+    if(!rungs.length) rungs=[lvl];
+    let extraCount = lvl>=15?3:lvl>=8?2:1;
+    let seq=[];
+    rungs.forEach((r,i)=>{ seq.push(r); if(i<extraCount) seq.push(r); });
+    let nonBabPart = atkAbilityMod + enh + atkFromMods;
+    iteratives = seq.map(r=>r+nonBabPart-2);
+    notes.push('Flurry of Blows (monk level '+lvl+'): Full Attack above replaced by its own progression — full-BAB-equivalent rungs '+rungs.join('/')+' (from monk level, not your normal BAB), first '+extraCount+' rung(s) duplicated per the Monk class table, flat -2 on every attack. Single Attack above is unaffected (still your normal BAB) — Flurry only replaces a full-attack action.'+((furiousFocusOn||mythicPrecisionOn)?' Furious Focus/Precision\'s normal-BAB-based adjustments aren\'t reconciled with this alternate sequence — apply by hand if relevant.':''));
+  }
 
   let critDice=diceMultiply(w.dice,critMult);
   let critDmg=dmg*critMult;
@@ -1678,7 +1704,9 @@ function compute(){
   }
 
   $('offAtkBox').style.display='none'; $('offDmgBox').style.display='none';
-  if(style==='twf'){
+  if(style==='twf' && flurryOfBlowsOn){
+    notes.push('Flurry of Blows and Two-Weapon Fighting style are both active — Flurry\'s own progression (above) takes precedence and the Two-Weapon Fighting off-hand math is skipped, since Flurry already grants its own extra attacks. Pick one style for a monk build (Flurry doesn\'t need an off-hand weapon).');
+  } else if(style==='twf'){
     let offEnh=+$('offEnh').value, offLight=$('offLight').checked;
     let hasTWF = p.active.some(a=>a.id==='two-weapon-fighting' && a.on!==false);
     let hasMythicTWF = p.active.some(a=>a.id==='mythic-two-weapon-fighting' && a.on!==false);
