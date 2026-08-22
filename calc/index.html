@@ -100,7 +100,16 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div>
 <section class="card">
 <h2>Character &amp; Weapon</h2>
+<div class="row"><label>Character Level</label><input id="characterLevel" type="number" min="1" max="20" value="10"></div>
+<div class="row"><label>BAB Progression</label>
+<select id="babProgression">
+  <option value="full" selected>Full (1:1)</option>
+  <option value="threeQuarter">¾ (Cleric, Rogue, Bard...)</option>
+  <option value="half">Half (Wizard, Sorcerer...)</option>
+</select></div>
 <div class="row"><label>BAB</label><input id="bab" type="number" min="0" value="6"></div>
+<div class="row"><label></label><button id="useSuggestedBab" type="button" style="justify-self:start">Use suggested BAB: <span id="suggestedBabValue">+6</span></button></div>
+<div class="emptyNote">Character Level is also used to pre-fill level-scaling fields (Sneak Attack dice, caster level, bard/paladin level, etc.) when you add them from the catalog below — each is still editable individually afterward, e.g. for multiclass characters. BAB itself always stays a plain editable number: the progression selector only offers a one-click suggestion (Character Level × 1 / ¾ / ½, rounded down) for single-class characters — for multiclass, just type the summed BAB directly and ignore the suggestion.</div>
 <div class="row"><label>Play with Mythic rules?</label><input id="mythicEnabled" type="checkbox" style="width:auto;justify-self:start"></div>
 <div id="mythicTierBox" style="display:none">
 <div class="row"><label>Mythic Tier</label><input id="mythicTier" type="number" min="0" max="10" value="0"></div>
@@ -379,20 +388,20 @@ const MODIFIERS = [
  compute:()=>({attack:1,damage:0,note:'+1 atk (morale)'})},
 {id:'divine-favor',name:'Divine Favor',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'luck',
  desc:'+1 luck bonus per 3 caster levels (max +3) on attack and weapon damage rolls.',
- configFields:[{key:'cl',label:'Caster level',type:'number',default:5}],
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:5,linkLevel:true}],
  compute:(ctx,cfg)=>{let b=Math.min(3,Math.max(1,Math.floor((cfg.cl||1)/3)));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (luck)'}}},
 {id:'prayer',name:'Prayer',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'luck',
  desc:'+1 luck bonus on attack and weapon damage rolls (does not stack with Divine Favor — both are luck).',
  compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (luck)'})},
 {id:'haste',name:'Haste',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'untyped',
- desc:'+1 on attack rolls (untyped). Also grants an extra attack at full BAB on a full attack — add that manually to iteratives.',
- compute:()=>({attack:1,damage:0,note:'+1 atk'})},
+ desc:'+1 on attack rolls (untyped). Also grants an extra attack at full BAB on a full attack — applied automatically to the Full Attack line above (one extra attack; doesn\'t stack with a speed weapon or Blessing of Fervor\'s extra-attack option — only one extra attack is ever added no matter how many of these are active at once).',
+ compute:()=>({attack:1,damage:0,note:'+1 atk, plus one extra attack at full BAB — applied automatically to Full Attack above'})},
 {id:'magic-weapon',name:'Magic Weapon',category:'weapon',subcat:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'enhancement',
  desc:'+1 enhancement bonus to the weapon (does not stack with a weapon that already has an enhancement bonus — same type).',
  compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement)'})},
 {id:'greater-magic-weapon',name:'Magic Weapon, Greater',category:'weapon',subcat:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
  desc:'+1 enhancement bonus per 4 caster levels (max +5).',
- configFields:[{key:'cl',label:'Caster level',type:'number',default:8}],
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:8,linkLevel:true}],
  compute:(ctx,cfg)=>{let b=Math.min(5,Math.floor((cfg.cl||1)/4));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement)'}}},
 
 // ---------------- SPELLS (batch 2) ----------------
@@ -411,8 +420,17 @@ const MODIFIERS = [
  desc:"+1 enhancement bonus on attack and damage rolls with unarmed strikes (requires the ability to attack unarmed without provoking AoOs).",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"enhancement"}}},
 {id:"blessing-of-fervor",name:"Blessing of Fervor",category:"spell",source:"Advanced Player's Guide",appliesTo:["attack"],type:"untyped",
- desc:"Each round an affected ally picks one option; if they pick the +2 attack option, +2 untyped bonus on attack rolls that round (doesn't stack with haste). Paladin 3rd / cleric 4th.",
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ configFields:[{key:'choice',label:'This round, chose',type:'select',options:[{v:'',label:'— pick a round option —'},{v:'atk2',label:'+2 attack / +2 dodge AC'},{v:'extraAttack',label:'Extra attack (full BAB)'},{v:'other',label:'Other (speed/stand/spell) — no atk/dmg effect'}],default:''}],
+ desc:"Each round, at the start of its turn, an affected ally picks ONE of: +30 ft speed, stand as a swift action without provoking, one extra attack at full BAB as part of a full attack, +2 untyped bonus on attack rolls (and +2 dodge AC/Reflex, not modeled here), or cast a 2nd-level-or-lower spell as if enlarged/extended/silent/still. None of these stack with similar effects from elsewhere (haste, a speed weapon, etc.) — only one extra attack or one +2 attack bonus is ever counted no matter how many such sources you have active. Pick which option was chosen this round above. Paladin 3rd / cleric 4th.",
+ compute:(ctx,cfg)=>{
+   if(cfg.choice==='atk2'){
+     if(ctx.hasteOn) return {attack:0,damage:0,note:'+2 attack option not counted — doesn\'t stack with Haste\'s attack bonus, which is already active'};
+     return {attack:2,damage:0,note:'+2 atk (untyped, this round\'s chosen option)'};
+   }
+   if(cfg.choice==='extraAttack') return {attack:0,damage:0,note:'extra attack at full BAB (this round\'s chosen option) — applied automatically to Full Attack above, shared with Haste/a speed weapon (only one extra attack ever counted)'};
+   if(cfg.choice==='other') return {attack:0,damage:0,note:'chosen option has no attack/damage roll effect (speed/stand/spell) — see description'};
+   return {attack:0,damage:0,note:'no round option selected above yet — pick one'};
+ }},
 {id:"blood-scent",name:"Blood Scent",category:"spell",source:"Advanced Race Guide",appliesTo:["attack","damage"],type:"morale",
  desc:"Orcs and raging creatures get +2 (or +4 vs. badly wounded/bleeding foes) morale bonus on attack and damage rolls against creatures they can smell.",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
@@ -520,18 +538,18 @@ const MODIFIERS = [
  desc:"+2 sacred bonus on damage rolls with one chosen weapon; also inflicts shaken on a critical hit.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:signed(v)+' '+"sacred"}}},
 {id:"wrath",name:"Wrath",category:"spell",source:"Advanced Player's Guide",appliesTo:["attack","damage"],type:"morale",
- configFields:[{key:'cl',label:'Caster level',type:'number',default:9}],
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:9,linkLevel:true}],
  desc:"+1 morale bonus per 3 caster levels (min +1, max +3) on attack and weapon damage rolls, but only against one designated enemy.",
  compute:(ctx,cfg)=>{let cl=cfg.cl||1;let b=Math.min(3,Math.max(1,Math.floor(cl/3)));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (morale, vs designated enemy)'}}},
 
 // ---------------- OTHER (class features / combat rules) ----------------
 {id:'smite-evil',name:'Smite Evil',category:'other',source:'Paladin class feature',appliesTo:['attack','damage'],type:'untyped',
  desc:'CHA bonus to attack, paladin level to damage vs the smited target (untyped — no named bonus type given in the rules text).',
- configFields:[{key:'palLvl',label:'Paladin level',type:'number',default:7}],
+ configFields:[{key:'palLvl',label:'Paladin level',type:'number',default:7,linkLevel:true}],
  compute:(ctx,cfg)=>({attack:ctx.cha,damage:cfg.palLvl||0,note:'+'+ctx.cha+' atk / +'+(cfg.palLvl||0)+' dmg (untyped)'})},
 {id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
  desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls.',
- configFields:[{key:'bardLvl',label:'Bard level',type:'number',default:5}],
+ configFields:[{key:'bardLvl',label:'Bard level',type:'number',default:5,linkLevel:true}],
  compute:(ctx,cfg)=>{let l=cfg.bardLvl||1,b=l>=17?4:l>=11?3:l>=5?2:1;return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (competence)'}}},
 {id:'charge',name:'Charge',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'untyped',
  desc:'+2 on the attack roll (and -2 AC, not modeled here). One attack only, full-round action.',
@@ -546,7 +564,7 @@ const MODIFIERS = [
  desc:"Barbarian rage grants a morale bonus to Strength and Constitution (+4 base → +2 to the modifier, +6 Greater Rage → +3, +8 Mighty Rage → +4), indirectly boosting melee attack/damage via the Strength modifier. The value below is already the resulting modifier bonus, not the raw ability score bonus — route it through here rather than editing STR directly to avoid double-counting.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"morale"}}},
 {id:"sneak-attack",name:"Sneak Attack",category:"other",source:"Core Rulebook",appliesTo:["damage"],type:"none",
- configFields:[{key:'rogueLevel',label:'Rogue level',type:'number',default:1}],
+ configFields:[{key:'rogueLevel',label:'Rogue level',type:'number',default:1,linkLevel:true}],
  desc:"Extra precision damage dice (1d6 per two rogue levels) against flat-footed or flanked targets; not multiplied on a critical hit. Immune: oozes, elementals, swarms, incorporeal creatures (set Current Target above). NOT immune in PF1e (unlike 3.5e): constructs, ordinary undead.",
  compute:(ctx,cfg)=>{let lvl=cfg.rogueLevel||1;let n=Math.ceil(lvl/2);if(isCritImmune(ctx))return{attack:0,damage:0,note:'Current Target is immune to precision damage — Sneak Attack doesn\'t apply'};return {attack:0,damage:0,note:'Deals '+n+'d6 extra precision damage (rogue level '+lvl+') against a flat-footed or flanked target — not multiplied on a crit'}}},
 {id:"favored-enemy",name:"Favored Enemy",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"untyped",
@@ -628,8 +646,8 @@ const MODIFIERS = [
  desc:'Melee only. Each hit adds 1 point of ongoing bleed (stacks with repeated hits) — NOT a one-time damage bonus. The bleed is taken at the start of the target\'s own turn, not multiplied on a crit; cured by a DC 15 Heal check or any hit-point-curing spell; creatures immune to crits are immune to this too.',
  compute:()=>({attack:0,damage:0,note:'+1 stacking bleed/hit (taken on the target\'s turn, not yours) — not a one-time bonus'})},
 {id:'speed',name:'Speed',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:['attack'],type:'special',
- desc:'+3 equivalent. Grants one extra attack at full BAB on a full-attack action — no flat attack/damage bonus of its own. Doesn\'t stack with haste or similar "extra attack" effects.',
- compute:()=>({attack:0,damage:0,note:'grants one extra attack at full BAB on a full attack — not modeled in the Full Attack line above, add it by hand'})},
+ desc:'+3 equivalent. Grants one extra attack at full BAB on a full-attack action — no flat attack/damage bonus of its own. Doesn\'t stack with haste or similar "extra attack" effects — applied automatically to the Full Attack line above (only one extra attack is ever added no matter how many such sources are active at once).',
+ compute:()=>({attack:0,damage:0,note:'grants one extra attack at full BAB — applied automatically to Full Attack above'})},
 {id:'vorpal',name:'Vorpal',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:['damage'],type:'special',
  desc:'+5 equivalent. Slashing melee only. On a natural 20 that\'s confirmed as a critical hit, decapitates (usually kills) the target. Headless creatures (many aberrations, oozes) are immune; golems and most non-vampire undead are unaffected by head loss.',
  compute:()=>({attack:0,damage:0,note:'decapitation on a confirmed nat-20 crit — not a numeric bonus'})},
@@ -922,7 +940,7 @@ const MODIFIERS = [
  desc:'Elemental Fist\'s bonus elemental damage die increases from 1d6 to 1d8, with more uses per day equal to your tier. Dice-based, not modeled as a flat number.',
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 {id:'mythic-knockout-artist',name:'Mythic Knockout Artist',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
- configFields:[{key:'rogueLevel',label:'Rogue level',type:'number',default:1}],
+ configFields:[{key:'rogueLevel',label:'Rogue level',type:'number',default:1,linkLevel:true}],
  desc:'Requires sneak attack, Improved Unarmed Strike, Knockout Artist. Nonlethal unarmed sneak attack dice become d8s instead of d6s.',
  compute:(ctx,cfg)=>{let lvl=cfg.rogueLevel||1;let n=Math.ceil(lvl/2);return {attack:0,damage:0,note:'Your '+n+'d6 sneak attack (rogue level '+lvl+') becomes '+n+'d8 for nonlethal unarmed sneak attacks'}}},
 {id:'mythic-monastic-legacy',name:'Mythic Monastic Legacy',category:'mythic',subcat:'feat',source:'Mythic Adventures',appliesTo:['damage'],type:'untyped',
@@ -1018,8 +1036,9 @@ function saveStore(){
     saveIndicatorTimer=setTimeout(()=>el.classList.remove('show'),1200);
   }
 }
+const BAB_PROGRESSION_MULT={full:1, threeQuarter:0.75, half:0.5};
 function defaultProfile(name){
-  return {name, bab:6, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
+  return {name, bab:6, characterLevel:10, babProgression:'full', str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
     style:'twoHanded', atkStat:'str', dmgStat:'str', offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
     enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
 }
@@ -1049,6 +1068,8 @@ store.profiles.forEach(p=>{
   // exactly the same as before, while `enh` going forward only affects DR.
   if(p.ammoEnh===undefined) p.ammoEnh = (p.style==='ranged') ? (p.enh||0) : 0;
   if(p.active) p.active.forEach(a=>{ if(!a.weaponSlot) a.weaponSlot='both'; });
+  if(p.characterLevel===undefined) p.characterLevel=10;
+  if(!p.babProgression) p.babProgression='full';
 });
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
@@ -1060,7 +1081,8 @@ function populateProfileSelect(){
 
 function loadProfileIntoUI(){
   let p=currentProfile();
-  $('bab').value=p.bab; $('mythicEnabled').checked=!!p.mythicEnabled; $('mythicTier').value=p.mythicTier; $('currentTarget').value=p.currentTarget; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
+  $('bab').value=p.bab; $('characterLevel').value=p.characterLevel; $('babProgression').value=p.babProgression; $('mythicEnabled').checked=!!p.mythicEnabled; $('mythicTier').value=p.mythicTier; $('currentTarget').value=p.currentTarget; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
+  updateSuggestedBab();
   $('mythicTierBox').style.display = p.mythicEnabled ? 'block' : 'none';
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
@@ -1080,7 +1102,7 @@ function loadProfileIntoUI(){
 
 function syncUIIntoProfile(){
   let p=currentProfile();
-  p.bab=+$('bab').value; p.mythicEnabled=$('mythicEnabled').checked; p.mythicTier=+$('mythicTier').value; p.currentTarget=$('currentTarget').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
+  p.bab=+$('bab').value; p.characterLevel=+$('characterLevel').value; p.babProgression=$('babProgression').value; p.mythicEnabled=$('mythicEnabled').checked; p.mythicTier=+$('mythicTier').value; p.currentTarget=$('currentTarget').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
   p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
   p.style=$('style').value; p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
@@ -1092,6 +1114,17 @@ function syncUIIntoProfile(){
 function updateEnhLabel(){
   $('enhLabel').textContent = $('style').value==='ranged' ? 'Bow/Crossbow Enhancement (+X, overcomes DR only)' : 'Weapon Base Enhancement (+X)';
 }
+function suggestedBab(){
+  let lvl=+$('characterLevel').value||0, prog=$('babProgression').value;
+  return Math.floor(lvl*(BAB_PROGRESSION_MULT[prog]||1));
+}
+function updateSuggestedBab(){
+  $('suggestedBabValue').textContent = signed(suggestedBab());
+}
+$('useSuggestedBab').addEventListener('click', ()=>{
+  $('bab').value = suggestedBab();
+  syncUIIntoProfile(); compute();
+});
 
 $('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); };
 $('newProfile').onclick=()=>{
@@ -1122,7 +1155,7 @@ $('deleteProfile').onclick=()=>{
   store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 
-['bab','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','ammoEnh','critMult'].forEach(id=>{
+['bab','characterLevel','babProgression','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','ammoEnh','critMult'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'block' : 'none';
@@ -1135,6 +1168,7 @@ $('deleteProfile').onclick=()=>{
       updateEnhLabel();
       renderCategories();
     }
+    if(id==='characterLevel' || id==='babProgression') updateSuggestedBab();
     syncUIIntoProfile();
     if(id==='mythicEnabled'){
       $('mythicTierBox').style.display = $('mythicEnabled').checked ? 'block' : 'none';
@@ -1242,8 +1276,8 @@ function renderCategories(){
     if(!m){ if(name) alert('No catalog entry named "'+name+'" in '+cat+'. Use "+ Custom" instead.'); return; }
     let p=currentProfile();
     if(p.excludedSources[m.source]){ alert('"'+m.name+'" is from '+m.source+', which is excluded in Sources. Re-enable that source first if you want to add it.'); return; }
-    let cfg={}; (m.configFields||[]).forEach(f=>cfg[f.key]=f.default);
-    p.active.push({id:m.id, cfg, on:true});
+    let cfg={}; (m.configFields||[]).forEach(f=>{ cfg[f.key] = (f.linkLevel && p.characterLevel) ? p.characterLevel : f.default; });
+    p.active.push({id:m.id, cfg, on:true, weaponSlot:'both'});
     saveStore(); renderCategories(); compute();
   });
   box.querySelectorAll('.addCustomBtn').forEach(btn=>btn.onclick=()=>{
@@ -1335,6 +1369,7 @@ function collectContributions(ctx){
   ctx.mythicDeadlyAimOn = p.active.some(a=>a.id==='mythic-deadly-aim' && a.on!==false);
   ctx.mythicRapidShotOn = p.active.some(a=>a.id==='mythic-rapid-shot' && a.on!==false);
   ctx.mythicCombatExpertiseOn = p.active.some(a=>a.id==='mythic-combat-expertise' && a.on!==false);
+  ctx.hasteOn = p.active.some(a=>a.id==='haste' && a.on!==false);
   let mythicVitalStrikeOn = p.active.some(a=>a.id==='mythic-vital-strike' && a.on!==false);
   let mythicFuriousFocusOn = p.active.some(a=>a.id==='mythic-furious-focus' && a.on!==false);
   let mythicWeaponFocusOn = p.active.some(a=>a.id==='mythic-weapon-focus' && a.on!==false);
@@ -1547,6 +1582,17 @@ function compute(){
     notes.push('Furious Focus: first attack uses '+signed(atkFirst)+' instead of '+signed(atk)+' (Power Attack penalty waived once).');
   }
 
+  // Haste, a speed weapon, and Blessing of Fervor's "extra attack" round-choice all grant
+  // "one extra attack at full BAB on a full attack" — the exact same effect, and per RAW
+  // none of them stack with each other, so this is a single boolean (present or not),
+  // never counted more than once even with several such sources active simultaneously.
+  let hasExtraAttack = p.active.some(a=>{
+    if(a.on===false) return false;
+    if(a.id==='haste' || a.id==='speed') return true;
+    if(a.id==='blessing-of-fervor' && a.cfg && a.cfg.choice==='extraAttack') return true;
+    return false;
+  });
+
   let iteratives=[];
   for(let b=bab;b>0;b-=5) iteratives.push(atk-(bab-b));
   if(iteratives.length) iteratives[0]=atkFirst;
@@ -1554,6 +1600,10 @@ function compute(){
   if(mythicPrecisionOn && iteratives.length>1){
     for(let i=1;i<iteratives.length;i++) iteratives[i]=Math.min(iteratives[i]+5, atkFirst);
     notes.push('Precision (mythic path ability): +5 on your iterative attacks from a high BAB (not your first attack), capped at your full attack bonus.');
+  }
+  if(hasExtraAttack){
+    iteratives.push(atkFirst);
+    notes.push('One extra attack at full BAB added to Full Attack above (Haste / a speed weapon / Blessing of Fervor\'s extra-attack option — only counted once even if more than one of these is active).');
   }
 
   let critDice=diceMultiply(w.dice,critMult);
@@ -1632,6 +1682,7 @@ function compute(){
     if(mythicPrecisionOn && iteratives.length>1){
       for(let i=1;i<iteratives.length;i++) iteratives[i]=Math.min(iteratives[i]+5, iteratives[0]);
     }
+    if(hasExtraAttack) iteratives.push(iteratives[0]);
     $('toHit').textContent=signed(iteratives[0]);
     $('fullAttack').textContent=iteratives.map(signed).join(' / ');
     $('offAtkBox').style.display='block'; $('offDmgBox').style.display='block';
