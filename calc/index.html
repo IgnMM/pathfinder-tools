@@ -198,13 +198,21 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <select id="currentTarget">
   <option value="none" selected>— none / not relevant —</option>
   <option value="evil">Evil (any type)</option>
+  <option value="good">Good (any type)</option>
+  <option value="lawful">Lawful (any type)</option>
+  <option value="chaotic">Chaotic (any type)</option>
   <option value="undead">Undead</option>
   <option value="evilUndead">Evil Undead</option>
   <option value="evilDragon">Evil Dragon</option>
   <option value="evilOutsider">Evil Outsider</option>
   <option value="demon">Demon (Evil Outsider)</option>
   <option value="construct">Construct / Object</option>
+  <option value="ooze">Ooze</option>
+  <option value="elemental">Elemental</option>
+  <option value="swarm">Swarm</option>
+  <option value="incorporeal">Incorporeal</option>
 </select></div>
+<div class="emptyNote">Oozes, elementals, swarms, and incorporeal creatures are immune to critical hits and precision damage (Sneak Attack, etc.) in PF1e — picking one of those four automatically zeroes out Sneak Attack/Precise Strike above and flags Critical Damage below as not applicable. Constructs and (non-incorporeal) undead are NOT immune to crits/precision damage in PF1e, unlike 3.5e — don't gate those the same way.</div>
 <div class="emptyNote">Modifiers that only work against a specific enemy type (Favored Enemy, Bane, Challenge Evil, etc.) check this — set it before a fight and they'll switch on/off automatically. Leave it on "none" and they behave as before (always on while active).</div>
 </section>
 </div>
@@ -261,13 +269,23 @@ const RACE_ONLY_SOURCES=[...new Set(Object.values(RACE_SOURCE_MAP).flat())];
 const TARGET_FLAG_MAP={
   none:{}, evil:{evil:true}, undead:{undead:true}, evilUndead:{evil:true,undead:true},
   evilDragon:{evil:true,dragon:true}, evilOutsider:{evil:true,outsider:true},
-  demon:{evil:true,outsider:true,demon:true}, construct:{construct:true}
+  demon:{evil:true,outsider:true,demon:true}, construct:{construct:true},
+  good:{good:true}, lawful:{lawful:true}, chaotic:{chaotic:true},
+  // PF1e RAW: constructs and (non-incorporeal) undead are NOT immune to critical hits or
+  // sneak attack/precision damage (that's a 3.5e rule that didn't carry over). The actual
+  // immune types are oozes, the elemental subtype, swarms, and the incorporeal subtype
+  // (incorporeal creatures are immune unless struck by a ghost touch weapon).
+  ooze:{critImmune:true}, elemental:{critImmune:true}, swarm:{critImmune:true}, incorporeal:{critImmune:true}
 };
-const VS_FLAG_OPTIONS=[{v:'',label:'— always (no restriction) —'},{v:'evil',label:'vs Evil'},{v:'undead',label:'vs Undead'},{v:'dragon',label:'vs Dragon'},{v:'outsider',label:'vs Outsider'},{v:'demon',label:'vs Demon'},{v:'construct',label:'vs Construct/Object'}];
+const VS_FLAG_OPTIONS=[{v:'',label:'— always (no restriction) —'},{v:'evil',label:'vs Evil'},{v:'good',label:'vs Good'},{v:'lawful',label:'vs Lawful'},{v:'chaotic',label:'vs Chaotic'},{v:'undead',label:'vs Undead'},{v:'dragon',label:'vs Dragon'},{v:'outsider',label:'vs Outsider'},{v:'demon',label:'vs Demon'},{v:'construct',label:'vs Construct/Object'}];
 function targetMatches(ctx, vsFlag){
   if(!vsFlag) return true;
   if(!ctx.currentTarget || ctx.currentTarget==='none') return true;
   return !!(TARGET_FLAG_MAP[ctx.currentTarget]||{})[vsFlag];
+}
+function isCritImmune(ctx){
+  if(!ctx.currentTarget || ctx.currentTarget==='none') return false;
+  return !!(TARGET_FLAG_MAP[ctx.currentTarget]||{}).critImmune;
 }
 
 const MODIFIERS = [
@@ -336,8 +354,8 @@ const MODIFIERS = [
  desc:"When flanking the same target as an ally who also has this feat, your flanking bonus on attack rolls increases from +2 to +4 (replaces the Flanking modifier's +2, don't stack both). Requires BAB +4.",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 {id:"precise-strike",name:"Precise Strike",category:"feat",source:"Advanced Player's Guide",appliesTo:["damage"],type:"untyped",
- desc:"While flanking the same target as an ally who also has this feat, deal an extra 1d6 precision damage on melee hits. Teamwork feat, requires Dex 13, BAB +1.",
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ desc:"While flanking the same target as an ally who also has this feat, deal an extra 1d6 precision damage on melee hits. Teamwork feat, requires Dex 13, BAB +1. Immune: oozes, elementals, swarms, incorporeal creatures (set Current Target above) — NOT constructs/ordinary undead.",
+ compute:(ctx)=>{if(isCritImmune(ctx))return{attack:0,damage:0,note:'Current Target is immune to precision damage — Precise Strike doesn\'t apply'};return {attack:0,damage:0,note:'special — not added to totals, see description'}}},
 {id:"paired-opportunists",name:"Paired Opportunists",category:"feat",source:"Advanced Player's Guide",appliesTo:["attack"],type:"circumstance",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:4}],
  desc:"Teamwork feat: +4 circumstance bonus on attacks of opportunity against a creature threatened by you and an adjacent ally who also has this feat.",
@@ -521,8 +539,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"morale"}}},
 {id:"sneak-attack",name:"Sneak Attack",category:"other",source:"Core Rulebook",appliesTo:["damage"],type:"none",
  configFields:[{key:'rogueLevel',label:'Rogue level',type:'number',default:1}],
- desc:"Extra precision damage dice (1d6 per two rogue levels) against flat-footed or flanked targets; not multiplied on a critical hit; many creature types are immune to precision damage.",
- compute:(ctx,cfg)=>{let lvl=cfg.rogueLevel||1;let n=Math.ceil(lvl/2);return {attack:0,damage:0,note:'Deals '+n+'d6 extra precision damage (rogue level '+lvl+') against a flat-footed or flanked target — not multiplied on a crit, and many creature types are immune to precision damage'}}},
+ desc:"Extra precision damage dice (1d6 per two rogue levels) against flat-footed or flanked targets; not multiplied on a critical hit. Immune: oozes, elementals, swarms, incorporeal creatures (set Current Target above). NOT immune in PF1e (unlike 3.5e): constructs, ordinary undead.",
+ compute:(ctx,cfg)=>{let lvl=cfg.rogueLevel||1;let n=Math.ceil(lvl/2);if(isCritImmune(ctx))return{attack:0,damage:0,note:'Current Target is immune to precision damage — Sneak Attack doesn\'t apply'};return {attack:0,damage:0,note:'Deals '+n+'d6 extra precision damage (rogue level '+lvl+') against a flat-footed or flanked target — not multiplied on a crit'}}},
 {id:"favored-enemy",name:"Favored Enemy",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"untyped",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:''}],
  desc:"Untyped bonus (starting at +2, scaling +2 every 5 ranger levels) on weapon attack and damage rolls against creatures of a selected favored enemy type. Pick your favored enemy's type above if it matches one of the tracked categories, so it turns on/off automatically with Current Target — leave it on \"always\" if your favored enemy isn't one of these (e.g. a specific humanoid subtype) and toggle it by hand instead.",
@@ -543,10 +561,74 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Fighter's untyped bonus to attack and damage rolls with weapons from a trained weapon group; bonuses from overlapping groups don't stack (use the highest).",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
-{id:"bane",name:"Bane",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"enhancement",
+{id:"bane",name:"Bane",category:"weapon",subcat:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"enhancement",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Designated foe type',type:'select',options:VS_FLAG_OPTIONS,default:''}],
  desc:"Bane weapon: +2 enhancement bonus to attack rolls and an extra 2d6 damage (dice, not a flat number) against its designated foe type. Pick the weapon's designated foe type above so it turns on/off automatically with Current Target.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match this weapon\'s designated foe type — see the field above'};return {attack:v,damage:0,note:signed(v)+' '+"enhancement"+" (plus 2d6 extra damage, not modeled as a flat number — see description)"}}},
+
+// ---------------- WEAPON PROPERTIES ----------------
+// Extra damage dice from these are never multiplied on a crit (Core Rulebook pg. 468,
+// "Additional Damage Dice") — this engine never resolves dice to a number anyway, so
+// these stay dice-based/informational (0 added to totals) with the real dice shown in
+// the note, same pattern as Vital Strike/Sneak Attack.
+{id:'flaming',name:'Flaming',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'+1 equivalent. Extra 1d6 fire damage on every successful hit while active (command word); not multiplied on a crit.',
+ compute:()=>({attack:0,damage:0,note:'+1d6 fire damage on every hit — not multiplied on a crit'})},
+{id:'frost',name:'Frost',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'+1 equivalent. Extra 1d6 cold damage on every successful hit while active (command word); not multiplied on a crit.',
+ compute:()=>({attack:0,damage:0,note:'+1d6 cold damage on every hit — not multiplied on a crit'})},
+{id:'shock',name:'Shock',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'+1 equivalent. Extra 1d6 electricity damage on every successful hit while active (command word); not multiplied on a crit.',
+ compute:()=>({attack:0,damage:0,note:'+1d6 electricity damage on every hit — not multiplied on a crit'})},
+{id:'corrosive',name:'Corrosive',category:'weapon',subcat:'elemental',source:'Ultimate Equipment / Advanced Player\'s Guide',appliesTo:['damage'],type:'none',
+ desc:'+1 equivalent. Extra 1d6 acid damage on every successful hit while active (command word); not multiplied on a crit.',
+ compute:()=>({attack:0,damage:0,note:'+1d6 acid damage on every hit — not multiplied on a crit'})},
+{id:'flaming-burst',name:'Flaming Burst',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'+2 equivalent. As Flaming (+1d6 fire on a hit while active), PLUS a separate fire burst on a confirmed critical hit (1d10/2d10/3d10 by ×2/×3/×4 crit multiplier) that fires even if Flaming isn\'t currently toggled on. The burst die is NOT simply double the base 1d6.',
+ compute:(ctx)=>({attack:0,damage:0,note:'+1d6 fire on any hit (while active), plus +'+critDiceForMult(10,ctx.critMult||2)+' fire specifically on a confirmed crit (fires even if the base fire effect is off)'})},
+{id:'icy-burst',name:'Icy Burst',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'+2 equivalent. The "burst" upgrade of Frost (its real item name is Icy Burst, not "Frost Burst"). As Frost (+1d6 cold on a hit while active), PLUS a separate cold burst on a confirmed critical hit (1d10/2d10/3d10 by ×2/×3/×4 crit multiplier) that fires even if Frost isn\'t currently toggled on.',
+ compute:(ctx)=>({attack:0,damage:0,note:'+1d6 cold on any hit (while active), plus +'+critDiceForMult(10,ctx.critMult||2)+' cold specifically on a confirmed crit (fires even if the base cold effect is off)'})},
+{id:'shocking-burst',name:'Shocking Burst',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'+2 equivalent. As Shock (+1d6 electricity on a hit while active), PLUS a separate electricity burst on a confirmed critical hit (1d10/2d10/3d10 by ×2/×3/×4 crit multiplier) that fires even if Shock isn\'t currently toggled on.',
+ compute:(ctx)=>({attack:0,damage:0,note:'+1d6 electricity on any hit (while active), plus +'+critDiceForMult(10,ctx.critMult||2)+' electricity specifically on a confirmed crit (fires even if the base electricity effect is off)'})},
+{id:'corrosive-burst',name:'Corrosive Burst',category:'weapon',subcat:'elemental',source:'Ultimate Equipment / Advanced Player\'s Guide',appliesTo:['damage'],type:'none',
+ desc:'+2 equivalent. As Corrosive (+1d6 acid on a hit while active), PLUS a separate acid burst on a confirmed critical hit (1d10/2d10/3d10 by ×2/×3/×4 crit multiplier) that fires even if Corrosive isn\'t currently toggled on.',
+ compute:(ctx)=>({attack:0,damage:0,note:'+1d6 acid on any hit (while active), plus +'+critDiceForMult(10,ctx.critMult||2)+' acid specifically on a confirmed crit (fires even if the base acid effect is off)'})},
+{id:'thundering',name:'Thundering',category:'weapon',subcat:'elemental',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'+1 equivalent. No damage on a normal hit — deals extra sonic damage (1d8/2d8/3d8 by ×2/×3/×4 crit multiplier) only on a confirmed critical hit, and the target must succeed a DC 14 Fortitude save or be permanently deafened.',
+ compute:(ctx)=>({attack:0,damage:0,note:'no bonus on a normal hit; +'+critDiceForMult(8,ctx.critMult||2)+' sonic only on a confirmed crit, plus DC 14 Fort save or permanent deafness'})},
+{id:'keen',name:'Keen',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'+1 equivalent. Doubles the weapon\'s threat range (piercing/slashing melee only) — e.g. 19–20 becomes 17–20, 18–20 becomes 15–20, 20 stays 19–20. Doesn\'t stack with Improved Critical or the keen edge spell (same effect, use the better one). Applied automatically to the threat range shown in Critical Damage below.',
+ compute:()=>({attack:0,damage:0,note:'applied automatically to the threat range in Critical Damage below'})},
+{id:'holy',name:'Holy',category:'weapon',subcat:'alignment',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'+2 equivalent. Extra 2d6 damage against evil creatures only (not multiplied on a crit); also good-aligned (bypasses matching DR) and inflicts a permanent negative level on an evil wielder. Set Current Target above to Evil (or a more specific evil category).',
+ compute:(ctx)=>{if(!targetMatches(ctx,'evil'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Evil above'};return {attack:0,damage:0,note:'+2d6 damage vs evil — not multiplied on a crit'}}},
+{id:'unholy',name:'Unholy',category:'weapon',subcat:'alignment',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'+2 equivalent. Extra 2d6 damage against good creatures only (not multiplied on a crit); also evil-aligned (bypasses matching DR) and inflicts a permanent negative level on a good wielder. Set Current Target above to Good.',
+ compute:(ctx)=>{if(!targetMatches(ctx,'good'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Good above'};return {attack:0,damage:0,note:'+2d6 damage vs good — not multiplied on a crit'}}},
+{id:'axiomatic',name:'Axiomatic',category:'weapon',subcat:'alignment',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'+2 equivalent. Extra 2d6 damage against chaotic creatures only (not multiplied on a crit); also law-aligned (bypasses matching DR) and inflicts a permanent negative level on a chaotic wielder. Set Current Target above to Chaotic.',
+ compute:(ctx)=>{if(!targetMatches(ctx,'chaotic'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Chaotic above'};return {attack:0,damage:0,note:'+2d6 damage vs chaotic — not multiplied on a crit'}}},
+{id:'anarchic',name:'Anarchic',category:'weapon',subcat:'alignment',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'+2 equivalent. Extra 2d6 damage against lawful creatures only (not multiplied on a crit); also chaos-aligned (bypasses matching DR) and inflicts a permanent negative level on a lawful wielder. Set Current Target above to Lawful.',
+ compute:(ctx)=>{if(!targetMatches(ctx,'lawful'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Lawful above'};return {attack:0,damage:0,note:'+2d6 damage vs lawful — not multiplied on a crit'}}},
+{id:'vicious',name:'Vicious',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'Melee only. Extra 2d6 damage to the TARGET on every hit, but also 1d6 damage to YOU (the wielder) on every hit — no target-alignment condition.',
+ compute:()=>({attack:0,damage:0,note:'+2d6 damage to the target AND +1d6 self-damage to you, every hit'})},
+{id:'wounding',name:'Wounding',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'Melee only. Each hit adds 1 point of ongoing bleed (stacks with repeated hits) — NOT a one-time damage bonus. The bleed is taken at the start of the target\'s own turn, not multiplied on a crit; cured by a DC 15 Heal check or any hit-point-curing spell; creatures immune to crits are immune to this too.',
+ compute:()=>({attack:0,damage:0,note:'+1 stacking bleed/hit (taken on the target\'s turn, not yours) — not a one-time bonus'})},
+{id:'speed',name:'Speed',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:['attack'],type:'special',
+ desc:'+3 equivalent. Grants one extra attack at full BAB on a full-attack action — no flat attack/damage bonus of its own. Doesn\'t stack with haste or similar "extra attack" effects.',
+ compute:()=>({attack:0,damage:0,note:'grants one extra attack at full BAB on a full attack — not modeled in the Full Attack line above, add it by hand'})},
+{id:'vorpal',name:'Vorpal',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:['damage'],type:'special',
+ desc:'+5 equivalent. Slashing melee only. On a natural 20 that\'s confirmed as a critical hit, decapitates (usually kills) the target. Headless creatures (many aberrations, oozes) are immune; golems and most non-vampire undead are unaffected by head loss.',
+ compute:()=>({attack:0,damage:0,note:'decapitation on a confirmed nat-20 crit — not a numeric bonus'})},
+{id:'merciful',name:'Merciful',category:'weapon',subcat:'other',source:'Core Rulebook',appliesTo:['damage'],type:'none',
+ desc:'Extra 1d6 damage while active, but ALL of the weapon\'s damage becomes nonlethal while it is. Toggle it off (on command) to deal normal lethal damage without the bonus die.',
+ compute:()=>({attack:0,damage:0,note:'+1d6 damage while active, but all damage becomes nonlethal while active'})},
+
 {id:"aid-another-combat",name:"Aid Another (Combat)",category:"other",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"A character who succeeds on a melee attack roll against AC 10 can grant an ally a +2 untyped bonus on their next attack roll against the same opponent.",
@@ -907,6 +989,7 @@ const MODIFIERS = [
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'skill',label:'Skills'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
+  {k:'weapon',label:'Weapon Properties',subcats:[{k:'elemental',label:'Elemental'},{k:'alignment',label:'Alignment'},{k:'other',label:'Other Properties'}]},
   {k:'mythic',label:'Mythic',subcats:[{k:'feat',label:'Mythic Feats'},{k:'path',label:'Path Abilities'},{k:'universal',label:'Universal (Surge, etc.)'},{k:'other',label:'Custom / Other'}]},
   {k:'houserule',label:'House Rules'}];
 
@@ -1292,6 +1375,21 @@ function maxDiceValue(dice){
   if(!m) return dice;
   return Number(m[1])*Number(m[2]);
 }
+function parseThreatLow(threatStr){
+  const m=String(threatStr).match(/(\d+)/);
+  return m ? Number(m[1]) : 20;
+}
+function keenThreatRange(threatLow){
+  // Doubles the COUNT of threatening numbers, not the raw bound: 20->19-20, 19-20->17-20, 18-20->15-20.
+  let size=(21-threatLow)*2;
+  let newLow=21-size;
+  return newLow>=20 ? '20' : (newLow+'–20');
+}
+function critDiceForMult(dieSize, critMult){
+  // e.g. dieSize=10, critMult=3 -> "2d10" (x2->1x, x3->2x, x4->3x the base die count)
+  let count = Math.max(1, critMult-1);
+  return count+'d'+dieSize;
+}
 
 const TWF_PENALTIES={ normal:{noFeat:{main:-6,off:-10}, feat:{main:-4,off:-4}}, light:{noFeat:{main:-4,off:-4}, feat:{main:-2,off:-2}} };
 
@@ -1303,7 +1401,7 @@ function compute(){
   let style=$('style').value, atkStat=$('atkStat').value, dmgStat=$('dmgStat').value;
   let weaponKey=$('weapon').value;
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
-  let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value};
+  let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value, critMult, weaponThreatLow:parseThreatLow(w.threat)};
 
   let {atkEntries,dmgEntries,breakdown,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn}=collectContributions(ctx);
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
@@ -1369,10 +1467,13 @@ function compute(){
     dmgCritDiceStr=critDice+(vsMult>1?' + '+diceMultiply(w.dice,vsMult-1)+' (Vital Strike, unmultiplied)':'');
   }
 
+  let hasKeen = p.active.some(a=>a.id==='keen' && a.on!==false);
+  let displayThreat = hasKeen ? keenThreatRange(ctx.weaponThreatLow) : w.threat;
+
   $('toHit').textContent=signed(atkFirst);
   $('fullAttack').textContent=iteratives.map(signed).join(' / ');
   $('dmgNormal').textContent=`${dmgNormalDice} ${signed(dmg)}`;
-  $('dmgCrit').textContent=`${dmgCritDiceStr} ${signed(critDmg)} (threat ${w.threat}/×${critMult})`;
+  $('dmgCrit').textContent=`${dmgCritDiceStr} ${signed(critDmg)} (threat ${displayThreat}/×${critMult})`;
 
   notes.push('Base attack: BAB '+signed(bab)+' + '+ABIL_LABEL[atkStat]+' '+signed(atkAbilityMod)+' + enhancement '+signed(enh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
   notes.push('Base damage: '+ABIL_LABEL[dmgStat]+' '+signed(dmgAbilityMod)+(style==='twoHanded'&&dmgStat!=='none'?' (×1.5, two-handed)':'')+' + enhancement '+signed(enh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
@@ -1383,6 +1484,12 @@ function compute(){
   }
   if(vsMult){
     notes.push('Vital Strike is active: Normal/Critical Damage above already include the extra weapon dice'+(mythicVitalStrikeOn?' and, with Mythic Vital Strike, your Str/enhancement/etc. bonuses are multiplied ×'+vsMult+' too':'')+'. This is a single attack-action strike, not part of a full attack — the Full Attack line no longer applies this turn.');
+  }
+  if(isCritImmune(ctx)){
+    notes.push('Current Target is immune to critical hits and precision damage (oozes, elementals, swarms, and incorporeal creatures are — constructs and ordinary undead are NOT, unlike 3.5e) — Critical Damage above doesn\'t apply, and Sneak Attack/Precise Strike are suppressed.');
+  }
+  if(hasKeen){
+    notes.push('Keen: threat range doubled to '+displayThreat+' (from '+w.threat+') — shown in Critical Damage above. Piercing/slashing melee weapons only; doesn\'t stack with Improved Critical or the keen edge spell.');
   }
 
   $('offAtkBox').style.display='none'; $('offDmgBox').style.display='none';
