@@ -194,9 +194,43 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="row"><label id="enhLabel">Weapon Base Enhancement (+X)</label><input id="enh" type="number" min="0" max="10" value="2"></div>
 <div id="offhandBox" class="offhandBox" style="display:none">
   <h3 style="margin-top:0">Off-Hand Weapon</h3>
+  <div class="row"><label>Off-Hand Weapon Type</label>
+  <select id="offWeapon">
+    <option value="longsword">Longsword — 1d8, 19–20/×2</option>
+    <option value="shortsword">Shortsword — 1d6, 19–20/×2</option>
+    <option value="greatsword">Greatsword — 2d6, 19–20/×2</option>
+    <option value="falchion">Falchion — 2d4, 18–20/×2</option>
+    <option value="scimitar">Scimitar — 1d6, 18–20/×2</option>
+    <option value="rapier">Rapier — 1d6, 18–20/×2</option>
+    <option value="lightMace">Light Mace — 1d6, ×2</option>
+    <option value="heavyMace">Heavy Mace — 1d8, ×2</option>
+    <option value="morningstar">Morningstar — 1d8, ×2</option>
+    <option value="warhammer">Warhammer — 1d8, ×3</option>
+    <option value="lightFlail">Light Flail — 1d8, ×2</option>
+    <option value="heavyFlail">Heavy Flail — 1d10, 19–20/×2</option>
+    <option value="battleaxe">Battleaxe — 1d8, ×3</option>
+    <option value="greataxe">Greataxe — 1d12, ×3</option>
+    <option value="spear">Spear — 1d8, ×3</option>
+    <option value="longspear">Longspear — 1d8, ×3</option>
+    <option value="lance">Lance — 1d8, ×3</option>
+    <option value="glaive">Glaive — 1d10, ×3</option>
+    <option value="halberd">Halberd — 1d10, ×3</option>
+    <option value="greatclub">Greatclub — 1d10, ×2</option>
+    <option value="custom">Custom</option>
+  </select></div>
+  <div id="offCustomWeapon" style="display:none">
+    <div class="row"><label>Off-Hand Base Damage Dice</label><input id="offCustomDice" value="1d6"></div>
+    <div class="row"><label>Off-Hand Threat Range</label><input id="offCustomThreat" value="20"></div>
+  </div>
   <div class="row"><label>Off-Hand Enhancement (+X)</label><input id="offEnh" type="number" min="0" max="10" value="0"></div>
   <div class="row"><label>Off-Hand Weapon Is Light</label><input id="offLight" type="checkbox" checked style="width:auto;justify-self:start"></div>
-  <div class="emptyNote">Attack penalties follow the standard two-weapon-fighting table (-6/-10 normal, -4/-4 light) and are automatically reduced if you add the "Two-Weapon Fighting" feat below; off-hand damage uses half your damage-ability bonus (from "Ability → Damage rolls" above) unless "Double Slice" is active. Off-hand weapon is assumed to use the same base damage dice as your main weapon above — adjust manually if different.</div>
+  <div class="row"><label>Off-Hand Critical Multiplier</label>
+  <select id="offCritMult">
+    <option value="2">×2</option>
+    <option value="3">×3</option>
+    <option value="4">×4</option>
+  </select></div>
+  <div class="emptyNote">Attack penalties follow the standard two-weapon-fighting table (-6/-10 normal, -4/-4 light) and are automatically reduced if you add the "Two-Weapon Fighting" feat below; off-hand damage uses half your damage-ability bonus (from "Ability → Damage rolls" above) unless "Double Slice" is active.</div>
 </div>
 <div id="ammoBox" class="offhandBox" style="display:none">
   <h3 style="margin-top:0">Ammunition</h3>
@@ -256,6 +290,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div class="result"><div class="small">Critical Damage</div><div class="big" id="dmgCrit">—</div></div>
   <div class="result" id="offAtkBox" style="display:none"><div class="small">Off-Hand Attack</div><div class="big" id="offAtk">+0</div></div>
   <div class="result" id="offDmgBox" style="display:none"><div class="small">Off-Hand Damage</div><div class="big" id="offDmg">—</div></div>
+  <div class="result" id="offCritBox" style="display:none"><div class="small">Off-Hand Critical Damage</div><div class="big" id="offCrit">—</div></div>
   <div class="result full"><div class="small">Notes</div><div id="notes" style="margin-top:6px;line-height:1.5;font-size:.85rem"></div></div>
 </div>
 </section>
@@ -1053,7 +1088,7 @@ function saveStore(){
 const BAB_PROGRESSION_MULT={full:1, threeQuarter:0.75, half:0.5};
 function defaultProfile(name){
   return {name, bab:6, characterLevel:10, babProgression:'full', str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
-    style:'twoHanded', atkStat:'str', dmgStat:'str', offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
+    style:'twoHanded', atkStat:'str', dmgStat:'str', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
     enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
 }
 let store=loadStore();
@@ -1069,6 +1104,11 @@ store.profiles.forEach(p=>{
   if(!p.dmgStat) p.dmgStat='str';
   if(p.offEnh===undefined) p.offEnh=0;
   if(p.offLight===undefined) p.offLight=true;
+  // Off-hand weapon used to be silently assumed to be the same as the main weapon
+  // (same dice/threat/crit mult, no way to pick a different one) — preserve that exact
+  // behavior for existing saved characters by copying the main weapon's values in,
+  // rather than defaulting to something that would change their totals.
+  if(p.offWeapon===undefined){ p.offWeapon=p.weapon; p.offCustomDice=p.customDice||'1d6'; p.offCustomThreat=p.customThreat||'20'; p.offCritMult=p.critMult||2; }
   if(!p.excludedSources) p.excludedSources={};
   if(p.race===undefined) p.race='';
   if(p.alignment===undefined) p.alignment='';
@@ -1101,10 +1141,12 @@ function loadProfileIntoUI(){
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
   $('style').value=p.style; $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat; $('enh').value=p.enh; $('critMult').value=p.critMult;
+  $('offWeapon').value=p.offWeapon; $('offCustomDice').value=p.offCustomDice; $('offCustomThreat').value=p.offCustomThreat; $('offCritMult').value=p.offCritMult;
   $('offEnh').value=p.offEnh; $('offLight').checked=!!p.offLight;
   $('ammoEnh').value=p.ammoEnh;
   $('race').value=p.race||''; $('alignment').value=p.alignment||'';
   $('customWeapon').style.display = p.weapon==='custom' ? 'block' : 'none';
+  $('offCustomWeapon').style.display = p.offWeapon==='custom' ? 'block' : 'none';
   $('offhandBox').style.display = p.style==='twf' ? 'block' : 'none';
   $('ammoBox').style.display = p.style==='ranged' ? 'block' : 'none';
   updateEnhLabel();
@@ -1120,6 +1162,7 @@ function syncUIIntoProfile(){
   p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
   p.style=$('style').value; p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
+  p.offWeapon=$('offWeapon').value; p.offCustomDice=$('offCustomDice').value; p.offCustomThreat=$('offCustomThreat').value; p.offCritMult=+$('offCritMult').value;
   p.offEnh=+$('offEnh').value; p.offLight=$('offLight').checked;
   p.ammoEnh=+$('ammoEnh').value;
   p.race=$('race').value.trim(); p.alignment=$('alignment').value;
@@ -1169,12 +1212,17 @@ $('deleteProfile').onclick=()=>{
   store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 
-['bab','characterLevel','babProgression','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offEnh','offLight','enh','ammoEnh','critMult'].forEach(id=>{
+['bab','characterLevel','babProgression','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offWeapon','offCustomDice','offCustomThreat','offCritMult','offEnh','offLight','enh','ammoEnh','critMult'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'block' : 'none';
       let w=WEAPONS[$('weapon').value];
       if(w) $('critMult').value=w.mult;
+    }
+    if(id==='offWeapon'){
+      $('offCustomWeapon').style.display = $('offWeapon').value==='custom' ? 'block' : 'none';
+      let ow=WEAPONS[$('offWeapon').value];
+      if(ow) $('offCritMult').value=ow.mult;
     }
     if(id==='style'){
       $('offhandBox').style.display = $('style').value==='twf' ? 'block' : 'none';
@@ -1549,6 +1597,15 @@ function compute(){
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
   let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value, critMult, weaponThreatLow:parseThreatLow(w.threat)};
 
+  // Off-hand weapon has its own type/dice/threat/crit multiplier (can differ from the
+  // main weapon) — build a second ctx for it so Weapon Effects tagged "Off-Hand Only"
+  // compute against ITS dice/crit mult (e.g. Keen's threat range, a Burst property's
+  // crit-only die), not the main weapon's.
+  let offWeaponKey=$('offWeapon').value;
+  let wOff = offWeaponKey==='custom' ? {dice:$('offCustomDice').value||'1d6', threat:$('offCustomThreat').value||'20'} : (WEAPONS[offWeaponKey]||w);
+  let offCritMultVal = +$('offCritMult').value || critMult;
+  let ctxOff = Object.assign({}, ctx, {weaponDice:wOff.dice, critMult:offCritMultVal, weaponThreatLow:parseThreatLow(wOff.threat)});
+
   let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen}=collectContributions(ctx);
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
   markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
@@ -1571,7 +1628,7 @@ function compute(){
   // is correct as before (nothing to split).
   let atkFromMods, dmgFromMods, atkFromModsOff, dmgFromModsOff, extraDiceMain, extraDiceOff;
   if(style==='twf'){
-    let mainSlot=collectSlotEntries(ctx,'main'), offSlot=collectSlotEntries(ctx,'off');
+    let mainSlot=collectSlotEntries(ctx,'main'), offSlot=collectSlotEntries(ctxOff,'off');
     atkFromMods=stackTotal(mainSlot.atk); dmgFromMods=stackTotal(mainSlot.dmg); extraDiceMain=mainSlot.extraDice;
     atkFromModsOff=stackTotal(offSlot.atk); dmgFromModsOff=stackTotal(offSlot.dmg); extraDiceOff=offSlot.extraDice;
   } else {
@@ -1683,7 +1740,11 @@ function compute(){
   let critDiceTerms = extraNormalTerms.concat(extraCritOnlyTerms);
   if(critDiceTerms.length) dmgCritDiceStr += ' + ' + critDiceTerms.join(' + ');
 
-  let hasKeen = p.active.some(a=>a.id==='keen' && a.on!==false);
+  // Keen only affects the hand(s) it's tagged for — "Off-Hand Only" shouldn't change the
+  // main weapon's displayed threat range (and vice versa). Ranged's "weapon"/"ammo" tags
+  // are informational only (see Ammunition box note) so both count toward the one output.
+  let hasKeen = p.active.some(a=>a.id==='keen' && a.on!==false && (a.weaponSlot||'both')!=='off');
+  let hasKeenOff = p.active.some(a=>a.id==='keen' && a.on!==false && (a.weaponSlot||'both')!=='main');
   let displayThreat = hasKeen ? keenThreatRange(ctx.weaponThreatLow) : w.threat;
 
   $('toHit').textContent=signed(atkFirst);
@@ -1711,7 +1772,7 @@ function compute(){
     notes.push('Keen: threat range doubled to '+displayThreat+' (from '+w.threat+') — shown in Critical Damage above. Piercing/slashing melee weapons only; doesn\'t stack with Improved Critical or the keen edge spell.');
   }
 
-  $('offAtkBox').style.display='none'; $('offDmgBox').style.display='none';
+  $('offAtkBox').style.display='none'; $('offDmgBox').style.display='none'; $('offCritBox').style.display='none';
   if(style==='twf' && flurryOfBlowsOn){
     notes.push('Flurry of Blows and Two-Weapon Fighting style are both active — Flurry\'s own progression (above) takes precedence and the Two-Weapon Fighting off-hand math is skipped, since Flurry already grants its own extra attacks. Pick one style for a monk build (Flurry doesn\'t need an off-hand weapon).');
   } else if(style==='twf'){
@@ -1738,12 +1799,20 @@ function compute(){
     for(let i=0;i<rapidShotExtraCount;i++) iteratives.push(iteratives[0]);
     $('toHit').textContent=signed(iteratives[0]);
     $('fullAttack').textContent=iteratives.map(signed).join(' / ');
-    $('offAtkBox').style.display='block'; $('offDmgBox').style.display='block';
+    $('offAtkBox').style.display='block'; $('offDmgBox').style.display='block'; $('offCritBox').style.display='block';
     $('offAtk').textContent=signed(offAtk);
     let offExtraNormal=(extraDiceOff||[]).filter(e=>e.normal).map(e=>e.normal);
-    let offDmgDice = w.dice + (offExtraNormal.length ? ' + '+offExtraNormal.join(' + ') : '');
+    let offExtraCritOnly=(extraDiceOff||[]).filter(e=>e.crit).map(e=>e.crit);
+    let offDmgDice = wOff.dice + (offExtraNormal.length ? ' + '+offExtraNormal.join(' + ') : '');
     $('offDmg').textContent=`${offDmgDice} ${signed(offDmg)}`;
-    notes.push('Two-Weapon Fighting: penalties '+pen.main+'/'+pen.off+' ('+(offLight?'light':'normal')+' off-hand'+(hasTWF?', Two-Weapon Fighting feat applied':'')+'). Off-hand damage uses '+(hasDoubleSlice?'full':'half')+' of your damage ability modifier'+(hasDoubleSlice?' (Double Slice active)':'')+'. Modifier totals: main hand '+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg, off-hand '+signed(atkFromModsOff)+' atk / '+signed(dmgFromModsOff)+' dmg — Weapon Effects tagged "Main Hand Only"/"Off-Hand Only" above only count for that hand; everything else (and anything left on "Both Hands") counts for both.');
+    let offDisplayThreat = hasKeenOff ? keenThreatRange(parseThreatLow(wOff.threat)) : wOff.threat;
+    let offCritDice = diceMultiply(wOff.dice, offCritMultVal);
+    let offCritDiceTerms = offExtraNormal.concat(offExtraCritOnly);
+    let offCritDiceStr = offCritDice + (offCritDiceTerms.length ? ' + '+offCritDiceTerms.join(' + ') : '');
+    let offCritDmg = offDmg*offCritMultVal;
+    $('offCrit').textContent=`${offCritDiceStr} ${signed(offCritDmg)} (threat ${offDisplayThreat}/×${offCritMultVal})`;
+    if(hasKeenOff && wOff.threat!==offDisplayThreat) notes.push('Keen (off-hand): off-hand threat range doubled to '+offDisplayThreat+' (from '+wOff.threat+') — shown in Off-Hand Critical Damage above.');
+    notes.push('Two-Weapon Fighting: penalties '+pen.main+'/'+pen.off+' ('+(offLight?'light':'normal')+' off-hand'+(hasTWF?', Two-Weapon Fighting feat applied':'')+'). Off-hand damage uses '+(hasDoubleSlice?'full':'half')+' of your damage ability modifier'+(hasDoubleSlice?' (Double Slice active)':'')+'. Modifier totals: main hand '+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg, off-hand '+signed(atkFromModsOff)+' atk / '+signed(dmgFromModsOff)+' dmg — Weapon Effects tagged "Main Hand Only"/"Off-Hand Only" above only count for that hand and use THAT weapon\'s own dice/crit multiplier (e.g. a Flaming Burst crit die uses the off-hand weapon\'s crit multiplier if tagged Off-Hand Only); everything else (and anything left on "Both Hands") counts for both.');
   }
   $('notes').innerHTML=notes.map(n=>'• '+n).join('<br>');
 }
