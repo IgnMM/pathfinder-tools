@@ -101,15 +101,11 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <section class="card">
 <h2>Character &amp; Weapon</h2>
 <div class="row"><label>Character Level</label><input id="characterLevel" type="number" min="1" max="20" value="10"></div>
-<div class="row"><label>BAB Progression</label>
-<select id="babProgression">
-  <option value="full" selected>Full (1:1)</option>
-  <option value="threeQuarter">¾ (Cleric, Rogue, Bard...)</option>
-  <option value="half">Half (Wizard, Sorcerer...)</option>
-</select></div>
-<div class="row"><label>BAB</label><input id="bab" type="number" min="0" value="6"></div>
-<div class="row"><label>Suggested attacks</label><button id="useSuggestedBab" type="button" style="justify-self:start">Use suggested BAB: <span id="suggestedBabValue">+6</span></button></div>
-<div class="emptyNote">Character Level is also used to pre-fill level-scaling fields (Sneak Attack dice, caster level, bard/paladin level, etc.) when you add them from the catalog below — each is still editable individually afterward, e.g. for multiclass characters. BAB itself always stays a plain editable number: the progression selector only offers a one-click suggestion (Character Level × 1 / ¾ / ½, rounded down) for single-class characters — for multiclass, just type the summed BAB directly and ignore the suggestion. Each individual attack shown in "Full Attack" below (in Results) is also directly editable by hand — click into any of its number fields and type over it; a ↺ button appears next to anything you've overridden, to snap that one attack back to its computed value.</div>
+<div class="row"><label>Caster Level</label><input id="casterLevel" type="number" min="0" max="20" value="10"></div>
+<div class="emptyNote">Caster Level is often lower than Character Level — a Paladin/Ranger's is Character Level − 3 (starting at 4th level), for example. Set it independently; it pre-fills spell entries below that scale with caster level (Divine Favor, Magic Weapon Greater, Wrath, Gorum's Armor...) instead of Character Level.</div>
+<div class="row"><label>Number of Attacks</label><input id="numAttacks" type="number" min="1" max="8" value="1"></div>
+<div class="row"><label>BAB (per attack)</label><div id="babSequenceBox"></div></div>
+<div class="emptyNote">Type each attack's base attack bonus directly — no formula, no assumed "-5 per attack." Set "Number of Attacks" first, then fill in each box; the first box is also used as "BAB" everywhere else in the calculator (Power Attack scaling, etc.). Character Level only pre-fills level-scaling fields elsewhere (Sneak Attack dice, caster level, bard/paladin level...) when you add them from the catalog below — it no longer affects BAB.</div>
 <div class="row"><label>Play with Mythic rules?</label><input id="mythicEnabled" type="checkbox" style="width:auto;justify-self:start"></div>
 <div id="mythicTierBox" style="display:none">
 <div class="row"><label>Mythic Tier</label><input id="mythicTier" type="number" min="0" max="10" value="0"></div>
@@ -548,7 +544,7 @@ const MODIFIERS = [
  compute:()=>({attack:1,damage:0,note:'+1 atk (morale)'})},
 {id:'divine-favor',name:'Divine Favor',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'luck',
  desc:'+1 luck bonus per 3 caster levels (max +3) on attack and weapon damage rolls.',
- configFields:[{key:'cl',label:'Caster level',type:'number',default:5,linkLevel:true}],
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:5,linkLevel:'cl'}],
  compute:(ctx,cfg)=>{let b=Math.min(3,Math.max(1,Math.floor((cfg.cl||1)/3)));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (luck)'}}},
 {id:'prayer',name:'Prayer',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'luck',
  desc:'+1 luck bonus on attack and weapon damage rolls (does not stack with Divine Favor — both are luck).',
@@ -561,7 +557,7 @@ const MODIFIERS = [
  compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement)'})},
 {id:'greater-magic-weapon',name:'Magic Weapon, Greater',category:'weapon',subcat:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
  desc:'+1 enhancement bonus per 4 caster levels (max +5).',
- configFields:[{key:'cl',label:'Caster level',type:'number',default:8,linkLevel:true}],
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:8,linkLevel:'cl'}],
  compute:(ctx,cfg)=>{let b=Math.min(5,Math.floor((cfg.cl||1)/4));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement)'}}},
 
 // ---------------- SPELLS (batch 2) ----------------
@@ -624,8 +620,9 @@ const MODIFIERS = [
  desc:"Turns a weapon into a magical glaive with a scaling enhancement bonus (+1, then +2 at CL15, +3 at CL19) plus escalating special abilities.",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 {id:"gorum-s-armor",name:"Gorum's Armor",category:"weapon",subcat:"spell",source:"Inner Sea World Guide",appliesTo:["attack","damage"],type:"enhancement",
- desc:"Armor/shield spikes gain a scaling enhancement bonus at higher caster levels (0 below CL5, +1 at CL5, +2 at CL10).",
- compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:5,linkLevel:'cl'}],
+ desc:"Armor/shield spikes gain a scaling enhancement bonus at higher caster levels (0 below CL5, +1 at CL5, +2 at CL10). Only applies to armor/shield spike attacks, not other weapons.",
+ compute:(ctx,cfg)=>{let cl=cfg.cl||0;let b=cl>=10?2:cl>=5?1:0;return {attack:b,damage:b,note:(b>0?signed(b)+' atk / '+signed(b)+' dmg (enhancement)':'0 — below CL5, no bonus yet')+' — only applies to armor/shield spike attacks'}}},
 {id:"guidance",name:"Guidance",category:"spell",source:"Core Rulebook",appliesTo:["attack"],type:"competence",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"+1 competence bonus usable on one attack roll (or a save/skill check instead), chosen before the roll. One-time use.",
@@ -698,7 +695,7 @@ const MODIFIERS = [
  desc:"+2 sacred bonus on damage rolls with one chosen weapon; also inflicts shaken on a critical hit.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:signed(v)+' '+"sacred"}}},
 {id:"wrath",name:"Wrath",category:"spell",source:"Advanced Player's Guide",appliesTo:["attack","damage"],type:"morale",
- configFields:[{key:'cl',label:'Caster level',type:'number',default:9,linkLevel:true}],
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:9,linkLevel:'cl'}],
  desc:"+1 morale bonus per 3 caster levels (min +1, max +3) on attack and weapon damage rolls, but only against one designated enemy.",
  compute:(ctx,cfg)=>{let cl=cfg.cl||1;let b=Math.min(3,Math.max(1,Math.floor(cl/3)));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (morale, vs designated enemy)'}}},
 
@@ -1207,10 +1204,9 @@ function saveStore(){
     saveIndicatorTimer=setTimeout(()=>el.classList.remove('show'),1200);
   }
 }
-const BAB_PROGRESSION_MULT={full:1, threeQuarter:0.75, half:0.5};
 function defaultProfile(name){
-  return {name, bab:6, characterLevel:10, babProgression:'full', str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
-    style:'twoHanded', atkStat:'str', dmgStat:'str', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none', attackOverrides:{},
+  return {name, babList:[6], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
+    style:'twoHanded', atkStat:'str', dmgStat:'str', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
     enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
 }
 let store=loadStore();
@@ -1245,8 +1241,17 @@ store.profiles.forEach(p=>{
   if(p.ammoEnh===undefined) p.ammoEnh = (p.style==='ranged') ? (p.enh||0) : 0;
   if(p.active) p.active.forEach(a=>{ if(!a.weaponSlot) a.weaponSlot='both'; });
   if(p.characterLevel===undefined) p.characterLevel=10;
-  if(!p.babProgression) p.babProgression='full';
-  if(!p.attackOverrides) p.attackOverrides={};
+  if(p.casterLevel===undefined) p.casterLevel=p.characterLevel;
+  // BAB used to be one scalar number that mechanically derived the whole "-5 per attack"
+  // sequence. It's now entered per attack by hand (babList) — migrate old profiles by
+  // expanding their old single BAB into the exact same sequence the old formula would
+  // have shown, so nobody's saved character's totals silently change.
+  if(!p.babList || !p.babList.length){
+    let oldBab = (p.bab!==undefined) ? p.bab : 6;
+    let list=[]; for(let b=oldBab;b>0;b-=5) list.push(b);
+    if(!list.length) list=[oldBab];
+    p.babList=list;
+  }
 });
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
@@ -1258,8 +1263,8 @@ function populateProfileSelect(){
 
 function loadProfileIntoUI(){
   let p=currentProfile();
-  $('bab').value=p.bab; $('characterLevel').value=p.characterLevel; $('babProgression').value=p.babProgression; $('mythicEnabled').checked=!!p.mythicEnabled; $('mythicTier').value=p.mythicTier; $('currentTarget').value=p.currentTarget; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
-  updateSuggestedBab();
+  $('characterLevel').value=p.characterLevel; $('casterLevel').value=p.casterLevel; $('numAttacks').value=(p.babList&&p.babList.length)||1; $('mythicEnabled').checked=!!p.mythicEnabled; $('mythicTier').value=p.mythicTier; $('currentTarget').value=p.currentTarget; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
+  renderBabInputs();
   $('mythicTierBox').style.display = p.mythicEnabled ? 'block' : 'none';
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
@@ -1281,7 +1286,7 @@ function loadProfileIntoUI(){
 
 function syncUIIntoProfile(){
   let p=currentProfile();
-  p.bab=+$('bab').value; p.characterLevel=+$('characterLevel').value; p.babProgression=$('babProgression').value; p.mythicEnabled=$('mythicEnabled').checked; p.mythicTier=+$('mythicTier').value; p.currentTarget=$('currentTarget').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
+  p.characterLevel=+$('characterLevel').value; p.casterLevel=+$('casterLevel').value; p.mythicEnabled=$('mythicEnabled').checked; p.mythicTier=+$('mythicTier').value; p.currentTarget=$('currentTarget').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
   p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
   p.style=$('style').value; p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
@@ -1294,66 +1299,34 @@ function syncUIIntoProfile(){
 function updateEnhLabel(){
   $('enhLabel').textContent = $('style').value==='ranged' ? 'Bow/Crossbow Enhancement (+X, overcomes DR only)' : 'Weapon Base Enhancement (+X)';
 }
-function suggestedBab(){
-  let lvl=+$('characterLevel').value||0, prog=$('babProgression').value;
-  return Math.floor(lvl*(BAB_PROGRESSION_MULT[prog]||1));
-}
-function suggestedBabIteratives(){
-  let bab=suggestedBab();
-  let iters=[]; for(let b=bab;b>0;b-=5) iters.push(b);
-  if(!iters.length) iters=[bab];
-  return iters;
-}
-function updateSuggestedBab(){
-  $('suggestedBabValue').textContent = suggestedBabIteratives().map(signed).join(' / ');
-}
-$('useSuggestedBab').addEventListener('click', ()=>{
-  $('bab').value = suggestedBab();
-  syncUIIntoProfile(); compute();
-});
+$('numAttacks').addEventListener('input', ()=>{ renderBabInputs(); syncUIIntoProfile(); compute(); });
 
-// Full Attack: each individual attack is independently editable (not just the base BAB,
-// which only drives the computed DEFAULT via the standard -5-per-attack formula). An
-// override is stored per attack index and persists across recomputation until reset —
-// it never feeds back into any other calculation, Full Attack is a terminal display.
-function renderFullAttack(iteratives){
+// BAB is entered directly per attack — no formula, no "-5 per attack" assumption. The
+// player sets how many attacks they have (Number of Attacks) and types each attack's own
+// base attack bonus by hand. p.babList[0] is still "BAB" for every other formula in the
+// calculator (Power Attack scaling, etc.) exactly like the old single BAB field was.
+function renderBabInputs(){
   let p=currentProfile();
-  if(!p.attackOverrides) p.attackOverrides={};
-  Object.keys(p.attackOverrides).forEach(k=>{ if(+k>=iteratives.length) delete p.attackOverrides[k]; });
-  let box=$('fullAttack');
+  let n=Math.max(1, Math.min(8, +$('numAttacks').value||1));
+  if(!p.babList || !p.babList.length) p.babList=[6];
+  while(p.babList.length<n) p.babList.push(Math.max(0, p.babList[p.babList.length-1]-5));
+  if(p.babList.length>n) p.babList=p.babList.slice(0,n);
+  let box=$('babSequenceBox');
   box.innerHTML='';
-  box.style.display='flex'; box.style.flexWrap='wrap'; box.style.gap='4px'; box.style.alignItems='center';
-  iteratives.forEach((v,i)=>{
-    let hasOverride = p.attackOverrides[i]!==undefined;
-    let display = hasOverride ? p.attackOverrides[i] : v;
-    let wrap=document.createElement('span'); wrap.style.cssText='display:inline-flex;align-items:center;gap:2px';
+  box.style.cssText='display:flex;flex-wrap:wrap;gap:6px;align-items:center';
+  p.babList.forEach((v,i)=>{
     let inp=document.createElement('input');
-    inp.type='text'; inp.inputMode='numeric'; inp.value=signed(display);
-    inp.title='Attack '+(i+1)+(hasOverride?' — edited by hand, computed value would be '+signed(v):' — computed');
-    inp.style.cssText='width:58px;padding:3px 4px;font-size:1rem;font-weight:800;text-align:center;color:#fff;background:#0e151e;'+(hasOverride?'border-color:var(--gold)':'border-color:var(--line)');
+    inp.type='text'; inp.inputMode='numeric'; inp.value=v;
+    inp.title='Attack '+(i+1)+' base attack bonus'+(i===0?' — this is "BAB" for every other formula (Power Attack, etc.)':'');
+    inp.style.cssText='width:56px;padding:5px 4px;font-weight:700;text-align:center;color:#fff;background:#0f161f;border:1px solid var(--line);border-radius:8px';
     inp.addEventListener('input',()=>{
       let raw=inp.value.trim();
-      let n=Number(raw.replace(/^\+/,''));
-      if(raw!=='' && !isNaN(n)){
-        p.attackOverrides[i]=n;
-        inp.style.borderColor='var(--gold)';
-        inp.title='Attack '+(i+1)+' — edited by hand, computed value would be '+signed(v);
-        if(!wrap.querySelector('.resetAtk')) wrap.appendChild(buildResetBtn());
-        saveStore();
-      }
+      let num=Number(raw);
+      if(raw!=='' && !isNaN(num)){ p.babList[i]=num; saveStore(); compute(); }
     });
-    function buildResetBtn(){
-      let reset=document.createElement('button'); reset.type='button'; reset.className='resetAtk'; reset.textContent='↺';
-      reset.title='Reset attack '+(i+1)+' to the computed value';
-      reset.style.cssText='padding:2px 6px;font-size:.75rem;line-height:1;cursor:pointer';
-      reset.addEventListener('click',()=>{ delete p.attackOverrides[i]; saveStore(); compute(); });
-      return reset;
-    }
-    wrap.appendChild(inp);
-    if(hasOverride) wrap.appendChild(buildResetBtn());
-    box.appendChild(wrap);
-    if(i<iteratives.length-1) box.appendChild(document.createTextNode('/'));
+    box.appendChild(inp);
   });
+  saveStore();
 }
 
 $('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); };
@@ -1385,7 +1358,7 @@ $('deleteProfile').onclick=()=>{
   store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 
-['bab','characterLevel','babProgression','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offWeapon','offCustomDice','offCustomThreat','offCritMult','offEnh','offLight','enh','ammoEnh','critMult'].forEach(id=>{
+['characterLevel','casterLevel','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offWeapon','offCustomDice','offCustomThreat','offCritMult','offEnh','offLight','enh','ammoEnh','critMult'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'block' : 'none';
@@ -1403,7 +1376,6 @@ $('deleteProfile').onclick=()=>{
       updateEnhLabel();
       renderCategories();
     }
-    if(id==='characterLevel' || id==='babProgression') updateSuggestedBab();
     syncUIIntoProfile();
     if(id==='mythicEnabled'){
       $('mythicTierBox').style.display = $('mythicEnabled').checked ? 'block' : 'none';
@@ -1534,7 +1506,11 @@ function renderCategories(){
     if(!m){ if(name) alert('No catalog entry named "'+name+'" in '+cat+'. Use "+ Custom" instead.'); return; }
     let p=currentProfile();
     if(p.excludedSources[m.source]){ alert('"'+m.name+'" is from '+m.source+', which is excluded in Sources. Re-enable that source first if you want to add it.'); return; }
-    let cfg={}; (m.configFields||[]).forEach(f=>{ cfg[f.key] = (f.linkLevel && p.characterLevel) ? p.characterLevel : f.default; });
+    let cfg={}; (m.configFields||[]).forEach(f=>{
+      if(f.linkLevel==='cl' && p.casterLevel!==undefined) cfg[f.key]=p.casterLevel;
+      else if(f.linkLevel && p.characterLevel!==undefined) cfg[f.key]=p.characterLevel;
+      else cfg[f.key]=f.default;
+    });
     p.active.push({id:m.id, cfg, on:true, weaponSlot:'both'});
     saveStore(); renderCategories(); compute();
   });
@@ -1787,7 +1763,8 @@ const ABIL_LABEL={str:'STR',dex:'DEX',con:'CON',int:'INT',wis:'WIS',cha:'CHA',no
 
 function compute(){
   let p=currentProfile();
-  let bab=+$('bab').value, enh=+$('enh').value, ammoEnh=+$('ammoEnh').value, critMult=+$('critMult').value;
+  let babList = (p.babList && p.babList.length) ? p.babList : [6];
+  let bab=babList[0], enh=+$('enh').value, ammoEnh=+$('ammoEnh').value, critMult=+$('critMult').value;
   let style=$('style').value, atkStat=$('atkStat').value, dmgStat=$('dmgStat').value;
   let weaponKey=$('weapon').value;
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
@@ -1873,8 +1850,7 @@ function compute(){
   let rapidShotChoice = mythicRapidShotRec ? ((mythicRapidShotRec.cfg||{}).choice||'waive') : '';
   let rapidShotExtraCount = rapidShotRec ? ((mythicRapidShotRec && rapidShotChoice==='extra') ? 2 : 1) : 0;
 
-  let iteratives=[];
-  for(let b=bab;b>0;b-=5) iteratives.push(atk-(bab-b));
+  let iteratives = babList.map(b => b + (atk-bab));
   if(iteratives.length) iteratives[0]=atkFirst;
   if(!iteratives.length) iteratives=[atkFirst];
   if(mythicPrecisionOn && iteratives.length>1){
@@ -1944,7 +1920,7 @@ function compute(){
   let displayThreat = hasKeen ? keenThreatRange(ctx.weaponThreatLow) : w.threat;
 
   $('toHit').textContent=signed(atkFirst);
-  renderFullAttack(iteratives);
+  $('fullAttack').textContent=iteratives.map(signed).join(' / ');
   $('dmgNormal').textContent=`${dmgNormalDice} ${signed(dmg)}`;
   $('dmgCrit').textContent=`${dmgCritDiceStr} ${signed(critDmg)} (threat ${displayThreat}/×${critMult})`;
 
@@ -1990,7 +1966,7 @@ function compute(){
     let offDmgAbility = hasDoubleSlice ? dmgAbilityMod : (dmgAbilityMod<0 ? dmgAbilityMod : Math.floor(dmgAbilityMod/2));
     let offDmg = offDmgAbility + offEnh + dmgFromModsOff;
     if(hasMythicTWF) notes.push('Mythic Two-Weapon Fighting: two-weapon attack penalties fully waived (spending mythic power) instead of just reduced.');
-    iteratives=[]; for(let b=bab;b>0;b-=5) iteratives.push(mainAtk-(bab-b));
+    iteratives = babList.map(b => b + (mainAtk-bab));
     if(!iteratives.length) iteratives=[mainAtk];
     if(furiousFocusOn && powerAttackOn && mythicFuriousFocusOn) iteratives=iteratives.map(v=>v-powerAttackAtkVal);
     else if(furiousFocusOn && powerAttackOn) iteratives[0]=mainAtk-powerAttackAtkVal;
@@ -2000,7 +1976,7 @@ function compute(){
     if(hasExtraAttack) iteratives.push(iteratives[0]);
     for(let i=0;i<rapidShotExtraCount;i++) iteratives.push(iteratives[0]);
     $('toHit').textContent=signed(iteratives[0]);
-    renderFullAttack(iteratives);
+    $('fullAttack').textContent=iteratives.map(signed).join(' / ');
     let offIteratives=[offAtk];
     if(hasImprovedTWF) offIteratives.push(offAtk-5);
     if(hasGreaterTWF) offIteratives.push(offAtk-10);
