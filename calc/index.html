@@ -108,7 +108,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <option value="half">Half (Wizard, Sorcerer...)</option>
 </select></div>
 <div class="row"><label>BAB</label><input id="bab" type="number" min="0" value="6"></div>
-<div class="row"><label></label><button id="useSuggestedBab" type="button" style="justify-self:start">Use suggested BAB: <span id="suggestedBabValue">+6</span></button></div>
+<div class="row"><label>Suggested attacks</label><button id="useSuggestedBab" type="button" style="justify-self:start">Use suggested BAB: <span id="suggestedBabValue">+6</span></button></div>
 <div class="emptyNote">Character Level is also used to pre-fill level-scaling fields (Sneak Attack dice, caster level, bard/paladin level, etc.) when you add them from the catalog below — each is still editable individually afterward, e.g. for multiclass characters. BAB itself always stays a plain editable number: the progression selector only offers a one-click suggestion (Character Level × 1 / ¾ / ½, rounded down) for single-class characters — for multiclass, just type the summed BAB directly and ignore the suggestion.</div>
 <div class="row"><label>Play with Mythic rules?</label><input id="mythicEnabled" type="checkbox" style="width:auto;justify-self:start"></div>
 <div id="mythicTierBox" style="display:none">
@@ -1175,8 +1175,14 @@ function suggestedBab(){
   let lvl=+$('characterLevel').value||0, prog=$('babProgression').value;
   return Math.floor(lvl*(BAB_PROGRESSION_MULT[prog]||1));
 }
+function suggestedBabIteratives(){
+  let bab=suggestedBab();
+  let iters=[]; for(let b=bab;b>0;b-=5) iters.push(b);
+  if(!iters.length) iters=[bab];
+  return iters;
+}
 function updateSuggestedBab(){
-  $('suggestedBabValue').textContent = signed(suggestedBab());
+  $('suggestedBabValue').textContent = suggestedBabIteratives().map(signed).join(' / ');
 }
 $('useSuggestedBab').addEventListener('click', ()=>{
   $('bab').value = suggestedBab();
