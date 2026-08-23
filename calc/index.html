@@ -136,29 +136,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 </select></div>
 <h3>Weapon</h3>
 <div class="row"><label>Weapon Type</label>
-<select id="weapon">
-  <option value="longsword" selected>Longsword — 1d8, 19–20/×2</option>
-  <option value="shortsword">Shortsword — 1d6, 19–20/×2</option>
-  <option value="greatsword">Greatsword — 2d6, 19–20/×2</option>
-  <option value="falchion">Falchion — 2d4, 18–20/×2</option>
-  <option value="scimitar">Scimitar — 1d6, 18–20/×2</option>
-  <option value="rapier">Rapier — 1d6, 18–20/×2</option>
-  <option value="lightMace">Light Mace — 1d6, ×2</option>
-  <option value="heavyMace">Heavy Mace — 1d8, ×2</option>
-  <option value="morningstar">Morningstar — 1d8, ×2</option>
-  <option value="warhammer">Warhammer — 1d8, ×3</option>
-  <option value="lightFlail">Light Flail — 1d8, ×2</option>
-  <option value="heavyFlail">Heavy Flail — 1d10, 19–20/×2</option>
-  <option value="battleaxe">Battleaxe — 1d8, ×3</option>
-  <option value="greataxe">Greataxe — 1d12, ×3</option>
-  <option value="spear">Spear — 1d8, ×3</option>
-  <option value="longspear">Longspear — 1d8, ×3</option>
-  <option value="lance">Lance — 1d8, ×3</option>
-  <option value="glaive">Glaive — 1d10, ×3</option>
-  <option value="halberd">Halberd — 1d10, ×3</option>
-  <option value="greatclub">Greatclub — 1d10, ×2</option>
-  <option value="custom">Custom</option>
-</select></div>
+<select id="weapon"></select></div>
 <div id="customWeapon" style="display:none">
   <div class="row"><label>Base Damage Dice</label><input id="customDice" value="1d8"></div>
   <div class="row"><label>Threat Range</label><input id="customThreat" value="20"></div>
@@ -195,29 +173,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div id="offhandBox" class="offhandBox" style="display:none">
   <h3 style="margin-top:0">Off-Hand Weapon</h3>
   <div class="row"><label>Off-Hand Weapon Type</label>
-  <select id="offWeapon">
-    <option value="longsword">Longsword — 1d8, 19–20/×2</option>
-    <option value="shortsword">Shortsword — 1d6, 19–20/×2</option>
-    <option value="greatsword">Greatsword — 2d6, 19–20/×2</option>
-    <option value="falchion">Falchion — 2d4, 18–20/×2</option>
-    <option value="scimitar">Scimitar — 1d6, 18–20/×2</option>
-    <option value="rapier">Rapier — 1d6, 18–20/×2</option>
-    <option value="lightMace">Light Mace — 1d6, ×2</option>
-    <option value="heavyMace">Heavy Mace — 1d8, ×2</option>
-    <option value="morningstar">Morningstar — 1d8, ×2</option>
-    <option value="warhammer">Warhammer — 1d8, ×3</option>
-    <option value="lightFlail">Light Flail — 1d8, ×2</option>
-    <option value="heavyFlail">Heavy Flail — 1d10, 19–20/×2</option>
-    <option value="battleaxe">Battleaxe — 1d8, ×3</option>
-    <option value="greataxe">Greataxe — 1d12, ×3</option>
-    <option value="spear">Spear — 1d8, ×3</option>
-    <option value="longspear">Longspear — 1d8, ×3</option>
-    <option value="lance">Lance — 1d8, ×3</option>
-    <option value="glaive">Glaive — 1d10, ×3</option>
-    <option value="halberd">Halberd — 1d10, ×3</option>
-    <option value="greatclub">Greatclub — 1d10, ×2</option>
-    <option value="custom">Custom</option>
-  </select></div>
+  <select id="offWeapon"></select></div>
   <div id="offCustomWeapon" style="display:none">
     <div class="row"><label>Off-Hand Base Damage Dice</label><input id="offCustomDice" value="1d6"></div>
     <div class="row"><label>Off-Hand Threat Range</label><input id="offCustomThreat" value="20"></div>
@@ -297,18 +253,178 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 
 </div>
 <script>
+// Full Simple/Martial/Exotic weapon catalog (Core Rulebook, Ultimate Combat, Ultimate
+// Equipment, Advanced Race Guide), sourced from Archives of Nethys (aonprd.com), Medium
+// size, ×2-only multiplier weapons omitted the "×2" from threat (threat "20" = ×2 no
+// expanded range). Double weapons and non-standard-damage items (nets, siege weapons,
+// firearms) are out of scope — see the "Custom" option for anything not listed.
 const WEAPONS={
-  longsword:{dice:"1d8",threat:"19–20",mult:2}, shortsword:{dice:"1d6",threat:"19–20",mult:2},
-  greatsword:{dice:"2d6",threat:"19–20",mult:2}, falchion:{dice:"2d4",threat:"18–20",mult:2},
-  scimitar:{dice:"1d6",threat:"18–20",mult:2}, rapier:{dice:"1d6",threat:"18–20",mult:2},
-  lightMace:{dice:"1d6",threat:"20",mult:2}, heavyMace:{dice:"1d8",threat:"20",mult:2},
-  morningstar:{dice:"1d8",threat:"20",mult:2}, warhammer:{dice:"1d8",threat:"20",mult:3},
-  lightFlail:{dice:"1d8",threat:"20",mult:2}, heavyFlail:{dice:"1d10",threat:"19–20",mult:2},
-  battleaxe:{dice:"1d8",threat:"20",mult:3}, greataxe:{dice:"1d12",threat:"20",mult:3},
-  spear:{dice:"1d8",threat:"20",mult:3}, longspear:{dice:"1d8",threat:"20",mult:3},
-  lance:{dice:"1d8",threat:"20",mult:3}, glaive:{dice:"1d10",threat:"20",mult:3},
-  halberd:{dice:"1d10",threat:"20",mult:3}, greatclub:{dice:"1d10",threat:"20",mult:2}
+  battleAspergillum:{dice:'1d6',threat:'20',mult:2,cat:'simple-light',source:'Ultimate Equipment',ranged:false,name:'Battle aspergillum'},
+  brassKnuckles:{dice:'1d3',threat:'20',mult:2,cat:'simple-light',source:'Ultimate Equipment',ranged:false,name:'Brass knuckles'},
+  cestus:{dice:'1d4',threat:'19–20',mult:2,cat:'simple-light',source:'Ultimate Equipment',ranged:false,name:'Cestus'},
+  dagger:{dice:'1d4',threat:'19–20',mult:2,cat:'simple-light',source:'Core Rulebook',ranged:false,name:'Dagger'},
+  gauntlet:{dice:'1d3',threat:'20',mult:2,cat:'simple-light',source:'Core Rulebook',ranged:false,name:'Gauntlet'},
+  lightMace:{dice:'1d6',threat:'20',mult:2,cat:'simple-light',source:'Core Rulebook',ranged:false,name:'Light mace'},
+  punchingDagger:{dice:'1d4',threat:'20',mult:3,cat:'simple-light',source:'Core Rulebook',ranged:false,name:'Punching dagger'},
+  sickle:{dice:'1d6',threat:'20',mult:2,cat:'simple-light',source:'Core Rulebook',ranged:false,name:'Sickle'},
+  spikedGauntlet:{dice:'1d4',threat:'20',mult:2,cat:'simple-light',source:'Core Rulebook',ranged:false,name:'Spiked gauntlet'},
+  woodenStake:{dice:'1d4',threat:'20',mult:2,cat:'simple-light',source:'Ultimate Equipment',ranged:false,name:'Wooden stake'},
+  club:{dice:'1d6',threat:'20',mult:2,cat:'simple-one-handed',source:'Core Rulebook',ranged:false,name:'Club'},
+  heavyMace:{dice:'1d8',threat:'20',mult:2,cat:'simple-one-handed',source:'Core Rulebook',ranged:false,name:'Heavy mace'},
+  mereClub:{dice:'1d4',threat:'20',mult:2,cat:'simple-one-handed',source:'Ultimate Equipment',ranged:false,name:'Mere club'},
+  morningstar:{dice:'1d8',threat:'20',mult:2,cat:'simple-one-handed',source:'Core Rulebook',ranged:false,name:'Morningstar'},
+  shortspear:{dice:'1d6',threat:'20',mult:2,cat:'simple-one-handed',source:'Core Rulebook',ranged:false,name:'Shortspear'},
+  bayonet:{dice:'1d6',threat:'20',mult:2,cat:'simple-two-handed',source:'Ultimate Equipment',ranged:false,name:'Bayonet'},
+  boarSpear:{dice:'1d8',threat:'20',mult:2,cat:'simple-two-handed',source:'Ultimate Equipment',ranged:false,name:'Boar spear'},
+  longspear:{dice:'1d8',threat:'20',mult:3,cat:'simple-two-handed',source:'Core Rulebook',ranged:false,name:'Longspear'},
+  spear:{dice:'1d8',threat:'20',mult:3,cat:'simple-two-handed',source:'Core Rulebook',ranged:false,name:'Spear'},
+  blowgun:{dice:'1d2',threat:'20',mult:2,cat:'simple-ranged',source:'Core Rulebook',ranged:true,ammo:null,name:'Blowgun'},
+  dart:{dice:'1d4',threat:'20',mult:2,cat:'simple-ranged',source:'Core Rulebook',ranged:true,ammo:'thrown',name:'Dart'},
+  heavyCrossbow:{dice:'1d10',threat:'19–20',mult:2,cat:'simple-ranged',source:'Core Rulebook',ranged:true,ammo:'bolts',name:'Heavy crossbow'},
+  javelin:{dice:'1d6',threat:'20',mult:2,cat:'simple-ranged',source:'Core Rulebook',ranged:true,ammo:'thrown',name:'Javelin'},
+  lightCrossbow:{dice:'1d8',threat:'19–20',mult:2,cat:'simple-ranged',source:'Core Rulebook',ranged:true,ammo:'bolts',name:'Light crossbow'},
+  sling:{dice:'1d4',threat:'20',mult:2,cat:'simple-ranged',source:'Core Rulebook',ranged:true,ammo:'sling-bullets',name:'Sling'},
+  underwaterHeavyCrossbow:{dice:'1d10',threat:'19–20',mult:2,cat:'simple-ranged',source:'Advanced Race Guide',ranged:true,ammo:'bolts',name:'Underwater heavy crossbow'},
+  underwaterLightCrossbow:{dice:'1d8',threat:'19–20',mult:2,cat:'simple-ranged',source:'Advanced Race Guide',ranged:true,ammo:'bolts',name:'Underwater light crossbow'},
+  butterflySword:{dice:'1d4',threat:'19–20',mult:2,cat:'martial-light',source:'Ultimate Combat',ranged:false,name:'Butterfly sword'},
+  dogslicer:{dice:'1d6',threat:'19–20',mult:2,cat:'martial-light',source:'Advanced Race Guide',ranged:false,name:'Dogslicer'},
+  gladius:{dice:'1d6',threat:'19–20',mult:2,cat:'martial-light',source:'Ultimate Combat',ranged:false,name:'Gladius'},
+  handaxe:{dice:'1d6',threat:'20',mult:3,cat:'martial-light',source:'Core Rulebook',ranged:false,name:'Handaxe'},
+  ironBrush:{dice:'1d3',threat:'20',mult:2,cat:'martial-light',source:'Ultimate Combat',ranged:false,name:'Iron brush'},
+  jutte:{dice:'1d6',threat:'20',mult:2,cat:'martial-light',source:'Ultimate Combat',ranged:false,name:'Jutte'},
+  kerambit:{dice:'1d3',threat:'20',mult:3,cat:'martial-light',source:'Ultimate Combat',ranged:false,name:'Kerambit'},
+  kukri:{dice:'1d4',threat:'18–20',mult:2,cat:'martial-light',source:'Core Rulebook',ranged:false,name:'Kukri'},
+  lightHammer:{dice:'1d4',threat:'20',mult:2,cat:'martial-light',source:'Core Rulebook',ranged:false,name:'Light hammer'},
+  lightPick:{dice:'1d4',threat:'20',mult:4,cat:'martial-light',source:'Core Rulebook',ranged:false,name:'Light pick'},
+  lightShield:{dice:'1d3',threat:'20',mult:2,cat:'martial-light',source:'Core Rulebook',ranged:false,name:'Light shield'},
+  lungchuanTamo:{dice:'1d4',threat:'20',mult:2,cat:'martial-light',source:'Ultimate Combat',ranged:false,name:'Lungchuan tamo'},
+  ratfolkTailblade:{dice:'1d3',threat:'20',mult:2,cat:'martial-light',source:'Advanced Race Guide',ranged:false,name:'Ratfolk Tailblade'},
+  sap:{dice:'1d6',threat:'20',mult:2,cat:'martial-light',source:'Core Rulebook',ranged:false,name:'Sap'},
+  seaKnife:{dice:'1d4',threat:'19–20',mult:2,cat:'martial-light',source:'Advanced Race Guide',ranged:false,name:'Sea-knife'},
+  shangGou:{dice:'1d4',threat:'20',mult:2,cat:'martial-light',source:'Ultimate Combat',ranged:false,name:'Shang gou'},
+  shortsword:{dice:'1d6',threat:'19–20',mult:2,cat:'martial-light',source:'Core Rulebook',ranged:false,name:'Short sword'},
+  spikedArmor:{dice:'1d6',threat:'20',mult:2,cat:'martial-light',source:'Core Rulebook',ranged:false,name:'Spiked armor'},
+  spikedLightShield:{dice:'1d4',threat:'20',mult:2,cat:'martial-light',source:'Core Rulebook',ranged:false,name:'Spiked light shield'},
+  starknife:{dice:'1d4',threat:'20',mult:3,cat:'martial-light',source:'Core Rulebook',ranged:false,name:'Starknife'},
+  throwingAxe:{dice:'1d6',threat:'20',mult:2,cat:'martial-light',source:'Core Rulebook',ranged:false,name:'Throwing axe'},
+  tonfa:{dice:'1d6',threat:'20',mult:2,cat:'martial-light',source:'Ultimate Combat',ranged:false,name:'Tonfa'},
+  wushuDart:{dice:'1d3',threat:'20',mult:2,cat:'martial-light',source:'Ultimate Combat',ranged:false,name:'Wushu dart'},
+  battleaxe:{dice:'1d8',threat:'20',mult:3,cat:'martial-one-handed',source:'Core Rulebook',ranged:false,name:'Battleaxe'},
+  doubleChickenSaber:{dice:'1d6',threat:'19–20',mult:2,cat:'martial-one-handed',source:'Ultimate Combat',ranged:false,name:'Double chicken saber'},
+  heavyPick:{dice:'1d6',threat:'20',mult:4,cat:'martial-one-handed',source:'Core Rulebook',ranged:false,name:'Heavy pick'},
+  heavyShield:{dice:'1d4',threat:'20',mult:2,cat:'martial-one-handed',source:'Core Rulebook',ranged:false,name:'Heavy shield'},
+  klar:{dice:'1d6',threat:'20',mult:2,cat:'martial-one-handed',source:'Ultimate Equipment',ranged:false,name:'Klar'},
+  lightFlail:{dice:'1d8',threat:'20',mult:2,cat:'martial-one-handed',source:'Core Rulebook',ranged:false,name:'Light flail'},
+  longsword:{dice:'1d8',threat:'19–20',mult:2,cat:'martial-one-handed',source:'Core Rulebook',ranged:false,name:'Longsword'},
+  nineRingBroadsword:{dice:'1d8',threat:'20',mult:3,cat:'martial-one-handed',source:'Ultimate Combat',ranged:false,name:'Nine-ring broadsword'},
+  rapier:{dice:'1d6',threat:'18–20',mult:2,cat:'martial-one-handed',source:'Core Rulebook',ranged:false,name:'Rapier'},
+  scimitar:{dice:'1d6',threat:'18–20',mult:2,cat:'martial-one-handed',source:'Core Rulebook',ranged:false,name:'Scimitar'},
+  scizore:{dice:'1d10',threat:'20',mult:2,cat:'martial-one-handed',source:'Ultimate Combat',ranged:false,name:'Scizore'},
+  sibat:{dice:'1d6',threat:'20',mult:3,cat:'martial-one-handed',source:'Ultimate Combat',ranged:false,name:'Sibat'},
+  spikedHeavyShield:{dice:'1d6',threat:'20',mult:2,cat:'martial-one-handed',source:'Core Rulebook',ranged:false,name:'Spiked heavy shield'},
+  swordCane:{dice:'1d6',threat:'20',mult:2,cat:'martial-one-handed',source:'Ultimate Equipment',ranged:false,name:'Sword cane'},
+  terbutje:{dice:'1d8',threat:'19–20',mult:2,cat:'martial-one-handed',source:'Ultimate Equipment',ranged:false,name:'Terbutje'},
+  trident:{dice:'1d8',threat:'20',mult:2,cat:'martial-one-handed',source:'Core Rulebook',ranged:false,name:'Trident'},
+  warhammer:{dice:'1d8',threat:'20',mult:3,cat:'martial-one-handed',source:'Core Rulebook',ranged:false,name:'Warhammer'},
+  bardiche:{dice:'1d10',threat:'19–20',mult:2,cat:'martial-two-handed',source:'Ultimate Equipment',ranged:false,name:'Bardiche'},
+  becDeCorbin:{dice:'1d10',threat:'20',mult:3,cat:'martial-two-handed',source:'Ultimate Equipment',ranged:false,name:'Bec de corbin'},
+  bill:{dice:'1d8',threat:'20',mult:3,cat:'martial-two-handed',source:'Ultimate Equipment',ranged:false,name:'Bill'},
+  earthBreaker:{dice:'2d6',threat:'20',mult:3,cat:'martial-two-handed',source:'Ultimate Equipment',ranged:false,name:'Earth breaker'},
+  falchion:{dice:'2d4',threat:'18–20',mult:2,cat:'martial-two-handed',source:'Core Rulebook',ranged:false,name:'Falchion'},
+  glaive:{dice:'1d10',threat:'20',mult:3,cat:'martial-two-handed',source:'Core Rulebook',ranged:false,name:'Glaive'},
+  glaiveGuisarme:{dice:'1d10',threat:'20',mult:3,cat:'martial-two-handed',source:'Ultimate Equipment',ranged:false,name:'Glaive-guisarme'},
+  greataxe:{dice:'1d12',threat:'20',mult:3,cat:'martial-two-handed',source:'Core Rulebook',ranged:false,name:'Greataxe'},
+  greatclub:{dice:'1d10',threat:'20',mult:2,cat:'martial-two-handed',source:'Core Rulebook',ranged:false,name:'Greatclub'},
+  greatsword:{dice:'2d6',threat:'19–20',mult:2,cat:'martial-two-handed',source:'Core Rulebook',ranged:false,name:'Greatsword'},
+  guisarme:{dice:'2d4',threat:'20',mult:3,cat:'martial-two-handed',source:'Core Rulebook',ranged:false,name:'Guisarme'},
+  halberd:{dice:'1d10',threat:'20',mult:3,cat:'martial-two-handed',source:'Core Rulebook',ranged:false,name:'Halberd'},
+  heavyFlail:{dice:'1d10',threat:'19–20',mult:2,cat:'martial-two-handed',source:'Core Rulebook',ranged:false,name:'Heavy flail'},
+  hookedLance:{dice:'1d8',threat:'20',mult:4,cat:'martial-two-handed',source:'Ultimate Combat',ranged:false,name:'Hooked lance'},
+  horsechopper:{dice:'1d10',threat:'20',mult:3,cat:'martial-two-handed',source:'Advanced Race Guide',ranged:false,name:'Horsechopper'},
+  lance:{dice:'1d8',threat:'20',mult:3,cat:'martial-two-handed',source:'Core Rulebook',ranged:false,name:'Lance'},
+  lucerneHammer:{dice:'1d12',threat:'20',mult:2,cat:'martial-two-handed',source:'Ultimate Equipment',ranged:false,name:'Lucerne hammer'},
+  mattock:{dice:'2d4',threat:'20',mult:4,cat:'martial-two-handed',source:'Ultimate Equipment',ranged:false,name:'Mattock'},
+  naginata:{dice:'1d8',threat:'20',mult:4,cat:'martial-two-handed',source:'Ultimate Combat',ranged:false,name:'Naginata'},
+  nodachi:{dice:'1d10',threat:'18–20',mult:2,cat:'martial-two-handed',source:'Ultimate Combat',ranged:false,name:'Nodachi'},
+  ogreHook:{dice:'1d10',threat:'20',mult:3,cat:'martial-two-handed',source:'Ultimate Equipment',ranged:false,name:'Ogre hook'},
+  ranseur:{dice:'2d4',threat:'20',mult:3,cat:'martial-two-handed',source:'Core Rulebook',ranged:false,name:'Ranseur'},
+  rhomphaia:{dice:'2d4',threat:'20',mult:3,cat:'martial-two-handed',source:'Ultimate Equipment',ranged:false,name:'Rhomphaia'},
+  sansetsukon:{dice:'1d10',threat:'19–20',mult:2,cat:'martial-two-handed',source:'Ultimate Combat',ranged:false,name:'Sansetsukon'},
+  scythe:{dice:'2d4',threat:'20',mult:4,cat:'martial-two-handed',source:'Core Rulebook',ranged:false,name:'Scythe'},
+  tepoztopilli:{dice:'1d10',threat:'19–20',mult:2,cat:'martial-two-handed',source:'Ultimate Equipment',ranged:false,name:'Tepoztopilli'},
+  tigerFork:{dice:'1d8',threat:'20',mult:2,cat:'martial-two-handed',source:'Ultimate Combat',ranged:false,name:'Tiger fork'},
+  triPointDoubleEdgedSword:{dice:'1d10',threat:'20',mult:3,cat:'martial-two-handed',source:'Ultimate Combat',ranged:false,name:'Tri-point double-edged sword'},
+  amentum:{dice:'1d6',threat:'20',mult:2,cat:'martial-ranged',source:'Ultimate Combat',ranged:true,ammo:'thrown',name:'Amentum'},
+  atlatl:{dice:'1d6',threat:'20',mult:2,cat:'martial-ranged',source:'Ultimate Equipment',ranged:true,ammo:'thrown',name:'Atlatl'},
+  chakram:{dice:'1d8',threat:'20',mult:2,cat:'martial-ranged',source:'Ultimate Equipment',ranged:true,ammo:'thrown',name:'Chakram'},
+  compositeLongbow:{dice:'1d8',threat:'20',mult:3,cat:'martial-ranged',source:'Core Rulebook',ranged:true,ammo:'arrows',name:'Composite longbow'},
+  compositeShortbow:{dice:'1d6',threat:'20',mult:3,cat:'martial-ranged',source:'Core Rulebook',ranged:true,ammo:'arrows',name:'Composite shortbow'},
+  hungaMunga:{dice:'1d6',threat:'20',mult:2,cat:'martial-ranged',source:'Ultimate Equipment',ranged:true,ammo:'thrown',name:'Hunga munga'},
+  joltingDart:{dice:'1d4',threat:'20',mult:2,cat:'martial-ranged',source:'Advanced Race Guide',ranged:true,ammo:'thrown',name:'Jolting dart'},
+  longbow:{dice:'1d8',threat:'20',mult:3,cat:'martial-ranged',source:'Core Rulebook',ranged:true,ammo:'arrows',name:'Longbow'},
+  pilum:{dice:'1d8',threat:'20',mult:2,cat:'martial-ranged',source:'Ultimate Equipment',ranged:true,ammo:'thrown',name:'Pilum'},
+  shortbow:{dice:'1d6',threat:'20',mult:3,cat:'martial-ranged',source:'Core Rulebook',ranged:true,ammo:'arrows',name:'Shortbow'},
+  tubeArrowShooter:{dice:'1d4',threat:'20',mult:2,cat:'martial-ranged',source:'Ultimate Combat',ranged:true,ammo:null,name:'Tube arrow shooter'},
+  aklys:{dice:'1d6',threat:'20',mult:2,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Aklys'},
+  danBong:{dice:'1d3',threat:'19–20',mult:2,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Dan bong'},
+  dwarvenBoulderHelmet:{dice:'1d4',threat:'20',mult:2,cat:'exotic-light',source:'Advanced Race Guide',ranged:false,name:'Dwarven Boulder Helmet'},
+  emeiPiercer:{dice:'1d3',threat:'19–20',mult:2,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Emei piercer'},
+  fightingFan:{dice:'1d4',threat:'20',mult:3,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Fighting fan'},
+  kama:{dice:'1d6',threat:'20',mult:2,cat:'exotic-light',source:'Core Rulebook',ranged:false,name:'Kama'},
+  knuckleAxe:{dice:'1d6',threat:'20',mult:3,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Knuckle axe'},
+  madu:{dice:'1d4',threat:'20',mult:2,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Madu'},
+  nunchaku:{dice:'1d6',threat:'20',mult:2,cat:'exotic-light',source:'Core Rulebook',ranged:false,name:'Nunchaku'},
+  pata:{dice:'1d6',threat:'20',mult:3,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Pata'},
+  quadrens:{dice:'1d6',threat:'19–20',mult:2,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Quadrens'},
+  sai:{dice:'1d4',threat:'20',mult:2,cat:'exotic-light',source:'Core Rulebook',ranged:false,name:'Sai'},
+  scorpionWhip:{dice:'1d4',threat:'20',mult:2,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Scorpion whip'},
+  siangham:{dice:'1d6',threat:'20',mult:2,cat:'exotic-light',source:'Core Rulebook',ranged:false,name:'Siangham'},
+  sica:{dice:'1d6',threat:'20',mult:2,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Sica'},
+  swordbreakerDagger:{dice:'1d4',threat:'20',mult:2,cat:'exotic-light',source:'Ultimate Equipment',ranged:false,name:'Swordbreaker dagger'},
+  tekkoKagi:{dice:'1d3',threat:'20',mult:2,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Tekko-kagi'},
+  wakizashi:{dice:'1d6',threat:'18–20',mult:2,cat:'exotic-light',source:'Ultimate Combat',ranged:false,name:'Wakizashi'},
+  bastardSword:{dice:'1d10',threat:'19–20',mult:2,cat:'exotic-one-handed',source:'Core Rulebook',ranged:false,name:'Bastard sword'},
+  dwarvenDoubleWaraxe:{dice:'1d10',threat:'20',mult:3,cat:'exotic-one-handed',source:'Advanced Race Guide',ranged:false,name:'Dwarven double waraxe'},
+  dwarvenWaraxe:{dice:'1d10',threat:'20',mult:3,cat:'exotic-one-handed',source:'Core Rulebook',ranged:false,name:'Dwarven waraxe'},
+  falcata:{dice:'1d8',threat:'19–20',mult:3,cat:'exotic-one-handed',source:'Ultimate Equipment',ranged:false,name:'Falcata'},
+  greatTerbutje:{dice:'1d10',threat:'19–20',mult:2,cat:'exotic-one-handed',source:'Ultimate Equipment',ranged:false,name:'Great terbutje'},
+  hookedAxe:{dice:'1d8',threat:'20',mult:3,cat:'exotic-one-handed',source:'Ultimate Combat',ranged:false,name:'Hooked axe'},
+  katana:{dice:'1d8',threat:'18–20',mult:2,cat:'exotic-one-handed',source:'Ultimate Combat',ranged:false,name:'Katana'},
+  khopesh:{dice:'1d8',threat:'19–20',mult:2,cat:'exotic-one-handed',source:'Ultimate Equipment',ranged:false,name:'Khopesh'},
+  nineSectionWhip:{dice:'1d8',threat:'19–20',mult:2,cat:'exotic-one-handed',source:'Ultimate Combat',ranged:false,name:'Nine-section whip'},
+  rhokaSword:{dice:'1d8',threat:'18–20',mult:2,cat:'exotic-one-handed',source:'Ultimate Equipment',ranged:false,name:'Rhoka sword'},
+  sawtoothSabre:{dice:'1d8',threat:'19–20',mult:2,cat:'exotic-one-handed',source:'Ultimate Equipment',ranged:false,name:'Sawtooth sabre'},
+  shotel:{dice:'1d8',threat:'20',mult:3,cat:'exotic-one-handed',source:'Ultimate Combat',ranged:false,name:'Shotel'},
+  templeSword:{dice:'1d8',threat:'19–20',mult:2,cat:'exotic-one-handed',source:'Ultimate Equipment',ranged:false,name:'Temple sword'},
+  urumi:{dice:'1d8',threat:'18–20',mult:2,cat:'exotic-one-handed',source:'Ultimate Combat',ranged:false,name:'Urumi'},
+  wahaika:{dice:'1d6',threat:'20',mult:2,cat:'exotic-one-handed',source:'Ultimate Equipment',ranged:false,name:'Wahaika'},
+  whip:{dice:'1d3',threat:'20',mult:2,cat:'exotic-one-handed',source:'Core Rulebook',ranged:false,name:'Whip'},
+  dwarvenLongaxe:{dice:'1d12',threat:'20',mult:3,cat:'exotic-two-handed',source:'Advanced Race Guide',ranged:false,name:'Dwarven Longaxe'},
+  dwarvenLonghammer:{dice:'2d6',threat:'20',mult:3,cat:'exotic-two-handed',source:'Advanced Race Guide',ranged:false,name:'Dwarven Longhammer'},
+  elvenCurveBlade:{dice:'1d10',threat:'18–20',mult:2,cat:'exotic-two-handed',source:'Core Rulebook',ranged:false,name:'Elven curve blade'},
+  flyingBlade:{dice:'1d12',threat:'20',mult:3,cat:'exotic-two-handed',source:'Ultimate Combat',ranged:false,name:'Flying blade'},
+  harpoon:{dice:'1d8',threat:'20',mult:3,cat:'exotic-two-handed',source:'Ultimate Equipment',ranged:false,name:'Harpoon'},
+  kyoketsuShoge:{dice:'1d4',threat:'20',mult:2,cat:'exotic-two-handed',source:'Ultimate Combat',ranged:false,name:'Kyoketsu shoge'},
+  meteorHammer:{dice:'1d8',threat:'20',mult:2,cat:'exotic-two-handed',source:'Ultimate Combat',ranged:false,name:'Meteor hammer'},
+  sevenBranchedSword:{dice:'1d10',threat:'20',mult:3,cat:'exotic-two-handed',source:'Ultimate Combat',ranged:false,name:'Seven-branched sword'},
+  spikedChain:{dice:'2d4',threat:'20',mult:2,cat:'exotic-two-handed',source:'Core Rulebook',ranged:false,name:'Spiked chain'},
+  tetsubo:{dice:'1d10',threat:'20',mult:4,cat:'exotic-two-handed',source:'Ultimate Combat',ranged:false,name:'Tetsubo'},
+  bolas:{dice:'1d4',threat:'20',mult:2,cat:'exotic-ranged',source:'Core Rulebook',ranged:true,ammo:'thrown',name:'Bolas'},
+  boomerang:{dice:'1d6',threat:'20',mult:2,cat:'exotic-ranged',source:'Ultimate Equipment',ranged:true,ammo:'thrown',name:'Boomerang'},
+  doubleCrossbow:{dice:'1d8',threat:'19–20',mult:2,cat:'exotic-ranged',source:'Ultimate Equipment',ranged:true,ammo:'bolts',name:'Double crossbow'},
+  halflingSlingStaff:{dice:'1d8',threat:'20',mult:3,cat:'exotic-ranged',source:'Core Rulebook',ranged:true,ammo:'sling-bullets',name:'Halfling sling staff'},
+  handCrossbow:{dice:'1d4',threat:'19–20',mult:2,cat:'exotic-ranged',source:'Core Rulebook',ranged:true,ammo:'bolts',name:'Hand crossbow'},
+  kestros:{dice:'1d8',threat:'20',mult:3,cat:'exotic-ranged',source:'Ultimate Equipment',ranged:true,ammo:'thrown',name:'Kestros'},
+  repeatingHandCrossbow:{dice:'1d4',threat:'19–20',mult:2,cat:'exotic-ranged',source:'Ultimate Equipment',ranged:true,ammo:'bolts',name:'Repeating hand crossbow'},
+  repeatingHeavyCrossbow:{dice:'1d10',threat:'19–20',mult:2,cat:'exotic-ranged',source:'Core Rulebook',ranged:true,ammo:'bolts',name:'Repeating heavy crossbow'},
+  repeatingLightCrossbow:{dice:'1d8',threat:'19–20',mult:2,cat:'exotic-ranged',source:'Core Rulebook',ranged:true,ammo:'bolts',name:'Repeating light crossbow'},
+  ropeDart:{dice:'1d4',threat:'20',mult:2,cat:'exotic-ranged',source:'Ultimate Combat',ranged:true,ammo:'thrown',name:'Rope dart'},
+  shuriken:{dice:'1d2',threat:'20',mult:2,cat:'exotic-ranged',source:'Core Rulebook',ranged:true,ammo:'thrown',name:'Shuriken'},
+  throwingShield:{dice:'1d6',threat:'20',mult:2,cat:'exotic-ranged',source:'Ultimate Combat',ranged:true,ammo:'thrown',name:'Throwing shield'}
 };
+
+const WEAPON_CAT_ORDER=["simple-light","simple-one-handed","simple-two-handed","simple-ranged","martial-light","martial-one-handed","martial-two-handed","martial-ranged","exotic-light","exotic-one-handed","exotic-two-handed","exotic-ranged"];
+const WEAPON_CAT_LABEL={"simple-light":"Simple, Light","simple-one-handed":"Simple, One-Handed","simple-two-handed":"Simple, Two-Handed","simple-ranged":"Simple, Ranged","martial-light":"Martial, Light","martial-one-handed":"Martial, One-Handed","martial-two-handed":"Martial, Two-Handed","martial-ranged":"Martial, Ranged","exotic-light":"Exotic, Light","exotic-one-handed":"Exotic, One-Handed","exotic-two-handed":"Exotic, Two-Handed","exotic-ranged":"Exotic, Ranged"};
 
 const RACES=["Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Aasimar","Adaro","Android","Aphorite","Aquatic Elf","Astomoi","Being of Ib","Boggard","Caligni","Catfolk","Cecaelia","Changeling","Deep One Hybrid","Dhampir","Drow","Drow Noble","Duergar","Duskwalker","Fetchling","Ganzi","Gathlain","Ghoran","Gillman","Goblin","Green Martian","Grindylow","Grippli","Hobgoblin","Ifrit","Kasatha","Kitsune","Kobold","Kuru","Lashunta","Locathah","Merfolk","Monkey Goblin","Munavri","Nagaji","Naiad","Orang-Pendak","Orc","Oread","Primitive Human","Ratfolk","Reborn Samsaran","Reptoid","Rougarou","Sahuagin","Samsaran","Shabti","Skinwalker","Strix","Suli","Svirfneblin","Sylph","Syrinx","Tengu","Tiefling","Triaxian","Triton","Trox","Undine","Vanara","Vine Leshy","Vishkanya","Wayang","Wyrwood","Wyvaran","Yaddithian"];
 const RACE_SOURCE_MAP={"Dwarf":["Dwarves of Golarion"],"Goblin":["Goblins of Golarion"],"Kobold":["Kobolds of Golarion"],"Orc":["Orcs of Golarion"],"Half-Orc":["Orcs of Golarion"],"Human":["Humans of Golarion"]};
@@ -1258,6 +1374,29 @@ $('alignment').addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); }
   let dl=$('raceList');
   RACES.forEach(r=>{ let o=document.createElement('option'); o.value=r; dl.appendChild(o); });
 })();
+
+function weaponLabel(id){
+  let w=WEAPONS[id];
+  return w.name+' — '+w.dice+', '+(w.threat==='20'?'':w.threat+'/')+'×'+w.mult;
+}
+function populateWeaponSelect(sel){
+  sel.innerHTML='';
+  let byCat={};
+  Object.keys(WEAPONS).forEach(id=>{ (byCat[WEAPONS[id].cat]=byCat[WEAPONS[id].cat]||[]).push(id); });
+  WEAPON_CAT_ORDER.forEach(cat=>{
+    let ids=byCat[cat]; if(!ids||!ids.length) return;
+    let og=document.createElement('optgroup'); og.label=WEAPON_CAT_LABEL[cat];
+    ids.sort((a,b)=>WEAPONS[a].name.localeCompare(WEAPONS[b].name)).forEach(id=>{
+      let o=document.createElement('option'); o.value=id; o.textContent=weaponLabel(id);
+      og.appendChild(o);
+    });
+    sel.appendChild(og);
+  });
+  let customOpt=document.createElement('option'); customOpt.value='custom'; customOpt.textContent='Custom';
+  sel.appendChild(customOpt);
+}
+populateWeaponSelect($('weapon'));
+populateWeaponSelect($('offWeapon'));
 
 function applyRaceSourceExclusions(){
   let p=currentProfile();
