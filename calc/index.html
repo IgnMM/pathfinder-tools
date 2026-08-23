@@ -496,6 +496,12 @@ const MODIFIERS = [
 {id:"two-weapon-fighting",name:"Two-Weapon Fighting",category:"feat",source:"Core Rulebook",appliesTo:["attack"],type:"untyped",
  desc:"Reduces the attack-roll penalties for fighting with a weapon in each hand. Automatically applied to the Two-Weapon Fighting off-hand math above when this feat is active — no separate numeric entry needed here.",
  compute:()=>({attack:0,damage:0,note:'applied automatically to Two-Weapon Fighting penalties above'})},
+{id:"improved-two-weapon-fighting",name:"Two-Weapon Fighting, Improved",category:"feat",source:"Core Rulebook",appliesTo:[],type:"special",
+ desc:"Requires Dex 17, Two-Weapon Fighting, BAB +6. \"In addition to the standard single extra attack you get with an off-hand weapon, you get a second attack with it, albeit at a –5 penalty.\" Off-hand attacks do NOT scale with BAB the same way your main-hand iteratives do — without this feat you only ever get ONE off-hand attack, no matter how high your BAB is. Applied automatically: adds a second off-hand attack (at -5 from your first off-hand attack) to Off-Hand Attack above.",
+ compute:()=>({attack:0,damage:0,note:'applied automatically — adds a 2nd off-hand attack (-5 from the first) to Off-Hand Attack above'})},
+{id:"greater-two-weapon-fighting",name:"Two-Weapon Fighting, Greater",category:"feat",source:"Core Rulebook",appliesTo:[],type:"special",
+ desc:"Requires Dex 19, Improved Two-Weapon Fighting, Two-Weapon Fighting, BAB +11. \"You get a third attack with your off-hand weapon, albeit at a –10 penalty.\" Applied automatically: adds a third off-hand attack (at -10 from your first off-hand attack) to Off-Hand Attack above.",
+ compute:()=>({attack:0,damage:0,note:'applied automatically — adds a 3rd off-hand attack (-10 from the first) to Off-Hand Attack above'})},
 {id:"vital-strike",name:"Vital Strike",category:"feat",source:"Core Rulebook",appliesTo:["damage"],type:"untyped",
  desc:"Make a single attack-action strike that rolls the weapon's base damage dice twice. Only usable when taking the attack action (a single attack, not a full attack). Non-dice bonuses (Str, enhancement, precision, etc.) are added only once, not doubled. Not multiplied on a critical hit.",
  compute:(ctx)=>{let d=ctx.weaponDice||'1d8';return {attack:0,damage:0,note:'Rolls '+d+' twice ('+diceMultiply(d,2)+' total) instead of once — everything else (Str, enhancement, etc.) is still added only once, not doubled, and this isn\'t multiplied on a crit'}}},
@@ -1925,6 +1931,12 @@ function compute(){
     let hasTWF = p.active.some(a=>a.id==='two-weapon-fighting' && a.on!==false);
     let hasMythicTWF = p.active.some(a=>a.id==='mythic-two-weapon-fighting' && a.on!==false);
     let hasDoubleSlice = p.active.some(a=>a.id==='double-slice' && a.on!==false);
+    // Off-hand attacks do NOT scale with BAB the way main-hand iteratives do — RAW gives
+    // exactly ONE off-hand attack by default, no matter how high BAB climbs. A second
+    // off-hand attack (-5 from the first) requires Improved Two-Weapon Fighting; a third
+    // (-10 from the first) requires Greater Two-Weapon Fighting.
+    let hasImprovedTWF = p.active.some(a=>a.id==='improved-two-weapon-fighting' && a.on!==false);
+    let hasGreaterTWF = p.active.some(a=>a.id==='greater-two-weapon-fighting' && a.on!==false);
     let pen = hasMythicTWF ? {main:0,off:0} : TWF_PENALTIES[offLight?'light':'normal'][hasTWF?'feat':'noFeat'];
     let mainAtk = bab + atkAbilityMod + enh + pen.main + atkFromMods;
     let offAtk = bab + atkAbilityMod + offEnh + pen.off + atkFromModsOff;
@@ -1944,8 +1956,12 @@ function compute(){
     for(let i=0;i<rapidShotExtraCount;i++) iteratives.push(iteratives[0]);
     $('toHit').textContent=signed(iteratives[0]);
     $('fullAttack').textContent=iteratives.map(signed).join(' / ');
+    let offIteratives=[offAtk];
+    if(hasImprovedTWF) offIteratives.push(offAtk-5);
+    if(hasGreaterTWF) offIteratives.push(offAtk-10);
+    if(offIteratives.length>1) notes.push('Off-hand attacks: '+offIteratives.length+' total ('+(hasGreaterTWF?'Greater ':'')+(hasImprovedTWF?'Improved ':'')+'Two-Weapon Fighting) — off-hand attacks don\'t scale with BAB like your main hand\'s do, only these feats add more of them.');
     $('offAtkBox').style.display='block'; $('offDmgBox').style.display='block'; $('offCritBox').style.display='block';
-    $('offAtk').textContent=signed(offAtk);
+    $('offAtk').textContent=offIteratives.map(signed).join(' / ');
     let offExtraNormal=(extraDiceOff||[]).filter(e=>e.normal).map(e=>e.normal);
     let offExtraCritOnly=(extraDiceOff||[]).filter(e=>e.crit).map(e=>e.crit);
     let offDmgDice = wOff.dice + (offExtraNormal.length ? ' + '+offExtraNormal.join(' + ') : '');
