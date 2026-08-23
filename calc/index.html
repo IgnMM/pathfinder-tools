@@ -109,7 +109,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 </select></div>
 <div class="row"><label>BAB</label><input id="bab" type="number" min="0" value="6"></div>
 <div class="row"><label>Suggested attacks</label><button id="useSuggestedBab" type="button" style="justify-self:start">Use suggested BAB: <span id="suggestedBabValue">+6</span></button></div>
-<div class="emptyNote">Character Level is also used to pre-fill level-scaling fields (Sneak Attack dice, caster level, bard/paladin level, etc.) when you add them from the catalog below — each is still editable individually afterward, e.g. for multiclass characters. BAB itself always stays a plain editable number: the progression selector only offers a one-click suggestion (Character Level × 1 / ¾ / ½, rounded down) for single-class characters — for multiclass, just type the summed BAB directly and ignore the suggestion.</div>
+<div class="emptyNote">Character Level is also used to pre-fill level-scaling fields (Sneak Attack dice, caster level, bard/paladin level, etc.) when you add them from the catalog below — each is still editable individually afterward, e.g. for multiclass characters. BAB itself always stays a plain editable number: the progression selector only offers a one-click suggestion (Character Level × 1 / ¾ / ½, rounded down) for single-class characters — for multiclass, just type the summed BAB directly and ignore the suggestion. Each individual attack shown in "Full Attack" below (in Results) is also directly editable by hand — click into any of its number fields and type over it; a ↺ button appears next to anything you've overridden, to snap that one attack back to its computed value.</div>
 <div class="row"><label>Play with Mythic rules?</label><input id="mythicEnabled" type="checkbox" style="width:auto;justify-self:start"></div>
 <div id="mythicTierBox" style="display:none">
 <div class="row"><label>Mythic Tier</label><input id="mythicTier" type="number" min="0" max="10" value="0"></div>
@@ -1210,7 +1210,7 @@ function saveStore(){
 const BAB_PROGRESSION_MULT={full:1, threeQuarter:0.75, half:0.5};
 function defaultProfile(name){
   return {name, bab:6, characterLevel:10, babProgression:'full', str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
-    style:'twoHanded', atkStat:'str', dmgStat:'str', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
+    style:'twoHanded', atkStat:'str', dmgStat:'str', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none', attackOverrides:{},
     enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
 }
 let store=loadStore();
@@ -1246,6 +1246,7 @@ store.profiles.forEach(p=>{
   if(p.active) p.active.forEach(a=>{ if(!a.weaponSlot) a.weaponSlot='both'; });
   if(p.characterLevel===undefined) p.characterLevel=10;
   if(!p.babProgression) p.babProgression='full';
+  if(!p.attackOverrides) p.attackOverrides={};
 });
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
@@ -1310,6 +1311,50 @@ $('useSuggestedBab').addEventListener('click', ()=>{
   $('bab').value = suggestedBab();
   syncUIIntoProfile(); compute();
 });
+
+// Full Attack: each individual attack is independently editable (not just the base BAB,
+// which only drives the computed DEFAULT via the standard -5-per-attack formula). An
+// override is stored per attack index and persists across recomputation until reset —
+// it never feeds back into any other calculation, Full Attack is a terminal display.
+function renderFullAttack(iteratives){
+  let p=currentProfile();
+  if(!p.attackOverrides) p.attackOverrides={};
+  Object.keys(p.attackOverrides).forEach(k=>{ if(+k>=iteratives.length) delete p.attackOverrides[k]; });
+  let box=$('fullAttack');
+  box.innerHTML='';
+  box.style.display='flex'; box.style.flexWrap='wrap'; box.style.gap='4px'; box.style.alignItems='center';
+  iteratives.forEach((v,i)=>{
+    let hasOverride = p.attackOverrides[i]!==undefined;
+    let display = hasOverride ? p.attackOverrides[i] : v;
+    let wrap=document.createElement('span'); wrap.style.cssText='display:inline-flex;align-items:center;gap:2px';
+    let inp=document.createElement('input');
+    inp.type='text'; inp.inputMode='numeric'; inp.value=signed(display);
+    inp.title='Attack '+(i+1)+(hasOverride?' — edited by hand, computed value would be '+signed(v):' — computed');
+    inp.style.cssText='width:58px;padding:3px 4px;font-size:1rem;font-weight:800;text-align:center;color:#fff;background:#0e151e;'+(hasOverride?'border-color:var(--gold)':'border-color:var(--line)');
+    inp.addEventListener('input',()=>{
+      let raw=inp.value.trim();
+      let n=Number(raw.replace(/^\+/,''));
+      if(raw!=='' && !isNaN(n)){
+        p.attackOverrides[i]=n;
+        inp.style.borderColor='var(--gold)';
+        inp.title='Attack '+(i+1)+' — edited by hand, computed value would be '+signed(v);
+        if(!wrap.querySelector('.resetAtk')) wrap.appendChild(buildResetBtn());
+        saveStore();
+      }
+    });
+    function buildResetBtn(){
+      let reset=document.createElement('button'); reset.type='button'; reset.className='resetAtk'; reset.textContent='↺';
+      reset.title='Reset attack '+(i+1)+' to the computed value';
+      reset.style.cssText='padding:2px 6px;font-size:.75rem;line-height:1;cursor:pointer';
+      reset.addEventListener('click',()=>{ delete p.attackOverrides[i]; saveStore(); compute(); });
+      return reset;
+    }
+    wrap.appendChild(inp);
+    if(hasOverride) wrap.appendChild(buildResetBtn());
+    box.appendChild(wrap);
+    if(i<iteratives.length-1) box.appendChild(document.createTextNode('/'));
+  });
+}
 
 $('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); };
 $('newProfile').onclick=()=>{
@@ -1899,7 +1944,7 @@ function compute(){
   let displayThreat = hasKeen ? keenThreatRange(ctx.weaponThreatLow) : w.threat;
 
   $('toHit').textContent=signed(atkFirst);
-  $('fullAttack').textContent=iteratives.map(signed).join(' / ');
+  renderFullAttack(iteratives);
   $('dmgNormal').textContent=`${dmgNormalDice} ${signed(dmg)}`;
   $('dmgCrit').textContent=`${dmgCritDiceStr} ${signed(critDmg)} (threat ${displayThreat}/×${critMult})`;
 
@@ -1955,7 +2000,7 @@ function compute(){
     if(hasExtraAttack) iteratives.push(iteratives[0]);
     for(let i=0;i<rapidShotExtraCount;i++) iteratives.push(iteratives[0]);
     $('toHit').textContent=signed(iteratives[0]);
-    $('fullAttack').textContent=iteratives.map(signed).join(' / ');
+    renderFullAttack(iteratives);
     let offIteratives=[offAtk];
     if(hasImprovedTWF) offIteratives.push(offAtk-5);
     if(hasGreaterTWF) offIteratives.push(offAtk-10);
