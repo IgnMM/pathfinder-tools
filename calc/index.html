@@ -16,7 +16,7 @@
 :root{
   --bg:#10151d; --panel:#18212c; --panel2:#202b38; --text:#edf3f8;
   --muted:#aebdcc; --gold:#d6b35f; --gold2:#f1d78b; --red:#d76a63; --green:#72c69c;
-  --blue:#6aa8d9; --line:#344354; --border:#313949;
+  --blue:#6aa8d9; --line:#344354; --border:#313949; --violet:#b18ce8;
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#0d1218,#141c26);color:var(--text)}
@@ -26,7 +26,14 @@ h1{margin:0 0 4px;font-size:24px}
 .subtitle{color:var(--muted);font-size:.85rem}
 h2{font-size:17px;margin:0 0 12px;color:var(--gold)}
 h3{font-size:14px;margin:14px 0 8px;color:#fff}
-.card{background:rgba(24,33,44,.97);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+.card{background:rgba(24,33,44,.97);border:1px solid var(--line);border-top:3px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+.card-char{border-top-color:var(--gold)}
+.card-mod{border-top-color:var(--blue)}
+.card-mod h2{color:var(--blue)}
+.card-active{border-top-color:var(--green)}
+.card-active h2{color:var(--green)}
+.card-results{border-top-color:var(--violet)}
+.card-results h2{color:var(--violet)}
 .row{display:grid;grid-template-columns:1fr 110px;gap:8px;align-items:center;margin:7px 0}
 label{color:var(--muted);font-size:.85rem}
 input,select{width:100%;background:#0f161f;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px;font-size:.9rem}
@@ -98,13 +105,14 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 
 <div class="mainGrid">
 <div>
-<section class="card">
-<h2>Character &amp; Weapon</h2>
+<section class="card card-char">
+<h2>Character &amp; Weapons</h2>
 <div class="row"><label>Character Level</label><input id="characterLevel" type="number" min="1" max="20" value="10"></div>
 <div class="row"><label>Caster Level</label><input id="casterLevel" type="number" min="0" max="20" value="10"></div>
 <div class="emptyNote">Caster Level is often lower than Character Level — a Paladin/Ranger's is Character Level − 3 (starting at 4th level), for example. Set it independently; it pre-fills spell entries below that scale with caster level (Divine Favor, Magic Weapon Greater, Wrath, Gorum's Armor...) instead of Character Level.</div>
 <div class="row"><label>Number of Attacks</label><input id="numAttacks" type="number" min="1" max="8" value="1"></div>
-<div class="row"><label>BAB (per attack)</label><div id="babSequenceBox"></div></div>
+<div class="row"><label>BAB</label></div>
+<div id="babSequenceBox" style="margin:-4px 0 9px"></div>
 <div class="emptyNote">Type each attack's base attack bonus directly — no formula, no assumed "-5 per attack." Set "Number of Attacks" first, then fill in each box; the first box is also used as "BAB" everywhere else in the calculator (Power Attack scaling, etc.). Character Level only pre-fills level-scaling fields elsewhere (Sneak Attack dice, caster level, bard/paladin level...) when you add them from the catalog below — it no longer affects BAB.</div>
 <div class="row"><label>Play with Mythic rules?</label><input id="mythicEnabled" type="checkbox" style="width:auto;justify-self:start"></div>
 <div id="mythicTierBox" style="display:none">
@@ -220,7 +228,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 </div>
 
 <div>
-<section class="card">
+<section class="card card-mod">
 <h2>Modifiers <span style="font-size:.7rem;color:var(--muted);font-weight:400">— pick from the catalog per category, or add a custom one</span></h2>
 <div class="emptyNote">Spells and Other Effects boost the character in general. Weapon Effects (including enchanting spells like Magic Weapon) belong to a specific weapon or its ammunition — with Two-Weapon Fighting or Ranged selected as your Fighting Style, each Weapon Effect gets a small "Applies to" selector so you can mark which hand — or the ammunition — it's on.</div>
 <div id="categories"></div>
@@ -228,12 +236,12 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 </div>
 </div>
 
-<section class="card">
+<section class="card card-active">
 <h2>Active Effects</h2>
 <div id="breakdownTables"></div>
 </section>
 
-<section class="card">
+<section class="card card-results">
 <h2>Results</h2>
 <div class="resultBox">
   <div class="result"><div class="small">Single Attack (first attack)</div><div class="big" id="toHit">+0</div></div>
