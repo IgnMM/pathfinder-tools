@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v12";
+const CACHE_NAME = "pathfinder-paladins-folders-v13";
 const ASSETS = [
   "./","./index.html",
   "./gabriel/","./gabriel/index.html","./gabriel/damage.html","./gabriel/spells.html","./gabriel/manifest.webmanifest","./gabriel/icon-192.png","./gabriel/icon-512.png",
@@ -8,6 +8,7 @@ const ASSETS = [
   "./paladin/","./paladin/index.html","./paladin/manifest.webmanifest","./paladin/icon-192.png","./paladin/icon-512.png",
   "./cleric-oracle-library/","./cleric-oracle-library/index.html","./cleric-oracle-library/manifest.webmanifest","./cleric-oracle-library/icon-192.png","./cleric-oracle-library/icon-512.png",
   "./wizard-sorcerer-library/","./wizard-sorcerer-library/index.html","./wizard-sorcerer-library/manifest.webmanifest","./wizard-sorcerer-library/icon-192.png","./wizard-sorcerer-library/icon-512.png",
+  "./bard-library/","./bard-library/index.html","./bard-library/manifest.webmanifest","./bard-library/icon-192.png","./bard-library/icon-512.png",
   "./calc/","./calc/index.html","./calc/manifest.webmanifest","./calc/icon-192.png","./calc/icon-512.png"
 ];
 self.addEventListener("install", event => {
