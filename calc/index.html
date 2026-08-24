@@ -90,7 +90,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="wrap">
 <header>
   <h1>Universal Damage Calculator</h1>
-  <div class="subtitle">Pathfinder 1e — attack/damage modifiers with correct bonus-type stacking. Every change saves automatically to this browser — there's no Save button because there's nothing to lose; use "Save As" to keep a copy under a different character's name.</div>
+  <div class="subtitle">Pathfinder 1e — attack/damage modifiers with correct bonus-type stacking. Every change saves automatically to this browser — there's no Save button because there's nothing to lose; use "Save As" to keep a copy under a different character's name. Want your characters on another device too? Set a Sync code below (top right).</div>
   <div class="profileBar" style="margin-top:10px">
     <label style="margin:0">Character:</label>
     <select id="profileSelect"></select>
@@ -100,6 +100,12 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
     <span id="saveIndicator" class="saveIndicator">✓ Saved</span>
     <button class="danger" id="deleteProfile">Delete</button>
     <details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button></div><div id="sourceList"></div></div></details>
+    <details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px">
+      <div class="row"><label>Code</label><input id="syncCode" type="text" placeholder="NAME+PIN" style="width:130px;text-transform:uppercase"></div>
+      <button id="syncConnect" type="button">Connect</button>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:6px">Use the same code on another device to see the same characters there. Whoever knows the code can read/write this data — pick something private, not "1234".</div>
+      <div id="syncStatus" style="font-size:.75rem;color:var(--muted);margin-top:6px"></div>
+    </div></details>
   </div>
 </header>
 
@@ -2013,6 +2019,99 @@ loadProfileIntoUI();
 if("serviceWorker" in navigator){
   window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
 }
+
+// ---------- Cross-device sync (Firebase Firestore) ----------
+// A "sync code" (player-chosen name+PIN, normalized) maps to one shared cloud document.
+// No accounts/login — the code itself is the access key, same model as a shared room code.
+(function(){
+  const SYNC_CODE_KEY='pf1_sync_code_v1';
+  const APP_FIELD='calc';
+  const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
+  let db=null, docRef=null, unsubscribe=null, applyingRemote=false, pushTimer=null, fsApi=null;
+  const _origSaveStore=saveStore;
+  saveStore=function(){ _origSaveStore(); if(!applyingRemote) pushToCloud(); };
+
+  function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
+  function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
+
+  function mergeStores(local, remote){
+    if(!remote || !remote.profiles || !remote.profiles.length) return local;
+    if(!local || !local.profiles || !local.profiles.length) return remote;
+    let merged=JSON.parse(JSON.stringify(remote));
+    local.profiles.forEach(lp=>{ if(!merged.profiles.some(rp=>rp.name===lp.name)) merged.profiles.push(lp); });
+    if(!merged.profiles.some(p=>p.name===merged.active)) merged.active=merged.profiles[0].name;
+    return merged;
+  }
+
+  function pushToCloud(){
+    if(!docRef||applyingRemote) return;
+    clearTimeout(pushTimer);
+    pushTimer=setTimeout(async ()=>{
+      try{ await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(store)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
+      catch(e){ setStatus('Sync error: '+e.message); }
+    }, 700);
+  }
+
+  async function connect(code){
+    const norm=normCode(code);
+    if(!norm) return;
+    setStatus('Connecting…');
+    try{
+      if(!fsApi){
+        const [{initializeApp}, fs] = await Promise.all([
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+        ]);
+        fsApi=fs;
+        const app=initializeApp({
+          apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",
+          authDomain:"pathfinder-webapp-486d1.firebaseapp.com",
+          projectId:"pathfinder-webapp-486d1",
+          storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",
+          messagingSenderId:"337645222032",
+          appId:"1:337645222032:web:eda9b7c8ff7646e4524015"
+        });
+        db=fsApi.getFirestore(app);
+      }
+      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+      docRef=fsApi.doc(db,'pf_sync',norm);
+      localStorage.setItem(SYNC_CODE_KEY, norm);
+
+      const snap=await fsApi.getDoc(docRef);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      const merged=mergeStores(store, remote);
+      applyingRemote=true;
+      store=merged;
+      _origSaveStore();
+      populateProfileSelect();
+      loadProfileIntoUI();
+      applyingRemote=false;
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(store)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+
+      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
+        if(snap2.metadata.hasPendingWrites) return;
+        const data=snap2.data();
+        if(!data || !data[APP_FIELD]) return;
+        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; } // echo of our own write, already applied
+        applyingRemote=true;
+        store=data[APP_FIELD];
+        _origSaveStore();
+        populateProfileSelect();
+        loadProfileIntoUI();
+        applyingRemote=false;
+        setStatus('Synced ✓ (updated from another device)');
+      }, (err)=>setStatus('Sync error: '+err.message));
+
+      setStatus('Synced ✓');
+    }catch(e){ setStatus('Sync error: '+e.message); }
+  }
+
+  $('syncConnect').onclick=()=>connect($('syncCode').value);
+  $('syncCode').addEventListener('keydown', e=>{ if(e.key==='Enter') connect($('syncCode').value); });
+
+  const saved=localStorage.getItem(SYNC_CODE_KEY);
+  if(saved){ $('syncCode').value=saved; connect(saved); }
+})();
 </script>
 </body>
 </html>
