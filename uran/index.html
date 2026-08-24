@@ -14,14 +14,17 @@
   <div style="max-width:380px;width:100%;background:rgba(12,9,6,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(233,200,116,.35);border-radius:12px;padding:18px 20px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.55)">
     <h2 style="font-family:'Cinzel Decorative',serif;margin:0 0 6px;color:#e9c874;font-size:1.15rem;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.7)">Welcome, Traveler</h2>
     <p style="color:#d8cdb9;font-size:.78rem;margin:0 0 12px;line-height:1.4;font-family:'Cinzel',Georgia,serif">Speak a name and PIN — the same words on any device bring your characters with you.</p>
-    <input id="gateCode" type="text" placeholder="NAME+PIN" style="width:100%;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+    <div style="display:flex;gap:8px">
+      <input id="gateUser" type="text" placeholder="USERNAME" style="flex:1;min-width:0;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+      <input id="gatePin" type="text" placeholder="PIN" style="width:78px;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+    </div>
     <div style="display:flex;gap:8px;margin-top:10px">
       <button id="gateNew" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.4);background:rgba(233,200,116,.08);color:#e9c874;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">New User</button>
       <button id="gateLogin" style="flex:1;padding:10px;border-radius:8px;border:1px solid #f1d78b;background:linear-gradient(180deg,#e9c874,#b0863c);color:#241708;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">Log In</button>
     </div>
   </div>
 </div>
-<header><h1>Uran — Cleric Spellbook</h1><div class="profileBar" style="display:flex;gap:8px;align-items:center;margin:6px 0"><details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px"><label>Code</label><input id="syncCode" type="text" placeholder="NAME+PIN" style="width:130px;text-transform:uppercase;margin-bottom:6px"><button id="syncConnect" type="button">Connect</button><button id="syncLogout" type="button" class="danger">Log out</button><div style="font-size:.68rem;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div><div id="syncStatus" style="font-size:.7rem;color:var(--muted);margin-top:6px"></div></div></details></div><div class="sub">Pathfinder 1e full Paizo cleric spell list + domain spells (reusable for any cleric)</div><div class="controls">
+<header><h1>Uran — Cleric Spellbook</h1><div class="profileBar" style="display:flex;gap:8px;align-items:center;margin:6px 0"><details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase;margin-bottom:6px"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase;margin-bottom:6px"><button id="syncConnect" type="button">Connect</button><button id="syncLogout" type="button" class="danger">Log out</button><div style="font-size:.68rem;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div><div id="syncStatus" style="font-size:.7rem;color:var(--muted);margin-top:6px"></div></div></details></div><div class="sub">Pathfinder 1e full Paizo cleric spell list + domain spells (reusable for any cleric)</div><div class="controls">
 <div><label>Cleric Level</label><select id="level"></select></div>
 <div><label>Wisdom</label><select id="wis"></select></div>
 <div><label>Alignment</label><select id="alignment">
@@ -229,6 +232,8 @@ if("serviceWorker" in navigator){
 // push-or-pull of the whole `state` object rather than a per-profile merge.
 (function(){
   const SYNC_CODE_KEY='pf1_sync_code_v1';
+  const SYNC_USER_KEY='pf1_sync_user_v1';
+  const SYNC_PIN_KEY='pf1_sync_pin_v1';
   const APP_FIELD='uran';
   const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
   let db=null, docRef=null, unsubscribe=null, applyingRemote=false, pushTimer=null, fsApi=null;
@@ -324,13 +329,24 @@ if("serviceWorker" in navigator){
     }catch(e){ setStatus('Sync error: '+e.message); }
   }
 
-  $('syncConnect').onclick=()=>connect($('syncCode').value);
-  $('syncCode').addEventListener('keydown', e=>{ if(e.key==='Enter') connect($('syncCode').value); });
+  function connectFromFields(userEl, pinEl){
+    const user=$(userEl).value.trim(), pin=$(pinEl).value.trim();
+    if(!user) return;
+    localStorage.setItem(SYNC_USER_KEY, user);
+    localStorage.setItem(SYNC_PIN_KEY, pin);
+    connect(user+'-'+pin);
+  }
+
+  $('syncConnect').onclick=()=>connectFromFields('syncUser','syncPin');
+  $('syncUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('syncPin').focus(); });
+  $('syncPin').addEventListener('keydown', e=>{ if(e.key==='Enter') connectFromFields('syncUser','syncPin'); });
 
   $('syncLogout').onclick=()=>{
     if(!confirm('Log out on this device? This clears the character saved locally here (so the next person\'s code doesn\'t get it merged in) — your data stays safe in the cloud under your code.'))return;
     if(unsubscribe){ unsubscribe(); unsubscribe=null; }
     localStorage.removeItem(SYNC_CODE_KEY);
+    localStorage.removeItem(SYNC_USER_KEY);
+    localStorage.removeItem(SYNC_PIN_KEY);
     localStorage.removeItem(KEY);
     location.reload();
   };
@@ -340,20 +356,29 @@ if("serviceWorker" in navigator){
     gate.style.display='flex';
     $('gateNew').onclick=submitGate;
     $('gateLogin').onclick=submitGate;
-    $('gateCode').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
-    $('gateCode').focus();
+    $('gateUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('gatePin').focus(); });
+    $('gatePin').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
+    $('gateUser').focus();
   }
   function submitGate(){
-    const norm=normCode($('gateCode').value);
-    if(!norm){ $('gateCode').focus(); return; }
+    const user=$('gateUser').value.trim(), pin=$('gatePin').value.trim();
+    if(!user){ $('gateUser').focus(); return; }
     $('syncGate').style.display='none';
-    $('syncCode').value=norm;
-    connect(norm);
+    $('syncUser').value=user; $('syncPin').value=pin;
+    localStorage.setItem(SYNC_USER_KEY, user);
+    localStorage.setItem(SYNC_PIN_KEY, pin);
+    connect(user+'-'+pin);
   }
 
-  const saved=localStorage.getItem(SYNC_CODE_KEY);
-  if(saved){ $('syncCode').value=saved; connect(saved); }
-  else{ showGate(); }
+  const savedCode=localStorage.getItem(SYNC_CODE_KEY);
+  const savedUser=localStorage.getItem(SYNC_USER_KEY);
+  const savedPin=localStorage.getItem(SYNC_PIN_KEY);
+  if(savedUser!==null) $('syncUser').value=savedUser;
+  if(savedPin!==null) $('syncPin').value=savedPin;
+  if(savedCode){
+    if(savedUser!==null && savedPin!==null){ connect(savedUser+'-'+savedPin); }
+    else{ $('syncUser').value=savedCode; connect(savedCode); }
+  } else { showGate(); }
 })();
 </script>
 </body></html>

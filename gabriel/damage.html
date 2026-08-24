@@ -57,7 +57,10 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
   <div style="max-width:380px;width:100%;background:rgba(12,9,6,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(233,200,116,.35);border-radius:12px;padding:18px 20px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.55)">
     <h2 style="font-family:'Cinzel Decorative',serif;margin:0 0 6px;color:#e9c874;font-size:1.15rem;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.7)">Welcome, Traveler</h2>
     <p style="color:#d8cdb9;font-size:.78rem;margin:0 0 12px;line-height:1.4;font-family:'Cinzel',Georgia,serif">Speak a name and PIN — the same words on any device bring your characters with you.</p>
-    <input id="gateCode" type="text" placeholder="NAME+PIN" style="width:100%;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+    <div style="display:flex;gap:8px">
+      <input id="gateUser" type="text" placeholder="USERNAME" style="flex:1;min-width:0;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+      <input id="gatePin" type="text" placeholder="PIN" style="width:78px;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+    </div>
     <div style="display:flex;gap:8px;margin-top:10px">
       <button id="gateNew" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.4);background:rgba(233,200,116,.08);color:#e9c874;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">New User</button>
       <button id="gateLogin" style="flex:1;padding:10px;border-radius:8px;border:1px solid #f1d78b;background:linear-gradient(180deg,#e9c874,#b0863c);color:#241708;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">Log In</button>
@@ -82,7 +85,8 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
   </div>
   <details style="margin-top:12px"><summary style="cursor:pointer;color:var(--gold)">Sync</summary>
     <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <input id="syncCode" type="text" placeholder="NAME+PIN" style="width:130px;text-transform:uppercase">
+      <input id="syncUser" type="text" placeholder="USERNAME" style="width:120px;text-transform:uppercase">
+      <input id="syncPin" type="text" placeholder="PIN" style="width:80px;text-transform:uppercase">
       <button id="syncConnect" type="button">Connect</button>
       <button id="resetDefaults" type="button" title="Clear the saved values for this page and reload with the hardcoded defaults">Reset to defaults</button>
       <button id="syncLogout" type="button" style="background:#3a1d21;border-color:#67343b;color:#f0a0a0">Log out</button>
@@ -478,6 +482,8 @@ document.getElementById("resetDefaults").onclick=()=>{
 // the cloud doesn't know about yet (e.g. a newly added effect checkbox).
 (function(){
   const SYNC_CODE_KEY='pf1_sync_code_v1';
+  const SYNC_USER_KEY='pf1_sync_user_v1';
+  const SYNC_PIN_KEY='pf1_sync_pin_v1';
   const APP_FIELD='gabriel-damage';
   const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
   let db=null, docRef=null, unsubscribe=null, pushTimer=null, fsApi=null;
@@ -534,12 +540,22 @@ document.getElementById("resetDefaults").onclick=()=>{
       setStatus('Synced ✓');
     }catch(e){ setStatus('Sync error: '+e.message); }
   }
-  document.getElementById('syncConnect').onclick=()=>connect(document.getElementById('syncCode').value);
-  document.getElementById('syncCode').addEventListener('keydown', e=>{ if(e.key==='Enter') connect(document.getElementById('syncCode').value); });
+  function connectFromFields(userId, pinId){
+    const user=document.getElementById(userId).value.trim(), pin=document.getElementById(pinId).value.trim();
+    if(!user) return;
+    localStorage.setItem(SYNC_USER_KEY, user);
+    localStorage.setItem(SYNC_PIN_KEY, pin);
+    connect(user+'-'+pin);
+  }
+  document.getElementById('syncConnect').onclick=()=>connectFromFields('syncUser','syncPin');
+  document.getElementById('syncUser').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('syncPin').focus(); });
+  document.getElementById('syncPin').addEventListener('keydown', e=>{ if(e.key==='Enter') connectFromFields('syncUser','syncPin'); });
   document.getElementById('syncLogout').onclick=()=>{
     if(!confirm('Log out on this device? This clears the values saved locally here (so the next person\'s code doesn\'t get them merged in) — your data stays safe in the cloud under your code.'))return;
     if(unsubscribe){ unsubscribe(); unsubscribe=null; }
     localStorage.removeItem(SYNC_CODE_KEY);
+    localStorage.removeItem(SYNC_USER_KEY);
+    localStorage.removeItem(SYNC_PIN_KEY);
     localStorage.removeItem(STATE_KEY);
     location.reload();
   };
@@ -548,19 +564,28 @@ document.getElementById("resetDefaults").onclick=()=>{
     gate.style.display='flex';
     document.getElementById('gateNew').onclick=submitGate;
     document.getElementById('gateLogin').onclick=submitGate;
-    document.getElementById('gateCode').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
-    document.getElementById('gateCode').focus();
+    document.getElementById('gateUser').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('gatePin').focus(); });
+    document.getElementById('gatePin').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
+    document.getElementById('gateUser').focus();
   }
   function submitGate(){
-    const norm=normCode(document.getElementById('gateCode').value);
-    if(!norm){ document.getElementById('gateCode').focus(); return; }
+    const user=document.getElementById('gateUser').value.trim(), pin=document.getElementById('gatePin').value.trim();
+    if(!user){ document.getElementById('gateUser').focus(); return; }
     document.getElementById('syncGate').style.display='none';
-    document.getElementById('syncCode').value=norm;
-    connect(norm);
+    document.getElementById('syncUser').value=user; document.getElementById('syncPin').value=pin;
+    localStorage.setItem(SYNC_USER_KEY, user);
+    localStorage.setItem(SYNC_PIN_KEY, pin);
+    connect(user+'-'+pin);
   }
-  const saved=localStorage.getItem(SYNC_CODE_KEY);
-  if(saved){ document.getElementById('syncCode').value=saved; connect(saved); }
-  else{ showGate(); }
+  const savedCode=localStorage.getItem(SYNC_CODE_KEY);
+  const savedUser=localStorage.getItem(SYNC_USER_KEY);
+  const savedPin=localStorage.getItem(SYNC_PIN_KEY);
+  if(savedUser!==null) document.getElementById('syncUser').value=savedUser;
+  if(savedPin!==null) document.getElementById('syncPin').value=savedPin;
+  if(savedCode){
+    if(savedUser!==null && savedPin!==null){ connect(savedUser+'-'+savedPin); }
+    else{ document.getElementById('syncUser').value=savedCode; connect(savedCode); }
+  } else { showGate(); }
 })();
 </script>
 </body>
