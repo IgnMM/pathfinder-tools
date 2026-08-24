@@ -50,23 +50,6 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
 </style>
 </head>
 <body>
-<div id="syncGate" style="display:none;position:fixed;inset:0;z-index:9999;
-  background-image:linear-gradient(to bottom, rgba(6,4,3,.1) 0%, rgba(6,4,3,.15) 50%, rgba(6,4,3,.94) 100%), url('../assets/gate-bg.jpg');
-  background-size:cover;background-position:center;
-  align-items:flex-end;justify-content:center;padding:0 16px 26px">
-  <div style="max-width:380px;width:100%;background:rgba(12,9,6,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(233,200,116,.35);border-radius:12px;padding:18px 20px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.55)">
-    <h2 style="font-family:'Cinzel Decorative',serif;margin:0 0 6px;color:#e9c874;font-size:1.15rem;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.7)">Welcome, Traveler</h2>
-    <p style="color:#d8cdb9;font-size:.78rem;margin:0 0 12px;line-height:1.4;font-family:'Cinzel',Georgia,serif">Speak a name and PIN — the same words on any device bring your characters with you.</p>
-    <div style="display:flex;gap:8px">
-      <input id="gateUser" type="text" placeholder="USERNAME" style="flex:1;min-width:0;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
-      <input id="gatePin" type="text" placeholder="PIN" style="width:78px;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
-    </div>
-    <div style="display:flex;gap:8px;margin-top:10px">
-      <button id="gateNew" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.4);background:rgba(233,200,116,.08);color:#e9c874;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">New User</button>
-      <button id="gateLogin" style="flex:1;padding:10px;border-radius:8px;border:1px solid #f1d78b;background:linear-gradient(180deg,#e9c874,#b0863c);color:#241708;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">Log In</button>
-    </div>
-  </div>
-</div>
 <a href="../" title="Pathfinder Tools" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></a>
 <style>@media(max-width:900px){.wrap{padding-left:60px !important}}</style>
 <div class="wrap">
@@ -80,14 +63,10 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
   </div>
   <details style="margin-top:12px"><summary style="cursor:pointer;color:var(--gold)">Sync</summary>
     <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <input id="syncUser" type="text" placeholder="USERNAME" style="width:120px;text-transform:uppercase">
-      <input id="syncPin" type="text" placeholder="PIN" style="width:80px;text-transform:uppercase">
-      <button id="syncConnect" type="button">Connect</button>
       <button id="resetDefaults" type="button" title="Clear the saved values for this page and reload with the hardcoded defaults">Reset to defaults</button>
-      <button id="syncLogout" type="button" style="background:#3a1d21;border-color:#67343b;color:#f0a0a0">Log out</button>
       <span id="syncStatus" style="font-size:12px;color:var(--muted)"></span>
     </div>
-    <div style="font-size:12px;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div>
+    <div style="font-size:12px;color:var(--muted);margin-top:6px">Locked to account <b style="color:var(--text)">KOS</b> — always synced automatically.</div>
   </details>
 </header>
 
@@ -576,52 +555,12 @@ document.getElementById("resetDefaults").onclick=()=>{
       setStatus('Synced ✓');
     }catch(e){ setStatus('Sync error: '+e.message); }
   }
-  function connectFromFields(userId, pinId){
-    const user=document.getElementById(userId).value.trim(), pin=document.getElementById(pinId).value.trim();
-    if(!user) return;
-    localStorage.setItem(SYNC_USER_KEY, user);
-    localStorage.setItem(SYNC_PIN_KEY, pin);
-    connect(user+'-'+pin);
-  }
-  document.getElementById('syncConnect').onclick=()=>connectFromFields('syncUser','syncPin');
-  document.getElementById('syncUser').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('syncPin').focus(); });
-  document.getElementById('syncPin').addEventListener('keydown', e=>{ if(e.key==='Enter') connectFromFields('syncUser','syncPin'); });
-  document.getElementById('syncLogout').onclick=()=>{
-    if(!confirm('Log out on this device? This clears the values saved locally here (so the next person\'s code doesn\'t get them merged in) — your data stays safe in the cloud under your code.'))return;
-    if(unsubscribe){ unsubscribe(); unsubscribe=null; }
-    localStorage.removeItem(SYNC_CODE_KEY);
-    localStorage.removeItem(SYNC_USER_KEY);
-    localStorage.removeItem(SYNC_PIN_KEY);
-    localStorage.removeItem(STATE_KEY);
-    location.reload();
-  };
-  function showGate(){
-    const gate=document.getElementById('syncGate');
-    gate.style.display='flex';
-    document.getElementById('gateNew').onclick=submitGate;
-    document.getElementById('gateLogin').onclick=submitGate;
-    document.getElementById('gateUser').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('gatePin').focus(); });
-    document.getElementById('gatePin').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
-    document.getElementById('gateUser').focus();
-  }
-  function submitGate(){
-    const user=document.getElementById('gateUser').value.trim(), pin=document.getElementById('gatePin').value.trim();
-    if(!user){ document.getElementById('gateUser').focus(); return; }
-    document.getElementById('syncGate').style.display='none';
-    document.getElementById('syncUser').value=user; document.getElementById('syncPin').value=pin;
-    localStorage.setItem(SYNC_USER_KEY, user);
-    localStorage.setItem(SYNC_PIN_KEY, pin);
-    connect(user+'-'+pin);
-  }
-  const savedCode=localStorage.getItem(SYNC_CODE_KEY);
-  const savedUser=localStorage.getItem(SYNC_USER_KEY);
-  const savedPin=localStorage.getItem(SYNC_PIN_KEY);
-  if(savedUser!==null) document.getElementById('syncUser').value=savedUser;
-  if(savedPin!==null) document.getElementById('syncPin').value=savedPin;
-  if(savedCode){
-    if(savedUser!==null && savedPin!==null){ connect(savedUser+'-'+savedPin); }
-    else{ document.getElementById('syncUser').value=savedCode; connect(savedCode); }
-  } else { showGate(); }
+  // Kenneth is a single, fixed character sheet — always syncs to the KOS account,
+  // no gate, no manual account switching.
+  const FIXED_USER='KOS', FIXED_PIN='5';
+  localStorage.setItem(SYNC_USER_KEY, FIXED_USER);
+  localStorage.setItem(SYNC_PIN_KEY, FIXED_PIN);
+  connect(FIXED_USER+'-'+FIXED_PIN);
 })();
 </script>
 </body>
