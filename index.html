@@ -5,38 +5,73 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pathfinder Tools</title>
 <style>
-body{font-family:system-ui,-apple-system,sans-serif;background:#0f1117;color:#fff;margin:0;display:flex;justify-content:center;min-height:100vh}
-main{width:min(92vw,520px);padding:32px 0 48px}
-h1{margin:0 0 28px}
-h2{margin:28px 0 10px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#8b93a6;border-bottom:1px solid #262b38;padding-bottom:6px}
-section:first-of-type h2{margin-top:0}
-a{display:block;padding:18px;margin:10px 0;border:1px solid #343946;border-radius:14px;color:#fff;text-decoration:none;background:#191d27;font-size:1.15rem;font-weight:700}
-small{color:#aeb5c3;font-weight:400}
+:root{--navy:#10151d;--card:#191d27;--border:#343946;--muted:#aeb5c3;--gold:#d6b35f;--blue:#6aa8d9;--green:#72c69c}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--navy);color:#fff;margin:0;display:flex;justify-content:center;min-height:100vh}
+main{width:min(92vw,560px);padding:32px 0 48px}
+h1{margin:0 0 24px}
+
+details.section{background:var(--card);border:1px solid var(--border);border-radius:16px;margin:14px 0;overflow:hidden;border-top:3px solid var(--accent)}
+details.section > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:18px 20px;-webkit-tap-highlight-color:transparent}
+details.section > summary::-webkit-details-marker{display:none}
+details.section > summary::marker{content:""}
+
+.icon{flex:none;width:56px;height:56px;border-radius:14px;background:rgba(255,255,255,.04);display:grid;place-items:center}
+.icon svg{width:34px;height:34px}
+
+.section-title{flex:1;min-width:0}
+.section-title .name{font-size:1.15rem;font-weight:700;color:#fff}
+.section-title .count{display:block;font-size:.85rem;color:var(--muted);margin-top:2px}
+
+.chevron{flex:none;width:20px;height:20px;color:var(--muted);transition:transform .18s ease}
+details.section[open] .chevron{transform:rotate(180deg)}
+
+.links{padding:4px 16px 16px}
+.links a{display:block;padding:14px 16px;margin:8px 0;border:1px solid var(--border);border-radius:12px;color:#fff;text-decoration:none;background:var(--navy);font-size:1rem;font-weight:700}
+.links small{color:var(--muted);font-weight:400}
 </style>
 </head>
 <body><main>
 <h1>Pathfinder Tools</h1>
 
-<section>
-<h2>Damage Calculator</h2>
+<details class="section" style="--accent:var(--gold)">
+<summary>
+<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><polygon points="32,4 58,20 58,44 32,60 6,44 6,20"/><path d="M32,4 L32,60 M6,20 L58,44 M58,20 L6,44" stroke-width="1.5" opacity=".6"/></svg></span>
+<span class="section-title"><span class="name">Damage Calculator</span><span class="count">1 tool</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="links">
 <a href="calc/">Universal Damage Calculator<br><small>Any character — feats, traits, spells &amp; more</small></a>
-</section>
+</div>
+</details>
 
-<section>
-<h2>Spell Libraries</h2>
+<details class="section" style="--accent:var(--blue)">
+<summary>
+<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><polygon points="30,12 10,18 10,48 30,52 30,12"/><polygon points="34,12 54,18 54,48 34,52 34,12"/></svg></span>
+<span class="section-title"><span class="name">Spell Libraries</span><span class="count">4 tools — browse &amp; search, no tracking</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="links">
 <a href="cleric-oracle-library/">Cleric / Oracle Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
 <a href="wizard-sorcerer-library/">Wizard / Sorcerer Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
 <a href="bard-library/">Bard Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
-</section>
+<a href="witch-library/">Witch Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+</div>
+</details>
 
-<section>
-<h2>Character Spellbooks</h2>
+<details class="section" style="--accent:var(--green)">
+<summary>
+<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="10" y="24" width="44" height="16"/><ellipse cx="10" cy="32" rx="5" ry="8"/><ellipse cx="54" cy="32" rx="5" ry="8"/><path d="M18 28 L46 28 M18 34 L46 34 M18 40 L38 40" stroke-width="1.5" opacity=".6"/></svg></span>
+<span class="section-title"><span class="name">Character Spellbooks</span><span class="count">5 tools — save by character name</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="links">
 <a href="cleric/">Universal Cleric Spellbook<br><small>Any cleric — save multiple characters by name</small></a>
 <a href="paladin/">Universal Paladin Spellbook<br><small>Any paladin — save multiple characters by name</small></a>
 <a href="uran/">Uran<br><small>Cleric Spellbook</small></a>
 <a href="kenneth/">Kenneth<br><small>Damage + Spells</small></a>
 <a href="gabriel/">Gabriel<br><small>Damage + Spells</small></a>
-</section>
+</div>
+</details>
 
 </main></body>
 </html>
