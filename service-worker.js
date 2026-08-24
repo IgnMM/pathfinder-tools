@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v16";
+const CACHE_NAME = "pathfinder-paladins-folders-v17";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg",
@@ -12,6 +12,7 @@ const ASSETS = [
   "./bard-library/","./bard-library/index.html","./bard-library/manifest.webmanifest","./bard-library/icon-192.png","./bard-library/icon-512.png",
   "./witch-library/","./witch-library/index.html","./witch-library/manifest.webmanifest","./witch-library/icon-192.png","./witch-library/icon-512.png",
   "./druid-library/","./druid-library/index.html","./druid-library/manifest.webmanifest","./druid-library/icon-192.png","./druid-library/icon-512.png",
+  "./ranger-library/","./ranger-library/index.html","./ranger-library/manifest.webmanifest","./ranger-library/icon-192.png","./ranger-library/icon-512.png",
   "./calc/","./calc/index.html","./calc/manifest.webmanifest","./calc/icon-192.png","./calc/icon-512.png"
 ];
 self.addEventListener("install", event => {
