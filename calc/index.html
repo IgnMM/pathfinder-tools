@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Universal Damage Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -87,6 +89,20 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 </style>
 </head>
 <body>
+<div id="syncGate" style="display:none;position:fixed;inset:0;z-index:9999;
+  background-image:linear-gradient(to bottom, rgba(6,4,3,.1) 0%, rgba(6,4,3,.15) 50%, rgba(6,4,3,.94) 100%), url('../assets/gate-bg.jpg');
+  background-size:cover;background-position:center;
+  align-items:flex-end;justify-content:center;padding:0 16px 26px">
+  <div style="max-width:380px;width:100%;background:rgba(12,9,6,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(233,200,116,.35);border-radius:12px;padding:18px 20px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.55)">
+    <h2 style="font-family:'Cinzel Decorative',serif;margin:0 0 6px;color:#e9c874;font-size:1.15rem;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.7)">Welcome, Traveler</h2>
+    <p style="color:#d8cdb9;font-size:.78rem;margin:0 0 12px;line-height:1.4;font-family:'Cinzel',Georgia,serif">Speak a name and PIN — the same words on any device bring your characters with you.</p>
+    <input id="gateCode" type="text" placeholder="NAME+PIN" style="width:100%;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="gateNew" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.4);background:rgba(233,200,116,.08);color:#e9c874;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">New User</button>
+      <button id="gateLogin" style="flex:1;padding:10px;border-radius:8px;border:1px solid #f1d78b;background:linear-gradient(180deg,#e9c874,#b0863c);color:#241708;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">Log In</button>
+    </div>
+  </div>
+</div>
 <div class="wrap">
 <header>
   <h1>Universal Damage Calculator</h1>
@@ -103,6 +119,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
     <details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px">
       <div class="row"><label>Code</label><input id="syncCode" type="text" placeholder="NAME+PIN" style="width:130px;text-transform:uppercase"></div>
       <button id="syncConnect" type="button">Connect</button>
+      <button id="syncLogout" type="button" class="danger">Log out</button>
       <div style="font-size:.72rem;color:var(--muted);margin-top:6px">Use the same code on another device to see the same characters there. Whoever knows the code can read/write this data — pick something private, not "1234".</div>
       <div id="syncStatus" style="font-size:.75rem;color:var(--muted);margin-top:6px"></div>
     </div></details>
@@ -2103,8 +2120,33 @@ if("serviceWorker" in navigator){
   $('syncConnect').onclick=()=>connect($('syncCode').value);
   $('syncCode').addEventListener('keydown', e=>{ if(e.key==='Enter') connect($('syncCode').value); });
 
+  $('syncLogout').onclick=()=>{
+    if(!confirm('Log out on this device? This clears the characters saved locally here (so the next person\'s code doesn\'t get them merged in) — your data stays safe in the cloud under your code.'))return;
+    if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+    localStorage.removeItem(SYNC_CODE_KEY);
+    localStorage.removeItem(STORE_KEY);
+    location.reload();
+  };
+
+  function showGate(){
+    const gate=$('syncGate');
+    gate.style.display='flex';
+    $('gateNew').onclick=submitGate;
+    $('gateLogin').onclick=submitGate;
+    $('gateCode').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
+    $('gateCode').focus();
+  }
+  function submitGate(){
+    const norm=normCode($('gateCode').value);
+    if(!norm){ $('gateCode').focus(); return; }
+    $('syncGate').style.display='none';
+    $('syncCode').value=norm;
+    connect(norm);
+  }
+
   const saved=localStorage.getItem(SYNC_CODE_KEY);
   if(saved){ $('syncCode').value=saved; connect(saved); }
+  else{ showGate(); }
 })();
 </script>
 </body>
