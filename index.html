@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pathfinder Tools</title>
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#10151d;--card:#191d27;--border:#343946;--muted:#aeb5c3;--gold:#d6b35f;--blue:#6aa8d9;--green:#72c69c}
 body{font-family:system-ui,-apple-system,sans-serif;background:var(--navy);color:#fff;margin:0;display:flex;justify-content:center;min-height:100vh}
@@ -31,8 +33,26 @@ details.section[open] .chevron{transform:rotate(180deg)}
 .links small{color:var(--muted);font-weight:400}
 </style>
 </head>
-<body><main>
+<body>
+<div id="syncGate" style="display:none;position:fixed;inset:0;z-index:9999;
+  background-image:linear-gradient(to bottom, rgba(6,4,3,.1) 0%, rgba(6,4,3,.15) 50%, rgba(6,4,3,.94) 100%), url('assets/gate-bg.jpg');
+  background-size:cover;background-position:center;
+  align-items:flex-end;justify-content:center;padding:0 16px 26px">
+  <div style="max-width:380px;width:100%;background:rgba(12,9,6,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(233,200,116,.35);border-radius:12px;padding:18px 20px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.55)">
+    <h2 style="font-family:'Cinzel Decorative',serif;margin:0 0 6px;color:#e9c874;font-size:1.15rem;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.7)">Welcome, Traveler</h2>
+    <p style="color:#d8cdb9;font-size:.78rem;margin:0 0 12px;line-height:1.4;font-family:'Cinzel',Georgia,serif">Speak a name and PIN — the same words on any device bring your characters with you.</p>
+    <input id="gateCode" type="text" placeholder="NAME+PIN" style="width:100%;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="gateNew" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.4);background:rgba(233,200,116,.08);color:#e9c874;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">New User</button>
+      <button id="gateLogin" style="flex:1;padding:10px;border-radius:8px;border:1px solid #f1d78b;background:linear-gradient(180deg,#e9c874,#b0863c);color:#241708;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">Log In</button>
+    </div>
+  </div>
+</div>
+<main>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
 <h1>Pathfinder Tools</h1>
+<button id="syncLogout" type="button" style="background:#3a1d21;border:1px solid #67343b;color:#f0a0a0;border-radius:8px;padding:8px 12px;font-size:.8rem;cursor:pointer;white-space:nowrap">Log out</button>
+</div>
 
 <details class="section" style="--accent:var(--gold)">
 <summary>
@@ -76,4 +96,42 @@ details.section[open] .chevron{transform:rotate(180deg)}
 </details>
 
 </main></body>
+<script>
+// This landing page has no data of its own — it's just a launcher. But since everyone
+// enters here first (not via a direct tool link), the welcome gate lives here too: pick
+// a code once, and every tool auto-connects with it afterwards (shared localStorage,
+// same origin). No Firebase needed on this page — just remembering the code choice.
+(function(){
+  const SYNC_CODE_KEY='pf1_sync_code_v1';
+  // Every localStorage key any tool on this site writes to, for the global "Log out".
+  const ALL_APP_KEYS=[
+    'pf1_universal_damage_calc_profiles_v1','clericUniversalSpellbookPF1V1',
+    'paladinUniversalSpellbookPF1V1','uranClericSpellbookPF1V1',
+    'kennethPaladinSpellbookPF1CoreV1','gabrielPaladinSpellbookPF1CoreV1',
+    'kennethDamageCalcPF1V1','gabrielDamageCalcPF1V1'
+  ];
+  function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
+  function showGate(){
+    const gate=document.getElementById('syncGate');
+    gate.style.display='flex';
+    document.getElementById('gateNew').onclick=submitGate;
+    document.getElementById('gateLogin').onclick=submitGate;
+    document.getElementById('gateCode').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
+    document.getElementById('gateCode').focus();
+  }
+  function submitGate(){
+    const norm=normCode(document.getElementById('gateCode').value);
+    if(!norm){ document.getElementById('gateCode').focus(); return; }
+    localStorage.setItem(SYNC_CODE_KEY, norm);
+    document.getElementById('syncGate').style.display='none';
+  }
+  document.getElementById('syncLogout').onclick=()=>{
+    if(!confirm('Log out on this device? This clears every character saved locally here (so the next person\'s code doesn\'t get them merged in) — your data stays safe in the cloud under your code.'))return;
+    localStorage.removeItem(SYNC_CODE_KEY);
+    ALL_APP_KEYS.forEach(k=>localStorage.removeItem(k));
+    location.reload();
+  };
+  if(!localStorage.getItem(SYNC_CODE_KEY)) showGate();
+})();
+</script>
 </html>
