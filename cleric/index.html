@@ -4,7 +4,7 @@
 @media(max-width:780px){header,main{padding:5px 7px}h1{display:none}.sub{display:none}.controls{grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:3px}label{font-size:.45rem}select,input{height:23px;padding:2px 4px;font-size:.6rem}.stats{gap:2px;margin-top:3px}.stat{padding:2px;text-align:center;min-height:29px}.stat b{font-size:.68rem}.stat span{font-size:.38rem}.levels{margin:3px 0;gap:2px}button{padding:3px 5px;font-size:.55rem}.slotbar{gap:2px;margin-bottom:4px}.slot{padding:3px;font-size:.58rem}.slot small{font-size:.42rem}.toolbar{grid-template-columns:1fr 100px auto auto;gap:3px;margin-bottom:4px}.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:3px}section{margin:4px 0 8px}h2{font-size:.72rem;margin:3px 0}.card{padding:5px}.name{font-size:.74rem}.desc{font-size:.58rem}.desc summary{font-size:.55rem}.stat-row{font-size:.55rem}.stat-block{padding:4px 5px}.badge{font-size:.45rem}}
 </style>
 </head>
-<body><header><h1>Universal Cleric Spellbook</h1><div class="profileBar"><label>Character:</label><select id="profileSelect"></select><button id="newProfile">New</button><button id="dupProfile">Save As…</button><button id="renameProfile">Rename</button><button class="danger" id="deleteProfile">Delete</button><span id="saveIndicator" class="saveIndicator">✓ Saved</span></div><div class="sub">Pathfinder 1e full Paizo cleric spell list + domain spells — reusable for any cleric, save each one under their own name.</div><div class="controls">
+<body><header><h1>Universal Cleric Spellbook</h1><div class="profileBar"><label>Character:</label><select id="profileSelect"></select><button id="newProfile">New</button><button id="dupProfile">Save As…</button><button id="renameProfile">Rename</button><button class="danger" id="deleteProfile">Delete</button><span id="saveIndicator" class="saveIndicator">✓ Saved</span><details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px"><label>Code</label><input id="syncCode" type="text" placeholder="NAME+PIN" style="width:130px;text-transform:uppercase;margin-bottom:6px"><button id="syncConnect" type="button">Connect</button><div style="font-size:.68rem;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div><div id="syncStatus" style="font-size:.7rem;color:var(--muted);margin-top:6px"></div></div></details></div><div class="sub">Pathfinder 1e full Paizo cleric spell list + domain spells — reusable for any cleric, save each one under their own name.</div><div class="controls">
 <div><label>Cleric Level</label><select id="level"></select></div>
 <div><label>Wisdom</label><select id="wis"></select></div>
 <div><label>Alignment</label><select id="alignment">
@@ -250,5 +250,98 @@ loadProfileIntoUI();
 if("serviceWorker" in navigator){
   window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
 }
+
+// ---------- Cross-device sync (Firebase Firestore) ----------
+// Same shared doc/code as every other Pathfinder tool on this site — a code entered
+// once in any tool is saved to localStorage (shared across all tools on this origin)
+// and auto-connects here too. No accounts/login — the code is the access key.
+(function(){
+  const SYNC_CODE_KEY='pf1_sync_code_v1';
+  const APP_FIELD='cleric';
+  const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
+  let db=null, docRef=null, unsubscribe=null, applyingRemote=false, pushTimer=null, fsApi=null;
+  const _origSave=save;
+  save=function(){ _origSave(); if(!applyingRemote) pushToCloud(); };
+
+  function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
+  function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
+
+  function mergeStores(local, remote){
+    if(!remote || !remote.profiles || !Object.keys(remote.profiles).length) return local;
+    if(!local || !local.profiles || !Object.keys(local.profiles).length) return remote;
+    let merged=JSON.parse(JSON.stringify(remote));
+    Object.keys(local.profiles).forEach(name=>{ if(!merged.profiles[name]) merged.profiles[name]=local.profiles[name]; });
+    if(!merged.profiles[merged.active]) merged.active=Object.keys(merged.profiles)[0];
+    return merged;
+  }
+
+  function applyStore(newStore){
+    applyingRemote=true;
+    store=newStore;
+    state=store.profiles[store.active];
+    _origSave();
+    populateProfileSelect();
+    loadProfileIntoUI();
+    applyingRemote=false;
+  }
+
+  function pushToCloud(){
+    if(!docRef||applyingRemote) return;
+    clearTimeout(pushTimer);
+    pushTimer=setTimeout(async ()=>{
+      try{ await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(store)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
+      catch(e){ setStatus('Sync error: '+e.message); }
+    }, 700);
+  }
+
+  async function connect(code){
+    const norm=normCode(code);
+    if(!norm) return;
+    setStatus('Connecting…');
+    try{
+      if(!fsApi){
+        const [{initializeApp}, fs] = await Promise.all([
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+        ]);
+        fsApi=fs;
+        const app=initializeApp({
+          apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",
+          authDomain:"pathfinder-webapp-486d1.firebaseapp.com",
+          projectId:"pathfinder-webapp-486d1",
+          storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",
+          messagingSenderId:"337645222032",
+          appId:"1:337645222032:web:eda9b7c8ff7646e4524015"
+        });
+        db=fsApi.getFirestore(app);
+      }
+      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+      docRef=fsApi.doc(db,'pf_sync',norm);
+      localStorage.setItem(SYNC_CODE_KEY, norm);
+
+      const snap=await fsApi.getDoc(docRef);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      applyStore(mergeStores(store, remote));
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(store)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+
+      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
+        if(snap2.metadata.hasPendingWrites) return;
+        const data=snap2.data();
+        if(!data || !data[APP_FIELD]) return;
+        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
+        applyStore(data[APP_FIELD]);
+        setStatus('Synced ✓ (updated from another device)');
+      }, (err)=>setStatus('Sync error: '+err.message));
+
+      setStatus('Synced ✓');
+    }catch(e){ setStatus('Sync error: '+e.message); }
+  }
+
+  $('syncConnect').onclick=()=>connect($('syncCode').value);
+  $('syncCode').addEventListener('keydown', e=>{ if(e.key==='Enter') connect($('syncCode').value); });
+
+  const saved=localStorage.getItem(SYNC_CODE_KEY);
+  if(saved){ $('syncCode').value=saved; connect(saved); }
+})();
 </script>
 </body></html>
