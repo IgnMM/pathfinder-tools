@@ -1030,12 +1030,6 @@ const MODIFIERS = [
  desc:"You prefer disabling foes to killing them, and you've trained to do it without losing accuracy.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
 
-// ---------------- SKILLS ----------------
-{id:"knowledge-skill-unlock-10-ranks",name:"Knowledge Skill Unlock (10 Ranks)",category:"skill",source:"Pathfinder Unchained, pg. 85",appliesTo:["attack"],type:"competence",
- configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"At 10+ ranks in a Knowledge skill, successfully identifying a creature grants a +1 (scaling) competence bonus on your own attack rolls against that specific kind of creature for 1 minute. Requires the Skill Unlocks subsystem.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"competence"}}},
-
 // ---------------- MYTHIC (Mythic Adventures) ----------------
 // Most mythic combat options are conditional, dice-based, mythic-power-gated, or
 // modify another entry's own formula (e.g. Mythic Power Attack changes Power
@@ -1196,7 +1190,7 @@ const MODIFIERS = [
  compute:()=>({attack:0,damage:0,note:'Power Attack/Deadly Aim damage excluded from the crit multiplier — see Critical Damage'})},
 ];
 
-const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'skill',label:'Skills'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
+const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
   {k:'weapon',label:'Weapon Effects',subcats:[{k:'spell',label:'Enchanting Spells'},{k:'elemental',label:'Elemental'},{k:'alignment',label:'Alignment'},{k:'other',label:'Other Properties'}]},
   {k:'mythic',label:'Mythic',subcats:[{k:'feat',label:'Mythic Feats'},{k:'path',label:'Path Abilities'},{k:'universal',label:'Universal (Surge, etc.)'},{k:'other',label:'Custom / Other'}]},
   {k:'houserule',label:'House Rules'}];
