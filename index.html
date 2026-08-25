@@ -68,20 +68,6 @@ details.section[open] .chevron{transform:rotate(180deg)}
 <button id="syncLogout" type="button" style="background:#3a1d21;border:1px solid #67343b;color:#f0a0a0;border-radius:8px;padding:8px 12px;font-size:.8rem;cursor:pointer;white-space:nowrap">Log out</button>
 </div>
 
-<details class="section" style="--accent:var(--purple)">
-<summary>
-<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--purple)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="10" y="10" width="10" height="10" rx="2"/><path d="M12 15 L14 17 L18 12"/><line x1="26" y1="15" x2="54" y2="15"/><rect x="10" y="27" width="10" height="10" rx="2"/><path d="M12 32 L14 34 L18 29"/><line x1="26" y1="32" x2="54" y2="32"/><rect x="10" y="44" width="10" height="10" rx="2"/><line x1="26" y1="49" x2="54" y2="49"/></svg></span>
-<span class="section-title"><span class="name">Valid Sources</span><span class="count" id="sourcesCount">— sourcebooks allowed</span></span>
-<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-</summary>
-<div class="sourcesWrap">
-<p class="sourcesNote">Sets the default sourcebooks allowed across every tool and character on this site. Any character can still override this individually (e.g. add a race's own splatbook once a character actually is that race).</p>
-<div class="sourcesToolbar"><input id="sourcesSearch" type="text" placeholder="Search sourcebooks..."><button id="sourcesAll" type="button">All</button><button id="sourcesNone" type="button">None</button><button id="sourcesReset" type="button">Reset to defaults</button></div>
-<div class="sourcesList" id="sourcesList"></div>
-<div class="sourcesStatus" id="sourcesStatus"></div>
-</div>
-</details>
-
 <details class="section" style="--accent:var(--gold)">
 <summary>
 <span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><polygon points="32,4 58,20 58,44 32,60 6,44 6,20"/><path d="M32,4 L32,60 M6,20 L58,44 M58,20 L6,44" stroke-width="1.5" opacity=".6"/></svg></span>
@@ -90,6 +76,22 @@ details.section[open] .chevron{transform:rotate(180deg)}
 </summary>
 <div class="links">
 <a href="calc/">Universal Damage Calculator<br><small>Any character — feats, traits, spells &amp; more</small></a>
+</div>
+</details>
+
+<details class="section" style="--accent:var(--green)">
+<summary>
+<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="10" y="24" width="44" height="16"/><ellipse cx="10" cy="32" rx="5" ry="8"/><ellipse cx="54" cy="32" rx="5" ry="8"/><path d="M18 28 L46 28 M18 34 L46 34 M18 40 L38 40" stroke-width="1.5" opacity=".6"/></svg></span>
+<span class="section-title"><span class="name">Character Sheets</span><span class="count">6 tools — save by character name</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="links">
+<a href="cleric/">Universal Cleric Spellbook<br><small>Any cleric — save multiple characters by name</small></a>
+<a href="paladin/">Universal Paladin Spellbook<br><small>Any paladin — save multiple characters by name</small></a>
+<a href="druid/">Universal Druid Spellbook<br><small>Any druid — save multiple characters by name</small></a>
+<a href="uran/">Uran<br><small>Cleric Spellbook</small></a>
+<a href="kenneth/">Kenneth<br><small>Damage + Spells</small></a>
+<a href="gabriel/">Gabriel<br><small>Damage + Spells</small></a>
 </div>
 </details>
 
@@ -110,19 +112,17 @@ details.section[open] .chevron{transform:rotate(180deg)}
 </div>
 </details>
 
-<details class="section" style="--accent:var(--green)">
+<details class="section" style="--accent:var(--purple)">
 <summary>
-<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="10" y="24" width="44" height="16"/><ellipse cx="10" cy="32" rx="5" ry="8"/><ellipse cx="54" cy="32" rx="5" ry="8"/><path d="M18 28 L46 28 M18 34 L46 34 M18 40 L38 40" stroke-width="1.5" opacity=".6"/></svg></span>
-<span class="section-title"><span class="name">Character Sheets</span><span class="count">6 tools — save by character name</span></span>
+<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--purple)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="10" y="10" width="10" height="10" rx="2"/><path d="M12 15 L14 17 L18 12"/><line x1="26" y1="15" x2="54" y2="15"/><rect x="10" y="27" width="10" height="10" rx="2"/><path d="M12 32 L14 34 L18 29"/><line x1="26" y1="32" x2="54" y2="32"/><rect x="10" y="44" width="10" height="10" rx="2"/><line x1="26" y1="49" x2="54" y2="49"/></svg></span>
+<span class="section-title"><span class="name">Valid Sources</span><span class="count" id="sourcesCount">— sourcebooks allowed</span></span>
 <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
 </summary>
-<div class="links">
-<a href="cleric/">Universal Cleric Spellbook<br><small>Any cleric — save multiple characters by name</small></a>
-<a href="paladin/">Universal Paladin Spellbook<br><small>Any paladin — save multiple characters by name</small></a>
-<a href="druid/">Universal Druid Spellbook<br><small>Any druid — save multiple characters by name</small></a>
-<a href="uran/">Uran<br><small>Cleric Spellbook</small></a>
-<a href="kenneth/">Kenneth<br><small>Damage + Spells</small></a>
-<a href="gabriel/">Gabriel<br><small>Damage + Spells</small></a>
+<div class="sourcesWrap">
+<p class="sourcesNote">Sets the default sourcebooks allowed across every tool and character on this site. Any character can still override this individually (e.g. add a race's own splatbook once a character actually is that race).</p>
+<div class="sourcesToolbar"><input id="sourcesSearch" type="text" placeholder="Search sourcebooks..."><button id="sourcesAll" type="button">All</button><button id="sourcesNone" type="button">None</button><button id="sourcesReset" type="button">Reset to defaults</button></div>
+<div class="sourcesList" id="sourcesList"></div>
+<div class="sourcesStatus" id="sourcesStatus"></div>
 </div>
 </details>
 
