@@ -32,7 +32,8 @@
 <div><label>Race</label><input id="race" list="raceList" placeholder="Search race..." autocomplete="off"></div>
 </div>
 <datalist id="raceList"></datalist>
-<div class="stats"><div class="stat"><b id="cl">0</b><span>Caster level</span></div><div class="stat"><b id="daily">0</b><span>Total spell slots/day</span></div><div class="stat"><b id="prepared">0</b><span>Prepared in normal slots</span></div></div><div id="levelButtons" class="levels"></div><details class="rulenote"><summary>ⓘ caster level &amp; alignment</summary><div id="ruleNote"></div></details></header><main><div id="slots" class="slotbar"></div><div class="toolbar"><input id="search" placeholder="Search spell name or description..."><select id="filter"><option value="all">All spells</option><option value="prepared">Prepared only</option><option value="unprepared">Unprepared only</option><option value="favorites">Favorites only</option></select><label class="ineligibleToggle"><input type="checkbox" id="showIneligible"> Show ineligible</label><details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button></div><div id="sourceList"></div></div></details><button class="primary" id="newDay">New Day</button><button id="clear">Clear</button></div><div id="list"></div></main>
+<div class="stats"><div class="stat"><b id="cl">0</b><span>Caster level</span></div><div class="stat"><b id="daily">0</b><span>Total spell slots/day</span></div><div class="stat"><b id="prepared">0</b><span>Prepared in normal slots</span></div></div><div id="levelButtons" class="levels"></div><details class="rulenote"><summary>ⓘ caster level &amp; alignment</summary><div id="ruleNote"></div></details></header><main><div id="slots" class="slotbar"></div><div class="toolbar"><input id="search" placeholder="Search spell name or description..."><select id="filter"><option value="all">All spells</option><option value="prepared">Prepared only</option><option value="unprepared">Unprepared only</option><option value="favorites">Favorites only</option></select><label class="ineligibleToggle"><input type="checkbox" id="showIneligible"> Show ineligible</label><details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details><button class="primary" id="newDay">New Day</button><button id="clear">Clear</button></div><div id="list"></div></main>
+<script src="../assets/valid-sources.js"></script>
 <script>
 const RACES=["Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Aasimar","Adaro","Android","Aphorite","Aquatic Elf","Astomoi","Being of Ib","Boggard","Caligni","Catfolk","Cecaelia","Changeling","Deep One Hybrid","Dhampir","Drow","Drow Noble","Duergar","Duskwalker","Fetchling","Ganzi","Gathlain","Ghoran","Gillman","Goblin","Green Martian","Grindylow","Grippli","Hobgoblin","Ifrit","Kasatha","Kitsune","Kobold","Kuru","Lashunta","Locathah","Merfolk","Monkey Goblin","Munavri","Nagaji","Naiad","Orang-Pendak","Orc","Oread","Primitive Human","Ratfolk","Reborn Samsaran","Reptoid","Rougarou","Sahuagin","Samsaran","Shabti","Skinwalker","Strix","Suli","Svirfneblin","Sylph","Syrinx","Tengu","Tiefling","Triaxian","Triton","Trox","Undine","Vanara","Vine Leshy","Vishkanya","Wayang","Wyrwood","Wyvaran","Yaddithian"];
 const RACE_SOURCE_MAP={"Dwarf":["Dwarves of Golarion"],"Goblin":["Goblins of Golarion"],"Kobold":["Kobolds of Golarion"],"Orc":["Orcs of Golarion"],"Half-Orc":["Orcs of Golarion"],"Human":["Humans of Golarion"]};
@@ -51,7 +52,7 @@ const MIN_LEVEL={1:4,2:7,3:10,4:13};
 const STORE_KEY='paladinUniversalSpellbookPF1V1';
 const $=id=>document.getElementById(id);
 function statRow(label,val){return val?`<div class="stat-row"><b>${label}</b> ${val}</div>`:''}
-function defaultState(){return {level:4,cha:10,race:'',prep:{},used:[0,0,0,0,0],show:[1,2,3,4],fav:{},cast:{},excludedSources:{},showIneligible:false,forbidden:{}};}
+function defaultState(){return {level:4,cha:10,race:'',prep:{},used:[0,0,0,0,0],show:[1,2,3,4],fav:{},cast:{},excludedSources:{},showIneligible:false,forbidden:{},sourcesCustomized:false};}
 function applyDefaultsToState(s){let d=defaultState();Object.keys(d).forEach(k=>{if(s[k]===undefined)s[k]=d[k]});return s}
 function loadStore(){
   let raw=localStorage.getItem(STORE_KEY);
@@ -60,7 +61,14 @@ function loadStore(){
 }
 let store=loadStore();
 if(!store.profiles[store.active])store.active=Object.keys(store.profiles)[0];
+Object.values(store.profiles).forEach(p=>{ if(p.sourcesCustomized===undefined) p.sourcesCustomized=Object.keys(p.excludedSources||{}).length>0; });
 Object.values(store.profiles).forEach(applyDefaultsToState);
+function applyGlobalSourcesToProfile(p){
+  if(p.sourcesCustomized) return;
+  let allSrc=[...new Set(SPELLS.map(s=>s.source||'Unknown'))];
+  p.excludedSources=PFSources.computeExcludedSources(allSrc, PFSources.loadGlobalExcludedLocal());
+}
+Object.values(store.profiles).forEach(applyGlobalSourcesToProfile);
 let state=store.profiles[store.active];
 
 for(let i=1;i<=20;i++)$('level').add(new Option(i,i));
@@ -94,7 +102,7 @@ $('newProfile').onclick=()=>{
   let name=prompt('Name for the new paladin:','New Paladin');
   if(!name)return;
   if(store.profiles[name]){alert('A character with that name already exists.');return;}
-  store.profiles[name]=defaultState();store.active=name;state=store.profiles[store.active];save();populateProfileSelect();loadProfileIntoUI();
+  store.profiles[name]=defaultState();applyGlobalSourcesToProfile(store.profiles[name]);store.active=name;state=store.profiles[store.active];save();populateProfileSelect();loadProfileIntoUI();
 };
 $('dupProfile').onclick=()=>{
   let name=prompt('Save the current sheet as a new character named:',store.active+' (copy)');
@@ -200,7 +208,7 @@ function renderList(){
     out.appendChild(sec)
   }
 }
-function renderSources(){let box=$('sourceList');box.innerHTML='';let all=[...new Set(SPELLS.map(s=>s.source||'Unknown'))].sort();all.forEach(src=>{let lbl=document.createElement('label');let cb=document.createElement('input');cb.type='checkbox';cb.checked=!state.excludedSources[src];cb.onchange=()=>{if(cb.checked)delete state.excludedSources[src];else state.excludedSources[src]=true;save();renderList()};lbl.appendChild(cb);lbl.appendChild(document.createTextNode(src));box.appendChild(lbl)})}
+function renderSources(){let box=$('sourceList');box.innerHTML='';let all=[...new Set(SPELLS.map(s=>s.source||'Unknown'))].sort();all.forEach(src=>{let lbl=document.createElement('label');let cb=document.createElement('input');cb.type='checkbox';cb.checked=!state.excludedSources[src];cb.onchange=()=>{state.sourcesCustomized=true;if(cb.checked)delete state.excludedSources[src];else state.excludedSources[src]=true;save();renderList();renderSourcesNote()};lbl.appendChild(cb);lbl.appendChild(document.createTextNode(src));box.appendChild(lbl)});renderSourcesNote()}function renderSourcesNote(){let el=$('sourcesNote');if(!el)return;el.textContent=state.sourcesCustomized?'Customized for this character':'Following the site\'s global Valid Sources'}$('srcResetGlobal').onclick=()=>{state.sourcesCustomized=false;applyGlobalSourcesToProfile(state);save();renderSources();renderList()};
 function render(){
   $('cl').textContent=casterLevel();
   $('daily').textContent=totalDaily();
@@ -219,7 +227,7 @@ function applyRaceSourceExclusions(){
 }
 $('race').oninput=()=>{state.race=$('race').value.trim();applyRaceSourceExclusions();save();renderSources();render()};
 $('search').oninput=renderList;$('filter').onchange=renderList;$('showIneligible').checked=state.showIneligible;$('showIneligible').onchange=()=>{state.showIneligible=$('showIneligible').checked;save();renderList()};
-$('srcAll').onclick=()=>{state.excludedSources={};save();renderSources();renderList()};$('srcNone').onclick=()=>{[...new Set(SPELLS.map(s=>s.source||'Unknown'))].forEach(src=>state.excludedSources[src]=true);save();renderSources();renderList()};
+$('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};save();renderSources();renderList()};$('srcNone').onclick=()=>{state.sourcesCustomized=true;[...new Set(SPELLS.map(s=>s.source||'Unknown'))].forEach(src=>state.excludedSources[src]=true);save();renderSources();renderList()};
 $('newDay').onclick=()=>{state.used=[0,0,0,0,0];state.cast={};save();render()};
 $('clear').onclick=()=>{state.prep={};state.cast={};save();render()};
 

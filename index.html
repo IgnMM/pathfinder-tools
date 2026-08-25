@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#10151d;--card:#191d27;--border:#343946;--muted:#aeb5c3;--gold:#d6b35f;--blue:#6aa8d9;--green:#72c69c}
+:root{--navy:#10151d;--card:#191d27;--border:#343946;--muted:#aeb5c3;--gold:#d6b35f;--blue:#6aa8d9;--green:#72c69c;--purple:#b98aef}
 body{font-family:system-ui,-apple-system,sans-serif;background:var(--navy);color:#fff;margin:0;display:flex;justify-content:center;min-height:100vh}
 main{width:min(92vw,560px);padding:32px 0 48px}
 h1{margin:0 0 24px}
@@ -31,6 +31,17 @@ details.section[open] .chevron{transform:rotate(180deg)}
 .links{padding:4px 16px 16px}
 .links a{display:block;padding:14px 16px;margin:8px 0;border:1px solid var(--border);border-radius:12px;color:#fff;text-decoration:none;background:var(--navy);font-size:1rem;font-weight:700}
 .links small{color:var(--muted);font-weight:400}
+
+.sourcesWrap{padding:4px 16px 16px}
+.sourcesNote{color:var(--muted);font-size:.82rem;line-height:1.45;margin:0 0 12px}
+.sourcesToolbar{display:flex;gap:8px;margin-bottom:8px}
+.sourcesToolbar input[type=text]{flex:1;min-width:0;background:var(--navy);color:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:.85rem}
+.sourcesToolbar button{background:#232838;color:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:.8rem;cursor:pointer;white-space:nowrap}
+.sourcesList{max-height:340px;overflow-y:auto;border:1px solid var(--border);border-radius:10px;background:var(--navy);padding:4px}
+.sourcesList label{display:flex;align-items:center;gap:8px;padding:6px 8px;font-size:.85rem;border-radius:6px;cursor:pointer}
+.sourcesList label:hover{background:rgba(255,255,255,.04)}
+.sourcesList input{width:auto;flex:none}
+.sourcesStatus{color:var(--muted);font-size:.75rem;margin-top:8px}
 </style>
 </head>
 <body>
@@ -56,6 +67,20 @@ details.section[open] .chevron{transform:rotate(180deg)}
 <h1>Pathfinder Tools</h1>
 <button id="syncLogout" type="button" style="background:#3a1d21;border:1px solid #67343b;color:#f0a0a0;border-radius:8px;padding:8px 12px;font-size:.8rem;cursor:pointer;white-space:nowrap">Log out</button>
 </div>
+
+<details class="section" style="--accent:var(--purple)">
+<summary>
+<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--purple)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="10" y="10" width="10" height="10" rx="2"/><path d="M12 15 L14 17 L18 12"/><line x1="26" y1="15" x2="54" y2="15"/><rect x="10" y="27" width="10" height="10" rx="2"/><path d="M12 32 L14 34 L18 29"/><line x1="26" y1="32" x2="54" y2="32"/><rect x="10" y="44" width="10" height="10" rx="2"/><line x1="26" y1="49" x2="54" y2="49"/></svg></span>
+<span class="section-title"><span class="name">Valid Sources</span><span class="count" id="sourcesCount">— sourcebooks allowed</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="sourcesWrap">
+<p class="sourcesNote">Sets the default sourcebooks allowed across every tool and character on this site. Any character can still override this individually (e.g. add a race's own splatbook once a character actually is that race).</p>
+<div class="sourcesToolbar"><input id="sourcesSearch" type="text" placeholder="Search sourcebooks..."><button id="sourcesAll" type="button">All</button><button id="sourcesNone" type="button">None</button><button id="sourcesReset" type="button">Reset to defaults</button></div>
+<div class="sourcesList" id="sourcesList"></div>
+<div class="sourcesStatus" id="sourcesStatus"></div>
+</div>
+</details>
 
 <details class="section" style="--accent:var(--gold)">
 <summary>
@@ -102,11 +127,13 @@ details.section[open] .chevron{transform:rotate(180deg)}
 </details>
 
 </main></body>
+<script src="assets/valid-sources.js"></script>
 <script>
-// This landing page has no data of its own — it's just a launcher. But since everyone
-// enters here first (not via a direct tool link), the welcome gate lives here too: pick
-// a code once, and every tool auto-connects with it afterwards (shared localStorage,
-// same origin). No Firebase needed on this page — just remembering the code choice.
+// This landing page has no character data of its own — it's just a launcher. But since
+// everyone enters here first (not via a direct tool link), the welcome gate lives here
+// too: pick a code once, and every tool auto-connects with it afterwards (shared
+// localStorage, same origin). It also now hosts the "Valid Sources" global setting
+// (see the second script block below), which does talk to Firebase.
 (function(){
   const SYNC_CODE_KEY='pf1_sync_code_v1';
   const SYNC_USER_KEY='pf1_sync_user_v1';
@@ -114,7 +141,7 @@ details.section[open] .chevron{transform:rotate(180deg)}
   // Every localStorage key any tool on this site writes to, for the global "Log out".
   const ALL_APP_KEYS=[
     'pf1_universal_damage_calc_profiles_v1','clericUniversalSpellbookPF1V1',
-    'paladinUniversalSpellbookPF1V1','uranClericSpellbookPF1V1',
+    'paladinUniversalSpellbookPF1V1','druidUniversalSpellbookPF1V1','uranClericSpellbookPF1V1',
     'kennethPaladinSpellbookPF1CoreV1','gabrielPaladinSpellbookPF1CoreV1',
     'kennethDamageCalcPF1V1','gabrielDamageCalcPF1V1'
   ];
@@ -137,6 +164,7 @@ details.section[open] .chevron{transform:rotate(180deg)}
     localStorage.setItem(SYNC_USER_KEY, user);
     localStorage.setItem(SYNC_PIN_KEY, pin);
     document.getElementById('syncGate').style.display='none';
+    if(window.__pfSourcesConnect) window.__pfSourcesConnect(norm);
   }
   document.getElementById('syncLogout').onclick=()=>{
     if(!confirm('Log out on this device? This clears every character saved locally here (so the next person\'s code doesn\'t get them merged in) — your data stays safe in the cloud under your code.'))return;
@@ -147,6 +175,115 @@ details.section[open] .chevron{transform:rotate(180deg)}
     location.reload();
   };
   if(!localStorage.getItem(SYNC_CODE_KEY)) showGate();
+})();
+</script>
+<script>
+// "Valid Sources" — the global default sourcebook list every tool/character on this
+// site follows unless manually customized. Synced to the same Firestore doc as every
+// other tool here, under its own field so it doesn't collide with any character data.
+(function(){
+  const SYNC_CODE_KEY='pf1_sync_code_v1';
+  const APP_FIELD='globalSources';
+  const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
+  const $=id=>document.getElementById(id);
+  let db=null, docRef=null, unsubscribe=null, applyingRemote=false, pushTimer=null, fsApi=null;
+
+  let excluded=PFSources.loadGlobalExcludedLocal();
+
+  function setStatus(msg){ let el=$('sourcesStatus'); if(el) el.textContent=msg; }
+  function updateCount(){
+    let total=PFSources.ALL_BOOKS.length, validCount=total-Object.keys(excluded).filter(k=>excluded[k]).length;
+    let el=$('sourcesCount'); if(el) el.textContent=validCount+'/'+total+' sourcebooks valid';
+  }
+
+  function renderList(){
+    let q=($('sourcesSearch').value||'').toLowerCase();
+    let box=$('sourcesList'); box.innerHTML='';
+    PFSources.ALL_BOOKS.filter(b=>b.toLowerCase().includes(q)).forEach(book=>{
+      let lbl=document.createElement('label');
+      let cb=document.createElement('input'); cb.type='checkbox'; cb.checked=!excluded[book];
+      cb.onchange=()=>{
+        if(cb.checked) delete excluded[book]; else excluded[book]=true;
+        persist();
+      };
+      lbl.appendChild(cb);
+      lbl.appendChild(document.createTextNode(book));
+      box.appendChild(lbl);
+    });
+    updateCount();
+  }
+
+  function persist(){
+    PFSources.saveGlobalExcludedLocal(excluded);
+    updateCount();
+    pushToCloud();
+  }
+
+  $('sourcesSearch').oninput=renderList;
+  $('sourcesAll').onclick=()=>{ excluded={}; persist(); renderList(); };
+  $('sourcesNone').onclick=()=>{ PFSources.ALL_BOOKS.forEach(b=>excluded[b]=true); persist(); renderList(); };
+  $('sourcesReset').onclick=()=>{
+    if(!confirm('Reset Valid Sources to the site defaults? This only changes the global list — characters you already customized individually are not affected.')) return;
+    excluded=Object.assign({}, PFSources.DEFAULT_EXCLUDED_BOOKS);
+    persist(); renderList();
+  };
+
+  function applyRemote(remoteExcluded){
+    applyingRemote=true;
+    excluded=remoteExcluded||{};
+    PFSources.saveGlobalExcludedLocal(excluded);
+    renderList();
+    applyingRemote=false;
+  }
+
+  function pushToCloud(){
+    if(!docRef||applyingRemote) return;
+    clearTimeout(pushTimer);
+    pushTimer=setTimeout(async ()=>{
+      try{ await fsApi.setDoc(docRef, {[APP_FIELD]:{excluded:JSON.parse(JSON.stringify(excluded))}, updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
+      catch(e){ setStatus('Sync error: '+e.message); }
+    }, 700);
+  }
+
+  async function connect(code){
+    const norm=(code||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80);
+    if(!norm) return;
+    setStatus('Connecting…');
+    try{
+      if(!fsApi){
+        const [{initializeApp}, fs] = await Promise.all([
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+        ]);
+        fsApi=fs;
+        const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
+        db=fsApi.getFirestore(app);
+      }
+      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+      docRef=fsApi.doc(db,'pf_sync',norm);
+      const snap=await fsApi.getDoc(docRef);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      if(remote && remote.excluded){
+        applyRemote(remote.excluded);
+      } else {
+        await fsApi.setDoc(docRef, {[APP_FIELD]:{excluded:JSON.parse(JSON.stringify(excluded))}, updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+      }
+      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
+        if(snap2.metadata.hasPendingWrites) return;
+        const data=snap2.data();
+        if(!data || !data[APP_FIELD]) return;
+        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
+        applyRemote(data[APP_FIELD].excluded);
+        setStatus('Synced ✓ (updated from another device)');
+      }, (err)=>setStatus('Sync error: '+err.message));
+      setStatus('Synced ✓');
+    }catch(e){ setStatus('Sync error: '+e.message); }
+  }
+
+  window.__pfSourcesConnect=connect;
+  renderList();
+  const savedCode=localStorage.getItem(SYNC_CODE_KEY);
+  if(savedCode) connect(savedCode);
 })();
 </script>
 </html>
