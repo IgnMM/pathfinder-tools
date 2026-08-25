@@ -771,9 +771,9 @@ const MODIFIERS = [
  configFields:[{key:'rogueLevel',label:'Rogue level',type:'number',default:1,linkLevel:true}],
  desc:"Extra precision damage dice (1d6 per two rogue levels) against flat-footed or flanked targets; not multiplied on a critical hit. Immune: oozes, elementals, swarms, incorporeal creatures (set Current Target above). NOT immune in PF1e (unlike 3.5e): constructs, ordinary undead.",
  compute:(ctx,cfg)=>{let lvl=cfg.rogueLevel||1;let n=Math.ceil(lvl/2);if(isCritImmune(ctx))return{attack:0,damage:0,note:'Current Target is immune to precision damage — Sneak Attack doesn\'t apply'};return {attack:0,damage:0,note:'Deals '+n+'d6 extra precision damage (rogue level '+lvl+') against a flat-footed or flanked target — not multiplied on a crit'}}},
-{id:"favored-enemy",name:"Favored Enemy",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"untyped",
+{id:"favored-enemy",name:"Favored Enemy",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"untyped",allowMultiple:true,
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:''}],
- desc:"Untyped bonus (starting at +2, scaling +2 every 5 ranger levels) on weapon attack and damage rolls against creatures of a selected favored enemy type. Pick your favored enemy's type above if it matches one of the tracked categories, so it turns on/off automatically with Current Target — leave it on \"always\" if your favored enemy isn't one of these (e.g. a specific humanoid subtype) and toggle it by hand instead.",
+ desc:"Untyped bonus (starting at +2, scaling +2 every 5 ranger levels) on weapon attack and damage rolls against creatures of a selected favored enemy type. Add this once per favored enemy you have (rangers gain more as they level) — each instance has its own bonus value and enemy type, so a lower one gained later can stay at +2 while an earlier one has scaled up. Pick your favored enemy's type above if it matches one of the tracked categories, so it turns on/off automatically with Current Target — leave it on \"always\" if your favored enemy isn't one of these (e.g. a specific humanoid subtype) and toggle it by hand instead.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match your declared favored enemy type — see the "Vs enemy type" field above'};return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
 {id:"judgment-destruction",name:"Judgment (Destruction)",category:"other",source:"Advanced Player's Guide",appliesTo:["damage"],type:"sacred",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
@@ -1493,7 +1493,7 @@ function renderCategories(){
     addRow.innerHTML=`<input list="${listId}" placeholder="Search ${cat.label.toLowerCase()} to add..." id="add_${cat.k}"><datalist id="${listId}"></datalist><button data-cat="${cat.k}" class="addBtn">Add</button><button data-cat="${cat.k}" class="addCustomBtn">+ Custom</button>`;
     block.appendChild(addRow);
     let dl=addRow.querySelector('datalist');
-    MODIFIERS.filter(m=>m.category===cat.k && !p.active.some(a=>a.id===m.id) && !p.excludedSources[m.source]).forEach(m=>{
+    MODIFIERS.filter(m=>m.category===cat.k && (m.allowMultiple || !p.active.some(a=>a.id===m.id)) && !p.excludedSources[m.source]).forEach(m=>{
       let o=document.createElement('option'); o.value=m.name; dl.appendChild(o);
     });
     if(!MODIFIERS.some(m=>m.category===cat.k)){
@@ -1585,7 +1585,7 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom, pStyle){
   div.querySelector('.rm').onclick=()=>{
     let p=currentProfile();
     if(isCustom) p.custom=p.custom.filter(c=>c.id!==defOrCustom.id);
-    else p.active=p.active.filter(a=>a.id!==defOrCustom.id);
+    else p.active=p.active.filter(a=>a!==activeRec);
     saveStore(); renderCategories(); compute();
   };
   div.querySelector('.onChk').addEventListener('change',(e)=>{
