@@ -32,8 +32,9 @@
 <div><label>Race</label><input id="race" list="raceList" placeholder="Search race..." autocomplete="off"></div>
 </div>
 <datalist id="raceList"></datalist>
-<div class="stats"><div class="stat"><b id="cl">0</b><span>Caster level</span></div><div class="stat"><b id="daily">0</b><span>Total spell slots/day</span></div><div class="stat"><b id="prepared">0</b><span>Prepared in normal slots</span></div></div><div id="levelButtons" class="levels"></div><details class="rulenote"><summary>ⓘ caster level &amp; alignment</summary><div id="ruleNote"></div></details></header><main><div id="slots" class="slotbar"></div><div class="toolbar"><input id="search" placeholder="Search spell name or description..."><select id="filter"><option value="all">All spells</option><option value="prepared">Prepared only</option><option value="unprepared">Unprepared only</option><option value="favorites">Favorites only</option></select><label class="ineligibleToggle"><input type="checkbox" id="showIneligible"> Show ineligible</label><details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details><button class="primary" id="newDay">New Day</button><button id="clear">Clear</button></div><div id="list"></div></main>
+<div class="stats"><div class="stat"><b id="cl">0</b><span>Caster level</span></div><div class="stat"><b id="daily">0</b><span>Total spell slots/day</span></div><div class="stat"><b id="prepared">0</b><span>Prepared in normal slots</span></div></div><div id="levelButtons" class="levels"></div><div id="ctButtons" class="levels"></div><details class="rulenote"><summary>ⓘ caster level &amp; alignment</summary><div id="ruleNote"></div></details></header><main><div id="slots" class="slotbar"></div><div class="toolbar"><input id="search" placeholder="Search spell name or description..."><select id="filter"><option value="all">All spells</option><option value="prepared">Prepared only</option><option value="unprepared">Unprepared only</option><option value="favorites">Favorites only</option></select><label class="ineligibleToggle"><input type="checkbox" id="showIneligible"> Show ineligible</label><details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details><button class="primary" id="newDay">New Day</button><button id="clear">Clear</button></div><div id="list"></div></main>
 <script src="../assets/valid-sources.js"></script>
+<script src="../assets/casting-time.js"></script>
 <script>
 const RACES=["Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Aasimar","Adaro","Android","Aphorite","Aquatic Elf","Astomoi","Being of Ib","Boggard","Caligni","Catfolk","Cecaelia","Changeling","Deep One Hybrid","Dhampir","Drow","Drow Noble","Duergar","Duskwalker","Fetchling","Ganzi","Gathlain","Ghoran","Gillman","Goblin","Green Martian","Grindylow","Grippli","Hobgoblin","Ifrit","Kasatha","Kitsune","Kobold","Kuru","Lashunta","Locathah","Merfolk","Monkey Goblin","Munavri","Nagaji","Naiad","Orang-Pendak","Orc","Oread","Primitive Human","Ratfolk","Reborn Samsaran","Reptoid","Rougarou","Sahuagin","Samsaran","Shabti","Skinwalker","Strix","Suli","Svirfneblin","Sylph","Syrinx","Tengu","Tiefling","Triaxian","Triton","Trox","Undine","Vanara","Vine Leshy","Vishkanya","Wayang","Wyrwood","Wyvaran","Yaddithian"];
 const RACE_SOURCE_MAP={"Dwarf":["Dwarves of Golarion"],"Goblin":["Goblins of Golarion"],"Kobold":["Kobolds of Golarion"],"Orc":["Orcs of Golarion"],"Half-Orc":["Orcs of Golarion"],"Human":["Humans of Golarion"]};
@@ -67,6 +68,28 @@ function applyGlobalSourcesToProfile(p){
   if(p.sourcesCustomized) return;
   let allSrc=[...new Set(SPELLS.map(s=>s.source||'Unknown'))];
   p.excludedSources=PFSources.computeExcludedSources(allSrc, PFSources.loadGlobalExcludedLocal());
+}
+let PRESENT_CT=[];
+function renderCtButtons(){
+  let b=$('ctButtons'); if(!b) return;
+  if(PRESENT_CT.length<2){ b.style.display='none'; b.innerHTML=''; return; }
+  b.style.display=''; b.innerHTML='';
+  let shown=state.ctShow||PRESENT_CT;
+  let all=document.createElement('button');all.textContent='All';all.className=shown.length===PRESENT_CT.length?'active':'';
+  all.onclick=()=>{state.ctShow=null;save();render()};
+  b.appendChild(all);
+  PRESENT_CT.forEach(c=>{
+    let x=document.createElement('button');x.textContent=PFCastingTime.CT_LABELS[c];
+    x.className=(shown.length<PRESENT_CT.length&&shown.includes(c))?'active':'';
+    x.onclick=()=>{
+      let cur=state.ctShow||PRESENT_CT.slice();
+      if(cur.length===PRESENT_CT.length){state.ctShow=[c]}
+      else if(cur.includes(c)){let next=cur.filter(v=>v!==c);state.ctShow=next.length?next:null}
+      else{state.ctShow=[...cur,c]}
+      save();render()
+    };
+    b.appendChild(x)
+  });
 }
 Object.values(store.profiles).forEach(applyGlobalSourcesToProfile);
 let state=store.profiles[store.active];
@@ -121,6 +144,7 @@ $('deleteProfile').onclick=()=>{
   if(!confirm('Delete "'+store.active+'"? This cannot be undone.'))return;
   delete store.profiles[store.active];store.active=Object.keys(store.profiles)[0];state=store.profiles[store.active];save();populateProfileSelect();loadProfileIntoUI();
 };
+PRESENT_CT=PFCastingTime.presentCategories(SPELLS);
 populateProfileSelect();
 function mod(){return Math.floor((state.cha-10)/2)}
 function bonus(l){let m=mod();if(m<l)return 0;return 1+Math.floor((m-l)/4)}
@@ -185,7 +209,8 @@ function buildCard(l,s,ineligible){
 function renderList(){
   let q=$('search').value.toLowerCase(),f=$('filter').value,out=$('list');out.innerHTML='';
   for(let l of state.show){
-    let arr=SPELLS.filter(s=>s.l===l&&(s.n+' '+(s.effect||'')).toLowerCase().includes(q)&&!state.excludedSources[s.source||'Unknown']);
+    let ctShown=state.ctShow||PRESENT_CT;
+    let arr=SPELLS.filter(s=>s.l===l&&(s.n+' '+(s.effect||'')).toLowerCase().includes(q)&&!state.excludedSources[s.source||'Unknown']&&(()=>{let cat=PFCastingTime.ctCategory(s.castingTime);return cat===null||ctShown.includes(cat)})());
     arr=arr.filter(s=>{
       let key=l+'|'+s.n,p=(state.prep[key]||0)>0,fav=!!state.fav[key];
       if(f==='prepared')return p;
@@ -215,7 +240,7 @@ function render(){
   $('prepared').textContent=Object.values(state.prep).reduce((a,v)=>a+(+v||0),0);
   $('ruleNote').textContent='Paladins are always Lawful Good — spells with a [chaotic] or [evil] descriptor can never be prepared. Caster level is Paladin Level − 3 (no spells at all below 4th level); spells only go up to 4th level, unlike a full 9th-level caster. Bonus spells and save DCs use CHARISMA, not Wisdom — a paladin needs Charisma 10 + spell level just to prepare a spell of that level at all.';
   document.querySelector('.rulenote summary').title=$('ruleNote').textContent;
-  renderButtons();renderSlots();renderSources();renderList()
+  renderButtons();renderCtButtons();renderSlots();renderSources();renderList()
 }
 $('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0];save();render()};
 $('cha').onchange=e=>{state.cha=+e.target.value;state.used=[0,0,0,0,0];save();render()};
