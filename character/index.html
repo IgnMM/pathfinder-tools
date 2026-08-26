@@ -1,0 +1,205 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><title>Merged Characters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#10151d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Merged Characters"><link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#0f1117;--panel:#181c24;--panel2:#202633;--text:#eef2f7;--muted:#9ba7b7;--gold:#d5ad55;--gold2:#f1d78b;--border:#313949}*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-family:Inter,system-ui,sans-serif;background:#0f1117;color:var(--text)}header,main{max-width:760px;margin:auto;padding:12px 16px}header{border-bottom:1px solid var(--border)}h1{margin:0;font-size:1.35rem}.sub{color:var(--muted);font-size:.82rem;margin:6px 0 8px;line-height:1.4}
+select,input{background:#121721;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px}
+button{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 12px;cursor:pointer;font-size:.85rem}
+button.primary{background:#5a4318;border-color:#816427;color:#fff1c2}
+button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:10px 0}
+.charCard{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.charCard .name{font-weight:750;font-size:1.05rem}
+.charCard .cls{color:var(--muted);font-size:.8rem}
+.charCard .actions{display:flex;gap:8px}
+.newForm{display:flex;gap:8px;flex-wrap:wrap;align-items:end}
+.newForm label{display:block;font-size:.68rem;color:var(--muted);margin-bottom:2px}
+.emptyNote{color:var(--muted);font-size:.85rem;padding:8px 0}
+.syncStatus{font-size:.72rem;color:var(--muted);margin-top:6px}
+</style>
+</head>
+<body>
+<div id="syncGate" style="display:none;position:fixed;inset:0;z-index:9999;
+  background-image:linear-gradient(to bottom, rgba(6,4,3,.1) 0%, rgba(6,4,3,.15) 50%, rgba(6,4,3,.94) 100%), url('../assets/gate-bg.jpg');
+  background-size:cover;background-position:center;
+  align-items:flex-end;justify-content:center;padding:0 16px 26px">
+  <div style="max-width:380px;width:100%;background:rgba(12,9,6,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(233,200,116,.35);border-radius:12px;padding:18px 20px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.55)">
+    <h2 style="font-family:'Cinzel Decorative',serif;margin:0 0 6px;color:#e9c874;font-size:1.15rem;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.7)">Welcome, Traveler</h2>
+    <p style="color:#d8cdb9;font-size:.78rem;margin:0 0 12px;line-height:1.4;font-family:'Cinzel',Georgia,serif">Speak a name and PIN — the same words on any device bring your characters with you.</p>
+    <div style="display:flex;gap:8px">
+      <input id="gateUser" type="text" placeholder="USERNAME" style="flex:1;min-width:0;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+      <input id="gatePin" type="text" placeholder="PIN" style="width:78px;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="gateNew" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.4);background:rgba(233,200,116,.08);color:#e9c874;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">New User</button>
+      <button id="gateLogin" style="flex:1;padding:10px;border-radius:8px;border:1px solid #f1d78b;background:linear-gradient(180deg,#e9c874,#b0863c);color:#241708;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">Log In</button>
+    </div>
+  </div>
+</div>
+<a href="../" title="Pathfinder Tools" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></a>
+<style>@media(max-width:900px){header,main{padding-left:60px !important}}</style>
+<header><h1>Merged Characters</h1><div class="sub">Combine a Universal Damage Calculator profile with a Universal Spellbook profile — same character, one document, a button to switch between Damage and Spells. Works exactly like Kenneth's or Gabriel's sheet, for any character you create.</div></header>
+<main>
+<div class="card">
+<div class="newForm">
+  <div><label>Character name</label><input id="newName" type="text" placeholder="e.g. Thorgar" style="width:180px"></div>
+  <div><label>Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option></select></div>
+  <button class="primary" id="createBtn">Create</button>
+</div>
+<div class="sub" style="margin:8px 0 0">Creates (or reuses, if the name already exists) a Damage Calculator profile and a Spellbook profile under this exact name, and links them together.</div>
+</div>
+<div id="charList"></div>
+<div id="emptyNote" class="emptyNote" style="display:none">No merged characters yet — create one above.</div>
+<div class="syncStatus" id="syncStatus"></div>
+</main>
+<script src="../assets/valid-sources.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const MERGED_KEY='pf1_merged_characters_v1';
+const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid'};
+
+function loadMerged(){
+  try{ let raw=localStorage.getItem(MERGED_KEY); if(raw){ let s=JSON.parse(raw); if(Array.isArray(s)) return s; } }catch(e){}
+  return [];
+}
+let merged=loadMerged();
+function saveMergedLocal(){ localStorage.setItem(MERGED_KEY, JSON.stringify(merged)); }
+
+function renderList(){
+  let box=$('charList'); box.innerHTML='';
+  $('emptyNote').style.display = merged.length ? 'none' : 'block';
+  merged.forEach((c,i)=>{
+    let card=document.createElement('div'); card.className='card charCard';
+    card.innerHTML=`<div><div class="name">${c.name}</div><div class="cls">${CLASS_LABELS[c.cls]||c.cls} spellcaster</div></div>
+      <div class="actions"><a href="view.html?name=${encodeURIComponent(c.name)}&cls=${encodeURIComponent(c.cls)}"><button class="primary">Open</button></a><button class="danger" data-i="${i}">Unlink</button></div>`;
+    card.querySelector('.danger').onclick=()=>{
+      if(!confirm('Unlink "'+c.name+'"? This only removes the merge — the Damage Calculator and Spellbook data for this character stay safe in each tool.')) return;
+      merged.splice(i,1); persist(); renderList();
+    };
+    box.appendChild(card);
+  });
+}
+
+$('createBtn').onclick=()=>{
+  let name=$('newName').value.trim();
+  let cls=$('newClass').value;
+  if(!name){ $('newName').focus(); return; }
+  if(!merged.some(c=>c.name===name && c.cls===cls)){
+    merged.push({name, cls});
+    persist();
+  }
+  location.href='view.html?name='+encodeURIComponent(name)+'&cls='+encodeURIComponent(cls);
+};
+
+// ---------- Cross-device sync (Firebase Firestore) ----------
+(function(){
+  const SYNC_CODE_KEY='pf1_sync_code_v1';
+  const SYNC_USER_KEY='pf1_sync_user_v1';
+  const SYNC_PIN_KEY='pf1_sync_pin_v1';
+  const APP_FIELD='mergedCharacters';
+  const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
+  let db=null, docRef=null, unsubscribe=null, applyingRemote=false, pushTimer=null, fsApi=null;
+
+  function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
+
+  function persistNow(){
+    saveMergedLocal();
+    if(!applyingRemote) pushToCloud();
+  }
+  window.persist=persistNow;
+
+  function mergeLists(local, remote){
+    if(!remote || !remote.length) return local;
+    if(!local || !local.length) return remote;
+    let merged2=remote.slice();
+    local.forEach(c=>{ if(!merged2.some(r=>r.name===c.name && r.cls===c.cls)) merged2.push(c); });
+    return merged2;
+  }
+
+  function applyRemote(list){
+    applyingRemote=true;
+    merged=list||[];
+    saveMergedLocal();
+    renderList();
+    applyingRemote=false;
+  }
+
+  function pushToCloud(){
+    if(!docRef||applyingRemote) return;
+    clearTimeout(pushTimer);
+    pushTimer=setTimeout(async ()=>{
+      try{ await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
+      catch(e){ setStatus('Sync error: '+e.message); }
+    }, 700);
+  }
+
+  async function connect(code){
+    const norm=(code||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80);
+    if(!norm) return;
+    setStatus('Connecting…');
+    try{
+      if(!fsApi){
+        const [{initializeApp}, fs] = await Promise.all([
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+        ]);
+        fsApi=fs;
+        const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
+        db=fsApi.getFirestore(app);
+      }
+      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+      docRef=fsApi.doc(db,'pf_sync',norm);
+      localStorage.setItem(SYNC_CODE_KEY, norm);
+
+      const snap=await fsApi.getDoc(docRef);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      applyRemote(mergeLists(merged, remote));
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+
+      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
+        if(snap2.metadata.hasPendingWrites) return;
+        const data=snap2.data();
+        if(!data || !data[APP_FIELD]) return;
+        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
+        applyRemote(data[APP_FIELD]);
+        setStatus('Synced ✓ (updated from another device)');
+      }, (err)=>setStatus('Sync error: '+err.message));
+
+      setStatus('Synced ✓');
+    }catch(e){ setStatus('Sync error: '+e.message); }
+  }
+
+  function showGate(){
+    const gate=$('syncGate');
+    gate.style.display='flex';
+    $('gateNew').onclick=submitGate;
+    $('gateLogin').onclick=submitGate;
+    $('gateUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('gatePin').focus(); });
+    $('gatePin').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
+    $('gateUser').focus();
+  }
+  function submitGate(){
+    const user=$('gateUser').value.trim(), pin=$('gatePin').value.trim();
+    if(!user){ $('gateUser').focus(); return; }
+    $('syncGate').style.display='none';
+    localStorage.setItem(SYNC_USER_KEY, user);
+    localStorage.setItem(SYNC_PIN_KEY, pin);
+    connect(user+'-'+pin);
+  }
+
+  const savedCode=localStorage.getItem(SYNC_CODE_KEY);
+  const savedUser=localStorage.getItem(SYNC_USER_KEY);
+  const savedPin=localStorage.getItem(SYNC_PIN_KEY);
+  if(savedCode){
+    if(savedUser!==null && savedPin!==null){ connect(savedUser+'-'+savedPin); }
+    else{ connect(savedCode); }
+  } else { showGate(); }
+})();
+
+renderList();
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
+}
+</script>
+</body>
+</html>

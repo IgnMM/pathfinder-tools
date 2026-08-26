@@ -143,6 +143,18 @@ $('deleteProfile').onclick=()=>{
   delete store.profiles[store.active];store.active=Object.keys(store.profiles)[0];state=store.profiles[store.active];save();populateProfileSelect();loadProfileIntoUI();
 };
 PRESENT_CT=PFCastingTime.presentCategories(SPELLS);
+// Deep-link support for merged character sheets: ?profile=Name switches to (or
+// creates) that profile on load, so an iframe pointed here from a merged sheet
+// always shows the right character without the user picking it manually.
+(function(){
+  const wantProfile=new URLSearchParams(location.search).get('profile');
+  if(!wantProfile) return;
+  window.__pinnedProfile=wantProfile;
+  if(!store.profiles[wantProfile]){ store.profiles[wantProfile]=defaultState(); applyGlobalSourcesToProfile(store.profiles[wantProfile]); }
+  store.active=wantProfile;
+  state=store.profiles[store.active];
+  save();
+})();
 populateProfileSelect();
 function mod(){return Math.floor((state.wis-10)/2)}
 function bonus(l){let m=mod();if(m<l)return 0;return 1+Math.floor((m-l)/4)}
@@ -289,6 +301,7 @@ if("serviceWorker" in navigator){
   function applyStore(newStore){
     applyingRemote=true;
     store=newStore;
+    if(window.__pinnedProfile && store.profiles[window.__pinnedProfile]) store.active=window.__pinnedProfile;
     state=store.profiles[store.active];
     _origSave();
     populateProfileSelect();

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Character — Pathfinder</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#10151d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Character">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#0f141c;--panel:#18212c;--line:#344354;--text:#edf3f8;--muted:#aebdcc;--gold:#d6b35f}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text)}
+body{display:flex;flex-direction:column;overflow:hidden}
+#app{display:flex;flex-direction:column;flex:1;min-height:0}
+.topbar{padding:max(10px,env(safe-area-inset-top)) 14px 10px;background:rgba(24,33,44,.98);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.name{font-weight:800;font-size:1.05rem}
+.tabs{display:flex;gap:8px}
+.tab{border:1px solid var(--line);background:#111821;color:var(--text);border-radius:999px;padding:8px 12px;font-weight:700;cursor:pointer}
+.tab.active{background:#5a4318;border-color:#816427;color:#fff1c2}
+.framewrap{position:relative;flex:1;min-height:0}
+iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
+.hidden{display:none}
+.errBox{max-width:520px;margin:60px auto;padding:20px;text-align:center;color:var(--muted)}
+.errBox a{color:var(--gold)}
+@media(max-width:520px){
+  .topbar{padding-left:10px;padding-right:10px}
+  .name{font-size:.95rem}
+  .tab{padding:8px 10px;font-size:.9rem}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const params=new URLSearchParams(location.search);
+const name=params.get('name');
+const cls=params.get('cls');
+const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid'};
+
+if(!name || !CLASS_LABELS[cls]){
+  document.getElementById('app').innerHTML = '<div class="errBox"><p>Missing or invalid character link.</p><p><a href="index.html">← Back to Merged Characters</a></p></div>';
+} else {
+  document.title = name + ' — Pathfinder';
+  const p = encodeURIComponent(name);
+  document.getElementById('app').innerHTML = `
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:10px">
+        <a href="../" title="Pathfinder Tools" style="width:32px;height:32px;border-radius:8px;background:#111821;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;flex:none"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></a>
+        <div class="name">${name}</div>
+      </div>
+      <div class="tabs">
+        <button class="tab active" data-target="damage">Damage</button>
+        <button class="tab" data-target="spells">Spells</button>
+      </div>
+    </div>
+    <div class="framewrap">
+      <iframe id="damage" src="../calc/index.html?profile=${p}" title="${name} Damage Calculator"></iframe>
+      <iframe id="spells" src="../${cls}/index.html?profile=${p}" title="${name} Spellbook" class="hidden"></iframe>
+    </div>
+  `;
+  const tabs=[...document.querySelectorAll(".tab")];
+  const frames={damage:document.getElementById("damage"),spells:document.getElementById("spells")};
+  const tabKey="character-last-tab-"+name+"-"+cls;
+  function show(which){
+    Object.entries(frames).forEach(([k,f])=>f.classList.toggle("hidden",k!==which));
+    tabs.forEach(t=>t.classList.toggle("active",t.dataset.target===which));
+    localStorage.setItem(tabKey,which);
+  }
+  tabs.forEach(t=>t.addEventListener("click",()=>show(t.dataset.target)));
+  show(localStorage.getItem(tabKey)||"damage");
+}
+
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
+}
+</script>
+</body>
+</html>

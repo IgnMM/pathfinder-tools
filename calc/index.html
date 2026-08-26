@@ -2030,6 +2030,18 @@ function compute(){
   $('notes').innerHTML=notes.map(n=>'• '+n).join('<br>');
 }
 
+// Deep-link support for merged character sheets: ?profile=Name switches to (or
+// creates) that profile on load, so an iframe pointed here from a merged sheet
+// always shows the right character without the user picking it manually.
+(function(){
+  const wantProfile=new URLSearchParams(location.search).get('profile');
+  if(!wantProfile) return;
+  window.__pinnedProfile=wantProfile;
+  if(!store.profiles.some(p=>p.name===wantProfile)) store.profiles.push(defaultProfile(wantProfile));
+  store.active=wantProfile;
+  saveStore();
+})();
+
 populateProfileSelect();
 loadProfileIntoUI();
 
@@ -2101,6 +2113,7 @@ if("serviceWorker" in navigator){
       const merged=mergeStores(store, remote);
       applyingRemote=true;
       store=merged;
+      if(window.__pinnedProfile && store.profiles.some(p=>p.name===window.__pinnedProfile)) store.active=window.__pinnedProfile;
       _origSaveStore();
       populateProfileSelect();
       loadProfileIntoUI();
@@ -2114,6 +2127,7 @@ if("serviceWorker" in navigator){
         if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; } // echo of our own write, already applied
         applyingRemote=true;
         store=data[APP_FIELD];
+        if(window.__pinnedProfile && store.profiles.some(p=>p.name===window.__pinnedProfile)) store.active=window.__pinnedProfile;
         _origSaveStore();
         populateProfileSelect();
         loadProfileIntoUI();
