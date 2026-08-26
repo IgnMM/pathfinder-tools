@@ -60,7 +60,7 @@ function statRow(label,val){return val?`<div class="stat-row"><b>${label}</b> ${
 let state=JSON.parse(localStorage.getItem(KEY)||'{}');
 state.level??=7;state.wis??=20;state.alignment??='LG';
 state.race??='';state.domain1??='Good';state.subdomain1??='Archon';state.domain2??='';state.subdomain2??='';
-state.prep??={};state.domainPrep??={};state.used??=[0,0,0,0,0,0,0,0,0,0];state.show??=[0,1,2,3,4,5,6,7,8,9];state.fav??={};state.cast??={};state.excludedSources??={};state.showIneligible??=false;state.forbidden??={};
+state.prep??={};state.domainPrep??={};state.domainCast??={};state.used??=[0,0,0,0,0,0,0,0,0,0];state.show??=[0,1,2,3,4,5,6,7,8,9];state.fav??={};state.cast??={};state.excludedSources??={};state.showIneligible??=false;state.forbidden??={};
 if(state.sourcesCustomized===undefined) state.sourcesCustomized=Object.keys(state.excludedSources||{}).length>0;
 function applyGlobalSources(){
   if(state.sourcesCustomized) return;
@@ -115,7 +115,7 @@ $('subdomain1').value=state.subdomain1;$('subdomain2').value=state.subdomain2;
 
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function mod(){return Math.floor((state.wis-10)/2)}
-function bonus(l){let m=mod();if(m<l)return 0;return 1+Math.floor((m-l)/4)}
+function bonus(l){if(l===0)return 0;let m=mod();if(m<l)return 0;return 1+Math.floor((m-l)/4)}
 function baseSlots(l){return (BASE[state.level]||[0,0,0,0,0,0,0,0,0,0])[l]||0}
 function canCast(l){return state.level>=MIN_LEVEL[l]&&state.wis>=10+l&&(baseSlots(l)>0||bonus(l)>0)}
 function normalSlots(l){return canCast(l)?baseSlots(l)+bonus(l):0}
@@ -190,13 +190,14 @@ function buildCard(l,s,ineligible){
   let reasons=ineligible?reasonsFor(l,s):[];
   let card=document.createElement('div');
   card.className='card'+(isDom?' oath':'')+((canCast(l)&&!blocked)?'':' disabled')+(ineligible?' ineligible':'');
-  card.innerHTML=`<div class="head"><div><div class="name">${s.n}</div>${isDom?'<div class="badge">Domain spell</div>':''}${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}${reasons.length?`<div class="reasontag">${reasons.join('; ')}</div>`:''}</div><div class="prep"><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button><button class="forbidbtn${state.forbidden[key]!==undefined?' active':''}" title="Mark as prohibited" aria-label="Prohibited">🚫</button>${isDom?`<button class="ob">${domOn?'Domain ✓':'Domain'}</button>`:''}<button class="minus">−</button><span class="count">${c}</span><button class="plus">+</button></div></div>${c>0?`<div class="pips" title="Click to mark cast today"><span class="pipdots">${Array.from({length:c},(_,i)=>`<span class="pip${i<cast?' used':''}"></span>`).join('')}</span><span class="pipcount">${cast}/${c} cast</span></div>`:''}<details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${p}</p>`).join('')}</div></details>`;
+  card.innerHTML=`<div class="head"><div><div class="name">${s.n}</div>${isDom?'<div class="badge">Domain spell</div>':''}${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}${reasons.length?`<div class="reasontag">${reasons.join('; ')}</div>`:''}</div><div class="prep"><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button><button class="forbidbtn${state.forbidden[key]!==undefined?' active':''}" title="Mark as prohibited" aria-label="Prohibited">🚫</button>${isDom?`<button class="ob">${domOn?'Domain ✓':'Domain'}</button>`:''}${domOn?`<span class="pip domCast${state.domainCast[l]?' used':''}" style="cursor:pointer" title="Domain spell cast today? (separate from the normal count below)"></span>`:''}<button class="minus">−</button><span class="count">${c}</span><button class="plus">+</button></div></div>${c>0?`<div class="pips" title="Click to mark cast today"><span class="pipdots">${Array.from({length:c},(_,i)=>`<span class="pip${i<cast?' used':''}"></span>`).join('')}</span><span class="pipcount">${cast}/${c} cast</span></div>`:''}<details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${p}</p>`).join('')}</div></details>`;
   card.querySelector('.plus').onclick=()=>{if(!canCast(l)||blocked)return;if(prepCount(l)>=normalSlots(l))return alert('All normal level '+l+' preparation slots are already filled.');state.prep[key]=c+1;save();render()};
   card.querySelector('.minus').onclick=()=>{if(c>0){state.prep[key]=c-1;save();render()}};
   card.querySelector('.favbtn').onclick=()=>{if(fav)delete state.fav[key];else state.fav[key]=true;save();render()};
   card.querySelector('.forbidbtn').onclick=()=>{if(state.forbidden[key]!==undefined){delete state.forbidden[key]}else{let note=prompt('Optional note — why is this spell prohibited?','')||'';state.forbidden[key]=note}save();render()};
   let pips=card.querySelector('.pips');if(pips)pips.onclick=()=>{state.cast[key]=(cast+1)%(c+1);save();render()};
-  let ob=card.querySelector('.ob');if(ob)ob.onclick=()=>{if(!canCast(l)||blocked)return;state.domainPrep[l]=domOn?null:s.n;save();render()};
+  let ob=card.querySelector('.ob');if(ob)ob.onclick=()=>{if(!canCast(l)||blocked)return;state.domainPrep[l]=domOn?null:s.n;delete state.domainCast[l];save();render()};
+  let dc=card.querySelector('.domCast');if(dc)dc.onclick=()=>{state.domainCast[l]=!state.domainCast[l];save();render()};
   return card
 }
 function renderList(){
@@ -253,7 +254,7 @@ $('subdomain1').oninput=()=>{state.subdomain1=$('subdomain1').value.trim();save(
 $('subdomain2').oninput=()=>{state.subdomain2=$('subdomain2').value.trim();save();render()};
 $('search').oninput=renderList;$('filter').onchange=renderList;$('showIneligible').checked=state.showIneligible;$('showIneligible').onchange=()=>{state.showIneligible=$('showIneligible').checked;save();renderList()};
 $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};save();renderSources();renderList()};$('srcNone').onclick=()=>{state.sourcesCustomized=true;[...new Set(SPELLS.map(s=>s.source||'Unknown'))].forEach(src=>state.excludedSources[src]=true);save();renderSources();renderList()};
-$('newDay').onclick=()=>{state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};save();render()};
+$('newDay').onclick=()=>{state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};state.domainCast={};save();render()};
 $('clear').onclick=()=>{state.prep={};state.domainPrep={};state.cast={};save();render()};
 render();
 if("serviceWorker" in navigator){
