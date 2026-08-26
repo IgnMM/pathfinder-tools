@@ -303,7 +303,7 @@ if("serviceWorker" in navigator){
     // Dict fields (which spells are prepared/favorited/cast/excluded) are unioned by
     // key instead, remote wins on an actual conflict, so ticking a box on one device
     // before ever syncing doesn't get silently erased by the other device's cloud data.
-    ['prep','domainPrep','cast','excludedSources','forbidden','fav'].forEach(key=>{
+    ['prep','domainPrep','domainCast','cast','excludedSources','forbidden','fav'].forEach(key=>{
       if(local[key]) merged[key]=Object.assign({}, local[key], merged[key]||{});
     });
     return merged;
