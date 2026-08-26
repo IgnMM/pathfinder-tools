@@ -43,7 +43,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 <div class="card">
 <div class="newForm">
   <div><label>Character name</label><input id="newName" type="text" placeholder="e.g. Thorgar" style="width:180px"></div>
-  <div><label>Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option></select></div>
+  <div><label>Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option><option value="alchemist">Alchemist</option></select></div>
   <button class="primary" id="createBtn">Create</button>
 </div>
 <div class="sub" style="margin:8px 0 0">Creates (or reuses, if the name already exists) a Damage Calculator profile and a Spellbook profile under this exact name, and links them together.</div>
@@ -56,7 +56,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 <script>
 const $=id=>document.getElementById(id);
 const MERGED_KEY='pf1_merged_characters_v1';
-const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid'};
+const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid',alchemist:'Alchemist'};
 
 function loadMerged(){
   try{ let raw=localStorage.getItem(MERGED_KEY); if(raw){ let s=JSON.parse(raw); if(Array.isArray(s)) return s; } }catch(e){}

@@ -39,7 +39,7 @@ iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(
 const params=new URLSearchParams(location.search);
 const name=params.get('name');
 const cls=params.get('cls');
-const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid'};
+const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid',alchemist:'Alchemist'};
 
 if(!name || !CLASS_LABELS[cls]){
   document.getElementById('app').innerHTML = '<div class="errBox"><p>Missing or invalid character link.</p><p><a href="index.html">← Back to Merged Characters</a></p></div>';

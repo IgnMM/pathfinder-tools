@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v29";
+const CACHE_NAME = "pathfinder-paladins-folders-v30";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/casting-time.js",
@@ -9,6 +9,7 @@ const ASSETS = [
   "./cleric/","./cleric/index.html","./cleric/manifest.webmanifest","./cleric/icon-192.png","./cleric/icon-512.png",
   "./paladin/","./paladin/index.html","./paladin/manifest.webmanifest","./paladin/icon-192.png","./paladin/icon-512.png",
   "./druid/","./druid/index.html","./druid/manifest.webmanifest","./druid/icon-192.png","./druid/icon-512.png",
+  "./alchemist/","./alchemist/index.html","./alchemist/manifest.webmanifest","./alchemist/icon-192.png","./alchemist/icon-512.png",
   "./cleric-oracle-library/","./cleric-oracle-library/index.html","./cleric-oracle-library/manifest.webmanifest","./cleric-oracle-library/icon-192.png","./cleric-oracle-library/icon-512.png",
   "./wizard-sorcerer-library/","./wizard-sorcerer-library/index.html","./wizard-sorcerer-library/manifest.webmanifest","./wizard-sorcerer-library/icon-192.png","./wizard-sorcerer-library/icon-512.png",
   "./bard-library/","./bard-library/index.html","./bard-library/manifest.webmanifest","./bard-library/icon-192.png","./bard-library/icon-512.png",
@@ -16,6 +17,7 @@ const ASSETS = [
   "./druid-library/","./druid-library/index.html","./druid-library/manifest.webmanifest","./druid-library/icon-192.png","./druid-library/icon-512.png",
   "./ranger-library/","./ranger-library/index.html","./ranger-library/manifest.webmanifest","./ranger-library/icon-192.png","./ranger-library/icon-512.png",
   "./antipaladin-library/","./antipaladin-library/index.html","./antipaladin-library/manifest.webmanifest","./antipaladin-library/icon-192.png","./antipaladin-library/icon-512.png",
+  "./alchemist-library/","./alchemist-library/index.html","./alchemist-library/manifest.webmanifest","./alchemist-library/icon-192.png","./alchemist-library/icon-512.png",
   "./calc/","./calc/index.html","./calc/manifest.webmanifest","./calc/icon-192.png","./calc/icon-512.png"
 ];
 self.addEventListener("install", event => {
