@@ -469,8 +469,8 @@ const RACE_ONLY_SOURCES=[...new Set(Object.values(RACE_SOURCE_MAP).flat())];
 // and disables this gating entirely (every entry behaves as if unrestricted).
 const TARGET_FLAG_MAP={
   none:{}, evil:{evil:true}, undead:{undead:true}, evilUndead:{evil:true,undead:true},
-  evilDragon:{evil:true,dragon:true}, evilOutsider:{evil:true,outsider:true},
-  demon:{evil:true,outsider:true,demon:true}, construct:{construct:true},
+  evilDragon:{evil:true,dragon:true}, evilOutsider:{evil:true,outsider:true,evilOutsiderFlag:true},
+  demon:{evil:true,outsider:true,demon:true,evilOutsiderFlag:true}, construct:{construct:true},
   good:{good:true}, lawful:{lawful:true}, chaotic:{chaotic:true},
   // PF1e RAW: constructs and (non-incorporeal) undead are NOT immune to critical hits or
   // sneak attack/precision damage (that's a 3.5e rule that didn't carry over). The actual
@@ -478,7 +478,7 @@ const TARGET_FLAG_MAP={
   // (incorporeal creatures are immune unless struck by a ghost touch weapon).
   ooze:{critImmune:true}, elemental:{critImmune:true}, swarm:{critImmune:true}, incorporeal:{critImmune:true}
 };
-const VS_FLAG_OPTIONS=[{v:'',label:'— always (no restriction) —'},{v:'evil',label:'vs Evil'},{v:'good',label:'vs Good'},{v:'lawful',label:'vs Lawful'},{v:'chaotic',label:'vs Chaotic'},{v:'undead',label:'vs Undead'},{v:'dragon',label:'vs Dragon'},{v:'outsider',label:'vs Outsider'},{v:'demon',label:'vs Demon'},{v:'construct',label:'vs Construct/Object'}];
+const VS_FLAG_OPTIONS=[{v:'',label:'— always (no restriction) —'},{v:'evil',label:'vs Evil'},{v:'good',label:'vs Good'},{v:'lawful',label:'vs Lawful'},{v:'chaotic',label:'vs Chaotic'},{v:'undead',label:'vs Undead'},{v:'dragon',label:'vs Dragon'},{v:'outsider',label:'vs Outsider'},{v:'evilOutsiderFlag',label:'vs Evil Outsider'},{v:'demon',label:'vs Demon'},{v:'construct',label:'vs Construct/Object'}];
 function targetMatches(ctx, vsFlag){
   if(!vsFlag) return true;
   if(!ctx.currentTarget || ctx.currentTarget==='none') return true;
@@ -867,6 +867,9 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"Bardic Inspire Greatness performance: +2 competence bonus on attack rolls (no damage bonus) to allies while maintained. 9th-level bard ability, separate from Inspire Courage.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"competence"}}},
+{id:"angelic-blood",name:"Angelic Blood",category:"feat",source:"Advanced Race Guide",appliesTo:["damage"],type:"special",
+ desc:"Aasimar racial feat (Con 13 prerequisite). Grants +2 on saves vs. evil-descriptor effects and +2 on Con checks to stabilize (not modeled here). Whenever you take bleed or blood drain damage, every adjacent undead or evil-subtype creature takes 1 point of damage — this is a passive reaction to damage YOU take, not a modifier to your own attack or damage roll, so it can't be added to the totals below automatically.",
+ compute:()=>({attack:0,damage:0,note:'passive: adjacent undead/evil creatures take 1 dmg whenever you take bleed or blood drain damage — not modeled in the totals below'})},
 
 // ---------------- TRAITS ----------------
 {id:"absalom-bouncer",name:"Absalom Bouncer",category:"trait",source:"Advanced Class Origins",appliesTo:["damage"],type:"trait",
@@ -1037,6 +1040,20 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Trained from youth to ambush enemies of your organization while they're flat-footed.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"celestial-crusader",name:"Celestial Crusader",category:"trait",source:"Advanced Race Guide",appliesTo:["attack"],type:"insight",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:'evilOutsiderFlag'}],
+ desc:"Aasimar alternate racial trait (replaces celestial resistance and skilled). Insight bonus on attack rolls (and to AC, not modeled here) against evil outsiders specifically — pick \"vs Evil Outsider\" above so it turns on/off automatically with Current Target.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match your declared enemy type — see "Vs enemy type" field above'};return {attack:v,damage:0,note:signed(v)+' '+"insight"}}},
+{id:"red-mantis-bleeding",name:"Red Mantis Bleeding",category:"trait",source:"Weapon Master's Handbook",appliesTo:["damage"],type:"untyped",
+ desc:"Combat trait. Whenever you confirm a critical hit with a slashing weapon, the target also takes 1 point of bleed damage per round until treated (persists independently of the crit's normal damage).",
+ compute:()=>({attack:0,damage:0,note:'+1 bleed on a confirmed crit with a slashing weapon (persists until treated) — added to Critical Damage below',extraDice:{crit:'1 bleed'}})},
+{id:"dwarven-weapon-trained",name:"Dwarven Weapon Trained",category:"trait",source:"Blood of the Ancients",appliesTo:["damage"],type:"trait",
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Combat trait. Damage bonus with any weapon that has \"dwarven\" in its name (dwarven waraxe, dwarven boulder helmet, etc.) — only turn this on if you're actually wielding one.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:"planetars-visions",name:"Planetar's Visions",category:"trait",source:"Blood of Angels",appliesTo:["damage"],type:"special",
+ desc:"Aasimar (Angelkin) race trait. On a confirmed melee critical hit against an evil outsider, ignore an amount of its damage reduction equal to your weapon's critical multiplier (can't reduce DR below 0). This calculator doesn't model damage reduction, so it can't be applied automatically — treat any DR the target would otherwise reduce your crit damage by as reduced by your crit multiplier when you do the math by hand.",
+ compute:()=>({attack:0,damage:0,note:'DR-bypass effect on a confirmed crit vs evil outsiders — not modeled here, see description'})},
 {id:"bloodthirsty",name:"Bloodthirsty",category:"trait",source:"Ultimate Campaign",appliesTo:["damage"],type:"trait",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"A vicious streak lets you land extra, crit-multiplied damage on killing or critical blows.",
