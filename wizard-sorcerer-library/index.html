@@ -11,7 +11,7 @@
 <div class="levels" id="levelButtons"></div>
 <div class="levels" id="ctButtons"></div>
 </header><main>
-<div class="toolbar"><input id="search" placeholder="Search spell name or description..."><select id="filter"><option value="all">All spells</option><option value="favorites">Favorites only</option></select><details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details></div>
+<div class="toolbar"><div class="searchWrap"><svg class="searchIcon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="search" placeholder="Search spell name or description..."><button id="searchClear" type="button" title="Clear search" aria-label="Clear search">&times;</button></div><style>.searchWrap{position:relative}.searchWrap input{padding-left:26px;padding-right:24px}.searchIcon{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.searchWrap button{position:absolute;right:1px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:4px 7px}.searchWrap button:hover{color:var(--text)}</style><select id="filter"><option value="all">All spells</option><option value="favorites">Favorites only</option></select><details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details></div>
 <div class="count" id="resultCount"></div>
 <div id="list"></div>
 </main>
@@ -114,7 +114,7 @@ function renderSourcesNote(){
   let el=$('sourcesNote');if(!el)return;
   el.textContent=store.sourcesCustomized?'Customized for this page':'Following the site\'s global Valid Sources';
 }
-$('search').oninput=renderList;
+$('search').oninput=renderList;$('searchClear').onclick=()=>{$('search').value='';renderList();$('search').focus()};
 $('filter').onchange=renderList;
 $('srcAll').onclick=()=>{store.sourcesCustomized=true;store.excludedSources={};save();renderSources();renderList()};
 $('srcNone').onclick=()=>{store.sourcesCustomized=true;[...new Set(SPELLS.map(s=>s.source||'Unknown'))].forEach(src=>store.excludedSources[src]=true);save();renderSources();renderList()};
