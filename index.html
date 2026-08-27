@@ -31,6 +31,8 @@ details.section[open] .chevron{transform:rotate(180deg)}
 .links{padding:4px 16px 16px}
 .links a{display:block;padding:14px 16px;margin:8px 0;border:1px solid var(--border);border-radius:12px;color:#fff;text-decoration:none;background:var(--navy);font-size:1rem;font-weight:700}
 .links small{color:var(--muted);font-weight:400}
+.subsectionLabel{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:16px 4px 4px;padding-top:12px;border-top:1px solid var(--border)}
+.subsectionLabel:first-child{margin-top:4px;padding-top:0;border-top:none}
 
 .sourcesWrap{padding:4px 16px 16px}
 .sourcesNote{color:var(--muted);font-size:.82rem;line-height:1.45;margin:0 0 12px}
@@ -79,31 +81,14 @@ details.section[open] .chevron{transform:rotate(180deg)}
 </div>
 </details>
 
-<details class="section" style="--accent:var(--green)">
-<summary>
-<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="10" y="24" width="44" height="16"/><ellipse cx="10" cy="32" rx="5" ry="8"/><ellipse cx="54" cy="32" rx="5" ry="8"/><path d="M18 28 L46 28 M18 34 L46 34 M18 40 L38 40" stroke-width="1.5" opacity=".6"/></svg></span>
-<span class="section-title"><span class="name">Character Sheets</span><span class="count">8 tools — save by character name</span></span>
-<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-</summary>
-<div class="links">
-<a href="cleric/">Universal Cleric Spellbook<br><small>Any cleric — save multiple characters by name</small></a>
-<a href="paladin/">Universal Paladin Spellbook<br><small>Any paladin — save multiple characters by name</small></a>
-<a href="druid/">Universal Druid Spellbook<br><small>Any druid — save multiple characters by name</small></a>
-<a href="alchemist/">Universal Alchemist Spellbook<br><small>Any alchemist — save multiple characters by name</small></a>
-<a href="uran/">Uran<br><small>Cleric Spellbook</small></a>
-<a href="kenneth/">Kenneth<br><small>Damage + Spells</small></a>
-<a href="gabriel/">Gabriel<br><small>Damage + Spells</small></a>
-<a href="character/">Merged Characters<br><small>Combine any Calculator + Spellbook profile into one sheet</small></a>
-</div>
-</details>
-
 <details class="section" style="--accent:var(--blue)">
 <summary>
 <span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><polygon points="30,12 10,18 10,48 30,52 30,12"/><polygon points="34,12 54,18 54,48 34,52 34,12"/></svg></span>
-<span class="section-title"><span class="name">Spell Libraries</span><span class="count">8 tools — browse &amp; search, no tracking</span></span>
+<span class="section-title"><span class="name">Spells</span><span class="count">Libraries &amp; Universal Spellbooks</span></span>
 <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
 </summary>
 <div class="links">
+<div class="subsectionLabel">Spell Libraries</div>
 <a href="cleric-oracle-library/">Cleric / Oracle Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
 <a href="wizard-sorcerer-library/">Wizard / Sorcerer Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
 <a href="bard-library/">Bard Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
@@ -112,6 +97,25 @@ details.section[open] .chevron{transform:rotate(180deg)}
 <a href="ranger-library/">Ranger Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
 <a href="antipaladin-library/">Antipaladin Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
 <a href="alchemist-library/">Alchemist Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<div class="subsectionLabel">Character Spell Sheets</div>
+<a href="cleric/">Universal Cleric Spellbook<br><small>Any cleric — save multiple characters by name</small></a>
+<a href="paladin/">Universal Paladin Spellbook<br><small>Any paladin — save multiple characters by name</small></a>
+<a href="druid/">Universal Druid Spellbook<br><small>Any druid — save multiple characters by name</small></a>
+<a href="alchemist/">Universal Alchemist Spellbook<br><small>Any alchemist — save multiple characters by name</small></a>
+</div>
+</details>
+
+<details class="section" style="--accent:var(--green)">
+<summary>
+<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="10" y="24" width="44" height="16"/><ellipse cx="10" cy="32" rx="5" ry="8"/><ellipse cx="54" cy="32" rx="5" ry="8"/><path d="M18 28 L46 28 M18 34 L46 34 M18 40 L38 40" stroke-width="1.5" opacity=".6"/></svg></span>
+<span class="section-title"><span class="name">Characters</span><span class="count">Fixed &amp; merged character sheets</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="links">
+<a href="uran/" data-restrict-users="ABU,GRIPAU">Uran<br><small>Cleric Spellbook</small></a>
+<a href="kenneth/" data-restrict-users="KOS">Kenneth<br><small>Damage + Spells</small></a>
+<a href="gabriel/">Gabriel<br><small>Damage + Spells</small></a>
+<a href="character/">Merged Characters<br><small>Combine any Calculator + Spellbook profile into one sheet</small></a>
 </div>
 </details>
 
@@ -149,6 +153,17 @@ details.section[open] .chevron{transform:rotate(180deg)}
     'kennethDamageCalcPF1V1','gabrielDamageCalcPF1V1'
   ];
   function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
+  // Some character links (Uran, Kenneth) are restricted to the specific player who plays
+  // them — everyone else on the site simply doesn't see the link. Marked via a
+  // data-restrict-users="NAME1,NAME2" attribute on the <a> itself; matched case-insensitively
+  // against the current device's saved sync username (not synced data — purely local/visual).
+  function applyUserVisibility(){
+    const user=(localStorage.getItem(SYNC_USER_KEY)||'').trim().toUpperCase();
+    document.querySelectorAll('a[data-restrict-users]').forEach(a=>{
+      const allowed=a.getAttribute('data-restrict-users').split(',').map(s=>s.trim().toUpperCase());
+      a.style.display = allowed.includes(user) ? '' : 'none';
+    });
+  }
   function showGate(){
     const gate=document.getElementById('syncGate');
     gate.style.display='flex';
@@ -167,6 +182,7 @@ details.section[open] .chevron{transform:rotate(180deg)}
     localStorage.setItem(SYNC_USER_KEY, user);
     localStorage.setItem(SYNC_PIN_KEY, pin);
     document.getElementById('syncGate').style.display='none';
+    applyUserVisibility();
     if(window.__pfSourcesConnect) window.__pfSourcesConnect(norm);
   }
   document.getElementById('syncLogout').onclick=()=>{
@@ -178,6 +194,7 @@ details.section[open] .chevron{transform:rotate(180deg)}
     location.reload();
   };
   if(!localStorage.getItem(SYNC_CODE_KEY)) showGate();
+  applyUserVisibility();
 })();
 </script>
 <script>
