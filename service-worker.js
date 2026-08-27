@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v36";
+const CACHE_NAME = "pathfinder-paladins-folders-v37";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/casting-time.js",
@@ -10,6 +10,10 @@ const ASSETS = [
   "./paladin/","./paladin/index.html","./paladin/manifest.webmanifest","./paladin/icon-192.png","./paladin/icon-512.png",
   "./druid/","./druid/index.html","./druid/manifest.webmanifest","./druid/icon-192.png","./druid/icon-512.png",
   "./alchemist/","./alchemist/index.html","./alchemist/manifest.webmanifest","./alchemist/icon-192.png","./alchemist/icon-512.png",
+  "./bard/","./bard/index.html","./bard/manifest.webmanifest","./bard/icon-192.png","./bard/icon-512.png",
+  "./sorcerer/","./sorcerer/index.html","./sorcerer/manifest.webmanifest","./sorcerer/icon-192.png","./sorcerer/icon-512.png",
+  "./wizard/","./wizard/index.html","./wizard/manifest.webmanifest","./wizard/icon-192.png","./wizard/icon-512.png",
+  "./ranger/","./ranger/index.html","./ranger/manifest.webmanifest","./ranger/icon-192.png","./ranger/icon-512.png",
   "./cleric-oracle-library/","./cleric-oracle-library/index.html","./cleric-oracle-library/manifest.webmanifest","./cleric-oracle-library/icon-192.png","./cleric-oracle-library/icon-512.png",
   "./wizard-sorcerer-library/","./wizard-sorcerer-library/index.html","./wizard-sorcerer-library/manifest.webmanifest","./wizard-sorcerer-library/icon-192.png","./wizard-sorcerer-library/icon-512.png",
   "./bard-library/","./bard-library/index.html","./bard-library/manifest.webmanifest","./bard-library/icon-192.png","./bard-library/icon-512.png",
