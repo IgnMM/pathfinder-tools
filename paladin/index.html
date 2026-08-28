@@ -387,6 +387,10 @@ if("serviceWorker" in navigator){
   function applyStore(newStore){
     applyingRemote=true;
     store=newStore;
+    // Cloud data can predate fields added to defaultState() since it was last synced
+    // (e.g. oathPrep/oathCast, added after some profiles were already in Firestore) --
+    // backfill them here too, not just on the initial local loadStore().
+    Object.values(store.profiles).forEach(applyDefaultsToState);
     if(window.__pinnedProfile && store.profiles[window.__pinnedProfile]) store.active=window.__pinnedProfile;
     state=store.profiles[store.active];
     _origSave();
