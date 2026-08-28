@@ -309,6 +309,15 @@ function renderList(){
 }
 function renderSources(){let box=$('sourceList');box.innerHTML='';let all=[...new Set(SPELLS.map(s=>s.source||'Unknown'))].sort();all.forEach(src=>{let lbl=document.createElement('label');let cb=document.createElement('input');cb.type='checkbox';cb.checked=!state.excludedSources[src];cb.onchange=()=>{state.sourcesCustomized=true;if(cb.checked)delete state.excludedSources[src];else state.excludedSources[src]=true;save();renderList();renderSourcesNote()};lbl.appendChild(cb);lbl.appendChild(document.createTextNode(src));box.appendChild(lbl)});renderSourcesNote()}function renderSourcesNote(){let el=$('sourcesNote');if(!el)return;el.textContent=state.sourcesCustomized?'Customized for this character':'Following the site\'s global Valid Sources'}$('srcResetGlobal').onclick=()=>{state.sourcesCustomized=false;applyGlobalSourcesToProfile(state);save();renderSources();renderList()};
 function render(){
+  try{ renderInner(); }
+  catch(e){
+    console.error(e);
+    let box=document.getElementById('jsErrorBanner');
+    if(!box){ box=document.createElement('div'); box.id='jsErrorBanner'; box.style.cssText='position:fixed;bottom:0;left:0;right:0;background:#7a3036;color:#fff;padding:10px 14px;font-size:.72rem;line-height:1.4;z-index:99999;white-space:pre-wrap;max-height:40vh;overflow:auto'; document.body.appendChild(box); }
+    box.textContent='A rendering error happened and was caught (nothing broke silently). Please screenshot this and send it: '+(e&&e.message)+'\n'+((e&&e.stack)||'');
+  }
+}
+function renderInner(){
   $('cl').textContent=casterLevel();
   $('daily').textContent=totalDaily();
   $('prepared').textContent=Object.values(state.prep).reduce((a,v)=>a+(+v||0),0);
