@@ -466,7 +466,7 @@ const RACE_SOURCE_MAP={"Dwarf":["Dwarves of Golarion"],"Goblin":["Goblins of Gol
 // Seed list for the Deity autocomplete — the 20 core Golarion deities. Not exhaustive
 // (empyreal lords, demon lords, archdevils, and regional deities exist too) but covers
 // the common case; typing any other name still works, it just won't autocomplete.
-const DEITIES=["Abadar","Asmodeus","Calistria","Cayden Cailean","Desna","Erastil","Gorum","Gozreh","Iomedae","Irori","Lamashtu","Nethys","Norgorber","Pharasma","Rovagug","Sarenrae","Shelyn","Torag","Urgathoa","Zon-Kuthon"];
+const DEITIES=["Abadar","Angradd","Asmodeus","Calistria","Cayden Cailean","Dahak","Desna","Erastil","Gorum","Gozreh","Iomedae","Irori","Ketephys","Lamashtu","Nethys","Norgorber","Okeno","Pharasma","Rovagug","Sarenrae","Shelyn","Shizuru","Torag","Urgathoa","Vildeis","Zon-Kuthon"];
 const RACE_ONLY_SOURCES=[...new Set(Object.values(RACE_SOURCE_MAP).flat())];
 
 // Which flags a selected "Current Target" satisfies. A catalog entry (or a player-set
@@ -580,6 +580,19 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:-5}],
  desc:"Take a -5 penalty on all melee attack rolls this round in exchange for a chance to daze anyone you hit. Requires Str 13, Power Attack, BAB +11.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:-5);return {attack:v,damage:0,note:signed(v)+' '+"untyped"}}},
+
+// ---------------- FEATS (deity-specific) ----------------
+{id:'disciple-of-the-sword',name:'Disciple of the Sword',category:'feat',source:'Inner Sea Gods',deity:'Iomedae',appliesTo:['damage'],type:'untyped',
+ desc:"Weapon Focus (longsword), cleric or inquisitor level 4th, worshiper of Iomedae. Grants the benefits of Weapon Specialization (longsword) — only applies while wielding a longsword.",
+ compute:()=>({attack:0,damage:2,note:'+2 dmg (longsword only)'})},
+{id:'glorious-heat',name:'Glorious Heat',category:'feat',source:'Inner Sea Gods',deity:'Sarenrae',appliesTo:['attack'],type:'morale',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Caster level 5th, worshiper of Sarenrae. Whenever you cast a divine spell with the fire descriptor, an ally within 30 ft. you can see heals and gains a +1 morale bonus on attack rolls until the end of its next turn. Situational (only after casting a qualifying spell) — toggle on only for the round(s) it actually applies.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"morale (ally only, after casting a fire divine spell)"}}},
+{id:'hands-of-valor',name:'Hands of Valor',category:'feat',source:'Inner Sea Gods',deity:'Iomedae',appliesTo:['attack'],type:'sacred',
+ configFields:[{key:'chaMod',label:'Charisma bonus',type:'number',default:2}],
+ desc:"Lay on hands class feature, worshiper of Iomedae. Once per day, imbuing an ally with lay on hands also grants a sacred bonus on attack rolls (and on saves vs. fear) equal to your Charisma bonus (minimum +1) for 1 minute.",
+ compute:(ctx,cfg)=>{let v=Math.max(1,cfg.chaMod||0);return {attack:v,damage:0,note:'+'+v+' '+"sacred (1 minute, self or ally via lay on hands)"}}},
 
 // ---------------- SPELLS ----------------
 {id:'bless',name:'Bless',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack'],type:'morale',
@@ -1078,6 +1091,55 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"You prefer disabling foes to killing them, and you've trained to do it without losing accuracy.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+
+// ---------------- TRAITS (deity-specific) ----------------
+{id:'a-shining-beacon',name:'A Shining Beacon',category:'trait',source:'Inner Sea Gods',deity:'Iomedae',appliesTo:['damage'],type:'trait',
+ desc:"You deal extra damage, equal to your weapon's critical hit modifier, on a successful critical hit against a demon — added after damage is totaled, NOT multiplied by the crit multiplier. This calculator doesn't have a separate 'confirmed crit only, unmultiplied' bucket, so this isn't auto-added to Critical Damage above — add it by hand when you actually confirm a crit against a demon.",
+ compute:(ctx)=>({attack:0,damage:0,note:'on a confirmed crit vs a demon only: +'+(ctx.critMult||2)+' dmg, unmultiplied — add by hand to Critical Damage above'})},
+{id:'ancestors-blade',name:"Ancestor's Blade",category:'trait',source:'Divine Anthology',deity:'Shizuru',appliesTo:['attack'],type:'trait',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"You gain a trait bonus on attack rolls with your heirloom weapon type when you smite evil. Only relevant while Smite Evil (above) is active.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait (only while Smite Evil is active)"}}},
+{id:'abolitionist-hunter',name:'Abolitionist Hunter',category:'trait',source:'Pirates of the Inner Sea',deity:'Okeno',appliesTo:['attack'],type:'trait',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Bonus on attack rolls when fighting abolitionists or those who target you for your slaver activities. Narrow, story-specific condition — toggle on only when it genuinely applies.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait (vs abolitionists/slaver-hunters only)"}}},
+{id:'bloody-vengeance',name:'Bloody Vengeance',category:'trait',source:"Healer's Handbook",deity:'Vildeis',appliesTo:['attack'],type:'trait',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Bonus on rolls to confirm critical hits against a creature with at least a faint evil aura. This calculator doesn't separately model a crit-confirmation roll — add this to your confirmation roll by hand, it's not folded into Single/Full Attack above.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:0,note:'+'+v+' on the crit-confirmation roll only (vs an evil-aura target) — apply by hand'}}},
+{id:'divine-warrior',name:'Divine Warrior',category:'trait',source:'Ultimate Campaign',deity:'Iomedae',appliesTo:['damage'],type:'trait',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Whenever you cast a divine spell that affects melee weapons, one of those weapons gains a trait bonus on damage rolls for the spell's duration.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait (only while an affecting divine spell is active on the weapon)"}}},
+{id:'dragonslayer-dahak',name:'Dragonslayer',category:'trait',source:'Inner Sea Gods',deity:'Dahak',appliesTo:['attack'],type:'trait',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Bonus on attack rolls against creatures of the dragon type. Applies while Current Target (above) is set to Evil Dragon — this tool only has that one dragon-flagged target category, so a non-evil dragon won't trigger it; toggle by hand if needed.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);if(!targetMatches(ctx,'dragon'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Evil Dragon above, or toggle off vs non-dragons'};return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:'favored-prey-ketephys',name:'Favored Prey',category:'trait',source:'Inner Sea Gods',deity:'Ketephys',appliesTo:['damage'],type:'trait',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Bonus on damage rolls when making bow attacks against a creature whose tracks you've followed in the last hour. Only applies with a bow, and only against that tracked creature — toggle on only when both conditions hold.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:signed(v)+' '+"trait (bow attacks vs a tracked creature only)"}}},
+{id:'fury-rovagug',name:'Fury',category:'trait',source:'Orcs of Golarion',deity:'Rovagug',appliesTo:['attack'],type:'trait',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Bonus on rolls to confirm critical hits while wielding a greataxe. This calculator doesn't separately model a crit-confirmation roll — add this to your confirmation roll by hand.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:0,note:'+'+v+' on the crit-confirmation roll only (greataxe only) — apply by hand'}}},
+{id:'opportune-slayer-lamashtu',name:'Opportune Slayer',category:'trait',source:'Inner Sea Gods',deity:'Lamashtu',appliesTo:['damage'],type:'trait',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Bonus on damage rolls against creatures you hit with attacks of opportunity. Only applies on AoO damage, not on your normal action's attacks — toggle on only for those rolls.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:signed(v)+' '+"trait (attacks of opportunity only)"}}},
+{id:'poisonous-slayer-norgorber',name:'Poisonous Slayer',category:'trait',source:'Inner Sea Gods',deity:'Norgorber',appliesTo:['attack'],type:'trait',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Bonus on attack rolls while wielding a weapon treated with poison. Toggle on only while your weapon is actually poisoned.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait (poisoned weapon only)"}}},
+{id:'undead-slayer-pharasma',name:'Undead Slayer (Pharasma)',category:'trait',source:'Ultimate Campaign',deity:'Pharasma',appliesTo:['damage'],type:'trait',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Bonus on weapon damage rolls against undead. Applies while Current Target (above) is set to Undead or a more specific undead category.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);if(!targetMatches(ctx,'undead'))return{attack:0,damage:0,note:'target doesn\'t match — set Current Target to Undead above'};return {attack:0,damage:v,note:signed(v)+' '+"trait"}}},
+{id:'well-prepared-angradd',name:'Well-Prepared',category:'trait',source:'Inner Sea Gods',deity:'Angradd',appliesTo:['attack'],type:'trait',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"Bonus on attack rolls made as part of a readied action (also +1 on caster level checks when casting a spell as a readied action, not modeled here). Only applies to a readied-action attack — toggle on only for that attack.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:signed(v)+' '+"trait (readied-action attacks only)"}}},
 
 // ---------------- MYTHIC (Mythic Adventures) ----------------
 // Most mythic combat options are conditional, dice-based, mythic-power-gated, or
