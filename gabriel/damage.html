@@ -109,29 +109,7 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
 
 <h3>Weapon</h3>
 <div class="row"><label>Weapon Type</label>
-<select id="weapon">
-  <option value="longsword" selected>Longsword — 1d8, 19–20/×2</option>
-  <option value="shortsword">Shortsword — 1d6, 19–20/×2</option>
-  <option value="greatsword">Greatsword — 2d6, 19–20/×2</option>
-  <option value="falchion">Falchion — 2d4, 18–20/×2</option>
-  <option value="scimitar">Scimitar — 1d6, 18–20/×2</option>
-  <option value="rapier">Rapier — 1d6, 18–20/×2</option>
-  <option value="lightMace">Light Mace — 1d6, ×2</option>
-  <option value="heavyMace">Heavy Mace — 1d8, ×2</option>
-  <option value="morningstar">Morningstar — 1d8, ×2</option>
-  <option value="warhammer">Warhammer — 1d8, ×3</option>
-  <option value="lightFlail">Light Flail — 1d8, ×2</option>
-  <option value="heavyFlail">Heavy Flail — 1d10, 19–20/×2</option>
-  <option value="battleaxe">Battleaxe — 1d8, ×3</option>
-  <option value="greataxe">Greataxe — 1d12, ×3</option>
-  <option value="spear">Spear — 1d8, ×3</option>
-  <option value="longspear">Longspear — 1d8, ×3</option>
-  <option value="lance">Lance — 1d8, ×3</option>
-  <option value="glaive">Glaive — 1d10, ×3</option>
-  <option value="halberd">Halberd — 1d10, ×3</option>
-  <option value="greatclub">Greatclub — 1d10, ×2</option>
-  <option value="custom">Custom</option>
-</select></div>
+<select id="weapon"></select></div>
 
 <div id="customWeapon" style="display:none">
   <div class="row"><label>Base Damage Dice</label><input id="customDice" value="1d8"></div>
@@ -253,27 +231,197 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
 
 <script>
 const weapons = {
-  longsword:{dice:"1d8",threat:"19–20",mult:2},
-  shortsword:{dice:"1d6",threat:"19–20",mult:2},
-  greatsword:{dice:"2d6",threat:"19–20",mult:2},
-  falchion:{dice:"2d4",threat:"18–20",mult:2},
-  scimitar:{dice:"1d6",threat:"18–20",mult:2},
-  rapier:{dice:"1d6",threat:"18–20",mult:2},
+  battleAspergillum:{dice:"1d6",threat:"20",mult:2},
+  brassKnuckles:{dice:"1d3",threat:"20",mult:2},
+  cestus:{dice:"1d4",threat:"19–20",mult:2},
+  dagger:{dice:"1d4",threat:"19–20",mult:2},
+  gauntlet:{dice:"1d3",threat:"20",mult:2},
   lightMace:{dice:"1d6",threat:"20",mult:2},
+  punchingDagger:{dice:"1d4",threat:"20",mult:3},
+  sickle:{dice:"1d6",threat:"20",mult:2},
+  spikedGauntlet:{dice:"1d4",threat:"20",mult:2},
+  woodenStake:{dice:"1d4",threat:"20",mult:2},
+  club:{dice:"1d6",threat:"20",mult:2},
   heavyMace:{dice:"1d8",threat:"20",mult:2},
+  mereClub:{dice:"1d4",threat:"20",mult:2},
   morningstar:{dice:"1d8",threat:"20",mult:2},
-  warhammer:{dice:"1d8",threat:"20",mult:3},
-  lightFlail:{dice:"1d8",threat:"20",mult:2},
-  heavyFlail:{dice:"1d10",threat:"19–20",mult:2},
-  battleaxe:{dice:"1d8",threat:"20",mult:3},
-  greataxe:{dice:"1d12",threat:"20",mult:3},
-  spear:{dice:"1d8",threat:"20",mult:3},
+  shortspear:{dice:"1d6",threat:"20",mult:2},
+  bayonet:{dice:"1d6",threat:"20",mult:2},
+  boarSpear:{dice:"1d8",threat:"20",mult:2},
   longspear:{dice:"1d8",threat:"20",mult:3},
-  lance:{dice:"1d8",threat:"20",mult:3},
+  spear:{dice:"1d8",threat:"20",mult:3},
+  blowgun:{dice:"1d2",threat:"20",mult:2},
+  dart:{dice:"1d4",threat:"20",mult:2},
+  heavyCrossbow:{dice:"1d10",threat:"19–20",mult:2},
+  javelin:{dice:"1d6",threat:"20",mult:2},
+  lightCrossbow:{dice:"1d8",threat:"19–20",mult:2},
+  sling:{dice:"1d4",threat:"20",mult:2},
+  underwaterHeavyCrossbow:{dice:"1d10",threat:"19–20",mult:2},
+  underwaterLightCrossbow:{dice:"1d8",threat:"19–20",mult:2},
+  butterflySword:{dice:"1d4",threat:"19–20",mult:2},
+  dogslicer:{dice:"1d6",threat:"19–20",mult:2},
+  gladius:{dice:"1d6",threat:"19–20",mult:2},
+  handaxe:{dice:"1d6",threat:"20",mult:3},
+  ironBrush:{dice:"1d3",threat:"20",mult:2},
+  jutte:{dice:"1d6",threat:"20",mult:2},
+  kerambit:{dice:"1d3",threat:"20",mult:3},
+  kukri:{dice:"1d4",threat:"18–20",mult:2},
+  lightHammer:{dice:"1d4",threat:"20",mult:2},
+  lightPick:{dice:"1d4",threat:"20",mult:4},
+  lightShield:{dice:"1d3",threat:"20",mult:2},
+  lungchuanTamo:{dice:"1d4",threat:"20",mult:2},
+  ratfolkTailblade:{dice:"1d3",threat:"20",mult:2},
+  sap:{dice:"1d6",threat:"20",mult:2},
+  seaKnife:{dice:"1d4",threat:"19–20",mult:2},
+  shangGou:{dice:"1d4",threat:"20",mult:2},
+  shortsword:{dice:"1d6",threat:"19–20",mult:2},
+  spikedArmor:{dice:"1d6",threat:"20",mult:2},
+  spikedLightShield:{dice:"1d4",threat:"20",mult:2},
+  starknife:{dice:"1d4",threat:"20",mult:3},
+  throwingAxe:{dice:"1d6",threat:"20",mult:2},
+  tonfa:{dice:"1d6",threat:"20",mult:2},
+  wushuDart:{dice:"1d3",threat:"20",mult:2},
+  battleaxe:{dice:"1d8",threat:"20",mult:3},
+  doubleChickenSaber:{dice:"1d6",threat:"19–20",mult:2},
+  heavyPick:{dice:"1d6",threat:"20",mult:4},
+  heavyShield:{dice:"1d4",threat:"20",mult:2},
+  klar:{dice:"1d6",threat:"20",mult:2},
+  lightFlail:{dice:"1d8",threat:"20",mult:2},
+  longsword:{dice:"1d8",threat:"19–20",mult:2},
+  nineRingBroadsword:{dice:"1d8",threat:"20",mult:3},
+  rapier:{dice:"1d6",threat:"18–20",mult:2},
+  scimitar:{dice:"1d6",threat:"18–20",mult:2},
+  scizore:{dice:"1d10",threat:"20",mult:2},
+  sibat:{dice:"1d6",threat:"20",mult:3},
+  spikedHeavyShield:{dice:"1d6",threat:"20",mult:2},
+  swordCane:{dice:"1d6",threat:"20",mult:2},
+  terbutje:{dice:"1d8",threat:"19–20",mult:2},
+  trident:{dice:"1d8",threat:"20",mult:2},
+  warhammer:{dice:"1d8",threat:"20",mult:3},
+  bardiche:{dice:"1d10",threat:"19–20",mult:2},
+  becDeCorbin:{dice:"1d10",threat:"20",mult:3},
+  bill:{dice:"1d8",threat:"20",mult:3},
+  earthBreaker:{dice:"2d6",threat:"20",mult:3},
+  falchion:{dice:"2d4",threat:"18–20",mult:2},
   glaive:{dice:"1d10",threat:"20",mult:3},
+  glaiveGuisarme:{dice:"1d10",threat:"20",mult:3},
+  greataxe:{dice:"1d12",threat:"20",mult:3},
+  greatclub:{dice:"1d10",threat:"20",mult:2},
+  greatsword:{dice:"2d6",threat:"19–20",mult:2},
+  guisarme:{dice:"2d4",threat:"20",mult:3},
   halberd:{dice:"1d10",threat:"20",mult:3},
-  greatclub:{dice:"1d10",threat:"20",mult:2}
+  heavyFlail:{dice:"1d10",threat:"19–20",mult:2},
+  hookedLance:{dice:"1d8",threat:"20",mult:4},
+  horsechopper:{dice:"1d10",threat:"20",mult:3},
+  lance:{dice:"1d8",threat:"20",mult:3},
+  lucerneHammer:{dice:"1d12",threat:"20",mult:2},
+  mattock:{dice:"2d4",threat:"20",mult:4},
+  naginata:{dice:"1d8",threat:"20",mult:4},
+  nodachi:{dice:"1d10",threat:"18–20",mult:2},
+  ogreHook:{dice:"1d10",threat:"20",mult:3},
+  ranseur:{dice:"2d4",threat:"20",mult:3},
+  rhomphaia:{dice:"2d4",threat:"20",mult:3},
+  sansetsukon:{dice:"1d10",threat:"19–20",mult:2},
+  scythe:{dice:"2d4",threat:"20",mult:4},
+  tepoztopilli:{dice:"1d10",threat:"19–20",mult:2},
+  tigerFork:{dice:"1d8",threat:"20",mult:2},
+  triPointDoubleEdgedSword:{dice:"1d10",threat:"20",mult:3},
+  amentum:{dice:"1d6",threat:"20",mult:2},
+  atlatl:{dice:"1d6",threat:"20",mult:2},
+  chakram:{dice:"1d8",threat:"20",mult:2},
+  compositeLongbow:{dice:"1d8",threat:"20",mult:3},
+  compositeShortbow:{dice:"1d6",threat:"20",mult:3},
+  hungaMunga:{dice:"1d6",threat:"20",mult:2},
+  joltingDart:{dice:"1d4",threat:"20",mult:2},
+  longbow:{dice:"1d8",threat:"20",mult:3},
+  pilum:{dice:"1d8",threat:"20",mult:2},
+  shortbow:{dice:"1d6",threat:"20",mult:3},
+  tubeArrowShooter:{dice:"1d4",threat:"20",mult:2},
+  aklys:{dice:"1d6",threat:"20",mult:2},
+  danBong:{dice:"1d3",threat:"19–20",mult:2},
+  dwarvenBoulderHelmet:{dice:"1d4",threat:"20",mult:2},
+  emeiPiercer:{dice:"1d3",threat:"19–20",mult:2},
+  fightingFan:{dice:"1d4",threat:"20",mult:3},
+  kama:{dice:"1d6",threat:"20",mult:2},
+  knuckleAxe:{dice:"1d6",threat:"20",mult:3},
+  madu:{dice:"1d4",threat:"20",mult:2},
+  nunchaku:{dice:"1d6",threat:"20",mult:2},
+  pata:{dice:"1d6",threat:"20",mult:3},
+  quadrens:{dice:"1d6",threat:"19–20",mult:2},
+  sai:{dice:"1d4",threat:"20",mult:2},
+  scorpionWhip:{dice:"1d4",threat:"20",mult:2},
+  siangham:{dice:"1d6",threat:"20",mult:2},
+  sica:{dice:"1d6",threat:"20",mult:2},
+  swordbreakerDagger:{dice:"1d4",threat:"20",mult:2},
+  tekkoKagi:{dice:"1d3",threat:"20",mult:2},
+  wakizashi:{dice:"1d6",threat:"18–20",mult:2},
+  bastardSword:{dice:"1d10",threat:"19–20",mult:2},
+  dwarvenDoubleWaraxe:{dice:"1d10",threat:"20",mult:3},
+  dwarvenWaraxe:{dice:"1d10",threat:"20",mult:3},
+  falcata:{dice:"1d8",threat:"19–20",mult:3},
+  greatTerbutje:{dice:"1d10",threat:"19–20",mult:2},
+  hookedAxe:{dice:"1d8",threat:"20",mult:3},
+  katana:{dice:"1d8",threat:"18–20",mult:2},
+  khopesh:{dice:"1d8",threat:"19–20",mult:2},
+  nineSectionWhip:{dice:"1d8",threat:"19–20",mult:2},
+  rhokaSword:{dice:"1d8",threat:"18–20",mult:2},
+  sawtoothSabre:{dice:"1d8",threat:"19–20",mult:2},
+  shotel:{dice:"1d8",threat:"20",mult:3},
+  templeSword:{dice:"1d8",threat:"19–20",mult:2},
+  urumi:{dice:"1d8",threat:"18–20",mult:2},
+  wahaika:{dice:"1d6",threat:"20",mult:2},
+  whip:{dice:"1d3",threat:"20",mult:2},
+  dwarvenLongaxe:{dice:"1d12",threat:"20",mult:3},
+  dwarvenLonghammer:{dice:"2d6",threat:"20",mult:3},
+  elvenCurveBlade:{dice:"1d10",threat:"18–20",mult:2},
+  flyingBlade:{dice:"1d12",threat:"20",mult:3},
+  harpoon:{dice:"1d8",threat:"20",mult:3},
+  kyoketsuShoge:{dice:"1d4",threat:"20",mult:2},
+  meteorHammer:{dice:"1d8",threat:"20",mult:2},
+  sevenBranchedSword:{dice:"1d10",threat:"20",mult:3},
+  spikedChain:{dice:"2d4",threat:"20",mult:2},
+  tetsubo:{dice:"1d10",threat:"20",mult:4},
+  bolas:{dice:"1d4",threat:"20",mult:2},
+  boomerang:{dice:"1d6",threat:"20",mult:2},
+  doubleCrossbow:{dice:"1d8",threat:"19–20",mult:2},
+  halflingSlingStaff:{dice:"1d8",threat:"20",mult:3},
+  handCrossbow:{dice:"1d4",threat:"19–20",mult:2},
+  kestros:{dice:"1d8",threat:"20",mult:3},
+  repeatingHandCrossbow:{dice:"1d4",threat:"19–20",mult:2},
+  repeatingHeavyCrossbow:{dice:"1d10",threat:"19–20",mult:2},
+  repeatingLightCrossbow:{dice:"1d8",threat:"19–20",mult:2},
+  ropeDart:{dice:"1d4",threat:"20",mult:2},
+  shuriken:{dice:"1d2",threat:"20",mult:2},
+  throwingShield:{dice:"1d6",threat:"20",mult:2}
 };
+
+const WEAPON_CAT_ORDER=["simple-light","simple-one-handed","simple-two-handed","simple-ranged","martial-light","martial-one-handed","martial-two-handed","martial-ranged","exotic-light","exotic-one-handed","exotic-two-handed","exotic-ranged"];
+const WEAPON_CAT_LABEL={"simple-light":"Simple, Light","simple-one-handed":"Simple, One-Handed","simple-two-handed":"Simple, Two-Handed","simple-ranged":"Simple, Ranged","martial-light":"Martial, Light","martial-one-handed":"Martial, One-Handed","martial-two-handed":"Martial, Two-Handed","martial-ranged":"Martial, Ranged","exotic-light":"Exotic, Light","exotic-one-handed":"Exotic, One-Handed","exotic-two-handed":"Exotic, Two-Handed","exotic-ranged":"Exotic, Ranged"};
+const WEAPON_CAT={"battleAspergillum":"simple-light","brassKnuckles":"simple-light","cestus":"simple-light","dagger":"simple-light","gauntlet":"simple-light","lightMace":"simple-light","punchingDagger":"simple-light","sickle":"simple-light","spikedGauntlet":"simple-light","woodenStake":"simple-light","club":"simple-one-handed","heavyMace":"simple-one-handed","mereClub":"simple-one-handed","morningstar":"simple-one-handed","shortspear":"simple-one-handed","bayonet":"simple-two-handed","boarSpear":"simple-two-handed","longspear":"simple-two-handed","spear":"simple-two-handed","blowgun":"simple-ranged","dart":"simple-ranged","heavyCrossbow":"simple-ranged","javelin":"simple-ranged","lightCrossbow":"simple-ranged","sling":"simple-ranged","underwaterHeavyCrossbow":"simple-ranged","underwaterLightCrossbow":"simple-ranged","butterflySword":"martial-light","dogslicer":"martial-light","gladius":"martial-light","handaxe":"martial-light","ironBrush":"martial-light","jutte":"martial-light","kerambit":"martial-light","kukri":"martial-light","lightHammer":"martial-light","lightPick":"martial-light","lightShield":"martial-light","lungchuanTamo":"martial-light","ratfolkTailblade":"martial-light","sap":"martial-light","seaKnife":"martial-light","shangGou":"martial-light","shortsword":"martial-light","spikedArmor":"martial-light","spikedLightShield":"martial-light","starknife":"martial-light","throwingAxe":"martial-light","tonfa":"martial-light","wushuDart":"martial-light","battleaxe":"martial-one-handed","doubleChickenSaber":"martial-one-handed","heavyPick":"martial-one-handed","heavyShield":"martial-one-handed","klar":"martial-one-handed","lightFlail":"martial-one-handed","longsword":"martial-one-handed","nineRingBroadsword":"martial-one-handed","rapier":"martial-one-handed","scimitar":"martial-one-handed","scizore":"martial-one-handed","sibat":"martial-one-handed","spikedHeavyShield":"martial-one-handed","swordCane":"martial-one-handed","terbutje":"martial-one-handed","trident":"martial-one-handed","warhammer":"martial-one-handed","bardiche":"martial-two-handed","becDeCorbin":"martial-two-handed","bill":"martial-two-handed","earthBreaker":"martial-two-handed","falchion":"martial-two-handed","glaive":"martial-two-handed","glaiveGuisarme":"martial-two-handed","greataxe":"martial-two-handed","greatclub":"martial-two-handed","greatsword":"martial-two-handed","guisarme":"martial-two-handed","halberd":"martial-two-handed","heavyFlail":"martial-two-handed","hookedLance":"martial-two-handed","horsechopper":"martial-two-handed","lance":"martial-two-handed","lucerneHammer":"martial-two-handed","mattock":"martial-two-handed","naginata":"martial-two-handed","nodachi":"martial-two-handed","ogreHook":"martial-two-handed","ranseur":"martial-two-handed","rhomphaia":"martial-two-handed","sansetsukon":"martial-two-handed","scythe":"martial-two-handed","tepoztopilli":"martial-two-handed","tigerFork":"martial-two-handed","triPointDoubleEdgedSword":"martial-two-handed","amentum":"martial-ranged","atlatl":"martial-ranged","chakram":"martial-ranged","compositeLongbow":"martial-ranged","compositeShortbow":"martial-ranged","hungaMunga":"martial-ranged","joltingDart":"martial-ranged","longbow":"martial-ranged","pilum":"martial-ranged","shortbow":"martial-ranged","tubeArrowShooter":"martial-ranged","aklys":"exotic-light","danBong":"exotic-light","dwarvenBoulderHelmet":"exotic-light","emeiPiercer":"exotic-light","fightingFan":"exotic-light","kama":"exotic-light","knuckleAxe":"exotic-light","madu":"exotic-light","nunchaku":"exotic-light","pata":"exotic-light","quadrens":"exotic-light","sai":"exotic-light","scorpionWhip":"exotic-light","siangham":"exotic-light","sica":"exotic-light","swordbreakerDagger":"exotic-light","tekkoKagi":"exotic-light","wakizashi":"exotic-light","bastardSword":"exotic-one-handed","dwarvenDoubleWaraxe":"exotic-one-handed","dwarvenWaraxe":"exotic-one-handed","falcata":"exotic-one-handed","greatTerbutje":"exotic-one-handed","hookedAxe":"exotic-one-handed","katana":"exotic-one-handed","khopesh":"exotic-one-handed","nineSectionWhip":"exotic-one-handed","rhokaSword":"exotic-one-handed","sawtoothSabre":"exotic-one-handed","shotel":"exotic-one-handed","templeSword":"exotic-one-handed","urumi":"exotic-one-handed","wahaika":"exotic-one-handed","whip":"exotic-one-handed","dwarvenLongaxe":"exotic-two-handed","dwarvenLonghammer":"exotic-two-handed","elvenCurveBlade":"exotic-two-handed","flyingBlade":"exotic-two-handed","harpoon":"exotic-two-handed","kyoketsuShoge":"exotic-two-handed","meteorHammer":"exotic-two-handed","sevenBranchedSword":"exotic-two-handed","spikedChain":"exotic-two-handed","tetsubo":"exotic-two-handed","bolas":"exotic-ranged","boomerang":"exotic-ranged","doubleCrossbow":"exotic-ranged","halflingSlingStaff":"exotic-ranged","handCrossbow":"exotic-ranged","kestros":"exotic-ranged","repeatingHandCrossbow":"exotic-ranged","repeatingHeavyCrossbow":"exotic-ranged","repeatingLightCrossbow":"exotic-ranged","ropeDart":"exotic-ranged","shuriken":"exotic-ranged","throwingShield":"exotic-ranged"};
+const WEAPON_NAME={"battleAspergillum":"Battle aspergillum","brassKnuckles":"Brass knuckles","cestus":"Cestus","dagger":"Dagger","gauntlet":"Gauntlet","lightMace":"Light mace","punchingDagger":"Punching dagger","sickle":"Sickle","spikedGauntlet":"Spiked gauntlet","woodenStake":"Wooden stake","club":"Club","heavyMace":"Heavy mace","mereClub":"Mere club","morningstar":"Morningstar","shortspear":"Shortspear","bayonet":"Bayonet","boarSpear":"Boar spear","longspear":"Longspear","spear":"Spear","blowgun":"Blowgun","dart":"Dart","heavyCrossbow":"Heavy crossbow","javelin":"Javelin","lightCrossbow":"Light crossbow","sling":"Sling","underwaterHeavyCrossbow":"Underwater heavy crossbow","underwaterLightCrossbow":"Underwater light crossbow","butterflySword":"Butterfly sword","dogslicer":"Dogslicer","gladius":"Gladius","handaxe":"Handaxe","ironBrush":"Iron brush","jutte":"Jutte","kerambit":"Kerambit","kukri":"Kukri","lightHammer":"Light hammer","lightPick":"Light pick","lightShield":"Light shield","lungchuanTamo":"Lungchuan tamo","ratfolkTailblade":"Ratfolk Tailblade","sap":"Sap","seaKnife":"Sea-knife","shangGou":"Shang gou","shortsword":"Short sword","spikedArmor":"Spiked armor","spikedLightShield":"Spiked light shield","starknife":"Starknife","throwingAxe":"Throwing axe","tonfa":"Tonfa","wushuDart":"Wushu dart","battleaxe":"Battleaxe","doubleChickenSaber":"Double chicken saber","heavyPick":"Heavy pick","heavyShield":"Heavy shield","klar":"Klar","lightFlail":"Light flail","longsword":"Longsword","nineRingBroadsword":"Nine-ring broadsword","rapier":"Rapier","scimitar":"Scimitar","scizore":"Scizore","sibat":"Sibat","spikedHeavyShield":"Spiked heavy shield","swordCane":"Sword cane","terbutje":"Terbutje","trident":"Trident","warhammer":"Warhammer","bardiche":"Bardiche","becDeCorbin":"Bec de corbin","bill":"Bill","earthBreaker":"Earth breaker","falchion":"Falchion","glaive":"Glaive","glaiveGuisarme":"Glaive-guisarme","greataxe":"Greataxe","greatclub":"Greatclub","greatsword":"Greatsword","guisarme":"Guisarme","halberd":"Halberd","heavyFlail":"Heavy flail","hookedLance":"Hooked lance","horsechopper":"Horsechopper","lance":"Lance","lucerneHammer":"Lucerne hammer","mattock":"Mattock","naginata":"Naginata","nodachi":"Nodachi","ogreHook":"Ogre hook","ranseur":"Ranseur","rhomphaia":"Rhomphaia","sansetsukon":"Sansetsukon","scythe":"Scythe","tepoztopilli":"Tepoztopilli","tigerFork":"Tiger fork","triPointDoubleEdgedSword":"Tri-point double-edged sword","amentum":"Amentum","atlatl":"Atlatl","chakram":"Chakram","compositeLongbow":"Composite longbow","compositeShortbow":"Composite shortbow","hungaMunga":"Hunga munga","joltingDart":"Jolting dart","longbow":"Longbow","pilum":"Pilum","shortbow":"Shortbow","tubeArrowShooter":"Tube arrow shooter","aklys":"Aklys","danBong":"Dan bong","dwarvenBoulderHelmet":"Dwarven Boulder Helmet","emeiPiercer":"Emei piercer","fightingFan":"Fighting fan","kama":"Kama","knuckleAxe":"Knuckle axe","madu":"Madu","nunchaku":"Nunchaku","pata":"Pata","quadrens":"Quadrens","sai":"Sai","scorpionWhip":"Scorpion whip","siangham":"Siangham","sica":"Sica","swordbreakerDagger":"Swordbreaker dagger","tekkoKagi":"Tekko-kagi","wakizashi":"Wakizashi","bastardSword":"Bastard sword","dwarvenDoubleWaraxe":"Dwarven double waraxe","dwarvenWaraxe":"Dwarven waraxe","falcata":"Falcata","greatTerbutje":"Great terbutje","hookedAxe":"Hooked axe","katana":"Katana","khopesh":"Khopesh","nineSectionWhip":"Nine-section whip","rhokaSword":"Rhoka sword","sawtoothSabre":"Sawtooth sabre","shotel":"Shotel","templeSword":"Temple sword","urumi":"Urumi","wahaika":"Wahaika","whip":"Whip","dwarvenLongaxe":"Dwarven Longaxe","dwarvenLonghammer":"Dwarven Longhammer","elvenCurveBlade":"Elven curve blade","flyingBlade":"Flying blade","harpoon":"Harpoon","kyoketsuShoge":"Kyoketsu shoge","meteorHammer":"Meteor hammer","sevenBranchedSword":"Seven-branched sword","spikedChain":"Spiked chain","tetsubo":"Tetsubo","bolas":"Bolas","boomerang":"Boomerang","doubleCrossbow":"Double crossbow","halflingSlingStaff":"Halfling sling staff","handCrossbow":"Hand crossbow","kestros":"Kestros","repeatingHandCrossbow":"Repeating hand crossbow","repeatingHeavyCrossbow":"Repeating heavy crossbow","repeatingLightCrossbow":"Repeating light crossbow","ropeDart":"Rope dart","shuriken":"Shuriken","throwingShield":"Throwing shield"};
+function weaponLabel(id){
+  const w=weapons[id];
+  return WEAPON_NAME[id]+' — '+w.dice+', '+(w.threat==="20"?'':w.threat+'/')+'×'+w.mult;
+}
+function populateWeaponSelect(sel){
+  const prev=sel.value;
+  sel.innerHTML='';
+  let byCat={};
+  Object.keys(weapons).forEach(id=>{ (byCat[WEAPON_CAT[id]]=byCat[WEAPON_CAT[id]]||[]).push(id); });
+  WEAPON_CAT_ORDER.forEach(cat=>{
+    let ids=byCat[cat]; if(!ids||!ids.length) return;
+    let og=document.createElement('optgroup'); og.label=WEAPON_CAT_LABEL[cat];
+    ids.sort((a,b)=>WEAPON_NAME[a].localeCompare(WEAPON_NAME[b])).forEach(id=>{
+      let o=document.createElement('option'); o.value=id; o.textContent=weaponLabel(id);
+      og.appendChild(o);
+    });
+    sel.appendChild(og);
+  });
+  let customOpt=document.createElement('option'); customOpt.value='custom'; customOpt.textContent='Custom';
+  sel.appendChild(customOpt);
+  if(prev && weapons[prev]) sel.value=prev; else sel.value='longsword';
+}
+populateWeaponSelect(document.getElementById('weapon'));
 
 function mod(score){ return Math.floor((Number(score)-10)/2); }
 function signed(n){ return (n>=0?"+":"")+n; }
