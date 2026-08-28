@@ -159,7 +159,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 </div>
 <h3>Character</h3>
 <div class="row"><label>Race</label><input id="race" list="raceList" placeholder="Search race..." autocomplete="off"><datalist id="raceList"></datalist></div>
-<div class="raceNote">Selecting a race automatically excludes race-specific sourcebooks that don't match it (see the Sources panel above) — same rule as the spellbooks.</div>
+<div class="raceNote">Character note only — doesn't hide or filter anything. Feats/traits from any sourcebook are always shown; check their own prerequisites to see if your character actually qualifies.</div>
 <div class="row"><label>Deity</label><input id="deity" list="deityList" placeholder="(optional)" autocomplete="off"><datalist id="deityList"></datalist></div>
 <div class="raceNote">Deity-specific catalog entries (a handful of feats/traits/spells tied to worshipping one particular god) only show up once you've picked that deity here. Leave empty to see none of those — everything else is unaffected.</div>
 <div class="row"><label>Alignment</label>
@@ -1557,10 +1557,20 @@ function populateWeaponSelect(sel){
 populateWeaponSelect($('weapon'));
 populateWeaponSelect($('offWeapon'));
 
+// Race is a flavor/notes field only (autocomplete list below) — it used to also
+// auto-hide every race-specific sourcebook except the one matching your own race,
+// but that assumed a book's content only ever applies to that race, which isn't
+// true (many entries in e.g. "Dwarves of Golarion" state their own race prereq
+// individually, and some aren't race-restricted at all — a different-race build
+// could legitimately want them). Feats/traits are trusted the same way now: expose
+// everything, the player is responsible for only picking what their character
+// qualifies for. This function is kept as a no-op (rather than deleted) so it stays
+// safe to keep calling from the existing call sites, and actively clears any
+// leftover exclusion a profile saved before this change so those books reappear.
 function applyRaceSourceExclusions(){
   let p=currentProfile();
   RACE_ONLY_SOURCES.forEach(src=>{
-    let allowed = RACE_SOURCE_MAP[p.race] && RACE_SOURCE_MAP[p.race].includes(src);
+    let allowed = true;
     if(allowed) delete p.excludedSources[src]; else p.excludedSources[src]=true;
   });
 }
