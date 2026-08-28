@@ -764,9 +764,14 @@ const MODIFIERS = [
 
 // ---------------- OTHER (class features / combat rules) ----------------
 {id:'smite-evil',name:'Smite Evil',category:'other',source:'Paladin class feature',appliesTo:['attack','damage'],type:'untyped',
- desc:'CHA bonus to attack, paladin level to damage vs the smited target (untyped — no named bonus type given in the rules text).',
+ desc:'CHA bonus to attack, paladin level to damage vs the smited target (untyped — no named bonus type given in the rules text). If the target is an evil outsider, evil dragon, or undead, this damage bonus is DOUBLED — but only on the first successful hit against it, not on later iteratives or later hits (handled as a note, not added to the flat total, same as other "first attack only" effects in this calculator).',
  configFields:[{key:'palLvl',label:'Paladin level',type:'number',default:7,linkLevel:true}],
- compute:(ctx,cfg)=>({attack:ctx.cha,damage:cfg.palLvl||0,note:'+'+ctx.cha+' atk / +'+(cfg.palLvl||0)+' dmg (untyped)'})},
+ compute:(ctx,cfg)=>{
+   let dmg=cfg.palLvl||0;
+   let flags=TARGET_FLAG_MAP[ctx.currentTarget]||{};
+   let doubles=flags.undead||(flags.evil&&flags.dragon)||(flags.evil&&flags.outsider);
+   return {attack:ctx.cha,damage:dmg,note:'+'+ctx.cha+' atk / +'+dmg+' dmg (untyped)'+(doubles?' — DOUBLED to +'+(dmg*2)+' on the first successful hit only (evil outsider/evil dragon/undead), see summary':'')};
+ }},
 {id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
  desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls.',
  configFields:[{key:'bardLvl',label:'Bard level',type:'number',default:5,linkLevel:true}],
