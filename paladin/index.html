@@ -341,7 +341,7 @@ function renderOathInfo(){
   lastOathFingerprint=fingerprint;
   if(!oaths.length){box.innerHTML='';box.style.display='none';return}
   box.style.display='';
-  box.innerHTML=oaths.map(name=>`<details class="rulenote" open><summary>⚔ Oath: ${name}</summary><div>${PFOaths.renderOathBody(name)}</div></details>`).join('');
+  box.innerHTML=oaths.map(name=>`<details class="rulenote"><summary>⚔ Oath: ${name}</summary><div>${PFOaths.renderOathBody(name)}</div></details>`).join('');
 }
 $('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0];save();render()};
 $('cha').onchange=e=>{state.cha=+e.target.value;state.used=[0,0,0,0,0];save();render()};
