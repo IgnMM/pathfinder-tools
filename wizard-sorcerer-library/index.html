@@ -17,6 +17,7 @@
 </main>
 <script src="../assets/valid-sources.js"></script>
 <script src="../assets/casting-time.js"></script>
+<script src="../assets/spell-crossref.js"></script>
 <script>
 const STORE_KEY='wizardSorcererSpellLibraryPF1V1';
 const $=id=>document.getElementById(id);
@@ -78,7 +79,7 @@ function buildCard(s){
   let fav=!!store.fav[key];
   let card=document.createElement('div');
   card.className='card';
-  card.innerHTML=`<div class="head"><div><div class="name">${s.n} <span style="color:var(--muted);font-weight:400;font-size:.72rem">L${s.l}</span></div>${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}</div><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button></div><details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${p}</p>`).join('')}</div></details>`;
+  card.innerHTML=`<div class="head"><div><div class="name">${s.n} <span style="color:var(--muted);font-weight:400;font-size:.72rem">L${s.l}</span></div>${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}</div><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button></div><details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${PFSpellRefs.linkify(p,s.n)}</p>`).join('')}</div></details>`;
   card.querySelector('.favbtn').onclick=()=>{if(fav)delete store.fav[key];else store.fav[key]=true;save();renderList()};
   return card;
 }

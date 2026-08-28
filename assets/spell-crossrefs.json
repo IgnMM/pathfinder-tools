@@ -1,0 +1,7595 @@
+{
+  "_meta": {
+    "totalSpellsInMasterIndex": 3034,
+    "processed": 3034,
+    "withRefs": 1191,
+    "generatedAt": "2026-08-28T11:20:39.691Z",
+    "note": "FINAL. Coverage: 3034/3034 (100%) of master index processed. 1191 spells have at least one verified cross-reference. Post-run fixups applied for known name-mismatch cases vs Nethys (Roman numerals I-IX -> Arabic for Summon Monster spells; comma-placement fix for Invisibility Bubble/Invisibility Bubble, Giant/Mass; Companion Transposition -> actual Nethys name Companion Transportation). 2 spells remain genuinely unresolved because no corresponding Nethys page exists under any tried name (likely master-index scraping artifacts): Fleshwarping Swarm (duplicate of the real entry Fleshwarping Swarm (Drow), which IS resolved), and Phantasmal Asphyxiation (source: Horror Adventures pg. 123, not findable via Nethys spell listing or search).",
+    "processedNames": [
+      "Abjuring Step",
+      "Alleviate Addiction",
+      "Anticipate Peril",
+      "Ant Haul",
+      "Antitoxin Touch",
+      "Authenticating Gaze",
+      "Blend",
+      "Adhesive Spittle",
+      "Blurred Movement",
+      "Bomber's Eye",
+      "Bouncy Body",
+      "Chameleon Scales",
+      "Body Capacitance",
+      "Coin Shot",
+      "Comprehend Languages",
+      "Coward's Cowl",
+      "Crafter's Fortune",
+      "Cure Light Wounds",
+      "Detect Metal",
+      "Detect Secret Doors",
+      "Disguise Self",
+      "Enlarge Person",
+      "Enlarge Tail",
+      "Expeditious Retreat",
+      "Fabricate Disguise",
+      "False Face",
+      "Ferment",
+      "Firebelly",
+      "Detect Undead",
+      "Fool's Gold (AA)",
+      "Heightened Awareness",
+      "Identify",
+      "Illusion of Calm",
+      "Invisibility Alarm",
+      "Jump",
+      "Endure Elements",
+      "Keen Senses",
+      "Instant Clot",
+      "Locksight",
+      "Long Arm",
+      "Monkey Fish",
+      "Linebreaker",
+      "Obscure Poison",
+      "Pesh Vigor",
+      "Petulengro's Validation",
+      "Longshot",
+      "Phantom Blood",
+      "Pierce Facade",
+      "Negate Aroma",
+      "Polypurpose Panacea",
+      "Punishing Armor",
+      "Recharge Innate Magic",
+      "Reduce Person",
+      "Shield",
+      "Skim",
+      "Shock Shield",
+      "Skin Tag",
+      "Speechreader's Sight",
+      "Spirit Share",
+      "Starsight",
+      "See Alignment",
+      "Stone Fist",
+      "Targeted Bomb Admixture",
+      "Tears to Wine",
+      "Scarify",
+      "Touch of the Sea",
+      "True Skill",
+      "True Strike",
+      "Urban Grace",
+      "Vocal Alteration",
+      "Waterproof",
+      "Wizened Appearance",
+      "Ablative Barrier",
+      "Youthful Appearance",
+      "Adhesive Blood",
+      "Acute Senses",
+      "Aid",
+      "Air Step",
+      "Alter Self",
+      "Ancestral Regression",
+      "Alchemical Allocation",
+      "Animal Aspect",
+      "Aldori Alacrity",
+      "Ant Haul, Communal",
+      "Aram Zey's Focus",
+      "Barkskin",
+      "Bear's Endurance",
+      "Beloved of the Forge",
+      "Bestow Weapon Proficiency",
+      "Blistering Invective",
+      "Blood Armor",
+      "Blood Blaze",
+      "Blood Transcription",
+      "Blur",
+      "Bullet Shield",
+      "Bull's Strength",
+      "Cat's Grace",
+      "Catatonia",
+      "Certain Grip",
+      "Contact High",
+      "Curative Distillation",
+      "Cure Moderate Wounds",
+      "Daggermark's Exchange",
+      "Darkvision",
+      "Defensive Shock",
+      "Delay Poison",
+      "Delay Disease",
+      "Detect Thoughts",
+      "Diminished Detection",
+      "Deathwine",
+      "Dragonvoice",
+      "Dream Shield",
+      "Eagle's Splendor",
+      "Elemental Touch",
+      "Empower Holy Water",
+      "Dongun Shaper's Touch",
+      "Extreme Buoyancy",
+      "Enchantment Sight",
+      "Enshroud Thoughts",
+      "Extreme Flexibility",
+      "False Age",
+      "False Life",
+      "Fiery Runes",
+      "Fire Breath",
+      "Fire Sneeze",
+      "Fire's Friend",
+      "First World Revisions",
+      "Fleshy Facade",
+      "Focused Scrutiny",
+      "Fox's Cunning",
+      "Full Pouch",
+      "Ghostly Disguise",
+      "Heroic Fortune",
+      "Human Potential",
+      "Hidden Blades",
+      "Fungal Blisters",
+      "Identifier's Eye",
+      "Grasping Vine",
+      "Ignoble Form",
+      "Imbue With Addiction",
+      "Investigative Mind",
+      "Invigorating Poison",
+      "Invisibility",
+      "Invisibility Bubble",
+      "Ironskin",
+      "Kinetic Reverberation",
+      "Kalistocrat's Nightmare",
+      "Languid Venom",
+      "Lead Anchor",
+      "Levitate",
+      "Neutral Buoyancy",
+      "Nondetection, Lesser",
+      "Overstimulate",
+      "Owl's Wisdom",
+      "Perceive Cues",
+      "Pouncing Fury",
+      "Protection from Arrows",
+      "Minor Dream",
+      "Protection from Spores",
+      "Quick Change",
+      "Radiation Ward",
+      "Resist Energy",
+      "Restoration, Lesser",
+      "Scale Spikes",
+      "See Invisibility",
+      "Shadow Bomb Admixture",
+      "Sickening Strikes",
+      "Skinsend",
+      "Spider Climb",
+      "Squeeze",
+      "Stabilize Pressure",
+      "Stalwart Resolve",
+      "Sweat Poison",
+      "Tattoo Potion",
+      "Touch Injection",
+      "Shifted Steps",
+      "Transmute Potion to Poison",
+      "Twisted Innards",
+      "Undetectable Alignment",
+      "Venomous Bite",
+      "Vine Strike",
+      "Vomit Swarm",
+      "Waters of Lamashtu",
+      "Absorb Toxicity",
+      "Absorbing Touch",
+      "Adjustable Disguise",
+      "Age Resistance, Lesser",
+      "Air Breathing",
+      "Amplify Elixir",
+      "Anchored Step",
+      "Animal Aspect, Greater",
+      "Undeath Sense",
+      "Apsu's Shining Scales",
+      "Arcane Sight",
+      "Assume Appearance",
+      "Aura Sight",
+      "Barghest Feast",
+      "Battle Trance",
+      "Beast Shape I",
+      "Blood Scent",
+      "Blood Sentinel",
+      "Bloodhound",
+      "Bouncing Bomb Admixture",
+      "Burst of Speed",
+      "Channel Vigor",
+      "Caustic Safeguard",
+      "Claim Identity",
+      "Countless Eyes",
+      "Clay Skin",
+      "Burrow",
+      "Create Drug",
+      "Cure Serious Wounds",
+      "Darkvault",
+      "Delay Poison, Communal",
+      "Darkvision, Communal",
+      "Disable Construct",
+      "Displacement",
+      "Draconic Reservoir",
+      "Dragon Turtle Shell",
+      "Elemental Aura",
+      "Endure Elements, Communal",
+      "Eruptive Pustules",
+      "Fey Form I",
+      "Fiendish Wrath",
+      "Fire Trail",
+      "Drain Poison",
+      "Fly",
+      "Free Swim",
+      "Gaseous Form",
+      "Glimpse the Hidden",
+      "Haste",
+      "Heroism",
+      "Infuse Self",
+      "Hypercognition",
+      "Ja Noi Aspect",
+      "Lead Plating",
+      "Lightning Lash Bomb Admixture",
+      "Liquefy",
+      "Marionette Possession",
+      "Guarding Knowledge",
+      "Monstrous Physique I",
+      "Nauseating Trail",
+      "Nondetection",
+      "Orchid's Drop",
+      "Paragon Surge",
+      "Penumbral Disguise",
+      "Phase Step",
+      "Prehensile Pilfer",
+      "Pressure Adaptation",
+      "Protection from Arrows, Communal",
+      "Protection from Natural Attacks",
+      "Qlippoth Appearance",
+      "Rage",
+      "Rags to Riches",
+      "Remove Blindness/Deafness",
+      "Remove Curse",
+      "Remove Disease",
+      "Resinous Skin",
+      "Resist Energy, Communal",
+      "Protection from Energy",
+      "Selective Invisibility",
+      "Spider Climb, Communal",
+      "Repugnant Taste",
+      "Temporary Graft",
+      "Seek Thoughts",
+      "Thorn Body",
+      "Toxic Blood",
+      "Undead Anatomy I",
+      "Water Breathing",
+      "Vomit Twin",
+      "Wing Thorns",
+      "Absorbing Barrier",
+      "Voluminous Vocabulary",
+      "Adjustable Polymorph",
+      "Age Resistance",
+      "Air Walk",
+      "Tongues",
+      "Arcane Eye",
+      "Absorbing Inhalation",
+      "Assume Appearance, Greater",
+      "Beast Shape II",
+      "Bleaching Resistance",
+      "Bit of Luck",
+      "Caustic Blood",
+      "Concealed Breath",
+      "Crimson Breath",
+      "Cure Critical Wounds",
+      "Darkvision, Greater",
+      "Blightburn Weapon",
+      "Death Ward",
+      "Deathless",
+      "Detonate",
+      "Decollate",
+      "Discern Lies",
+      "Dissolution",
+      "Duplicate Familiar",
+      "Earth Glide",
+      "Earsend",
+      "Echolocation",
+      "Elemental Body I",
+      "Enchantment Foil",
+      "Dragon's Breath",
+      "Eyes of the Void",
+      "False Life, Greater",
+      "Fire Shield",
+      "Flash Forward",
+      "Fluid Form",
+      "Freedom of Movement",
+      "Healing Warmth",
+      "Hobbling Bomb Admixture",
+      "Innocuous Shape",
+      "Invisibility, Greater",
+      "Miasmatic Form",
+      "Harvest Knowledge",
+      "Monstrous Physique II",
+      "Mutagenic Touch",
+      "Naga Shape I",
+      "Persistent Vigor",
+      "Purify Body",
+      "Rubberskin",
+      "Restoration",
+      "Rune of Ruin",
+      "Scale Spikes, Greater",
+      "Scorching Ash Form",
+      "Spell Immunity",
+      "Stoneskin",
+      "Tail Strike",
+      "Tongues, Communal",
+      "Neutralize Poison",
+      "Touch of Slime",
+      "Umbral Infusion",
+      "Unbearable Brightness",
+      "Universal Formula",
+      "Vermin Shape I",
+      "Viper Bomb Admixture",
+      "Age Resistance, Greater",
+      "Ancestral Memory",
+      "Beast Shape III",
+      "Vitriolic Mist",
+      "Contact Other Plane",
+      "Delayed Consumption",
+      "Dream",
+      "Dream Reality",
+      "Air Walk, Communal",
+      "Dust Form",
+      "Elemental Body II",
+      "Elude Time",
+      "Claim Identity, Greater",
+      "Fey Form II",
+      "Glimpse of Truth",
+      "Half-Blood Extraction",
+      "Languid Bomb Admixture",
+      "Magic Jar",
+      "Mask from Divination",
+      "Monstrous Physique III",
+      "Nightmare",
+      "Ooze Form I",
+      "Overland Flight",
+      "Planetary Adaptation",
+      "Grand Destiny",
+      "Plant Shape I",
+      "Polymorph",
+      "Naga Shape II",
+      "Resurgent Transformation",
+      "Shapechanger's Gift",
+      "Sending",
+      "Spell Resistance",
+      "Planar Adaptation",
+      "Stoneskin, Communal",
+      "Swallow Poison",
+      "Transfiguring Touch",
+      "Transplant Visage",
+      "Unerring Tracker",
+      "Undead Anatomy II",
+      "Vermin Shape II",
+      "Analyze Dweomer",
+      "Beast Shape IV",
+      "Borrowed Time",
+      "Caging Bomb Admixture",
+      "Elemental Body III",
+      "Eyebite",
+      "Fey Form III",
+      "Baleful Shadow Transmutation",
+      "Form of the Alien Dragon I",
+      "Form of the Exotic Dragon I",
+      "Form of the Dragon I",
+      "Giant Form I",
+      "Heal",
+      "Legendary Proportions",
+      "Magnetic Field",
+      "Mislead",
+      "Monstrous Physique IV",
+      "Naga Shape III",
+      "Ooze Form II",
+      "Plague Bearer",
+      "Plant Shape II",
+      "Shadow Walk",
+      "Sonic Form",
+      "Statue",
+      "Transformation",
+      "Transmute Golem",
+      "Twin Form",
+      "Neutralize Poison, Greater",
+      "Undead Anatomy III",
+      "Verminous Transformation",
+      "Wind Walk",
+      "Animal Purpose Training",
+      "Bane",
+      "Barbed Chains",
+      "Bleeding Strike",
+      "Walk through Space",
+      "Bloodbath",
+      "Boneshaker",
+      "Cause Fear",
+      "True Seeing",
+      "Cloak of Secrets",
+      "Command",
+      "Conditional Favor",
+      "Crime of Opportunity",
+      "Curse Water",
+      "Dancing Darkness",
+      "Dark Whispers",
+      "Darting Duplicate",
+      "Death Candle",
+      "Death Knell",
+      "Demand Offering",
+      "Detect Poison",
+      "Doom",
+      "Face of the Devourer",
+      "Fear the Sun",
+      "Grasping Corpse",
+      "Desperate Weapon",
+      "Detect the Faithful",
+      "Haunting Reminder",
+      "Hedging Weapons",
+      "Hide Bruises",
+      "Hide Weapon",
+      "Halfling Vengeance",
+      "Guardian Armor",
+      "Huntmaster's Spear",
+      "Incessant Buzzing",
+      "Inflict Light Wounds",
+      "Inner Focus",
+      "Itching Curse",
+      "Ironbeard",
+      "Litany of the Red Crusader",
+      "Litany of Sloth",
+      "Litany of Weakness",
+      "Magic Weapon",
+      "Murderous Command",
+      "Murderous Crow",
+      "Night Blindness",
+      "Opportunistic Loyalty",
+      "Protection from Good",
+      "Protection from Law",
+      "Resist Starvation",
+      "Read Magic",
+      "Savage Maw",
+      "Sense Fear",
+      "Sentry Skull",
+      "Shadow Claws",
+      "Shadow Trap",
+      "Shield Companion (AA)",
+      "Summon Minor Monster",
+      "Summon Monster 1",
+      "Unhallowed Blows",
+      "Touch of Blindness",
+      "Wartrain Mount",
+      "Steady Saddle",
+      "Abyssal Vermin",
+      "Agonizing Rebuke",
+      "Alter Summoned Monster",
+      "Aquatic Cavalry",
+      "Blade Tutor's Spirit",
+      "Bleed for your Master",
+      "Blindness/Deafness",
+      "Borrow Corruption",
+      "Bullet Ward",
+      "Brittle Portal",
+      "Corruption Resistance",
+      "Curse of Keeping",
+      "Desecrate",
+      "Detect Desires",
+      "Detect Anxieties",
+      "Disrupt Link",
+      "Enemy's Heart",
+      "Fair is Foul",
+      "Flesh Puppet",
+      "Garrulous Grin",
+      "Ghoul Hunger",
+      "Darkness",
+      "Hag's Seasoning",
+      "Healing Leak",
+      "Improve Trap",
+      "Hold Person",
+      "Inflict Pain",
+      "Jealous Rage",
+      "Litany of Defense",
+      "Litany of Eloquence",
+      "Litany of Entanglement",
+      "Litany of Warding",
+      "Lose the Trail",
+      "Magic Siege Engine",
+      "Mathematical Curse",
+      "Miasmal Dread",
+      "Mindshock",
+      "Mortal Terror",
+      "Open Book",
+      "Outbreak",
+      "Painful Revelation",
+      "Pernicious Poison",
+      "Protection from Good, Communal",
+      "Protection from Law, Communal",
+      "Quick Throwing",
+      "Reaper's Coterie",
+      "Peerless Integrity",
+      "Rotgut",
+      "Scare",
+      "Sense Vitals",
+      "Shadowmind",
+      "Shared Suffering",
+      "Silence",
+      "Spellcurse",
+      "Summon Monster 2",
+      "Touch of Bloodletting",
+      "Umbral Weapon",
+      "Spiritual Squire",
+      "Toxic Gift",
+      "Unadulterated Loathing",
+      "Urgathoa's Beacon",
+      "Vestment of the Champion",
+      "Virulent Miasma",
+      "Widen Auras",
+      "Undetectable Trap",
+      "Accursed Glare",
+      "Bestow Auras",
+      "Bestow Curse",
+      "Black Sword of War",
+      "Bloody Arrows",
+      "Blade of Dark Triumph",
+      "Charnel House",
+      "Contagion",
+      "Animate Dead",
+      "Curse of Befouled Fortune",
+      "Cursed Treasure",
+      "Deadly Juggernaut",
+      "Deceitful Veneer",
+      "Defile Armor",
+      "Dispel Magic",
+      "Draconic Ally",
+      "Draconic Malice",
+      "Final Sacrifice",
+      "Deeper Darkness",
+      "Flesh Puppet Horde",
+      "Frosthammer",
+      "Hunger for Flesh",
+      "Illusion of Treachery",
+      "Inflict Moderate Wounds",
+      "Isolate",
+      "Litany of Admonition",
+      "Gullibility",
+      "Litany of Escape",
+      "Litany of Sight",
+      "Irregular Size",
+      "Magic Circle against Good",
+      "Magic Circle against Law",
+      "Magic Weapon, Greater",
+      "Phantasmal Reminder",
+      "Retributive Reparations",
+      "Revenant Armor",
+      "Sadomasochism",
+      "Second Wind",
+      "Shadow Jaunt",
+      "Shared Sacrifice",
+      "Screaming Flames",
+      "Shield of Darkness",
+      "Stage Fright",
+      "Summon Monster 3",
+      "Titanic Anchoring",
+      "Trial by Fire",
+      "Unhallowed Blows, Greater",
+      "Unlife Current",
+      "Utter Contempt",
+      "Vampiric Hunger",
+      "Vampiric Touch",
+      "Venomous Promise",
+      "Vigilant Rest",
+      "Unholy Ward",
+      "Vile Dog Transformation",
+      "Alaznist's Jinx",
+      "Banishing Blade",
+      "Blood Tentacles",
+      "Blood Ties",
+      "Cloak of Shadows",
+      "Bloatbomb",
+      "Companion Transportation",
+      "Conditional Curse",
+      "Crime Wave",
+      "Cruel Jaunt",
+      "Daywalker",
+      "Die for Your Master",
+      "Dimensional Blade",
+      "Dispel Good",
+      "Dispel Law",
+      "Fear",
+      "Foster Hatred",
+      "Halfling Vengeance, Mass",
+      "Hasten Judgment",
+      "Illusion of Treachery, Greater",
+      "Inflict Pain, Mass",
+      "Inflict Serious Wounds",
+      "Insect Scouts",
+      "Life of Crime",
+      "Invoke Deity",
+      "Litany of Madness",
+      "Litany of Thunder",
+      "Litany of Vengeance",
+      "Malediction",
+      "Mark of the Reptile God",
+      "Masochistic Shadow",
+      "Nondetection, Communal",
+      "Night of Blades",
+      "Profane Nimbus",
+      "Redcap's Touch",
+      "Resounding Blow",
+      "Magic Siege Engine, Greater",
+      "Overwhelming Poison",
+      "Poison",
+      "Shadow of Doubt",
+      "Shadowform",
+      "Shroud of Darkness",
+      "Speak with Soul",
+      "Summon Monster 4",
+      "Unholy Sword",
+      "Torpid Reanimation",
+      "Slay Living",
+      "Wall of Bone",
+      "Dancing Lights",
+      "Daze",
+      "Detect Fiendish Presence",
+      "Detect Magic",
+      "Flare",
+      "Ghost Sound",
+      "Know Direction",
+      "Haunted Fey Aspect",
+      "Light",
+      "Lullaby",
+      "Mage Hand",
+      "Mending",
+      "Grasp",
+      "Message",
+      "Oath of Anonymity",
+      "Open/Close",
+      "Prestidigitation",
+      "Resistance",
+      "Scrivener's Chant",
+      "Sift",
+      "Spark",
+      "Summon Instrument",
+      "Unwitting Ally",
+      "Vacuous Vessel",
+      "Abstemiousness",
+      "Abundant Ammunition",
+      "Adoration",
+      "Alarm",
+      "Alluring Light",
+      "Alter Musical Instrument",
+      "Animate Rope",
+      "Aphasia",
+      "Aspect of the Nightingale",
+      "Auditory Hallucination",
+      "Beguiling Gift",
+      "Biting Words",
+      "Blend with Surroundings",
+      "Borrow Skill",
+      "Brightest Night",
+      "Assumed Likeness",
+      "Call Weapon",
+      "Charm Fey",
+      "Charm Person",
+      "Chastise",
+      "Chord of Shards",
+      "Clarion Call",
+      "Compel Hostility",
+      "Compel Tongue",
+      "Compulsive Liar",
+      "Confusion, Lesser",
+      "Cultural Adaptation (Taldan)",
+      "Dancing Lantern",
+      "Deadeye's Lore",
+      "Dazzling Blade",
+      "Decrepit Disguise",
+      "Deivon's Parry",
+      "Deja Vu",
+      "Delusional Pride",
+      "Detect Charm",
+      "Cultural Adaptation",
+      "Detect Radiation",
+      "Discern Next of Kin",
+      "Disguise Weapon",
+      "Depilate",
+      "Ear-Piercing Scream",
+      "Ears of the City",
+      "Echo",
+      "Egorian Diplomacy",
+      "Enhance Water",
+      "Erase",
+      "Fastidiousness",
+      "Feather Fall",
+      "Feather Step",
+      "Flare Burst",
+      "Fool's Gold (VC)",
+      "Forced Quiet",
+      "Glue Seal",
+      "Fumbletongue",
+      "Grappling Scarf",
+      "Grease",
+      "Haze of Dreams",
+      "Hideous Laughter",
+      "Horn of Pursuit",
+      "Hobble",
+      "Illusory Crowd",
+      "Innocence",
+      "Intensify Psyche",
+      "Jitterbugs",
+      "Jury-Rig",
+      "Ki Arrow",
+      "Know Peerage",
+      "Implant Urge",
+      "Kreighton's Perusal",
+      "Instant Portrait",
+      "Liberating Command",
+      "Linked Legacy",
+      "Lock Gaze",
+      "Lucky Number",
+      "Hypnotism",
+      "Lighten Object",
+      "Magic Aura",
+      "Magic Mouth",
+      "Memorize Page",
+      "Memory Lapse",
+      "Invigorate",
+      "Moment of Greatness",
+      "Nature's Paths",
+      "Negative Reaction",
+      "Obscure Object",
+      "Open and Shut",
+      "Peace Bond",
+      "Pick Your Poison",
+      "Mirror Mantis",
+      "Planar Orientation",
+      "Play Instrument",
+      "Poisoned Egg",
+      "Quintessence",
+      "Remove Fear",
+      "Restful Sleep",
+      "Revealing Light",
+      "Rune Trace",
+      "Saving Finale",
+      "Read Weather",
+      "Sculpted Cape",
+      "Reveal Secrets",
+      "Secret Sign",
+      "Secret Speech",
+      "Shadowfade",
+      "Share Language",
+      "Shield Speech",
+      "Silent Image",
+      "Sleep",
+      "Solid Note",
+      "Songbird",
+      "Sotto Voce",
+      "Sow Thought",
+      "Speak Local Language",
+      "Suspend Drowning",
+      "Swallow Your Fear",
+      "Tamer's Lash",
+      "Tap Inner Beauty",
+      "Technomancy",
+      "Sure Casting",
+      "Timely Inspiration",
+      "Toilsome Chant",
+      "Touch of Gracelessness",
+      "Transfer Tattoo",
+      "Tripvine",
+      "Twisted Futures",
+      "Unbreakable Heart",
+      "Unnatural Lust",
+      "Unprepared Combatant",
+      "Unseen Servant",
+      "True Appraisal",
+      "Vanish",
+      "Windy Escape",
+      "Ventriloquism",
+      "Weaponwand",
+      "Absurdity",
+      "Allegro",
+      "Ancestral Communion",
+      "Animal Messenger",
+      "Animal Trance",
+      "Anonymous Interaction",
+      "Anti-Summoning Shield",
+      "Apport Object",
+      "Arcane Disruption",
+      "Babble",
+      "Beacon of Guilt",
+      "Bestow Insight",
+      "Ally Across Time",
+      "Anticipate Thoughts",
+      "Billowing Skirt",
+      "Bladed Dash",
+      "Blood Biography",
+      "Aversion",
+      "Body Double",
+      "Blood Rage",
+      "Boiling Blood",
+      "Book Ward",
+      "Build Trust",
+      "Buoyancy",
+      "Blessing of Liberty",
+      "Cacophonous Call",
+      "Calm Emotions",
+      "Cauterizing Weapon",
+      "Codespeak",
+      "Commune with Birds",
+      "Compassionate Ally",
+      "Contagious Zeal",
+      "Contest of Skill",
+      "Charitable Impulse",
+      "Covetous Urge",
+      "Crafter's Nightmare",
+      "Create Treasure Map",
+      "Daze Monster",
+      "Deflect Blame",
+      "Delay Pain",
+      "Detect Magic, Greater",
+      "Detect Relations",
+      "Determine Depth",
+      "Diminish Resistance",
+      "Disguise Other",
+      "Display Aversion",
+      "Distracting Cacophony",
+      "Disrupt Silence",
+      "Discovery Torch",
+      "Distressing Tone",
+      "Drunkard's Breath",
+      "Dust of Twilight",
+      "Enter Image",
+      "Enthrall",
+      "Escape Alarm",
+      "Dousing Rain",
+      "Escaping Ward",
+      "False Belief",
+      "Fleeting Defect",
+      "Flickering Lights",
+      "Fortune's Path",
+      "Gallant Inspiration",
+      "Ghostbane Dirge",
+      "Glitterdust",
+      "Golden Guise",
+      "Haunting Mists",
+      "Heckle",
+      "Heightened Reflexes",
+      "Hidden Knowledge",
+      "Hidden Presence",
+      "Hidden Speech",
+      "Hold Fey",
+      "Honeyed Tongue",
+      "Hoodwink",
+      "Hydrophobia",
+      "Hypnotic Pattern",
+      "Illusory Maze",
+      "Impede Speech",
+      "Influence Wild Magic",
+      "Lament of Summer's Last Breath",
+      "Lay of the Land",
+      "Light Prison",
+      "Locate Portal",
+      "Instant Weapon",
+      "Mad Hallucination",
+      "Mage's Crawl Space",
+      "Make Lost",
+      "Marching Chant",
+      "Locate Object",
+      "Masterwork Transformation",
+      "Matchmaker",
+      "Mental Block",
+      "Mindlocked Messenger",
+      "Mirror Image",
+      "Misdirection",
+      "Miserable Pity",
+      "Muffle Sound",
+      "Obscured Script",
+      "Oneiric Horror",
+      "Oppressive Boredom",
+      "Paranoia",
+      "Minor Image",
+      "Passing Fancy",
+      "Path of Glory",
+      "Piercing Shriek",
+      "Page-Bound Epiphany",
+      "Pilfering Hand",
+      "Planetarium",
+      "Psychic Reading",
+      "Perfect Placement",
+      "Puzzle Box",
+      "Qualm",
+      "Raiment of Command",
+      "Pugwampi's Grace",
+      "Recharge",
+      "Reckless Infatuation",
+      "Reinvigorating Wind",
+      "Remarkable Legerdemain",
+      "Pyrotechnics",
+      "Resounding Clang",
+      "Retrieve Item",
+      "Reveal True Shape",
+      "Revelation",
+      "Rumormonger",
+      "Rune of Rule",
+      "Searching Shadows",
+      "Seducer's Eyes",
+      "Shadow Anchor",
+      "Shamefully Overdressed",
+      "Share Glory",
+      "Share Language, Communal",
+      "Shared Training",
+      "Share Memory",
+      "Shatter",
+      "Returning Weapon",
+      "Silent Table",
+      "Silk To Steel",
+      "Slick Walls",
+      "Snapdragon Fireworks",
+      "Sonic Scream",
+      "Sound Burst",
+      "Spell Gauge",
+      "Steal Breath",
+      "Steal Voice",
+      "Summon Swarm",
+      "Slave to Sin",
+      "Suppress Charms and Compulsions",
+      "Swipe",
+      "Sympathetic Aura",
+      "Tactical Acumen",
+      "Tactical Miscalculation",
+      "Telepathic Censure",
+      "Thunder Fire",
+      "Tieldlara's Feint",
+      "Touch of Mercy",
+      "Trail of the Rose",
+      "Unsettling Presence",
+      "Urban Step",
+      "Track Ship",
+      "Whip of Spiders",
+      "Whispering Wind",
+      "Suggestion",
+      "Accept Affliction",
+      "Versatile Weapon",
+      "Air of Authority",
+      "Akashic Communion",
+      "Allied Cloak",
+      "Alpha Instinct",
+      "Audiovisual Hallucination",
+      "Aura of the Unremarkable",
+      "Beacon of Luck",
+      "Bereave",
+      "Apparent Treachery",
+      "Arcane Concordance",
+      "Blink",
+      "Blot",
+      "Business Booms",
+      "Calamitous Flailing",
+      "Champion's Bout",
+      "Channel the Gift",
+      "Charm Monster",
+      "Clairaudience/Clairvoyance",
+      "Collaborative Thaumaturgy",
+      "Campfire Wall",
+      "Confusion",
+      "Contingent Action",
+      "Control Summoned Creature",
+      "Coordinated Effort",
+      "Conjure Carriage",
+      "Crushing Despair",
+      "Curse of Disgust",
+      "Daylight",
+      "Death from Below",
+      "Deep Slumber",
+      "Demanding Message",
+      "Discharge",
+      "Domination Link",
+      "Elemental Speech",
+      "Discern Value",
+      "Enticing Adulation",
+      "Deft Digits",
+      "Exquisite Accompaniment",
+      "Dreadscape",
+      "False Alibi",
+      "Fearsome Duplicate",
+      "Feather Step, Mass",
+      "Find Fault",
+      "Fleeting Memory",
+      "Flexible Fury",
+      "False Future",
+      "Flexile Curse",
+      "Fractions of Heal and Harm",
+      "Geas, Lesser",
+      "Glibness",
+      "Good Hope",
+      "Guardian Monument, Lesser",
+      "Hallucinatory Decor",
+      "Free Spirit",
+      "Geomessage",
+      "Harrowing",
+      "Haunting Choir",
+      "Hollow Heroism",
+      "Horrifying Visage",
+      "Inhibiting Patterns",
+      "Illusory Script",
+      "Instant Fake",
+      "Inveigle Person",
+      "Invigorate, Mass",
+      "Invisibility Bubble, Giant",
+      "Jester's Jaunt",
+      "Invisibility Sphere",
+      "Leshy Swarm",
+      "Lover's Vengeance",
+      "Mad Monkeys",
+      "Mad Sultan's Melody",
+      "Magic Aura, Greater",
+      "Major Image",
+      "Malicious Spite",
+      "Mark of Buoyancy",
+      "Martial Marionette",
+      "Meticulous Match",
+      "Mind Maze",
+      "Mirage",
+      "Motes of Dusk and Dawn",
+      "Mydriatic Spontaneity",
+      "Nixie's Lure",
+      "Overlook",
+      "Overwhelming Grief",
+      "Phantom Driver",
+      "Phantom Steed",
+      "Pierce Disguise",
+      "Probe History",
+      "Pillow Talk",
+      "Pernicious Pranksters",
+      "Prosperous Room",
+      "Purging Finale",
+      "Raging Rubble",
+      "Raven's Flight",
+      "Rain of Frogs",
+      "Respectful Quiet",
+      "Restore Mythic Power",
+      "Returning Weapon, Communal",
+      "Reviving Finale",
+      "Sand Table",
+      "Scrying",
+      "Sculpt Sound",
+      "Secret Page",
+      "Seeds of Influence",
+      "Selective Alarm",
+      "Sepia Snake Sigil",
+      "Sequester Thoughts",
+      "Shadow Enchantment",
+      "Shifting Shadows",
+      "Silt Sphere",
+      "Shroud of Innocuity",
+      "Silverlight",
+      "Skyshroud",
+      "Slow",
+      "Smug Narcissism",
+      "Speak with Animals",
+      "Spectral Scout",
+      "Spotlight",
+      "Stolen Light",
+      "Summon Ancestral Guardian",
+      "They Know",
+      "Terrible Remorse",
+      "Sunstalker",
+      "Threefold Sight",
+      "Tiny Hut",
+      "Trade Items",
+      "Triggered Suggestion",
+      "Thundering Drums",
+      "Vision of Hell",
+      "Wall of Split Illumination",
+      "Unflappable Mien",
+      "Witness",
+      "Absorb Rune I",
+      "Amnesia",
+      "Wall of Nausea",
+      "Ancestral Gift",
+      "Animal Ambassador",
+      "Antithetical Constraint",
+      "Apparent Master",
+      "Apathy",
+      "Army Across Time",
+      "Aroden's Spellsword",
+      "Blood Song",
+      "Bountiful Banquet",
+      "Break Enchantment",
+      "Brightest Light",
+      "Charm Person, Mass",
+      "Compel Tongue, Mass",
+      "Complex Hallucination",
+      "Conjuration Foil",
+      "Contagious Suggestion",
+      "Conversing Wind",
+      "Create Armaments",
+      "Curse of the Outcast",
+      "Dance of a Hundred Cuts",
+      "Contingent Scroll",
+      "Daze, Mass",
+      "Deadman's Contingency",
+      "Denounce",
+      "Detect Scrying",
+      "Dimension Door",
+      "Dominate Person",
+      "Dungeonsight",
+      "Entice Fey, Lesser",
+      "Envious Urge",
+      "Feast on Fear",
+      "Foretell Failure",
+      "Discordant Blast",
+      "Forgetful Slumber",
+      "Ghost Brand",
+      "Ghostbane Dirge, Mass",
+      "Hallucinatory Terrain",
+      "Heroic Finale",
+      "Heroic Fortune, Mass",
+      "Hold Monster",
+      "Horrific Doubles",
+      "Hypnotism, Greater",
+      "Illusory Hoard",
+      "Kiss of the First World",
+      "Legend Lore",
+      "Lend Path",
+      "Lost Passage",
+      "Majestic Image",
+      "Mischievous Shadow",
+      "Modify Memory",
+      "Oneiric Horror, Greater",
+      "Passing Fancy, Mass",
+      "Locate Creature",
+      "Path of Glory, Greater",
+      "Pessimism",
+      "Phantom Steed, Communal",
+      "Primal Scream",
+      "Questing Stone",
+      "Quieting Weapons",
+      "Red Hand of the Killer",
+      "Remove Radioactivity",
+      "Repel Vermin",
+      "Scintillating Wall",
+      "Secure Shelter",
+      "Rainbow Pattern",
+      "Seek Shelter",
+      "Serenity",
+      "Shadow Step",
+      "Shield of the Dawnflower",
+      "Shocking Image",
+      "Shout",
+      "Shadow Dragon Aspect",
+      "Shadow Conjuration",
+      "Sleepwalking Suggestion",
+      "Song of Kyonin",
+      "Sonic Thrust",
+      "Speak with Plants",
+      "Summon Accuser",
+      "Summon Ship",
+      "Tough Crowd",
+      "Treasure Stitching",
+      "Truespeak",
+      "Unseen Crew",
+      "Untold Wonder",
+      "Virtuoso Performance",
+      "Wall of Blindness/Deafness",
+      "Wandering Star Motes",
+      "Archon's Trumpet",
+      "Arid Refuge",
+      "Vicarious View",
+      "Zone of Silence",
+      "Wall of Sound",
+      "Bard's Escape",
+      "Befuddled Combatant",
+      "Bladed Dash, Greater",
+      "Cacophonous Call, Mass",
+      "Cloak of Dreams",
+      "Compelling Rant",
+      "Cure Light Wounds, Mass",
+      "Deafening Song Bolt",
+      "Death Pact",
+      "Deceptive Redundancy",
+      "Commune with Texts",
+      "Fable Tapestry",
+      "False Vision",
+      "Foe to Friend",
+      "Freedom's Toast",
+      "Frozen Note",
+      "Grease, Greater",
+      "Guardian Monument, Greater",
+      "Harrowing, Greater",
+      "Hymn of Mercy",
+      "Inveigle Monster",
+      "Joyful Rapture",
+      "Ki Shout",
+      "Locate Gate",
+      "Mage's Decree",
+      "Dispel Magic, Greater",
+      "Mind Fog",
+      "Mirage Arcana",
+      "Mydriatic Spontaneity, Mass",
+      "Persistent Image",
+      "Phantasmal Web",
+      "Phobia",
+      "Music of the Spheres",
+      "Heroism, Greater",
+      "Pox of Rumors",
+      "Repress Memory",
+      "Renovation",
+      "Resonating Word",
+      "Sabotage Construct",
+      "Scripted Hallucination",
+      "Release the Hounds",
+      "Seeming",
+      "Seeds of Influence, Greater",
+      "Shadow Endurance",
+      "Shadow Evocation",
+      "Shadowbard",
+      "Soulswitch",
+      "Song of Discord",
+      "Stunning Finale",
+      "Suggestion, Mass",
+      "Summon Infernal Host",
+      "Summon Monster 5",
+      "Unshakable Zeal",
+      "Sustaining Legend",
+      "Vengeful Outrage",
+      "Village Veil",
+      "Wall of Silver",
+      "Unwilling Shield",
+      "Whip of Centipedes",
+      "Absorb Rune II",
+      "Animate Objects",
+      "Artificer's Curse",
+      "Brilliant Inspiration",
+      "Cat's Grace, Mass",
+      "Charm Monster, Mass",
+      "Damnation of Memory",
+      "Dance of a Thousand Cuts",
+      "Demanding Message, Mass",
+      "Dirge of the Victorious Knights",
+      "Cure Moderate Wounds, Mass",
+      "Deadly Finale",
+      "Discharge, Greater",
+      "Dream Council",
+      "Dream Scan",
+      "Eagle's Splendor, Mass",
+      "Entice Fey",
+      "False Vision, Greater",
+      "Fey Gate",
+      "Fleeting Memory, Mass",
+      "Fool's Forbiddance",
+      "Euphoric Tranquility",
+      "Geas/Quest",
+      "Fox's Cunning, Mass",
+      "Getaway",
+      "Find the Path",
+      "Hollow Heroism, Greater",
+      "Hymn of Peace",
+      "Human Potential, Mass",
+      "Heroes' Feast",
+      "Impenetrable Veil",
+      "Lost Legacy",
+      "Night Terrors",
+      "Overwhelming Presence",
+      "Permanent Image",
+      "Magnifying Chime",
+      "Pied Piping",
+      "Irresistible Dance",
+      "Programmed Image",
+      "Project Image",
+      "Sarzari Shadow Memory",
+      "Scrying, Greater",
+      "Shadow Enchantment, Greater",
+      "Shadow Transmutation",
+      "Shield of the Dawnflower, Greater",
+      "Shout, Greater",
+      "Song of Discord, Greater",
+      "Subjective Reality",
+      "Summon Monster 6",
+      "Symbol of Debauchery",
+      "Symbol of Distraction",
+      "Sympathetic Vibration",
+      "Tactical Insight",
+      "Triggered Hallucination",
+      "Unconscious Agenda",
+      "Veil",
+      "Waves of Ecstasy",
+      "Touch of Slumber",
+      "What Grows Within",
+      "Whip of Ants",
+      "Yellow Sign",
+      "Batrachian Surge",
+      "Blade Lash",
+      "Burning Hands",
+      "Break",
+      "Celestial Healing",
+      "Cheetah's Sprint",
+      "Chill Touch",
+      "Color Spray",
+      "Corrosive Touch",
+      "Deadeye's Arrow",
+      "Frostbite",
+      "Gorum's Armor",
+      "Hydraulic Push",
+      "Icicle Dagger",
+      "Ice Armor",
+      "Infernal Healing",
+      "Line in the Sand",
+      "Mage Armor",
+      "Magic Missile",
+      "Mirror Strike",
+      "Marid's Mastery",
+      "Mudball",
+      "Protection from Evil",
+      "Ray of Enfeeblement",
+      "Ray of Sickening",
+      "Shadow Weapon",
+      "Shield Of Shards",
+      "Mount",
+      "Snowball",
+      "Stone Shield",
+      "Stone Throwing",
+      "Sundering Shards",
+      "Shocking Grasp",
+      "Thunderstomp",
+      "Strong Wings",
+      "Touch of Combustion",
+      "Unerring Weapon",
+      "Warding Weapon",
+      "Wave Shield",
+      "Web Bolt",
+      "Tracking Mark",
+      "Winter Feathers",
+      "Acid Arrow",
+      "Bone Fists",
+      "Bone Flense",
+      "Brow Gasher",
+      "Burning Gaze",
+      "Disfiguring Touch",
+      "Flaming Sphere",
+      "Force Sword",
+      "Frigid Touch",
+      "Ghoul Touch",
+      "Gozreh's Trident",
+      "Gust of Wind",
+      "Gusting Sphere",
+      "Imbue with Elemental Might",
+      "Lightning Conductor",
+      "Protection from Chaos",
+      "Mark of Blood",
+      "Molten Orb",
+      "Rovagug's Fury",
+      "Scorching Ray",
+      "Scales of Deflection",
+      "Slipstream",
+      "Splinter Spell Resistance",
+      "Steal Size",
+      "Stone Call",
+      "Stone Discus",
+      "Sun's Disdain",
+      "Symbol of Exsanguination",
+      "Touch of Idiocy",
+      "Wild Instinct",
+      "With the Wind",
+      "Winged Sword",
+      "Air Geyser",
+      "Aqueous Orb",
+      "Unshakable Chill",
+      "Blade Snare",
+      "Blood Salvation",
+      "Cloak of Winds",
+      "Earth Tremor",
+      "Excruciating Deformation",
+      "Fireball",
+      "Chain of Perdition",
+      "Firestream",
+      "Flame Arrow",
+      "Flame Steed",
+      "Force Hook Charge",
+      "Force Punch",
+      "Gloomblind Bolts",
+      "Hostile Levitation",
+      "Howling Agony",
+      "Hydraulic Torrent",
+      "Keen Edge",
+      "Lightning Bolt",
+      "Locate Weakness",
+      "Monstrous Extremities",
+      "Pack Empathy",
+      "Pain Strike",
+      "Grasping Tentacles",
+      "Psychic Leech",
+      "Pyrotechnic Eruption",
+      "Ray of Exhaustion",
+      "Runic Overload",
+      "Silver Darts",
+      "Sky Swim",
+      "Sleet Storm",
+      "Stinking Cloud",
+      "Rising Water",
+      "Thunderstomp, Greater",
+      "Trial of Fire and Acid",
+      "Waves of Blood",
+      "Wind Wall",
+      "Ball Lightning",
+      "Twilight Knife",
+      "Baphomet's Blessing",
+      "Black Tentacles",
+      "Break, Greater",
+      "Burn Corruption",
+      "Calcific Touch",
+      "Celestial Healing, Greater",
+      "Enervation",
+      "Controlled Fireball",
+      "Enlarge Person, Mass",
+      "Firefall",
+      "Flaming Aura",
+      "Elemental Mastery",
+      "Frosty Aura",
+      "Furious Fire Barrage",
+      "Ghost Wolf",
+      "Hellmouth Lash",
+      "Ice Storm",
+      "Moonstruck",
+      "Flaming Sphere, Greater",
+      "Pellet Blast",
+      "Poisonous Cloud",
+      "River of Wind",
+      "Phantasmal Killer",
+      "Tail Current",
+      "Ride The Waves",
+      "Tailwind",
+      "Telekinetic Charge",
+      "Summon Flight of Eagles",
+      "Volcanic Storm",
+      "Wall of Fire",
+      "Wall of Ice",
+      "Reduce Person, Mass",
+      "Warp Metal",
+      "Wave Form",
+      "Wooden Wing Shield",
+      "Wreath of Blades",
+      "Sun's Disdain, Mass",
+      "Bless",
+      "Bless Water",
+      "Detect Chaos",
+      "Detect Evil",
+      "Detect Good",
+      "Divine Favor",
+      "Detect Law",
+      "Entropic Shield",
+      "Magic Stone",
+      "Obscuring Mist",
+      "Sanctuary",
+      "Shield of Faith",
+      "Hide from Undead",
+      "Consecrate",
+      "Find Traps",
+      "Gentle Repose",
+      "Make Whole",
+      "Remove Paralysis",
+      "Align Weapon",
+      "Spiritual Weapon",
+      "Shield Other",
+      "Status",
+      "Continual Flame",
+      "Create Food and Water",
+      "Glyph of Warding",
+      "Invisibility Purge",
+      "Magic Circle against Chaos",
+      "Magic Circle against Evil",
+      "Helping Hand",
+      "Magic Vestment",
+      "Prayer",
+      "Searing Light",
+      "Chaos Hammer",
+      "Control Water",
+      "Dimensional Anchor",
+      "Dismissal",
+      "Divination",
+      "Divine Power",
+      "Giant Vermin",
+      "Holy Smite",
+      "Imbue with Spell Ability",
+      "Inflict Critical Wounds",
+      "Order's Wrath",
+      "Unholy Blight",
+      "Atonement",
+      "Breath of Life",
+      "Command, Greater",
+      "Dispel Chaos",
+      "Dispel Evil",
+      "Disrupting Weapon",
+      "Flame Strike",
+      "Hallow",
+      "Insect Plague",
+      "Mark of Justice",
+      "Plane Shift",
+      "Raise Dead",
+      "Righteous Might",
+      "Symbol of Pain",
+      "Unhallow",
+      "Wall of Stone",
+      "Zone of Truth",
+      "Abadar's Truthtelling",
+      "Advanced Scurvy",
+      "Air Bubble",
+      "Bestow Planar Infusion I",
+      "Blessed Fist",
+      "Blessing of the Watch",
+      "Burning Disarm",
+      "Carrion Compass",
+      "Ceremony",
+      "Deathwatch",
+      "Decompose Corpse",
+      "Detect Demon",
+      "Diagnose Disease",
+      "Dream Feast",
+      "Fairness",
+      "Fallback Strategy",
+      "Forbid Action",
+      "Funereal Weapon",
+      "Hairline Fractures",
+      "Hidden Spring",
+      "Ironbloom Sprouts",
+      "Karmic Blessing",
+      "Keyhole",
+      "Know the Enemy",
+      "Summon Monster I",
+      "Mighty Fist of the Earth",
+      "Peasant Armaments",
+      "Positive Pulse",
+      "Summon Monster II",
+      "Refine Improvised Weapon",
+      "Preserve",
+      "Reinforce Armaments",
+      "Restore Corpse",
+      "Remove Sickness",
+      "Rite of Bodily Purity",
+      "Rite of Centered Mind",
+      "Sanctify Corpse",
+      "Shield the Banner",
+      "Strand of the Tangled Knot",
+      "Summon Monster III",
+      "Stunning Barrier",
+      "Sun Metal",
+      "Theft Ward",
+      "Unwelcome Halo",
+      "Weapons Against Evil",
+      "Abeyance",
+      "Aboleth's Lung",
+      "Watchful Eye",
+      "Alchemical Tinkering",
+      "Amplify Stench",
+      "Admonishing Ray",
+      "Summon Monster IV",
+      "Angelic Aspect, Lesser",
+      "Animate Dead, Lesser",
+      "Arrow of Law",
+      "Ashen Path",
+      "Augury",
+      "Blessing of Courage and Life",
+      "Blessing of Luck and Resolve",
+      "Blood in the Water",
+      "Blood of the Martyr",
+      "Bloody Tears and Jagged Smile",
+      "Burst of Radiance",
+      "Blinding Ray",
+      "Calm Spirit",
+      "Cleromancy",
+      "Contact Entity I",
+      "Curse Item",
+      "Curse Terrain, Lesser",
+      "Defending Bone",
+      "Cloud of Seasickness",
+      "Dress Corpse",
+      "Early Judgment",
+      "Effortless Armor",
+      "Dread Bolt",
+      "Dwarven Veil",
+      "Eroding Ray",
+      "Summon Monster V",
+      "Ghost Whip",
+      "Gird Ally",
+      "Grace",
+      "Groundswell",
+      "Hanspur's Flotsam Vessel",
+      "Healing Token",
+      "Holy Ice Weapon",
+      "Imbue with Aura",
+      "Inheritor's Smite",
+      "Instant Armor",
+      "Life Channel",
+      "Instrument of Agony",
+      "Life Pact",
+      "Martyr's Bargain",
+      "Necromantic Burden",
+      "Peacemaker's Parley",
+      "Preserve Grace",
+      "Magic Boulder",
+      "Protection from Chaos, Communal",
+      "Protection from Outsiders",
+      "Protection from Evil, Communal",
+      "Necrostasis",
+      "Protection from Technology",
+      "Protective Penumbra",
+      "Recentering Drone",
+      "Reinforce Armaments, Communal",
+      "Restful Cloak",
+      "Rock Whip",
+      "Sacred Space",
+      "Semblance of Flesh",
+      "Sense Madness",
+      "Shackle",
+      "Shard of Chaos",
+      "Shield of Fortification",
+      "Snow Shape (Ulfen)",
+      "Solidify Earth",
+      "Soothing Word",
+      "Spear of Purity",
+      "Spindrift Spritz",
+      "Spiral Descent",
+      "Staggering Fall",
+      "Stave Off Corruption",
+      "Stoke the Inner Fire",
+      "Storm Sight",
+      "Summon Cacodaemon",
+      "Surmount Affliction",
+      "Sympathetic Wounds",
+      "Transmute Wine to Blood",
+      "Unholy Ice Weapon",
+      "Unliving Rage",
+      "Vexing Miscalculation",
+      "Violent Accident",
+      "Visualization of the Body",
+      "Visualization of the Mind",
+      "Water Walk, Communal",
+      "Weapon of Awe",
+      "Whispering Lore",
+      "Aggravate Affliction",
+      "Agonize",
+      "Align Weapon, Communal",
+      "Appearance of Life",
+      "Archon's Aura",
+      "Aura of Cannibalism",
+      "Aura of Inviolate Ownership",
+      "Web Shelter",
+      "Badger's Ferocity",
+      "Bleed Glory",
+      "Blessing of the Mole",
+      "Contact Entity II",
+      "Create Soul Gem",
+      "Control Vermin",
+      "Damnation",
+      "Calculated Luck",
+      "Daybreak Arrow",
+      "Detoxify",
+      "Forced Mutation",
+      "Guiding Star",
+      "Hide from Undead, Greater",
+      "Holy Javelin",
+      "Dark-Light",
+      "Homeward Bound",
+      "Infernal Challenger",
+      "Iron Stake",
+      "Irradiate",
+      "Ki Leech",
+      "Life Current",
+      "Life Shield",
+      "Light of Iomedae",
+      "Lightning Lash",
+      "Lissalan Snake Sigil",
+      "Mantle of Calm",
+      "Mark of Obvious Ethics",
+      "Martyr's Last Blessing",
+      "Minor Reversion",
+      "Moonrise Arrow",
+      "Nap Stack",
+      "Numerological Resistance",
+      "Meld into Stone",
+      "Oath of Justice",
+      "Planar Inquiry",
+      "Planned Assault",
+      "Plant Voice",
+      "Project Weakness",
+      "Reveal Mirage",
+      "Righteous Condemnation",
+      "Riversight",
+      "Sacred Bond",
+      "Sand Whirlwind",
+      "Sands of Time",
+      "See Beyond",
+      "Severed Fate",
+      "Sharesister",
+      "Shield of Wings",
+      "Sebaceous Twin",
+      "Skeleton Crew",
+      "Spiral Ascent",
+      "Spirit Bonds",
+      "Steal Years",
+      "Soul Vault",
+      "Speak with Dead",
+      "Storm of Blades",
+      "Stunning Barrier, Greater",
+      "Summon Totem Creature (Shoanti)",
+      "Symbol of Healing",
+      "Tactical Formation",
+      "Stone Shape",
+      "Teratoid Caress",
+      "Transfer Regeneration",
+      "Unravel Destiny",
+      "Unspoken Name",
+      "Absolution",
+      "Alter River",
+      "Anti-Incorporeal Shell",
+      "Ardor's Onslaught",
+      "Wrathful Mantle",
+      "Water Walk",
+      "Aura of Doom",
+      "Bestow Planar Infusion II",
+      "Black Spot",
+      "Blade of Light",
+      "Blood Crow Strike",
+      "Burst with Light",
+      "Charon's Dispensation",
+      "Crusader's Edge",
+      "Blessing of Fervor",
+      "Curse of Unexpected Death",
+      "Curse Terrain",
+      "Daemon Ward",
+      "Death Knell Aura",
+      "Debilitating Portent",
+      "Devil Snare",
+      "Film of Filth",
+      "Fleshworm Infestation",
+      "Forceful Strike",
+      "Frigid Souls",
+      "Gilded Whispers",
+      "Firewalker's Meditation",
+      "Globe of Tranquil Water",
+      "Gift of the Deep",
+      "Hallucinogenic Smoke",
+      "Healing Flames",
+      "Heavy Water",
+      "Guardian of Faith",
+      "Infernal Healing, Greater",
+      "Infuse Effigy",
+      "Instant Restoration",
+      "Iron Spine",
+      "Janni's Jaunt",
+      "Magic Circle Against Technology",
+      "Make Whole, Greater",
+      "Master's Escape",
+      "Mighty Strength",
+      "Mythic Severance",
+      "Nature's Ravages",
+      "Planar Ally, Lesser",
+      "Poisonous Balm",
+      "Positive Pulse, Greater",
+      "Protection from Energy, Communal",
+      "Replenish Ki",
+      "Plague Carrier",
+      "Rigor Mortis",
+      "Rest Eternal",
+      "Sacrifice",
+      "Shadow Barbs",
+      "Shield of Fortification, Greater",
+      "Soothe Construct",
+      "Shield Speech, Greater",
+      "Speak with Haunt",
+      "Speak with Plane",
+      "Spindrift Spritz, Mass",
+      "Spellcrash, Lesser",
+      "Spiritual Ally",
+      "Summon Cacodaemon, Greater",
+      "Summon Genie, Lesser",
+      "Summoner Conduit",
+      "Summon Barghest I",
+      "Suppress Primal Magic",
+      "Sword to Snake",
+      "Spit Venom",
+      "Symbol of Revelation",
+      "Symbol of Slowing",
+      "Thaumaturgic Circle",
+      "Traveling Dream",
+      "Undeath Inversion",
+      "Virulence",
+      "Ward of the Season",
+      "Ward Shield",
+      "Water Shield",
+      "Wrathful Weapon",
+      "Angelic Aspect",
+      "Appearance of Life, Greater",
+      "Awaken the Devoured",
+      "Astral Projection, Lesser",
+      "Ban Corruption",
+      "Call Spirit",
+      "Boneshatter",
+      "Burst of Glory",
+      "Commune",
+      "Cleanse",
+      "Commune with Plane",
+      "Cleansing Fire",
+      "Constricting Coils",
+      "Contact Entity III",
+      "Cold Iron Fetters",
+      "Contagion, Greater",
+      "Curse of Magic Negation",
+      "Curse, Major",
+      "Dispel Balance",
+      "Fickle Winds",
+      "Forbid Action, Greater",
+      "Geniekind",
+      "Heretic's Tongue",
+      "Holy Ice",
+      "Hunter's Blessing",
+      "Inflict Light Wounds, Mass",
+      "Invigorating Repose",
+      "Lighten Object, Mass",
+      "Greater Reversion",
+      "Planeslayer's Call",
+      "Khain's Army",
+      "Life Bubble",
+      "Rapid Repair",
+      "Pillar of Life",
+      "Reboot",
+      "Reprobation",
+      "Sacred Nimbus",
+      "Sawtooth Terrain",
+      "Sanctify Weapons",
+      "Sessile Spirit",
+      "Siphon Magic",
+      "Slough",
+      "Sand Whirlwind, Greater",
+      "Smite Abomination",
+      "Snake Staff",
+      "Spell Immunity, Communal",
+      "Spellcasting Contract, Lesser",
+      "Spellsteal",
+      "Sphere of Warding",
+      "Spawn Ward",
+      "Steal Years, Greater",
+      "Summon Genie",
+      "Summon Lesser Demon",
+      "Steal Power",
+      "Summon Lesser Psychopomp",
+      "Symbol of Scrying",
+      "Symbol of Sleep",
+      "Talisman of Reprieve",
+      "Undeath Ward",
+      "Summon Ceustodaemon",
+      "Unholy Ice",
+      "Symbol of Striking",
+      "Waft",
+      "Unleash Pandemonium",
+      "Wall of Clockwork",
+      "Wall of Ectoplasm",
+      "Alleviate Corruption",
+      "Antilife Shell",
+      "Banishment",
+      "Besmara's Grasping Depths",
+      "Bear's Endurance, Mass",
+      "Betraying Sting",
+      "Blade Barrier",
+      "Balance of Suffering",
+      "Bless Army",
+      "Blessing of Luck and Resolve, Mass",
+      "Bull's Strength, Mass",
+      "Bloodsworn Retribution",
+      "Chains of Light",
+      "Cold Ice Strike",
+      "Contact Nalfeshnee",
+      "Curse Terrain, Greater",
+      "Death Knell Aura, Greater",
+      "Demon Dream",
+      "Dust Ward",
+      "Eaglesoul",
+      "Create Undead",
+      "Elemental Assessor",
+      "Emblem of Greed",
+      "Enlightened Step",
+      "Epidemic",
+      "Flesh Wall",
+      "Forbiddance",
+      "Genius Avaricious",
+      "Glyph of Warding, Greater",
+      "Hammer of Mending",
+      "Harm",
+      "Hellfire Ray",
+      "Impart Mind",
+      "Inflict Moderate Wounds, Mass",
+      "Inspiring Recovery",
+      "Knock, Mass",
+      "Lash of the Astradaemon",
+      "Metabolic Molting",
+      "Minor Reversion, Mass",
+      "Oasis",
+      "Open the Dead Roads",
+      "Owl's Wisdom, Mass",
+      "Perceive Betrayal",
+      "Plague Storm",
+      "Planetary Adaptation, Mass",
+      "Planar Ally",
+      "Prognostication",
+      "Roaming Pit",
+      "Seer's Bane",
+      "Sign of Wrath",
+      "Source Severance",
+      "Spellcrash",
+      "Summon Genie, Greater",
+      "Planar Adaptation, Mass",
+      "Summon Laborers",
+      "Summon Stampede",
+      "Summon Vanth",
+      "Summon Barghest II",
+      "Symbol of Fear",
+      "Symbol of Sealing",
+      "Symbol of Storms",
+      "Undeath to Death",
+      "Vengeful Stinger",
+      "Symbol of Persuasion",
+      "Wither Limb",
+      "Word of Recall",
+      "Vermicious Assumption",
+      "Arbitrament",
+      "Awaken Construct",
+      "Bestow Curse, Greater",
+      "Bestow Grace of the Champion",
+      "Bestow Planar Infusion III",
+      "Blasphemy",
+      "Bloodstone Mirror",
+      "Contact Entity IV",
+      "Control Weather",
+      "Create Demiplane, Lesser",
+      "Cure Serious Wounds, Mass",
+      "Circle of Clarity",
+      "Destruction",
+      "Create Variant Mummy",
+      "Dictum",
+      "Ethereal Jaunt",
+      "False Resurrection",
+      "Frost Mammoth",
+      "Grim Stalker",
+      "Holy Word",
+      "Hunger for Flesh, Mass",
+      "Inflict Serious Wounds, Mass",
+      "Infuse Robot",
+      "Jolting Portent",
+      "Lunar Veil",
+      "Maddening Oubliette",
+      "Memory of Function",
+      "Morning Sun",
+      "Particulate Form",
+      "Planar Refuge",
+      "Plundered Power",
+      "Poison Breath",
+      "Refuge",
+      "Regenerate",
+      "Repulsion",
+      "Restoration, Greater",
+      "Resurrection",
+      "Signifer's Rally",
+      "Soul Transfer",
+      "Spell Scourge",
+      "Spellcasting Contract",
+      "Submerge Ship",
+      "Symbol of Weakness",
+      "Terraform",
+      "Umbral Strike",
+      "Vision of Lamashtu",
+      "Word of Chaos",
+      "Symbol of Stunning",
+      "Angelic Aspect, Greater",
+      "Antimagic Field",
+      "Cloak of Chaos",
+      "Call Construct",
+      "Counterbalancing Aura",
+      "Create Demiplane",
+      "Cure Critical Wounds, Mass",
+      "Curse of Night",
+      "Curse Terrain, Supreme",
+      "Death Clutch",
+      "Create Greater Undead",
+      "Discern Location",
+      "Earthquake",
+      "Fire Storm",
+      "Dimensional Lock",
+      "Heart of the Mammoth",
+      "Holy Aura",
+      "Inflict Critical Wounds, Mass",
+      "Frightful Aspect",
+      "Nature's Ravages, Greater",
+      "Nine Lives",
+      "Orb of the Void",
+      "Maw of Chaos",
+      "Phasic Challenge",
+      "Planar Ally, Greater",
+      "Quintessence Mastery",
+      "Realm Retribution",
+      "Rotting Alliance",
+      "Remove Radioactivity, Greater",
+      "Rift of Ruin",
+      "Sacramental Seal",
+      "Soulreaver",
+      "Shield of Law",
+      "Soulseeker",
+      "Spell Immunity, Greater",
+      "Spellcrash, Greater",
+      "Spellscar",
+      "Stormbolts",
+      "Summon Erodaemon",
+      "Summon Meladaemon",
+      "Symbol of Death",
+      "Symbol of Dispelling",
+      "Tomb Legion",
+      "Symbol of Insanity",
+      "True Prognostication",
+      "Umbral Infusion, Mass",
+      "Vinetrap",
+      "Wandering Weather",
+      "Ascension",
+      "Astral Projection",
+      "Canopic Conversion",
+      "Create Demiplane, Greater",
+      "Unholy Aura",
+      "Energy Drain",
+      "Etherealness",
+      "Gate",
+      "Imbue Army Special Ability",
+      "Cursed Earth",
+      "Implosion",
+      "Interplanetary Teleport",
+      "Judgment Undone",
+      "Massacre",
+      "Miracle",
+      "False Resurrection, Greater",
+      "Parasitic Soul",
+      "Absorb Rune III",
+      "Salvage",
+      "Heal, Mass",
+      "Scourge of the Horsemen",
+      "Polar Midnight",
+      "Soul Bind",
+      "Spell Immunity, Greater Communal",
+      "Spellcasting Contract, Greater",
+      "Storm of Vengeance",
+      "Summon Derghodaemon",
+      "Summon Greater Demon",
+      "Spawn Calling",
+      "Symbol of Strife",
+      "Summon Thanadaemon",
+      "Symbol of Vulnerability",
+      "True Resurrection",
+      "Wooden Phalanx",
+      "Winds of Vengeance",
+      "Create Water",
+      "Bleed",
+      "Enhanced Diplomacy",
+      "Guidance",
+      "Purify Food and Drink",
+      "Sign of the Dawnflower",
+      "Vigor",
+      "Stabilize",
+      "Virtue",
+      "Acid Maw",
+      "Alter Winds",
+      "Aspect of the Falcon",
+      "Bristle",
+      "Burning Sands",
+      "Call Animal",
+      "Calm Animals",
+      "Charm Animal",
+      "Cloak of Shade",
+      "Damp Powder",
+      "Detect Aberration",
+      "Detect Animals or Plants",
+      "Endothermic Touch",
+      "Detect Snares and Pits",
+      "Entangle",
+      "Expeditious Construction",
+      "Expeditious Excavation",
+      "Faerie Fire",
+      "Gentle Breeze",
+      "Goodberry",
+      "Hibernate",
+      "Hide from Animals",
+      "Longstrider",
+      "Magic Fang",
+      "Nauseating Dart",
+      "Pass without Trace",
+      "Nereid's Grace",
+      "Produce Flame",
+      "Shillelagh",
+      "Spirit Call",
+      "Summon Minor Ally",
+      "Summon Nature's Ally 1",
+      "Thorn Javelin",
+      "Weaken Powder",
+      "Underbrush Decoy",
+      "Accelerate Poison",
+      "Aggressive Thundercloud",
+      "Alluring Spores",
+      "Aspect of the Bear",
+      "Beastspeak",
+      "Binding Earth",
+      "Burdened Thoughts",
+      "Carry Companion",
+      "Celestial Companion",
+      "Climbing Beanstalk",
+      "Chill Metal",
+      "Companion Life Link",
+      "Eagle Eye",
+      "Defoliate",
+      "Euphoric Cloud",
+      "Feast of Ashes",
+      "Fire Trap",
+      "Flurry of Snowballs",
+      "Flame Blade",
+      "Fog Cloud",
+      "Forest Friend",
+      "Frost Fall",
+      "Fury of the Sun",
+      "Garden of Peril",
+      "Glide",
+      "Greensight",
+      "Harmless Form",
+      "Harvest Season",
+      "Heat Metal",
+      "Hold Animal",
+      "Ice Slick",
+      "Lockjaw",
+      "Mud Buddy",
+      "Natural Rhythm",
+      "Pale Flame",
+      "Pinecone Bomb",
+      "Pox Pustules",
+      "Reduce Animal",
+      "Scamper",
+      "Scent Trail",
+      "Sea Steed",
+      "Seed Spies",
+      "Sickening Entanglement",
+      "Summon Monster VII",
+      "Soften Earth and Stone",
+      "Spore Burst",
+      "Summon Monster IX",
+      "Summon Monster VI",
+      "Summon Monster VIII",
+      "Surefoot Boots",
+      "Tar Ball",
+      "Warp Wood",
+      "Wilderness Soldiers",
+      "Summon Nature's Ally 2",
+      "Winter Grasp",
+      "Tree Shape",
+      "Ape Walk",
+      "Apport Animal",
+      "Anthropomorphic Animal",
+      "Wood Shape",
+      "Aquatic Trail",
+      "Wing Bounty",
+      "Ash Storm",
+      "Bite the Hand",
+      "Burning Entanglement",
+      "Burst of Nettles",
+      "Calistria's Guardian Wasps",
+      "Call Lightning",
+      "Carrying Wind",
+      "Clear Grove",
+      "Companion Mind Link",
+      "Cup of Dust",
+      "Dominate Animal",
+      "Diminish Plants",
+      "Fins to Feet",
+      "Flashfire",
+      "Fungal Infestation",
+      "Curse of Dragonflies",
+      "Heatstroke",
+      "Hide Campsite",
+      "Hunter's Friend",
+      "Hurricane Blast",
+      "Ice Spears",
+      "Insect Spies",
+      "Knell of the Depths",
+      "Lily Pad Stride",
+      "Longstrider, Greater",
+      "Magic Fang, Greater",
+      "Nature's Exile",
+      "Plant Growth",
+      "Pocketful of Vipers",
+      "Pup Shape",
+      "Quell Energy",
+      "Sheet Lightning",
+      "Quench",
+      "Shifting Sand",
+      "Signs of the Land",
+      "Siphon Might",
+      "Snare",
+      "Soothing Mud",
+      "Stench of Prey",
+      "Spike Growth",
+      "Summon Nature's Ally 3",
+      "Swarm of Fangs",
+      "Sylvan Hideaway",
+      "Thorny Entanglement",
+      "Toxic Rupture",
+      "Vengeful Comets",
+      "Woodland Rune",
+      "Aerial Tracks",
+      "Aggressive Thundercloud, Greater",
+      "Antiplant Shell",
+      "Arboreal Hammer",
+      "Aspect of the Stag",
+      "Atavism",
+      "Blast Barrier",
+      "Blast of Wind",
+      "Blight",
+      "Bloody Claws",
+      "Calm Air",
+      "Cape of Wasps",
+      "Cloud Shape",
+      "Command Plants",
+      "Explosion of Rot",
+      "Creeping Ice",
+      "Forest's Sense",
+      "Geyser",
+      "Gravel Vortex",
+      "Create Holds",
+      "Grove of Respite",
+      "Life Blast",
+      "Obsidian Flow",
+      "Rebuke Technology",
+      "Phantom Hunt",
+      "Reincarnate",
+      "Rope Tornado",
+      "Rusting Grasp",
+      "Sea Stallion",
+      "See Through Stone",
+      "Sensory Amplifier",
+      "Spike Stones",
+      "Strip Scales",
+      "Strong Jaw",
+      "Substitute Trail",
+      "Slowing Mud",
+      "Thirsting Entanglement",
+      "Summon Nature's Ally 4",
+      "Thorn Snare",
+      "True Form",
+      "Wall of Brine",
+      "Watchful Animal",
+      "Zone of Foul Flames",
+      "Animal Growth",
+      "Aspect of the Wolf",
+      "Awaken",
+      "Call Lightning Storm",
+      "Carve Passage",
+      "Commune with Nature",
+      "Blessing of the Salamander",
+      "Cave Fangs",
+      "Baleful Polymorph",
+      "Control Winds",
+      "Fire Snake",
+      "Hungry Earth",
+      "Destroy Robot",
+      "Mantle of the Magic Warriors",
+      "Jungle Mind",
+      "Master's Mutation",
+      "Invoke Primal Power",
+      "Old Salt's Curse",
+      "Planar Aegis",
+      "Raise Animal Companion",
+      "Replay Tracks",
+      "Siege Scatter",
+      "Summon Kami",
+      "Sturdy Tree Fort",
+      "Threefold Aspect",
+      "Summon Nature's Ally 5",
+      "Tidal Surge",
+      "Transmute Mud to Rock",
+      "Transmute Rock to Mud",
+      "Tree Stride",
+      "Wall of Light",
+      "Wall of Thorns",
+      "Wind Blades",
+      "Antitech Field",
+      "Binding Earth, Mass",
+      "Bite the Hand, Mass",
+      "Eagle Aerie",
+      "Blazing Rainbow",
+      "Fire Seeds",
+      "Flash Flood",
+      "Gravity Sphere",
+      "Cyclic Reincarnation",
+      "Gravity Well",
+      "Green Caress",
+      "Insect Spies, Greater",
+      "Ironwood",
+      "Jatembe's Ire",
+      "Move Earth",
+      "Path of the Winds",
+      "Reincarnate Spy",
+      "Repel Wood",
+      "Liveoak",
+      "Primal Regression",
+      "Share Skin",
+      "Sirocco",
+      "Speak with Waves",
+      "Spellstaff",
+      "Summon Nature's Ally 6",
+      "Swarm Skin",
+      "Tar Pool",
+      "Transport via Plants",
+      "Stone Tell",
+      "Summon Giant Ally I",
+      "Wandering Trail",
+      "Black Mark",
+      "Changestaff",
+      "Delectable Flesh",
+      "Elemental Bombardment",
+      "Animate Plants",
+      "Fairy Ring Retreat",
+      "Rampart",
+      "Creeping Doom",
+      "Scouring Winds",
+      "Seismic Fissure",
+      "Summon Giant Ally II",
+      "Siege of Trees",
+      "Sunbeam",
+      "Tectonic Communion",
+      "Transmute Metal to Wood",
+      "Vortex",
+      "Animal Shapes",
+      "Atavism, Mass",
+      "Blood Mist",
+      "Control Plants",
+      "Entomb",
+      "Fey Form IV",
+      "Form of the Exotic Dragon II",
+      "Repel Metal or Stone",
+      "Reverse Gravity",
+      "Seamantle",
+      "Finger of Death",
+      "Summon Nature's Ally 7",
+      "Summon Nature's Ally 8",
+      "Wall of Lava",
+      "Whirlwind",
+      "Summon Giant Ally III",
+      "Antipathy",
+      "Sunburst",
+      "Clashing Rocks",
+      "Curse of Fell Seasons",
+      "Elemental Swarm",
+      "Form of the Exotic Dragon III",
+      "Rival's Weald",
+      "Sea of Dust",
+      "Shambler",
+      "Foresight",
+      "Shapechange",
+      "Entice Fey, Greater",
+      "Siege of Trees, Greater",
+      "Summon Elder Worm",
+      "Summon Elemental Steed",
+      "Summon Froghemoth",
+      "Summon Nature's Ally 9",
+      "Sympathy",
+      "Temporal Regression",
+      "Threefold Form",
+      "Tsunami",
+      "World Wave",
+      "Bowstaff",
+      "Gravity Bow",
+      "Handy Grapnel",
+      "Hollow Blades",
+      "Hunter's Howl",
+      "Keep Watch",
+      "Lead Blades",
+      "Residual Tracking",
+      "Tireless Pursuit",
+      "Allfood",
+      "Arrow Eruption",
+      "Enemy Insight",
+      "Hunter's Eye",
+      "Chameleon Stride",
+      "Hunter's Lore",
+      "Protective Spirit",
+      "Reloading Hands",
+      "Ricochet Shot",
+      "Ropeweave",
+      "Shield Companion (ACG)",
+      "Instant Enemy",
+      "Named Bullet",
+      "Share Shape",
+      "Chameleon Stride, Greater",
+      "Venomous Bolt",
+      "Vex Giant",
+      "Zephyr's Fleetness",
+      "Bow Spirit",
+      "Tireless Pursuers",
+      "Find Quarry",
+      "Named Bullet, Greater",
+      "Terrain Bond",
+      "Acid Splash",
+      "Brand",
+      "Disrupt Undead",
+      "Bed of Iron",
+      "Brand of Conformity",
+      "Burst Bonds",
+      "Hex Ward",
+      "Interrogation",
+      "Peacebond",
+      "Persuasive Goad",
+      "Lend Judgment",
+      "Wrath",
+      "Brand of Hobbling",
+      "Castigate",
+      "Confess",
+      "Evaluator's Lens",
+      "Flames of the Faithful",
+      "Follow Aura",
+      "Force Anchor",
+      "Knock",
+      "Litany of Duty",
+      "Righteous Blood",
+      "Stricken Heart",
+      "Banish Seeming",
+      "Eldritch Fever",
+      "Cast Out",
+      "Fester",
+      "Litany of Order",
+      "Retribution",
+      "Litany of Righteousness",
+      "Halt Undead",
+      "Righteous Vigor",
+      "Ward the Faithful",
+      "Battlemind Link",
+      "Brand of Tracking",
+      "Coward's Lament",
+      "Brand, Greater",
+      "Interrogation, Greater",
+      "Forced Repentance",
+      "Judgment Light",
+      "Leashed Shackles",
+      "Litany of Dependability",
+      "Peacebond, Greater",
+      "Sanctify Armor",
+      "Shared Wrath",
+      "Rebuke",
+      "Sleepwalk",
+      "Straitjacket",
+      "Castigate, Mass",
+      "Decapitate",
+      "Divine Pursuit",
+      "Lend Judgment, Greater",
+      "Telepathic Bond",
+      "Circle of Death",
+      "Fester, Mass",
+      "Litany of Truth",
+      "Arcane Mark",
+      "Defensive Grace",
+      "Ray of Frost",
+      "Blood Money",
+      "Emblazon Crest",
+      "Floating Disk",
+      "Mount, Communal",
+      "Serren's Swift Girding",
+      "Sunder Breaker",
+      "Secluded Grimoire",
+      "Erode Defenses",
+      "River Whip",
+      "Telekinetic Assembly",
+      "Telekinetic Strikes",
+      "Time Shudder",
+      "Serren's Armor Lock",
+      "Telekinetic Volley",
+      "Web",
+      "Twisted Space",
+      "Ectoplasmic Snare",
+      "Heart of the Metal",
+      "Mnemonic Siphon",
+      "Numerological Evocation",
+      "Reflexive Barrier",
+      "Resilient Reservoir",
+      "Shining Cord",
+      "Storm Step",
+      "Sundered Serpent Coil",
+      "Tactical Adaptation",
+      "Wall of Mist",
+      "Anywhere but Here",
+      "Ethereal Fists",
+      "Arcana Theft",
+      "Martial Telekinesis",
+      "Shadow Invasion",
+      "Telekinetic Maneuver",
+      "Augmenting Wall",
+      "Blood Boil",
+      "Cloudkill",
+      "Acidic Spray",
+      "Cone of Cold",
+      "Solid Fog",
+      "Conjure Deadfall",
+      "Corrosive Consumption",
+      "Ether Step",
+      "Interposing Hand",
+      "Surface Excursion",
+      "Parchment Swarm",
+      "Telekinesis",
+      "Cosmic Ray",
+      "Teleport",
+      "Vampiric Shadow Shield",
+      "Chain Lightning",
+      "Acid Fog",
+      "Contagious Flame",
+      "Disintegrate",
+      "Chains of Fire",
+      "Explode Head",
+      "Flesh to Stone",
+      "Wall of Force",
+      "Forceful Hand",
+      "Freezing Sphere",
+      "Last Azlanti's Defending Sword",
+      "Stone to Flesh",
+      "Treacherous Teleport",
+      "Wall of Iron",
+      "Challenge Evil",
+      "Bless Weapon",
+      "Hero's Defiance",
+      "Knight's Calling",
+      "Rally Point",
+      "Veil of Heaven",
+      "Veil of Positive Energy",
+      "Word of Resolve",
+      "Bestow Grace",
+      "Aura of Greater Courage",
+      "Divine Arrow",
+      "Fire of Entanglement",
+      "Light Lance",
+      "Holy Shield",
+      "Paladin's Sacrifice",
+      "Saddle Surge",
+      "Wake of Light",
+      "Blade of Bright Victory",
+      "Heal Mount",
+      "Holy Whisper",
+      "Sky Steed",
+      "Divine Transfer",
+      "Fire of Judgment",
+      "Marks Of Forbiddance",
+      "Blaze of Glory",
+      "Holy Sword",
+      "Fire of Vengeance",
+      "King's Castle",
+      "Oath of Peace",
+      "Sacrificial Oath",
+      "Stay the Hand",
+      "Touch of Fatigue",
+      "Hex Vulnerability",
+      "Mindlink",
+      "Sense Spirit Magic",
+      "Callback",
+      "Font of Spirit Magic",
+      "Merge with Familiar",
+      "Hex Glyph",
+      "Polymorph Familiar",
+      "Contingent Venom",
+      "Wicker Horse",
+      "Curse of Burning Sleep",
+      "Familiar Melding",
+      "Callback, Greater",
+      "Bind Sage",
+      "Dahak's Release",
+      "Empathy Conduit",
+      "Spirit-Bound Blade",
+      "Hex Glyph, Greater",
+      "Imbue Hex",
+      "Ice Body",
+      "Withdraw Affliction",
+      "Vision",
+      "Aroden's Magic Army",
+      "Horrid Wilting",
+      "Shadow Transmutation, Greater",
+      "Wail of the Banshee",
+      "Life Conduit",
+      "Rejuvenate Eidolon, Lesser",
+      "Unfetter",
+      "Create Pit",
+      "Cushioning Bands",
+      "Evolution Surge, Lesser",
+      "Restore Eidolon, Lesser",
+      "Summon Eidolon",
+      "Unseen Engineers",
+      "Devolution",
+      "Evolution Surge",
+      "Fleshwarping Swarm (Drow)",
+      "Phantom Chariot",
+      "Rejuvenate Eidolon",
+      "Life Conduit, Improved",
+      "Restore Eidolon",
+      "Minor Creation",
+      "Spiked Pit",
+      "Thunderous Footfalls",
+      "Beanstalk",
+      "Damnation Stride",
+      "Evolution Surge, Greater",
+      "Hostile Juxtaposition",
+      "Mage's Faithful Hound",
+      "Acid Pit",
+      "Planar Binding, Lesser",
+      "Purified Calling",
+      "Riding Possession",
+      "Transmogrify",
+      "Major Creation",
+      "Energy Siege Shot",
+      "Conjure Black Pudding",
+      "Hungry Pit",
+      "Ice Crystal Teleport",
+      "Invisibility, Mass",
+      "Life Conduit, Greater",
+      "Mind Swap",
+      "Nex's Secret Workshop",
+      "Planar Binding",
+      "Possession",
+      "Rejuvenate Eidolon, Greater",
+      "Sequester",
+      "Simulacrum",
+      "Summon Monster 7",
+      "Teleport, Greater",
+      "Spell Turning",
+      "Walk the Plank",
+      "Binding",
+      "Dimensional Bounce",
+      "Dominate Monster",
+      "Energy Siege Shot, Greater",
+      "Expel Blood",
+      "Hostile Juxtaposition, Greater",
+      "Incendiary Cloud",
+      "Maze",
+      "Planar Binding, Greater",
+      "Summon Monster 8",
+      "Protection from Spells",
+      "Teleportation Circle",
+      "Uncanny Reminder",
+      "Putrefy Food and Drink",
+      "Bungle",
+      "Fumblestep",
+      "Ill Omen",
+      "Hermean Potential",
+      "Lightfingers",
+      "Mask Dweomer",
+      "Mirror Polish",
+      "Undine's Curse",
+      "Unlock Flesh",
+      "Corpse Lanterns",
+      "Aura Of Distraction",
+      "Crimson Confession",
+      "Destabilize Powder",
+      "Eldritch Conduit",
+      "Familiar Figment",
+      "Embrace Destiny",
+      "Limp Lash",
+      "Lipstitch",
+      "Mask Dweomer, Communal",
+      "Mirror Hideaway",
+      "Recoil Fire",
+      "Spectral Hand",
+      "Stabilize Powder",
+      "Sensory Overload",
+      "Symbol of Mirroring",
+      "Twilight Haze",
+      "Cackling Skull",
+      "Barrow Haze",
+      "Debilitating Pain",
+      "Call the Void",
+      "Flash Fire",
+      "Healing Thief",
+      "Irriseni Mirror Sight",
+      "Loathsome Veil",
+      "Phantasmal Affliction",
+      "Screech",
+      "Secret Coffer",
+      "Share Senses",
+      "Strangling Hair",
+      "Threefold Face",
+      "Infuse Decay",
+      "Geb's Hammer",
+      "Medusa's Bane",
+      "Mirror Transport",
+      "Object Possession, Lesser",
+      "Purge Spirit",
+      "Spite",
+      "Symbol Of Laughter",
+      "Thanatotic Fury",
+      "Web Cloud",
+      "Invisibility, Bubble, Giant",
+      "Invisibility, Bubble",
+      "Debilitating Pain, Mass",
+      "Draconic Suppression",
+      "Feeblemind",
+      "Object Possession",
+      "Pain Strike, Mass",
+      "Possess Object",
+      "Prying Eyes",
+      "Possession Trap",
+      "Secret Chest",
+      "Waves of Fatigue",
+      "Suffocation",
+      "Wracking Ray",
+      "Banshee Blast",
+      "Eldritch Conduit, Greater",
+      "Guards and Wards",
+      "Phantasmal Putrefaction",
+      "Spectral Saluqi",
+      "Transfer Familiar",
+      "Arcane Sight, Greater",
+      "Familiar Double",
+      "Hold Person, Mass",
+      "Insanity",
+      "Instant Summons",
+      "Object Possession, Greater",
+      "Invisibility, Bubble, Mass",
+      "Phase Door",
+      "Power Word Blind",
+      "Shadow Body",
+      "Teleport Object",
+      "Recorporeal Incarnation",
+      "Temporal Divergence",
+      "Temporary Resurrection",
+      "Waves of Exhaustion",
+      "Clone",
+      "Instant Summons, Greater",
+      "Mind Blank",
+      "Demand",
+      "Moment of Prescience",
+      "Possession, Greater",
+      "Prediction of Failure",
+      "Power Word Stun",
+      "Secret Vault",
+      "Share Skin, Greater",
+      "Prying Eyes, Greater",
+      "Trap the Soul",
+      "Hold Monster, Mass",
+      "Maze of Madness and Suffering",
+      "Heroic Invocation",
+      "Mind Blank, Communal",
+      "Rune of Jandelay",
+      "Scribe's Binding",
+      "Power Word Kill",
+      "Suffocation, Mass",
+      "Breeze",
+      "Jolt",
+      "Drench",
+      "Penumbra",
+      "Root",
+      "Scoop",
+      "Arcane Pocket",
+      "Fleshwarping Swarm",
+      "Crafter's Curse",
+      "Fabricate Bullets",
+      "Hold Portal",
+      "Pattern Recognition",
+      "Incendiary Runes",
+      "Stumble Gap",
+      "Arcane Lock",
+      "Repair Undead",
+      "Burning Arc (Keleshite)",
+      "Sculpt Corpse",
+      "Command Undead",
+      "Fiery Shuriken",
+      "Fleshcurdle",
+      "Drain Construct",
+      "Phantom Trap",
+      "Rope Trick",
+      "Sculpt Simulacrum",
+      "Spontaneous Immolation",
+      "Veil of Ash",
+      "Ablative Sphere (Garundi)",
+      "Adroit Retrieval",
+      "Arcane Reinforcement",
+      "Battering Blast",
+      "Blacklight",
+      "Dazzling Blade, Mass",
+      "Detect Mindscape",
+      "Diamond Spray",
+      "Dweomer Retaliation",
+      "Explosive Runes",
+      "Illusory Poison",
+      "Malediction (Hero Points)",
+      "Mark of Spite",
+      "Resize Item",
+      "Phantasmal Asphyxiation",
+      "Rune of Warding",
+      "Spherescry",
+      "Shrink Item",
+      "Rune of Durability",
+      "Debilitating Speech",
+      "Violent Misfire",
+      "Aram Zey's Trap Ward",
+      "Twine Double",
+      "Emergency Force Sphere",
+      "Energy Hack",
+      "Fool's Teleport",
+      "Dream Dalliance",
+      "Globe of Invulnerability, Lesser",
+      "Illusory Wall",
+      "Imbue with Flight",
+      "Mindscape Door",
+      "Malfunction",
+      "Mindwipe",
+      "Minor Phantom Object",
+      "Phantasmal Asphixiation",
+      "Resilient Sphere",
+      "Shadowy Haven",
+      "Simulacrum, Lesser",
+      "Suppressing Stone",
+      "Shadow Projection",
+      "Burst of Force",
+      "Condensed Ether",
+      "Covetous Aura",
+      "Create Mindscape",
+      "Fabricate",
+      "Icy Prison",
+      "Companion Transposition",
+      "Lightning Arc",
+      "Mage's Private Sanctum",
+      "Major Phantom Object",
+      "Impossible Angles",
+      "Mind Probe",
+      "Open Arms",
+      "Passwall",
+      "Permanency",
+      "Repair Undead, Mass",
+      "Sealed Sending",
+      "Spell Absorption",
+      "Thoughtsense",
+      "Trace Teleport",
+      "Flesh to Ooze",
+      "Globe of Invulnerability",
+      "Unbreakable Construct",
+      "Enemy Hammer",
+      "Prophetic Lore",
+      "Psychic Asylum",
+      "Contingency",
+      "Hardening",
+      "Teleport Structure",
+      "Torrent of Elemental Rage",
+      "Telepathy",
+      "Violent Misfire, Greater",
+      "Arcane Cannon",
+      "Caustic Eruption",
+      "Control Construct",
+      "Control Undead",
+      "Create Mindscape, Greater",
+      "Deflection",
+      "Elemental Body IV",
+      "Expend",
+      "Firebrand",
+      "Delayed Blast Fireball",
+      "Fly, Mass",
+      "Forcecage",
+      "Form of the Alien Dragon II",
+      "Form of the Dragon II",
+      "Hungry Darkness",
+      "Grasping Hand",
+      "Invisibility Bubble, Mass",
+      "Limited Wish",
+      "Mage's Sword",
+      "Ooze Form III",
+      "Permanent Hallucination",
+      "Phantasmal Revenge",
+      "Mage's Magnificent Mansion",
+      "Plant Shape III",
+      "Polymorph, Greater",
+      "Prismatic Spray",
+      "Retrocognition",
+      "Shadow Conjuration, Greater",
+      "Shapechanger's Gift, Greater",
+      "Word of Beckoning",
+      "Steam Ray Fusillade",
+      "Teleport Trap",
+      "Form of the Alien Dragon III",
+      "Clenched Fist",
+      "Form of the Dragon III",
+      "Giant Form II",
+      "Magical Beast Shape",
+      "Polar Ray",
+      "Prismatic Wall",
+      "Iron Body",
+      "Polymorph Any Object",
+      "Rain of Arrows",
+      "Scintillating Pattern",
+      "Screen",
+      "Shadow Evocation, Greater",
+      "Spell Absorption, Greater",
+      "Telekinetic Sphere",
+      "Temporal Stasis",
+      "Undead Anatomy IV",
+      "Aroden's Spellbane",
+      "Bilocation",
+      "Crushing Hand",
+      "Echean's Excellent Enclosure",
+      "Fiery Body",
+      "Freedom",
+      "Icy Prison, Mass",
+      "Last Azlanti's Defending Sword, Mass",
+      "Lost Locale",
+      "Meteor Swarm",
+      "Imprisonment",
+      "Prismatic Sphere",
+      "Ride the Lightning",
+      "Mage's Disjunction",
+      "Shades",
+      "Summon Monster 9",
+      "Resplendent Mansion",
+      "Time Stop",
+      "Transmute Blood To Acid",
+      "Wall of Suppression",
+      "Weird",
+      "Wish",
+      "Detect Psychic Significance",
+      "Grave Words",
+      "Burst of Insight",
+      "Charge Object",
+      "Object Reading",
+      "Analyze Aura",
+      "Cognitive Block",
+      "Instigate Psychic Duel",
+      "Placebo Effect",
+      "Sealed Life",
+      "Aura Alteration",
+      "Borrow Fortune",
+      "Erase Impressions",
+      "Node of Blasting",
+      "Out of Sight",
+      "Reveal Emotions",
+      "Entrap Spirit",
+      "Remote Viewing",
+      "Telepathic Silence",
+      "Burst of Adrenaline",
+      "Telempathic Projection",
+      "Animus Mine",
+      "Thought Echo",
+      "Emotive Block",
+      "Implant False Reading",
+      "Mind Over Matter",
+      "Implanted Projection",
+      "Synaptic Pulse",
+      "Synesthesia",
+      "Synaptic Scramble",
+      "Animus Mine, Greater",
+      "Synapse Overload",
+      "Synaptic Pulse, Greater",
+      "Psychic Surgery",
+      "Synesthesia, Mass",
+      "Dream Travel",
+      "Mantle of Doubt",
+      "Telekinetic Projectile",
+      "Etheric Shards",
+      "Talismanic Implement",
+      "Ectoplasmic Hand",
+      "Mind Thrust I",
+      "Id Insinuation I",
+      "Mental Barrier I",
+      "Mind Thrust II",
+      "Psychonaut Manifestation",
+      "Thought Shield I",
+      "Thought Worm I",
+      "Ego Whip I",
+      "Id Insinuation II",
+      "Mental Barrier II",
+      "Mind Thrust III",
+      "Thought Shield II",
+      "Thought Worm II",
+      "Ego Whip II",
+      "Id Insinuation III",
+      "Intellect Fortress I",
+      "Mental Barrier III",
+      "Mind Thrust IV",
+      "Thought Shield III",
+      "Thought Worm III",
+      "Ego Whip III",
+      "Ethereal Envelope",
+      "Id Insinuation IV",
+      "Intellect Fortress II",
+      "Mental Barrier IV",
+      "Mind Thrust V",
+      "Psychic Crush I",
+      "Rend Body I",
+      "Thought Shield IV",
+      "Thought Worm IV",
+      "Ego Whip IV",
+      "Incorporeal Chains",
+      "Intellect Fortress III",
+      "Mind Thrust VI",
+      "Phantom Limb",
+      "Tower of Iron Will I",
+      "Psychic Crush II",
+      "Rend Body II",
+      "Thought Shield V",
+      "Tower of Iron Will II",
+      "Ectoplasmic Eruption",
+      "Ego Whip V",
+      "Ethereal Envelopment",
+      "Psychic Crush III",
+      "Rend Body III",
+      "Tower of Iron Will III",
+      "Psychic Crush IV",
+      "Mental Barrier V",
+      "Rend Body IV",
+      "Glimpse of the Akashic",
+      "Akashic Form",
+      "Divide Mind",
+      "Dream Voyage",
+      "Microcosm",
+      "Mind Swap, Major",
+      "Psychic Crush V",
+      "Tower of Iron Will IV",
+      "Psychic Image",
+      "Telekinetic Storm",
+      "Tower of Iron Will V",
+      "Sealed Life, Greater"
+    ]
+  },
+  "refs": {
+    "Authenticating Gaze": [
+      "Detect Magic"
+    ],
+    "Blurred Movement": [
+      "Blur"
+    ],
+    "Body Capacitance": [
+      "Lightning Bolt"
+    ],
+    "Comprehend Languages": [
+      "Illusory Script",
+      "Permanency",
+      "Secret Page"
+    ],
+    "Enlarge Person": [
+      "Permanency",
+      "Reduce Person"
+    ],
+    "Identify": [
+      "Detect Magic"
+    ],
+    "Invisibility Alarm": [
+      "Alarm",
+      "Permanency"
+    ],
+    "Obscure Poison": [
+      "Detect Poison"
+    ],
+    "Polypurpose Panacea": [
+      "Detect Poison",
+      "Lullaby",
+      "Resistance",
+      "Sleep"
+    ],
+    "Reduce Person": [
+      "Enlarge Person",
+      "Permanency"
+    ],
+    "Shield": [
+      "Magic Missile"
+    ],
+    "Shock Shield": [
+      "Magic Missile",
+      "Shield"
+    ],
+    "Skin Tag": [
+      "Scrying"
+    ],
+    "Speechreader's Sight": [
+      "Permanency"
+    ],
+    "See Alignment": [
+      "Undetectable Alignment"
+    ],
+    "Stone Fist": [
+      "Stone to Flesh",
+      "Transmute Rock to Mud"
+    ],
+    "Air Step": [
+      "Air Walk"
+    ],
+    "Ancestral Regression": [
+      "Undetectable Alignment"
+    ],
+    "Aldori Alacrity": [
+      "Haste"
+    ],
+    "Ant Haul, Communal": [
+      "Ant Haul"
+    ],
+    "Blur": [
+      "See Invisibility",
+      "True Seeing"
+    ],
+    "Catatonia": [
+      "Animate Objects",
+      "Shrink Item",
+      "Teleport Object"
+    ],
+    "Cure Moderate Wounds": [
+      "Cure Light Wounds"
+    ],
+    "Darkvision": [
+      "Permanency"
+    ],
+    "Diminished Detection": [
+      "Detect Undead"
+    ],
+    "Deathwine": [
+      "Cure Serious Wounds",
+      "Detect Magic"
+    ],
+    "Dream Shield": [
+      "Nondetection",
+      "Protection from Evil"
+    ],
+    "Enchantment Sight": [
+      "Detect Magic",
+      "Permanency"
+    ],
+    "Enshroud Thoughts": [
+      "Clairaudience/Clairvoyance",
+      "Detect Evil",
+      "Detect Thoughts",
+      "Locate Creature",
+      "Memory Lapse",
+      "Modify Memory",
+      "Seek Thoughts"
+    ],
+    "First World Revisions": [
+      "Ancestral Regression",
+      "Undetectable Alignment"
+    ],
+    "Fleshy Facade": [
+      "Detect Undead"
+    ],
+    "Identifier's Eye": [
+      "Detect Magic"
+    ],
+    "Invisibility": [
+      "Bless",
+      "Permanency"
+    ],
+    "Invisibility Bubble": [
+      "Invisibility"
+    ],
+    "Kalistocrat's Nightmare": [
+      "Remove Curse"
+    ],
+    "Languid Venom": [
+      "Detect Poison",
+      "Obscure Poison"
+    ],
+    "Nondetection, Lesser": [
+      "Clairaudience/Clairvoyance",
+      "Locate Object",
+      "Nondetection",
+      "Scrying"
+    ],
+    "Minor Dream": [
+      "Dream"
+    ],
+    "Protection from Spores": [
+      "What Grows Within"
+    ],
+    "Resist Energy": [
+      "Protection from Energy"
+    ],
+    "See Invisibility": [
+      "Permanency"
+    ],
+    "Skinsend": [
+      "Gentle Repose",
+      "Heal",
+      "Regenerate",
+      "Resurrection"
+    ],
+    "Waters of Lamashtu": [
+      "Curse Water"
+    ],
+    "Adjustable Disguise": [
+      "Disguise Self"
+    ],
+    "Animal Aspect, Greater": [
+      "Animal Aspect"
+    ],
+    "Undeath Sense": [
+      "Detect Undead"
+    ],
+    "Arcane Sight": [
+      "Detect Magic",
+      "Permanency"
+    ],
+    "Assume Appearance": [
+      "Alter Self"
+    ],
+    "Aura Sight": [
+      "Detect Evil",
+      "Permanency"
+    ],
+    "Channel Vigor": [
+      "Haste"
+    ],
+    "Claim Identity": [
+      "Alter Self"
+    ],
+    "Cure Serious Wounds": [
+      "Cure Light Wounds"
+    ],
+    "Darkvault": [
+      "Permanency"
+    ],
+    "Delay Poison, Communal": [
+      "Delay Poison"
+    ],
+    "Darkvision, Communal": [
+      "Darkvision"
+    ],
+    "Displacement": [
+      "True Seeing"
+    ],
+    "Draconic Reservoir": [
+      "Protection from Energy",
+      "Resist Energy"
+    ],
+    "Endure Elements, Communal": [
+      "Endure Elements"
+    ],
+    "Fly": [
+      "Antimagic Field"
+    ],
+    "Free Swim": [
+      "Freedom of Movement",
+      "Slow",
+      "Solid Fog",
+      "Web"
+    ],
+    "Glimpse the Hidden": [
+      "See Invisibility"
+    ],
+    "Haste": [
+      "Slow"
+    ],
+    "Marionette Possession": [
+      "Protection from Evil"
+    ],
+    "Nauseating Trail": [
+      "Stinking Cloud"
+    ],
+    "Nondetection": [
+      "Clairaudience/Clairvoyance",
+      "Locate Object"
+    ],
+    "Phase Step": [
+      "Dimension Door"
+    ],
+    "Prehensile Pilfer": [
+      "Haste"
+    ],
+    "Protection from Arrows, Communal": [
+      "Protection from Arrows"
+    ],
+    "Remove Blindness/Deafness": [
+      "Blindness/Deafness"
+    ],
+    "Remove Curse": [
+      "Bestow Curse"
+    ],
+    "Resist Energy, Communal": [
+      "Resist Energy"
+    ],
+    "Protection from Energy": [
+      "Resist Energy"
+    ],
+    "Selective Invisibility": [
+      "Invisibility"
+    ],
+    "Spider Climb, Communal": [
+      "Spider Climb"
+    ],
+    "Seek Thoughts": [
+      "Detect Thoughts"
+    ],
+    "Toxic Blood": [
+      "Permanency"
+    ],
+    "Undead Anatomy I": [
+      "Detect Undead",
+      "Searing Light",
+      "True Seeing"
+    ],
+    "Vomit Twin": [
+      "Teleport"
+    ],
+    "Voluminous Vocabulary": [
+      "Comprehend Languages"
+    ],
+    "Adjustable Polymorph": [
+      "Alter Self"
+    ],
+    "Air Walk": [
+      "Antimagic Field"
+    ],
+    "Tongues": [
+      "Permanency"
+    ],
+    "Arcane Eye": [
+      "Gate"
+    ],
+    "Assume Appearance, Greater": [
+      "Assume Appearance",
+      "Misdirection",
+      "Speak with Dead",
+      "Vocal Alteration"
+    ],
+    "Beast Shape II": [
+      "Beast Shape I"
+    ],
+    "Cure Critical Wounds": [
+      "Cure Light Wounds"
+    ],
+    "Darkvision, Greater": [
+      "Darkvision"
+    ],
+    "Dissolution": [
+      "Miracle",
+      "Wish"
+    ],
+    "Echolocation": [
+      "Silence"
+    ],
+    "Eyes of the Void": [
+      "Deeper Darkness"
+    ],
+    "False Life, Greater": [
+      "False Life"
+    ],
+    "Freedom of Movement": [
+      "Slow",
+      "Solid Fog",
+      "Web"
+    ],
+    "Healing Warmth": [
+      "Protection from Energy"
+    ],
+    "Innocuous Shape": [
+      "Alter Self",
+      "Beast Shape II"
+    ],
+    "Invisibility, Greater": [
+      "Invisibility"
+    ],
+    "Miasmatic Form": [
+      "Gaseous Form",
+      "Poisonous Cloud",
+      "Stinking Cloud"
+    ],
+    "Harvest Knowledge": [
+      "Detect Thoughts",
+      "Trap the Soul"
+    ],
+    "Monstrous Physique II": [
+      "Monstrous Physique I"
+    ],
+    "Naga Shape I": [
+      "Beast Shape II"
+    ],
+    "Scale Spikes, Greater": [
+      "Scale Spikes"
+    ],
+    "Scorching Ash Form": [
+      "Gaseous Form"
+    ],
+    "Tongues, Communal": [
+      "Tongues"
+    ],
+    "Touch of Slime": [
+      "Remove Disease"
+    ],
+    "Beast Shape III": [
+      "Beast Shape II"
+    ],
+    "Vitriolic Mist": [
+      "Fire Shield"
+    ],
+    "Dream Reality": [
+      "Lullaby",
+      "Modify Memory"
+    ],
+    "Air Walk, Communal": [
+      "Air Walk"
+    ],
+    "Elemental Body II": [
+      "Elemental Body I"
+    ],
+    "Elude Time": [
+      "Dispel Magic",
+      "Temporal Stasis"
+    ],
+    "Claim Identity, Greater": [
+      "Claim Identity"
+    ],
+    "Fey Form II": [
+      "Fey Form I"
+    ],
+    "Glimpse of Truth": [
+      "True Seeing"
+    ],
+    "Magic Jar": [
+      "Protection from Evil"
+    ],
+    "Mask from Divination": [
+      "Nondetection",
+      "See Invisibility"
+    ],
+    "Monstrous Physique III": [
+      "Monstrous Physique II"
+    ],
+    "Nightmare": [
+      "Dispel Evil"
+    ],
+    "Overland Flight": [
+      "Fly"
+    ],
+    "Planetary Adaptation": [
+      "Planar Adaptation"
+    ],
+    "Polymorph": [
+      "Beast Shape II",
+      "Elemental Body I"
+    ],
+    "Naga Shape II": [
+      "Naga Shape I"
+    ],
+    "Resurgent Transformation": [
+      "Haste",
+      "Transformation"
+    ],
+    "Shapechanger's Gift": [
+      "Alter Self",
+      "Beast Shape I",
+      "Monstrous Physique I"
+    ],
+    "Stoneskin, Communal": [
+      "Stoneskin"
+    ],
+    "Transplant Visage": [
+      "Miracle",
+      "Wish"
+    ],
+    "Unerring Tracker": [
+      "Mind Blank",
+      "Nondetection",
+      "Pass without Trace"
+    ],
+    "Undead Anatomy II": [
+      "Undead Anatomy I"
+    ],
+    "Vermin Shape II": [
+      "Vermin Shape I"
+    ],
+    "Beast Shape IV": [
+      "Beast Shape III"
+    ],
+    "Caging Bomb Admixture": [
+      "Disintegrate",
+      "Dispel Magic",
+      "Mage's Disjunction",
+      "Wall of Force"
+    ],
+    "Elemental Body III": [
+      "Elemental Body I",
+      "Elemental Body II"
+    ],
+    "Eyebite": [
+      "Heal",
+      "Remove Curse",
+      "Remove Disease",
+      "Sleep"
+    ],
+    "Fey Form III": [
+      "Fey Form II"
+    ],
+    "Baleful Shadow Transmutation": [
+      "Polymorph"
+    ],
+    "Form of the Dragon I": [
+      "Spider Climb"
+    ],
+    "Heal": [
+      "Harm"
+    ],
+    "Mislead": [
+      "Major Image"
+    ],
+    "Monstrous Physique IV": [
+      "Monstrous Physique III"
+    ],
+    "Naga Shape III": [
+      "Naga Shape I"
+    ],
+    "Ooze Form II": [
+      "Ooze Form I"
+    ],
+    "Plant Shape II": [
+      "Plant Shape I"
+    ],
+    "Sonic Form": [
+      "Silence"
+    ],
+    "Twin Form": [
+      "Blink",
+      "Teleport"
+    ],
+    "Neutralize Poison, Greater": [
+      "Neutralize Poison"
+    ],
+    "Undead Anatomy III": [
+      "Undead Anatomy II"
+    ],
+    "Wind Walk": [
+      "Gaseous Form"
+    ],
+    "Bane": [
+      "Bless"
+    ],
+    "Cause Fear": [
+      "Remove Fear"
+    ],
+    "True Seeing": [
+      "Blur",
+      "Clairaudience/Clairvoyance",
+      "Displacement"
+    ],
+    "Crime of Opportunity": [
+      "Crime Wave"
+    ],
+    "Dancing Darkness": [
+      "Permanency"
+    ],
+    "Death Candle": [
+      "Death Knell",
+      "Summon Monster II"
+    ],
+    "Huntmaster's Spear": [
+      "Bane"
+    ],
+    "Magic Weapon": [
+      "Magic Fang"
+    ],
+    "Night Blindness": [
+      "Remove Blindness/Deafness"
+    ],
+    "Opportunistic Loyalty": [
+      "Bless",
+      "Haste",
+      "Prayer"
+    ],
+    "Protection from Good": [
+      "Protection from Evil"
+    ],
+    "Protection from Law": [
+      "Protection from Evil"
+    ],
+    "Read Magic": [
+      "Glyph of Warding",
+      "Permanency"
+    ],
+    "Sentry Skull": [
+      "Magic Mouth"
+    ],
+    "Shield Companion (AA)": [
+      "Shield Other"
+    ],
+    "Summon Minor Monster": [
+      "Summon Monster I"
+    ],
+    "Summon Monster 1": [
+      "Wish"
+    ],
+    "Blade Tutor's Spirit": [
+      "Disintegrate",
+      "Dispel Magic"
+    ],
+    "Borrow Corruption": [
+      "Miracle",
+      "Wish"
+    ],
+    "Corruption Resistance": [
+      "Holy Smite",
+      "Order's Wrath"
+    ],
+    "Curse of Keeping": [
+      "Break Enchantment",
+      "Dispel Magic",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Desecrate": [
+      "Animate Dead",
+      "Consecrate"
+    ],
+    "Detect Desires": [
+      "Detect Thoughts"
+    ],
+    "Detect Anxieties": [
+      "Detect Thoughts"
+    ],
+    "Fair is Foul": [
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Flesh Puppet": [
+      "Animate Dead",
+      "Flesh Puppet Horde"
+    ],
+    "Magic Siege Engine": [
+      "Magic Weapon"
+    ],
+    "Painful Revelation": [
+      "True Seeing"
+    ],
+    "Protection from Good, Communal": [
+      "Protection from Good"
+    ],
+    "Protection from Law, Communal": [
+      "Protection from Law"
+    ],
+    "Peerless Integrity": [
+      "Detect Law",
+      "Detect Thoughts",
+      "Discern Lies",
+      "See Alignment"
+    ],
+    "Scare": [
+      "Cause Fear"
+    ],
+    "Shared Suffering": [
+      "Shield Other",
+      "Unwilling Shield"
+    ],
+    "Summon Monster 2": [
+      "Summon Monster I"
+    ],
+    "Unadulterated Loathing": [
+      "Reckless Infatuation"
+    ],
+    "Urgathoa's Beacon": [
+      "Hide from Undead"
+    ],
+    "Vestment of the Champion": [
+      "Magic Vestment"
+    ],
+    "Virulent Miasma": [
+      "Fog Cloud"
+    ],
+    "Undetectable Trap": [
+      "Detect Magic",
+      "Find Traps"
+    ],
+    "Bestow Curse": [
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Animate Dead": [
+      "Desecrate"
+    ],
+    "Curse of Befouled Fortune": [
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Cursed Treasure": [
+      "Bestow Curse"
+    ],
+    "Deceitful Veneer": [
+      "Discern Lies"
+    ],
+    "Defile Armor": [
+      "Sanctify Armor"
+    ],
+    "Dispel Magic": [
+      "Fly",
+      "Stoneskin",
+      "Wall of Fire"
+    ],
+    "Draconic Ally": [
+      "Form of the Alien Dragon I",
+      "Form of the Dragon I",
+      "Form of the Exotic Dragon I"
+    ],
+    "Deeper Darkness": [
+      "Darkness"
+    ],
+    "Flesh Puppet Horde": [
+      "Animate Dead",
+      "Flesh Puppet"
+    ],
+    "Inflict Moderate Wounds": [
+      "Inflict Light Wounds"
+    ],
+    "Gullibility": [
+      "Glibness"
+    ],
+    "Magic Circle against Good": [
+      "Magic Circle against Evil",
+      "Protection from Evil",
+      "Protection from Good"
+    ],
+    "Magic Circle against Law": [
+      "Magic Circle against Evil",
+      "Protection from Evil",
+      "Protection from Law"
+    ],
+    "Magic Weapon, Greater": [
+      "Magic Weapon"
+    ],
+    "Phantasmal Reminder": [
+      "Shield Other"
+    ],
+    "Retributive Reparations": [
+      "Remove Curse"
+    ],
+    "Summon Monster 3": [
+      "Summon Monster I"
+    ],
+    "Unhallowed Blows, Greater": [
+      "Permanency",
+      "Unhallowed Blows"
+    ],
+    "Unlife Current": [
+      "Life Current"
+    ],
+    "Venomous Promise": [
+      "Detect Thoughts",
+      "Neutralize Poison"
+    ],
+    "Unholy Ward": [
+      "Flame Strike"
+    ],
+    "Companion Transportation": [
+      "Dimension Door"
+    ],
+    "Conditional Curse": [
+      "Bestow Curse"
+    ],
+    "Cruel Jaunt": [
+      "Dimension Door",
+      "Sense Fear"
+    ],
+    "Die for Your Master": [
+      "Bleed for your Master",
+      "Chain Lightning",
+      "Hold Monster",
+      "Magic Missile"
+    ],
+    "Dimensional Blade": [
+      "Mage Armor",
+      "Shield"
+    ],
+    "Dispel Good": [
+      "Dispel Evil"
+    ],
+    "Dispel Law": [
+      "Dispel Evil"
+    ],
+    "Halfling Vengeance, Mass": [
+      "Halfling Vengeance"
+    ],
+    "Hasten Judgment": [
+      "Breath of Life",
+      "Raise Dead",
+      "Reincarnate",
+      "Resurrection",
+      "True Resurrection"
+    ],
+    "Illusion of Treachery, Greater": [
+      "Illusion of Treachery"
+    ],
+    "Inflict Pain, Mass": [
+      "Inflict Pain"
+    ],
+    "Inflict Serious Wounds": [
+      "Inflict Light Wounds"
+    ],
+    "Life of Crime": [
+      "Crime Wave",
+      "Miracle",
+      "Remove Curse"
+    ],
+    "Invoke Deity": [
+      "Call Lightning",
+      "Call Lightning Storm",
+      "Command",
+      "Daylight",
+      "Deeper Darkness",
+      "Delay Poison",
+      "False Life",
+      "Heroism",
+      "Mage Armor",
+      "Make Whole",
+      "Protection from Chaos",
+      "Protection from Evil",
+      "Protection from Good",
+      "Protection from Law",
+      "Read Magic",
+      "Resist Energy",
+      "Scorching Ray",
+      "Searing Light",
+      "Shield",
+      "Shield of Faith",
+      "Speak with Animals",
+      "Status",
+      "Telepathic Bond",
+      "Veil"
+    ],
+    "Malediction": [
+      "Break Enchantment",
+      "Dispel Magic",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Mark of the Reptile God": [
+      "Baleful Polymorph",
+      "Bestow Curse",
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Nondetection, Communal": [
+      "Nondetection"
+    ],
+    "Overwhelming Poison": [
+      "Delay Poison",
+      "Neutralize Poison"
+    ],
+    "Speak with Soul": [
+      "Speak with Dead"
+    ],
+    "Summon Monster 4": [
+      "Summon Monster I"
+    ],
+    "Unholy Sword": [
+      "Magic Circle against Good"
+    ],
+    "Torpid Reanimation": [
+      "Animate Dead"
+    ],
+    "Wall of Bone": [
+      "Wall of Stone"
+    ],
+    "Dancing Lights": [
+      "Permanency"
+    ],
+    "Detect Fiendish Presence": [
+      "Detect Evil"
+    ],
+    "Detect Magic": [
+      "Permanency"
+    ],
+    "Ghost Sound": [
+      "Permanency",
+      "Silent Image"
+    ],
+    "Light": [
+      "Permanency"
+    ],
+    "Lullaby": [
+      "Sleep"
+    ],
+    "Message": [
+      "Silence"
+    ],
+    "Resistance": [
+      "Permanency"
+    ],
+    "Abundant Ammunition": [
+      "Align Weapon"
+    ],
+    "Alarm": [
+      "Permanency",
+      "Silence"
+    ],
+    "Alluring Light": [
+      "Wall of Fire"
+    ],
+    "Aphasia": [
+      "Tongues"
+    ],
+    "Charm Fey": [
+      "Charm Person"
+    ],
+    "Compel Tongue": [
+      "Share Language"
+    ],
+    "Cultural Adaptation (Taldan)": [
+      "Tongues"
+    ],
+    "Dancing Lantern": [
+      "Permanency"
+    ],
+    "Decrepit Disguise": [
+      "Permanency",
+      "Quintessence"
+    ],
+    "Deja Vu": [
+      "Command"
+    ],
+    "Detect Charm": [
+      "Detect Magic"
+    ],
+    "Depilate": [
+      "Break Enchantment",
+      "Remove Curse"
+    ],
+    "Erase": [
+      "Arcane Mark",
+      "Explosive Runes",
+      "Glyph of Warding",
+      "Illusory Script",
+      "Sepia Snake Sigil"
+    ],
+    "Flare Burst": [
+      "Flare"
+    ],
+    "Haze of Dreams": [
+      "Slow"
+    ],
+    "Instant Portrait": [
+      "Enter Image"
+    ],
+    "Liberating Command": [
+      "Hold Person"
+    ],
+    "Magic Aura": [
+      "Identify"
+    ],
+    "Magic Mouth": [
+      "Darkness",
+      "Invisibility",
+      "Permanency",
+      "Silence"
+    ],
+    "Memorize Page": [
+      "Modify Memory"
+    ],
+    "Obscure Object": [
+      "Scrying"
+    ],
+    "Peace Bond": [
+      "Fireball",
+      "Stinking Cloud"
+    ],
+    "Planar Orientation": [
+      "Know Direction"
+    ],
+    "Quintessence": [
+      "Decrepit Disguise"
+    ],
+    "Remove Fear": [
+      "Cause Fear"
+    ],
+    "Revealing Light": [
+      "Light"
+    ],
+    "Secret Sign": [
+      "Arcane Mark",
+      "Glitterdust",
+      "Invisibility Purge",
+      "Permanency",
+      "See Invisibility"
+    ],
+    "Shield Speech": [
+      "Divination"
+    ],
+    "Speak Local Language": [
+      "Tongues"
+    ],
+    "Technomancy": [
+      "Detect Magic"
+    ],
+    "Twisted Futures": [
+      "Ill Omen"
+    ],
+    "Unbreakable Heart": [
+      "Calm Emotions",
+      "Confusion",
+      "Crushing Despair",
+      "Good Hope",
+      "Rage"
+    ],
+    "Vanish": [
+      "Invisibility"
+    ],
+    "Absurdity": [
+      "Find Traps",
+      "Phantasmal Killer"
+    ],
+    "Allegro": [
+      "Haste",
+      "Slow"
+    ],
+    "Apport Object": [
+      "Antimagic Field",
+      "Globe of Invulnerability",
+      "Teleport Object"
+    ],
+    "Beacon of Guilt": [
+      "Break Enchantment",
+      "Faerie Fire",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Billowing Skirt": [
+      "Feather Fall"
+    ],
+    "Book Ward": [
+      "Protection from Energy"
+    ],
+    "Calm Emotions": [
+      "Bless",
+      "Good Hope",
+      "Rage"
+    ],
+    "Codespeak": [
+      "Comprehend Languages",
+      "Tongues"
+    ],
+    "Commune with Birds": [
+      "Speak with Animals"
+    ],
+    "Covetous Urge": [
+      "Break Enchantment",
+      "Dispel Magic",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Daze Monster": [
+      "Daze"
+    ],
+    "Delay Pain": [
+      "Pain Strike",
+      "Symbol of Pain"
+    ],
+    "Detect Magic, Greater": [
+      "Detect Magic"
+    ],
+    "Determine Depth": [
+      "Dimension Door",
+      "Passwall"
+    ],
+    "Disguise Other": [
+      "Disguise Self"
+    ],
+    "Display Aversion": [
+      "Minor Image"
+    ],
+    "Disrupt Silence": [
+      "Dispel Magic",
+      "Silence"
+    ],
+    "Drunkard's Breath": [
+      "Stinking Cloud"
+    ],
+    "Dust of Twilight": [
+      "Dispel Magic"
+    ],
+    "Enter Image": [
+      "Dispel Magic"
+    ],
+    "Escape Alarm": [
+      "Alarm"
+    ],
+    "False Belief": [
+      "Modify Memory"
+    ],
+    "Flickering Lights": [
+      "Deeper Darkness"
+    ],
+    "Hidden Knowledge": [
+      "Detect Magic"
+    ],
+    "Hold Fey": [
+      "Hold Person"
+    ],
+    "Impede Speech": [
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Locate Object": [
+      "Nondetection",
+      "Polymorph Any Object"
+    ],
+    "Mindlocked Messenger": [
+      "Detect Thoughts"
+    ],
+    "Misdirection": [
+      "Augury",
+      "Clairaudience/Clairvoyance",
+      "Detect Evil",
+      "Detect Magic",
+      "Detect Thoughts",
+      "Discern Lies"
+    ],
+    "Miserable Pity": [
+      "Sanctuary"
+    ],
+    "Obscured Script": [
+      "Permanency"
+    ],
+    "Minor Image": [
+      "Silent Image"
+    ],
+    "Piercing Shriek": [
+      "Silence"
+    ],
+    "Pugwampi's Grace": [
+      "Divine Favor"
+    ],
+    "Reckless Infatuation": [
+      "Unadulterated Loathing"
+    ],
+    "Reveal True Shape": [
+      "Blur",
+      "Disguise Self",
+      "Displacement",
+      "Polymorph"
+    ],
+    "Share Language, Communal": [
+      "Share Language"
+    ],
+    "Sympathetic Aura": [
+      "Magic Aura"
+    ],
+    "Telepathic Censure": [
+      "Detect Thoughts",
+      "Telepathic Bond"
+    ],
+    "Whip of Spiders": [
+      "Disintegrate",
+      "Summon Swarm"
+    ],
+    "Whispering Wind": [
+      "Magic Mouth"
+    ],
+    "Audiovisual Hallucination": [
+      "Auditory Hallucination"
+    ],
+    "Bereave": [
+      "Bane",
+      "Bless"
+    ],
+    "Blot": [
+      "Dispel Magic"
+    ],
+    "Charm Monster": [
+      "Charm Person"
+    ],
+    "Contingent Action": [
+      "Contingency"
+    ],
+    "Crushing Despair": [
+      "Good Hope"
+    ],
+    "Daylight": [
+      "Darkness"
+    ],
+    "Deep Slumber": [
+      "Sleep"
+    ],
+    "Demanding Message": [
+      "Message",
+      "Suggestion"
+    ],
+    "Domination Link": [
+      "Detect Thoughts"
+    ],
+    "False Alibi": [
+      "Modify Memory"
+    ],
+    "Feather Step, Mass": [
+      "Feather Step"
+    ],
+    "False Future": [
+      "Detect Magic",
+      "Identify"
+    ],
+    "Fractions of Heal and Harm": [
+      "Fireball"
+    ],
+    "Geas, Lesser": [
+      "Break Enchantment",
+      "Dispel Magic",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Good Hope": [
+      "Crushing Despair"
+    ],
+    "Hallucinatory Decor": [
+      "Hallucinatory Terrain"
+    ],
+    "Free Spirit": [
+      "Freedom of Movement"
+    ],
+    "Geomessage": [
+      "Detect Magic",
+      "Nondetection",
+      "See Invisibility"
+    ],
+    "Hollow Heroism": [
+      "Heroism"
+    ],
+    "Illusory Script": [
+      "Comprehend Languages",
+      "Dispel Magic",
+      "Read Magic",
+      "Suggestion",
+      "True Seeing"
+    ],
+    "Instant Fake": [
+      "Cure Light Wounds"
+    ],
+    "Invigorate, Mass": [
+      "Invigorate"
+    ],
+    "Invisibility Bubble, Giant": [
+      "Invisibility Bubble"
+    ],
+    "Invisibility Sphere": [
+      "Invisibility"
+    ],
+    "Lover's Vengeance": [
+      "Contingency",
+      "Rage"
+    ],
+    "Magic Aura, Greater": [
+      "Arcane Sight",
+      "Magic Aura"
+    ],
+    "Major Image": [
+      "Silent Image"
+    ],
+    "Mark of Buoyancy": [
+      "Permanency"
+    ],
+    "Overlook": [
+      "Invisibility",
+      "Respectful Quiet"
+    ],
+    "Phantom Steed": [
+      "Air Walk",
+      "Water Walk"
+    ],
+    "Rain of Frogs": [
+      "Summon Swarm"
+    ],
+    "Respectful Quiet": [
+      "Silence"
+    ],
+    "Returning Weapon, Communal": [
+      "Returning Weapon"
+    ],
+    "Scrying": [
+      "Detect Chaos",
+      "Detect Evil",
+      "Detect Good",
+      "Detect Law",
+      "Detect Magic",
+      "Message"
+    ],
+    "Secret Page": [
+      "Comprehend Languages",
+      "Detect Magic",
+      "Erase",
+      "Explosive Runes",
+      "Sepia Snake Sigil",
+      "True Seeing"
+    ],
+    "Selective Alarm": [
+      "Alarm"
+    ],
+    "Sepia Snake Sigil": [
+      "Detect Magic",
+      "Dispel Magic",
+      "Erase",
+      "Secret Page"
+    ],
+    "Sequester Thoughts": [
+      "Detect Thoughts",
+      "Discern Lies",
+      "Miracle",
+      "Wish",
+      "Zone of Truth"
+    ],
+    "Shifting Shadows": [
+      "True Seeing"
+    ],
+    "Silverlight": [
+      "Daylight"
+    ],
+    "Skyshroud": [
+      "Call Lightning"
+    ],
+    "Slow": [
+      "Haste"
+    ],
+    "Spotlight": [
+      "Faerie Fire"
+    ],
+    "Stolen Light": [
+      "Permanency"
+    ],
+    "Summon Ancestral Guardian": [
+      "Spiritual Weapon"
+    ],
+    "Sunstalker": [
+      "Daylight",
+      "Invisibility"
+    ],
+    "Triggered Suggestion": [
+      "Suggestion"
+    ],
+    "Amnesia": [
+      "Heal",
+      "Limited Wish",
+      "Miracle",
+      "Psychic Surgery",
+      "Wish"
+    ],
+    "Animal Ambassador": [
+      "Animal Messenger",
+      "Awaken"
+    ],
+    "Antithetical Constraint": [
+      "Magic Missile"
+    ],
+    "Army Across Time": [
+      "Ally Across Time"
+    ],
+    "Blood Song": [
+      "Imbue with Spell Ability"
+    ],
+    "Break Enchantment": [
+      "Dispel Magic",
+      "Stone to Flesh"
+    ],
+    "Brightest Light": [
+      "Daylight"
+    ],
+    "Charm Person, Mass": [
+      "Charm Person"
+    ],
+    "Compel Tongue, Mass": [
+      "Compel Tongue"
+    ],
+    "Complex Hallucination": [
+      "Audiovisual Hallucination"
+    ],
+    "Contagious Suggestion": [
+      "Suggestion"
+    ],
+    "Conversing Wind": [
+      "Whispering Wind"
+    ],
+    "Contingent Scroll": [
+      "Contingency"
+    ],
+    "Daze, Mass": [
+      "Daze"
+    ],
+    "Deadman's Contingency": [
+      "Animate Dead",
+      "Contingency",
+      "Magic Mouth",
+      "Sending",
+      "Teleport Object"
+    ],
+    "Dominate Person": [
+      "Protection from Evil"
+    ],
+    "Discordant Blast": [
+      "Silence"
+    ],
+    "Forgetful Slumber": [
+      "Miracle",
+      "Wish"
+    ],
+    "Ghostbane Dirge, Mass": [
+      "Ghostbane Dirge"
+    ],
+    "Heroic Fortune, Mass": [
+      "Heroic Fortune"
+    ],
+    "Hold Monster": [
+      "Hold Person"
+    ],
+    "Horrific Doubles": [
+      "Mirror Image"
+    ],
+    "Hypnotism, Greater": [
+      "Hypnotism"
+    ],
+    "Lost Passage": [
+      "Permanency"
+    ],
+    "Modify Memory": [
+      "Geas/Quest",
+      "Suggestion"
+    ],
+    "Oneiric Horror, Greater": [
+      "Oneiric Horror"
+    ],
+    "Passing Fancy, Mass": [
+      "Passing Fancy"
+    ],
+    "Locate Creature": [
+      "Locate Object",
+      "Mislead",
+      "Nondetection",
+      "Polymorph"
+    ],
+    "Path of Glory, Greater": [
+      "Path of Glory"
+    ],
+    "Phantom Steed, Communal": [
+      "Phantom Steed"
+    ],
+    "Primal Scream": [
+      "Break Enchantment"
+    ],
+    "Questing Stone": [
+      "Arcane Eye",
+      "Gate"
+    ],
+    "Scintillating Wall": [
+      "Permanency"
+    ],
+    "Secure Shelter": [
+      "Alarm",
+      "Arcane Lock",
+      "Unseen Servant"
+    ],
+    "Shield of the Dawnflower": [
+      "Continual Flame",
+      "Fire Shield"
+    ],
+    "Shocking Image": [
+      "Mirror Image"
+    ],
+    "Shout": [
+      "Silence"
+    ],
+    "Sonic Thrust": [
+      "Telekinesis"
+    ],
+    "Untold Wonder": [
+      "Crushing Despair"
+    ],
+    "Wall of Blindness/Deafness": [
+      "Blindness/Deafness"
+    ],
+    "Wall of Sound": [
+      "Silence",
+      "Wind Wall"
+    ],
+    "Bard's Escape": [
+      "Dimension Door"
+    ],
+    "Befuddled Combatant": [
+      "Incendiary Cloud"
+    ],
+    "Bladed Dash, Greater": [
+      "Bladed Dash"
+    ],
+    "Cacophonous Call, Mass": [
+      "Cacophonous Call"
+    ],
+    "Compelling Rant": [
+      "Borrow Corruption",
+      "Miracle",
+      "Wish"
+    ],
+    "Deceptive Redundancy": [
+      "Dispel Magic",
+      "Enlarge Person",
+      "Fire Shield"
+    ],
+    "Commune with Texts": [
+      "Stone Tell"
+    ],
+    "Fable Tapestry": [
+      "Shadow Conjuration",
+      "Summon Monster I"
+    ],
+    "False Vision": [
+      "Major Image"
+    ],
+    "Grease, Greater": [
+      "Grease"
+    ],
+    "Harrowing, Greater": [
+      "Harrowing"
+    ],
+    "Hymn of Mercy": [
+      "Touch of Mercy"
+    ],
+    "Inveigle Monster": [
+      "Inveigle Person"
+    ],
+    "Locate Gate": [
+      "Dimension Door",
+      "Dimensional Lock",
+      "Forbiddance",
+      "Gate",
+      "Nondetection",
+      "Teleport",
+      "Teleportation Circle"
+    ],
+    "Dispel Magic, Greater": [
+      "Dispel Magic",
+      "Remove Curse"
+    ],
+    "Mirage Arcana": [
+      "Hallucinatory Terrain"
+    ],
+    "Mydriatic Spontaneity, Mass": [
+      "Mydriatic Spontaneity"
+    ],
+    "Persistent Image": [
+      "Silent Image"
+    ],
+    "Phantasmal Web": [
+      "Freedom of Movement",
+      "Web"
+    ],
+    "Phobia": [
+      "Break Enchantment",
+      "Heal",
+      "Limited Wish",
+      "Miracle",
+      "Wish"
+    ],
+    "Heroism, Greater": [
+      "Heroism"
+    ],
+    "Pox of Rumors": [
+      "Remove Curse",
+      "Scrying"
+    ],
+    "Repress Memory": [
+      "Break Enchantment",
+      "Detect Thoughts",
+      "Discern Lies",
+      "Limited Wish",
+      "Miracle",
+      "Psychic Surgery",
+      "Wish",
+      "Zone of Truth"
+    ],
+    "Sabotage Construct": [
+      "Confusion"
+    ],
+    "Scripted Hallucination": [
+      "Audiovisual Hallucination"
+    ],
+    "Seeming": [
+      "Disguise Self"
+    ],
+    "Seeds of Influence, Greater": [
+      "Seeds of Influence"
+    ],
+    "Shadow Endurance": [
+      "Shadow Conjuration"
+    ],
+    "Soulswitch": [
+      "Magic Jar"
+    ],
+    "Suggestion, Mass": [
+      "Suggestion"
+    ],
+    "Summon Infernal Host": [
+      "Summon Monster V"
+    ],
+    "Summon Monster 5": [
+      "Summon Monster I"
+    ],
+    "Wall of Silver": [
+      "Wall of Force"
+    ],
+    "Unwilling Shield": [
+      "Shield Other"
+    ],
+    "Whip of Centipedes": [
+      "Whip of Spiders"
+    ],
+    "Absorb Rune II": [
+      "Absorb Rune I"
+    ],
+    "Animate Objects": [
+      "Permanency"
+    ],
+    "Cat's Grace, Mass": [
+      "Cat's Grace"
+    ],
+    "Charm Monster, Mass": [
+      "Charm Monster"
+    ],
+    "Dance of a Thousand Cuts": [
+      "Dance of a Hundred Cuts",
+      "Haste"
+    ],
+    "Demanding Message, Mass": [
+      "Demanding Message",
+      "Suggestion"
+    ],
+    "Discharge, Greater": [
+      "Discharge"
+    ],
+    "Dream Council": [
+      "Dream"
+    ],
+    "Dream Scan": [
+      "Detect Thoughts",
+      "Dream"
+    ],
+    "Eagle's Splendor, Mass": [
+      "Eagle's Splendor"
+    ],
+    "False Vision, Greater": [
+      "False Vision",
+      "Scrying"
+    ],
+    "Fey Gate": [
+      "Gate"
+    ],
+    "Fleeting Memory, Mass": [
+      "Fleeting Memory"
+    ],
+    "Geas/Quest": [
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Fox's Cunning, Mass": [
+      "Fox's Cunning"
+    ],
+    "Find the Path": [
+      "Maze"
+    ],
+    "Human Potential, Mass": [
+      "Human Potential"
+    ],
+    "Heroes' Feast": [
+      "Neutralize Poison",
+      "Remove Disease"
+    ],
+    "Permanent Image": [
+      "Silent Image"
+    ],
+    "Programmed Image": [
+      "Magic Mouth",
+      "Silent Image"
+    ],
+    "Project Image": [
+      "Dimension Door",
+      "Plane Shift",
+      "Teleport"
+    ],
+    "Scrying, Greater": [
+      "Detect Chaos",
+      "Detect Evil",
+      "Detect Good",
+      "Detect Law",
+      "Detect Magic",
+      "Message",
+      "Read Magic",
+      "Scrying",
+      "Tongues"
+    ],
+    "Shadow Enchantment, Greater": [
+      "Shadow Enchantment"
+    ],
+    "Shadow Transmutation": [
+      "Animal Growth",
+      "Anthropomorphic Animal",
+      "Enlarge Person",
+      "Fins to Feet",
+      "Polymorph",
+      "Reduce Person",
+      "Stone Fist"
+    ],
+    "Shield of the Dawnflower, Greater": [
+      "Daylight",
+      "Fire Shield",
+      "Shield of the Dawnflower"
+    ],
+    "Shout, Greater": [
+      "Shout"
+    ],
+    "Song of Discord, Greater": [
+      "Song of Discord"
+    ],
+    "Subjective Reality": [
+      "Earthquake"
+    ],
+    "Summon Monster 6": [
+      "Summon Monster I"
+    ],
+    "Symbol of Debauchery": [
+      "Symbol of Death"
+    ],
+    "Symbol of Distraction": [
+      "Symbol of Death"
+    ],
+    "Triggered Hallucination": [
+      "Audiovisual Hallucination"
+    ],
+    "Unconscious Agenda": [
+      "Break Enchantment",
+      "Detect Magic",
+      "Dispel Magic",
+      "Dominate Person",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Whip of Ants": [
+      "Whip of Spiders"
+    ],
+    "Yellow Sign": [
+      "Dominate Monster",
+      "Symbol of Death"
+    ],
+    "Protection from Evil": [
+      "Charm Person",
+      "Command",
+      "Dominate Person",
+      "Magic Jar"
+    ],
+    "Ray of Sickening": [
+      "Ray of Exhaustion"
+    ],
+    "Web Bolt": [
+      "Web"
+    ],
+    "Force Sword": [
+      "Disintegrate",
+      "Dispel Magic"
+    ],
+    "Ghoul Touch": [
+      "Neutralize Poison"
+    ],
+    "Gust of Wind": [
+      "Permanency"
+    ],
+    "Imbue with Elemental Might": [
+      "Imbue with Spell Ability"
+    ],
+    "Protection from Chaos": [
+      "Protection from Evil"
+    ],
+    "Mark of Blood": [
+      "Remove Curse"
+    ],
+    "Steal Size": [
+      "Enlarge Person",
+      "Reduce Person"
+    ],
+    "Sun's Disdain": [
+      "Daylight",
+      "Searing Light",
+      "Sunbeam",
+      "Sunburst"
+    ],
+    "Symbol of Exsanguination": [
+      "Symbol of Death"
+    ],
+    "Winged Sword": [
+      "Magic Stone"
+    ],
+    "Aqueous Orb": [
+      "Dispel Magic"
+    ],
+    "Chain of Perdition": [
+      "Disintegrate",
+      "Dispel Magic"
+    ],
+    "Flame Steed": [
+      "Obscuring Mist",
+      "Phantom Steed"
+    ],
+    "Grasping Tentacles": [
+      "Black Tentacles"
+    ],
+    "Runic Overload": [
+      "Arcane Mark",
+      "Explosive Runes"
+    ],
+    "Stinking Cloud": [
+      "Fog Cloud",
+      "Permanency"
+    ],
+    "Thunderstomp, Greater": [
+      "Thunderstomp"
+    ],
+    "Twilight Knife": [
+      "Disintegrate",
+      "Dispel Magic"
+    ],
+    "Calcific Touch": [
+      "Break Enchantment",
+      "Restoration",
+      "Stone to Flesh"
+    ],
+    "Celestial Healing, Greater": [
+      "Celestial Healing"
+    ],
+    "Controlled Fireball": [
+      "Fireball"
+    ],
+    "Enlarge Person, Mass": [
+      "Enlarge Person"
+    ],
+    "Furious Fire Barrage": [
+      "Calm Emotions"
+    ],
+    "Ghost Wolf": [
+      "Phantom Steed"
+    ],
+    "Moonstruck": [
+      "Confusion",
+      "Rage"
+    ],
+    "Flaming Sphere, Greater": [
+      "Flaming Sphere"
+    ],
+    "Poisonous Cloud": [
+      "Fog Cloud",
+      "Permanency"
+    ],
+    "River of Wind": [
+      "Freedom of Movement"
+    ],
+    "Tail Current": [
+      "Tailwind"
+    ],
+    "Wall of Fire": [
+      "Permanency"
+    ],
+    "Reduce Person, Mass": [
+      "Reduce Person"
+    ],
+    "Warp Metal": [
+      "Make Whole"
+    ],
+    "Wreath of Blades": [
+      "Warding Weapon"
+    ],
+    "Sun's Disdain, Mass": [
+      "Sun's Disdain"
+    ],
+    "Bless": [
+      "Bane"
+    ],
+    "Detect Chaos": [
+      "Detect Evil"
+    ],
+    "Detect Good": [
+      "Detect Evil"
+    ],
+    "Detect Law": [
+      "Detect Evil"
+    ],
+    "Obscuring Mist": [
+      "Fireball",
+      "Flame Strike",
+      "Gust of Wind",
+      "Wall of Fire"
+    ],
+    "Consecrate": [
+      "Desecrate"
+    ],
+    "Gentle Repose": [
+      "Raise Dead"
+    ],
+    "Make Whole": [
+      "Mending"
+    ],
+    "Spiritual Weapon": [
+      "Disintegrate",
+      "Dispel Magic"
+    ],
+    "Glyph of Warding": [
+      "Mislead",
+      "Nondetection",
+      "Polymorph",
+      "Read Magic"
+    ],
+    "Magic Circle against Chaos": [
+      "Magic Circle against Evil",
+      "Protection from Chaos",
+      "Protection from Evil"
+    ],
+    "Magic Circle against Evil": [
+      "Astral Projection",
+      "Blink",
+      "Dimension Door",
+      "Dimensional Anchor",
+      "Etherealness",
+      "Gate",
+      "Planar Binding",
+      "Plane Shift",
+      "Protection from Evil",
+      "Shadow Walk",
+      "Teleport"
+    ],
+    "Chaos Hammer": [
+      "Slow"
+    ],
+    "Control Water": [
+      "Slow"
+    ],
+    "Dimensional Anchor": [
+      "Astral Projection",
+      "Blink",
+      "Dimension Door",
+      "Ethereal Jaunt",
+      "Etherealness",
+      "Gate",
+      "Maze",
+      "Plane Shift",
+      "Shadow Walk",
+      "Teleport",
+      "Teleportation Circle"
+    ],
+    "Divination": [
+      "Augury"
+    ],
+    "Divine Power": [
+      "Haste"
+    ],
+    "Inflict Critical Wounds": [
+      "Inflict Light Wounds"
+    ],
+    "Unholy Blight": [
+      "Heal",
+      "Remove Curse",
+      "Remove Disease"
+    ],
+    "Command, Greater": [
+      "Command"
+    ],
+    "Dispel Chaos": [
+      "Dispel Evil"
+    ],
+    "Dispel Evil": [
+      "Dispel Magic"
+    ],
+    "Hallow": [
+      "Aid",
+      "Bane",
+      "Bless",
+      "Cause Fear",
+      "Darkness",
+      "Daylight",
+      "Death Ward",
+      "Deeper Darkness",
+      "Detect Evil",
+      "Detect Magic",
+      "Dimensional Anchor",
+      "Discern Lies",
+      "Dispel Magic",
+      "Endure Elements",
+      "Freedom of Movement",
+      "Invisibility Purge",
+      "Magic Circle against Evil",
+      "Protection from Energy",
+      "Remove Fear",
+      "Resist Energy",
+      "Silence",
+      "Tongues",
+      "Unhallow",
+      "Zone of Truth"
+    ],
+    "Mark of Justice": [
+      "Bestow Curse",
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Symbol of Pain": [
+      "Symbol of Death"
+    ],
+    "Unhallow": [
+      "Aid",
+      "Bane",
+      "Bless",
+      "Cause Fear",
+      "Darkness",
+      "Daylight",
+      "Death Ward",
+      "Deeper Darkness",
+      "Detect Good",
+      "Detect Magic",
+      "Dimensional Anchor",
+      "Discern Lies",
+      "Dispel Magic",
+      "Endure Elements",
+      "Freedom of Movement",
+      "Hallow",
+      "Invisibility Purge",
+      "Magic Circle against Good",
+      "Protection from Energy",
+      "Remove Fear",
+      "Resist Energy",
+      "Silence",
+      "Tongues",
+      "Zone of Truth"
+    ],
+    "Wall of Stone": [
+      "Disintegrate",
+      "Wall of Iron"
+    ],
+    "Abadar's Truthtelling": [
+      "Zone of Truth"
+    ],
+    "Blessing of the Watch": [
+      "Bless"
+    ],
+    "Detect Demon": [
+      "Detect Evil"
+    ],
+    "Hairline Fractures": [
+      "Make Whole"
+    ],
+    "Ironbloom Sprouts": [
+      "Goodberry"
+    ],
+    "Preserve": [
+      "Gentle Repose",
+      "Permanency",
+      "Putrefy Food and Drink"
+    ],
+    "Sanctify Corpse": [
+      "Permanency"
+    ],
+    "Shield the Banner": [
+      "Sanctuary"
+    ],
+    "Abeyance": [
+      "Remove Curse"
+    ],
+    "Watchful Eye": [
+      "Shield Other"
+    ],
+    "Animate Dead, Lesser": [
+      "Animate Dead"
+    ],
+    "Bloody Tears and Jagged Smile": [
+      "Deathwatch"
+    ],
+    "Contact Entity I": [
+      "Scrying"
+    ],
+    "Curse Terrain, Lesser": [
+      "Curse Terrain"
+    ],
+    "Cloud of Seasickness": [
+      "Permanency",
+      "Stinking Cloud"
+    ],
+    "Imbue with Aura": [
+      "Detect Evil",
+      "Detect Good"
+    ],
+    "Life Channel": [
+      "Cure Light Wounds"
+    ],
+    "Necromantic Burden": [
+      "Control Undead"
+    ],
+    "Magic Boulder": [
+      "Magic Stone"
+    ],
+    "Protection from Chaos, Communal": [
+      "Protection from Chaos"
+    ],
+    "Protection from Outsiders": [
+      "Protection from Evil"
+    ],
+    "Protection from Evil, Communal": [
+      "Protection from Evil"
+    ],
+    "Reinforce Armaments, Communal": [
+      "Reinforce Armaments"
+    ],
+    "Sense Madness": [
+      "Confusion",
+      "Detect Magic",
+      "Insanity"
+    ],
+    "Shackle": [
+      "Dimensional Anchor"
+    ],
+    "Shard of Chaos": [
+      "Slow"
+    ],
+    "Snow Shape (Ulfen)": [
+      "Stone Shape"
+    ],
+    "Spiral Descent": [
+      "Spiral Ascent"
+    ],
+    "Sympathetic Wounds": [
+      "Shield Other"
+    ],
+    "Unholy Ice Weapon": [
+      "Holy Ice Weapon"
+    ],
+    "Unliving Rage": [
+      "Rage"
+    ],
+    "Water Walk, Communal": [
+      "Water Walk"
+    ],
+    "Agonize": [
+      "Planar Ally"
+    ],
+    "Align Weapon, Communal": [
+      "Align Weapon"
+    ],
+    "Appearance of Life": [
+      "Detect Undead",
+      "Permanency"
+    ],
+    "Badger's Ferocity": [
+      "Keen Edge"
+    ],
+    "Contact Entity II": [
+      "Contact Entity I"
+    ],
+    "Create Soul Gem": [
+      "Resurrection",
+      "Unhallow"
+    ],
+    "Damnation": [
+      "Desecrate"
+    ],
+    "Guiding Star": [
+      "Teleport"
+    ],
+    "Hide from Undead, Greater": [
+      "Hide from Undead"
+    ],
+    "Homeward Bound": [
+      "Dismissal"
+    ],
+    "Lightning Lash": [
+      "Flame Strike"
+    ],
+    "Lissalan Snake Sigil": [
+      "Displacement",
+      "Remove Curse",
+      "Sepia Snake Sigil",
+      "Slow"
+    ],
+    "Martyr's Last Blessing": [
+      "Phantasmal Killer",
+      "Power Word Kill"
+    ],
+    "Meld into Stone": [
+      "Passwall",
+      "Stone Shape",
+      "Stone to Flesh",
+      "Transmute Rock to Mud"
+    ],
+    "Oath of Justice": [
+      "Mark of Justice"
+    ],
+    "Reveal Mirage": [
+      "Hallucinatory Terrain",
+      "Mirage Arcana"
+    ],
+    "Severed Fate": [
+      "Dispel Magic",
+      "Remove Curse"
+    ],
+    "Skeleton Crew": [
+      "Desecrate"
+    ],
+    "Soul Vault": [
+      "Permanency"
+    ],
+    "Stunning Barrier, Greater": [
+      "Stunning Barrier"
+    ],
+    "Symbol of Healing": [
+      "Permanency",
+      "Symbol of Death"
+    ],
+    "Teratoid Caress": [
+      "Atonement",
+      "Dispel Evil"
+    ],
+    "Absolution": [
+      "Atonement",
+      "Break Enchantment",
+      "Heroism"
+    ],
+    "Alter River": [
+      "Move Earth",
+      "Permanency"
+    ],
+    "Bestow Planar Infusion II": [
+      "Bestow Planar Infusion I"
+    ],
+    "Black Spot": [
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Charon's Dispensation": [
+      "Mindwipe",
+      "Modify Memory"
+    ],
+    "Blessing of Fervor": [
+      "Haste"
+    ],
+    "Curse of Unexpected Death": [
+      "Dispel Magic",
+      "Remove Curse"
+    ],
+    "Daemon Ward": [
+      "Death Ward"
+    ],
+    "Death Knell Aura": [
+      "Death Knell"
+    ],
+    "Devil Snare": [
+      "Dimensional Anchor",
+      "Dismissal"
+    ],
+    "Fleshworm Infestation": [
+      "Dispel Evil",
+      "Heal",
+      "Protection from Evil",
+      "Remove Disease"
+    ],
+    "Gilded Whispers": [
+      "Arcane Sight",
+      "Detect Magic",
+      "Scrying"
+    ],
+    "Globe of Tranquil Water": [
+      "Antiplant Shell",
+      "Ice Storm"
+    ],
+    "Gift of the Deep": [
+      "Enlarge Person"
+    ],
+    "Hallucinogenic Smoke": [
+      "Augury"
+    ],
+    "Guardian of Faith": [
+      "Protection from Chaos",
+      "Protection from Evil",
+      "Shield of Faith"
+    ],
+    "Infernal Healing, Greater": [
+      "Infernal Healing"
+    ],
+    "Infuse Effigy": [
+      "Bestow Curse",
+      "Gentle Repose"
+    ],
+    "Janni's Jaunt": [
+      "Plane Shift"
+    ],
+    "Magic Circle Against Technology": [
+      "Protection from Technology"
+    ],
+    "Make Whole, Greater": [
+      "Make Whole"
+    ],
+    "Mighty Strength": [
+      "Bull's Strength"
+    ],
+    "Nature's Ravages": [
+      "Resurrection",
+      "True Resurrection"
+    ],
+    "Poisonous Balm": [
+      "Cure Serious Wounds",
+      "Detect Poison"
+    ],
+    "Positive Pulse, Greater": [
+      "Positive Pulse"
+    ],
+    "Protection from Energy, Communal": [
+      "Protection from Energy"
+    ],
+    "Rest Eternal": [
+      "Break Enchantment",
+      "Remove Curse"
+    ],
+    "Sacrifice": [
+      "Miracle",
+      "Planar Ally",
+      "Planar Binding",
+      "Wish"
+    ],
+    "Shield of Fortification, Greater": [
+      "Shield of Fortification"
+    ],
+    "Shield Speech, Greater": [
+      "Shield Speech"
+    ],
+    "Spindrift Spritz, Mass": [
+      "Spindrift Spritz"
+    ],
+    "Spiritual Ally": [
+      "Disintegrate",
+      "Dispel Magic",
+      "Spiritual Weapon"
+    ],
+    "Summon Cacodaemon, Greater": [
+      "Summon Cacodaemon"
+    ],
+    "Summon Genie, Lesser": [
+      "Summon Monster I"
+    ],
+    "Symbol of Revelation": [
+      "Faerie Fire",
+      "Permanency",
+      "Symbol of Death"
+    ],
+    "Symbol of Slowing": [
+      "Permanency",
+      "Slow",
+      "Symbol of Death"
+    ],
+    "Traveling Dream": [
+      "Arcane Eye",
+      "Magic Circle against Evil"
+    ],
+    "Ward Shield": [
+      "Fireball"
+    ],
+    "Appearance of Life, Greater": [
+      "Appearance of Life"
+    ],
+    "Astral Projection, Lesser": [
+      "Astral Projection"
+    ],
+    "Call Spirit": [
+      "Unseen Servant"
+    ],
+    "Cleanse": [
+      "Break Enchantment"
+    ],
+    "Cleansing Fire": [
+      "Dispel Magic"
+    ],
+    "Constricting Coils": [
+      "Hold Monster"
+    ],
+    "Contact Entity III": [
+      "Contact Entity II"
+    ],
+    "Contagion, Greater": [
+      "Contagion"
+    ],
+    "Curse, Major": [
+      "Bestow Curse"
+    ],
+    "Fickle Winds": [
+      "Wind Wall"
+    ],
+    "Forbid Action, Greater": [
+      "Forbid Action"
+    ],
+    "Holy Ice": [
+      "Wall of Ice"
+    ],
+    "Invigorating Repose": [
+      "Breath of Life",
+      "Raise Dead"
+    ],
+    "Lighten Object, Mass": [
+      "Lighten Object"
+    ],
+    "Life Bubble": [
+      "Cloudkill",
+      "Endure Elements",
+      "Stinking Cloud"
+    ],
+    "Reboot": [
+      "Make Whole"
+    ],
+    "Reprobation": [
+      "Atonement",
+      "Cure Light Wounds",
+      "Prayer",
+      "Remove Curse"
+    ],
+    "Sessile Spirit": [
+      "Possess Object",
+      "Possession"
+    ],
+    "Siphon Magic": [
+      "Dispel Magic"
+    ],
+    "Sand Whirlwind, Greater": [
+      "Sand Whirlwind"
+    ],
+    "Spell Immunity, Communal": [
+      "Spell Immunity"
+    ],
+    "Spellcasting Contract, Lesser": [
+      "Cure Moderate Wounds",
+      "Imbue with Spell Ability",
+      "Magic Weapon",
+      "Shield of Faith"
+    ],
+    "Sphere of Warding": [
+      "Magic Jar",
+      "Wall of Force"
+    ],
+    "Steal Years, Greater": [
+      "Steal Years"
+    ],
+    "Symbol of Scrying": [
+      "Permanency",
+      "Scrying",
+      "Symbol of Death"
+    ],
+    "Symbol of Sleep": [
+      "Sleep",
+      "Symbol of Death"
+    ],
+    "Unholy Ice": [
+      "Holy Ice"
+    ],
+    "Symbol of Striking": [
+      "Permanency",
+      "Symbol of Death"
+    ],
+    "Waft": [
+      "Levitate"
+    ],
+    "Banishment": [
+      "Dismissal"
+    ],
+    "Bear's Endurance, Mass": [
+      "Bear's Endurance"
+    ],
+    "Blessing of Luck and Resolve, Mass": [
+      "Blessing of Luck and Resolve"
+    ],
+    "Bull's Strength, Mass": [
+      "Bull's Strength"
+    ],
+    "Chains of Light": [
+      "Astral Projection",
+      "Blink",
+      "Dimension Door",
+      "Ethereal Jaunt",
+      "Etherealness",
+      "Gate",
+      "Maze",
+      "Plane Shift",
+      "Shadow Walk",
+      "Teleport"
+    ],
+    "Death Knell Aura, Greater": [
+      "Astral Projection",
+      "Death Knell Aura",
+      "Magic Jar"
+    ],
+    "Demon Dream": [
+      "Dream",
+      "Nightmare"
+    ],
+    "Dust Ward": [
+      "Miracle",
+      "Wish"
+    ],
+    "Eaglesoul": [
+      "Detect Evil"
+    ],
+    "Create Undead": [
+      "Animate Dead"
+    ],
+    "Enlightened Step": [
+      "Air Walk"
+    ],
+    "Epidemic": [
+      "Contagion"
+    ],
+    "Forbiddance": [
+      "Dimension Door",
+      "Dispel Magic",
+      "Teleport"
+    ],
+    "Genius Avaricious": [
+      "Augury"
+    ],
+    "Glyph of Warding, Greater": [
+      "Glyph of Warding",
+      "Read Magic"
+    ],
+    "Harm": [
+      "Heal"
+    ],
+    "Knock, Mass": [
+      "Knock"
+    ],
+    "Metabolic Molting": [
+      "Raise Dead",
+      "Regenerate",
+      "Temporal Stasis"
+    ],
+    "Owl's Wisdom, Mass": [
+      "Owl's Wisdom"
+    ],
+    "Plague Storm": [
+      "Fog Cloud"
+    ],
+    "Planetary Adaptation, Mass": [
+      "Planetary Adaptation"
+    ],
+    "Prognostication": [
+      "Divination"
+    ],
+    "Seer's Bane": [
+      "Bestow Curse",
+      "Chaos Hammer",
+      "Contagion",
+      "Holy Smite",
+      "Nondetection",
+      "Order's Wrath",
+      "Poison",
+      "Unholy Blight"
+    ],
+    "Source Severance": [
+      "Antimagic Field"
+    ],
+    "Planar Adaptation, Mass": [
+      "Planar Adaptation"
+    ],
+    "Summon Barghest II": [
+      "Summon Barghest I"
+    ],
+    "Symbol of Fear": [
+      "Symbol of Death"
+    ],
+    "Symbol of Sealing": [
+      "Disintegrate",
+      "Knock",
+      "Mage's Disjunction",
+      "Symbol of Death",
+      "Wall of Force"
+    ],
+    "Symbol of Storms": [
+      "Symbol of Death"
+    ],
+    "Undeath to Death": [
+      "Circle of Death"
+    ],
+    "Symbol of Persuasion": [
+      "Charm Monster",
+      "Symbol of Death"
+    ],
+    "Wither Limb": [
+      "Heal",
+      "Limited Wish",
+      "Miracle",
+      "Regenerate",
+      "Wish"
+    ],
+    "Bestow Curse, Greater": [
+      "Abeyance",
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Bestow Grace of the Champion": [
+      "Detect Evil"
+    ],
+    "Bestow Planar Infusion III": [
+      "Bestow Planar Infusion I"
+    ],
+    "Bloodstone Mirror": [
+      "Control Undead"
+    ],
+    "Create Demiplane, Lesser": [
+      "Astral Projection",
+      "Etherealness",
+      "Limited Wish",
+      "Mage's Disjunction",
+      "Miracle",
+      "Move Earth",
+      "Permanency",
+      "Plane Shift",
+      "Wall of Stone",
+      "Wish"
+    ],
+    "Destruction": [
+      "Miracle",
+      "Resurrection",
+      "True Resurrection",
+      "Wish"
+    ],
+    "Create Variant Mummy": [
+      "Create Undead"
+    ],
+    "False Resurrection": [
+      "Resurrection"
+    ],
+    "Grim Stalker": [
+      "Nightmare",
+      "Phantasmal Killer"
+    ],
+    "Hunger for Flesh, Mass": [
+      "Hunger for Flesh"
+    ],
+    "Lunar Veil": [
+      "Deeper Darkness"
+    ],
+    "Planar Refuge": [
+      "Permanency"
+    ],
+    "Plundered Power": [
+      "Dominate Person",
+      "Invisibility",
+      "Summon Monster II"
+    ],
+    "Poison Breath": [
+      "Poison"
+    ],
+    "Resurrection": [
+      "Disintegrate",
+      "Raise Dead"
+    ],
+    "Signifer's Rally": [
+      "Magic Circle against Evil",
+      "Teleport"
+    ],
+    "Soul Transfer": [
+      "Trap the Soul"
+    ],
+    "Symbol of Weakness": [
+      "Symbol of Death"
+    ],
+    "Vision of Lamashtu": [
+      "Bestow Curse",
+      "Blade Barrier",
+      "Destruction",
+      "Inflict Moderate Wounds",
+      "Nightmare"
+    ],
+    "Symbol of Stunning": [
+      "Symbol of Death"
+    ],
+    "Angelic Aspect, Greater": [
+      "Magic Circle against Evil",
+      "Tongues"
+    ],
+    "Antimagic Field": [
+      "Dispel Magic",
+      "Prismatic Sphere",
+      "Prismatic Wall",
+      "Wall of Force"
+    ],
+    "Cloak of Chaos": [
+      "Confusion",
+      "Protection from Law"
+    ],
+    "Call Construct": [
+      "Instant Summons"
+    ],
+    "Counterbalancing Aura": [
+      "Protection from Evil"
+    ],
+    "Create Demiplane": [
+      "Permanency"
+    ],
+    "Death Clutch": [
+      "Breath of Life",
+      "Raise Dead",
+      "Regenerate"
+    ],
+    "Create Greater Undead": [
+      "Create Undead"
+    ],
+    "Discern Location": [
+      "Mind Blank"
+    ],
+    "Dimensional Lock": [
+      "Astral Projection",
+      "Blink",
+      "Dimension Door",
+      "Ethereal Jaunt",
+      "Etherealness",
+      "Gate",
+      "Maze",
+      "Plane Shift",
+      "Shadow Walk",
+      "Teleport"
+    ],
+    "Heart of the Mammoth": [
+      "Keen Edge"
+    ],
+    "Holy Aura": [
+      "Blindness/Deafness",
+      "Protection from Evil"
+    ],
+    "Nature's Ravages, Greater": [
+      "Nature's Ravages"
+    ],
+    "Maw of Chaos": [
+      "Disintegrate"
+    ],
+    "Quintessence Mastery": [
+      "Control Water",
+      "Create Demiplane",
+      "Diminish Plants",
+      "Fog Cloud",
+      "Major Creation",
+      "Move Earth",
+      "Plant Growth",
+      "Secure Shelter",
+      "Soften Earth and Stone",
+      "Spike Growth",
+      "Spike Stones",
+      "Stone Shape",
+      "Transmute Mud to Rock",
+      "Transmute Rock to Mud",
+      "Wall of Stone",
+      "Wall of Thorns"
+    ],
+    "Realm Retribution": [
+      "Plane Shift"
+    ],
+    "Rotting Alliance": [
+      "Remove Curse",
+      "Remove Disease"
+    ],
+    "Remove Radioactivity, Greater": [
+      "Remove Radioactivity"
+    ],
+    "Rift of Ruin": [
+      "Summon Monster VII"
+    ],
+    "Sacramental Seal": [
+      "Freedom",
+      "Miracle",
+      "Wish"
+    ],
+    "Shield of Law": [
+      "Protection from Chaos",
+      "Slow"
+    ],
+    "Soulseeker": [
+      "Find the Path",
+      "Soul Bind"
+    ],
+    "Spell Immunity, Greater": [
+      "Spell Immunity"
+    ],
+    "Symbol of Death": [
+      "Dispel Magic",
+      "Erase",
+      "Permanency",
+      "Read Magic"
+    ],
+    "Symbol of Dispelling": [
+      "Symbol of Death"
+    ],
+    "Tomb Legion": [
+      "Shambler"
+    ],
+    "Symbol of Insanity": [
+      "Insanity",
+      "Symbol of Death"
+    ],
+    "True Prognostication": [
+      "Divination"
+    ],
+    "Umbral Infusion, Mass": [
+      "Umbral Infusion"
+    ],
+    "Wandering Weather": [
+      "Control Weather"
+    ],
+    "Astral Projection": [
+      "Dispel Magic"
+    ],
+    "Canopic Conversion": [
+      "Protection from Evil",
+      "Sanctuary",
+      "Suggestion"
+    ],
+    "Create Demiplane, Greater": [
+      "Create Demiplane",
+      "Gate",
+      "Move Earth",
+      "Permanency"
+    ],
+    "Unholy Aura": [
+      "Protection from Good"
+    ],
+    "Energy Drain": [
+      "Enervation"
+    ],
+    "Etherealness": [
+      "Ethereal Jaunt"
+    ],
+    "Gate": [
+      "Plane Shift"
+    ],
+    "Cursed Earth": [
+      "Diminish Plants"
+    ],
+    "Interplanetary Teleport": [
+      "Teleport"
+    ],
+    "Miracle": [
+      "Feeblemind",
+      "Insanity"
+    ],
+    "False Resurrection, Greater": [
+      "False Resurrection",
+      "True Resurrection"
+    ],
+    "Parasitic Soul": [
+      "Magic Jar",
+      "Soul Bind",
+      "Trap the Soul"
+    ],
+    "Absorb Rune III": [
+      "Absorb Rune I"
+    ],
+    "Heal, Mass": [
+      "Heal"
+    ],
+    "Polar Midnight": [
+      "Miracle",
+      "True Resurrection",
+      "Wall of Ice",
+      "Wish"
+    ],
+    "Soul Bind": [
+      "Clone",
+      "Miracle",
+      "Raise Dead",
+      "Resurrection",
+      "True Resurrection",
+      "Wish"
+    ],
+    "Spawn Calling": [
+      "Binding",
+      "Dominate Monster"
+    ],
+    "Symbol of Strife": [
+      "Confusion",
+      "Permanency",
+      "Symbol of Death"
+    ],
+    "Symbol of Vulnerability": [
+      "Permanency",
+      "Symbol of Death"
+    ],
+    "True Resurrection": [
+      "Raise Dead"
+    ],
+    "Sign of the Dawnflower": [
+      "Message"
+    ],
+    "Charm Animal": [
+      "Charm Person"
+    ],
+    "Detect Aberration": [
+      "Detect Animals or Plants"
+    ],
+    "Faerie Fire": [
+      "Blur",
+      "Darkness",
+      "Displacement",
+      "Invisibility"
+    ],
+    "Gentle Breeze": [
+      "Cloudkill",
+      "Stinking Cloud"
+    ],
+    "Magic Fang": [
+      "Permanency"
+    ],
+    "Summon Nature's Ally 1": [
+      "Wish"
+    ],
+    "Carry Companion": [
+      "Deathwatch",
+      "Dispel Magic",
+      "Flesh to Stone",
+      "Stone to Flesh"
+    ],
+    "Chill Metal": [
+      "Heat Metal"
+    ],
+    "Euphoric Cloud": [
+      "Fog Cloud"
+    ],
+    "Feast of Ashes": [
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Fire Trap": [
+      "Dispel Magic",
+      "Knock"
+    ],
+    "Glide": [
+      "Feather Fall"
+    ],
+    "Harmless Form": [
+      "Beast Shape II"
+    ],
+    "Heat Metal": [
+      "Chill Metal"
+    ],
+    "Hold Animal": [
+      "Hold Person"
+    ],
+    "Pale Flame": [
+      "Produce Flame"
+    ],
+    "Reduce Animal": [
+      "Reduce Person"
+    ],
+    "Seed Spies": [
+      "Insect Spies"
+    ],
+    "Sickening Entanglement": [
+      "Entangle"
+    ],
+    "Warp Wood": [
+      "Make Whole"
+    ],
+    "Tree Shape": [
+      "Detect Magic"
+    ],
+    "Apport Animal": [
+      "Apport Object"
+    ],
+    "Anthropomorphic Animal": [
+      "Permanency"
+    ],
+    "Wing Bounty": [
+      "Goodberry"
+    ],
+    "Burning Entanglement": [
+      "Entangle"
+    ],
+    "Calistria's Guardian Wasps": [
+      "Alarm"
+    ],
+    "Clear Grove": [
+      "Entangle",
+      "Spike Growth"
+    ],
+    "Cup of Dust": [
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Diminish Plants": [
+      "Entangle",
+      "Plant Growth",
+      "Wall of Thorns"
+    ],
+    "Flashfire": [
+      "Sleet Storm"
+    ],
+    "Curse of Dragonflies": [
+      "Gaseous Form"
+    ],
+    "Heatstroke": [
+      "Ray of Exhaustion"
+    ],
+    "Longstrider, Greater": [
+      "Longstrider"
+    ],
+    "Magic Fang, Greater": [
+      "Magic Fang",
+      "Permanency"
+    ],
+    "Nature's Exile": [
+      "Break Enchantment",
+      "Limited Wish",
+      "Miracle",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Plant Growth": [
+      "Diminish Plants",
+      "Entangle",
+      "Wall of Thorns"
+    ],
+    "Quell Energy": [
+      "Sound Burst"
+    ],
+    "Signs of the Land": [
+      "Commune with Nature"
+    ],
+    "Siphon Might": [
+      "Ray of Enfeeblement"
+    ],
+    "Thorny Entanglement": [
+      "Entangle"
+    ],
+    "Woodland Rune": [
+      "Freedom of Movement",
+      "Symbol of Death"
+    ],
+    "Aggressive Thundercloud, Greater": [
+      "Aggressive Thundercloud"
+    ],
+    "Blast of Wind": [
+      "Gust of Wind"
+    ],
+    "Cloud Shape": [
+      "Detect Magic",
+      "Gaseous Form"
+    ],
+    "Grove of Respite": [
+      "Alarm",
+      "Goodberry",
+      "Tiny Hut"
+    ],
+    "Reincarnate": [
+      "Miracle",
+      "Wish"
+    ],
+    "Sea Stallion": [
+      "Sea Steed"
+    ],
+    "Substitute Trail": [
+      "True Seeing"
+    ],
+    "Slowing Mud": [
+      "Create Water",
+      "Haste",
+      "Hydraulic Push",
+      "Slow"
+    ],
+    "Thirsting Entanglement": [
+      "Entangle"
+    ],
+    "True Form": [
+      "Baleful Polymorph"
+    ],
+    "Call Lightning Storm": [
+      "Call Lightning"
+    ],
+    "Carve Passage": [
+      "Expeditious Excavation"
+    ],
+    "Baleful Polymorph": [
+      "Beast Shape III"
+    ],
+    "Mantle of the Magic Warriors": [
+      "Beast Shape I"
+    ],
+    "Jungle Mind": [
+      "Commune with Nature",
+      "Detect Thoughts"
+    ],
+    "Invoke Primal Power": [
+      "Beast Shape II"
+    ],
+    "Old Salt's Curse": [
+      "Break Enchantment",
+      "Remove Curse"
+    ],
+    "Raise Animal Companion": [
+      "Raise Dead"
+    ],
+    "Replay Tracks": [
+      "Pass without Trace"
+    ],
+    "Sturdy Tree Fort": [
+      "Secure Shelter"
+    ],
+    "Threefold Aspect": [
+      "True Seeing"
+    ],
+    "Tidal Surge": [
+      "Dispel Magic"
+    ],
+    "Transmute Mud to Rock": [
+      "Transmute Rock to Mud"
+    ],
+    "Transmute Rock to Mud": [
+      "Dispel Magic",
+      "Transmute Mud to Rock"
+    ],
+    "Wall of Light": [
+      "Permanency"
+    ],
+    "Wind Blades": [
+      "Gust of Wind"
+    ],
+    "Binding Earth, Mass": [
+      "Binding Earth"
+    ],
+    "Bite the Hand, Mass": [
+      "Bite the Hand"
+    ],
+    "Blazing Rainbow": [
+      "Faerie Fire"
+    ],
+    "Gravity Sphere": [
+      "Reverse Gravity"
+    ],
+    "Cyclic Reincarnation": [
+      "Reincarnate"
+    ],
+    "Gravity Well": [
+      "Freedom of Movement"
+    ],
+    "Green Caress": [
+      "Break Enchantment",
+      "Diminish Plants",
+      "Dispel Magic",
+      "Limited Wish",
+      "Miracle",
+      "Plant Growth",
+      "Polymorph Any Object",
+      "Remove Curse",
+      "Wish"
+    ],
+    "Insect Spies, Greater": [
+      "Insect Spies"
+    ],
+    "Ironwood": [
+      "Wood Shape"
+    ],
+    "Jatembe's Ire": [
+      "Black Tentacles",
+      "Detect Evil"
+    ],
+    "Reincarnate Spy": [
+      "Reincarnate",
+      "Scrying"
+    ],
+    "Repel Wood": [
+      "Antimagic Field"
+    ],
+    "Share Skin": [
+      "Magic Jar"
+    ],
+    "Speak with Waves": [
+      "Stone Tell"
+    ],
+    "Wandering Trail": [
+      "True Seeing"
+    ],
+    "Black Mark": [
+      "Mark of Justice",
+      "Nature's Exile"
+    ],
+    "Animate Plants": [
+      "Entangle"
+    ],
+    "Fairy Ring Retreat": [
+      "Unseen Servant"
+    ],
+    "Summon Giant Ally II": [
+      "Summon Giant Ally I"
+    ],
+    "Siege of Trees": [
+      "Energy Siege Shot"
+    ],
+    "Tectonic Communion": [
+      "Commune with Nature"
+    ],
+    "Transmute Metal to Wood": [
+      "Limited Wish",
+      "Miracle",
+      "Wish"
+    ],
+    "Animal Shapes": [
+      "Beast Shape III"
+    ],
+    "Atavism, Mass": [
+      "Atavism"
+    ],
+    "Entomb": [
+      "Daylight"
+    ],
+    "Fey Form IV": [
+      "Fey Form III"
+    ],
+    "Repel Metal or Stone": [
+      "Antimagic Field"
+    ],
+    "Seamantle": [
+      "Cloudkill",
+      "Dispel Magic",
+      "Flame Blade",
+      "Flaming Sphere",
+      "Freedom of Movement",
+      "Incendiary Cloud"
+    ],
+    "Wall of Lava": [
+      "Wall of Fire"
+    ],
+    "Summon Giant Ally III": [
+      "Summon Giant Ally I"
+    ],
+    "Antipathy": [
+      "Sympathy"
+    ],
+    "Rival's Weald": [
+      "Speak with Plants",
+      "Tree Shape"
+    ],
+    "Sea of Dust": [
+      "Control Water",
+      "Gust of Wind"
+    ],
+    "Shapechange": [
+      "Alter Self",
+      "Beast Shape IV",
+      "Elemental Body IV",
+      "Form of the Dragon III",
+      "Giant Form II",
+      "Plant Shape III"
+    ],
+    "Siege of Trees, Greater": [
+      "Siege of Trees"
+    ],
+    "Sympathy": [
+      "Antipathy"
+    ],
+    "Threefold Form": [
+      "Bilocation",
+      "Threefold Aspect"
+    ],
+    "Tsunami": [
+      "Freedom of Movement"
+    ],
+    "Keep Watch": [
+      "Deep Slumber",
+      "Sleep"
+    ],
+    "Arrow Eruption": [
+      "True Strike"
+    ],
+    "Hunter's Eye": [
+      "Blur",
+      "Displacement",
+      "Invisibility"
+    ],
+    "Protective Spirit": [
+      "Disintegrate",
+      "Dispel Magic"
+    ],
+    "Shield Companion (ACG)": [
+      "Shield Other"
+    ],
+    "Share Shape": [
+      "Beast Shape II"
+    ],
+    "Chameleon Stride, Greater": [
+      "Chameleon Stride"
+    ],
+    "Venomous Bolt": [
+      "Poison"
+    ],
+    "Bow Spirit": [
+      "Disintegrate",
+      "Dispel Magic"
+    ],
+    "Tireless Pursuers": [
+      "Tireless Pursuit"
+    ],
+    "Find Quarry": [
+      "Locate Creature"
+    ],
+    "Named Bullet, Greater": [
+      "Named Bullet"
+    ],
+    "Evaluator's Lens": [
+      "Detect Magic",
+      "Disintegrate",
+      "Dispel Magic"
+    ],
+    "Follow Aura": [
+      "Detect Evil"
+    ],
+    "Knock": [
+      "Arcane Lock",
+      "Hold Portal"
+    ],
+    "Banish Seeming": [
+      "Dispel Magic"
+    ],
+    "Cast Out": [
+      "Dispel Magic",
+      "Magic Jar"
+    ],
+    "Halt Undead": [
+      "Hold Person"
+    ],
+    "Brand of Tracking": [
+      "Antimagic Field",
+      "Locate Creature",
+      "Mislead",
+      "Nondetection",
+      "Polymorph"
+    ],
+    "Brand, Greater": [
+      "Bestow Curse",
+      "Brand",
+      "Mark of Justice"
+    ],
+    "Interrogation, Greater": [
+      "Interrogation"
+    ],
+    "Judgment Light": [
+      "Destruction",
+      "Resistance"
+    ],
+    "Shared Wrath": [
+      "Wrath"
+    ],
+    "Castigate, Mass": [
+      "Castigate"
+    ],
+    "Lend Judgment, Greater": [
+      "Lend Judgment"
+    ],
+    "Telepathic Bond": [
+      "Permanency"
+    ],
+    "Fester, Mass": [
+      "Fester"
+    ],
+    "Arcane Mark": [
+      "Detect Magic",
+      "Erase",
+      "Instant Summons",
+      "Read Magic",
+      "See Invisibility",
+      "True Seeing"
+    ],
+    "Blood Money": [
+      "Stoneskin"
+    ],
+    "Mount, Communal": [
+      "Mount"
+    ],
+    "River Whip": [
+      "Create Water"
+    ],
+    "Time Shudder": [
+      "Haste",
+      "Slow"
+    ],
+    "Web": [
+      "Permanency"
+    ],
+    "Mnemonic Siphon": [
+      "Magic Aura"
+    ],
+    "Numerological Evocation": [
+      "Numerological Resistance"
+    ],
+    "Sundered Serpent Coil": [
+      "Black Tentacles"
+    ],
+    "Anywhere but Here": [
+      "Plane Shift"
+    ],
+    "Ethereal Fists": [
+      "Blink"
+    ],
+    "Arcana Theft": [
+      "Dispel Magic"
+    ],
+    "Martial Telekinesis": [
+      "Telekinesis"
+    ],
+    "Shadow Invasion": [
+      "Darkness",
+      "Shadow Evocation",
+      "Summon Monster V"
+    ],
+    "Telekinetic Maneuver": [
+      "Telekinesis"
+    ],
+    "Cloudkill": [
+      "Fog Cloud"
+    ],
+    "Solid Fog": [
+      "Fog Cloud",
+      "Permanency"
+    ],
+    "Ether Step": [
+      "Ethereal Jaunt"
+    ],
+    "Interposing Hand": [
+      "Antimagic Field",
+      "Darkness",
+      "Disintegrate",
+      "Dispel Magic",
+      "Prismatic Sphere",
+      "Prismatic Wall",
+      "Wall of Force"
+    ],
+    "Chain Lightning": [
+      "Lightning Bolt"
+    ],
+    "Acid Fog": [
+      "Solid Fog"
+    ],
+    "Disintegrate": [
+      "Antimagic Field",
+      "Forceful Hand",
+      "Globe of Invulnerability",
+      "Wall of Force"
+    ],
+    "Chains of Fire": [
+      "Chain Lightning"
+    ],
+    "Flesh to Stone": [
+      "Deathwatch"
+    ],
+    "Wall of Force": [
+      "Dimension Door",
+      "Disintegrate",
+      "Dispel Magic",
+      "Mage's Disjunction",
+      "Permanency",
+      "Teleport"
+    ],
+    "Forceful Hand": [
+      "Interposing Hand"
+    ],
+    "Last Azlanti's Defending Sword": [
+      "Mage's Sword"
+    ],
+    "Treacherous Teleport": [
+      "Teleport"
+    ],
+    "Heal Mount": [
+      "Heal"
+    ],
+    "Blaze of Glory": [
+      "Prayer"
+    ],
+    "Holy Sword": [
+      "Bless Weapon",
+      "Magic Circle against Evil"
+    ],
+    "Hex Glyph": [
+      "Glyph of Warding",
+      "Read Magic"
+    ],
+    "Polymorph Familiar": [
+      "Beast Shape I",
+      "Beast Shape II",
+      "Beast Shape III",
+      "Beast Shape IV"
+    ],
+    "Contingent Venom": [
+      "Languid Venom",
+      "Magic Mouth"
+    ],
+    "Wicker Horse": [
+      "Barkskin"
+    ],
+    "Callback, Greater": [
+      "Callback"
+    ],
+    "Bind Sage": [
+      "Planar Binding"
+    ],
+    "Dahak's Release": [
+      "Calm Emotions"
+    ],
+    "Empathy Conduit": [
+      "Charm Person"
+    ],
+    "Hex Glyph, Greater": [
+      "Hex Glyph",
+      "Read Magic"
+    ],
+    "Withdraw Affliction": [
+      "Neutralize Poison",
+      "Remove Curse",
+      "Remove Disease"
+    ],
+    "Vision": [
+      "Legend Lore"
+    ],
+    "Shadow Transmutation, Greater": [
+      "Polymorph",
+      "Shadow Transmutation"
+    ],
+    "Unfetter": [
+      "Teleport"
+    ],
+    "Cushioning Bands": [
+      "Crushing Hand"
+    ],
+    "Summon Eidolon": [
+      "Dispel Magic",
+      "Protection from Evil"
+    ],
+    "Fleshwarping Swarm (Drow)": [
+      "Summon Swarm"
+    ],
+    "Phantom Chariot": [
+      "Phantom Steed"
+    ],
+    "Life Conduit, Improved": [
+      "Life Conduit"
+    ],
+    "Restore Eidolon": [
+      "Restoration"
+    ],
+    "Spiked Pit": [
+      "Create Pit"
+    ],
+    "Damnation Stride": [
+      "Dimension Door"
+    ],
+    "Mage's Faithful Hound": [
+      "Invisibility"
+    ],
+    "Acid Pit": [
+      "Create Pit"
+    ],
+    "Planar Binding, Lesser": [
+      "Dimensional Anchor",
+      "Magic Circle against Evil"
+    ],
+    "Riding Possession": [
+      "Possession",
+      "Protection from Evil"
+    ],
+    "Major Creation": [
+      "Minor Creation"
+    ],
+    "Hungry Pit": [
+      "Create Pit"
+    ],
+    "Ice Crystal Teleport": [
+      "Teleport"
+    ],
+    "Invisibility, Mass": [
+      "Invisibility"
+    ],
+    "Life Conduit, Greater": [
+      "Life Conduit"
+    ],
+    "Mind Swap": [
+      "Possession"
+    ],
+    "Nex's Secret Workshop": [
+      "Nondetection"
+    ],
+    "Sequester": [
+      "Invisibility"
+    ],
+    "Summon Monster 7": [
+      "Summon Monster I"
+    ],
+    "Teleport, Greater": [
+      "Teleport"
+    ],
+    "Walk the Plank": [
+      "Create Pit"
+    ],
+    "Binding": [
+      "Antimagic Field",
+      "Antipathy",
+      "Banishment",
+      "Dismissal",
+      "Dispel Magic",
+      "Dominate Animal",
+      "Dominate Monster",
+      "Dominate Person",
+      "Mage's Disjunction",
+      "Suggestion"
+    ],
+    "Dimensional Bounce": [
+      "Dimension Door"
+    ],
+    "Dominate Monster": [
+      "Dominate Person"
+    ],
+    "Hostile Juxtaposition, Greater": [
+      "Hostile Juxtaposition"
+    ],
+    "Incendiary Cloud": [
+      "Cloudkill",
+      "Fog Cloud"
+    ],
+    "Maze": [
+      "Dimension Door",
+      "Plane Shift",
+      "Teleport"
+    ],
+    "Summon Monster 8": [
+      "Summon Monster I"
+    ],
+    "Teleportation Circle": [
+      "Permanency"
+    ],
+    "Hermean Potential": [
+      "Ill Omen"
+    ],
+    "Mask Dweomer": [
+      "Analyze Dweomer",
+      "Arcane Sight",
+      "Detect Magic"
+    ],
+    "Corpse Lanterns": [
+      "Dancing Lights",
+      "Permanency"
+    ],
+    "Crimson Confession": [
+      "Detect Magic",
+      "Erase",
+      "See Invisibility",
+      "True Seeing"
+    ],
+    "Eldritch Conduit": [
+      "Faerie Fire"
+    ],
+    "Familiar Figment": [
+      "Mirror Image"
+    ],
+    "Mask Dweomer, Communal": [
+      "Mask Dweomer"
+    ],
+    "Symbol of Mirroring": [
+      "Mirror Image",
+      "Permanency",
+      "Symbol of Death"
+    ],
+    "Twilight Haze": [
+      "Darkness",
+      "Fog Cloud"
+    ],
+    "Cackling Skull": [
+      "Magic Mouth"
+    ],
+    "Barrow Haze": [
+      "Fog Cloud"
+    ],
+    "Irriseni Mirror Sight": [
+      "Scrying"
+    ],
+    "Loathsome Veil": [
+      "Permanency"
+    ],
+    "Phantasmal Affliction": [
+      "Delay Poison",
+      "Neutralize Poison",
+      "Poison",
+      "Remove Disease"
+    ],
+    "Secret Coffer": [
+      "Secret Chest"
+    ],
+    "Infuse Decay": [
+      "Imbue with Spell Ability"
+    ],
+    "Geb's Hammer": [
+      "Disintegrate"
+    ],
+    "Mirror Transport": [
+      "Dimension Door",
+      "Mirror Hideaway"
+    ],
+    "Object Possession, Lesser": [
+      "Possession"
+    ],
+    "Symbol Of Laughter": [
+      "Hideous Laughter",
+      "Permanency",
+      "Symbol of Death"
+    ],
+    "Web Cloud": [
+      "Cloudkill",
+      "Web"
+    ],
+    "Debilitating Pain, Mass": [
+      "Debilitating Pain"
+    ],
+    "Draconic Suppression": [
+      "Dominate Person"
+    ],
+    "Feeblemind": [
+      "Heal",
+      "Limited Wish",
+      "Miracle",
+      "Wish"
+    ],
+    "Pain Strike, Mass": [
+      "Pain Strike"
+    ],
+    "Possess Object": [
+      "Magic Jar"
+    ],
+    "Prying Eyes": [
+      "Dispel Magic"
+    ],
+    "Possession Trap": [
+      "Magic Jar"
+    ],
+    "Secret Chest": [
+      "Wish"
+    ],
+    "Eldritch Conduit, Greater": [
+      "Eldritch Conduit"
+    ],
+    "Guards and Wards": [
+      "Confusion",
+      "Dancing Lights",
+      "Dispel Magic",
+      "Gust of Wind",
+      "Mage's Disjunction",
+      "Magic Mouth",
+      "Silent Image",
+      "Stinking Cloud",
+      "Suggestion",
+      "Web"
+    ],
+    "Phantasmal Putrefaction": [
+      "Sleep"
+    ],
+    "Arcane Sight, Greater": [
+      "Arcane Sight",
+      "Permanency"
+    ],
+    "Familiar Double": [
+      "Project Image"
+    ],
+    "Hold Person, Mass": [
+      "Hold Person"
+    ],
+    "Insanity": [
+      "Confusion",
+      "Heal",
+      "Limited Wish",
+      "Miracle",
+      "Wish"
+    ],
+    "Instant Summons": [
+      "Arcane Mark",
+      "Read Magic"
+    ],
+    "Object Possession, Greater": [
+      "Control Construct",
+      "Object Possession"
+    ],
+    "Phase Door": [
+      "Dispel Magic",
+      "Passwall",
+      "Permanency"
+    ],
+    "Teleport Object": [
+      "Dispel Magic",
+      "Teleport"
+    ],
+    "Recorporeal Incarnation": [
+      "Alter Self",
+      "Detect Magic",
+      "Detect Undead",
+      "Gentle Repose",
+      "Permanency",
+      "Raise Dead",
+      "True Seeing"
+    ],
+    "Temporal Divergence": [
+      "Fireball",
+      "Temporal Stasis"
+    ],
+    "Temporary Resurrection": [
+      "Raise Dead"
+    ],
+    "Instant Summons, Greater": [
+      "Arcane Mark",
+      "Instant Summons"
+    ],
+    "Mind Blank": [
+      "Arcane Eye",
+      "Detect Evil",
+      "Limited Wish",
+      "Locate Creature",
+      "Miracle",
+      "Wish"
+    ],
+    "Demand": [
+      "Sending",
+      "Suggestion"
+    ],
+    "Possession, Greater": [
+      "Possession"
+    ],
+    "Secret Vault": [
+      "Plane Shift",
+      "Secret Chest"
+    ],
+    "Share Skin, Greater": [
+      "Share Skin"
+    ],
+    "Prying Eyes, Greater": [
+      "Prying Eyes",
+      "True Seeing"
+    ],
+    "Trap the Soul": [
+      "Sympathy"
+    ],
+    "Hold Monster, Mass": [
+      "Hold Person"
+    ],
+    "Maze of Madness and Suffering": [
+      "Maze"
+    ],
+    "Mind Blank, Communal": [
+      "Mind Blank"
+    ],
+    "Rune of Jandelay": [
+      "Earthquake",
+      "Restoration",
+      "Spike Stones",
+      "Stone Shape",
+      "Transmute Rock to Mud"
+    ],
+    "Scribe's Binding": [
+      "Erase",
+      "Freedom",
+      "Miracle",
+      "Modify Memory",
+      "Secret Page",
+      "Wish"
+    ],
+    "Suffocation, Mass": [
+      "Suffocation"
+    ],
+    "Breeze": [
+      "Cloudkill",
+      "Penumbra",
+      "Protective Penumbra",
+      "Stinking Cloud"
+    ],
+    "Jolt": [
+      "Penumbra",
+      "Protective Penumbra"
+    ],
+    "Drench": [
+      "Penumbra",
+      "Protective Penumbra"
+    ],
+    "Penumbra": [
+      "Protective Penumbra"
+    ],
+    "Root": [
+      "Penumbra",
+      "Protective Penumbra"
+    ],
+    "Scoop": [
+      "Penumbra",
+      "Protective Penumbra"
+    ],
+    "Hold Portal": [
+      "Dispel Magic",
+      "Knock"
+    ],
+    "Incendiary Runes": [
+      "Explosive Runes"
+    ],
+    "Arcane Lock": [
+      "Dispel Magic",
+      "Knock"
+    ],
+    "Sculpt Corpse": [
+      "Raise Dead",
+      "Speak with Dead"
+    ],
+    "Sculpt Simulacrum": [
+      "Disguise Self",
+      "Simulacrum"
+    ],
+    "Blacklight": [
+      "Daylight"
+    ],
+    "Dazzling Blade, Mass": [
+      "Dazzling Blade"
+    ],
+    "Detect Mindscape": [
+      "Detect Thoughts"
+    ],
+    "Explosive Runes": [
+      "Dispel Magic",
+      "Erase"
+    ],
+    "Illusory Poison": [
+      "Delay Poison",
+      "Dispel Magic",
+      "Neutralize Poison",
+      "Restoration",
+      "True Seeing"
+    ],
+    "Resize Item": [
+      "Permanency"
+    ],
+    "Rune of Warding": [
+      "Glyph of Warding"
+    ],
+    "Spherescry": [
+      "Scrying"
+    ],
+    "Shrink Item": [
+      "Permanency"
+    ],
+    "Twine Double": [
+      "Simulacrum"
+    ],
+    "Emergency Force Sphere": [
+      "Wall of Force"
+    ],
+    "Fool's Teleport": [
+      "Dimension Door",
+      "Invisibility",
+      "Teleport"
+    ],
+    "Dream Dalliance": [
+      "Break Enchantment",
+      "Miracle"
+    ],
+    "Globe of Invulnerability, Lesser": [
+      "Dispel Magic"
+    ],
+    "Malfunction": [
+      "Confusion"
+    ],
+    "Minor Phantom Object": [
+      "Minor Creation"
+    ],
+    "Resilient Sphere": [
+      "Dispel Magic",
+      "Wall of Force"
+    ],
+    "Shadowy Haven": [
+      "Rope Trick",
+      "Shadow Walk"
+    ],
+    "Simulacrum, Lesser": [
+      "Simulacrum"
+    ],
+    "Condensed Ether": [
+      "Solid Fog",
+      "True Seeing"
+    ],
+    "Create Mindscape": [
+      "Mindscape Door",
+      "Permanency"
+    ],
+    "Mage's Private Sanctum": [
+      "Detect Thoughts",
+      "Message",
+      "Permanency",
+      "Sending"
+    ],
+    "Major Phantom Object": [
+      "Major Creation"
+    ],
+    "Open Arms": [
+      "Instant Enemy"
+    ],
+    "Permanency": [
+      "Alarm",
+      "Animate Objects",
+      "Arcane Sight",
+      "Comprehend Languages",
+      "Dancing Lights",
+      "Darkvision",
+      "Detect Magic",
+      "Dispel Magic",
+      "Enlarge Person",
+      "Ghost Sound",
+      "Gust of Wind",
+      "Invisibility",
+      "Mage's Private Sanctum",
+      "Magic Fang",
+      "Magic Fang, Greater",
+      "Magic Mouth",
+      "Phase Door",
+      "Prismatic Sphere",
+      "Prismatic Wall",
+      "Read Magic",
+      "Reduce Person",
+      "Resistance",
+      "See Invisibility",
+      "Shrink Item",
+      "Solid Fog",
+      "Stinking Cloud",
+      "Symbol of Death",
+      "Symbol of Fear",
+      "Symbol of Insanity",
+      "Symbol of Pain",
+      "Symbol of Persuasion",
+      "Symbol of Sleep",
+      "Symbol of Stunning",
+      "Symbol of Weakness",
+      "Teleportation Circle",
+      "Tongues",
+      "Wall of Fire",
+      "Wall of Force",
+      "Web"
+    ],
+    "Repair Undead, Mass": [
+      "Repair Undead"
+    ],
+    "Spell Absorption": [
+      "Dispel Magic"
+    ],
+    "Thoughtsense": [
+      "Mind Blank",
+      "Nondetection"
+    ],
+    "Trace Teleport": [
+      "Teleport"
+    ],
+    "Flesh to Ooze": [
+      "Baleful Polymorph",
+      "Stone to Flesh"
+    ],
+    "Psychic Asylum": [
+      "Neutralize Poison"
+    ],
+    "Violent Misfire, Greater": [
+      "Violent Misfire"
+    ],
+    "Create Mindscape, Greater": [
+      "Create Mindscape",
+      "Mindscape Door",
+      "Permanency"
+    ],
+    "Elemental Body IV": [
+      "Elemental Body I",
+      "Elemental Body III"
+    ],
+    "Delayed Blast Fireball": [
+      "Fireball"
+    ],
+    "Fly, Mass": [
+      "Fly"
+    ],
+    "Forcecage": [
+      "Disintegrate",
+      "Dispel Magic",
+      "Mage's Disjunction",
+      "Wall of Force"
+    ],
+    "Form of the Alien Dragon II": [
+      "Form of the Alien Dragon I"
+    ],
+    "Form of the Dragon II": [
+      "Form of the Dragon I"
+    ],
+    "Hungry Darkness": [
+      "Deeper Darkness"
+    ],
+    "Grasping Hand": [
+      "Interposing Hand"
+    ],
+    "Invisibility Bubble, Mass": [
+      "Invisibility Bubble"
+    ],
+    "Limited Wish": [
+      "Insanity"
+    ],
+    "Mage's Sword": [
+      "Disintegrate",
+      "Dispel Magic"
+    ],
+    "Ooze Form III": [
+      "Ooze Form II"
+    ],
+    "Permanent Hallucination": [
+      "Audiovisual Hallucination"
+    ],
+    "Mage's Magnificent Mansion": [
+      "Unseen Servant"
+    ],
+    "Plant Shape III": [
+      "Plant Shape II"
+    ],
+    "Polymorph, Greater": [
+      "Alter Self",
+      "Beast Shape IV",
+      "Elemental Body III",
+      "Form of the Dragon I",
+      "Plant Shape II",
+      "Polymorph"
+    ],
+    "Prismatic Spray": [
+      "Flesh to Stone"
+    ],
+    "Shadow Conjuration, Greater": [
+      "Shadow Conjuration"
+    ],
+    "Shapechanger's Gift, Greater": [
+      "Alter Self",
+      "Beast Shape I",
+      "Elemental Body I",
+      "Fey Form I",
+      "Monstrous Physique I",
+      "Shapechanger's Gift",
+      "Vermin Shape I"
+    ],
+    "Word of Beckoning": [
+      "Sending"
+    ],
+    "Steam Ray Fusillade": [
+      "Scorching Ray"
+    ],
+    "Teleport Trap": [
+      "Permanency"
+    ],
+    "Form of the Alien Dragon III": [
+      "Form of the Alien Dragon II"
+    ],
+    "Clenched Fist": [
+      "Forceful Hand",
+      "Interposing Hand"
+    ],
+    "Form of the Dragon III": [
+      "Form of the Dragon I",
+      "Form of the Dragon II"
+    ],
+    "Giant Form II": [
+      "Giant Form I"
+    ],
+    "Magical Beast Shape": [
+      "Beast Shape IV"
+    ],
+    "Prismatic Wall": [
+      "Antimagic Field",
+      "Cone of Cold",
+      "Daylight",
+      "Disintegrate",
+      "Dispel Magic",
+      "Gust of Wind",
+      "Insanity",
+      "Mage's Disjunction",
+      "Magic Missile",
+      "Passwall",
+      "Permanency"
+    ],
+    "Polymorph Any Object": [
+      "Baleful Polymorph",
+      "Flesh to Stone",
+      "Stone to Flesh",
+      "Transmute Metal to Wood",
+      "Transmute Mud to Rock",
+      "Transmute Rock to Mud"
+    ],
+    "Shadow Evocation, Greater": [
+      "Shadow Evocation"
+    ],
+    "Spell Absorption, Greater": [
+      "Spell Absorption"
+    ],
+    "Telekinetic Sphere": [
+      "Resilient Sphere"
+    ],
+    "Temporal Stasis": [
+      "Dispel Magic",
+      "Freedom"
+    ],
+    "Undead Anatomy IV": [
+      "Undead Anatomy III"
+    ],
+    "Aroden's Spellbane": [
+      "Antimagic Field",
+      "Prismatic Sphere",
+      "Prismatic Wall",
+      "Wall of Force"
+    ],
+    "Bilocation": [
+      "Eagle's Splendor",
+      "Fireball",
+      "Hold Person"
+    ],
+    "Crushing Hand": [
+      "Forceful Hand",
+      "Grasping Hand",
+      "Interposing Hand"
+    ],
+    "Echean's Excellent Enclosure": [
+      "Antimagic Field",
+      "Dimension Door",
+      "Dispel Magic",
+      "Teleport",
+      "Wall of Force"
+    ],
+    "Freedom": [
+      "Binding",
+      "Entangle",
+      "Imprisonment",
+      "Maze",
+      "Sleep",
+      "Slow",
+      "Temporal Stasis",
+      "Web"
+    ],
+    "Icy Prison, Mass": [
+      "Icy Prison"
+    ],
+    "Lost Locale": [
+      "Lost Passage",
+      "Permanency"
+    ],
+    "Meteor Swarm": [
+      "Fireball"
+    ],
+    "Imprisonment": [
+      "Discern Location",
+      "Freedom",
+      "Locate Object",
+      "Miracle",
+      "Temporal Stasis",
+      "Wish"
+    ],
+    "Prismatic Sphere": [
+      "Permanency",
+      "Prismatic Wall"
+    ],
+    "Mage's Disjunction": [
+      "Antimagic Field",
+      "Dispel Magic",
+      "Miracle",
+      "Wish"
+    ],
+    "Shades": [
+      "Shadow Conjuration"
+    ],
+    "Summon Monster 9": [
+      "Summon Monster I"
+    ],
+    "Resplendent Mansion": [
+      "Alarm",
+      "Mage's Magnificent Mansion"
+    ],
+    "Time Stop": [
+      "Antimagic Field"
+    ],
+    "Weird": [
+      "Phantasmal Killer"
+    ],
+    "Wish": [
+      "Geas/Quest",
+      "Insanity",
+      "Resurrection"
+    ],
+    "Detect Psychic Significance": [
+      "Charge Object",
+      "Implant False Reading"
+    ],
+    "Charge Object": [
+      "Detect Psychic Significance",
+      "Object Reading"
+    ],
+    "Object Reading": [
+      "Charge Object",
+      "Implant False Reading"
+    ],
+    "Analyze Aura": [
+      "Detect Evil",
+      "Detect Magic",
+      "Magic Aura"
+    ],
+    "Instigate Psychic Duel": [
+      "Mindscape Door"
+    ],
+    "Sealed Life": [
+      "Shield Other",
+      "Vampiric Touch"
+    ],
+    "Aura Alteration": [
+      "Analyze Aura",
+      "Detect Evil",
+      "Detect Magic",
+      "Identify"
+    ],
+    "Erase Impressions": [
+      "Legend Lore",
+      "Object Reading",
+      "Speak with Dead"
+    ],
+    "Out of Sight": [
+      "Modify Memory"
+    ],
+    "Remote Viewing": [
+      "Forbiddance"
+    ],
+    "Implant False Reading": [
+      "Charge Object",
+      "Magic Aura",
+      "Object Reading"
+    ],
+    "Implanted Projection": [
+      "Telempathic Projection"
+    ],
+    "Animus Mine, Greater": [
+      "Animus Mine"
+    ],
+    "Psychic Surgery": [
+      "Dispel Magic",
+      "Modify Memory"
+    ],
+    "Synesthesia, Mass": [
+      "Synesthesia"
+    ],
+    "Dream Travel": [
+      "Bestow Curse",
+      "Dream",
+      "Dream Council",
+      "Dream Scan",
+      "Feeblemind",
+      "Insanity",
+      "Phantasmal Killer",
+      "Possession"
+    ],
+    "Talismanic Implement": [
+      "Contingency"
+    ],
+    "Mental Barrier I": [
+      "Mind Thrust I"
+    ],
+    "Mind Thrust II": [
+      "Mind Thrust I"
+    ],
+    "Id Insinuation II": [
+      "Id Insinuation I"
+    ],
+    "Mental Barrier II": [
+      "Mental Barrier I",
+      "Mind Thrust I"
+    ],
+    "Mind Thrust III": [
+      "Mind Thrust I"
+    ],
+    "Thought Shield II": [
+      "Thought Shield I"
+    ],
+    "Thought Worm II": [
+      "Thought Worm I"
+    ],
+    "Ego Whip II": [
+      "Ego Whip I"
+    ],
+    "Id Insinuation III": [
+      "Id Insinuation I"
+    ],
+    "Mental Barrier III": [
+      "Mental Barrier I",
+      "Mind Thrust II"
+    ],
+    "Mind Thrust IV": [
+      "Mind Thrust I"
+    ],
+    "Thought Shield III": [
+      "Thought Shield I"
+    ],
+    "Thought Worm III": [
+      "Thought Worm II"
+    ],
+    "Ego Whip III": [
+      "Ego Whip I"
+    ],
+    "Id Insinuation IV": [
+      "Id Insinuation I"
+    ],
+    "Intellect Fortress II": [
+      "Intellect Fortress I"
+    ],
+    "Mental Barrier IV": [
+      "Mental Barrier III",
+      "Mind Thrust I",
+      "Mind Thrust III"
+    ],
+    "Mind Thrust V": [
+      "Mind Thrust IV"
+    ],
+    "Rend Body I": [
+      "Heal"
+    ],
+    "Thought Shield IV": [
+      "Thought Shield III"
+    ],
+    "Thought Worm IV": [
+      "Thought Worm III"
+    ],
+    "Ego Whip IV": [
+      "Ego Whip I"
+    ],
+    "Intellect Fortress III": [
+      "Intellect Fortress II"
+    ],
+    "Mind Thrust VI": [
+      "Mind Thrust IV"
+    ],
+    "Psychic Crush II": [
+      "Psychic Crush I"
+    ],
+    "Rend Body II": [
+      "Rend Body I"
+    ],
+    "Thought Shield V": [
+      "Thought Shield IV"
+    ],
+    "Tower of Iron Will II": [
+      "Tower of Iron Will I"
+    ],
+    "Ego Whip V": [
+      "Ego Whip I"
+    ],
+    "Ethereal Envelopment": [
+      "Ethereal Envelope"
+    ],
+    "Psychic Crush III": [
+      "Psychic Crush I"
+    ],
+    "Rend Body III": [
+      "Rend Body I"
+    ],
+    "Tower of Iron Will III": [
+      "Tower of Iron Will I"
+    ],
+    "Psychic Crush IV": [
+      "Psychic Crush I"
+    ],
+    "Mental Barrier V": [
+      "Mental Barrier III",
+      "Mind Thrust I",
+      "Mind Thrust IV"
+    ],
+    "Rend Body IV": [
+      "Rend Body III"
+    ],
+    "Dream Voyage": [
+      "Dream Travel"
+    ],
+    "Microcosm": [
+      "Mindscape Door",
+      "Miracle",
+      "Wish"
+    ],
+    "Mind Swap, Major": [
+      "Mind Swap",
+      "Miracle",
+      "Wish"
+    ],
+    "Psychic Crush V": [
+      "Psychic Crush IV"
+    ],
+    "Tower of Iron Will IV": [
+      "Tower of Iron Will I"
+    ],
+    "Psychic Image": [
+      "Blink",
+      "Dimension Door"
+    ],
+    "Tower of Iron Will V": [
+      "Tower of Iron Will I"
+    ],
+    "Sealed Life, Greater": [
+      "Death Ward",
+      "Possession",
+      "Sealed Life",
+      "Trap the Soul"
+    ],
+    "Invisibility, Bubble": [
+      "Invisibility"
+    ],
+    "Invisibility, Bubble, Giant": [
+      "Invisibility Bubble"
+    ],
+    "Invisibility, Bubble, Mass": [
+      "Invisibility Bubble"
+    ],
+    "Companion Transposition": [
+      "Dimension Door"
+    ],
+    "Summon Monster I": [
+      "Wish"
+    ],
+    "Summon Monster II": [
+      "Summon Monster I"
+    ],
+    "Summon Monster III": [
+      "Summon Monster I"
+    ],
+    "Summon Monster IV": [
+      "Summon Monster I"
+    ],
+    "Summon Monster V": [
+      "Summon Monster I"
+    ],
+    "Summon Monster VI": [
+      "Summon Monster I"
+    ],
+    "Summon Monster VII": [
+      "Summon Monster I"
+    ],
+    "Summon Monster VIII": [
+      "Summon Monster I"
+    ],
+    "Summon Monster IX": [
+      "Summon Monster I"
+    ]
+  }
+}
