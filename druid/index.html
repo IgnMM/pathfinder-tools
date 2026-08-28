@@ -44,8 +44,8 @@
 <script src="../assets/conditions.js"></script>
 <script>
 (function(){
-  var syncBox = document.querySelector("details.sourcesbox");
-  if (syncBox && syncBox.parentElement) PFConditions.mount(syncBox.parentElement, {before: syncBox.nextSibling});
+  var clearBtn = document.getElementById("clear");
+  if (clearBtn && clearBtn.parentElement) PFConditions.mount(clearBtn.parentElement);
 })();
 </script>
 <script>
