@@ -110,6 +110,7 @@ function alwaysOpenDatalist(id){let el=$(id);el.addEventListener('focus',()=>{el
 
 let saveIndicatorTimer=null;
 function save(){
+  state._updatedAt=Date.now();
   store.profiles[store.active]=state;
   localStorage.setItem(STORE_KEY,JSON.stringify(store));
   let el=$('saveIndicator');
@@ -297,7 +298,17 @@ if("serviceWorker" in navigator){
     if(!remote || !remote.profiles || !Object.keys(remote.profiles).length) return local;
     if(!local || !local.profiles || !Object.keys(local.profiles).length) return remote;
     let merged=JSON.parse(JSON.stringify(remote));
-    Object.keys(local.profiles).forEach(name=>{ if(!merged.profiles[name]) merged.profiles[name]=local.profiles[name]; });
+    Object.keys(local.profiles).forEach(name=>{
+      let l=local.profiles[name], r=merged.profiles[name];
+      if(!r){ merged.profiles[name]=l; return; }
+      // Per profile, keep whichever side was actually edited more recently. A remote
+      // snapshot can be momentarily stale (e.g. a reconnect racing a local edit whose
+      // debounced cloud push hadn't landed yet) -- without this check, that stale
+      // snapshot would silently discard a newer local change just for arriving from
+      // the cloud, which is exactly what looked like "clicks keep getting reverted".
+      let lt=l._updatedAt||0, rt=r._updatedAt||0;
+      if(lt>rt) merged.profiles[name]=l;
+    });
     if(!merged.profiles[merged.active]) merged.active=Object.keys(merged.profiles)[0];
     return merged;
   }
@@ -357,7 +368,7 @@ if("serviceWorker" in navigator){
         const data=snap2.data();
         if(!data || !data[APP_FIELD]) return;
         if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
-        applyStore(data[APP_FIELD]);
+        applyStore(mergeStores(store, data[APP_FIELD]));
         setStatus('Synced ✓ (updated from another device)');
       }, (err)=>setStatus('Sync error: '+err.message));
 

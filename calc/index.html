@@ -2630,6 +2630,7 @@ const STORE_KEY='pf1_universal_damage_calc_profiles_v1';
 function loadStore(){ let s=JSON.parse(localStorage.getItem(STORE_KEY)||'null'); if(!s||!s.profiles||!s.profiles.length){ s={active:'New Character',profiles:[defaultProfile('New Character')]}; } return s; }
 let saveIndicatorTimer=null;
 function saveStore(){
+  let _p=currentProfile(); if(_p) _p._updatedAt=Date.now();
   localStorage.setItem(STORE_KEY, JSON.stringify(store));
   let el=document.getElementById('saveIndicator');
   if(el){
@@ -3528,7 +3529,18 @@ if("serviceWorker" in navigator){
     if(!remote || !remote.profiles || !remote.profiles.length) return local;
     if(!local || !local.profiles || !local.profiles.length) return remote;
     let merged=JSON.parse(JSON.stringify(remote));
-    local.profiles.forEach(lp=>{ if(!merged.profiles.some(rp=>rp.name===lp.name)) merged.profiles.push(lp); });
+    local.profiles.forEach(lp=>{
+      let idx=merged.profiles.findIndex(rp=>rp.name===lp.name);
+      if(idx===-1){ merged.profiles.push(lp); return; }
+      // Per profile, keep whichever side was actually edited more recently. A remote
+      // snapshot can be momentarily stale (e.g. a reconnect racing a local edit whose
+      // debounced cloud push hadn't landed yet) -- without this check, that stale
+      // snapshot would silently discard a newer local change just for arriving from
+      // the cloud.
+      let rp=merged.profiles[idx];
+      let lt=lp._updatedAt||0, rt=rp._updatedAt||0;
+      if(lt>rt) merged.profiles[idx]=lp;
+    });
     if(!merged.profiles.some(p=>p.name===merged.active)) merged.active=merged.profiles[0].name;
     return merged;
   }
@@ -3585,7 +3597,7 @@ if("serviceWorker" in navigator){
         if(!data || !data[APP_FIELD]) return;
         if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; } // echo of our own write, already applied
         applyingRemote=true;
-        store=data[APP_FIELD];
+        store=mergeStores(store, data[APP_FIELD]);
         if(window.__pinnedProfile && store.profiles.some(p=>p.name===window.__pinnedProfile)) store.active=window.__pinnedProfile;
         _origSaveStore();
         populateProfileSelect();
