@@ -1,8 +1,8 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v47";
+const CACHE_NAME = "pathfinder-paladins-folders-v48";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/casting-time.js",
-  "./assets/spell-crossref.js","./assets/spell-master-index.json","./assets/spell-crossrefs.json",
+  "./assets/spell-crossref.js","./assets/spell-master-index.json","./assets/spell-crossrefs.json","./assets/conditions.js",
   "./character/","./character/index.html","./character/view.html","./character/manifest.webmanifest","./character/icon-192.png","./character/icon-512.png",
   "./gabriel/","./gabriel/index.html","./gabriel/damage.html","./gabriel/spells.html","./gabriel/manifest.webmanifest","./gabriel/icon-192.png","./gabriel/icon-512.png",
   "./kenneth/","./kenneth/index.html","./kenneth/damage.html","./kenneth/spells.html","./kenneth/manifest.webmanifest","./kenneth/icon-192.png","./kenneth/icon-512.png",
