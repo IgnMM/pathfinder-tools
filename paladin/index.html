@@ -326,10 +326,18 @@ function renderInner(){
   document.querySelector('.rulenote summary').title=$('ruleNote').textContent;
   renderButtons();renderCtButtons();renderSlots();renderSources();renderOathInfo();renderList()
 }
+let lastOathFingerprint=null;
 function renderOathInfo(){
   syncOathsChecks();
   let box=$('oathInfo');
   let oaths=(state.oaths||[]).filter(n=>window.PFOaths&&PFOaths.OATHS[n]);
+  let fingerprint=oaths.join('|');
+  // Only rebuild when the set of chosen oaths actually changes — this div gets
+  // re-rendered on nearly every click (level buttons, +/-, favorites…), and rebuilding
+  // innerHTML every time would force these <details> back open even after the player
+  // manually collapses them, which is exactly the annoyance being fixed here.
+  if(fingerprint===lastOathFingerprint) return;
+  lastOathFingerprint=fingerprint;
   if(!oaths.length){box.innerHTML='';box.style.display='none';return}
   box.style.display='';
   box.innerHTML=oaths.map(name=>`<details class="rulenote" open><summary>⚔ Oath: ${name}</summary><div>${PFOaths.renderOathBody(name)}</div></details>`).join('');
