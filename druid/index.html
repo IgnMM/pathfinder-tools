@@ -222,7 +222,7 @@ function renderList(){
   let q=$('search').value.toLowerCase(),f=$('filter').value,out=$('list');out.innerHTML='';
   for(let l of state.show){
     let ctShown=state.ctShow||PRESENT_CT;
-    let arr=SPELLS.filter(s=>s.l===l&&(s.n+' '+(s.effect||'')).toLowerCase().includes(q)&&!state.excludedSources[s.source||'Unknown']&&(()=>{let cat=PFCastingTime.ctCategory(s.castingTime);return cat===null||ctShown.includes(cat)})());
+    let arr=SPELLS.filter(s=>s.l===l&&(s.n+' '+(s.effect||'')).toLowerCase().includes(q)&&!state.excludedSources[s.source||'Unknown']&&(()=>{let cats=PFCastingTime.ctCategory(s.castingTime);return cats.length===0||cats.some(c=>ctShown.includes(c))})());
     arr=arr.filter(s=>{
       let key=l+'|'+s.n,p=(state.prep[key]||0)>0,fav=!!state.fav[key];
       if(f==='prepared')return p;

@@ -87,7 +87,7 @@ function renderList(){
   let total=0;
   for(let l of store.show){
     let ctShown=store.ctShow||PRESENT_CT;
-    let arr=SPELLS.filter(s=>s.l===l&&(s.n+' '+(s.effect||'')).toLowerCase().includes(q)&&!store.excludedSources[s.source||'Unknown']&&(()=>{let cat=PFCastingTime.ctCategory(s.castingTime);return cat===null||ctShown.includes(cat)})());
+    let arr=SPELLS.filter(s=>s.l===l&&(s.n+' '+(s.effect||'')).toLowerCase().includes(q)&&!store.excludedSources[s.source||'Unknown']&&(()=>{let cats=PFCastingTime.ctCategory(s.castingTime);return cats.length===0||cats.some(c=>ctShown.includes(c))})());
     if(f==='favorites')arr=arr.filter(s=>!!store.fav[l+'|'+s.n]);
     if(!arr.length)continue;
     total+=arr.length;

@@ -160,6 +160,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <h3>Character</h3>
 <div class="row"><label>Race</label><input id="race" list="raceList" placeholder="Search race..." autocomplete="off"><datalist id="raceList"></datalist></div>
 <div class="raceNote">Selecting a race automatically excludes race-specific sourcebooks that don't match it (see the Sources panel above) — same rule as the spellbooks.</div>
+<div class="row"><label>Deity</label><input id="deity" list="deityList" placeholder="(optional)" autocomplete="off"><datalist id="deityList"></datalist></div>
+<div class="raceNote">Deity-specific catalog entries (a handful of feats/traits/spells tied to worshipping one particular god) only show up once you've picked that deity here. Leave empty to see none of those — everything else is unaffected.</div>
 <div class="row"><label>Alignment</label>
 <select id="alignment">
   <option value="">— unset —</option>
@@ -461,6 +463,10 @@ const WEAPON_CAT_LABEL={"simple-light":"Simple, Light","simple-one-handed":"Simp
 
 const RACES=["Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Aasimar","Adaro","Android","Aphorite","Aquatic Elf","Astomoi","Being of Ib","Boggard","Caligni","Catfolk","Cecaelia","Changeling","Deep One Hybrid","Dhampir","Drow","Drow Noble","Duergar","Duskwalker","Fetchling","Ganzi","Gathlain","Ghoran","Gillman","Goblin","Green Martian","Grindylow","Grippli","Hobgoblin","Ifrit","Kasatha","Kitsune","Kobold","Kuru","Lashunta","Locathah","Merfolk","Monkey Goblin","Munavri","Nagaji","Naiad","Orang-Pendak","Orc","Oread","Primitive Human","Ratfolk","Reborn Samsaran","Reptoid","Rougarou","Sahuagin","Samsaran","Shabti","Skinwalker","Strix","Suli","Svirfneblin","Sylph","Syrinx","Tengu","Tiefling","Triaxian","Triton","Trox","Undine","Vanara","Vine Leshy","Vishkanya","Wayang","Wyrwood","Wyvaran","Yaddithian"];
 const RACE_SOURCE_MAP={"Dwarf":["Dwarves of Golarion"],"Goblin":["Goblins of Golarion"],"Kobold":["Kobolds of Golarion"],"Orc":["Orcs of Golarion"],"Half-Orc":["Orcs of Golarion"],"Human":["Humans of Golarion"]};
+// Seed list for the Deity autocomplete — the 20 core Golarion deities. Not exhaustive
+// (empyreal lords, demon lords, archdevils, and regional deities exist too) but covers
+// the common case; typing any other name still works, it just won't autocomplete.
+const DEITIES=["Abadar","Asmodeus","Calistria","Cayden Cailean","Desna","Erastil","Gorum","Gozreh","Iomedae","Irori","Lamashtu","Nethys","Norgorber","Pharasma","Rovagug","Sarenrae","Shelyn","Torag","Urgathoa","Zon-Kuthon"];
 const RACE_ONLY_SOURCES=[...new Set(Object.values(RACE_SOURCE_MAP).flat())];
 
 // Which flags a selected "Current Target" satisfies. A catalog entry (or a player-set
@@ -656,7 +662,7 @@ const MODIFIERS = [
 {id:"emblem-of-greed",name:"Emblem of Greed",category:"weapon",subcat:"spell",source:"Arcane Anthology",appliesTo:["attack","damage"],type:"enhancement",
  desc:"Turns a weapon into a magical glaive with a scaling enhancement bonus (+1, then +2 at CL15, +3 at CL19) plus escalating special abilities.",
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
-{id:"gorum-s-armor",name:"Gorum's Armor",category:"weapon",subcat:"spell",source:"Inner Sea World Guide",appliesTo:["attack","damage"],type:"enhancement",
+{id:"gorum-s-armor",name:"Gorum's Armor",category:"weapon",subcat:"spell",source:"Inner Sea World Guide",appliesTo:["attack","damage"],type:"enhancement",deity:"Gorum",
  configFields:[{key:'cl',label:'Caster level',type:'number',default:5,linkLevel:'cl'}],
  desc:"Armor/shield spikes gain a scaling enhancement bonus at higher caster levels (0 below CL5, +1 at CL5, +2 at CL10). Only applies to armor/shield spike attacks, not other weapons.",
  compute:(ctx,cfg)=>{let cl=cfg.cl||0;let b=cl>=10?2:cl>=5?1:0;return {attack:b,damage:b,note:(b>0?signed(b)+' atk / '+signed(b)+' dmg (enhancement)':'0 — below CL5, no bonus yet')+' — only applies to armor/shield spike attacks'}}},
@@ -676,7 +682,7 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:''}],
  desc:"+2 sacred bonus on attack and damage rolls against a chosen favored-enemy creature type. Pick the type above so it turns on/off automatically with Current Target.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match your declared favored enemy type — see the field above'};return {attack:v,damage:v,note:signed(v)+' '+"sacred"}}},
-{id:"inheritor-s-smite",name:"Inheritor's Smite",category:"spell",source:"Inner Sea Gods",appliesTo:["attack"],type:"sacred",
+{id:"inheritor-s-smite",name:"Inheritor's Smite",category:"spell",source:"Inner Sea Gods",appliesTo:["attack"],type:"sacred",deity:"Iomedae",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:5}],
  desc:"+5 sacred bonus on the attack roll, but only for your next single melee attack.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:5);return {attack:v,damage:0,note:signed(v)+' '+"sacred"}}},
@@ -691,6 +697,9 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"+1 enhancement bonus on attack and damage rolls for up to 3 transmuted boulders used for rock-throwing or as siege ammunition.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"enhancement"}}},
+{id:"lead-blades",name:"Lead Blades",category:"spell",source:"Advanced Player's Guide",appliesTo:["damage"],type:"untyped",
+ desc:"All melee weapons you're carrying deal damage as if one size category larger (e.g. a Medium longsword's 1d8 becomes 2d6). Personal only — doesn't affect anyone else wielding your weapon. Applied automatically to Normal/Critical Damage above; assumes a Medium wielder, per the Core Rulebook's Weapon Damage Size Conversion table.",
+ compute:()=>({attack:0,damage:0,note:'weapon damage die increased one size category — applied automatically to Normal/Critical Damage above'})},
 {id:"magic-stone",name:"Magic Stone",category:"weapon",subcat:"spell",source:"Core Rulebook",appliesTo:["attack","damage"],type:"enhancement",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"+1 enhancement bonus on attack and damage rolls for up to 3 enchanted thrown/slung pebbles.",
@@ -1255,7 +1264,7 @@ function saveStore(){
 function defaultProfile(name){
   return {name, babList:[6], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
     style:'twoHanded', atkStat:'str', dmgStat:'str', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
-    enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:''};
+    enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:'', deity:''};
 }
 let store=loadStore();
 // migrate profiles saved before the Fighting Style / Ability picker / Race / Alignment / Sources features existed
@@ -1278,6 +1287,7 @@ store.profiles.forEach(p=>{
   if(!p.excludedSources) p.excludedSources={};
   if(p.race===undefined) p.race='';
   if(p.alignment===undefined) p.alignment='';
+  if(p.deity===undefined) p.deity='';
   if(p.mythicTier===undefined) p.mythicTier=0;
   if(p.mythicEnabled===undefined) p.mythicEnabled=false;
   if(p.currentTarget===undefined) p.currentTarget='none';
@@ -1321,6 +1331,7 @@ function loadProfileIntoUI(){
   $('offEnh').value=p.offEnh; $('offLight').checked=!!p.offLight;
   $('ammoEnh').value=p.ammoEnh;
   $('race').value=p.race||''; $('alignment').value=p.alignment||'';
+  $('deity').value=p.deity||'';
   $('customWeapon').style.display = p.weapon==='custom' ? 'block' : 'none';
   $('offCustomWeapon').style.display = p.offWeapon==='custom' ? 'block' : 'none';
   $('offhandBox').style.display = p.style==='twf' ? 'block' : 'none';
@@ -1342,6 +1353,7 @@ function syncUIIntoProfile(){
   p.offEnh=+$('offEnh').value; p.offLight=$('offLight').checked;
   p.ammoEnh=+$('ammoEnh').value;
   p.race=$('race').value.trim(); p.alignment=$('alignment').value;
+  p.deity=$('deity').value.trim();
   saveStore();
 }
 function updateEnhLabel(){
@@ -1432,6 +1444,12 @@ $('deleteProfile').onclick=()=>{
     compute();
   });
 });
+$('deity').addEventListener('input', ()=>{
+  syncUIIntoProfile();
+  saveStore();
+  renderCategories();
+  compute();
+});
 $('race').addEventListener('input', ()=>{
   syncUIIntoProfile();
   applyRaceSourceExclusions();
@@ -1444,6 +1462,10 @@ $('alignment').addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); }
 (function populateRaceList(){
   let dl=$('raceList');
   RACES.forEach(r=>{ let o=document.createElement('option'); o.value=r; dl.appendChild(o); });
+})();
+(function populateDeityList(){
+  let dl=$('deityList');
+  DEITIES.forEach(d=>{ let o=document.createElement('option'); o.value=d; dl.appendChild(o); });
 })();
 
 function weaponLabel(id){
@@ -1510,7 +1532,7 @@ function renderCategories(){
     addRow.innerHTML=`<input list="${listId}" placeholder="Search ${cat.label.toLowerCase()} to add..." id="add_${cat.k}"><datalist id="${listId}"></datalist><button data-cat="${cat.k}" class="addBtn">Add</button><button data-cat="${cat.k}" class="addCustomBtn">+ Custom</button>`;
     block.appendChild(addRow);
     let dl=addRow.querySelector('datalist');
-    MODIFIERS.filter(m=>m.category===cat.k && (m.allowMultiple || !p.active.some(a=>a.id===m.id)) && !p.excludedSources[m.source]).forEach(m=>{
+    MODIFIERS.filter(m=>m.category===cat.k && (m.allowMultiple || !p.active.some(a=>a.id===m.id)) && !p.excludedSources[m.source] && (!m.deity || m.deity===p.deity)).forEach(m=>{
       let o=document.createElement('option'); o.value=m.name; dl.appendChild(o);
     });
     if(!MODIFIERS.some(m=>m.category===cat.k)){
@@ -1784,6 +1806,14 @@ function diceMultiply(dice,mult){
   if(!m) return dice+' ×'+mult;
   return (Number(m[1])*mult)+'d'+m[2];
 }
+// Official Core Rulebook "Weapon Damage Size Conversion" table, Medium column -> Large column
+// (one size category larger — used by Lead Blades and any other "as if one size larger" effect
+// for a Medium wielder, which covers virtually every PC). Not the generic FAQ dice-step chart —
+// this is the dedicated size-conversion table, so no ambiguity about how many steps to take.
+const SIZE_UP_MEDIUM_TO_LARGE={'1':'1d2','1d2':'1d3','1d3':'1d4','1d4':'1d6','1d6':'1d8','1d8':'2d6','1d10':'2d8','1d12':'3d6','2d4':'2d6','2d6':'3d6','2d8':'3d8','2d10':'4d8'};
+function diceSizeUp(dice){
+  return SIZE_UP_MEDIUM_TO_LARGE[String(dice).trim()] || dice;
+}
 function maxDiceValue(dice){
   const m=String(dice).match(/^(\d+)d(\d+)$/i);
   if(!m) return dice;
@@ -1864,6 +1894,7 @@ function compute(){
   let vsMultMap={'vital-strike':2,'vital-strike-improved':3,'vital-strike-greater':4};
   let vsActive=p.active.filter(a=>a.on!==false && vsMultMap[a.id]);
   let vsMult=vsActive.length?Math.max(...vsActive.map(a=>vsMultMap[a.id])):0;
+  let leadBladesOn=p.active.some(a=>a.id==='lead-blades' && a.on!==false);
   if(vsMult && mythicVitalStrikeOn){
     dmg = dmg*vsMult; // Mythic Vital Strike: Str/enhancement/etc. bonuses are multiplied too, not just weapon dice
   }
@@ -1933,7 +1964,8 @@ function compute(){
     }
   }
 
-  let critDice=diceMultiply(w.dice,critMult);
+  let effDice = leadBladesOn ? diceSizeUp(w.dice) : w.dice;
+  let critDice=diceMultiply(effDice,critMult);
   let critDmg=dmg*critMult;
   let paNoCritMult = p.active.some(a=>a.id==='hr-pa-no-crit' && a.on!==false);
   if(paNoCritMult && powerAttackOn && powerAttackDmgVal){
@@ -1943,10 +1975,10 @@ function compute(){
     critDmg += powerAttackDmgVal*critMult;
   }
 
-  let dmgNormalDice=w.dice, dmgCritDiceStr=critDice;
+  let dmgNormalDice=effDice, dmgCritDiceStr=critDice;
   if(vsMult){
-    dmgNormalDice=diceMultiply(w.dice,vsMult);
-    dmgCritDiceStr=critDice+(vsMult>1?' + '+diceMultiply(w.dice,vsMult-1)+' (Vital Strike, unmultiplied)':'');
+    dmgNormalDice=diceMultiply(effDice,vsMult);
+    dmgCritDiceStr=critDice+(vsMult>1?' + '+diceMultiply(effDice,vsMult-1)+' (Vital Strike, unmultiplied)':'');
   }
   // Extra damage dice from active Weapon Effects (Flaming, Bane, Holy, etc.) are shown
   // as dice terms alongside the weapon's own dice — never folded into the flat number,
@@ -1984,6 +2016,9 @@ function compute(){
   }
   if(vsMult){
     notes.push('Vital Strike is active: Normal/Critical Damage above already include the extra weapon dice'+(mythicVitalStrikeOn?' and, with Mythic Vital Strike, your Str/enhancement/etc. bonuses are multiplied ×'+vsMult+' too':'')+'. This is a single attack-action strike, not part of a full attack — the Full Attack line no longer applies this turn.');
+  }
+  if(leadBladesOn){
+    notes.push('Lead Blades is active: Normal/Critical Damage above already use the upsized weapon die ('+w.dice+' → '+effDice+'), assuming a Medium wielder. Does not affect thrown/ranged or off-hand weapons the spell wasn\'t cast on, or anyone but you wielding the weapon.');
   }
   if(isCritImmune(ctx)){
     notes.push('Current Target is immune to critical hits and precision damage (oozes, elementals, swarms, and incorporeal creatures are — constructs and ordinary undead are NOT, unlike 3.5e) — Critical Damage above doesn\'t apply, and Sneak Attack/Precise Strike are suppressed.');
@@ -2033,10 +2068,11 @@ function compute(){
     $('offAtk').textContent=offIteratives.map(signed).join(' / ');
     let offExtraNormal=(extraDiceOff||[]).filter(e=>e.normal).map(e=>e.normal);
     let offExtraCritOnly=(extraDiceOff||[]).filter(e=>e.crit).map(e=>e.crit);
-    let offDmgDice = wOff.dice + (offExtraNormal.length ? ' + '+offExtraNormal.join(' + ') : '');
+    let effDiceOff = leadBladesOn ? diceSizeUp(wOff.dice) : wOff.dice;
+    let offDmgDice = effDiceOff + (offExtraNormal.length ? ' + '+offExtraNormal.join(' + ') : '');
     $('offDmg').textContent=`${offDmgDice} ${signed(offDmg)}`;
     let offDisplayThreat = hasKeenOff ? keenThreatRange(parseThreatLow(wOff.threat)) : wOff.threat;
-    let offCritDice = diceMultiply(wOff.dice, offCritMultVal);
+    let offCritDice = diceMultiply(effDiceOff, offCritMultVal);
     let offCritDiceTerms = offExtraNormal.concat(offExtraCritOnly);
     let offCritDiceStr = offCritDice + (offCritDiceTerms.length ? ' + '+offCritDiceTerms.join(' + ') : '');
     let offCritDmg = offDmg*offCritMultVal;
