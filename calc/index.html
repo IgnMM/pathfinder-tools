@@ -278,7 +278,9 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div class="result"><div class="small">Single Attack (first attack)</div><div class="big" id="toHit">+0</div></div>
   <div class="result"><div class="small">Full Attack</div><div class="big" id="fullAttack">+0</div></div>
   <div class="result"><div class="small">Normal Damage</div><div class="big" id="dmgNormal">—</div></div>
+  <div class="result" id="firstSmiteBox" style="display:none"><div class="small">First Smite Hit</div><div class="big" id="dmgFirstSmite">—</div></div>
   <div class="result"><div class="small">Critical Damage</div><div class="big" id="dmgCrit">—</div></div>
+  <div class="result" id="firstSmiteCritBox" style="display:none"><div class="small">Critical First Smite Hit</div><div class="big" id="dmgFirstSmiteCrit">—</div></div>
   <div class="result" id="offAtkBox" style="display:none"><div class="small">Off-Hand Attack</div><div class="big" id="offAtk">+0</div></div>
   <div class="result" id="offDmgBox" style="display:none"><div class="small">Off-Hand Damage</div><div class="big" id="offDmg">—</div></div>
   <div class="result" id="offCritBox" style="display:none"><div class="small">Off-Hand Critical Damage</div><div class="big" id="offCrit">—</div></div>
@@ -770,7 +772,7 @@ const MODIFIERS = [
    let dmg=cfg.palLvl||0;
    let flags=TARGET_FLAG_MAP[ctx.currentTarget]||{};
    let doubles=flags.undead||(flags.evil&&flags.dragon)||(flags.evil&&flags.outsider);
-   return {attack:ctx.cha,damage:dmg,note:'+'+ctx.cha+' atk / +'+dmg+' dmg (untyped)'+(doubles?' — DOUBLED to +'+(dmg*2)+' on the first successful hit only (evil outsider/evil dragon/undead), see summary':'')};
+   return {attack:ctx.cha,damage:dmg,note:'+'+ctx.cha+' atk / +'+dmg+' dmg (untyped)'+(doubles?' — DOUBLED to +'+(dmg*2)+' on the first successful hit only (evil outsider/evil dragon/undead), see "First Smite Hit" result above':'')};
  }},
 {id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
  desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls.',
@@ -3050,7 +3052,7 @@ function stackTotal(entries){
 
 function collectContributions(ctx){
   let p=currentProfile();
-  let atkEntries=[], dmgEntries=[]; let breakdown=[]; let extraDiceList=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0, powerAttackDmgVal=0; let flurryOfBlowsOn=false, flurryMonkLevel=0, flurryIsZen=false;
+  let atkEntries=[], dmgEntries=[]; let breakdown=[]; let extraDiceList=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0, powerAttackDmgVal=0; let flurryOfBlowsOn=false, flurryMonkLevel=0, flurryIsZen=false; let smiteEvilOn=false, smiteDmgVal=0, smiteDoubles=false;
   // Mythic feats that modify another entry's own formula (Mythic Power Attack/Deadly
   // Aim/Vital Strike) have to be known BEFORE that entry computes, regardless of which
   // order they appear in p.active — so scan for them first and pass as ctx flags.
@@ -3081,6 +3083,11 @@ function collectContributions(ctx){
     let r=m.compute(ctx,a.cfg||{});
     let effType=r.type||m.type;
     if(!isOff && (m.id==='power-attack'||m.id==='deadly-aim')){ powerAttackOn=true; powerAttackAtkVal=r.attack; powerAttackDmgVal=r.damage; }
+    if(!isOff && m.id==='smite-evil'){
+      smiteEvilOn=true; smiteDmgVal=r.damage;
+      let flags=TARGET_FLAG_MAP[ctx.currentTarget]||{};
+      smiteDoubles=!!(flags.undead||(flags.evil&&flags.dragon)||(flags.evil&&flags.outsider));
+    }
     if(!isOff){
       if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name});
       if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name});
@@ -3115,7 +3122,7 @@ function collectContributions(ctx){
     }
     breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
   });
-  return {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen};
+  return {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen,smiteEvilOn,smiteDmgVal,smiteDoubles};
 }
 
 // Recomputes atk/dmg/extraDice contributions filtered to one weapon slot ('main' or
@@ -3242,7 +3249,7 @@ function compute(){
   let offCritMultVal = +$('offCritMult').value || critMult;
   let ctxOff = Object.assign({}, ctx, {weaponDice:wOff.dice, critMult:offCritMultVal, weaponThreatLow:parseThreatLow(wOff.threat)});
 
-  let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen}=collectContributions(ctx);
+  let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen,smiteEvilOn,smiteDmgVal,smiteDoubles}=collectContributions(ctx);
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
   markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
   renderBreakdown(breakdown);
@@ -3360,6 +3367,13 @@ function compute(){
     critDmg += powerAttackDmgVal*critMult;
   }
 
+  // Smite Evil: on the first successful hit against an evil outsider, evil dragon, or
+  // undead, its damage bonus doubles (see the modifier's own note above) — add one more
+  // copy of that same bonus (already multiplied by critMult for the crit version, same
+  // as the rest of the fixed damage) to get the "first hit" figures shown separately.
+  let smiteFirstDmg = (smiteEvilOn && smiteDoubles) ? dmg + smiteDmgVal : null;
+  let smiteFirstCritDmg = (smiteEvilOn && smiteDoubles) ? critDmg + smiteDmgVal*critMult : null;
+
   let dmgNormalDice=effDice, dmgCritDiceStr=critDice;
   if(vsMult){
     dmgNormalDice=diceMultiply(effDice,vsMult);
@@ -3388,6 +3402,13 @@ function compute(){
   $('fullAttack').textContent=iteratives.map(signed).join(' / ');
   $('dmgNormal').textContent=`${dmgNormalDice} ${signed(dmg)}`;
   $('dmgCrit').textContent=`${dmgCritDiceStr} ${signed(critDmg)} (threat ${displayThreat}/×${critMult})`;
+  let smiteFirstOn = smiteEvilOn && smiteDoubles;
+  $('firstSmiteBox').style.display = smiteFirstOn ? 'block' : 'none';
+  $('firstSmiteCritBox').style.display = smiteFirstOn ? 'block' : 'none';
+  if(smiteFirstOn){
+    $('dmgFirstSmite').textContent=`${dmgNormalDice} ${signed(smiteFirstDmg)}`;
+    $('dmgFirstSmiteCrit').textContent=`${dmgCritDiceStr} ${signed(smiteFirstCritDmg)} (threat ${displayThreat}/×${critMult})`;
+  }
 
   notes.push('Base attack: BAB '+signed(bab)+' + '+ABIL_LABEL[atkStat]+' '+signed(atkAbilityMod)+' + enhancement '+signed(effectiveEnh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
   notes.push('Base damage: '+ABIL_LABEL[dmgStat]+' '+signed(dmgAbilityMod)+(style==='twoHanded'&&dmgStat!=='none'?' (×1.5, two-handed)':'')+' + enhancement '+signed(effectiveEnh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
