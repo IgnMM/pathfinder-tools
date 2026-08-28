@@ -582,6 +582,10 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:-5);return {attack:v,damage:0,note:signed(v)+' '+"untyped"}}},
 
 // ---------------- FEATS (deity-specific) ----------------
+{id:'cruelty-zon-kuthon',name:'Cruelty',category:'feat',source:'Inner Sea Gods',deity:'Zon-Kuthon',appliesTo:['attack','damage'],type:'morale',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Whenever you deal bleed damage, cause a fear or pain effect, or reduce an opponent to 0 or fewer hit points, you gain a morale bonus on attack and weapon damage rolls for 1 round. Only applies the round after one of those triggers — toggle off otherwise.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"morale (1 round, only after bleed/fear/pain/killing blow)"}}},
 {id:'disciple-of-the-sword',name:'Disciple of the Sword',category:'feat',source:'Inner Sea Gods',deity:'Iomedae',appliesTo:['damage'],type:'untyped',
  desc:"Weapon Focus (longsword), cleric or inquisitor level 4th, worshiper of Iomedae. Grants the benefits of Weapon Specialization (longsword) — only applies while wielding a longsword.",
  compute:()=>({attack:0,damage:2,note:'+2 dmg (longsword only)'})},
