@@ -73,6 +73,19 @@ function applyStateDefaults(state){
   return state;
 }
 let state=applyStateDefaults(JSON.parse(localStorage.getItem(KEY)||'{}'));
+(function pruneStaleEntries(){
+  // Spell renames/dedup fixes over time can leave orphaned "level|name" keys in
+  // prep/fav/cast/forbidden pointing at a spell that no longer exists under that exact
+  // name — invisible in the UI, but still counted by prepCount(), silently eating a
+  // normal preparation slot (e.g. blocking the 3rd level-3 slot even though only 2
+  // spells are visibly checked). Prune anything that doesn't match a real SPELLS entry.
+  let validKeys=new Set(SPELLS.map(s=>s.l+'|'+s.n));
+  let changed=false;
+  ['prep','fav','cast','forbidden'].forEach(field=>{
+    Object.keys(state[field]).forEach(k=>{ if(!validKeys.has(k)){ delete state[field][k]; changed=true; } });
+  });
+  if(changed) localStorage.setItem(KEY, JSON.stringify(state));
+})();
 function applyGlobalSources(){
   if(state.sourcesCustomized) return;
   let allSrc=[...new Set(SPELLS.map(s=>s.source||'Unknown'))];
