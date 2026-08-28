@@ -497,6 +497,21 @@ function isCritImmune(ctx){
   return !!(TARGET_FLAG_MAP[ctx.currentTarget]||{}).critImmune;
 }
 
+// Shared engine for ability-score-boost spells (Bull's Strength, Cat's Grace, etc.).
+// scoreBonus is the enhancement/other bonus the spell grants to the raw ability score
+// (always an even number for these spells, so it converts to exactly scoreBonus/2 on
+// the modifier, regardless of the character's starting score — same rule the game
+// uses). Only actually changes attack/damage if that ability is the one selected in
+// "Attack rolls"/"Damage rolls" above (ctx.atkStat/ctx.dmgStat) — a Dex buff on a
+// Strength-based fighter correctly contributes nothing, same as picking "— none —"
+// there does for the character's own ability score already.
+function abilityBuffBonus(ctx, ability, scoreBonus){
+  let modBonus = scoreBonus/2;
+  let attack = (ctx.atkStat===ability) ? modBonus : 0;
+  let damage = (ctx.dmgStat===ability) ? ((ctx.style==='twoHanded' && modBonus>0) ? Math.floor(modBonus*1.5) : modBonus) : 0;
+  return {attack, damage, modBonus};
+}
+
 const MODIFIERS = [
 // ---------------- FEATS ----------------
 {id:'power-attack',name:'Power Attack',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
@@ -607,6 +622,30 @@ const MODIFIERS = [
 {id:'good-hope',name:'Good Hope',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'morale',
  desc:'+2 morale bonus on attack rolls and weapon damage rolls (also on saves, ability checks, and skill checks, not modeled here).',
  compute:()=>({attack:2,damage:2,note:'+2 atk / +2 dmg (morale)'})},
+{id:'bulls-strength',name:"Bull's Strength",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-str',
+ desc:"+4 enhancement bonus to Strength. Only actually changes your attack/damage here if Strength is the ability selected for \"Attack rolls\" / \"Damage rolls\" above — same as your own Strength score already only counts there under the same condition.",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'str',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Strength isn\'t your selected attack/damage ability above'}}},
+{id:'cats-grace',name:"Cat's Grace",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-dex',
+ desc:"+4 enhancement bonus to Dexterity. Only actually changes your attack/damage here if Dexterity is the ability selected for \"Attack rolls\" / \"Damage rolls\" above.",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'dex',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Dexterity isn\'t your selected attack/damage ability above'}}},
+{id:'bears-endurance',name:"Bear's Endurance",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-con',
+ desc:"+4 enhancement bonus to Constitution. Only actually changes your attack/damage here if Constitution is the ability selected for \"Attack rolls\" / \"Damage rolls\" above (rare — mainly relevant to a house rule or unusual build).",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'con',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Constitution isn\'t your selected attack/damage ability above'}}},
+{id:'owls-wisdom',name:"Owl's Wisdom",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-wis',
+ desc:"+4 enhancement bonus to Wisdom. Only actually changes your attack/damage here if Wisdom is the ability selected for \"Attack rolls\" / \"Damage rolls\" above (e.g. a Zen Archer monk's Wisdom-to-attack).",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'wis',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Wisdom isn\'t your selected attack/damage ability above'}}},
+{id:'eagles-splendor',name:"Eagle's Splendor",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-cha',
+ desc:"+4 enhancement bonus to Charisma. Only actually changes your attack/damage here if Charisma is the ability selected for \"Attack rolls\" / \"Damage rolls\" above.",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'cha',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Charisma isn\'t your selected attack/damage ability above'}}},
+{id:'foxs-cunning',name:"Fox's Cunning",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-int',
+ desc:"+4 enhancement bonus to Intelligence. Only actually changes your attack/damage here if Intelligence is the ability selected for \"Attack rolls\" / \"Damage rolls\" above (rare — mainly relevant to an Investigator or unusual build).",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'int',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Intelligence isn\'t your selected attack/damage ability above'}}},
 {id:'heroism',name:'Heroism',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'morale',
  desc:'+2 morale bonus on attack rolls (also on saves and skill checks, not modeled here).',
  compute:()=>({attack:2,damage:0,note:'+2 atk (morale)'})},
@@ -3270,7 +3309,7 @@ function compute(){
   let style=$('style').value, atkStat=$('atkStat').value, dmgStat=$('dmgStat').value;
   let weaponKey=$('weapon').value;
   let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
-  let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value, critMult, weaponThreatLow:parseThreatLow(w.threat)};
+  let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, atkStat, dmgStat, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value, critMult, weaponThreatLow:parseThreatLow(w.threat)};
 
   // Off-hand weapon has its own type/dice/threat/crit multiplier (can differ from the
   // main weapon) — build a second ctx for it so Weapon Effects tagged "Off-Hand Only"
