@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v86";
+const CACHE_NAME = "pathfinder-paladins-folders-v87";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/casting-time.js",
@@ -28,6 +28,7 @@ const ASSETS = [
   "./medium/","./medium/index.html","./medium/manifest.webmanifest","./medium/icon-192.png","./medium/icon-512.png",
   "./occultist/","./occultist/index.html","./occultist/manifest.webmanifest","./occultist/icon-192.png","./occultist/icon-512.png",
   "./psychic/","./psychic/index.html","./psychic/manifest.webmanifest","./psychic/icon-192.png","./psychic/icon-512.png",
+  "./shaman/","./shaman/index.html","./shaman/manifest.webmanifest","./shaman/icon-192.png","./shaman/icon-512.png",
   "./cleric-oracle-library/","./cleric-oracle-library/index.html","./cleric-oracle-library/manifest.webmanifest","./cleric-oracle-library/icon-192.png","./cleric-oracle-library/icon-512.png",
   "./wizard-sorcerer-library/","./wizard-sorcerer-library/index.html","./wizard-sorcerer-library/manifest.webmanifest","./wizard-sorcerer-library/icon-192.png","./wizard-sorcerer-library/icon-512.png",
   "./bard-library/","./bard-library/index.html","./bard-library/manifest.webmanifest","./bard-library/icon-192.png","./bard-library/icon-512.png",
@@ -46,6 +47,7 @@ const ASSETS = [
   "./medium-library/","./medium-library/index.html","./medium-library/manifest.webmanifest","./medium-library/icon-192.png","./medium-library/icon-512.png",
   "./occultist-library/","./occultist-library/index.html","./occultist-library/manifest.webmanifest","./occultist-library/icon-192.png","./occultist-library/icon-512.png",
   "./psychic-library/","./psychic-library/index.html","./psychic-library/manifest.webmanifest","./psychic-library/icon-192.png","./psychic-library/icon-512.png",
+  "./shaman-library/","./shaman-library/index.html","./shaman-library/manifest.webmanifest","./shaman-library/icon-192.png","./shaman-library/icon-512.png",
   "./calc/","./calc/index.html","./calc/manifest.webmanifest","./calc/icon-192.png","./calc/icon-512.png",
   "./companion/","./companion/index.html","./companion/manifest.webmanifest","./companion/icon-192.png","./companion/icon-512.png"
 ];
