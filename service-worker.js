@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v75";
+const CACHE_NAME = "pathfinder-paladins-folders-v76";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/casting-time.js",
@@ -23,7 +23,8 @@ const ASSETS = [
   "./ranger-library/","./ranger-library/index.html","./ranger-library/manifest.webmanifest","./ranger-library/icon-192.png","./ranger-library/icon-512.png",
   "./antipaladin-library/","./antipaladin-library/index.html","./antipaladin-library/manifest.webmanifest","./antipaladin-library/icon-192.png","./antipaladin-library/icon-512.png",
   "./alchemist-library/","./alchemist-library/index.html","./alchemist-library/manifest.webmanifest","./alchemist-library/icon-192.png","./alchemist-library/icon-512.png",
-  "./calc/","./calc/index.html","./calc/manifest.webmanifest","./calc/icon-192.png","./calc/icon-512.png"
+  "./calc/","./calc/index.html","./calc/manifest.webmanifest","./calc/icon-192.png","./calc/icon-512.png",
+  "./companion/","./companion/index.html","./companion/manifest.webmanifest","./companion/icon-192.png","./companion/icon-512.png"
 ];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));

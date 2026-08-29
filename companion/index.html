@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Companion Hit&amp;Damage Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#10151d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Comp Calc">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --bg:#10151d; --panel:#18212c; --panel2:#202b38; --text:#edf3f8;
+  --muted:#aebdcc; --gold:#d6b35f; --gold2:#f1d78b; --red:#d76a63; --green:#72c69c;
+  --blue:#6aa8d9; --line:#344354; --border:#313949; --violet:#b18ce8;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#0d1218,#141c26);color:var(--text)}
+.wrap{max-width:1300px;margin:auto;padding:16px}
+header{padding:14px 18px;border:1px solid var(--line);background:rgba(24,33,44,.96);border-radius:16px;margin-bottom:14px}
+h1{margin:0 0 4px;font-size:24px}
+.subtitle{color:var(--muted);font-size:.85rem}
+h2{font-size:17px;margin:0 0 12px;color:var(--gold)}
+h3{font-size:14px;margin:14px 0 8px;color:#fff}
+.card{background:rgba(24,33,44,.97);border:1px solid var(--line);border-top:3px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+.card-char{border-top-color:var(--gold)}
+.card-mod{border-top-color:var(--blue)}
+.card-mod h2{color:var(--blue)}
+.card-active{border-top-color:var(--green)}
+.card-active h2{color:var(--green)}
+.card-results{border-top-color:var(--violet)}
+.card-results h2{color:var(--violet)}
+.row{display:grid;grid-template-columns:1fr 110px;gap:8px;align-items:center;margin:7px 0}
+label{color:var(--muted);font-size:.85rem}
+input,select{width:100%;background:#0f161f;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px;font-size:.9rem}
+button{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:8px 12px;cursor:pointer;font-size:.85rem}
+button.primary{background:var(--gold);color:#151515;border:0;font-weight:700}
+button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
+.statsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}
+.profileBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.profileBar select{width:auto;min-width:160px}
+.mainGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:900px){.mainGrid{grid-template-columns:1fr}}
+.catBlock{border:1px solid var(--border);border-radius:12px;padding:10px;margin-bottom:10px}
+.catBlock h3{margin:0 0 8px;display:flex;justify-content:space-between;align-items:center}
+.catBlock h3 span.count{font-size:.7rem;color:var(--muted);font-weight:400}
+.addRow{display:flex;gap:6px;margin-bottom:8px}
+.addRow input{flex:1}
+.activeItem{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px 10px;margin-bottom:6px}
+.activeItem.off{opacity:.45}
+.activeItem .head{display:flex;align-items:flex-start;gap:8px}
+.activeItem .head>div{flex:1}
+.onToggle{display:flex;align-items:center;padding-top:2px;cursor:pointer}
+.onToggle input{width:auto;cursor:pointer}
+.activeItem .name{font-weight:700;font-size:.88rem}
+.activeItem .desc{font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.3}
+.activeItem .cfg{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.activeItem .cfg label{font-size:.68rem}
+.activeItem .cfg input{width:70px;padding:4px 6px;font-size:.8rem}
+.activeItem button.rm{background:none;border:none;color:#e07a7a;font-size:1.1rem;cursor:pointer;line-height:1;padding:0 4px}
+.typeTag{font-size:.62rem;padding:2px 6px;border-radius:999px;border:1px solid var(--border);color:var(--muted);white-space:nowrap}
+#breakdownTables{overflow-x:auto}
+#attackResults{overflow-x:auto}
+.breakTable{width:100%;border-collapse:collapse;font-size:.82rem;min-width:520px}
+.breakTable th,.breakTable td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border)}
+.breakTable th{color:var(--gold2);font-weight:700;font-size:.72rem}
+.breakTable .num{text-align:right;font-variant-numeric:tabular-nums}
+.suppressed{opacity:.4;text-decoration:line-through}
+.breakTable tr.off{opacity:.4;text-decoration:line-through}
+.emptyNote{font-size:.72rem;color:var(--muted);font-style:italic;padding:4px 2px}
+.sourcesbox{position:relative}.sourcesbox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-size:.78rem;list-style:none;white-space:nowrap}.sourcesbox summary::-webkit-details-marker{display:none}.sourcesbox[open] summary{border-color:var(--gold)}.sourcesPanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px;z-index:20;max-height:320px;overflow-y:auto;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.sourcesPanel label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);padding:3px 0;cursor:pointer}.sourcesPanel input{width:auto}.sourcesPanel .srcActions{display:flex;gap:6px;margin-bottom:6px}.sourcesPanel .srcActions button{font-size:.65rem;padding:4px 7px}
+.subcatHeading{font-size:.68rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px;padding-top:6px;border-top:1px dashed var(--border)}
+.subcatHeading:first-of-type{border-top:none;padding-top:0;margin-top:2px}
+.saveIndicator{font-size:.72rem;color:var(--green);opacity:0;transition:opacity .25s ease}
+.saveIndicator.show{opacity:1}
+.atkLinesBox{display:flex;flex-direction:column;gap:6px;margin:6px 0}
+.atkLine{display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:6px}
+.atkLine input,.atkLine select{width:auto;padding:6px 7px;font-size:.82rem}
+.atkLine .alName{flex:1;min-width:100px}
+.atkLine .alDie{width:64px}
+.atkLine .alAtk{width:66px}
+.atkLine .alStr{width:150px}
+.atkLine .alThreat{width:54px}
+.atkLine .alCrit{width:56px}
+.atkLine button.rm{background:none;border:none;color:#e07a7a;font-size:1.05rem;cursor:pointer;line-height:1;padding:0 4px}
+</style>
+</head>
+<body>
+<div id="syncGate" style="display:none;position:fixed;inset:0;z-index:9999;
+  background-image:linear-gradient(to bottom, rgba(6,4,3,.1) 0%, rgba(6,4,3,.15) 50%, rgba(6,4,3,.94) 100%), url('../assets/gate-bg.jpg');
+  background-size:cover;background-position:center;
+  align-items:flex-end;justify-content:center;padding:0 16px 26px">
+  <div style="max-width:380px;width:100%;background:rgba(12,9,6,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(233,200,116,.35);border-radius:12px;padding:18px 20px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.55)">
+    <h2 style="font-family:'Cinzel Decorative',serif;margin:0 0 6px;color:#e9c874;font-size:1.15rem;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.7)">Welcome, Traveler</h2>
+    <p style="color:#d8cdb9;font-size:.78rem;margin:0 0 12px;line-height:1.4;font-family:'Cinzel',Georgia,serif">Speak a name and PIN — the same words on any device bring your characters with you.</p>
+    <div style="display:flex;gap:8px">
+      <input id="gateUser" type="text" placeholder="USERNAME" style="flex:1;min-width:0;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+      <input id="gatePin" type="text" placeholder="PIN" style="width:78px;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="gateNew" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.4);background:rgba(233,200,116,.08);color:#e9c874;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">New User</button>
+      <button id="gateLogin" style="flex:1;padding:10px;border-radius:8px;border:1px solid #f1d78b;background:linear-gradient(180deg,#e9c874,#b0863c);color:#241708;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">Log In</button>
+    </div>
+  </div>
+</div>
+<a href="../" title="Pathfinder Tools" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></a>
+<style>@media(max-width:900px){.wrap{padding-left:60px !important}}</style>
+<div class="wrap">
+<header>
+  <h1>Companion Hit&amp;Damage Calculator</h1>
+  <div class="subtitle">Pathfinder 1e — animal companions, mounts, familiars and similar allies fighting with natural attacks. Hit &amp; damage bonuses only (no AC, saves, or non-combat effects). Every change saves automatically to this browser — use "Save As" to keep a copy under a different companion's name. Want your companions on another device too? Set a Sync code below (top right).</div>
+  <div class="profileBar" style="margin-top:10px">
+    <label style="margin:0">Companion:</label>
+    <select id="profileSelect"></select>
+    <button id="newProfile">New</button>
+    <button id="dupProfile">Save As…</button>
+    <button id="renameProfile">Rename</button>
+    <span id="saveIndicator" class="saveIndicator">✓ Saved</span>
+    <button class="danger" id="deleteProfile">Delete</button>
+    <details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button></div><div id="sourceList"></div></div></details>
+    <details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px">
+      <div class="row"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase"></div>
+      <div class="row"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase"></div>
+      <button id="syncConnect" type="button">Connect</button>
+      <button id="syncLogout" type="button" class="danger">Log out</button>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:6px">Use the same code on another device to see the same companions there. Whoever knows the code can read/write this data — pick something private, not "1234".</div>
+      <div id="syncStatus" style="font-size:.75rem;color:var(--muted);margin-top:6px"></div>
+    </div></details>
+  </div>
+</header>
+
+<div class="mainGrid">
+<div>
+<section class="card card-char">
+<h2>Companion &amp; Attacks</h2>
+<div class="row"><label>Hit Dice</label><input id="hitDice" type="number" min="1" max="30" value="7"></div>
+<div class="row"><label>Caster Level (of whoever casts buffs on it)</label><input id="casterLevel" type="number" min="0" max="20" value="10"></div>
+<div class="row"><label>Base Attack Bonus</label><input id="bab" type="number" value="7"></div>
+<div class="emptyNote">Feeds Power Attack's BAB-based scaling only — each attack below has its own Attack Bonus field, typed directly (no formula assumed), exactly like the Character calculator's BAB boxes.</div>
+<div class="row"><label>Only one natural attack this round?</label><input id="singleAttack" type="checkbox" style="width:auto;justify-self:start"></div>
+<div class="emptyNote">Check this only if the companion is making a single natural attack this turn (not a full attack with multiple attack types) — like a two-handed weapon, its Strength (and Power Attack) bonus to damage then becomes ×1.5 instead of ×1. Leave unchecked for the common case (e.g. bite + 2 claws together).</div>
+<h3>Ability Scores</h3>
+<div class="statsGrid">
+<div><label>STR</label><input id="str" type="number" value="18"></div>
+<div><label>DEX</label><input id="dex" type="number" value="15"></div>
+<div><label>CON</label><input id="con" type="number" value="15"></div>
+<div><label>INT</label><input id="int" type="number" value="2"></div>
+<div><label>WIS</label><input id="wis" type="number" value="12"></div>
+<div><label>CHA</label><input id="cha" type="number" value="6"></div>
+</div>
+<div class="row" style="margin-top:10px"><label>Ability → Attack rolls</label>
+<select id="atkStat">
+  <option value="str" selected>Strength</option>
+  <option value="dex">Dexterity</option>
+  <option value="con">Constitution</option>
+  <option value="int">Intelligence</option>
+  <option value="wis">Wisdom</option>
+  <option value="cha">Charisma</option>
+  <option value="none">— none —</option>
+</select></div>
+<div class="row"><label>Ability → Damage rolls</label>
+<select id="dmgStat">
+  <option value="str" selected>Strength</option>
+  <option value="dex">Dexterity</option>
+  <option value="con">Constitution</option>
+  <option value="int">Intelligence</option>
+  <option value="wis">Wisdom</option>
+  <option value="cha">Charisma</option>
+  <option value="none">— none —</option>
+</select></div>
+<div class="emptyNote">Almost every companion uses Strength for both. Only change this for an unusual build (e.g. Dex-to-damage via a feat/feature that specifically grants it to natural attacks).</div>
+<h3>Attacks</h3>
+<datalist id="natAttackNames"><option value="Bite"><option value="Claw"><option value="Gore"><option value="Hoof"><option value="Peck"><option value="Pincers"><option value="Rake"><option value="Rend"><option value="Slam"><option value="Sting"><option value="Tail Slap"><option value="Talon"><option value="Tentacle"><option value="Trample"><option value="Trip"><option value="Wing"></datalist>
+<div id="attackLinesBox" class="atkLinesBox"></div>
+<button id="addAttackLine" type="button">+ Add Attack</button>
+<div class="emptyNote">One row per attack type (Claw 1, Claw 2, Bite, Tail Slap...). "Attack Bonus" is BAB + size, typed directly — Strength and every active Feat/Spell/Other Effect below are added automatically. "Primary" attacks (the creature's main natural weapon type, or its only attack) use full Strength bonus to damage; "Secondary" attacks (extra attack types that come with a primary, like a bite alongside claws) use half — see Combat rules on natural attacks. A creature with 3+ natural attacks and the Multiattack feat only takes a -2 penalty on secondary attacks instead of -5 — bake that into each line's Attack Bonus by hand.</div>
+</section>
+</div>
+
+<div>
+<section class="card card-mod">
+<h2>Modifiers <span style="font-size:.7rem;color:var(--muted);font-weight:400">— pick from the catalog per category, or add a custom one</span></h2>
+<div class="emptyNote">Only Feats/Traits available to animal companions and spells commonly cast on one are catalogued (no manufactured-weapon effects, since companions fight with natural attacks). Hit/damage bonuses only — poison, AC, and other non-combat effects aren't modeled, add them as a note on your own sheet.</div>
+<div id="categories"></div>
+</section>
+</div>
+</div>
+
+<section class="card card-active">
+<h2>Active Effects</h2>
+<div class="emptyNote">These totals are shared across every attack above (per RAW, Feats/Spells apply the same to all of a creature's attacks; only Strength and each attack's own Attack Bonus differ per line).</div>
+<div id="breakdownTables"></div>
+</section>
+
+<section class="card card-results">
+<h2>Results</h2>
+<div id="attackResults"></div>
+<div style="margin-top:10px"><div class="small" style="color:var(--muted);font-size:.85rem">Notes</div><div id="notes" style="margin-top:6px;line-height:1.5;font-size:.85rem"></div></div>
+</section>
+
+</div>
+<script>
+function $(id){return document.getElementById(id)}
+function mod(score){return Math.floor((Number(score)-10)/2)}
+function signed(n){return (n>=0?'+':'')+n}
+function diceMultiply(dice,mult){
+  const m=String(dice).match(/^(\d+)d(\d+)$/i);
+  if(!m) return dice+' ×'+mult;
+  return (Number(m[1])*mult)+'d'+m[2];
+}
+// Official Core Rulebook "Weapon Damage Size Conversion" table (one size category
+// larger). Applied twice for Strong Jaw ("as if two sizes larger").
+const SIZE_UP_MEDIUM_TO_LARGE={'1':'1d2','1d2':'1d3','1d3':'1d4','1d4':'1d6','1d6':'1d8','1d8':'2d6','1d10':'2d8','1d12':'3d6','2d4':'2d6','2d6':'3d6','2d8':'3d8','2d10':'4d8'};
+function diceSizeUp(dice){
+  return SIZE_UP_MEDIUM_TO_LARGE[String(dice).trim()] || dice;
+}
+function abilityBuffBonus(ctx, ability, scoreBonus){
+  let modBonus = scoreBonus/2;
+  let attack = (ctx.atkStat===ability) ? modBonus : 0;
+  let damage = (ctx.dmgStat===ability) ? ((ctx.style==='twoHanded' && modBonus>0) ? Math.floor(modBonus*1.5) : modBonus) : 0;
+  return {attack, damage, modBonus};
+}
+
+// ---------------- MODIFIERS CATALOG ----------------
+// A curated subset of the Character calculator's catalog — only Feats available to
+// animal companions, spells commonly cast on one (Druid/Ranger's own list, plus
+// generic buffs like Bless/Prayer/Haste), and universal combat-rule bonuses. No
+// manufactured-weapon effects (companions fight with natural attacks), no PC-only
+// class features. Hit/damage bonuses only, per the same stacking rules as the
+// Character calculator (same bonus type never stacks with itself).
+const MODIFIERS = [
+{id:'power-attack',name:'Power Attack',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
+ desc:'-1 atk / +2 dmg per step (1 step at BAB 1-3, +1 more step every 4 BAB thereafter); the +2 becomes +3 if "Only one natural attack this round?" is checked above. Requires Str 13. RAW: this damage bonus IS multiplied on a critical hit — add the House Rule below if your table plays it differently.',
+ compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);let perStep=2;let dPerStep=ctx.style==='twoHanded'?Math.floor(perStep*1.5):perStep;let d=dPerStep*step;return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg — shared across every attack line at this full rate for simplicity (a Secondary/half-Str line\'s real Power Attack bonus is normally half this)'}}},
+{id:'weapon-focus-natural',name:'Weapon Focus (Natural Weapon)',category:'feat',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
+ desc:'+1 on attack rolls with one chosen natural weapon (e.g. Weapon Focus (bite)). Applied here to every attack line for simplicity — if the companion only has this for ONE of its attack types, only count it on that line by hand.',
+ compute:()=>({attack:1,damage:0,note:'+1 atk'})},
+{id:'multiattack',name:'Multiattack',category:'feat',source:'Bestiary (Monster feat)',appliesTo:[],type:'special',
+ desc:'Requires three or more natural attacks. Benefit: "The creature\'s secondary attacks with natural weapons take only a –2 penalty" (instead of the usual -5). Not a flat number here — set each Secondary attack line\'s Attack Bonus 3 higher than you would without this feat (i.e. -2 instead of -5 relative to a Primary attack of the same base bonus).',
+ compute:()=>({attack:0,damage:0,note:'special — secondary attacks take only -2 instead of -5; adjust each Secondary line\'s Attack Bonus by hand'})},
+{id:'improved-natural-attack',name:'Improved Natural Attack',category:'feat',source:'Bestiary (Monster feat)',appliesTo:[],type:'special',
+ desc:'Requires natural weapon, base attack bonus +4. Choose one of the creature\'s natural attacks — its damage die increases by one step, as if the creature\'s size had increased by one category for that attack only. Not a flat number here — bump that attack line\'s Damage Die by hand (e.g. 1d6 → 1d8, per the Core Rulebook size-conversion table).',
+ compute:()=>({attack:0,damage:0,note:'special — increases one chosen attack\'s damage die by one size step; adjust that line\'s Damage Die by hand'})},
+{id:'bless',name:'Bless',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack'],type:'morale',
+ desc:'+1 morale bonus on attack rolls (also vs. fear saves, not modeled here). Affects every ally in the area, including a companion.',
+ compute:()=>({attack:1,damage:0,note:'+1 atk (morale)'})},
+{id:'good-hope',name:'Good Hope',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'morale',
+ desc:'+2 morale bonus on attack rolls and weapon damage rolls (also on saves, ability checks, and skill checks, not modeled here). Affects every ally in the area, including a companion.',
+ compute:()=>({attack:2,damage:2,note:'+2 atk / +2 dmg (morale)'})},
+{id:'bulls-strength',name:"Bull's Strength",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-str',
+ desc:"+4 enhancement bonus to Strength. Only actually changes attack/damage here if Strength is the ability selected for \"Attack rolls\" / \"Damage rolls\" above. Druid/Ranger can cast this directly on their companion.",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'str',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Strength isn\'t the selected attack/damage ability above'}}},
+{id:'cats-grace',name:"Cat's Grace",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-dex',
+ desc:"+4 enhancement bonus to Dexterity. Only actually changes attack/damage here if Dexterity is the ability selected for \"Attack rolls\" / \"Damage rolls\" above. Druid/Ranger can cast this directly on their companion.",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'dex',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Dexterity isn\'t the selected attack/damage ability above'}}},
+{id:'bears-endurance',name:"Bear's Endurance",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-con',
+ desc:"+4 enhancement bonus to Constitution. Only actually changes attack/damage here if Constitution is the selected ability above (rare). Druid/Ranger can cast this directly on their companion.",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'con',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Constitution isn\'t the selected attack/damage ability above'}}},
+{id:'owls-wisdom',name:"Owl's Wisdom",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-wis',
+ desc:"+4 enhancement bonus to Wisdom. Only actually changes attack/damage here if Wisdom is the selected ability above. Druid/Ranger can cast this directly on their companion.",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'wis',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Wisdom isn\'t the selected attack/damage ability above'}}},
+{id:'eagles-splendor',name:"Eagle's Splendor",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-cha',
+ desc:"+4 enhancement bonus to Charisma. Only actually changes attack/damage here if Charisma is the selected ability above. Druid/Ranger can cast this directly on their companion.",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'cha',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Charisma isn\'t the selected attack/damage ability above'}}},
+{id:'foxs-cunning',name:"Fox's Cunning",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-int',
+ desc:"+4 enhancement bonus to Intelligence. Only actually changes attack/damage here if Intelligence is the selected ability above (rare). Druid/Ranger can cast this directly on their companion.",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'int',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Intelligence isn\'t the selected attack/damage ability above'}}},
+{id:'strong-jaw',name:'Strong Jaw',category:'spell',source:'Advanced Class Guide (Druid 4th / Ranger 3rd)',appliesTo:[],type:'special',
+ desc:'Touch spell. Every natural attack the target makes deals damage as if it were two size categories larger (does not change anything else, and does not stack with actual size increases). Not a flat number here — while active, every attack line\'s Damage Die above is automatically shown upsized two steps.',
+ compute:()=>({attack:0,damage:0,note:'special — every attack line\'s Damage Die above already shows the two-step size-up'})},
+{id:'heroism',name:'Heroism',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'morale',
+ desc:'+2 morale bonus on attack rolls (also on saves and skill checks, not modeled here).',
+ compute:()=>({attack:2,damage:0,note:'+2 atk (morale)'})},
+{id:'heroism-greater',name:'Heroism, Greater',category:'spell',source:'Core Rulebook (6th)',appliesTo:['attack'],type:'morale',
+ desc:'+4 morale bonus on attack rolls (also on saves and skill checks, fear immunity, and temporary hit points, not modeled here).',
+ compute:()=>({attack:4,damage:0,note:'+4 atk (morale)'})},
+{id:'heroic-invocation',name:'Heroic Invocation',category:'spell',source:'Ultimate Combat (9th)',appliesTo:['attack','damage'],type:'morale',
+ desc:'+4 morale bonus on attack and damage rolls (also temporary hit points and fear/charm immunity, not modeled here).',
+ compute:()=>({attack:4,damage:4,note:'+4 atk / +4 dmg (morale)'})},
+{id:'divine-favor',name:'Divine Favor',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'luck',
+ desc:'+1 luck bonus per 3 caster levels (max +3) on attack and weapon damage rolls.',
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:5,linkLevel:'cl'}],
+ compute:(ctx,cfg)=>{let b=Math.min(3,Math.max(1,Math.floor((cfg.cl||1)/3)));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (luck)'}}},
+{id:'prayer',name:'Prayer',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'luck',
+ desc:'+1 luck bonus on attack and weapon damage rolls (does not stack with Divine Favor — both are luck).',
+ compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (luck)'})},
+{id:'haste',name:'Haste',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'untyped',
+ desc:'+1 on attack rolls (untyped). Also grants an extra attack at full base attack bonus on a full attack — not modeled per-line here, just roll an extra copy of whichever attack line you\'d normally repeat.',
+ compute:()=>({attack:1,damage:0,note:'+1 atk, plus one extra attack at full bonus — repeat one attack line by hand'})},
+{id:'magic-fang',name:'Magic Fang',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'enhancement',
+ desc:'+1 enhancement bonus on attack and damage rolls with one natural weapon. Applied here to every attack line for simplicity — if only cast on ONE of the companion\'s attack types, only count it on that line by hand.',
+ compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement)'})},
+{id:'greater-magic-fang',name:'Magic Fang, Greater',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
+ desc:'+1 enhancement bonus per 4 caster levels (max +5) on attack and damage rolls — can affect all of the target\'s natural weapons at once, unlike regular Magic Fang.',
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:8,linkLevel:'cl'}],
+ compute:(ctx,cfg)=>{let b=Math.min(5,Math.floor((cfg.cl||1)/4));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement)'}}},
+{id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
+ desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls. Affects every ally who can hear it, including a companion.',
+ configFields:[{key:'bardLvl',label:'Bard level',type:'number',default:5,linkLevel:true}],
+ compute:(ctx,cfg)=>{let l=cfg.bardLvl||1,b=l>=17?4:l>=11?3:l>=5?2:1;return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (competence)'}}},
+{id:'charge',name:'Charge',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'untyped',
+ desc:'+2 on the attack roll (and -2 AC, not modeled here). One attack only, full-round action.',
+ compute:()=>({attack:2,damage:0,note:'+2 atk'})},
+{id:'flanking',name:'Flanking',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'untyped',
+ desc:'+2 on melee attack rolls when the companion and an ally threaten opposite sides of the target.',
+ compute:()=>({attack:2,damage:0,note:'+2 atk'})},
+{id:'hr-pa-no-crit',name:'Power Attack damage not multiplied on critical hits',category:'houserule',source:'House Rule',appliesTo:[],type:'special',
+ desc:'Standard PF1e RAW: Power Attack\'s damage bonus IS multiplied by the crit multiplier. Some tables house-rule this to NOT be multiplied — add this entry if that\'s how your table plays it.',
+ compute:()=>({attack:0,damage:0,note:'Power Attack damage excluded from the crit multiplier — see Critical Damage per line'})},
+];
+
+const CATS=[{k:'feat',label:'Feats'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},{k:'houserule',label:'House Rules'}];
+
+// ---------- Profiles ----------
+const STORE_KEY='pf1_companion_damage_calc_profiles_v1';
+function loadStore(){ let s=JSON.parse(localStorage.getItem(STORE_KEY)||'null'); if(!s||!s.profiles||!s.profiles.length){ s={active:'New Companion',profiles:[defaultProfile('New Companion')]}; } return s; }
+let saveIndicatorTimer=null;
+function saveStore(){
+  let _p=currentProfile(); if(_p) _p._updatedAt=Date.now();
+  localStorage.setItem(STORE_KEY, JSON.stringify(store));
+  let el=document.getElementById('saveIndicator');
+  if(el){
+    el.classList.add('show');
+    clearTimeout(saveIndicatorTimer);
+    saveIndicatorTimer=setTimeout(()=>el.classList.remove('show'),1200);
+  }
+}
+function defaultProfile(name){
+  return {name, characterLevel:7, casterLevel:10, bab:7, singleAttack:false,
+    str:18,dex:15,con:15,int:2,wis:12,cha:6, atkStat:'str', dmgStat:'str',
+    attackLines:[
+      {name:'Claw',die:'1d4',atkBonus:7,strMode:'full',threat:'20',critMult:2},
+      {name:'Claw',die:'1d4',atkBonus:7,strMode:'full',threat:'20',critMult:2},
+      {name:'Bite',die:'1d6',atkBonus:2,strMode:'half',threat:'20',critMult:2}
+    ],
+    active:[], custom:[], excludedSources:{}};
+}
+let store=loadStore();
+store.profiles.forEach(p=>{
+  if(!p.excludedSources) p.excludedSources={};
+  if(p.characterLevel===undefined) p.characterLevel=7;
+  if(p.casterLevel===undefined) p.casterLevel=p.characterLevel;
+  if(p.bab===undefined) p.bab=p.characterLevel||7;
+  if(p.singleAttack===undefined) p.singleAttack=false;
+  if(!p.atkStat) p.atkStat='str';
+  if(!p.dmgStat) p.dmgStat='str';
+  if(!p.attackLines) p.attackLines=[];
+});
+function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
+
+function populateProfileSelect(){
+  let sel=$('profileSelect'); sel.innerHTML='';
+  store.profiles.forEach(p=>{ let o=document.createElement('option'); o.value=p.name; o.textContent=p.name; sel.appendChild(o); });
+  sel.value=store.active;
+}
+
+function loadProfileIntoUI(){
+  let p=currentProfile();
+  $('hitDice').value=p.characterLevel; $('casterLevel').value=p.casterLevel; $('bab').value=p.bab;
+  $('singleAttack').checked=!!p.singleAttack;
+  $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con; $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
+  $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat;
+  renderAttackLines();
+  renderSources();
+  renderCategories();
+  compute();
+}
+
+function syncUIIntoProfile(){
+  let p=currentProfile();
+  p.characterLevel=+$('hitDice').value; p.casterLevel=+$('casterLevel').value; p.bab=+$('bab').value;
+  p.singleAttack=$('singleAttack').checked;
+  p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value; p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
+  p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value;
+  saveStore();
+}
+
+['hitDice','casterLevel','bab','singleAttack','str','dex','con','int','wis','cha','atkStat','dmgStat'].forEach(id=>{
+  $(id).addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); });
+});
+
+$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); };
+$('newProfile').onclick=()=>{
+  let name=prompt('Name for the new companion sheet:','New Companion');
+  if(!name) return;
+  if(store.profiles.some(p=>p.name===name)){ alert('A companion with that name already exists.'); return; }
+  store.profiles.push(defaultProfile(name)); store.active=name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
+};
+$('dupProfile').onclick=()=>{
+  let src=currentProfile();
+  let name=prompt('Save the current sheet as a new companion named:', src.name+' (copy)');
+  if(!name) return;
+  if(store.profiles.some(p=>p.name===name)){ alert('A companion with that name already exists.'); return; }
+  let copy=JSON.parse(JSON.stringify(src)); copy.name=name;
+  store.profiles.push(copy); store.active=name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
+};
+$('renameProfile').onclick=()=>{
+  let p=currentProfile();
+  let name=prompt('New name:', p.name);
+  if(!name || name===p.name) return;
+  if(store.profiles.some(x=>x.name===name)){ alert('A companion with that name already exists.'); return; }
+  p.name=name; store.active=name; saveStore(); populateProfileSelect();
+};
+$('deleteProfile').onclick=()=>{
+  if(store.profiles.length<=1){ alert('At least one companion sheet must remain.'); return; }
+  if(!confirm('Delete "'+currentProfile().name+'"? This cannot be undone.')) return;
+  store.profiles=store.profiles.filter(p=>p.name!==store.active);
+  store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
+};
+
+// ---------- Sources ----------
+function renderSources(){
+  let p=currentProfile();
+  let box=$('sourceList'); box.innerHTML='';
+  let all=[...new Set(MODIFIERS.map(m=>m.source||'Unknown'))].sort();
+  all.forEach(src=>{
+    let lbl=document.createElement('label');
+    let cb=document.createElement('input'); cb.type='checkbox'; cb.checked=!p.excludedSources[src];
+    cb.onchange=()=>{
+      if(cb.checked) delete p.excludedSources[src]; else p.excludedSources[src]=true;
+      saveStore(); renderCategories(); compute();
+    };
+    lbl.appendChild(cb); lbl.appendChild(document.createTextNode(src));
+    box.appendChild(lbl);
+  });
+}
+$('srcAll').onclick=()=>{ let p=currentProfile(); p.excludedSources={}; saveStore(); renderSources(); renderCategories(); compute(); };
+$('srcNone').onclick=()=>{ let p=currentProfile(); [...new Set(MODIFIERS.map(m=>m.source||'Unknown'))].forEach(src=>p.excludedSources[src]=true); saveStore(); renderSources(); renderCategories(); compute(); };
+
+// ---------- Attack Lines ----------
+function renderAttackLines(){
+  let p=currentProfile();
+  if(!p.attackLines) p.attackLines=[];
+  let box=$('attackLinesBox'); box.innerHTML='';
+  p.attackLines.forEach((line,i)=>{
+    let div=document.createElement('div'); div.className='atkLine';
+    div.innerHTML=`
+      <input class="alName" list="natAttackNames" placeholder="Name (e.g. Claw)" value="${(line.name||'').replace(/"/g,'&quot;')}">
+      <input class="alDie" placeholder="Die (1d4)" value="${line.die||''}">
+      <input class="alAtk" type="number" placeholder="Atk bonus" value="${line.atkBonus||0}" title="BAB + size, before ability mod & modifiers">
+      <select class="alStr">
+        <option value="full"${line.strMode==='full'?' selected':''}>Primary (full Str)</option>
+        <option value="half"${line.strMode==='half'?' selected':''}>Secondary (half Str)</option>
+        <option value="none"${line.strMode==='none'?' selected':''}>No Str</option>
+      </select>
+      <input class="alThreat" placeholder="Threat" value="${line.threat||'20'}" title="Threat range, e.g. 20 or 19–20">
+      <select class="alCrit">
+        <option value="2"${(line.critMult||2)==2?' selected':''}>×2</option>
+        <option value="3"${line.critMult==3?' selected':''}>×3</option>
+        <option value="4"${line.critMult==4?' selected':''}>×4</option>
+      </select>
+      <button class="rm" type="button" title="Remove">✕</button>`;
+    div.querySelector('.alName').addEventListener('input',e=>{ line.name=e.target.value; saveStore(); compute(); });
+    div.querySelector('.alDie').addEventListener('input',e=>{ line.die=e.target.value; saveStore(); compute(); });
+    div.querySelector('.alAtk').addEventListener('input',e=>{ line.atkBonus=+e.target.value||0; saveStore(); compute(); });
+    div.querySelector('.alStr').addEventListener('change',e=>{ line.strMode=e.target.value; saveStore(); compute(); });
+    div.querySelector('.alThreat').addEventListener('input',e=>{ line.threat=e.target.value; saveStore(); compute(); });
+    div.querySelector('.alCrit').addEventListener('change',e=>{ line.critMult=+e.target.value; saveStore(); compute(); });
+    div.querySelector('.rm').addEventListener('click',()=>{ p.attackLines.splice(i,1); saveStore(); renderAttackLines(); compute(); });
+    box.appendChild(div);
+  });
+}
+$('addAttackLine').onclick=()=>{
+  let p=currentProfile();
+  if(!p.attackLines) p.attackLines=[];
+  p.attackLines.push({name:'',die:'1d4',atkBonus:+$('bab').value||0,strMode:'full',threat:'20',critMult:2});
+  saveStore(); renderAttackLines(); compute();
+};
+
+// ---------- Modifier catalog UI ----------
+function renderCategories(){
+  let box=$('categories'); box.innerHTML='';
+  let p=currentProfile();
+  CATS.forEach(cat=>{
+    let block=document.createElement('div'); block.className='catBlock';
+    let activeInCat=p.active.filter(a=>{ let m=MODIFIERS.find(x=>x.id===a.id); return m && m.category===cat.k; });
+    let customInCat=p.custom.filter(c=>c.category===cat.k);
+    block.innerHTML=`<h3>${cat.label} <span class="count">${activeInCat.length+customInCat.length} active</span></h3>`;
+    let addRow=document.createElement('div'); addRow.className='addRow';
+    let listId='dl_'+cat.k;
+    addRow.innerHTML=`<input list="${listId}" placeholder="Search ${cat.label.toLowerCase()} to add..." id="add_${cat.k}"><datalist id="${listId}"></datalist><button data-cat="${cat.k}" class="addBtn">Add</button><button data-cat="${cat.k}" class="addCustomBtn">+ Custom</button>`;
+    block.appendChild(addRow);
+    let dl=addRow.querySelector('datalist');
+    MODIFIERS.filter(m=>m.category===cat.k && (m.allowMultiple || !p.active.some(a=>a.id===m.id)) && !p.excludedSources[m.source]).forEach(m=>{
+      let o=document.createElement('option'); o.value=m.name; dl.appendChild(o);
+    });
+    if(!MODIFIERS.some(m=>m.category===cat.k && !p.excludedSources[m.source])){
+      let n=document.createElement('div'); n.className='emptyNote';
+      n.textContent='Every catalog entry in this category belongs to a source you\'ve excluded, or there are none yet — check Sources above, or use "+ Custom".';
+      block.appendChild(n);
+    }
+    if(cat.k==='houserule'){
+      let n=document.createElement('div'); n.className='emptyNote';
+      n.textContent='"+ Custom" here (or in any category) adds a real flat attack/damage bonus, applied to every attack line automatically.';
+      block.appendChild(n);
+    }
+    activeInCat.forEach(a=>{
+      let m=MODIFIERS.find(x=>x.id===a.id);
+      block.appendChild(buildActiveItem(m,a,cat.k,false));
+    });
+    customInCat.forEach(c=>{
+      block.appendChild(buildActiveItem(c,c,cat.k,true));
+    });
+    box.appendChild(block);
+  });
+  box.querySelectorAll('.addBtn').forEach(btn=>btn.onclick=()=>{
+    let cat=btn.dataset.cat, inputEl=$('add_'+cat), name=inputEl.value.trim();
+    let m=MODIFIERS.find(x=>x.category===cat && x.name===name);
+    if(!m){ if(name) alert('No catalog entry named "'+name+'" in '+cat+'. Use "+ Custom" instead.'); return; }
+    let p=currentProfile();
+    if(p.excludedSources[m.source]){ alert('"'+m.name+'" is from '+m.source+', which is excluded in Sources. Re-enable that source first if you want to add it.'); return; }
+    let cfg={}; (m.configFields||[]).forEach(f=>{
+      if(f.linkLevel==='cl' && p.casterLevel!==undefined) cfg[f.key]=p.casterLevel;
+      else if(f.linkLevel && p.characterLevel!==undefined) cfg[f.key]=p.characterLevel;
+      else cfg[f.key]=f.default;
+    });
+    p.active.push({id:m.id, cfg, on:true});
+    saveStore(); renderCategories(); compute();
+  });
+  box.querySelectorAll('.addCustomBtn').forEach(btn=>btn.onclick=()=>{
+    let cat=btn.dataset.cat;
+    let name=prompt('Name of this custom '+cat+':'); if(!name) return;
+    let atk=Number(prompt('Attack roll bonus (number, can be negative, 0 if none):','0'))||0;
+    let dmg=Number(prompt('Damage bonus (number, can be negative, 0 if none):','0'))||0;
+    let type=prompt('Bonus type (untyped / dodge / morale / luck / sacred / profane / competence / insight / enhancement / circumstance / other-named-type):','untyped')||'untyped';
+    let note=prompt('Optional note:','')||'';
+    let p=currentProfile();
+    p.custom.push({id:'custom-'+Date.now(), name, category:cat, appliesTo:['attack','damage'], type, atk, dmg, note, on:true, custom:true});
+    saveStore(); renderCategories(); compute();
+  });
+}
+
+function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
+  let div=document.createElement('div'); div.className='activeItem'+(activeRec.on===false?' off':'');
+  let cfgHtml='';
+  if(!isCustom && defOrCustom.configFields){
+    cfgHtml='<div class="cfg">'+defOrCustom.configFields.map(f=>{
+      return `<label>${f.label}<br><input type="number" data-key="${f.key}" value="${activeRec.cfg[f.key]}"></label>`;
+    }).join('')+'</div>';
+  }
+  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}></label><div><div class="name">${defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div></div><button class="rm">✕ remove</button></div>${cfgHtml}`;
+  div.querySelector('.rm').onclick=()=>{
+    let p=currentProfile();
+    if(isCustom) p.custom=p.custom.filter(c=>c.id!==defOrCustom.id);
+    else p.active=p.active.filter(a=>a!==activeRec);
+    saveStore(); renderCategories(); compute();
+  };
+  div.querySelector('.onChk').addEventListener('change',(e)=>{
+    activeRec.on=e.target.checked;
+    div.classList.toggle('off', !activeRec.on);
+    saveStore(); compute();
+  });
+  if(!isCustom && defOrCustom.configFields){
+    div.querySelectorAll('input[data-key]').forEach(inp=>{
+      inp.addEventListener('input',()=>{ activeRec.cfg[inp.dataset.key]=Number(inp.value); saveStore(); compute(); });
+    });
+  }
+  return div;
+}
+
+// ---------- Stacking engine ----------
+function stackTotal(entries){
+  let dodgeAndUntyped=0, penalties=0;
+  let byType={};
+  entries.forEach(e=>{
+    if(e.value<0){ penalties+=e.value; return; }
+    if(e.type==='untyped'||e.type==='dodge'||e.type==='circumstance'||e.type==='special'){ dodgeAndUntyped+=e.value; return; }
+    byType[e.type]=Math.max(byType[e.type]||0, e.value);
+  });
+  let typedSum=Object.values(byType).reduce((a,b)=>a+b,0);
+  return dodgeAndUntyped+typedSum+penalties;
+}
+
+function collectContributions(ctx){
+  let p=currentProfile();
+  let atkEntries=[], dmgEntries=[], breakdown=[];
+  let powerAttackOn=false, powerAttackDmgVal=0;
+  p.active.forEach(a=>{
+    let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
+    let isOff=a.on===false;
+    let r=m.compute(ctx,a.cfg||{});
+    let effType=r.type||m.type;
+    if(!isOff && m.id==='power-attack'){ powerAttackOn=true; powerAttackDmgVal=r.damage; }
+    if(!isOff){
+      if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name});
+      if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name});
+    }
+    let noteText = r.note;
+    if(isOff) noteText=(noteText||'')+' (not active right now)';
+    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:noteText,suppressed:false,off:isOff});
+  });
+  p.custom.forEach(c=>{
+    let isOff=c.on===false;
+    if(!isOff){
+      if(c.atk) atkEntries.push({value:c.atk,type:c.type,source:c.name});
+      if(c.dmg) dmgEntries.push({value:c.dmg,type:c.type,source:c.name});
+    }
+    breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(isOff?' (not active right now)':''),suppressed:false,off:isOff});
+  });
+  return {atkEntries,dmgEntries,breakdown,powerAttackOn,powerAttackDmgVal};
+}
+
+function markSuppressed(entries,breakdown){
+  let byType={};
+  entries.forEach(e=>{ if(e.value>0 && e.type!=='untyped'&&e.type!=='dodge'&&e.type!=='circumstance'&&e.type!=='special'){ (byType[e.type]=byType[e.type]||[]).push(e); } });
+  let suppressedSources=new Set();
+  Object.values(byType).forEach(list=>{
+    if(list.length<2) return;
+    let max=Math.max(...list.map(x=>x.value));
+    let keptOne=false;
+    list.forEach(x=>{
+      if(x.value===max && !keptOne){ keptOne=true; return; }
+      suppressedSources.add(x.source);
+    });
+  });
+  breakdown.forEach(b=>{ if(suppressedSources.has(b.name)||suppressedSources.has(b.name.replace(' (custom)',''))) b.suppressed=true; });
+}
+
+function renderBreakdown(breakdown){
+  let box=$('breakdownTables'); box.innerHTML='';
+  if(!breakdown.length){ box.innerHTML='<div class="emptyNote">No modifiers active yet — add some from the categories above.</div>'; return; }
+  let t=document.createElement('table'); t.className='breakTable';
+  t.innerHTML='<thead><tr><th>Effect</th><th>Category</th><th>Type</th><th class="num">Atk</th><th class="num">Dmg</th><th>Note</th></tr></thead>';
+  let tbody=document.createElement('tbody');
+  breakdown.forEach(b=>{
+    let tr=document.createElement('tr'); if(b.suppressed) tr.className='suppressed'; if(b.off) tr.className=(tr.className?tr.className+' ':'')+'off';
+    tr.innerHTML=`<td>${b.name}</td><td>${b.category}</td><td><span class="typeTag">${b.type}</span></td><td class="num">${b.atk===null?'—':signed(b.atk)}</td><td class="num">${b.dmg===null?'—':signed(b.dmg)}</td><td style="font-size:.7rem;color:var(--muted)">${b.note||''}${b.suppressed?' — does not stack (same type as another active effect)':''}</td>`;
+    tbody.appendChild(tr);
+  });
+  t.appendChild(tbody); box.appendChild(t);
+}
+
+// ---------- Compute ----------
+function compute(){
+  let p=currentProfile();
+  let ctx={
+    bab:+$('bab').value,
+    str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value),
+    int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value),
+    style: $('singleAttack').checked ? 'twoHanded' : 'oneHanded',
+    atkStat:$('atkStat').value, dmgStat:$('dmgStat').value
+  };
+  let {atkEntries,dmgEntries,breakdown,powerAttackOn,powerAttackDmgVal}=collectContributions(ctx);
+  markSuppressed(atkEntries, breakdown.filter(b=>b.atk!==null));
+  markSuppressed(dmgEntries, breakdown.filter(b=>b.dmg!==null));
+  renderBreakdown(breakdown);
+
+  let atkFromMods=stackTotal(atkEntries), dmgFromMods=stackTotal(dmgEntries);
+  let atkAbilityMod = ctx.atkStat==='none'?0:ctx[ctx.atkStat];
+  let dmgAbilityMod = ctx.dmgStat==='none'?0:ctx[ctx.dmgStat];
+  let strongJawOn = p.active.some(a=>a.id==='strong-jaw' && a.on!==false);
+  let paNoCritMult = p.active.some(a=>a.id==='hr-pa-no-crit' && a.on!==false);
+
+  let box=$('attackResults'); box.innerHTML='';
+  if(!p.attackLines || !p.attackLines.length){
+    box.innerHTML='<div class="emptyNote">No attacks added yet — use "+ Add Attack" above.</div>';
+  } else {
+    let t=document.createElement('table'); t.className='breakTable';
+    t.innerHTML='<thead><tr><th>Attack</th><th class="num">To-Hit</th><th>Normal Damage</th><th>Critical Damage</th></tr></thead>';
+    let tbody=document.createElement('tbody');
+    p.attackLines.forEach(line=>{
+      let strContribution;
+      if(line.strMode==='full') strContribution = (ctx.style==='twoHanded' && dmgAbilityMod>0) ? Math.floor(dmgAbilityMod*1.5) : dmgAbilityMod;
+      else if(line.strMode==='half') strContribution = dmgAbilityMod<0 ? dmgAbilityMod : Math.floor(dmgAbilityMod/2);
+      else strContribution = 0;
+      let atk = (+line.atkBonus||0) + atkAbilityMod + atkFromMods;
+      let dmgBonus = strContribution + dmgFromMods;
+      let die = (line.die||'1d4').trim();
+      let effDie = strongJawOn ? diceSizeUp(diceSizeUp(die)) : die;
+      let critMult = +line.critMult||2;
+      let critDmg = dmgBonus*critMult;
+      if(paNoCritMult && powerAttackOn && powerAttackDmgVal) critDmg = (dmgBonus-powerAttackDmgVal)*critMult + powerAttackDmgVal;
+      let critDice = diceMultiply(effDie, critMult);
+      let tr=document.createElement('tr');
+      tr.innerHTML=`<td>${line.name||'Attack'}</td><td class="num">${signed(atk)}</td><td>${effDie} ${signed(dmgBonus)}</td><td>${critDice} ${signed(critDmg)} (threat ${line.threat||'20'}/×${critMult})</td>`;
+      tbody.appendChild(tr);
+    });
+    t.appendChild(tbody); box.appendChild(t);
+  }
+
+  let notes=[];
+  notes.push('Shared modifiers this turn: '+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg (from active Feats/Spells/Other Effects above) — applied to every attack line.');
+  notes.push('"Primary (full Str)" lines use '+(ctx.style==='twoHanded'?'×1.5 Str (only one natural attack this round)':'×1 Str')+'; "Secondary (half Str)" lines use half (rounded down — a penalty is not halved).');
+  if(strongJawOn) notes.push('Strong Jaw is active — every attack line\'s Damage Die above already shows the two-size-category increase.');
+  if(powerAttackOn) notes.push('Power Attack\'s damage bonus is shared across every line at its full rate for simplicity — on a Secondary (half Str) line, its real Power Attack contribution is normally half that.');
+  $('notes').innerHTML=notes.map(n=>'• '+n).join('<br>');
+}
+
+// Deep-link support for merged character sheets: ?profile=Name switches to (or
+// creates) that profile on load.
+(function(){
+  const wantProfile=new URLSearchParams(location.search).get('profile');
+  if(!wantProfile) return;
+  window.__pinnedProfile=wantProfile;
+  if(!store.profiles.some(p=>p.name===wantProfile)) store.profiles.push(defaultProfile(wantProfile));
+  store.active=wantProfile;
+  saveStore();
+})();
+
+populateProfileSelect();
+loadProfileIntoUI();
+
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
+}
+
+// ---------- Cross-device sync (Firebase Firestore) ----------
+(function(){
+  const SYNC_CODE_KEY='pf1_sync_code_v1';
+  const SYNC_USER_KEY='pf1_sync_user_v1';
+  const SYNC_PIN_KEY='pf1_sync_pin_v1';
+  const APP_FIELD='companion';
+  const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
+  let db=null, docRef=null, unsubscribe=null, applyingRemote=false, pushTimer=null, fsApi=null;
+  const _origSaveStore=saveStore;
+  saveStore=function(){ _origSaveStore(); if(!applyingRemote) pushToCloud(); };
+
+  function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
+  function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
+
+  function mergeStores(local, remote){
+    if(!remote || !remote.profiles || !remote.profiles.length) return local;
+    if(!local || !local.profiles || !local.profiles.length) return remote;
+    let merged=JSON.parse(JSON.stringify(remote));
+    local.profiles.forEach(lp=>{
+      let idx=merged.profiles.findIndex(rp=>rp.name===lp.name);
+      if(idx===-1){ merged.profiles.push(lp); return; }
+      let rp=merged.profiles[idx];
+      let lt=lp._updatedAt||0, rt=rp._updatedAt||0;
+      if(lt>rt) merged.profiles[idx]=lp;
+    });
+    if(!merged.profiles.some(p=>p.name===merged.active)) merged.active=merged.profiles[0].name;
+    return merged;
+  }
+
+  function pushToCloud(){
+    if(!docRef||applyingRemote) return;
+    clearTimeout(pushTimer);
+    pushTimer=setTimeout(async ()=>{
+      try{ await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(store)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
+      catch(e){ setStatus('Sync error: '+e.message); }
+    }, 700);
+  }
+
+  async function connect(code){
+    const norm=normCode(code);
+    if(!norm) return;
+    setStatus('Connecting…');
+    try{
+      if(!fsApi){
+        const [{initializeApp}, fs] = await Promise.all([
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+        ]);
+        fsApi=fs;
+        const app=initializeApp({
+          apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",
+          authDomain:"pathfinder-webapp-486d1.firebaseapp.com",
+          projectId:"pathfinder-webapp-486d1",
+          storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",
+          messagingSenderId:"337645222032",
+          appId:"1:337645222032:web:eda9b7c8ff7646e4524015"
+        });
+        db=fsApi.getFirestore(app);
+      }
+      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+      docRef=fsApi.doc(db,'pf_sync',norm);
+      localStorage.setItem(SYNC_CODE_KEY, norm);
+
+      const snap=await fsApi.getDoc(docRef);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      const merged=mergeStores(store, remote);
+      applyingRemote=true;
+      store=merged;
+      if(window.__pinnedProfile && store.profiles.some(p=>p.name===window.__pinnedProfile)) store.active=window.__pinnedProfile;
+      _origSaveStore();
+      populateProfileSelect();
+      loadProfileIntoUI();
+      applyingRemote=false;
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(store)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+
+      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
+        if(snap2.metadata.hasPendingWrites) return;
+        const data=snap2.data();
+        if(!data || !data[APP_FIELD]) return;
+        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
+        applyingRemote=true;
+        store=mergeStores(store, data[APP_FIELD]);
+        if(window.__pinnedProfile && store.profiles.some(p=>p.name===window.__pinnedProfile)) store.active=window.__pinnedProfile;
+        _origSaveStore();
+        populateProfileSelect();
+        loadProfileIntoUI();
+        applyingRemote=false;
+        setStatus('Synced ✓ (updated from another device)');
+      }, (err)=>setStatus('Sync error: '+err.message));
+
+      setStatus('Synced ✓');
+    }catch(e){ setStatus('Sync error: '+e.message); }
+  }
+
+  function connectFromFields(userEl, pinEl){
+    const user=$(userEl).value.trim(), pin=$(pinEl).value.trim();
+    if(!user) return;
+    localStorage.setItem(SYNC_USER_KEY, user);
+    localStorage.setItem(SYNC_PIN_KEY, pin);
+    connect(user+'-'+pin);
+  }
+
+  $('syncConnect').onclick=()=>connectFromFields('syncUser','syncPin');
+  $('syncUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('syncPin').focus(); });
+  $('syncPin').addEventListener('keydown', e=>{ if(e.key==='Enter') connectFromFields('syncUser','syncPin'); });
+
+  $('syncLogout').onclick=()=>{
+    if(!confirm('Log out on this device? This clears the companions saved locally here (so the next person\'s code doesn\'t get them merged in) — your data stays safe in the cloud under your code.'))return;
+    if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+    localStorage.removeItem(SYNC_CODE_KEY);
+    localStorage.removeItem(SYNC_USER_KEY);
+    localStorage.removeItem(SYNC_PIN_KEY);
+    localStorage.removeItem(STORE_KEY);
+    location.reload();
+  };
+
+  function showGate(){
+    const gate=$('syncGate');
+    gate.style.display='flex';
+    $('gateNew').onclick=submitGate;
+    $('gateLogin').onclick=submitGate;
+    $('gateUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('gatePin').focus(); });
+    $('gatePin').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
+    $('gateUser').focus();
+  }
+  function submitGate(){
+    const user=$('gateUser').value.trim(), pin=$('gatePin').value.trim();
+    if(!user){ $('gateUser').focus(); return; }
+    $('syncGate').style.display='none';
+    $('syncUser').value=user; $('syncPin').value=pin;
+    localStorage.setItem(SYNC_USER_KEY, user);
+    localStorage.setItem(SYNC_PIN_KEY, pin);
+    connect(user+'-'+pin);
+  }
+
+  const savedCode=localStorage.getItem(SYNC_CODE_KEY);
+  const savedUser=localStorage.getItem(SYNC_USER_KEY);
+  const savedPin=localStorage.getItem(SYNC_PIN_KEY);
+  if(savedUser!==null) $('syncUser').value=savedUser;
+  if(savedPin!==null) $('syncPin').value=savedPin;
+  if(savedCode){
+    if(savedUser!==null && savedPin!==null){ connect(savedUser+'-'+savedPin); }
+    else{ $('syncUser').value=savedCode; connect(savedCode); }
+  } else { showGate(); }
+})();
+</script>
+</body>
+</html>
