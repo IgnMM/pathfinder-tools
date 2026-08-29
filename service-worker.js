@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v83";
+const CACHE_NAME = "pathfinder-paladins-folders-v84";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/casting-time.js",
@@ -21,6 +21,8 @@ const ASSETS = [
   "./skald/","./skald/index.html","./skald/manifest.webmanifest","./skald/icon-192.png","./skald/icon-512.png",
   "./investigator/","./investigator/index.html","./investigator/manifest.webmanifest","./investigator/icon-192.png","./investigator/icon-512.png",
   "./warpriest/","./warpriest/index.html","./warpriest/manifest.webmanifest","./warpriest/icon-192.png","./warpriest/icon-512.png",
+  "./inquisitor/","./inquisitor/index.html","./inquisitor/manifest.webmanifest","./inquisitor/icon-192.png","./inquisitor/icon-512.png",
+  "./magus/","./magus/index.html","./magus/manifest.webmanifest","./magus/icon-192.png","./magus/icon-512.png",
   "./cleric-oracle-library/","./cleric-oracle-library/index.html","./cleric-oracle-library/manifest.webmanifest","./cleric-oracle-library/icon-192.png","./cleric-oracle-library/icon-512.png",
   "./wizard-sorcerer-library/","./wizard-sorcerer-library/index.html","./wizard-sorcerer-library/manifest.webmanifest","./wizard-sorcerer-library/icon-192.png","./wizard-sorcerer-library/icon-512.png",
   "./bard-library/","./bard-library/index.html","./bard-library/manifest.webmanifest","./bard-library/icon-192.png","./bard-library/icon-512.png",
@@ -32,6 +34,8 @@ const ASSETS = [
   "./skald-library/","./skald-library/index.html","./skald-library/manifest.webmanifest","./skald-library/icon-192.png","./skald-library/icon-512.png",
   "./investigator-library/","./investigator-library/index.html","./investigator-library/manifest.webmanifest","./investigator-library/icon-192.png","./investigator-library/icon-512.png",
   "./warpriest-library/","./warpriest-library/index.html","./warpriest-library/manifest.webmanifest","./warpriest-library/icon-192.png","./warpriest-library/icon-512.png",
+  "./inquisitor-library/","./inquisitor-library/index.html","./inquisitor-library/manifest.webmanifest","./inquisitor-library/icon-192.png","./inquisitor-library/icon-512.png",
+  "./magus-library/","./magus-library/index.html","./magus-library/manifest.webmanifest","./magus-library/icon-192.png","./magus-library/icon-512.png",
   "./calc/","./calc/index.html","./calc/manifest.webmanifest","./calc/icon-192.png","./calc/icon-512.png",
   "./companion/","./companion/index.html","./companion/manifest.webmanifest","./companion/icon-192.png","./companion/icon-512.png"
 ];
