@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v84";
+const CACHE_NAME = "pathfinder-paladins-folders-v85";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/casting-time.js",
@@ -23,6 +23,10 @@ const ASSETS = [
   "./warpriest/","./warpriest/index.html","./warpriest/manifest.webmanifest","./warpriest/icon-192.png","./warpriest/icon-512.png",
   "./inquisitor/","./inquisitor/index.html","./inquisitor/manifest.webmanifest","./inquisitor/icon-192.png","./inquisitor/icon-512.png",
   "./magus/","./magus/index.html","./magus/manifest.webmanifest","./magus/icon-192.png","./magus/icon-512.png",
+  "./mesmerist/","./mesmerist/index.html","./mesmerist/manifest.webmanifest","./mesmerist/icon-192.png","./mesmerist/icon-512.png",
+  "./spiritualist/","./spiritualist/index.html","./spiritualist/manifest.webmanifest","./spiritualist/icon-192.png","./spiritualist/icon-512.png",
+  "./medium/","./medium/index.html","./medium/manifest.webmanifest","./medium/icon-192.png","./medium/icon-512.png",
+  "./occultist/","./occultist/index.html","./occultist/manifest.webmanifest","./occultist/icon-192.png","./occultist/icon-512.png",
   "./cleric-oracle-library/","./cleric-oracle-library/index.html","./cleric-oracle-library/manifest.webmanifest","./cleric-oracle-library/icon-192.png","./cleric-oracle-library/icon-512.png",
   "./wizard-sorcerer-library/","./wizard-sorcerer-library/index.html","./wizard-sorcerer-library/manifest.webmanifest","./wizard-sorcerer-library/icon-192.png","./wizard-sorcerer-library/icon-512.png",
   "./bard-library/","./bard-library/index.html","./bard-library/manifest.webmanifest","./bard-library/icon-192.png","./bard-library/icon-512.png",
@@ -36,6 +40,10 @@ const ASSETS = [
   "./warpriest-library/","./warpriest-library/index.html","./warpriest-library/manifest.webmanifest","./warpriest-library/icon-192.png","./warpriest-library/icon-512.png",
   "./inquisitor-library/","./inquisitor-library/index.html","./inquisitor-library/manifest.webmanifest","./inquisitor-library/icon-192.png","./inquisitor-library/icon-512.png",
   "./magus-library/","./magus-library/index.html","./magus-library/manifest.webmanifest","./magus-library/icon-192.png","./magus-library/icon-512.png",
+  "./mesmerist-library/","./mesmerist-library/index.html","./mesmerist-library/manifest.webmanifest","./mesmerist-library/icon-192.png","./mesmerist-library/icon-512.png",
+  "./spiritualist-library/","./spiritualist-library/index.html","./spiritualist-library/manifest.webmanifest","./spiritualist-library/icon-192.png","./spiritualist-library/icon-512.png",
+  "./medium-library/","./medium-library/index.html","./medium-library/manifest.webmanifest","./medium-library/icon-192.png","./medium-library/icon-512.png",
+  "./occultist-library/","./occultist-library/index.html","./occultist-library/manifest.webmanifest","./occultist-library/icon-192.png","./occultist-library/icon-512.png",
   "./calc/","./calc/index.html","./calc/manifest.webmanifest","./calc/icon-192.png","./calc/icon-512.png",
   "./companion/","./companion/index.html","./companion/manifest.webmanifest","./companion/icon-192.png","./companion/icon-512.png"
 ];
