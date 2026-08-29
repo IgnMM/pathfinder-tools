@@ -34,6 +34,17 @@ details.section[open] .chevron{transform:rotate(180deg)}
 .subsectionLabel{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:16px 4px 4px;padding-top:12px;border-top:1px solid var(--border)}
 .subsectionLabel:first-child{margin-top:4px;padding-top:0;border-top:none}
 
+details.subsection{margin:10px 4px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:rgba(255,255,255,.03)}
+details.subsection + details.subsection{margin-top:10px}
+details.subsection > summary{list-style:none;cursor:pointer;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;-webkit-tap-highlight-color:transparent}
+details.subsection > summary::-webkit-details-marker{display:none}
+details.subsection > summary::marker{content:""}
+details.subsection > summary .subname{font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+details.subsection > summary .subcount{font-size:.72rem;color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0}
+details.subsection .schevron{flex:none;width:16px;height:16px;color:var(--muted);transition:transform .18s ease}
+details.subsection[open] .schevron{transform:rotate(180deg)}
+details.subsection .links{padding:0 10px 10px}
+
 .sourcesWrap{padding:4px 16px 16px}
 .sourcesNote{color:var(--muted);font-size:.82rem;line-height:1.45;margin:0 0 12px}
 .sourcesToolbar{display:flex;gap:8px;margin-bottom:8px}
@@ -89,7 +100,12 @@ details.section[open] .chevron{transform:rotate(180deg)}
 <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
 </summary>
 <div class="links">
-<div class="subsectionLabel">Spell Libraries</div>
+<details class="subsection">
+<summary>
+<span class="subname">Spell Libraries</span>
+<svg class="schevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="links">
 <a href="cleric-oracle-library/">Cleric / Oracle Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
 <a href="wizard-sorcerer-library/">Wizard / Sorcerer Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
 <a href="bard-library/">Bard Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
@@ -111,7 +127,14 @@ details.section[open] .chevron{transform:rotate(180deg)}
 <a href="shaman-library/">Shaman Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
 <a href="bloodrager-library/">Bloodrager Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
 <a href="summoner-library/">Summoner Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
-<div class="subsectionLabel">Character Spell Sheets</div>
+</div>
+</details>
+<details class="subsection">
+<summary>
+<span class="subname">Character Spell Sheets</span>
+<svg class="schevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="links">
 <a href="cleric/">Cleric Spellbook<br><small>Any cleric — save multiple characters by name</small></a>
 <a href="paladin/">Paladin Spellbook<br><small>Any paladin — save multiple characters by name</small></a>
 <a href="druid/">Druid Spellbook<br><small>Any druid — save multiple characters by name</small></a>
@@ -136,6 +159,8 @@ details.section[open] .chevron{transform:rotate(180deg)}
 <a href="shaman/">Shaman Spellbook<br><small>Any shaman — save multiple characters by name</small></a>
 <a href="bloodrager/">Bloodrager Spellbook<br><small>Any bloodrager — save multiple characters by name</small></a>
 <a href="summoner/">Summoner Spellbook<br><small>Any summoner — save multiple characters by name</small></a>
+</div>
+</details>
 </div>
 </details>
 
