@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v80";
+const CACHE_NAME = "pathfinder-paladins-folders-v81";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/casting-time.js",
@@ -18,6 +18,7 @@ const ASSETS = [
   "./hunter/","./hunter/index.html","./hunter/manifest.webmanifest","./hunter/icon-192.png","./hunter/icon-512.png",
   "./witch/","./witch/index.html","./witch/manifest.webmanifest","./witch/icon-192.png","./witch/icon-512.png",
   "./antipaladin/","./antipaladin/index.html","./antipaladin/manifest.webmanifest","./antipaladin/icon-192.png","./antipaladin/icon-512.png",
+  "./skald/","./skald/index.html","./skald/manifest.webmanifest","./skald/icon-192.png","./skald/icon-512.png",
   "./cleric-oracle-library/","./cleric-oracle-library/index.html","./cleric-oracle-library/manifest.webmanifest","./cleric-oracle-library/icon-192.png","./cleric-oracle-library/icon-512.png",
   "./wizard-sorcerer-library/","./wizard-sorcerer-library/index.html","./wizard-sorcerer-library/manifest.webmanifest","./wizard-sorcerer-library/icon-192.png","./wizard-sorcerer-library/icon-512.png",
   "./bard-library/","./bard-library/index.html","./bard-library/manifest.webmanifest","./bard-library/icon-192.png","./bard-library/icon-512.png",
@@ -26,6 +27,7 @@ const ASSETS = [
   "./ranger-library/","./ranger-library/index.html","./ranger-library/manifest.webmanifest","./ranger-library/icon-192.png","./ranger-library/icon-512.png",
   "./antipaladin-library/","./antipaladin-library/index.html","./antipaladin-library/manifest.webmanifest","./antipaladin-library/icon-192.png","./antipaladin-library/icon-512.png",
   "./alchemist-library/","./alchemist-library/index.html","./alchemist-library/manifest.webmanifest","./alchemist-library/icon-192.png","./alchemist-library/icon-512.png",
+  "./skald-library/","./skald-library/index.html","./skald-library/manifest.webmanifest","./skald-library/icon-192.png","./skald-library/icon-512.png",
   "./calc/","./calc/index.html","./calc/manifest.webmanifest","./calc/icon-192.png","./calc/icon-512.png",
   "./companion/","./companion/index.html","./companion/manifest.webmanifest","./companion/icon-192.png","./companion/icon-512.png"
 ];
