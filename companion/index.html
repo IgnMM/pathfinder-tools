@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Companion Hit&amp;Damage Calculator</title>
+<title>Companion &amp; Mount Hit&amp;Damage Calculator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#10151d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Comp Calc">
+<meta name="apple-mobile-web-app-title" content="Comp/Mount Calc">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{
@@ -113,10 +113,10 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <style>@media(max-width:900px){.wrap{padding-left:60px !important}}</style>
 <div class="wrap">
 <header>
-  <h1>Companion Hit&amp;Damage Calculator</h1>
-  <div class="subtitle">Pathfinder 1e — animal companions, mounts, familiars and similar allies fighting with natural attacks. Hit &amp; damage bonuses only (no AC, saves, or non-combat effects). Every change saves automatically to this browser — use "Save As" to keep a copy under a different companion's name. Want your companions on another device too? Set a Sync code below (top right).</div>
+  <h1>Companion &amp; Mount Hit&amp;Damage Calculator</h1>
+  <div class="subtitle">Pathfinder 1e — animal companions, mounts (Paladin's Divine Bond, Cavalier's order mount...), familiars and similar allies fighting with natural attacks. Hit &amp; damage bonuses only (no AC, saves, or non-combat effects). Every change saves automatically to this browser — use "Save As" to keep a copy under a different companion's name. Want your companions on another device too? Set a Sync code below (top right).</div>
   <div class="profileBar" style="margin-top:10px">
-    <label style="margin:0">Companion:</label>
+    <label style="margin:0">Companion/Mount:</label>
     <select id="profileSelect"></select>
     <button id="newProfile">New</button>
     <button id="dupProfile">Save As…</button>
@@ -247,6 +247,35 @@ const MODIFIERS = [
 {id:'improved-natural-attack',name:'Improved Natural Attack',category:'feat',source:'Bestiary (Monster feat)',appliesTo:[],type:'special',
  desc:'Requires natural weapon, base attack bonus +4. Choose one of the creature\'s natural attacks — its damage die increases by one step, as if the creature\'s size had increased by one category for that attack only. Not a flat number here — bump that attack line\'s Damage Die by hand (e.g. 1d6 → 1d8, per the Core Rulebook size-conversion table).',
  compute:()=>({attack:0,damage:0,note:'special — increases one chosen attack\'s damage die by one size step; adjust that line\'s Damage Die by hand'})},
+{id:'vital-strike',name:'Vital Strike',category:'feat',source:'Core Rulebook',appliesTo:['damage'],type:'untyped',
+ desc:'Make a single attack-action strike that rolls that attack\'s base damage dice twice. Only usable when taking the attack action (a single attack, not a full attack) — check "Only one natural attack this round?" above, since that\'s the same condition. Works with natural weapons. Non-dice bonuses (Str, enhancement, etc.) are added only once, not doubled, and this isn\'t multiplied on a crit.',
+ compute:()=>({attack:0,damage:0,note:'requires "Only one natural attack this round?" checked above — doubles that attack line\'s Damage Die (shown automatically), everything else added once, not multiplied on a crit'})},
+{id:'vital-strike-improved',name:'Vital Strike, Improved',category:'feat',source:'Core Rulebook',appliesTo:['damage'],type:'untyped',
+ desc:'Upgrade to Vital Strike: rolls the attack\'s base damage dice three times instead of twice. Requires Vital Strike, BAB +11.',
+ compute:()=>({attack:0,damage:0,note:'requires "Only one natural attack this round?" checked above — triples that attack line\'s Damage Die (shown automatically)'})},
+{id:'vital-strike-greater',name:'Vital Strike, Greater',category:'feat',source:'Core Rulebook',appliesTo:['damage'],type:'untyped',
+ desc:'Upgrade to Improved Vital Strike: rolls the attack\'s base damage dice four times instead of three. Requires Improved Vital Strike, BAB +16.',
+ compute:()=>({attack:0,damage:0,note:'requires "Only one natural attack this round?" checked above — quadruples that attack line\'s Damage Die (shown automatically)'})},
+{id:'furious-focus',name:'Furious Focus',category:'feat',source:"Advanced Player's Guide",appliesTo:['attack'],type:'special',
+ desc:'Requires Power Attack. No Power Attack attack-roll penalty on the FIRST attack of the turn only — applied automatically to the first row of your Attacks list (the rest still take the full penalty).',
+ special:'furious-focus', compute:()=>({attack:0,damage:0,note:'waives Power Attack\'s attack penalty on the first attack line only (see Results below)'})},
+{id:'outflank',name:'Outflank',category:'feat',source:"Advanced Player's Guide",appliesTo:['attack'],type:'special',
+ desc:'When flanking the same target as an ally who also has this feat, the flanking bonus on attack rolls increases from +2 to +4 (replaces the Flanking modifier below, don\'t stack both). Requires BAB +4.',
+ compute:()=>({attack:0,damage:0,note:'special — if Flanking is also active below, use +4 instead of its +2 (don\'t add both)'})},
+{id:'precise-strike',name:'Precise Strike',category:'feat',source:"Advanced Player's Guide",appliesTo:['damage'],type:'special',
+ desc:'While flanking the same target as an ally who also has this feat, deal an extra 1d6 precision damage on melee hits. Teamwork feat, requires Dex 13, BAB +1.',
+ compute:()=>({attack:0,damage:0,note:'special — deals an extra 1d6 precision damage while flanking with a partner who also has this feat, not added to the totals above'})},
+{id:'paired-opportunists',name:'Paired Opportunists',category:'feat',source:"Advanced Player's Guide",appliesTo:['attack'],type:'circumstance',
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:4}],
+ desc:'Teamwork feat: +4 circumstance bonus on attacks of opportunity against a creature threatened by both the companion and an adjacent ally who also has this feat.',
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:4);return {attack:v,damage:0,note:signed(v)+' atk (circumstance, attacks of opportunity only)'}}},
+{id:'spirited-charge',name:'Spirited Charge',category:'feat',source:'Core Rulebook',appliesTo:['damage'],type:'untyped',
+ desc:'"When mounted and using the charge action, you deal double damage with a melee weapon" — a natural weapon included. Requires Ride 1 rank, Mounted Combat, Ride-By Attack. A multiplier on the whole damage roll, not an additive bonus — not modeled as a number here: double the Normal Damage of whichever attack line you use on the charge, by hand.',
+ compute:()=>({attack:0,damage:0,note:'special — doubles the Normal Damage of the attack used on this mounted charge (not added to totals above, apply by hand)'})},
+{id:'aid-another',name:'Aid Another',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'circumstance',allowMultiple:true,
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:'An adjacent ally spends a standard action and succeeds at an attack roll (DC 10 vs the target\'s AC) to grant a +2 bonus on the companion\'s next attack roll against that same target. Add once per ally who successfully aids.',
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' atk (circumstance, next attack roll only)'}}},
 {id:'bless',name:'Bless',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack'],type:'morale',
  desc:'+1 morale bonus on attack rolls (also vs. fear saves, not modeled here). Affects every ally in the area, including a companion.',
  compute:()=>({attack:1,damage:0,note:'+1 atk (morale)'})},
@@ -280,6 +309,10 @@ const MODIFIERS = [
 {id:'strong-jaw',name:'Strong Jaw',category:'spell',source:'Advanced Class Guide (Druid 4th / Ranger 3rd)',appliesTo:[],type:'special',
  desc:'Touch spell. Every natural attack the target makes deals damage as if it were two size categories larger (does not change anything else, and does not stack with actual size increases). Not a flat number here — while active, every attack line\'s Damage Die above is automatically shown upsized two steps.',
  compute:()=>({attack:0,damage:0,note:'special — every attack line\'s Damage Die above already shows the two-step size-up'})},
+{id:'animal-growth',name:'Animal Growth',category:'spell',source:'Core Rulebook (Druid 5th / Ranger 4th)',appliesTo:['attack','damage'],type:'size',
+ configFields:[{key:'value',label:'Str size bonus',type:'number',default:8}],
+ desc:'Touch spell — the target animal grows one size category: +8 size bonus to Strength (below), -1 size penalty on attack rolls from growing (applied automatically, always — not tied to which ability is selected above), +4 size bonus to Constitution and -2 size penalty to Dexterity (not modeled here, ability-score-only effect), +2 natural armor (not modeled here). Assumes growing exactly ONE size category (the common case) — adjust by hand for a different starting size. Does NOT stack with Strong Jaw or another casting of itself (same size-changing effect). While active, every attack line\'s Damage Die above is shown one size step larger.',
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'str',cfg.value!==undefined?cfg.value:8);let atk=r.attack-1;return {attack:atk,damage:r.damage,note:signed(atk)+' atk ('+(r.attack?('+'+r.attack+' size from Strength, -1 size penalty from growing'):'-1 size penalty from growing, no Strength effect since Strength isn\'t the selected attack ability above')+') / '+signed(r.damage)+' dmg'}}},
 {id:'heroism',name:'Heroism',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'morale',
  desc:'+2 morale bonus on attack rolls (also on saves and skill checks, not modeled here).',
  compute:()=>({attack:2,damage:0,note:'+2 atk (morale)'})},
@@ -290,8 +323,8 @@ const MODIFIERS = [
  desc:'+4 morale bonus on attack and damage rolls (also temporary hit points and fear/charm immunity, not modeled here).',
  compute:()=>({attack:4,damage:4,note:'+4 atk / +4 dmg (morale)'})},
 {id:'divine-favor',name:'Divine Favor',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'luck',
- desc:'+1 luck bonus per 3 caster levels (max +3) on attack and weapon damage rolls.',
- configFields:[{key:'cl',label:'Caster level',type:'number',default:5,linkLevel:'cl'}],
+ desc:'+1 luck bonus per 3 caster levels (max +3) on attack and weapon damage rolls. The caster level field below defaults to the sheet\'s own Caster Level (the "owner"), but is a normal editable number — change it after adding if a different caster (e.g. a visiting wizard or cleric) is the one casting this.',
+ configFields:[{key:'cl',label:'Caster level (defaults to sheet\'s Caster Level, editable)',type:'number',default:5,linkLevel:'cl'}],
  compute:(ctx,cfg)=>{let b=Math.min(3,Math.max(1,Math.floor((cfg.cl||1)/3)));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (luck)'}}},
 {id:'prayer',name:'Prayer',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'luck',
  desc:'+1 luck bonus on attack and weapon damage rolls (does not stack with Divine Favor — both are luck).',
@@ -303,8 +336,8 @@ const MODIFIERS = [
  desc:'+1 enhancement bonus on attack and damage rolls with one natural weapon. Applied here to every attack line for simplicity — if only cast on ONE of the companion\'s attack types, only count it on that line by hand.',
  compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement)'})},
 {id:'greater-magic-fang',name:'Magic Fang, Greater',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
- desc:'+1 enhancement bonus per 4 caster levels (max +5) on attack and damage rolls — can affect all of the target\'s natural weapons at once, unlike regular Magic Fang.',
- configFields:[{key:'cl',label:'Caster level',type:'number',default:8,linkLevel:'cl'}],
+ desc:'+1 enhancement bonus per 4 caster levels (max +5) on attack and damage rolls — can affect all of the target\'s natural weapons at once, unlike regular Magic Fang. The caster level field below defaults to the sheet\'s own Caster Level (the "owner"), but is a normal editable number — change it after adding if a different caster is the one casting this.',
+ configFields:[{key:'cl',label:'Caster level (defaults to sheet\'s Caster Level, editable)',type:'number',default:8,linkLevel:'cl'}],
  compute:(ctx,cfg)=>{let b=Math.min(5,Math.floor((cfg.cl||1)/4));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement)'}}},
 {id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
  desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls. Affects every ally who can hear it, including a companion.',
@@ -586,13 +619,13 @@ function stackTotal(entries){
 function collectContributions(ctx){
   let p=currentProfile();
   let atkEntries=[], dmgEntries=[], breakdown=[];
-  let powerAttackOn=false, powerAttackDmgVal=0;
+  let powerAttackOn=false, powerAttackDmgVal=0, powerAttackAtkVal=0;
   p.active.forEach(a=>{
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
     let isOff=a.on===false;
     let r=m.compute(ctx,a.cfg||{});
     let effType=r.type||m.type;
-    if(!isOff && m.id==='power-attack'){ powerAttackOn=true; powerAttackDmgVal=r.damage; }
+    if(!isOff && m.id==='power-attack'){ powerAttackOn=true; powerAttackDmgVal=r.damage; powerAttackAtkVal=r.attack; }
     if(!isOff){
       if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name});
       if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name});
@@ -609,7 +642,7 @@ function collectContributions(ctx){
     }
     breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(isOff?' (not active right now)':''),suppressed:false,off:isOff});
   });
-  return {atkEntries,dmgEntries,breakdown,powerAttackOn,powerAttackDmgVal};
+  return {atkEntries,dmgEntries,breakdown,powerAttackOn,powerAttackDmgVal,powerAttackAtkVal};
 }
 
 function markSuppressed(entries,breakdown){
@@ -652,7 +685,7 @@ function compute(){
     style: $('singleAttack').checked ? 'twoHanded' : 'oneHanded',
     atkStat:$('atkStat').value, dmgStat:$('dmgStat').value
   };
-  let {atkEntries,dmgEntries,breakdown,powerAttackOn,powerAttackDmgVal}=collectContributions(ctx);
+  let {atkEntries,dmgEntries,breakdown,powerAttackOn,powerAttackDmgVal,powerAttackAtkVal}=collectContributions(ctx);
   markSuppressed(atkEntries, breakdown.filter(b=>b.atk!==null));
   markSuppressed(dmgEntries, breakdown.filter(b=>b.dmg!==null));
   renderBreakdown(breakdown);
@@ -661,7 +694,12 @@ function compute(){
   let atkAbilityMod = ctx.atkStat==='none'?0:ctx[ctx.atkStat];
   let dmgAbilityMod = ctx.dmgStat==='none'?0:ctx[ctx.dmgStat];
   let strongJawOn = p.active.some(a=>a.id==='strong-jaw' && a.on!==false);
+  let animalGrowthOn = p.active.some(a=>a.id==='animal-growth' && a.on!==false);
   let paNoCritMult = p.active.some(a=>a.id==='hr-pa-no-crit' && a.on!==false);
+  let furiousFocusOn = p.active.some(a=>a.id==='furious-focus' && a.on!==false);
+  let vsMultMap={'vital-strike':2,'vital-strike-improved':3,'vital-strike-greater':4};
+  let vsActive=p.active.filter(a=>a.on!==false && vsMultMap[a.id]);
+  let vsMult = (ctx.style==='twoHanded' && vsActive.length) ? Math.max(...vsActive.map(a=>vsMultMap[a.id])) : 0;
 
   let box=$('attackResults'); box.innerHTML='';
   if(!p.attackLines || !p.attackLines.length){
@@ -670,21 +708,29 @@ function compute(){
     let t=document.createElement('table'); t.className='breakTable';
     t.innerHTML='<thead><tr><th>Attack</th><th class="num">To-Hit</th><th>Normal Damage</th><th>Critical Damage</th></tr></thead>';
     let tbody=document.createElement('tbody');
-    p.attackLines.forEach(line=>{
+    p.attackLines.forEach((line,i)=>{
       let strContribution;
       if(line.strMode==='full') strContribution = (ctx.style==='twoHanded' && dmgAbilityMod>0) ? Math.floor(dmgAbilityMod*1.5) : dmgAbilityMod;
       else if(line.strMode==='half') strContribution = dmgAbilityMod<0 ? dmgAbilityMod : Math.floor(dmgAbilityMod/2);
       else strContribution = 0;
-      let atk = (+line.atkBonus||0) + atkAbilityMod + atkFromMods;
+      let lineAtkFromMods = (furiousFocusOn && powerAttackOn && i===0) ? (atkFromMods - powerAttackAtkVal) : atkFromMods;
+      let atk = (+line.atkBonus||0) + atkAbilityMod + lineAtkFromMods;
       let dmgBonus = strContribution + dmgFromMods;
       let die = (line.die||'1d4').trim();
-      let effDie = strongJawOn ? diceSizeUp(diceSizeUp(die)) : die;
+      let effDie = die;
+      if(strongJawOn) effDie = diceSizeUp(diceSizeUp(effDie));
+      else if(animalGrowthOn) effDie = diceSizeUp(effDie);
       let critMult = +line.critMult||2;
       let critDmg = dmgBonus*critMult;
       if(paNoCritMult && powerAttackOn && powerAttackDmgVal) critDmg = (dmgBonus-powerAttackDmgVal)*critMult + powerAttackDmgVal;
       let critDice = diceMultiply(effDie, critMult);
+      let normalDiceStr = effDie;
+      if(vsMult){
+        normalDiceStr = diceMultiply(effDie, vsMult);
+        if(vsMult>1) critDice += ' + '+diceMultiply(effDie, vsMult-1)+' (Vital Strike, unmultiplied)';
+      }
       let tr=document.createElement('tr');
-      tr.innerHTML=`<td>${line.name||'Attack'}</td><td class="num">${signed(atk)}</td><td>${effDie} ${signed(dmgBonus)}</td><td>${critDice} ${signed(critDmg)} (threat ${line.threat||'20'}/×${critMult})</td>`;
+      tr.innerHTML=`<td>${line.name||'Attack'}${(furiousFocusOn && powerAttackOn && i===0)?' <span class="typeTag" title="Furious Focus waives Power Attack\'s attack penalty here">Furious Focus</span>':''}</td><td class="num">${signed(atk)}</td><td>${normalDiceStr} ${signed(dmgBonus)}</td><td>${critDice} ${signed(critDmg)} (threat ${line.threat||'20'}/×${critMult})</td>`;
       tbody.appendChild(tr);
     });
     t.appendChild(tbody); box.appendChild(t);
@@ -694,7 +740,11 @@ function compute(){
   notes.push('Shared modifiers this turn: '+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg (from active Feats/Spells/Other Effects above) — applied to every attack line.');
   notes.push('"Primary (full Str)" lines use '+(ctx.style==='twoHanded'?'×1.5 Str (only one natural attack this round)':'×1 Str')+'; "Secondary (half Str)" lines use half (rounded down — a penalty is not halved).');
   if(strongJawOn) notes.push('Strong Jaw is active — every attack line\'s Damage Die above already shows the two-size-category increase.');
+  if(animalGrowthOn && !strongJawOn) notes.push('Animal Growth is active — every attack line\'s Damage Die above already shows the one-size-category increase.');
+  if(animalGrowthOn && strongJawOn) notes.push('Both Strong Jaw and Animal Growth are active — these don\'t stack per RAW; the Damage Die above only shows Strong Jaw\'s two-step increase, remove one of the two.');
   if(powerAttackOn) notes.push('Power Attack\'s damage bonus is shared across every line at its full rate for simplicity — on a Secondary (half Str) line, its real Power Attack contribution is normally half that.');
+  if(vsMult) notes.push('Vital Strike is active: Normal/Critical Damage above already include the extra dice for every line — remember this only applies to a single attack action (you should really only be using one attack line this round, matching "Only one natural attack this round?" above).');
+  if(furiousFocusOn && !powerAttackOn) notes.push('Furious Focus is active but Power Attack isn\'t — Furious Focus has no effect without it.');
   $('notes').innerHTML=notes.map(n=>'• '+n).join('<br>');
 }
 
