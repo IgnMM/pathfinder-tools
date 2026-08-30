@@ -899,6 +899,20 @@ const MODIFIERS = [
  desc:"Bane weapon: +2 enhancement bonus to attack rolls and an extra 2d6 damage (dice, not a flat number) against its designated foe type. Pick the weapon's designated foe type above so it turns on/off automatically with Current Target.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match this weapon\'s designated foe type — see the field above'};return {attack:v,damage:0,note:signed(v)+' '+"enhancement"+" (plus 2d6 extra damage, added to Normal/Critical Damage below as dice, not a flat number)",extraDice:{normal:'2d6 vs designated foe'}}}},
 
+// ---------------- OTHER (alchemist mutagens) ----------------
+{id:"mutagen-str",name:"Mutagen (Strength)",category:"other",source:"Alchemist class feature (Core Rulebook)",appliesTo:["attack","damage"],type:"alchemical-str",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ desc:"Alchemical bonus to Strength (+4 base Mutagen, +6 Greater Mutagen, +8 Grand Mutagen — adjust the value below), with an equal penalty to Intelligence (not modeled here — this calculator only tracks attack/damage). Only actually changes your attack/damage here if Strength is the ability selected for \"Attack rolls\" / \"Damage rolls\" above.",
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'str',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (alchemical)'):'no effect — Strength isn\'t your selected attack/damage ability above'}}},
+{id:"mutagen-dex",name:"Mutagen (Dexterity)",category:"other",source:"Alchemist class feature (Core Rulebook)",appliesTo:["attack","damage"],type:"alchemical-dex",
+ configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
+ desc:"Alchemical bonus to Dexterity (+4 base Mutagen, +6 Greater Mutagen, +8 Grand Mutagen — adjust the value below), with an equal penalty to Intelligence (not modeled here). Only actually changes your attack/damage here if Dexterity is the ability selected for \"Attack rolls\" / \"Damage rolls\" above (e.g. Weapon Finesse, a ranged weapon, or a Dex-to-damage feat).",
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'dex',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (alchemical)'):'no effect — Dexterity isn\'t your selected attack/damage ability above'}}},
+{id:"cognatogen",name:"Cognatogen",category:"other",source:"Alchemist discovery (Advanced Player's Guide)",appliesTo:["attack","damage"],type:"alchemical-str",
+ configFields:[{key:'value',label:'Strength penalty',type:'number',default:-2}],
+ desc:"Cognatogen grants an alchemical bonus to Intelligence (not modeled here) but imposes an alchemical PENALTY to Strength (-2 base, worse with Greater/Grand Cognatogen — adjust the value below, it's negative). Only actually changes your attack/damage here if Strength is the ability selected for \"Attack rolls\" / \"Damage rolls\" above — a real downside for a Str-based alchemist who cognatogens up.",
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'str',cfg.value!==undefined?cfg.value:-2);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?(signed(r.attack)+' atk / '+signed(r.damage)+' dmg (alchemical)'):'no effect — Strength isn\'t your selected attack/damage ability above'}}},
+
 // ---------------- WEAPON PROPERTIES ----------------
 // Extra damage dice from these are never multiplied on a crit (Core Rulebook pg. 468,
 // "Additional Damage Dice") — this engine never resolves dice to a number anyway, so
