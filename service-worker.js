@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v92";
+const CACHE_NAME = "pathfinder-paladins-folders-v93";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/casting-time.js",
@@ -39,6 +39,8 @@ const ASSETS = [
   "./witch-library/","./witch-library/index.html","./witch-library/manifest.webmanifest","./witch-library/icon-192.png","./witch-library/icon-512.png",
   "./druid-library/","./druid-library/index.html","./druid-library/manifest.webmanifest","./druid-library/icon-192.png","./druid-library/icon-512.png",
   "./ranger-library/","./ranger-library/index.html","./ranger-library/manifest.webmanifest","./ranger-library/icon-192.png","./ranger-library/icon-512.png",
+  "./paladin-library/","./paladin-library/index.html","./paladin-library/manifest.webmanifest","./paladin-library/icon-192.png","./paladin-library/icon-512.png",
+  "./hunter-library/","./hunter-library/index.html","./hunter-library/manifest.webmanifest","./hunter-library/icon-192.png","./hunter-library/icon-512.png",
   "./antipaladin-library/","./antipaladin-library/index.html","./antipaladin-library/manifest.webmanifest","./antipaladin-library/icon-192.png","./antipaladin-library/icon-512.png",
   "./alchemist-library/","./alchemist-library/index.html","./alchemist-library/manifest.webmanifest","./alchemist-library/icon-192.png","./alchemist-library/icon-512.png",
   "./skald-library/","./skald-library/index.html","./skald-library/manifest.webmanifest","./skald-library/icon-192.png","./skald-library/icon-512.png",
