@@ -114,21 +114,19 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div class="subtitle">Pathfinder 1e — attack/damage modifiers with correct bonus-type stacking. Every change saves automatically to this browser — there's no Save button because there's nothing to lose; use "Save As" to keep a copy under a different character's name. Want your characters on another device too? Set a Sync code below (top right).</div>
   <div class="profileBar" style="margin-top:10px">
     <label style="margin:0">Character:</label>
-    <select id="profileSelect"></select>
+    <select id="profileSelect"></select><span id="profileUpdated" style="font-size:.7rem;color:var(--muted);margin:0 4px"></span>
     <button id="newProfile">New</button>
     <button id="dupProfile">Save As…</button>
     <button id="renameProfile">Rename</button>
     <span id="saveIndicator" class="saveIndicator">✓ Saved</span>
     <button class="danger" id="deleteProfile">Delete</button>
     <details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button></div><div id="sourceList"></div></div></details>
-    <details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px">
+    <button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button><span id="syncStatus" style="font-size:.75rem;color:var(--muted)"></span><details class="sourcesbox"><summary>Account</summary><div class="sourcesPanel" style="min-width:220px">
       <div class="row"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase"></div>
       <div class="row"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase"></div>
       <button id="syncConnect" type="button">Connect</button>
       <button id="syncLogout" type="button" class="danger">Log out</button>
-      <div style="display:flex;gap:6px;margin-top:6px"><button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button></div>
-      <div style="font-size:.72rem;color:var(--muted);margin-top:6px">Use the same code on another device to see the same characters there. Whoever knows the code can read/write this data — pick something private, not "1234".</div>
-      <div id="syncStatus" style="font-size:.75rem;color:var(--muted);margin-top:6px"></div>
+            <div style="font-size:.72rem;color:var(--muted);margin-top:6px">Use the same code on another device to see the same characters there. Whoever knows the code can read/write this data — pick something private, not "1234".</div>
     </div></details>
   </div>
 </header>
@@ -2730,6 +2728,7 @@ function defaultProfile(name){
     enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:'', deity:''};
 }
 let store=loadStore();
+if(!store.deletedProfiles) store.deletedProfiles={};
 // migrate profiles saved before the Fighting Style / Ability picker / Race / Alignment / Sources features existed
 store.profiles.forEach(p=>{
   if(!p.style) p.style = (p.hands===1) ? 'oneHanded' : 'twoHanded';
@@ -2780,6 +2779,12 @@ function populateProfileSelect(){
   let sel=$('profileSelect'); sel.innerHTML='';
   store.profiles.forEach(p=>{ let o=document.createElement('option'); o.value=p.name; o.textContent=p.name; sel.appendChild(o); });
   sel.value=store.active;
+  updateProfileDate();
+}
+function updateProfileDate(){
+  let el=$('profileUpdated'); if(!el) return;
+  let p=currentProfile(); let ts=(p&&p._updatedAt)||0;
+  el.textContent = ts ? 'Saved: '+new Date(ts).toLocaleString() : '';
 }
 
 function loadProfileIntoUI(){
@@ -2852,7 +2857,7 @@ function renderBabInputs(){
   saveStore();
 }
 
-$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); };
+$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); updateProfileDate(); };
 $('newProfile').onclick=()=>{
   let name=prompt('Name for the new character sheet:','New Character');
   if(!name) return;
@@ -2872,11 +2877,15 @@ $('renameProfile').onclick=()=>{
   let name=prompt('New name:', p.name);
   if(!name || name===p.name) return;
   if(store.profiles.some(x=>x.name===name)){ alert('A character with that name already exists.'); return; }
-  p.name=name; store.active=name; saveStore(); populateProfileSelect();
+  let oldName=p.name;
+  p.name=name; store.active=name;
+  store.deletedProfiles[oldName]=Date.now(); // old name shouldn't resurrect on other devices after a rename
+  saveStore(); populateProfileSelect();
 };
 $('deleteProfile').onclick=()=>{
   if(store.profiles.length<=1){ alert('At least one character sheet must remain.'); return; }
   if(!confirm('Delete "'+currentProfile().name+'"? This cannot be undone.')) return;
+  store.deletedProfiles[store.active]=Date.now(); // so this deletion propagates to other devices/the cloud instead of the old name quietly resurrecting there
   store.profiles=store.profiles.filter(p=>p.name!==store.active);
   store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
@@ -3625,6 +3634,11 @@ if("serviceWorker" in navigator){
     if(!remote || !remote.profiles || !remote.profiles.length) return local;
     if(!local || !local.profiles || !local.profiles.length) return remote;
     let merged=JSON.parse(JSON.stringify(remote));
+    merged.deletedProfiles=merged.deletedProfiles||{};
+    Object.keys(local.deletedProfiles||{}).forEach(name=>{
+      let lt=local.deletedProfiles[name]||0, rt=merged.deletedProfiles[name]||0;
+      if(lt>rt) merged.deletedProfiles[name]=lt;
+    });
     local.profiles.forEach(lp=>{
       let idx=merged.profiles.findIndex(rp=>rp.name===lp.name);
       if(idx===-1){ merged.profiles.push(lp); return; }
@@ -3633,6 +3647,13 @@ if("serviceWorker" in navigator){
       let lt=lp._updatedAt||0, rt=rp._updatedAt||0;
       if(lt>rt) merged.profiles[idx]=lp;
     });
+    // A tombstone newer than a profile's own last edit means it was deleted or renamed
+    // away after that edit landed elsewhere -- drop it so it doesn't resurrect elsewhere.
+    Object.keys(merged.deletedProfiles).forEach(name=>{
+      let idx=merged.profiles.findIndex(p=>p.name===name);
+      if(idx!==-1 && merged.deletedProfiles[name]>=(merged.profiles[idx]._updatedAt||0)) merged.profiles.splice(idx,1);
+    });
+    if(!merged.profiles.length){ merged.profiles=[defaultProfile('Recovered Character')]; merged.deletedProfiles={}; }
     if(!merged.profiles.some(p=>p.name===merged.active)) merged.active=merged.profiles[0].name;
     return merged;
   }

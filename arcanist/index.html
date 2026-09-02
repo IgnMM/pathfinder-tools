@@ -26,7 +26,7 @@
 </div>
 <a href="../" title="Pathfinder Tools" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></a><script>if(window.self!==window.top)document.currentScript.previousElementSibling.style.display='none';</script>
 <style>@media(max-width:900px){header,main{padding-left:60px !important}}</style>
-<header><h1>Arcanist Spellbook</h1><div class="profileBar"><label>Character:</label><select id="profileSelect"></select><button id="newProfile">New</button><button id="dupProfile">Save As…</button><button id="renameProfile">Rename</button><button class="danger" id="deleteProfile">Delete</button><span id="saveIndicator" class="saveIndicator">✓ Saved</span><details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase;margin-bottom:6px"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase;margin-bottom:6px"><button id="syncConnect" type="button">Connect</button><button id="syncLogout" type="button" class="danger">Log out</button><div style="display:flex;gap:6px;margin:6px 0"><button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button></div><div style="font-size:.68rem;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div><div id="syncStatus" style="font-size:.7rem;color:var(--muted);margin-top:6px"></div></div></details></div><div class="sub">Pathfinder 1e full Paizo wizard/sorcerer spell list (the wizard’s own list is identical to the sorcerer’s) — reusable for any wizard, save each one under their own name. Wizards prepare spells each day like a cleric, but ONLY from spells actually written in their spellbook — mark a spell “Book” once you’ve scribed it, then prepare from there. Uses Intelligence for bonus spells and DCs; caster level equals wizard level.</div><div class="controls">
+<header><h1>Arcanist Spellbook</h1><div class="profileBar"><label>Character:</label><select id="profileSelect"></select><span id="profileUpdated" style="font-size:.7rem;color:var(--muted);margin:0 4px"></span><button id="newProfile">New</button><button id="dupProfile">Save As…</button><button id="renameProfile">Rename</button><button class="danger" id="deleteProfile">Delete</button><span id="saveIndicator" class="saveIndicator">✓ Saved</span><button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button><span id="syncStatus" style="font-size:.7rem;color:var(--muted)"></span><details class="sourcesbox"><summary>Account</summary><div class="sourcesPanel" style="min-width:220px"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase;margin-bottom:6px"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase;margin-bottom:6px"><button id="syncConnect" type="button">Connect</button><button id="syncLogout" type="button" class="danger">Log out</button><div style="font-size:.68rem;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div></div></details></div><div class="sub">Pathfinder 1e full Paizo wizard/sorcerer spell list (the wizard’s own list is identical to the sorcerer’s) — reusable for any wizard, save each one under their own name. Wizards prepare spells each day like a cleric, but ONLY from spells actually written in their spellbook — mark a spell “Book” once you’ve scribed it, then prepare from there. Uses Intelligence for bonus spells and DCs; caster level equals wizard level.</div><div class="controls">
 <div><label>Arcanist Level</label><select id="level"></select></div>
 <div><label>Intelligence</label><select id="int"></select></div>
 <div><label>Race</label><input id="race" list="raceList" placeholder="Search race..." autocomplete="off"></div>
@@ -73,6 +73,7 @@ function loadStore(){
   return {active:'New Arcanist',profiles:{'New Arcanist':defaultState()}};
 }
 let store=loadStore();
+if(!store.deletedProfiles) store.deletedProfiles={};
 if(!store.profiles[store.active])store.active=Object.keys(store.profiles)[0];
 Object.values(store.profiles).forEach(p=>{ if(p.sourcesCustomized===undefined) p.sourcesCustomized=Object.keys(p.excludedSources||{}).length>0; });
 Object.values(store.profiles).forEach(applyDefaultsToState);
@@ -125,6 +126,12 @@ function populateProfileSelect(){
   let sel=$('profileSelect');sel.innerHTML='';
   Object.keys(store.profiles).forEach(name=>{let o=document.createElement('option');o.value=name;o.textContent=name;sel.appendChild(o)});
   sel.value=store.active;
+  updateProfileDate();
+}
+function updateProfileDate(){
+  let el=$('profileUpdated'); if(!el) return;
+  let p=store.profiles[store.active]; let ts=(p&&p._updatedAt)||0;
+  el.textContent = ts ? 'Saved: '+new Date(ts).toLocaleString() : '';
 }
 function loadProfileIntoUI(){
   $('level').value=state.level;$('int').value=state.int;
@@ -134,7 +141,7 @@ function loadProfileIntoUI(){
   applyRaceSourceExclusions();
   render();
 }
-$('profileSelect').onchange=()=>{store.active=$('profileSelect').value;state=store.profiles[store.active];loadProfileIntoUI()};
+$('profileSelect').onchange=()=>{store.active=$('profileSelect').value;state=store.profiles[store.active];loadProfileIntoUI();updateProfileDate()};
 $('newProfile').onclick=()=>{
   let name=prompt('Name for the new arcanist:','New Arcanist');
   if(!name)return;
@@ -151,11 +158,15 @@ $('renameProfile').onclick=()=>{
   let name=prompt('New name:',store.active);
   if(!name||name===store.active)return;
   if(store.profiles[name]){alert('A character with that name already exists.');return;}
-  store.profiles[name]=state;delete store.profiles[store.active];store.active=name;save();populateProfileSelect();
+  let oldName=store.active;
+  store.profiles[name]=state;delete store.profiles[oldName];
+  store.deletedProfiles[oldName]=Date.now(); // old name shouldn't resurrect on other devices after a rename
+  store.active=name;save();populateProfileSelect();
 };
 $('deleteProfile').onclick=()=>{
   if(Object.keys(store.profiles).length<=1){alert('At least one character sheet must remain.');return;}
   if(!confirm('Delete "'+store.active+'"? This cannot be undone.'))return;
+  store.deletedProfiles[store.active]=Date.now(); // so this deletion propagates to other devices/the cloud instead of the old name quietly resurrecting there
   delete store.profiles[store.active];store.active=Object.keys(store.profiles)[0];state=store.profiles[store.active];save();populateProfileSelect();loadProfileIntoUI();
 };
 PRESENT_CT=PFCastingTime.presentCategories(SPELLS);
@@ -314,17 +325,29 @@ if("serviceWorker" in navigator){
     if(!remote || !remote.profiles || !Object.keys(remote.profiles).length) return local;
     if(!local || !local.profiles || !Object.keys(local.profiles).length) return remote;
     let merged=JSON.parse(JSON.stringify(remote));
+    merged.deletedProfiles=merged.deletedProfiles||{};
+    Object.keys(local.deletedProfiles||{}).forEach(name=>{
+      let lt=local.deletedProfiles[name]||0, rt=merged.deletedProfiles[name]||0;
+      if(lt>rt) merged.deletedProfiles[name]=lt;
+    });
     Object.keys(local.profiles).forEach(name=>{
       let l=local.profiles[name], r=merged.profiles[name];
       if(!r){ merged.profiles[name]=l; return; }
       // Per profile, keep whichever side was actually edited more recently. A remote
       // snapshot can be momentarily stale (e.g. a reconnect racing a local edit whose
-      // debounced cloud push hadn't landed yet) -- without this check, that stale
+      // debounced cloud push hadn't landed yet) — without this check, that stale
       // snapshot would silently discard a newer local change just for arriving from
       // the cloud, which is exactly what looked like "clicks keep getting reverted".
       let lt=l._updatedAt||0, rt=r._updatedAt||0;
       if(lt>rt) merged.profiles[name]=l;
     });
+    // A tombstone newer than a profile's own last edit means it was deleted or renamed
+    // away after that edit landed elsewhere -- drop it so it doesn't resurrect elsewhere.
+    Object.keys(merged.deletedProfiles).forEach(name=>{
+      let p=merged.profiles[name];
+      if(p && merged.deletedProfiles[name]>=(p._updatedAt||0)) delete merged.profiles[name];
+    });
+    if(!Object.keys(merged.profiles).length){ merged.profiles={'Recovered Character':defaultState()}; merged.deletedProfiles={}; }
     if(!merged.profiles[merged.active]) merged.active=Object.keys(merged.profiles)[0];
     return merged;
   }
