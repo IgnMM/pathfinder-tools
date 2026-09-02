@@ -164,8 +164,12 @@ $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};s
   $('syncUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('syncPin').focus(); });
   $('syncPin').addEventListener('keydown', e=>{ if(e.key==='Enter') connectFromFields('syncUser','syncPin'); });
   $('syncLogout').onclick=async ()=>{
-    if(!confirm('Log out on this device? This saves your current data to the cloud first, then clears it from this device (so the next person\'s code doesn\'t get it merged in) — your data stays safe in the cloud under your code.'))return;
-    if(docRef) await manualSave();
+    if(!confirm('Log out on this device? This clears the character saved locally here (so the next person\'s code doesn\'t get it merged in).'))return;
+    if(docRef && confirm('Save your changes to the cloud first?')){
+      await manualSave();
+    } else if(docRef){
+      if(!confirm('Log out WITHOUT saving? Any changes made on this device since your last Save will be lost.')) return;
+    }
     localStorage.removeItem(SYNC_CODE_KEY);
     localStorage.removeItem(SYNC_USER_KEY);
     localStorage.removeItem(SYNC_PIN_KEY);
