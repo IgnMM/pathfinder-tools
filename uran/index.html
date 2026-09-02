@@ -382,7 +382,7 @@ if("serviceWorker" in navigator){
         const data=snap2.data();
         if(!data || !data[APP_FIELD]) return;
         if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
-        applyState(data[APP_FIELD]);
+        applyState(mergeState(state, data[APP_FIELD]));
         setStatus('Synced ✓ (updated from another device)');
       }, (err)=>setStatus('Sync error: '+err.message));
 

@@ -684,7 +684,7 @@ document.getElementById("resetDefaults").onclick=()=>{
         const data=snap2.data();
         if(!data || !data[APP_FIELD]) return;
         if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
-        applyStateRemote(data[APP_FIELD]);
+        applyStateRemote(mergeState(state, data[APP_FIELD]));
         setStatus('Synced ✓ (updated from another device)');
       }, (err)=>setStatus('Sync error: '+err.message));
       setStatus('Synced ✓');
