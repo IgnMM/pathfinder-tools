@@ -16,6 +16,12 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 .newForm label{display:block;font-size:.68rem;color:var(--muted);margin-bottom:2px}
 .emptyNote{color:var(--muted);font-size:.85rem;padding:8px 0}
 .syncStatus{font-size:.72rem;color:var(--muted);margin-top:6px}
+.advToggle{background:none;border:none;color:var(--gold);font-size:.75rem;cursor:pointer;padding:4px 0;text-align:left}
+.advBox{display:none;gap:8px;flex-wrap:wrap;align-items:end;margin-top:8px;padding-top:8px;border-top:1px dashed var(--border)}
+.advBox.show{display:flex}
+.charCard .link{color:var(--muted);font-size:.72rem;margin-top:2px}
+.editBox{display:none;gap:8px;flex-wrap:wrap;align-items:end;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);width:100%}
+.editBox.show{display:flex}
 </style>
 </head>
 <body>
@@ -46,7 +52,12 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
   <div><label>Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option><option value="alchemist">Alchemist</option><option value="bard">Bard</option><option value="sorcerer">Sorcerer</option><option value="wizard">Wizard</option><option value="ranger">Ranger</option></select></div>
   <button class="primary" id="createBtn">Create</button>
 </div>
-<div class="sub" style="margin:8px 0 0">Creates (or reuses, if the name already exists) a Damage Calculator profile and a Spellbook profile under this exact name, and links them together.</div>
+<button class="advToggle" id="advToggle" type="button">Already have separate Damage / Spellbook profiles to link? ▾</button>
+<div class="advBox" id="advBox">
+  <div><label>Damage profile name (exact)</label><input id="newDmgProfile" type="text" placeholder="defaults to character name" style="width:200px"></div>
+  <div><label>Spellbook profile name (exact)</label><input id="newSpellsProfile" type="text" placeholder="defaults to character name" style="width:200px"></div>
+</div>
+<div class="sub" style="margin:8px 0 0">By default, creates (or reuses, if the name already exists) a Damage Calculator profile and a Spellbook profile under the character name, and links them together. Use the fields above if your existing profiles have different names — the link points at those exact profiles instead of creating new blank ones.</div>
 </div>
 <div id="charList"></div>
 <div id="emptyNote" class="emptyNote" style="display:none">No merged characters yet — create one above.</div>
@@ -66,30 +77,61 @@ function loadMerged(){
 let merged=loadMerged();
 function saveMergedLocal(){ localStorage.setItem(MERGED_KEY, JSON.stringify(merged)); }
 
+function dmgOf(c){ return c.dmgProfile || c.name; }
+function spellsOf(c){ return c.spellsProfile || c.name; }
+
 function renderList(){
   let box=$('charList'); box.innerHTML='';
   $('emptyNote').style.display = merged.length ? 'none' : 'block';
   merged.forEach((c,i)=>{
     let card=document.createElement('div'); card.className='card charCard';
-    card.innerHTML=`<div><div class="name">${c.name}</div><div class="cls">${CLASS_LABELS[c.cls]||c.cls} spellcaster</div></div>
-      <div class="actions"><a href="view.html?name=${encodeURIComponent(c.name)}&cls=${encodeURIComponent(c.cls)}"><button class="primary">Open</button></a><button class="danger" data-i="${i}">Unlink</button></div>`;
-    card.querySelector('.danger').onclick=()=>{
+    let dmg=dmgOf(c), spells=spellsOf(c);
+    let linkNote = (dmg!==c.name || spells!==c.name)
+      ? `<div class="link">Damage: <b>${dmg}</b> · Spells: <b>${spells}</b></div>` : '';
+    card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${c.name}</div><div class="cls">${CLASS_LABELS[c.cls]||c.cls} spellcaster</div>${linkNote}</div>
+      <div class="actions">
+        <a href="view.html?name=${encodeURIComponent(c.name)}&cls=${encodeURIComponent(c.cls)}&dmg=${encodeURIComponent(dmg)}&spells=${encodeURIComponent(spells)}"><button class="primary">Open</button></a>
+        <button data-edit="${i}">Edit link</button>
+        <button class="danger" data-unlink="${i}">Unlink</button>
+      </div>
+      <div class="editBox" id="editBox${i}">
+        <div><label>Damage profile name (exact)</label><input id="editDmg${i}" type="text" value="${dmg}" style="width:200px"></div>
+        <div><label>Spellbook profile name (exact)</label><input id="editSpells${i}" type="text" value="${spells}" style="width:200px"></div>
+        <button class="primary" data-save="${i}">Save link</button>
+      </div>`;
+    card.querySelector('[data-unlink]').onclick=()=>{
       if(!confirm('Unlink "'+c.name+'"? This only removes the merge — the Damage Calculator and Spellbook data for this character stay safe in each tool.')) return;
       merged.splice(i,1); persist(); renderList();
+    };
+    card.querySelector('[data-edit]').onclick=()=>{ $('editBox'+i).classList.toggle('show'); };
+    card.querySelector('[data-save]').onclick=()=>{
+      let nd=$('editDmg'+i).value.trim(), ns=$('editSpells'+i).value.trim();
+      if(!nd||!ns) return;
+      c.dmgProfile = (nd===c.name) ? undefined : nd;
+      c.spellsProfile = (ns===c.name) ? undefined : ns;
+      persist(); renderList();
     };
     box.appendChild(card);
   });
 }
 
+$('advToggle').onclick=()=>{ $('advBox').classList.toggle('show'); };
+
 $('createBtn').onclick=()=>{
   let name=$('newName').value.trim();
   let cls=$('newClass').value;
+  let dmgProfile=$('newDmgProfile').value.trim();
+  let spellsProfile=$('newSpellsProfile').value.trim();
   if(!name){ $('newName').focus(); return; }
   if(!merged.some(c=>c.name===name && c.cls===cls)){
-    merged.push({name, cls});
+    let entry={name, cls};
+    if(dmgProfile && dmgProfile!==name) entry.dmgProfile=dmgProfile;
+    if(spellsProfile && spellsProfile!==name) entry.spellsProfile=spellsProfile;
+    merged.push(entry);
     persist();
   }
-  location.href='view.html?name='+encodeURIComponent(name)+'&cls='+encodeURIComponent(cls);
+  let dmg=dmgProfile||name, spells=spellsProfile||name;
+  location.href='view.html?name='+encodeURIComponent(name)+'&cls='+encodeURIComponent(cls)+'&dmg='+encodeURIComponent(dmg)+'&spells='+encodeURIComponent(spells);
 };
 
 // ---------- Cross-device sync (Firebase Firestore) ----------

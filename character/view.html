@@ -42,13 +42,16 @@ iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(
 const params=new URLSearchParams(location.search);
 const name=params.get('name');
 const cls=params.get('cls');
+const dmgProfile=params.get('dmg')||name;
+const spellsProfile=params.get('spells')||name;
 const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid',alchemist:'Alchemist',bard:'Bard',sorcerer:'Sorcerer',wizard:'Wizard',ranger:'Ranger'};
 
 if(!name || !CLASS_LABELS[cls]){
   document.getElementById('app').innerHTML = '<div class="errBox"><p>Missing or invalid character link.</p><p><a href="index.html">← Back to Merged Characters</a></p></div>';
 } else {
   document.title = name + ' — Pathfinder';
-  const p = encodeURIComponent(name);
+  const pd = encodeURIComponent(dmgProfile);
+  const ps = encodeURIComponent(spellsProfile);
   document.getElementById('app').innerHTML = `
     <div class="topbar">
       <div style="display:flex;align-items:center;gap:10px">
@@ -66,8 +69,8 @@ if(!name || !CLASS_LABELS[cls]){
       </div>
     </div>
     <div class="framewrap">
-      <iframe id="damage" src="../calc/index.html?profile=${p}" title="${name} Damage Calculator"></iframe>
-      <iframe id="spells" src="../${cls}/index.html?profile=${p}" title="${name} Spellbook" class="hidden"></iframe>
+      <iframe id="damage" src="../calc/index.html?profile=${pd}" title="${name} Damage Calculator"></iframe>
+      <iframe id="spells" src="../${cls}/index.html?profile=${ps}" title="${name} Spellbook" class="hidden"></iframe>
     </div>
   `;
   const tabs=[...document.querySelectorAll(".tab")];
