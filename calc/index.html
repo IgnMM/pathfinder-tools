@@ -2780,11 +2780,17 @@ function populateProfileSelect(){
   store.profiles.forEach(p=>{ let o=document.createElement('option'); o.value=p.name; o.textContent=p.name; sel.appendChild(o); });
   sel.value=store.active;
   updateProfileDate();
+  updateSyncStatusForActive();
 }
 function updateProfileDate(){
   let el=$('profileUpdated'); if(!el) return;
   let p=currentProfile(); let ts=(p&&p._updatedAt)||0;
   el.textContent = ts ? 'Saved: '+new Date(ts).toLocaleString() : '';
+}
+function updateSyncStatusForActive(){
+  let el=$('syncStatus'); if(!el) return;
+  let p=currentProfile();
+  el.textContent = (p && p._cloudSynced) ? '' : 'Nothing saved in the cloud yet';
 }
 
 function loadProfileIntoUI(){
@@ -2857,7 +2863,7 @@ function renderBabInputs(){
   saveStore();
 }
 
-$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); updateProfileDate(); };
+$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); updateProfileDate(); updateSyncStatusForActive(); };
 $('newProfile').onclick=()=>{
   let name=prompt('Name for the new character sheet:','New Character');
   if(!name) return;
@@ -3713,6 +3719,7 @@ if("serviceWorker" in navigator){
         }
       }
       applyStoreLocally(mergeStores(store, remote));
+      if(remote) store.profiles.forEach(p=>{p._cloudSynced=true;});
       setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
     }catch(e){ setStatus('Load error: '+e.message); }
     busy=false;
@@ -3752,6 +3759,7 @@ if("serviceWorker" in navigator){
       merged.active=store.active; // keep whichever profile the user is actually on (e.g. a just-created copy), not whatever the cloud's own "active" happened to say
       applyStoreLocally(merged);
       await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {mergeFields:[APP_FIELD,'updatedAt','writerId']});
+      store.profiles.forEach(p=>{p._cloudSynced=true;});
       setStatus('Saved ✓');
     }catch(e){ setStatus('Save error: '+e.message); }
     busy=false;

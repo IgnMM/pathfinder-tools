@@ -137,7 +137,7 @@ refreshSubdomainList('domain1','subdomainList1','subdomain1');
 refreshSubdomainList('domain2','subdomainList2','subdomain2');
 $('subdomain1').value=state.subdomain1;$('subdomain2').value=state.subdomain2;
 
-function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function save(){state._updatedAt=Date.now();localStorage.setItem(KEY,JSON.stringify(state))}
 function mod(){return Math.floor((state.wis-10)/2)}
 function bonus(l){if(l===0)return 0;let m=mod();if(m<l)return 0;return 1+Math.floor((m-l)/4)}
 function baseSlots(l){return (BASE[state.level]||[0,0,0,0,0,0,0,0,0,0])[l]||0}
@@ -317,17 +317,20 @@ if("serviceWorker" in navigator){
     render();
   }
 
-  function mergeState(local, remote){
+  function mergeState(local, remote, preferLocal){
     if(!remote) return local;
     if(!local) return remote;
-    let merged=JSON.parse(JSON.stringify(remote));
-    // Scalars (level/wis/alignment/race/domain...) take the remote/cloud value — a
-    // character's build is one thing, not something to merge field-by-field.
+    // Scalars (level/wis/alignment/race/domain...) take whichever side is "base" -- a
+    // character's build is one thing, not something to merge field-by-field. That's
+    // remote by default; preferLocal flips it (used when the user explicitly confirms
+    // "save my local version anyway" on a save-conflict warning).
     // Dict fields (which spells are prepared/favorited/cast/excluded) are unioned by
-    // key instead, remote wins on an actual conflict, so ticking a box on one device
-    // before ever syncing doesn't get silently erased by the other device's cloud data.
+    // key instead either way, base wins on an actual conflict, so ticking a box on one
+    // device before ever syncing doesn't get silently erased by the other device's data.
+    let base=preferLocal?local:remote, other=preferLocal?remote:local;
+    let merged=JSON.parse(JSON.stringify(base));
     ['prep','domainPrep','domainCast','cast','excludedSources','forbidden','fav'].forEach(key=>{
-      if(local[key]) merged[key]=Object.assign({}, local[key], merged[key]||{});
+      if(other[key]) merged[key]=Object.assign({}, other[key], merged[key]||{});
     });
     return merged;
   }
@@ -362,6 +365,8 @@ if("serviceWorker" in navigator){
     return docRef;
   }
 
+  function fmtDate(ts){ return ts ? new Date(ts).toLocaleString() : 'never'; }
+
   async function connect(code, silent){
     if(busy) return; busy=true;
     if(!silent) setStatus('Loading…');
@@ -383,7 +388,15 @@ if("serviceWorker" in navigator){
       if(!docRef){ setStatus('Connect first (enter username/PIN above)'); busy=false; return; }
       const snap=await fsApi.getDoc(docRef);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
-      const merged=mergeState(state, remote);
+      const localTs=state._updatedAt||0, remoteTs=(remote&&remote._updatedAt)||0;
+      let preferLocal=false;
+      if(remote && remoteTs>localTs){
+        if(!confirm('The cloud has a newer save (from '+fmtDate(remoteTs)+') than what you have here (from '+fmtDate(localTs)+').\n\nOK = keep your changes here and push them to the cloud (favorites/prepared spells from both sides still merge safely either way).\nCancel = stop, so you can Load first and see what changed before deciding.')){
+          setStatus('Save cancelled'); busy=false; return;
+        }
+        preferLocal=true;
+      }
+      const merged=mergeState(state, remote, preferLocal);
       applyState(merged);
       await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {mergeFields:[APP_FIELD,'updatedAt','writerId']});
       setStatus('Saved ✓');

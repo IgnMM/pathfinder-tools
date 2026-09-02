@@ -80,6 +80,54 @@ function saveMergedLocal(){ localStorage.setItem(MERGED_KEY, JSON.stringify(merg
 function dmgOf(c){ return c.dmgProfile || c.name; }
 function spellsOf(c){ return c.spellsProfile || c.name; }
 
+// Renaming here mirrors exactly what each tool's own Rename button does (tombstone the
+// old name so the rename propagates on that tool's next cloud sync too, not just locally).
+function renameProfileInCalcStore(oldName, newName){
+  const key='pf1_universal_damage_calc_profiles_v1';
+  let raw=localStorage.getItem(key); if(!raw) return false;
+  let store; try{ store=JSON.parse(raw); }catch(e){ return false; }
+  if(!store || !store.profiles) return false;
+  let idx=store.profiles.findIndex(p=>p.name===oldName);
+  if(idx===-1) return false;
+  if(store.profiles.some(p=>p.name===newName)) return 'exists';
+  store.profiles[idx].name=newName;
+  store.profiles[idx]._updatedAt=Date.now();
+  store.deletedProfiles=store.deletedProfiles||{};
+  store.deletedProfiles[oldName]=Date.now();
+  if(store.active===oldName) store.active=newName;
+  localStorage.setItem(key, JSON.stringify(store));
+  return true;
+}
+function renameProfileInClassStore(cls, oldName, newName){
+  const key=cls+'UniversalSpellbookPF1V1';
+  let raw=localStorage.getItem(key); if(!raw) return false;
+  let store; try{ store=JSON.parse(raw); }catch(e){ return false; }
+  if(!store || !store.profiles || !store.profiles[oldName]) return false;
+  if(store.profiles[newName]) return 'exists';
+  let p=store.profiles[oldName];
+  p._updatedAt=Date.now();
+  store.profiles[newName]=p;
+  delete store.profiles[oldName];
+  store.deletedProfiles=store.deletedProfiles||{};
+  store.deletedProfiles[oldName]=Date.now();
+  if(store.active===oldName) store.active=newName;
+  localStorage.setItem(key, JSON.stringify(store));
+  return true;
+}
+// If Damage and Spells end up with different names, make the user resolve it instead of
+// silently letting the merged character show two different names in its two tabs.
+// Returns the (possibly now-unified) {dmg, spells}, or null if the user should stay on the form.
+function resolveUnifiedName(cls, name, dmg, spells){
+  if(dmg===spells) return {dmg, spells};
+  const unify=confirm('Your Damage profile is named "'+dmg+'" and your Spellbook profile is named "'+spells+'" — linking them with different names means each tab will show its own name, which is confusing.\n\nOK = rename both to "'+name+'", so this character has one name everywhere.\nCancel = keep the two different names (not recommended, but your choice).');
+  if(!unify) return {dmg, spells};
+  const dmgResult = (dmg===name) ? true : renameProfileInCalcStore(dmg, name);
+  const spellsResult = (spells===name) ? true : renameProfileInClassStore(cls, spells, name);
+  if(dmgResult==='exists'){ alert('Could not rename — a Damage Calculator profile named "'+name+'" already exists. Pick a different character name, or rename/delete that profile first.'); return null; }
+  if(spellsResult==='exists'){ alert('Could not rename — a Spellbook profile named "'+name+'" already exists. Pick a different character name, or rename/delete that profile first.'); return null; }
+  return {dmg: name, spells: name};
+}
+
 function renderList(){
   let box=$('charList'); box.innerHTML='';
   $('emptyNote').style.display = merged.length ? 'none' : 'block';
@@ -107,6 +155,9 @@ function renderList(){
     card.querySelector('[data-save]').onclick=()=>{
       let nd=$('editDmg'+i).value.trim(), ns=$('editSpells'+i).value.trim();
       if(!nd||!ns) return;
+      const resolved=resolveUnifiedName(c.cls, c.name, nd, ns);
+      if(!resolved) return; // name collision on rename -- leave the edit box open so the user can fix it
+      nd=resolved.dmg; ns=resolved.spells;
       c.dmgProfile = (nd===c.name) ? undefined : nd;
       c.spellsProfile = (ns===c.name) ? undefined : ns;
       persist(); renderList();
@@ -123,14 +174,17 @@ $('createBtn').onclick=()=>{
   let dmgProfile=$('newDmgProfile').value.trim();
   let spellsProfile=$('newSpellsProfile').value.trim();
   if(!name){ $('newName').focus(); return; }
+  let dmg=dmgProfile||name, spells=spellsProfile||name;
+  const resolved=resolveUnifiedName(cls, name, dmg, spells);
+  if(!resolved) return; // name collision on rename -- let the user fix the form instead of creating a broken link
+  dmg=resolved.dmg; spells=resolved.spells;
   if(!merged.some(c=>c.name===name && c.cls===cls)){
     let entry={name, cls};
-    if(dmgProfile && dmgProfile!==name) entry.dmgProfile=dmgProfile;
-    if(spellsProfile && spellsProfile!==name) entry.spellsProfile=spellsProfile;
+    if(dmg!==name) entry.dmgProfile=dmg;
+    if(spells!==name) entry.spellsProfile=spells;
     merged.push(entry);
     persist();
   }
-  let dmg=dmgProfile||name, spells=spellsProfile||name;
   location.href='view.html?name='+encodeURIComponent(name)+'&cls='+encodeURIComponent(cls)+'&dmg='+encodeURIComponent(dmg)+'&spells='+encodeURIComponent(spells);
 };
 

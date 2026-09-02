@@ -398,11 +398,17 @@ function populateProfileSelect(){
   store.profiles.forEach(p=>{ let o=document.createElement('option'); o.value=p.name; o.textContent=p.name; sel.appendChild(o); });
   sel.value=store.active;
   updateProfileDate();
+  updateSyncStatusForActive();
 }
 function updateProfileDate(){
   let el=$('profileUpdated'); if(!el) return;
   let p=currentProfile(); let ts=(p&&p._updatedAt)||0;
   el.textContent = ts ? 'Saved: '+new Date(ts).toLocaleString() : '';
+}
+function updateSyncStatusForActive(){
+  let el=$('syncStatus'); if(!el) return;
+  let p=currentProfile();
+  el.textContent = (p && p._cloudSynced) ? '' : 'Nothing saved in the cloud yet';
 }
 
 function loadProfileIntoUI(){
@@ -430,7 +436,7 @@ function syncUIIntoProfile(){
   $(id).addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); });
 });
 
-$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); updateProfileDate(); };
+$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); updateProfileDate(); updateSyncStatusForActive(); };
 $('newProfile').onclick=()=>{
   let name=prompt('Name for the new companion sheet:','New Companion');
   if(!name) return;
@@ -851,6 +857,8 @@ if("serviceWorker" in navigator){
     return docRef;
   }
 
+  function fmtDate(ts){ return ts ? new Date(ts).toLocaleString() : 'never'; }
+
   async function connect(code, silent){
     if(busy) return; busy=true;
     if(!silent) setStatus('Loading…');
@@ -859,7 +867,20 @@ if("serviceWorker" in navigator){
       if(!ref){ busy=false; return; }
       const snap=await fsApi.getDoc(ref);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      if(!silent && remote && remote.profiles){
+        const activeName=store.active;
+        const localP=store.profiles.find(p=>p.name===activeName);
+        const remoteP=remote.profiles.find(p=>p.name===activeName);
+        const localTs=(localP&&localP._updatedAt)||0;
+        const remoteTs=(remoteP&&remoteP._updatedAt)||0;
+        if(localP && remoteP && localTs>remoteTs){
+          if(!confirm('Your local copy of "'+activeName+'" (last touched '+fmtDate(localTs)+') looks newer than the cloud version you are about to load (saved '+fmtDate(remoteTs)+').\n\nLoading will merge in the cloud version. If you want to keep your local changes safe, click Cancel and Save first instead.\n\nLoad anyway?')){
+            setStatus('Load cancelled'); busy=false; return;
+          }
+        }
+      }
       applyStoreLocally(mergeStores(store, remote));
+      if(remote) store.profiles.forEach(p=>{p._cloudSynced=true;});
       setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
     }catch(e){ setStatus('Load error: '+e.message); }
     busy=false;
@@ -872,9 +893,34 @@ if("serviceWorker" in navigator){
       if(!docRef){ setStatus('Connect first (enter username/PIN above)'); busy=false; return; }
       const snap=await fsApi.getDoc(docRef);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      const activeName=store.active;
+      const localP=store.profiles.find(p=>p.name===activeName);
+      const remoteP=remote && remote.profiles && remote.profiles.find(p=>p.name===activeName);
+      const localTs=(localP&&localP._updatedAt)||0;
+      const remoteTs=(remoteP&&remoteP._updatedAt)||0;
+      if(remoteP && remoteTs>localTs){
+        const overwrite=confirm('The cloud has a newer save of "'+activeName+'" (saved '+fmtDate(remoteTs)+') than what you have here (last touched '+fmtDate(localTs)+').\n\nOK = overwrite the cloud with your version here.\nCancel = save your version as a new, separate copy instead (so nothing is lost).');
+        if(overwrite){
+          localP._updatedAt=Date.now(); // otherwise the merge below just re-picks remote (it was newer, which is why this dialog fired) and silently discards the edit the user just chose to keep
+        }
+        if(!overwrite){
+          const suggested=activeName+' v2';
+          const newName=(prompt('Save your local version as a new copy under this name (leave empty to cancel):', suggested)||'').trim();
+          if(!newName){ setStatus('Save cancelled'); busy=false; return; }
+          if(store.profiles.some(p=>p.name===newName)){ setStatus('A profile named "'+newName+'" already exists — pick a different name.'); busy=false; return; }
+          let copy=JSON.parse(JSON.stringify(localP));
+          copy.name=newName;
+          store.profiles.push(copy);
+          store.active=newName;
+          if(window.__pinnedProfile) window.__pinnedProfile=newName; // the ?profile= deep-link pin would otherwise snap applyStoreLocally's active back to the old name
+          saveStore(); populateProfileSelect(); loadProfileIntoUI();
+        }
+      }
       const merged=mergeStores(store, remote);
+      merged.active=store.active; // keep whichever profile the user is actually on (e.g. a just-created copy), not whatever the cloud's own "active" happened to say
       applyStoreLocally(merged);
       await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {mergeFields:[APP_FIELD,'updatedAt','writerId']});
+      store.profiles.forEach(p=>{p._cloudSynced=true;});
       setStatus('Saved ✓');
     }catch(e){ setStatus('Save error: '+e.message); }
     busy=false;

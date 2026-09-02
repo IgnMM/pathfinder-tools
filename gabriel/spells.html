@@ -66,7 +66,7 @@ applyGlobalSources();
 PRESENT_CT=PFCastingTime.presentCategories(SPELLS);
 
 for(let i=1;i<=20;i++)$('level').add(new Option(i,i));for(let i=8;i<=30;i++)$('cha').add(new Option(i,i));$('level').value=state.level;$('cha').value=state.cha;
-function save(){localStorage.setItem(KEY,JSON.stringify(state))}function mod(){return Math.floor((state.cha-10)/2)}
+function save(){state._updatedAt=Date.now();localStorage.setItem(KEY,JSON.stringify(state))}function mod(){return Math.floor((state.cha-10)/2)}
 function bonus(l){let m=mod();if(m<l)return 0;return 1+Math.floor((m-l)/4)}
 function baseSlots(l){return (BASE[state.level]||[0,0,0,0])[l-1]||0}const MIN_LEVEL={1:4,2:7,3:10,4:13};function canCast(l){return state.level>=MIN_LEVEL[l]&&state.cha>=10+l&&(baseSlots(l)>0||bonus(l)>0)}
 function normalSlots(l){return canCast(l)?baseSlots(l)+bonus(l):0}function oathSlot(l){return canCast(l)?1:0}function prepCount(l){return Object.entries(state.prep).filter(([k,v])=>v&&+k.split('|')[0]===l).reduce((a,[k,v])=>a+v,0)}
@@ -98,15 +98,16 @@ $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};s
   function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
   function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
   function applyStateToUI(){ $('level').value=state.level; $('cha').value=state.cha; $('showIneligible').checked=state.showIneligible; render(); }
-  function mergeState(local, remote){
+  function mergeState(local, remote, preferLocal){
     if(!remote) return local;
     if(!local) return remote;
-    let merged=JSON.parse(JSON.stringify(remote));
+    let base=preferLocal?local:remote, other=preferLocal?remote:local;
+    let merged=JSON.parse(JSON.stringify(base));
     ['prep','oathPrep','oathCast','cast','excludedSources','forbidden','fav'].forEach(key=>{
-      if(local[key]) merged[key]=Object.assign({}, local[key], merged[key]||{});
+      if(other[key]) merged[key]=Object.assign({}, other[key], merged[key]||{});
     });
     return merged;
-  }
+}
   function applyState(newState){ state=applyStateDefaults(newState); save(); applyStateToUI(); }
   async function ensureDocRef(code){
     const norm=normCode(code);
@@ -124,6 +125,7 @@ $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};s
     localStorage.setItem(SYNC_CODE_KEY, norm);
     return docRef;
   }
+  function fmtDate(ts){ return ts ? new Date(ts).toLocaleString() : 'never'; }
   async function connect(code, silent){
     if(busy) return; busy=true;
     if(!silent) setStatus('Loading…');
@@ -144,7 +146,15 @@ $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};s
       if(!docRef){ setStatus('Connect first (enter username/PIN above)'); busy=false; return; }
       const snap=await fsApi.getDoc(docRef);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
-      const merged=mergeState(state, remote);
+      const localTs=state._updatedAt||0, remoteTs=(remote&&remote._updatedAt)||0;
+      let preferLocal=false;
+      if(remote && remoteTs>localTs){
+        if(!confirm('The cloud has a newer save (from '+fmtDate(remoteTs)+') than what you have here (from '+fmtDate(localTs)+').\n\nOK = keep your changes here and push them to the cloud (favorites/prepared spells from both sides still merge safely either way).\nCancel = stop, so you can Load first and see what changed before deciding.')){
+          setStatus('Save cancelled'); busy=false; return;
+        }
+        preferLocal=true;
+      }
+      const merged=mergeState(state, remote, preferLocal);
       applyState(merged);
       await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {mergeFields:[APP_FIELD,'updatedAt','writerId']});
       setStatus('Saved ✓');

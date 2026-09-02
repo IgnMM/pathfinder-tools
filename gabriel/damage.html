@@ -608,7 +608,7 @@ let state=JSON.parse(localStorage.getItem(STATE_KEY)||'{}');
 // Cloud push only ever happens from an explicit Save-to-cloud click (see the sync
 // module below) — save() itself is local-only now, so opening this page on a blank
 // device can never silently overwrite what's saved in the cloud.
-function save(){ state=serializeState(); localStorage.setItem(STATE_KEY, JSON.stringify(state)); }
+function save(){ state=serializeState(); state._updatedAt=Date.now(); localStorage.setItem(STATE_KEY, JSON.stringify(state)); }
 
 document.querySelectorAll("input:not(#syncCode),select").forEach(el=>el.addEventListener("input",()=>{save();update()}));
 document.getElementById("weapon").addEventListener("change",()=>{
@@ -643,7 +643,7 @@ document.getElementById("resetDefaults").onclick=()=>{
 
   function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
   function setStatus(msg){ let el=document.getElementById('syncStatus'); if(el) el.textContent=msg; }
-  function mergeState(local, remote){ if(!remote) return local; if(!local) return remote; return Object.assign({}, local, remote); }
+  function mergeState(local, remote, preferLocal){ if(!remote) return local; if(!local) return remote; return preferLocal ? Object.assign({}, remote, local) : Object.assign({}, local, remote); }
   function applyStateRemote(newState){
     state=newState;
     localStorage.setItem(STATE_KEY, JSON.stringify(state));
@@ -667,6 +667,7 @@ document.getElementById("resetDefaults").onclick=()=>{
     localStorage.setItem(SYNC_CODE_KEY, norm);
     return docRef;
   }
+  function fmtDate(ts){ return ts ? new Date(ts).toLocaleString() : 'never'; }
   async function connect(code, silent){
     if(busy) return; busy=true;
     if(!silent) setStatus('Loading…');
@@ -687,7 +688,15 @@ document.getElementById("resetDefaults").onclick=()=>{
       if(!docRef){ setStatus('Connect first (enter username/PIN above)'); busy=false; return; }
       const snap=await fsApi.getDoc(docRef);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
-      const merged=mergeState(state, remote);
+      const localTs=state._updatedAt||0, remoteTs=(remote&&remote._updatedAt)||0;
+      let preferLocal=false;
+      if(remote && remoteTs>localTs){
+        if(!confirm('The cloud has a newer save (from '+fmtDate(remoteTs)+') than what you have here (from '+fmtDate(localTs)+').\n\nOK = keep your changes here and push them to the cloud.\nCancel = stop, so you can Load first and see what changed before deciding.')){
+          setStatus('Save cancelled'); busy=false; return;
+        }
+        preferLocal=true;
+      }
+      const merged=mergeState(state, remote, preferLocal);
       applyStateRemote(merged);
       await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {mergeFields:[APP_FIELD,'updatedAt','writerId']});
       setStatus('Saved ✓');

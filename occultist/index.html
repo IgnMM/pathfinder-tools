@@ -119,11 +119,21 @@ function populateProfileSelect(){
   Object.keys(store.profiles).forEach(name=>{let o=document.createElement('option');o.value=name;o.textContent=name;sel.appendChild(o)});
   sel.value=store.active;
   updateProfileDate();
+  updateSyncStatusForActive();
 }
 function updateProfileDate(){
   let el=$('profileUpdated'); if(!el) return;
   let p=store.profiles[store.active]; let ts=(p&&p._updatedAt)||0;
   el.textContent = ts ? 'Saved: '+new Date(ts).toLocaleString() : '';
+}
+function updateSyncStatusForActive(){
+  // A "Saved ✓"/"Loaded ✓" message is a one-off action confirmation -- it must not
+  // linger and imply a DIFFERENT profile (the one the user just switched to) is also backed
+  // up, so this replaces it with an accurate per-profile status the moment the active
+  // profile changes. setStatus() calls right after a real save/load still overwrite this.
+  let el=$('syncStatus'); if(!el) return;
+  let p=store.profiles[store.active];
+  el.textContent = (p && p._cloudSynced) ? '' : 'Nothing saved in the cloud yet';
 }
 function loadProfileIntoUI(){
   $('level').value=state.level;$('int').value=state.int;
@@ -133,7 +143,7 @@ function loadProfileIntoUI(){
   applyRaceSourceExclusions();
   render();
 }
-$('profileSelect').onchange=()=>{store.active=$('profileSelect').value;state=store.profiles[store.active];loadProfileIntoUI();updateProfileDate()};
+$('profileSelect').onchange=()=>{store.active=$('profileSelect').value;state=store.profiles[store.active];loadProfileIntoUI();updateProfileDate();updateSyncStatusForActive()};
 $('newProfile').onclick=()=>{
   let name=prompt('Name for the new occultist:','New Occultist');
   if(!name)return;
@@ -389,6 +399,7 @@ if("serviceWorker" in navigator){
         }
       }
       applyStore(mergeStores(store, remote));
+      if(remote) Object.values(store.profiles).forEach(p=>{p._cloudSynced=true;});
       setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
     }catch(e){ setStatus('Load error: '+e.message); }
     busy=false;
@@ -427,6 +438,7 @@ if("serviceWorker" in navigator){
       merged.active=store.active; // keep whichever profile the user is actually on (e.g. a just-created copy), not whatever the cloud's own "active" happened to say
       applyStore(merged);
       await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {mergeFields:[APP_FIELD,'updatedAt','writerId']});
+      Object.values(store.profiles).forEach(p=>{p._cloudSynced=true;});
       setStatus('Saved ✓');
     }catch(e){ setStatus('Save error: '+e.message); }
     busy=false;
