@@ -514,6 +514,9 @@ if("serviceWorker" in navigator){
       const remoteTs=(remoteP&&remoteP._updatedAt)||0;
       if(remoteP && remoteTs>localTs){
         const overwrite=confirm('The cloud has a newer save of "'+activeName+'" (saved '+fmtDate(remoteTs)+') than what you have here (last touched '+fmtDate(localTs)+').\n\nOK = overwrite the cloud with your version here.\nCancel = save your version as a new, separate copy instead (so nothing is lost).');
+        if(overwrite){
+          localP._updatedAt=Date.now(); // otherwise the merge below just re-picks remote (it was newer, which is why this dialog fired) and silently discards the edit the user just chose to keep
+        }
         if(!overwrite){
           const suggested=activeName+' v2';
           const newName=(prompt('Save your local version as a new copy under this name (leave empty to cancel):', suggested)||'').trim();
