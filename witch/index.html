@@ -26,7 +26,7 @@
 </div>
 <a href="../" title="Pathfinder Tools" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></a>
 <style>@media(max-width:900px){header,main{padding-left:60px !important}}</style>
-<header><h1>Witch Spellbook</h1><div class="profileBar"><label>Character:</label><select id="profileSelect"></select><button id="newProfile">New</button><button id="dupProfile">Save As…</button><button id="renameProfile">Rename</button><button class="danger" id="deleteProfile">Delete</button><span id="saveIndicator" class="saveIndicator">✓ Saved</span><details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase;margin-bottom:6px"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase;margin-bottom:6px"><button id="syncConnect" type="button">Connect</button><button id="syncLogout" type="button" class="danger">Log out</button><div style="font-size:.68rem;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div><div id="syncStatus" style="font-size:.7rem;color:var(--muted);margin-top:6px"></div></div></details></div><div class="sub">Pathfinder 1e Witch spell list (Advanced Player's Guide) plus the bonus spells granted by each Patron — reusable for any witch, save each one under their own name. Witches prepare spells each day like a wizard, but ONLY from spells actually taught to their familiar — mark a spell "Book" once it's been added to the familiar's repertoire (2 new spells per level, plus 3 to start, plus your Patron's), then prepare from there. Uses Intelligence for bonus spells and DCs; caster level equals witch level.</div><div class="controls">
+<header><h1>Witch Spellbook</h1><div class="profileBar"><label>Character:</label><select id="profileSelect"></select><button id="newProfile">New</button><button id="dupProfile">Save As…</button><button id="renameProfile">Rename</button><button class="danger" id="deleteProfile">Delete</button><span id="saveIndicator" class="saveIndicator">✓ Saved</span><details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase;margin-bottom:6px"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase;margin-bottom:6px"><button id="syncConnect" type="button">Connect</button><button id="syncLogout" type="button" class="danger">Log out</button><div style="display:flex;gap:6px;margin:6px 0"><button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button></div><div style="font-size:.68rem;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div><div id="syncStatus" style="font-size:.7rem;color:var(--muted);margin-top:6px"></div></div></details></div><div class="sub">Pathfinder 1e Witch spell list (Advanced Player's Guide) plus the bonus spells granted by each Patron — reusable for any witch, save each one under their own name. Witches prepare spells each day like a wizard, but ONLY from spells actually taught to their familiar — mark a spell "Book" once it's been added to the familiar's repertoire (2 new spells per level, plus 3 to start, plus your Patron's), then prepare from there. Uses Intelligence for bonus spells and DCs; caster level equals witch level.</div><div class="controls">
 <div><label>Witch Level</label><select id="level"></select></div>
 <div><label>Intelligence</label><select id="int"></select></div>
 <div><label>Race</label><input id="race" list="raceList" placeholder="Search race..." autocomplete="off"></div>
@@ -319,9 +319,7 @@ if("serviceWorker" in navigator){
   const SYNC_PIN_KEY='pf1_sync_pin_v1';
   const APP_FIELD='witch';
   const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
-  let db=null, docRef=null, unsubscribe=null, applyingRemote=false, pushTimer=null, fsApi=null;
-  const _origSave=save;
-  save=function(){ _origSave(); if(!applyingRemote) pushToCloud(); };
+  let db=null, docRef=null, fsApi=null, busy=false;
 
   function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
   function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
@@ -346,83 +344,88 @@ if("serviceWorker" in navigator){
   }
 
   function applyStore(newStore){
-    applyingRemote=true;
     store=newStore;
     if(window.__pinnedProfile && store.profiles[window.__pinnedProfile]) store.active=window.__pinnedProfile;
     state=store.profiles[store.active];
-    _origSave();
+    save();
     populateProfileSelect();
     loadProfileIntoUI();
-    applyingRemote=false;
   }
 
-  function pushToCloud(){
-    if(!docRef||applyingRemote) return;
-    clearTimeout(pushTimer);
-    pushTimer=setTimeout(async ()=>{
-      try{ await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(store)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
-      catch(e){ setStatus('Sync error: '+e.message); }
-    }, 700);
-  }
-
-  async function connect(code){
+  async function ensureDocRef(code){
     const norm=normCode(code);
-    if(!norm) return;
-    setStatus('Connecting…');
-    try{
-      if(!fsApi){
-        const [{initializeApp}, fs] = await Promise.all([
-          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
-          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
-        ]);
-        fsApi=fs;
-        const app=initializeApp({
-          apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",
-          authDomain:"pathfinder-webapp-486d1.firebaseapp.com",
-          projectId:"pathfinder-webapp-486d1",
-          storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",
-          messagingSenderId:"337645222032",
-          appId:"1:337645222032:web:eda9b7c8ff7646e4524015"
-        });
-        db=fsApi.getFirestore(app);
-      }
-      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
-      docRef=fsApi.doc(db,'pf_sync',norm);
-      localStorage.setItem(SYNC_CODE_KEY, norm);
+    if(!norm) return null;
+    if(!fsApi){
+      const [{initializeApp}, fs] = await Promise.all([
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+      ]);
+      fsApi=fs;
+      const app=initializeApp({
+        apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",
+        authDomain:"pathfinder-webapp-486d1.firebaseapp.com",
+        projectId:"pathfinder-webapp-486d1",
+        storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",
+        messagingSenderId:"337645222032",
+        appId:"1:337645222032:web:eda9b7c8ff7646e4524015"
+      });
+      db=fsApi.getFirestore(app);
+    }
+    docRef=fsApi.doc(db,'pf_sync',norm);
+    localStorage.setItem(SYNC_CODE_KEY, norm);
+    return docRef;
+  }
 
-      const snap=await fsApi.getDoc(docRef);
+  async function connect(code, silent){
+    if(busy) return; busy=true;
+    if(!silent) setStatus('Loading…');
+    try{
+      const ref=await ensureDocRef(code);
+      if(!ref){ busy=false; return; }
+      const snap=await fsApi.getDoc(ref);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
       applyStore(mergeStores(store, remote));
-      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(store)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
-
-      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
-        if(snap2.metadata.hasPendingWrites) return;
-        const data=snap2.data();
-        if(!data || !data[APP_FIELD]) return;
-        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
-        applyStore(mergeStores(store, data[APP_FIELD]));
-        setStatus('Synced ✓ (updated from another device)');
-      }, (err)=>setStatus('Sync error: '+err.message));
-
-      setStatus('Synced ✓');
-    }catch(e){ setStatus('Sync error: '+e.message); }
+      setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
+    }catch(e){ setStatus('Load error: '+e.message); }
+    busy=false;
   }
+
+  async function manualSave(){
+    if(busy) return; busy=true;
+    setStatus('Saving…');
+    try{
+      if(!docRef){ setStatus('Connect first (enter username/PIN above)'); busy=false; return; }
+      const snap=await fsApi.getDoc(docRef);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      const merged=mergeStores(store, remote);
+      applyStore(merged);
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+      setStatus('Saved ✓');
+    }catch(e){ setStatus('Save error: '+e.message); }
+    busy=false;
+  }
+  if($('cloudSave')) $('cloudSave').onclick=manualSave;
+  if($('cloudLoad')) $('cloudLoad').onclick=()=>connect(localStorage.getItem(SYNC_USER_KEY)+'-'+localStorage.getItem(SYNC_PIN_KEY), false);
 
   function connectFromFields(userEl, pinEl){
     const user=$(userEl).value.trim(), pin=$(pinEl).value.trim();
     if(!user) return;
     localStorage.setItem(SYNC_USER_KEY, user);
     localStorage.setItem(SYNC_PIN_KEY, pin);
-    connect(user+'-'+pin);
+    connect(user+'-'+pin, false);
   }
 
   $('syncConnect').onclick=()=>connectFromFields('syncUser','syncPin');
   $('syncUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('syncPin').focus(); });
   $('syncPin').addEventListener('keydown', e=>{ if(e.key==='Enter') connectFromFields('syncUser','syncPin'); });
 
-  $('syncLogout').onclick=()=>{
-    if(!confirm('Log out on this device? This clears the characters saved locally here (so the next person\'s code doesn\'t get them merged in) — your data stays safe in the cloud under your code.'))return;
-    if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+  $('syncLogout').onclick=async ()=>{
+    if(!confirm('Log out on this device? This clears the characters saved locally here (so the next person\'s code doesn\'t get them merged in).'))return;
+    if(docRef && confirm('Save your changes to the cloud first?')){
+      await manualSave();
+    } else if(docRef){
+      if(!confirm('Log out WITHOUT saving? Any changes made on this device since your last Save will be lost.')) return;
+    }
     localStorage.removeItem(SYNC_CODE_KEY);
     localStorage.removeItem(SYNC_USER_KEY);
     localStorage.removeItem(SYNC_PIN_KEY);

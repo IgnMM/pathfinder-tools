@@ -50,6 +50,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 </div>
 <div id="charList"></div>
 <div id="emptyNote" class="emptyNote" style="display:none">No merged characters yet — create one above.</div>
+<div style="display:flex;gap:8px;margin-top:10px"><button id="cloudSave" class="primary">Save to cloud</button><button id="cloudLoad">Load from cloud</button></div>
 <div class="syncStatus" id="syncStatus"></div>
 </main>
 <script src="../assets/valid-sources.js"></script>
@@ -92,21 +93,19 @@ $('createBtn').onclick=()=>{
 };
 
 // ---------- Cross-device sync (Firebase Firestore) ----------
+// Manual only: Save pushes local → cloud (merging in whatever's remote first, never
+// blindly overwriting it), Load pulls cloud → local (merging into local, never
+// pushing). Connecting only ever loads — it can never push and so can never clobber
+// the cloud, even from a blank/stale device.
 (function(){
   const SYNC_CODE_KEY='pf1_sync_code_v1';
   const SYNC_USER_KEY='pf1_sync_user_v1';
   const SYNC_PIN_KEY='pf1_sync_pin_v1';
   const APP_FIELD='mergedCharacters';
   const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
-  let db=null, docRef=null, unsubscribe=null, applyingRemote=false, pushTimer=null, fsApi=null;
+  let db=null, docRef=null, fsApi=null, busy=false;
 
   function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
-
-  function persistNow(){
-    saveMergedLocal();
-    if(!applyingRemote) pushToCloud();
-  }
-  window.persist=persistNow;
 
   function mergeLists(local, remote){
     if(!remote || !remote.length) return local;
@@ -116,58 +115,60 @@ $('createBtn').onclick=()=>{
     return merged2;
   }
 
-  function applyRemote(list){
-    applyingRemote=true;
+  function applyLocal(list){
     merged=list||[];
     saveMergedLocal();
     renderList();
-    applyingRemote=false;
   }
 
-  function pushToCloud(){
-    if(!docRef||applyingRemote) return;
-    clearTimeout(pushTimer);
-    pushTimer=setTimeout(async ()=>{
-      try{ await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
-      catch(e){ setStatus('Sync error: '+e.message); }
-    }, 700);
-  }
-
-  async function connect(code){
+  async function ensureDocRef(code){
     const norm=(code||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80);
-    if(!norm) return;
-    setStatus('Connecting…');
-    try{
-      if(!fsApi){
-        const [{initializeApp}, fs] = await Promise.all([
-          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
-          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
-        ]);
-        fsApi=fs;
-        const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
-        db=fsApi.getFirestore(app);
-      }
-      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
-      docRef=fsApi.doc(db,'pf_sync',norm);
-      localStorage.setItem(SYNC_CODE_KEY, norm);
+    if(!norm) return null;
+    if(!fsApi){
+      const [{initializeApp}, fs] = await Promise.all([
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+      ]);
+      fsApi=fs;
+      const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
+      db=fsApi.getFirestore(app);
+    }
+    docRef=fsApi.doc(db,'pf_sync',norm);
+    localStorage.setItem(SYNC_CODE_KEY, norm);
+    return docRef;
+  }
 
+  async function connect(code, silent){
+    if(busy) return; busy=true;
+    if(!silent) setStatus('Loading…');
+    try{
+      const ref=await ensureDocRef(code);
+      if(!ref){ busy=false; return; }
+      const snap=await fsApi.getDoc(ref);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      applyLocal(mergeLists(merged, remote));
+      setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
+    }catch(e){ setStatus('Load error: '+e.message); }
+    busy=false;
+  }
+
+  async function manualSave(){
+    if(busy) return; busy=true;
+    setStatus('Saving…');
+    try{
+      if(!docRef){ setStatus('Connect first'); busy=false; return; }
       const snap=await fsApi.getDoc(docRef);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
-      applyRemote(mergeLists(merged, remote));
-      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
-
-      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
-        if(snap2.metadata.hasPendingWrites) return;
-        const data=snap2.data();
-        if(!data || !data[APP_FIELD]) return;
-        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
-        applyRemote(data[APP_FIELD]);
-        setStatus('Synced ✓ (updated from another device)');
-      }, (err)=>setStatus('Sync error: '+err.message));
-
-      setStatus('Synced ✓');
-    }catch(e){ setStatus('Sync error: '+e.message); }
+      const mergedList=mergeLists(merged, remote);
+      applyLocal(mergedList);
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(mergedList)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+      setStatus('Saved ✓');
+    }catch(e){ setStatus('Save error: '+e.message); }
+    busy=false;
   }
+  window.persist=saveMergedLocal; // local-only; cloud sync is manual via the Save/Load buttons below
+  if($('cloudSave')) $('cloudSave').onclick=manualSave;
+  if($('cloudLoad')) $('cloudLoad').onclick=()=>connect(localStorage.getItem(SYNC_USER_KEY)+'-'+localStorage.getItem(SYNC_PIN_KEY), false);
 
   function showGate(){
     const gate=$('syncGate');

@@ -129,6 +129,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
       <div class="row"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase"></div>
       <button id="syncConnect" type="button">Connect</button>
       <button id="syncLogout" type="button" class="danger">Log out</button>
+      <div style="display:flex;gap:6px;margin-top:6px"><button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button></div>
       <div style="font-size:.72rem;color:var(--muted);margin-top:6px">Use the same code on another device to see the same companions there. Whoever knows the code can read/write this data — pick something private, not "1234".</div>
       <div id="syncStatus" style="font-size:.75rem;color:var(--muted);margin-top:6px"></div>
     </div></details>
@@ -767,15 +768,17 @@ if("serviceWorker" in navigator){
 }
 
 // ---------- Cross-device sync (Firebase Firestore) ----------
+// Manual only: Save pushes local → cloud (merging in whatever's remote first, never
+// blindly overwriting it), Load pulls cloud → local (merging into local, never
+// pushing). Connecting only ever loads — it can never push and so can never clobber
+// the cloud, even from a blank/stale device.
 (function(){
   const SYNC_CODE_KEY='pf1_sync_code_v1';
   const SYNC_USER_KEY='pf1_sync_user_v1';
   const SYNC_PIN_KEY='pf1_sync_pin_v1';
   const APP_FIELD='companion';
   const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
-  let db=null, docRef=null, unsubscribe=null, applyingRemote=false, pushTimer=null, fsApi=null;
-  const _origSaveStore=saveStore;
-  saveStore=function(){ _origSaveStore(); if(!applyingRemote) pushToCloud(); };
+  let db=null, docRef=null, fsApi=null, busy=false;
 
   function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
   function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
@@ -795,86 +798,89 @@ if("serviceWorker" in navigator){
     return merged;
   }
 
-  function pushToCloud(){
-    if(!docRef||applyingRemote) return;
-    clearTimeout(pushTimer);
-    pushTimer=setTimeout(async ()=>{
-      try{ await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(store)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
-      catch(e){ setStatus('Sync error: '+e.message); }
-    }, 700);
+  function applyStoreLocally(newStore){
+    store=newStore;
+    if(window.__pinnedProfile && store.profiles.some(p=>p.name===window.__pinnedProfile)) store.active=window.__pinnedProfile;
+    saveStore();
+    populateProfileSelect();
+    loadProfileIntoUI();
   }
 
-  async function connect(code){
+  async function ensureDocRef(code){
     const norm=normCode(code);
-    if(!norm) return;
-    setStatus('Connecting…');
-    try{
-      if(!fsApi){
-        const [{initializeApp}, fs] = await Promise.all([
-          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
-          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
-        ]);
-        fsApi=fs;
-        const app=initializeApp({
-          apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",
-          authDomain:"pathfinder-webapp-486d1.firebaseapp.com",
-          projectId:"pathfinder-webapp-486d1",
-          storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",
-          messagingSenderId:"337645222032",
-          appId:"1:337645222032:web:eda9b7c8ff7646e4524015"
-        });
-        db=fsApi.getFirestore(app);
-      }
-      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
-      docRef=fsApi.doc(db,'pf_sync',norm);
-      localStorage.setItem(SYNC_CODE_KEY, norm);
+    if(!norm) return null;
+    if(!fsApi){
+      const [{initializeApp}, fs] = await Promise.all([
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+      ]);
+      fsApi=fs;
+      const app=initializeApp({
+        apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",
+        authDomain:"pathfinder-webapp-486d1.firebaseapp.com",
+        projectId:"pathfinder-webapp-486d1",
+        storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",
+        messagingSenderId:"337645222032",
+        appId:"1:337645222032:web:eda9b7c8ff7646e4524015"
+      });
+      db=fsApi.getFirestore(app);
+    }
+    docRef=fsApi.doc(db,'pf_sync',norm);
+    localStorage.setItem(SYNC_CODE_KEY, norm);
+    return docRef;
+  }
 
+  async function connect(code, silent){
+    if(busy) return; busy=true;
+    if(!silent) setStatus('Loading…');
+    try{
+      const ref=await ensureDocRef(code);
+      if(!ref){ busy=false; return; }
+      const snap=await fsApi.getDoc(ref);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      applyStoreLocally(mergeStores(store, remote));
+      setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
+    }catch(e){ setStatus('Load error: '+e.message); }
+    busy=false;
+  }
+
+  async function manualSave(){
+    if(busy) return; busy=true;
+    setStatus('Saving…');
+    try{
+      if(!docRef){ setStatus('Connect first (enter username/PIN above)'); busy=false; return; }
       const snap=await fsApi.getDoc(docRef);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
       const merged=mergeStores(store, remote);
-      applyingRemote=true;
-      store=merged;
-      if(window.__pinnedProfile && store.profiles.some(p=>p.name===window.__pinnedProfile)) store.active=window.__pinnedProfile;
-      _origSaveStore();
-      populateProfileSelect();
-      loadProfileIntoUI();
-      applyingRemote=false;
-      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(store)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
-
-      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
-        if(snap2.metadata.hasPendingWrites) return;
-        const data=snap2.data();
-        if(!data || !data[APP_FIELD]) return;
-        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
-        applyingRemote=true;
-        store=mergeStores(store, data[APP_FIELD]);
-        if(window.__pinnedProfile && store.profiles.some(p=>p.name===window.__pinnedProfile)) store.active=window.__pinnedProfile;
-        _origSaveStore();
-        populateProfileSelect();
-        loadProfileIntoUI();
-        applyingRemote=false;
-        setStatus('Synced ✓ (updated from another device)');
-      }, (err)=>setStatus('Sync error: '+err.message));
-
-      setStatus('Synced ✓');
-    }catch(e){ setStatus('Sync error: '+e.message); }
+      applyStoreLocally(merged);
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+      setStatus('Saved ✓');
+    }catch(e){ setStatus('Save error: '+e.message); }
+    busy=false;
   }
+
+  if($('cloudSave')) $('cloudSave').onclick=manualSave;
+  if($('cloudLoad')) $('cloudLoad').onclick=()=>connect(localStorage.getItem(SYNC_USER_KEY)+'-'+localStorage.getItem(SYNC_PIN_KEY), false);
 
   function connectFromFields(userEl, pinEl){
     const user=$(userEl).value.trim(), pin=$(pinEl).value.trim();
     if(!user) return;
     localStorage.setItem(SYNC_USER_KEY, user);
     localStorage.setItem(SYNC_PIN_KEY, pin);
-    connect(user+'-'+pin);
+    connect(user+'-'+pin, false);
   }
 
   $('syncConnect').onclick=()=>connectFromFields('syncUser','syncPin');
   $('syncUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('syncPin').focus(); });
   $('syncPin').addEventListener('keydown', e=>{ if(e.key==='Enter') connectFromFields('syncUser','syncPin'); });
 
-  $('syncLogout').onclick=()=>{
-    if(!confirm('Log out on this device? This clears the companions saved locally here (so the next person\'s code doesn\'t get them merged in) — your data stays safe in the cloud under your code.'))return;
-    if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+  $('syncLogout').onclick=async ()=>{
+    if(!confirm('Log out on this device? This clears the companions saved locally here (so the next person\'s code doesn\'t get them merged in).'))return;
+    if(docRef && confirm('Save your changes to the cloud first?')){
+      await manualSave();
+    } else if(docRef){
+      if(!confirm('Log out WITHOUT saving? Any changes made on this device since your last Save will be lost.')) return;
+    }
     localStorage.removeItem(SYNC_CODE_KEY);
     localStorage.removeItem(SYNC_USER_KEY);
     localStorage.removeItem(SYNC_PIN_KEY);
