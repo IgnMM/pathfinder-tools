@@ -355,6 +355,8 @@ if("serviceWorker" in navigator){
     return docRef;
   }
 
+  function fmtDate(ts){ return ts ? new Date(ts).toLocaleString() : 'never'; }
+
   async function connect(code, silent){
     if(busy) return; busy=true;
     if(!silent) setStatus('Loading…');
@@ -363,6 +365,18 @@ if("serviceWorker" in navigator){
       if(!ref){ busy=false; return; }
       const snap=await fsApi.getDoc(ref);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      if(!silent && remote && remote.profiles){
+        const activeName=store.active;
+        const localP=store.profiles[activeName];
+        const remoteP=remote.profiles[activeName];
+        const localTs=(localP&&localP._updatedAt)||0;
+        const remoteTs=(remoteP&&remoteP._updatedAt)||0;
+        if(localP && remoteP && localTs>remoteTs){
+          if(!confirm('Your local copy of "'+activeName+'" (last touched '+fmtDate(localTs)+') looks newer than the cloud version you are about to load (saved '+fmtDate(remoteTs)+').\n\nLoading will merge in the cloud version. If you want to keep your local changes safe, click Cancel and Save first instead.\n\nLoad anyway?')){
+            setStatus('Load cancelled'); busy=false; return;
+          }
+        }
+      }
       applyStore(mergeStores(store, remote));
       setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
     }catch(e){ setStatus('Load error: '+e.message); }
@@ -376,6 +390,24 @@ if("serviceWorker" in navigator){
       if(!docRef){ setStatus('Connect first (enter username/PIN above)'); busy=false; return; }
       const snap=await fsApi.getDoc(docRef);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      const activeName=store.active;
+      const localP=store.profiles[activeName];
+      const remoteP=remote && remote.profiles && remote.profiles[activeName];
+      const localTs=(localP&&localP._updatedAt)||0;
+      const remoteTs=(remoteP&&remoteP._updatedAt)||0;
+      if(remoteP && remoteTs>localTs){
+        const overwrite=confirm('The cloud has a newer save of "'+activeName+'" (saved '+fmtDate(remoteTs)+') than what you have here (last touched '+fmtDate(localTs)+').\n\nOK = overwrite the cloud with your version here.\nCancel = save your version as a new, separate copy instead (so nothing is lost).');
+        if(!overwrite){
+          const suggested=activeName+' v2';
+          const newName=(prompt('Save your local version as a new copy under this name (leave empty to cancel):', suggested)||'').trim();
+          if(!newName){ setStatus('Save cancelled'); busy=false; return; }
+          if(store.profiles[newName]){ setStatus('A profile named "'+newName+'" already exists — pick a different name.'); busy=false; return; }
+          store.profiles[newName]=JSON.parse(JSON.stringify(localP));
+          store.active=newName;
+          state=store.profiles[newName];
+          save(); populateProfileSelect(); loadProfileIntoUI();
+        }
+      }
       const merged=mergeStores(store, remote);
       applyStore(merged);
       await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
@@ -439,8 +471,8 @@ if("serviceWorker" in navigator){
   if(savedUser!==null) $('syncUser').value=savedUser;
   if(savedPin!==null) $('syncPin').value=savedPin;
   if(savedCode){
-    if(savedUser!==null && savedPin!==null){ connect(savedUser+'-'+savedPin); }
-    else{ $('syncUser').value=savedCode; connect(savedCode); }
+    if(savedUser!==null && savedPin!==null){ connect(savedUser+'-'+savedPin, true); }
+    else{ $('syncUser').value=savedCode; connect(savedCode, true); }
   } else { showGate(); }
 })();
 </script>
