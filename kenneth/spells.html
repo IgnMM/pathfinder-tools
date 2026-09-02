@@ -123,7 +123,7 @@ $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};s
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
       const merged=mergeState(state, remote);
       applyState(merged);
-      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {mergeFields:[APP_FIELD,'updatedAt','writerId']});
       setStatus('Saved ✓');
     }catch(e){ setStatus('Save error: '+e.message); }
     busy=false;

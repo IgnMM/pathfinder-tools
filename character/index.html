@@ -203,7 +203,7 @@ $('createBtn').onclick=()=>{
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
       const mergedList=mergeLists(merged, remote);
       applyLocal(mergedList);
-      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(mergedList)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(mergedList)), updatedAt: Date.now(), writerId: WRITER_ID}, {mergeFields:[APP_FIELD,'updatedAt','writerId']});
       setStatus('Saved ✓');
     }catch(e){ setStatus('Save error: '+e.message); }
     busy=false;
