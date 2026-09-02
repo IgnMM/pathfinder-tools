@@ -3582,9 +3582,18 @@ function compute(){
   const wantProfile=new URLSearchParams(location.search).get('profile');
   if(!wantProfile) return;
   window.__pinnedProfile=wantProfile;
-  if(!store.profiles.some(p=>p.name===wantProfile)) store.profiles.push(defaultProfile(wantProfile));
+  let justCreated=false;
+  if(!store.profiles.some(p=>p.name===wantProfile)){ store.profiles.push(defaultProfile(wantProfile)); justCreated=true; }
   store.active=wantProfile;
   saveStore();
+  // A freshly auto-created blank profile must never outrank real cloud data in the
+  // timestamp-based merge just because "now" is newer than whenever the real data
+  // was last saved elsewhere -- that silently overwrote real characters with blanks
+  // on the next Save from a device that had never opened this profile before.
+  if(justCreated){
+    let p=store.profiles.find(p=>p.name===wantProfile);
+    if(p){ p._updatedAt=0; localStorage.setItem(STORE_KEY, JSON.stringify(store)); }
+  }
 })();
 
 populateProfileSelect();

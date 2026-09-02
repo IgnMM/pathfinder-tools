@@ -179,10 +179,16 @@ PRESENT_CT=PFCastingTime.presentCategories(SPELLS);
   const wantProfile=new URLSearchParams(location.search).get('profile');
   if(!wantProfile) return;
   window.__pinnedProfile=wantProfile;
-  if(!store.profiles[wantProfile]){ store.profiles[wantProfile]=defaultState(); applyGlobalSourcesToProfile(store.profiles[wantProfile]); }
+  let justCreated=false;
+  if(!store.profiles[wantProfile]){ store.profiles[wantProfile]=defaultState(); applyGlobalSourcesToProfile(store.profiles[wantProfile]); justCreated=true; }
   store.active=wantProfile;
   state=store.profiles[store.active];
   save();
+  // A freshly auto-created blank profile must never outrank real cloud data in the
+  // timestamp-based merge just because "now" is newer than whenever the real data
+  // was last saved elsewhere -- that silently overwrote real characters with blanks
+  // on the next Save from a device that had never opened this profile before.
+  if(justCreated){ state._updatedAt=0; store.profiles[store.active]=state; localStorage.setItem(STORE_KEY,JSON.stringify(store)); }
 })();
 populateProfileSelect();
 function mod(){return Math.floor((state.wis-10)/2)}
