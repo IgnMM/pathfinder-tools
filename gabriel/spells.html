@@ -23,7 +23,7 @@
 </div>
 <a href="../" title="Pathfinder Tools" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></a>
 <style>@media(max-width:900px){header,main{padding-left:60px !important}}</style>
-<header><h1>Gabriel — Paladin Spellbook</h1><div style="display:flex;gap:8px;align-items:center;margin:6px 0"><details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase;margin-bottom:6px"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase;margin-bottom:6px"><button id="syncConnect" type="button">Connect</button><button id="syncLogout" type="button" style="background:#3a1d21;border-color:#67343b;color:#f0a0a0">Log out</button><div style="font-size:.68rem;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div><div id="syncStatus" style="font-size:.7rem;color:var(--muted);margin-top:6px"></div></div></details></div><div class="sub">Pathfinder 1e Core Rulebook paladin spells + oath spells</div><div class="controls"><div><label>Paladin Level</label><select id="level"></select></div><div><label>Charisma</label><select id="cha"></select></div><div><label>Paladin Oath</label><div class="oathval">Oath of Vengeance</div></div></div><div class="stats"><div class="stat"><b id="cl">0</b><span>Caster level</span></div><div class="stat"><b id="daily">0</b><span>Total spell slots/day</span></div><div class="stat"><b id="prepared">0</b><span>Prepared in normal slots</span></div><div class="stat"><b id="oathprep">0</b><span>Oath slots prepared</span></div></div><div id="levelButtons" class="levels"></div><div id="ctButtons" class="levels"></div><details class="rulenote"><summary>ⓘ oath slots</summary><div id="ruleNote"></div></details></header><main><div id="slots" class="slotbar"></div><div class="toolbar"><div class="searchWrap"><svg class="searchIcon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="search" placeholder="Search spell name or description..."><button id="searchClear" type="button" title="Clear search" aria-label="Clear search">&times;</button></div><style>.searchWrap{position:relative}.searchWrap input{padding-left:26px;padding-right:24px}.searchIcon{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.searchWrap button{position:absolute;right:1px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:4px 7px}.searchWrap button:hover{color:var(--text)}</style><select id="filter"><option value="all">All spells</option><option value="prepared">Prepared only</option><option value="unprepared">Unprepared only</option><option value="oath">Oath spells only</option><option value="favorites">Favorites only</option></select><label class="ineligibleToggle"><input type="checkbox" id="showIneligible"> Show ineligible</label><details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details><button class="primary" id="newDay">New Day</button><button id="clear">Clear</button></div><div id="list"></div></main><script src="../assets/valid-sources.js"></script><script src="../assets/casting-time.js"></script>
+<header><h1>Gabriel — Paladin Spellbook</h1><div style="display:flex;gap:8px;align-items:center;margin:6px 0"><details class="sourcesbox"><summary>Sync</summary><div class="sourcesPanel" style="min-width:220px"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase;margin-bottom:6px"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase;margin-bottom:6px"><button id="syncConnect" type="button">Connect</button><button id="syncLogout" type="button" style="background:#3a1d21;border-color:#67343b;color:#f0a0a0">Log out</button><div style="display:flex;gap:6px;margin-top:6px"><button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button></div><div style="font-size:.68rem;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div><div id="syncStatus" style="font-size:.7rem;color:var(--muted);margin-top:6px"></div></div></details></div><div class="sub">Pathfinder 1e Core Rulebook paladin spells + oath spells</div><div class="controls"><div><label>Paladin Level</label><select id="level"></select></div><div><label>Charisma</label><select id="cha"></select></div><div><label>Paladin Oath</label><div class="oathval">Oath of Vengeance</div></div></div><div class="stats"><div class="stat"><b id="cl">0</b><span>Caster level</span></div><div class="stat"><b id="daily">0</b><span>Total spell slots/day</span></div><div class="stat"><b id="prepared">0</b><span>Prepared in normal slots</span></div><div class="stat"><b id="oathprep">0</b><span>Oath slots prepared</span></div></div><div id="levelButtons" class="levels"></div><div id="ctButtons" class="levels"></div><details class="rulenote"><summary>ⓘ oath slots</summary><div id="ruleNote"></div></details></header><main><div id="slots" class="slotbar"></div><div class="toolbar"><div class="searchWrap"><svg class="searchIcon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="search" placeholder="Search spell name or description..."><button id="searchClear" type="button" title="Clear search" aria-label="Clear search">&times;</button></div><style>.searchWrap{position:relative}.searchWrap input{padding-left:26px;padding-right:24px}.searchIcon{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.searchWrap button{position:absolute;right:1px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:4px 7px}.searchWrap button:hover{color:var(--text)}</style><select id="filter"><option value="all">All spells</option><option value="prepared">Prepared only</option><option value="unprepared">Unprepared only</option><option value="oath">Oath spells only</option><option value="favorites">Favorites only</option></select><label class="ineligibleToggle"><input type="checkbox" id="showIneligible"> Show ineligible</label><details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details><button class="primary" id="newDay">New Day</button><button id="clear">Clear</button></div><div id="list"></div></main><script src="../assets/valid-sources.js"></script><script src="../assets/casting-time.js"></script>
 <script src="../assets/spell-crossref.js"></script>
 <script src="../assets/conditions.js"></script>
 <script>
@@ -85,14 +85,16 @@ $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};s
 // Cross-device sync (Firebase Firestore) — same shared doc/code as every other
 // Pathfinder tool on this site. A code entered once anywhere auto-connects here too.
 (function(){
+  // Cloud sync is manual only: Save pushes local → cloud (merging in whatever's
+  // remote first, never blindly overwriting it), Load pulls cloud → local (merging
+  // into local, never pushing). Connecting (or opening the page with a saved code)
+  // only ever loads — it can never push and so can never clobber the cloud.
   const SYNC_CODE_KEY='pf1_sync_code_v1';
   const SYNC_USER_KEY='pf1_sync_user_v1';
   const SYNC_PIN_KEY='pf1_sync_pin_v1';
   const APP_FIELD='gabriel-spells';
   const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
-  let db=null, docRef=null, unsubscribe=null, applyingRemote=false, pushTimer=null, fsApi=null;
-  const _origSave=save;
-  save=function(){ _origSave(); if(!applyingRemote) pushToCloud(); };
+  let db=null, docRef=null, fsApi=null, busy=false;
   function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
   function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
   function applyStateToUI(){ $('level').value=state.level; $('cha').value=state.cha; $('showIneligible').checked=state.showIneligible; render(); }
@@ -105,60 +107,65 @@ $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};s
     });
     return merged;
   }
-  function applyState(newState){ applyingRemote=true; state=applyStateDefaults(newState); _origSave(); applyStateToUI(); applyingRemote=false; }
-  function pushToCloud(){
-    if(!docRef||applyingRemote) return;
-    clearTimeout(pushTimer);
-    pushTimer=setTimeout(async ()=>{
-      try{ await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(state)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
-      catch(e){ setStatus('Sync error: '+e.message); }
-    }, 700);
-  }
-  async function connect(code){
+  function applyState(newState){ state=applyStateDefaults(newState); save(); applyStateToUI(); }
+  async function ensureDocRef(code){
     const norm=normCode(code);
-    if(!norm) return;
-    setStatus('Connecting…');
+    if(!norm) return null;
+    if(!fsApi){
+      const [{initializeApp}, fs] = await Promise.all([
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+      ]);
+      fsApi=fs;
+      const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
+      db=fsApi.getFirestore(app);
+    }
+    docRef=fsApi.doc(db,'pf_sync',norm);
+    localStorage.setItem(SYNC_CODE_KEY, norm);
+    return docRef;
+  }
+  async function connect(code, silent){
+    if(busy) return; busy=true;
+    if(!silent) setStatus('Loading…');
     try{
-      if(!fsApi){
-        const [{initializeApp}, fs] = await Promise.all([
-          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
-          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
-        ]);
-        fsApi=fs;
-        const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
-        db=fsApi.getFirestore(app);
-      }
-      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
-      docRef=fsApi.doc(db,'pf_sync',norm);
-      localStorage.setItem(SYNC_CODE_KEY, norm);
-      const snap=await fsApi.getDoc(docRef);
+      const ref=await ensureDocRef(code);
+      if(!ref){ busy=false; return; }
+      const snap=await fsApi.getDoc(ref);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
       applyState(mergeState(state, remote));
-      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(state)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
-      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
-        if(snap2.metadata.hasPendingWrites) return;
-        const data=snap2.data();
-        if(!data || !data[APP_FIELD]) return;
-        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
-        applyState(mergeState(state, data[APP_FIELD]));
-        setStatus('Synced ✓ (updated from another device)');
-      }, (err)=>setStatus('Sync error: '+err.message));
-      setStatus('Synced ✓');
-    }catch(e){ setStatus('Sync error: '+e.message); }
+      setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
+    }catch(e){ setStatus('Load error: '+e.message); }
+    busy=false;
   }
+  async function manualSave(){
+    if(busy) return; busy=true;
+    setStatus('Saving…');
+    try{
+      if(!docRef){ setStatus('Connect first (enter username/PIN above)'); busy=false; return; }
+      const snap=await fsApi.getDoc(docRef);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      const merged=mergeState(state, remote);
+      applyState(merged);
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+      setStatus('Saved ✓');
+    }catch(e){ setStatus('Save error: '+e.message); }
+    busy=false;
+  }
+  if($('cloudSave')) $('cloudSave').onclick=manualSave;
+  if($('cloudLoad')) $('cloudLoad').onclick=()=>connect(localStorage.getItem(SYNC_USER_KEY)+'-'+localStorage.getItem(SYNC_PIN_KEY), false);
   function connectFromFields(userEl, pinEl){
     const user=$(userEl).value.trim(), pin=$(pinEl).value.trim();
     if(!user) return;
     localStorage.setItem(SYNC_USER_KEY, user);
     localStorage.setItem(SYNC_PIN_KEY, pin);
-    connect(user+'-'+pin);
+    connect(user+'-'+pin, false);
   }
   $('syncConnect').onclick=()=>connectFromFields('syncUser','syncPin');
   $('syncUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('syncPin').focus(); });
   $('syncPin').addEventListener('keydown', e=>{ if(e.key==='Enter') connectFromFields('syncUser','syncPin'); });
-  $('syncLogout').onclick=()=>{
-    if(!confirm('Log out on this device? This clears the character saved locally here (so the next person\'s code doesn\'t get it merged in) — your data stays safe in the cloud under your code.'))return;
-    if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+  $('syncLogout').onclick=async ()=>{
+    if(!confirm('Log out on this device? This saves your current data to the cloud first, then clears it from this device (so the next person\'s code doesn\'t get it merged in) — your data stays safe in the cloud under your code.'))return;
+    if(docRef) await manualSave();
     localStorage.removeItem(SYNC_CODE_KEY);
     localStorage.removeItem(SYNC_USER_KEY);
     localStorage.removeItem(SYNC_PIN_KEY);

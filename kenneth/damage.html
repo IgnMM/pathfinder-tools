@@ -63,10 +63,12 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
   </div>
   <details style="margin-top:12px"><summary style="cursor:pointer;color:var(--gold)">Sync</summary>
     <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button id="cloudSave" type="button" class="primary">Save to cloud</button>
+      <button id="cloudLoad" type="button">Load from cloud</button>
       <button id="resetDefaults" type="button" title="Clear the saved values for this page and reload with the hardcoded defaults">Reset to defaults</button>
       <span id="syncStatus" style="font-size:12px;color:var(--muted)"></span>
     </div>
-    <div style="font-size:12px;color:var(--muted);margin-top:6px">Locked to account <b style="color:var(--text)">KOS</b> — always synced automatically.</div>
+    <div style="font-size:12px;color:var(--muted);margin-top:6px">Locked to account <b style="color:var(--text)">KOS</b>.</div>
   </details>
 </header>
 
@@ -616,9 +618,10 @@ function applyState(s){
   });
 }
 let state=JSON.parse(localStorage.getItem(STATE_KEY)||'{}');
-let applyingRemote=false;
-let pushToCloud=()=>{}; // replaced once the sync module below has loaded Firebase
-function save(){ state=serializeState(); localStorage.setItem(STATE_KEY, JSON.stringify(state)); if(!applyingRemote) pushToCloud(); }
+// Cloud push only ever happens from an explicit Save-to-cloud click (see the sync
+// module below) — save() itself is local-only now, so opening this page on a blank
+// device can never silently overwrite what's saved in the cloud.
+function save(){ state=serializeState(); localStorage.setItem(STATE_KEY, JSON.stringify(state)); }
 
 document.querySelectorAll("input:not(#syncCode),select").forEach(el=>el.addEventListener("input",()=>{save();update()}));
 document.getElementById("weapon").addEventListener("change",()=>{
@@ -639,42 +642,30 @@ document.getElementById("resetDefaults").onclick=()=>{
 };
 
 // ---------- Cross-device sync (Firebase Firestore) ----------
-// Same shared doc/code as every other Pathfinder tool on this site — a code entered
-// once in any tool auto-connects here too. Flat scalar state (no favorites/prep-style
-// dicts to merge here), so remote wins per-field on connect, local fills in any field
-// the cloud doesn't know about yet (e.g. a newly added effect checkbox).
+// Manual only: Save pushes local → cloud (merging in whatever's remote first, never
+// blindly overwriting it), Load pulls cloud → local (merging into local, never
+// pushing). Opening the page only ever loads — it can never push and so can never
+// clobber the cloud, even from a blank/stale device.
 (function(){
   const SYNC_CODE_KEY='pf1_sync_code_v1';
   const SYNC_USER_KEY='pf1_sync_user_v1';
   const SYNC_PIN_KEY='pf1_sync_pin_v1';
   const APP_FIELD='kenneth-damage';
   const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
-  let db=null, docRef=null, unsubscribe=null, pushTimer=null, fsApi=null;
+  let db=null, docRef=null, fsApi=null, busy=false;
 
   function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
   function setStatus(msg){ let el=document.getElementById('syncStatus'); if(el) el.textContent=msg; }
   function mergeState(local, remote){ if(!remote) return local; if(!local) return remote; return Object.assign({}, local, remote); }
   function applyStateRemote(newState){
-    applyingRemote=true;
     state=newState;
     localStorage.setItem(STATE_KEY, JSON.stringify(state));
     applyState(state);
     document.getElementById("customWeapon").style.display=document.getElementById("weapon").value==="custom"?"block":"none";
     update();
-    applyingRemote=false;
   }
-  pushToCloud=function(){
-    if(!docRef||applyingRemote) return;
-    clearTimeout(pushTimer);
-    pushTimer=setTimeout(async ()=>{
-      try{ await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(state)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
-      catch(e){ setStatus('Sync error: '+e.message); }
-    }, 700);
-  };
-  async function connect(code){
-    const norm=normCode(code);
-    if(!norm) return;
-    setStatus('Connecting…');
+  async function ensureConnected(){
+    if(docRef) return true;
     try{
       if(!fsApi){
         const [{initializeApp}, fs] = await Promise.all([
@@ -685,30 +676,45 @@ document.getElementById("resetDefaults").onclick=()=>{
         const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
         db=fsApi.getFirestore(app);
       }
-      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
-      docRef=fsApi.doc(db,'pf_sync',norm);
-      localStorage.setItem(SYNC_CODE_KEY, norm);
+      docRef=fsApi.doc(db,'pf_sync', normCode(FIXED_USER+'-'+FIXED_PIN));
+      localStorage.setItem(SYNC_CODE_KEY, normCode(FIXED_USER+'-'+FIXED_PIN));
+      return true;
+    }catch(e){ setStatus('Connection error: '+e.message); return false; }
+  }
+  async function manualLoad(silent){
+    if(busy) return; busy=true;
+    if(!silent) setStatus('Loading…');
+    try{
+      if(!(await ensureConnected())){ busy=false; return; }
       const snap=await fsApi.getDoc(docRef);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
       applyStateRemote(mergeState(state, remote));
-      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(state)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
-      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
-        if(snap2.metadata.hasPendingWrites) return;
-        const data=snap2.data();
-        if(!data || !data[APP_FIELD]) return;
-        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
-        applyStateRemote(mergeState(state, data[APP_FIELD]));
-        setStatus('Synced ✓ (updated from another device)');
-      }, (err)=>setStatus('Sync error: '+err.message));
-      setStatus('Synced ✓');
-    }catch(e){ setStatus('Sync error: '+e.message); }
+      setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
+    }catch(e){ setStatus('Load error: '+e.message); }
+    busy=false;
   }
+  async function manualSave(){
+    if(busy) return; busy=true;
+    setStatus('Saving…');
+    try{
+      if(!(await ensureConnected())){ busy=false; return; }
+      const snap=await fsApi.getDoc(docRef);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      const merged=mergeState(state, remote);
+      applyStateRemote(merged);
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+      setStatus('Saved ✓');
+    }catch(e){ setStatus('Save error: '+e.message); }
+    busy=false;
+  }
+  if(document.getElementById('cloudSave')) document.getElementById('cloudSave').onclick=manualSave;
+  if(document.getElementById('cloudLoad')) document.getElementById('cloudLoad').onclick=()=>manualLoad(false);
   // Kenneth is a single, fixed character sheet — always syncs to the KOS account,
   // no gate, no manual account switching.
   const FIXED_USER='KOS', FIXED_PIN='5';
   localStorage.setItem(SYNC_USER_KEY, FIXED_USER);
   localStorage.setItem(SYNC_PIN_KEY, FIXED_PIN);
-  connect(FIXED_USER+'-'+FIXED_PIN);
+  manualLoad(true);
 })();
 </script>
 </body>

@@ -90,6 +90,8 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
       <input id="syncUser" type="text" placeholder="USERNAME" style="width:120px;text-transform:uppercase">
       <input id="syncPin" type="text" placeholder="PIN" style="width:80px;text-transform:uppercase">
       <button id="syncConnect" type="button">Connect</button>
+      <button id="cloudSave" type="button">Save to cloud</button>
+      <button id="cloudLoad" type="button">Load from cloud</button>
       <button id="resetDefaults" type="button" title="Clear the saved values for this page and reload with the hardcoded defaults">Reset to defaults</button>
       <button id="syncLogout" type="button" style="background:#3a1d21;border-color:#67343b;color:#f0a0a0">Log out</button>
       <span id="syncStatus" style="font-size:12px;color:var(--muted)"></span>
@@ -603,9 +605,10 @@ function applyState(s){
   });
 }
 let state=JSON.parse(localStorage.getItem(STATE_KEY)||'{}');
-let applyingRemote=false;
-let pushToCloud=()=>{}; // replaced once the sync module below has loaded Firebase
-function save(){ state=serializeState(); localStorage.setItem(STATE_KEY, JSON.stringify(state)); if(!applyingRemote) pushToCloud(); }
+// Cloud push only ever happens from an explicit Save-to-cloud click (see the sync
+// module below) — save() itself is local-only now, so opening this page on a blank
+// device can never silently overwrite what's saved in the cloud.
+function save(){ state=serializeState(); localStorage.setItem(STATE_KEY, JSON.stringify(state)); }
 
 document.querySelectorAll("input:not(#syncCode),select").forEach(el=>el.addEventListener("input",()=>{save();update()}));
 document.getElementById("weapon").addEventListener("change",()=>{
@@ -626,83 +629,86 @@ document.getElementById("resetDefaults").onclick=()=>{
 };
 
 // ---------- Cross-device sync (Firebase Firestore) ----------
-// Same shared doc/code as every other Pathfinder tool on this site — a code entered
-// once in any tool auto-connects here too. Flat scalar state (no favorites/prep-style
-// dicts to merge here), so remote wins per-field on connect, local fills in any field
-// the cloud doesn't know about yet (e.g. a newly added effect checkbox).
+// Manual only: Save pushes local → cloud (merging in whatever's remote first, never
+// blindly overwriting it), Load pulls cloud → local (merging into local, never
+// pushing). Connecting only ever loads — it can never push and so can never clobber
+// the cloud, even from a blank/stale device.
 (function(){
   const SYNC_CODE_KEY='pf1_sync_code_v1';
   const SYNC_USER_KEY='pf1_sync_user_v1';
   const SYNC_PIN_KEY='pf1_sync_pin_v1';
   const APP_FIELD='gabriel-damage';
   const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
-  let db=null, docRef=null, unsubscribe=null, pushTimer=null, fsApi=null;
+  let db=null, docRef=null, fsApi=null, busy=false;
 
   function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
   function setStatus(msg){ let el=document.getElementById('syncStatus'); if(el) el.textContent=msg; }
   function mergeState(local, remote){ if(!remote) return local; if(!local) return remote; return Object.assign({}, local, remote); }
   function applyStateRemote(newState){
-    applyingRemote=true;
     state=newState;
     localStorage.setItem(STATE_KEY, JSON.stringify(state));
     applyState(state);
     document.getElementById("customWeapon").style.display=document.getElementById("weapon").value==="custom"?"block":"none";
     update();
-    applyingRemote=false;
   }
-  pushToCloud=function(){
-    if(!docRef||applyingRemote) return;
-    clearTimeout(pushTimer);
-    pushTimer=setTimeout(async ()=>{
-      try{ await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(state)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
-      catch(e){ setStatus('Sync error: '+e.message); }
-    }, 700);
-  };
-  async function connect(code){
+  async function ensureDocRef(code){
     const norm=normCode(code);
-    if(!norm) return;
-    setStatus('Connecting…');
+    if(!norm) return null;
+    if(!fsApi){
+      const [{initializeApp}, fs] = await Promise.all([
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+      ]);
+      fsApi=fs;
+      const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
+      db=fsApi.getFirestore(app);
+    }
+    docRef=fsApi.doc(db,'pf_sync',norm);
+    localStorage.setItem(SYNC_CODE_KEY, norm);
+    return docRef;
+  }
+  async function connect(code, silent){
+    if(busy) return; busy=true;
+    if(!silent) setStatus('Loading…');
     try{
-      if(!fsApi){
-        const [{initializeApp}, fs] = await Promise.all([
-          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
-          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
-        ]);
-        fsApi=fs;
-        const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
-        db=fsApi.getFirestore(app);
-      }
-      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
-      docRef=fsApi.doc(db,'pf_sync',norm);
-      localStorage.setItem(SYNC_CODE_KEY, norm);
-      const snap=await fsApi.getDoc(docRef);
+      const ref=await ensureDocRef(code);
+      if(!ref){ busy=false; return; }
+      const snap=await fsApi.getDoc(ref);
       const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
       applyStateRemote(mergeState(state, remote));
-      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(state)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
-      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
-        if(snap2.metadata.hasPendingWrites) return;
-        const data=snap2.data();
-        if(!data || !data[APP_FIELD]) return;
-        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
-        applyStateRemote(mergeState(state, data[APP_FIELD]));
-        setStatus('Synced ✓ (updated from another device)');
-      }, (err)=>setStatus('Sync error: '+err.message));
-      setStatus('Synced ✓');
-    }catch(e){ setStatus('Sync error: '+e.message); }
+      setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
+    }catch(e){ setStatus('Load error: '+e.message); }
+    busy=false;
   }
+  async function manualSave(){
+    if(busy) return; busy=true;
+    setStatus('Saving…');
+    try{
+      if(!docRef){ setStatus('Connect first (enter username/PIN above)'); busy=false; return; }
+      const snap=await fsApi.getDoc(docRef);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      const merged=mergeState(state, remote);
+      applyStateRemote(merged);
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+      setStatus('Saved ✓');
+    }catch(e){ setStatus('Save error: '+e.message); }
+    busy=false;
+  }
+  if(document.getElementById('cloudSave')) document.getElementById('cloudSave').onclick=manualSave;
+  if(document.getElementById('cloudLoad')) document.getElementById('cloudLoad').onclick=()=>connect(localStorage.getItem(SYNC_USER_KEY)+'-'+localStorage.getItem(SYNC_PIN_KEY), false);
   function connectFromFields(userId, pinId){
     const user=document.getElementById(userId).value.trim(), pin=document.getElementById(pinId).value.trim();
     if(!user) return;
     localStorage.setItem(SYNC_USER_KEY, user);
     localStorage.setItem(SYNC_PIN_KEY, pin);
-    connect(user+'-'+pin);
+    connect(user+'-'+pin, false);
   }
   document.getElementById('syncConnect').onclick=()=>connectFromFields('syncUser','syncPin');
   document.getElementById('syncUser').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('syncPin').focus(); });
   document.getElementById('syncPin').addEventListener('keydown', e=>{ if(e.key==='Enter') connectFromFields('syncUser','syncPin'); });
-  document.getElementById('syncLogout').onclick=()=>{
-    if(!confirm('Log out on this device? This clears the values saved locally here (so the next person\'s code doesn\'t get them merged in) — your data stays safe in the cloud under your code.'))return;
-    if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+  document.getElementById('syncLogout').onclick=async ()=>{
+    if(!confirm('Log out on this device? This saves your current data to the cloud first, then clears it from this device (so the next person\'s code doesn\'t get it merged in) — your data stays safe in the cloud under your code.'))return;
+    if(docRef) await manualSave();
     localStorage.removeItem(SYNC_CODE_KEY);
     localStorage.removeItem(SYNC_USER_KEY);
     localStorage.removeItem(SYNC_PIN_KEY);
