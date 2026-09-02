@@ -21,6 +21,9 @@ body{display:flex;flex-direction:column;overflow:hidden}
 .tabs{display:flex;gap:8px}
 .tab{border:1px solid var(--line);background:#111821;color:var(--text);border-radius:999px;padding:8px 12px;font-weight:700;cursor:pointer}
 .tab.active{background:#5a4318;border-color:#816427;color:#fff1c2}
+.cloudBtn{border:1px solid var(--line);background:#111821;color:var(--text);border-radius:8px;padding:8px 12px;font-weight:700;cursor:pointer;font-size:.85rem}
+.cloudBtn.primary{background:#5a4318;border-color:#816427;color:#fff1c2}
+.cloudStatus{font-size:.72rem;color:var(--muted);align-self:center}
 .framewrap{position:relative;flex:1;min-height:0}
 iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
 .hidden{display:none}
@@ -52,9 +55,14 @@ if(!name || !CLASS_LABELS[cls]){
         <a href="../" title="Pathfinder Tools" style="width:32px;height:32px;border-radius:8px;background:#111821;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;flex:none"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></a>
         <div class="name">${name}</div>
       </div>
-      <div class="tabs">
-        <button class="tab active" data-target="damage">Damage</button>
-        <button class="tab" data-target="spells">Spells</button>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span class="cloudStatus" id="cloudStatus"></span>
+        <button class="cloudBtn primary" id="charSave">Save character</button>
+        <button class="cloudBtn" id="charLoad">Load character</button>
+        <div class="tabs">
+          <button class="tab active" data-target="damage">Damage</button>
+          <button class="tab" data-target="spells">Spells</button>
+        </div>
       </div>
     </div>
     <div class="framewrap">
@@ -72,6 +80,33 @@ if(!name || !CLASS_LABELS[cls]){
   }
   tabs.forEach(t=>t.addEventListener("click",()=>show(t.dataset.target)));
   show(localStorage.getItem(tabKey)||"damage");
+
+  // Treat "Damage" and "Spells" as one character: Save/Load here fire the same
+  // cloud action in both iframes at once, so the two sub-sheets never drift apart
+  // or need saving one at a time.
+  function waitReady(key, tries){
+    tries = tries || 0;
+    const win = frames[key].contentWindow;
+    if(win && win.__cloudSave && win.__cloudLoad) return Promise.resolve(win);
+    if(tries > 100) return Promise.reject(new Error(key+' did not finish loading'));
+    return new Promise(r=>setTimeout(r,100)).then(()=>waitReady(key, tries+1));
+  }
+
+  function setCloudStatus(msg){ document.getElementById('cloudStatus').textContent=msg; }
+
+  async function forBoth(action, label){
+    setCloudStatus(label+'…');
+    try{
+      const [dWin, sWin] = await Promise.all([waitReady('damage'), waitReady('spells')]);
+      await Promise.all([action(dWin), action(sWin)]);
+      setCloudStatus(label+' ✓ (both Damage and Spells)');
+    }catch(e){
+      setCloudStatus(label+' error: '+e.message);
+    }
+  }
+
+  document.getElementById('charSave').onclick=()=>forBoth(win=>win.__cloudSave(), 'Saved');
+  document.getElementById('charLoad').onclick=()=>forBoth(win=>win.__cloudLoad(), 'Loaded');
 }
 
 if("serviceWorker" in navigator){

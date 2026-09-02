@@ -379,8 +379,10 @@ if("serviceWorker" in navigator){
     }catch(e){ setStatus('Save error: '+e.message); }
     busy=false;
   }
+  const manualLoad=()=>connect(localStorage.getItem(SYNC_USER_KEY)+'-'+localStorage.getItem(SYNC_PIN_KEY), false);
+  window.__cloudSave=manualSave; window.__cloudLoad=manualLoad;
   if($('cloudSave')) $('cloudSave').onclick=manualSave;
-  if($('cloudLoad')) $('cloudLoad').onclick=()=>connect(localStorage.getItem(SYNC_USER_KEY)+'-'+localStorage.getItem(SYNC_PIN_KEY), false);
+  if($('cloudLoad')) $('cloudLoad').onclick=manualLoad;
 
   function connectFromFields(userEl, pinEl){
     const user=$(userEl).value.trim(), pin=$(pinEl).value.trim();
