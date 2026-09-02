@@ -468,6 +468,7 @@ if("serviceWorker" in navigator){
         }
       }
       const merged=mergeStores(store, remote);
+      merged.active=store.active; // keep whichever profile the user is actually on (e.g. a just-created copy), not whatever the cloud's own "active" happened to say
       applyStore(merged);
       await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(merged)), updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
       setStatus('Saved ✓');
