@@ -431,6 +431,7 @@ if("serviceWorker" in navigator){
           if(store.profiles[newName]){ setStatus('A profile named "'+newName+'" already exists — pick a different name.'); busy=false; return; }
           store.profiles[newName]=JSON.parse(JSON.stringify(localP));
           store.active=newName;
+          if(window.__pinnedProfile) window.__pinnedProfile=newName; // the ?profile= deep-link pin would otherwise snap applyStore's active back to the old name
           state=store.profiles[newName];
           save(); populateProfileSelect(); loadProfileIntoUI();
         }

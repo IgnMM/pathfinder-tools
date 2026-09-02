@@ -3720,6 +3720,7 @@ if("serviceWorker" in navigator){
           copy.name=newName;
           store.profiles.push(copy);
           store.active=newName;
+          if(window.__pinnedProfile) window.__pinnedProfile=newName; // the ?profile= deep-link pin would otherwise snap applyStoreLocally's active back to the old name
           saveStore(); populateProfileSelect(); loadProfileIntoUI();
         }
       }
