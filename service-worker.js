@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v138";
+const CACHE_NAME = "pathfinder-paladins-folders-v139";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/casting-time.js",
@@ -56,6 +56,20 @@ const ASSETS = [
   "./shaman-library/","./shaman-library/index.html","./shaman-library/manifest.webmanifest","./shaman-library/icon-192.png","./shaman-library/icon-512.png",
   "./bloodrager-library/","./bloodrager-library/index.html","./bloodrager-library/manifest.webmanifest","./bloodrager-library/icon-192.png","./bloodrager-library/icon-512.png",
   "./summoner-library/","./summoner-library/index.html","./summoner-library/manifest.webmanifest","./summoner-library/icon-192.png","./summoner-library/icon-512.png",
+  "./fighter-archetypes/","./fighter-archetypes/index.html","./fighter-archetypes/manifest.webmanifest","./fighter-archetypes/icon-192.png","./fighter-archetypes/icon-512.png",
+  "./barbarian-archetypes/","./barbarian-archetypes/index.html","./barbarian-archetypes/manifest.webmanifest","./barbarian-archetypes/icon-192.png","./barbarian-archetypes/icon-512.png",
+  "./rogue-archetypes/","./rogue-archetypes/index.html","./rogue-archetypes/manifest.webmanifest","./rogue-archetypes/icon-192.png","./rogue-archetypes/icon-512.png",
+  "./monk-archetypes/","./monk-archetypes/index.html","./monk-archetypes/manifest.webmanifest","./monk-archetypes/icon-192.png","./monk-archetypes/icon-512.png",
+  "./monk-unchained-archetypes/","./monk-unchained-archetypes/index.html","./monk-unchained-archetypes/manifest.webmanifest","./monk-unchained-archetypes/icon-192.png","./monk-unchained-archetypes/icon-512.png",
+  "./cavalier-archetypes/","./cavalier-archetypes/index.html","./cavalier-archetypes/manifest.webmanifest","./cavalier-archetypes/icon-192.png","./cavalier-archetypes/icon-512.png",
+  "./gunslinger-archetypes/","./gunslinger-archetypes/index.html","./gunslinger-archetypes/manifest.webmanifest","./gunslinger-archetypes/icon-192.png","./gunslinger-archetypes/icon-512.png",
+  "./ninja-archetypes/","./ninja-archetypes/index.html","./ninja-archetypes/manifest.webmanifest","./ninja-archetypes/icon-192.png","./ninja-archetypes/icon-512.png",
+  "./samurai-archetypes/","./samurai-archetypes/index.html","./samurai-archetypes/manifest.webmanifest","./samurai-archetypes/icon-192.png","./samurai-archetypes/icon-512.png",
+  "./vigilante-archetypes/","./vigilante-archetypes/index.html","./vigilante-archetypes/manifest.webmanifest","./vigilante-archetypes/icon-192.png","./vigilante-archetypes/icon-512.png",
+  "./shifter-archetypes/","./shifter-archetypes/index.html","./shifter-archetypes/manifest.webmanifest","./shifter-archetypes/icon-192.png","./shifter-archetypes/icon-512.png",
+  "./swashbuckler-archetypes/","./swashbuckler-archetypes/index.html","./swashbuckler-archetypes/manifest.webmanifest","./swashbuckler-archetypes/icon-192.png","./swashbuckler-archetypes/icon-512.png",
+  "./brawler-archetypes/","./brawler-archetypes/index.html","./brawler-archetypes/manifest.webmanifest","./brawler-archetypes/icon-192.png","./brawler-archetypes/icon-512.png",
+  "./kineticist-archetypes/","./kineticist-archetypes/index.html","./kineticist-archetypes/manifest.webmanifest","./kineticist-archetypes/icon-192.png","./kineticist-archetypes/icon-512.png",
   "./calc/","./calc/index.html","./calc/manifest.webmanifest","./calc/icon-192.png","./calc/icon-512.png",
   "./companion/","./companion/index.html","./companion/manifest.webmanifest","./companion/icon-192.png","./companion/icon-512.png"
 ];

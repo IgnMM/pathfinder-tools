@@ -1,0 +1,146 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><title>Kineticist Archetype Spells</title><link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#10151d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Archetype Spells"><link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#0f1117;--panel:#181c24;--panel2:#202633;--text:#eef2f7;--muted:#9ba7b7;--gold:#d5ad55;--gold2:#f1d78b;--border:#313949}*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-family:Inter,system-ui,sans-serif;background:#0f1117;color:var(--text)}header,main{max-width:1180px;margin:auto;padding:12px 16px}header{border-bottom:1px solid var(--border)}h1{margin:0;font-size:1.35rem}.sub{color:var(--muted);font-size:.78rem;margin:2px 0 8px}label{font-size:.68rem;color:var(--muted);display:block;margin-bottom:2px}select,input{width:100%;background:#121721;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px}.levels{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}button{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 9px;cursor:pointer}button.active,button.primary{background:#5a4318;border-color:#816427;color:#fff1c2}.toolbar{display:grid;grid-template-columns:1fr 160px auto;gap:6px;margin-bottom:8px}.count{color:var(--muted);font-size:.78rem;margin:4px 0 8px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:6px}section{margin:8px 0 14px}h2{font-size:.95rem;color:var(--gold2);margin:6px 0}.card{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px}.head{display:flex;justify-content:space-between;gap:8px}.name{font-weight:750}.savebadge{font-size:.58rem;color:var(--muted);margin-top:2px}.sourcebadge{font-size:.56rem;color:#7d8aa3;margin-top:2px;font-style:italic}.desc{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.25}.desc summary{cursor:pointer;color:var(--gold2);font-size:.68rem;list-style:none}.desc summary::-webkit-details-marker{display:none}.desc summary:before{content:"▸ ";display:inline-block}.desc[open] summary:before{content:"▾ "}.desc[open] summary{margin-bottom:3px}.stat-block{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:5px 7px;margin-bottom:5px}.stat-row{font-size:.68rem;line-height:1.5}.stat-row b{color:var(--gold2);font-weight:700;margin-right:4px}.effect-text p{margin:0 0 6px}.effect-text p:last-child{margin-bottom:0}.favbtn{background:none;border:none;font-size:1.1rem;line-height:1;cursor:pointer;padding:0 4px;color:var(--muted)}.favbtn.active{color:var(--gold2)}.sourcesbox{position:relative}.sourcesbox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-size:.78rem;list-style:none;white-space:nowrap}.sourcesbox summary::-webkit-details-marker{display:none}.sourcesbox[open] summary{border-color:var(--gold)}.sourcesPanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px;z-index:20;max-height:300px;overflow-y:auto;min-width:220px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.sourcesPanel label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);padding:3px 0;cursor:pointer}.sourcesPanel input{width:auto}.sourcesPanel .srcActions{display:flex;gap:6px;margin-bottom:6px}.sourcesPanel .srcActions button{font-size:.65rem;padding:4px 7px}.emptyHint{color:var(--muted);font-size:.85rem;line-height:1.5;padding:24px 8px;text-align:center;border:1px dashed var(--border);border-radius:10px}
+@media(max-width:780px){header,main{padding:6px 8px}.toolbar{grid-template-columns:1fr;gap:4px}.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px}.card{padding:6px}.name{font-size:.8rem}.desc{font-size:.62rem}}
+</style>
+</head>
+<body>
+<a href="../" title="Pathfinder Tools" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></a>
+<style>@media(max-width:900px){header,main{padding-left:60px !important}}</style>
+<header><h1>Kineticist Archetype Spells</h1><div class="sub">Pathfinder 1e — Kineticist doesn't normally cast spells. These 6 archetypes trade away class features for real spells or spell-like abilities — pick one below to see exactly what it grants. A reference tool for browsing, searching, and shortlisting — not a session play-tool.</div>
+<div class="levels" id="levelButtons"></div>
+<div class="levels" id="ctButtons"></div>
+</header><main>
+<div class="toolbar"><div class="searchWrap"><svg class="searchIcon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="search" placeholder="Search spell name or description..."><button id="searchClear" type="button" title="Clear search" aria-label="Clear search">&times;</button></div><style>.searchWrap{position:relative}.searchWrap input{padding-left:26px;padding-right:24px}.searchIcon{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.searchWrap button{position:absolute;right:1px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:4px 7px}.searchWrap button:hover{color:var(--text)}</style><select id="filter"><option value="all">All spells</option><option value="favorites">Favorites only</option></select><select id="archetype"><option value="">— No archetype selected —</option><option value="Aquakinetcist">Aquakinetcist</option><option value="Arakineticist">Arakineticist</option><option value="Blighted Defiler">Blighted Defiler</option><option value="Blood Kineticist">Blood Kineticist</option><option value="Elysiokineticist">Elysiokineticist</option><option value="Ioun Kineticist">Ioun Kineticist</option></select><details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details></div>
+<div class="count" id="resultCount"></div>
+<div id="list"></div>
+</main>
+<script src="../assets/valid-sources.js"></script>
+<script src="../assets/casting-time.js"></script>
+<script src="../assets/spell-crossref.js"></script>
+<script>
+const STORE_KEY='kineticistArchetypeSpellsPF1V1';
+const $=id=>document.getElementById(id);
+function statRow(label,val){return val?`<div class="stat-row"><b>${label}</b> ${val}</div>`:''}
+function loadStore(){
+  let raw=localStorage.getItem(STORE_KEY);
+  if(raw){try{let s=JSON.parse(raw);if(s)return s}catch(e){}}
+  return {fav:{},excludedSources:{},show:[0,1,2,3,4,5,6],sourcesCustomized:false};
+}
+let store=loadStore();
+if(store.sourcesCustomized===undefined) store.sourcesCustomized=Object.keys(store.excludedSources||{}).length>0;
+function save(){localStorage.setItem(STORE_KEY,JSON.stringify(store));}
+function currentSpells(){let a=ARCHETYPES[store.archetype];return (a&&a.spells)||SPELLS;}
+function applyGlobalSources(){
+  if(store.sourcesCustomized) return;
+  let allSrc=[...new Set(currentSpells().map(s=>s.source||'Unknown'))];
+  store.excludedSources=PFSources.computeExcludedSources(allSrc, PFSources.loadGlobalExcludedLocal());
+}
+let PRESENT_CT=[];
+function renderCtButtons(){
+  let b=$('ctButtons'); if(!b) return;
+  if(PRESENT_CT.length<2){ b.style.display='none'; b.innerHTML=''; return; }
+  b.style.display=''; b.innerHTML='';
+  let shown=store.ctShow||PRESENT_CT;
+  let all=document.createElement('button');all.textContent='All';all.className=shown.length===PRESENT_CT.length?'active':'';
+  all.onclick=()=>{store.ctShow=null;save();renderList();renderCtButtons()};
+  b.appendChild(all);
+  PRESENT_CT.forEach(c=>{
+    let x=document.createElement('button');x.textContent=PFCastingTime.CT_LABELS[c];
+    x.className=(shown.length<PRESENT_CT.length&&shown.includes(c))?'active':'';
+    x.onclick=()=>{
+      let cur=store.ctShow||PRESENT_CT.slice();
+      if(cur.length===PRESENT_CT.length){store.ctShow=[c]}
+      else if(cur.includes(c)){let next=cur.filter(v=>v!==c);store.ctShow=next.length?next:null}
+      else{store.ctShow=[...cur,c]}
+      save();renderList();renderCtButtons()
+    };
+    b.appendChild(x)
+  });
+}
+
+function renderButtons(){
+  let b=$('levelButtons');b.innerHTML='';
+  let all=document.createElement('button');all.textContent='All';all.className=store.show.length===7?'active':'';
+  all.onclick=()=>{store.show=[0,1,2,3,4,5,6];save();renderList()};b.appendChild(all);
+  for(let l=0;l<=6;l++){
+    let x=document.createElement('button');x.textContent=l===0?'Orisons':'L'+l;
+    x.className=(store.show.length<7&&store.show.includes(l))?'active':'';
+    x.onclick=()=>{
+      if(store.show.length===7){store.show=[l]}
+      else if(store.show.includes(l)){let next=store.show.filter(v=>v!==l);store.show=next.length?next:[0,1,2,3,4,5,6]}
+      else{store.show=[...store.show,l].sort((a,b)=>a-b)}
+      save();renderList()
+    };
+    b.appendChild(x)
+  }
+}
+function buildCard(s){
+  let key=s.l+'|'+s.n;
+  let fav=!!store.fav[key];
+  let card=document.createElement('div');
+  card.className='card';
+  card.innerHTML=`<div class="head"><div><div class="name">${s.n} <span style="color:var(--muted);font-weight:400;font-size:.72rem">L${s.l}</span></div>${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}</div><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button></div><details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${PFSpellRefs.linkify(p,s.n)}</p>`).join('')}</div></details>`;
+  card.querySelector('.favbtn').onclick=()=>{if(fav)delete store.fav[key];else store.fav[key]=true;save();renderList()};
+  return card;
+}
+function renderList(){
+  let out=$('list');
+  if(!store.archetype){
+    out.innerHTML='<div class="emptyHint">Kineticist doesn\'t normally cast spells — pick an archetype above to see what it grants.</div>';
+    $('resultCount').textContent='';
+    return;
+  }
+  let q=$('search').value.toLowerCase(),f=$('filter').value;
+  out.innerHTML='';
+  let total=0;
+  for(let l of store.show){
+    let ctShown=store.ctShow||PRESENT_CT;
+    let arr=currentSpells().filter(s=>s.l===l&&(s.n+' '+(s.effect||'')).toLowerCase().includes(q)&&!store.excludedSources[s.source||'Unknown']&&(()=>{let cats=PFCastingTime.ctCategory(s.castingTime);return cats.length===0||cats.some(c=>ctShown.includes(c))})());
+    if(f==='favorites')arr=arr.filter(s=>!!store.fav[l+'|'+s.n]);
+    if(!arr.length)continue;
+    total+=arr.length;
+    let sec=document.createElement('section');
+    sec.innerHTML=`<h2>${l===0?'Orisons (0-level)':'Level '+l}</h2><div class="grid"></div>`;
+    let g=sec.querySelector('.grid');
+    arr.sort((a,b)=>a.n.localeCompare(b.n)).forEach(s=>g.appendChild(buildCard(s)));
+    out.appendChild(sec);
+  }
+  if(!total){ out.innerHTML='<div class="emptyHint">No spells match the current filters.</div>'; }
+  $('resultCount').textContent=total+' spell'+(total===1?'':'s')+' shown';
+}
+function renderSources(){
+  let box=$('sourceList');box.innerHTML='';
+  let all=[...new Set(currentSpells().map(s=>s.source||'Unknown'))].sort();
+  all.forEach(src=>{
+    let lbl=document.createElement('label');
+    let cb=document.createElement('input');cb.type='checkbox';cb.checked=!store.excludedSources[src];
+    cb.onchange=()=>{store.sourcesCustomized=true;if(cb.checked)delete store.excludedSources[src];else store.excludedSources[src]=true;save();renderList();renderSourcesNote()};
+    lbl.appendChild(cb);lbl.appendChild(document.createTextNode(src));box.appendChild(lbl);
+  });
+  renderSourcesNote();
+}
+function renderSourcesNote(){
+  let el=$('sourcesNote');if(!el)return;
+  el.textContent=store.sourcesCustomized?'Customized for this page':'Following the site\'s global Valid Sources';
+}
+$('search').oninput=renderList;$('searchClear').onclick=()=>{$('search').value='';renderList();$('search').focus()};
+$('filter').onchange=renderList;
+$('srcAll').onclick=()=>{store.sourcesCustomized=true;store.excludedSources={};save();renderSources();renderList()};
+$('srcNone').onclick=()=>{store.sourcesCustomized=true;[...new Set(currentSpells().map(s=>s.source||'Unknown'))].forEach(src=>store.excludedSources[src]=true);save();renderSources();renderList()};
+$('srcResetGlobal').onclick=()=>{store.sourcesCustomized=false;applyGlobalSources();save();renderSources();renderList()};
+$('archetype').value=store.archetype||'';
+$('archetype').onchange=()=>{store.archetype=$('archetype').value;save();renderSources();renderList()};
+
+const SPELLS=[];
+const ARCHETYPES={"Aquakinetcist":{"source":"Aquatic Adventures pg. 50","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 1 spell entries, 0 were already present, and all 1 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Buoyancy","l":2,"school":"transmutation","castingTime":"1 immediate action","components":"V","range":"close (25 ft. + 5 ft./2 levels)","target":"one Medium or smaller object or creature/level, no two of which can be more than 20 ft. apart","duration":"up to 1 round/level (see text)","save":"Will negates (harmless) or Will negates (object)","sr":"yes (object)","effect":"The affected targets become incredibly buoyant, floating naturally on any water at least 1 foot deep. An affected creature that deliberately tries to submerge must succeed at a DC 20 Swim check every round to stay underwater. If a target spends at least 1 round on dry land, the spell ends for that creature only.","source":"Advanced Class Guide pg. 177, Pirates of the Inner Sea pg. 28"}]},"Arakineticist":{"source":"Blood of the Coven pg. 22","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 2 spell entries, 0 were already present, and all 2 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Bestow Curse","l":2,"school":"necromancy [curse]","castingTime":"1 standard action","components":"V, S","range":"touch","target":"creature touched","duration":"permanent","save":"Will negates","sr":"yes","effect":"Curses the touched creature with one of: a -6 penalty (minimum 1) to one ability score, a -4 penalty on attack rolls, saves, and checks, or a 50% chance each round of either acting normally or taking no action at all; the GM may allow a custom curse of similar power instead. The curse resists dispel magic but can be lifted by break enchantment, limited wish, miracle, remove curse, or wish; this spell opposes and can end an existing remove curse effect on the same target.","source":"PRPG Core Rulebook pg. 247"},{"n":"Remove Curse","l":3,"school":"abjuration","castingTime":"1 standard action","components":"V, S","range":"touch","target":"creature or object touched","duration":"instantaneous","save":"Will negates (harmless)","sr":"yes (harmless)","effect":"Remove curse can remove all curses on an object or a creature. If the target is a creature, you must make a caster level check (1d20 + caster level) against the DC of each curse affecting the target. Success means that the curse is removed. Remove curse does not remove the curse from a cursed shield, weapon, or suit of armor, although a successful caster level check enables the creature afflicted with any such cursed item to remove and get rid of it.\nRemove curse counters and dispels bestow curse.","source":"PRPG Core Rulebook pg. 332"}]},"Blighted Defiler":{"source":"Ultimate Wilderness pg. 62","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 1 spell entries, 0 were already present, and all 1 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Diminish Plants","l":3,"school":"transmutation","castingTime":"1 standard action","components":"V, S, DF","range":"see text","target":"see text","duration":"instantaneous","save":"none","sr":"no","effect":"This spell has two versions. Prune Growth: This version of the spell causes normal vegetation within long range (400 feet + 40 feet per level) to shrink to about one-third normal size, becoming untangled and less bushy. The affected vegetation appears to have been carefully pruned and trimmed. This version of diminish plants automatically dispels any spells or effects that enhance plants, such as entangle, plant growth, and wall of thorns. At your option, the area can be a 100-foot-radius circle, a 150-foot-radius semicircle, or a 200-foot-radius quarter-circle. You may also designate portions of the area that are not affected. Stunt Growth: This version of the spell targets all normal plants within a range of 1/2 mile, reducing their potential productivity over the course of the following year to half normal. This spell has no effect on plant creatures.","source":"Core Rulebook pg. 270"}]},"Blood Kineticist":{"source":"Occult Adventures pg. 88","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 1 spell entries, 0 were already present, and all 1 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Blood Biography","l":2,"school":"divination","castingTime":"1 minute","components":"V, S, M/DF (a scrap of parchment)","range":"touch","target":"one creature’s blood or one bloodstain","duration":"instantaneous","save":"Will negates (see text)","sr":"no","effect":"You learn the answers to a specific set of questions about a creature so long as you have access to at least one drop of its blood. You can cast this spell on the blood of the living or the dead, but living or undead creatures are entitled to a saving throw to resist the spell. You can cast the spell on dried or fresh blood. Once you cast the spell the answers to the following four questions appear on any flat surface you designate (a wall, a piece of paper, and so on). Who are you? (The name by which the creature is most commonly known) What are you? (Gender, race, profession/role)How was your blood shed? (Brief outline of the events that caused its wound, to the best of the victim’s knowledge)When was your blood shed? These answers always appear in a language you can read even if the creature cannot speak that or any language.","source":"Advanced Player's Guide pg. 206"}]},"Elysiokineticist":{"source":"People of the Wastes pg. 18","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 4 spell entries, 0 were already present, and all 4 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Resistance","l":0,"school":"abjuration","castingTime":"1 standard action","components":"V, S, M/DF (a miniature cloak)","range":"touch","target":"creature touched","duration":"1 minute","save":"Will negates (harmless)","sr":"yes (harmless)","effect":"You imbue the subject with magical energy that protects it from harm, granting it a +1 resistance bonus on saves.\n\nResistance can be made permanent with a permanency spell.","source":"PRPG Core Rulebook pg. 334"},{"n":"Stabilize","l":0,"school":"Conjuration (healing)","castingTime":"1 standard action","components":"V, S","range":"Close (25 ft. + 5 ft./2 levels)","target":"One living creature","duration":"Instantaneous","save":"Will negates (harmless)","sr":"Yes (harmless)","effect":"Upon casting this spell, you target a living creature that has –1 or fewer hit points. That creature is automatically stabilized and does not lose any further hit points. If the creature later takes damage, it continues dying normally.","source":"Core Rulebook"},{"n":"Vigor","l":0,"school":"Transmutation","castingTime":"1 standard action","components":"V, S","range":"Touch","target":"Creature touched","duration":"1 minute or until discharged","save":"Will negates (harmless)","sr":"Yes","effect":"This spell infuses the subject with a small surge of strength. The creature gets a +1 competence bonus on a single melee damage roll. It must choose to use the bonus before making the roll to which it applies. Ranged or spell attacks are unaffected by this spell.","source":"Orcs of Golarion"},{"n":"Virtue","l":0,"school":"Transmutation","castingTime":"1 standard action","components":"V, S, DF","range":"Touch","target":"Creature touched","duration":"1 min.","save":"None","sr":"Yes (harmless)","effect":"With a touch, you infuse a creature with a tiny surge of life, granting the subject 1 temporary hit point.","source":"Core Rulebook"}]},"Ioun Kineticist":{"source":"Blood of the Ancients pg. 10","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 2 spell entries, 0 were already present, and all 2 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Prestidigitation","l":0,"school":"universal","castingTime":"1 standard action","components":"V, S","range":"10 ft. Target, Effect, or Area see text","target":"","duration":"1 hour","save":"see text","sr":"no","effect":"Prestidigitations are minor tricks that novice spellcasters use for practice. Once cast, a prestidigitation spell enables you to perform simple magical effects for 1 hour. The effects are minor and have severe limitations. A prestidigitation can slowly lift 1 pound of material. It can color, clean, or soil items in a 1-foot cube each round. It can chill, warm, or flavor 1 pound of nonliving material. It cannot deal damage or affect the concentration of spellcasters. Prestidigitation can create small objects, but they look crude and artificial. The materials created by a prestidigitation spell are extremely fragile, and they cannot be used as tools, weapons, or spell components. Finally, prestidigitation lacks the power to duplicate any other spell effects. Any actual change to an object (beyond just moving, cleaning, or soiling it) persists only 1 hour.","source":"PRPG Core Rulebook pg. 325"},{"n":"Telekinesis","l":4,"school":"transmutation","castingTime":"1 standard action","components":"V, S","range":"long (400 ft. + 40 ft./level)","target":"see text","duration":"concentration (up to 1 round/level) or instantaneous; see text","save":"Will negates (object) or none; see text","sr":"yes (object); see text","effect":"You move objects or creatures by concentrating on them. Depending on the version selected, the spell can provide a gentle, sustained force, perform a variety of combat maneuvers, or exert a single short, violent thrust.\n\nSustained Force: A sustained force moves an object weighing no more than 25 pounds per caster level (maximum 375 pounds at 15th level) up to 20 feet per round. A creature can negate the effect on an object it possesses with a successful Will save or with spell resistance.\n\nThis version of the spell can last 1 round per caster level, but it ends if you cease concentration. The weight can be moved vertically, horizontally, or in both directions. An object cannot be moved beyond your range. The spell ends if the object is forced beyond the range. If you cease concentration for any reason, the object falls or stops.\n\nAn object can be telekinetically manipulated as if with one hand. For example, a lever or rope can be pulled, a key can be turned, an object rotated, and so on, if the force required is within the weight limitation. You might even be able to untie simple knots, though delicate activities such as these require DC 15 Intelligence checks.\n\nCombat Maneuver: Alternatively, once per round, you can use telekinesis to perform a bull rush, disarm, grapple (including pin), or trip. Resolve these attempts as normal, except that they don't provoke attacks of opportunity, you use your caster level in place of your Combat Maneuver Bonus, and you add your Intelligence modifier (if a wizard) or Charisma modifier (if a sorcerer) in place of your Strength or Dexterity modifier. No save is allowed against these attempts, but spell resistance applies normally. This version of the spell can last 1 round per caster level, but it ends if you cease concentration.\n\nViolent Thrust: Alternatively, the spell energy can be spent in a single round. You can hurl one object or creature per caster level (maximum 15) that are within range and all within 10 feet of each other toward any target within 10 feet per level of all the objects. You can hurl up to a total weight of 25 pounds per caster level (maximum 375 pounds at 15th level).\n\nYou must succeed on attack rolls (one per creature or object thrown) to hit the target with the items, using your base attack bonus + your Intelligence modifier (if a wizard) or Charisma modifier (if a sorcerer). Weapons cause standard damage (with no Strength bonus; note that arrows or bolts deal damage as daggers of their size when used in this manner). Other objects cause damage ranging from 1 point per 25 pounds (for less dangerous objects) to 1d6 points of damage per 25 pounds (for hard, dense objects). Objects and creatures that miss their target land in a square adjacent to the target.\n\nCreatures who fall within the weight capacity of the spell can be hurled, but they are allowed Will saves (and spell resistance) to negate the effect, as are those whose held possessions are targeted by the spell.\n\nIf a telekinesed creature is hurled against a solid surface, it takes damage as if it had fallen 10 feet (1d6 points).","source":"Pathfinder RPG Core Rulebook pg. 357"}]}};
+
+applyGlobalSources();
+PRESENT_CT=PFCastingTime.presentCategories(SPELLS);
+renderButtons();renderCtButtons();renderSources();renderList();
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
+}
+</script>
+</body>
+</html>

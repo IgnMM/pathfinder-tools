@@ -1,0 +1,146 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><title>Swashbuckler Archetype Spells</title><link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#10151d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Archetype Spells"><link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#0f1117;--panel:#181c24;--panel2:#202633;--text:#eef2f7;--muted:#9ba7b7;--gold:#d5ad55;--gold2:#f1d78b;--border:#313949}*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-family:Inter,system-ui,sans-serif;background:#0f1117;color:var(--text)}header,main{max-width:1180px;margin:auto;padding:12px 16px}header{border-bottom:1px solid var(--border)}h1{margin:0;font-size:1.35rem}.sub{color:var(--muted);font-size:.78rem;margin:2px 0 8px}label{font-size:.68rem;color:var(--muted);display:block;margin-bottom:2px}select,input{width:100%;background:#121721;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px}.levels{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}button{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 9px;cursor:pointer}button.active,button.primary{background:#5a4318;border-color:#816427;color:#fff1c2}.toolbar{display:grid;grid-template-columns:1fr 160px auto;gap:6px;margin-bottom:8px}.count{color:var(--muted);font-size:.78rem;margin:4px 0 8px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:6px}section{margin:8px 0 14px}h2{font-size:.95rem;color:var(--gold2);margin:6px 0}.card{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px}.head{display:flex;justify-content:space-between;gap:8px}.name{font-weight:750}.savebadge{font-size:.58rem;color:var(--muted);margin-top:2px}.sourcebadge{font-size:.56rem;color:#7d8aa3;margin-top:2px;font-style:italic}.desc{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.25}.desc summary{cursor:pointer;color:var(--gold2);font-size:.68rem;list-style:none}.desc summary::-webkit-details-marker{display:none}.desc summary:before{content:"▸ ";display:inline-block}.desc[open] summary:before{content:"▾ "}.desc[open] summary{margin-bottom:3px}.stat-block{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:5px 7px;margin-bottom:5px}.stat-row{font-size:.68rem;line-height:1.5}.stat-row b{color:var(--gold2);font-weight:700;margin-right:4px}.effect-text p{margin:0 0 6px}.effect-text p:last-child{margin-bottom:0}.favbtn{background:none;border:none;font-size:1.1rem;line-height:1;cursor:pointer;padding:0 4px;color:var(--muted)}.favbtn.active{color:var(--gold2)}.sourcesbox{position:relative}.sourcesbox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-size:.78rem;list-style:none;white-space:nowrap}.sourcesbox summary::-webkit-details-marker{display:none}.sourcesbox[open] summary{border-color:var(--gold)}.sourcesPanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px;z-index:20;max-height:300px;overflow-y:auto;min-width:220px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.sourcesPanel label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);padding:3px 0;cursor:pointer}.sourcesPanel input{width:auto}.sourcesPanel .srcActions{display:flex;gap:6px;margin-bottom:6px}.sourcesPanel .srcActions button{font-size:.65rem;padding:4px 7px}.emptyHint{color:var(--muted);font-size:.85rem;line-height:1.5;padding:24px 8px;text-align:center;border:1px dashed var(--border);border-radius:10px}
+@media(max-width:780px){header,main{padding:6px 8px}.toolbar{grid-template-columns:1fr;gap:4px}.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px}.card{padding:6px}.name{font-size:.8rem}.desc{font-size:.62rem}}
+</style>
+</head>
+<body>
+<a href="../" title="Pathfinder Tools" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></a>
+<style>@media(max-width:900px){header,main{padding-left:60px !important}}</style>
+<header><h1>Swashbuckler Archetype Spells</h1><div class="sub">Pathfinder 1e — Swashbuckler doesn't normally cast spells. These 4 archetypes trade away class features for real spells or spell-like abilities — pick one below to see exactly what it grants. A reference tool for browsing, searching, and shortlisting — not a session play-tool.</div>
+<div class="levels" id="levelButtons"></div>
+<div class="levels" id="ctButtons"></div>
+</header><main>
+<div class="toolbar"><div class="searchWrap"><svg class="searchIcon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="search" placeholder="Search spell name or description..."><button id="searchClear" type="button" title="Clear search" aria-label="Clear search">&times;</button></div><style>.searchWrap{position:relative}.searchWrap input{padding-left:26px;padding-right:24px}.searchIcon{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.searchWrap button{position:absolute;right:1px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:4px 7px}.searchWrap button:hover{color:var(--text)}</style><select id="filter"><option value="all">All spells</option><option value="favorites">Favorites only</option></select><select id="archetype"><option value="">— No archetype selected —</option><option value="Dashing Thief">Dashing Thief</option><option value="Okayo Corsair">Okayo Corsair</option><option value="Rostland Bravo">Rostland Bravo</option><option value="Veiled Blade">Veiled Blade</option></select><details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details></div>
+<div class="count" id="resultCount"></div>
+<div id="list"></div>
+</main>
+<script src="../assets/valid-sources.js"></script>
+<script src="../assets/casting-time.js"></script>
+<script src="../assets/spell-crossref.js"></script>
+<script>
+const STORE_KEY='swashbucklerArchetypeSpellsPF1V1';
+const $=id=>document.getElementById(id);
+function statRow(label,val){return val?`<div class="stat-row"><b>${label}</b> ${val}</div>`:''}
+function loadStore(){
+  let raw=localStorage.getItem(STORE_KEY);
+  if(raw){try{let s=JSON.parse(raw);if(s)return s}catch(e){}}
+  return {fav:{},excludedSources:{},show:[0,1,2,3,4,5,6],sourcesCustomized:false};
+}
+let store=loadStore();
+if(store.sourcesCustomized===undefined) store.sourcesCustomized=Object.keys(store.excludedSources||{}).length>0;
+function save(){localStorage.setItem(STORE_KEY,JSON.stringify(store));}
+function currentSpells(){let a=ARCHETYPES[store.archetype];return (a&&a.spells)||SPELLS;}
+function applyGlobalSources(){
+  if(store.sourcesCustomized) return;
+  let allSrc=[...new Set(currentSpells().map(s=>s.source||'Unknown'))];
+  store.excludedSources=PFSources.computeExcludedSources(allSrc, PFSources.loadGlobalExcludedLocal());
+}
+let PRESENT_CT=[];
+function renderCtButtons(){
+  let b=$('ctButtons'); if(!b) return;
+  if(PRESENT_CT.length<2){ b.style.display='none'; b.innerHTML=''; return; }
+  b.style.display=''; b.innerHTML='';
+  let shown=store.ctShow||PRESENT_CT;
+  let all=document.createElement('button');all.textContent='All';all.className=shown.length===PRESENT_CT.length?'active':'';
+  all.onclick=()=>{store.ctShow=null;save();renderList();renderCtButtons()};
+  b.appendChild(all);
+  PRESENT_CT.forEach(c=>{
+    let x=document.createElement('button');x.textContent=PFCastingTime.CT_LABELS[c];
+    x.className=(shown.length<PRESENT_CT.length&&shown.includes(c))?'active':'';
+    x.onclick=()=>{
+      let cur=store.ctShow||PRESENT_CT.slice();
+      if(cur.length===PRESENT_CT.length){store.ctShow=[c]}
+      else if(cur.includes(c)){let next=cur.filter(v=>v!==c);store.ctShow=next.length?next:null}
+      else{store.ctShow=[...cur,c]}
+      save();renderList();renderCtButtons()
+    };
+    b.appendChild(x)
+  });
+}
+
+function renderButtons(){
+  let b=$('levelButtons');b.innerHTML='';
+  let all=document.createElement('button');all.textContent='All';all.className=store.show.length===7?'active':'';
+  all.onclick=()=>{store.show=[0,1,2,3,4,5,6];save();renderList()};b.appendChild(all);
+  for(let l=0;l<=6;l++){
+    let x=document.createElement('button');x.textContent=l===0?'Orisons':'L'+l;
+    x.className=(store.show.length<7&&store.show.includes(l))?'active':'';
+    x.onclick=()=>{
+      if(store.show.length===7){store.show=[l]}
+      else if(store.show.includes(l)){let next=store.show.filter(v=>v!==l);store.show=next.length?next:[0,1,2,3,4,5,6]}
+      else{store.show=[...store.show,l].sort((a,b)=>a-b)}
+      save();renderList()
+    };
+    b.appendChild(x)
+  }
+}
+function buildCard(s){
+  let key=s.l+'|'+s.n;
+  let fav=!!store.fav[key];
+  let card=document.createElement('div');
+  card.className='card';
+  card.innerHTML=`<div class="head"><div><div class="name">${s.n} <span style="color:var(--muted);font-weight:400;font-size:.72rem">L${s.l}</span></div>${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}</div><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button></div><details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${PFSpellRefs.linkify(p,s.n)}</p>`).join('')}</div></details>`;
+  card.querySelector('.favbtn').onclick=()=>{if(fav)delete store.fav[key];else store.fav[key]=true;save();renderList()};
+  return card;
+}
+function renderList(){
+  let out=$('list');
+  if(!store.archetype){
+    out.innerHTML='<div class="emptyHint">Swashbuckler doesn\'t normally cast spells — pick an archetype above to see what it grants.</div>';
+    $('resultCount').textContent='';
+    return;
+  }
+  let q=$('search').value.toLowerCase(),f=$('filter').value;
+  out.innerHTML='';
+  let total=0;
+  for(let l of store.show){
+    let ctShown=store.ctShow||PRESENT_CT;
+    let arr=currentSpells().filter(s=>s.l===l&&(s.n+' '+(s.effect||'')).toLowerCase().includes(q)&&!store.excludedSources[s.source||'Unknown']&&(()=>{let cats=PFCastingTime.ctCategory(s.castingTime);return cats.length===0||cats.some(c=>ctShown.includes(c))})());
+    if(f==='favorites')arr=arr.filter(s=>!!store.fav[l+'|'+s.n]);
+    if(!arr.length)continue;
+    total+=arr.length;
+    let sec=document.createElement('section');
+    sec.innerHTML=`<h2>${l===0?'Orisons (0-level)':'Level '+l}</h2><div class="grid"></div>`;
+    let g=sec.querySelector('.grid');
+    arr.sort((a,b)=>a.n.localeCompare(b.n)).forEach(s=>g.appendChild(buildCard(s)));
+    out.appendChild(sec);
+  }
+  if(!total){ out.innerHTML='<div class="emptyHint">No spells match the current filters.</div>'; }
+  $('resultCount').textContent=total+' spell'+(total===1?'':'s')+' shown';
+}
+function renderSources(){
+  let box=$('sourceList');box.innerHTML='';
+  let all=[...new Set(currentSpells().map(s=>s.source||'Unknown'))].sort();
+  all.forEach(src=>{
+    let lbl=document.createElement('label');
+    let cb=document.createElement('input');cb.type='checkbox';cb.checked=!store.excludedSources[src];
+    cb.onchange=()=>{store.sourcesCustomized=true;if(cb.checked)delete store.excludedSources[src];else store.excludedSources[src]=true;save();renderList();renderSourcesNote()};
+    lbl.appendChild(cb);lbl.appendChild(document.createTextNode(src));box.appendChild(lbl);
+  });
+  renderSourcesNote();
+}
+function renderSourcesNote(){
+  let el=$('sourcesNote');if(!el)return;
+  el.textContent=store.sourcesCustomized?'Customized for this page':'Following the site\'s global Valid Sources';
+}
+$('search').oninput=renderList;$('searchClear').onclick=()=>{$('search').value='';renderList();$('search').focus()};
+$('filter').onchange=renderList;
+$('srcAll').onclick=()=>{store.sourcesCustomized=true;store.excludedSources={};save();renderSources();renderList()};
+$('srcNone').onclick=()=>{store.sourcesCustomized=true;[...new Set(currentSpells().map(s=>s.source||'Unknown'))].forEach(src=>store.excludedSources[src]=true);save();renderSources();renderList()};
+$('srcResetGlobal').onclick=()=>{store.sourcesCustomized=false;applyGlobalSources();save();renderSources();renderList()};
+$('archetype').value=store.archetype||'';
+$('archetype').onchange=()=>{store.archetype=$('archetype').value;save();renderSources();renderList()};
+
+const SPELLS=[];
+const ARCHETYPES={"Dashing Thief":{"source":"Adventurer's Guide pg. 51","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 1 spell entries, 0 were already present, and all 1 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Charm Monster","l":3,"school":"enchantment (charm) [mind-affecting]","castingTime":"1 standard action","components":"V, S","range":"close (25 ft. + 5 ft./2 levels)","target":"one living creature","duration":"1 day/level","save":"Will negates","sr":"yes","effect":"This spell functions like charm person, except that the effect is not restricted by creature type or size.","source":"PRPG Core Rulebook pg. 254"}]},"Okayo Corsair":{"source":"Martial Arts Handbook pg. 11","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 2 spell entries, 0 were already present, and all 2 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Feather Fall","l":1,"school":"transmutation","castingTime":"1 immediate action","components":"V","range":"close (25 ft. + 5 ft./2 levels)","target":"one Medium or smaller freefalling object or creature/level, no two of which may be more than 20 ft. apart","duration":"until landing or 1 round/level","save":"Will negates (harmless) or Will negates (object)","sr":"yes (object)","effect":"The affected creatures or objects fall slowly. Feather fall instantly changes the rate at which the targets fall to a mere 60 feet per round (equivalent to the end of a fall from a few feet), and the subjects take no damage upon landing while the spell is in effect. When the spell duration expires, a normal rate of falling resumes.\n\nThe spell affects one or more Medium or smaller creatures (including gear and carried objects up to each creature's maximum load) or objects, or the equivalent in larger creatures: a Large creature or object counts as two Medium creatures or objects, a Huge creature or object counts as four Medium creatures or objects, and so forth.\n\nThis spell has no special effect on ranged weapons unless they are falling quite a distance. If the spell is cast on a falling item, the object does half normal damage based on its weight, with no bonus for the height of the drop.\n\nFeather fall works only upon free-falling objects. It does not affect a sword blow or a charging or flying creature.","source":"PRPG Core Rulebook pg. 281"},{"n":"Dimension Door","l":3,"school":"conjuration (teleportation)","castingTime":"1 standard action","components":"V","range":"long (400 ft. + 40 ft./level)","target":"you and touched objects or other touched willing creatures","duration":"instantaneous","save":"none and Will negates (object)","sr":"no and yes (object)","effect":"You instantly transfer yourself from your current location to any other spot within range. You always arrive at exactly the spot desired—whether by simply visualizing the area or by stating direction. After using this spell, you can't take any other actions until your next turn. You can bring along objects as long as their weight doesn't exceed your maximum load. You may also bring one additional willing Medium or smaller creature (carrying gear or objects up to its maximum load) or its equivalent per three caster levels. A Large creature counts as two Medium creatures, a Huge creature counts as two Large creatures, and so forth. All creatures to be transported must be in contact with one another, and at least one of those creatures must be in contact with you.\n\nIf you arrive in a place that is already occupied by a solid body, you and each creature traveling with you take 1d6 points of damage and are shunted to a random open space on a suitable surface within 100 feet of the intended location.\n\nIf there is no free space within 100 feet, you and each creature traveling with you take an additional 2d6 points of damage and are shunted to a free space within 1,000 feet. If there is no free space within 1,000 feet, you and each creature travelling with you take an additional 4d6 points of damage and the spell simply fails.","source":"PRPG Core Rulebook pg. 269"}]},"Rostland Bravo":{"source":"Adventurer's Guide pg. 23","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 1 spell entries, 0 were already present, and all 1 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Rage","l":2,"school":"enchantment (compulsion) [emotion, mind-affecting]","castingTime":"1 standard action","components":"V, S","range":"medium (100 ft. + 10 ft./level)","target":"one willing living creature per three levels, no two of which may be more than 30 ft. apart","duration":"concentration + 1 round/level (D)","save":"none","sr":"yes","effect":"Each affected creature gains a +2 morale bonus to Strength and Constitution, a +1 morale bonus on Will saves, and a –2 penalty to AC. The effect is otherwise identical with a barbarian's rage except that the subjects aren't fatigued at the end of the rage.","source":"PRPG Core Rulebook pg. 329"}]},"Veiled Blade":{"source":"Ultimate Intrigue pg. 53","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 1 spell entries, 0 were already present, and all 1 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Ghost Brand","l":3,"school":"transmutation [shadow]","castingTime":"1 standard action","components":"V, S, M (a branding iron an a strip of white silk worth 10 gp)","range":"touch","target":"one willing creature and one object touched","duration":"1 day/level (D)","save":"none","sr":"no","effect":"You alter the fundamental substance of a single object up to 2 cubic feet per level in size and at least one size category smaller than the target creature, causing it to become shadowy and intangible, as though made out of quasi-real shadowstuff. You link the intangible item to the target’s flesh by making a brand shaped like the item on the target’s skin. The intangible item merges with the target’s flesh and is contained within the target’s body, moving with the target wherever it goes. The creature can retrieve the item or reabsorb it as a full-round action, and can do so as many times as it wants. When worn or wielded by the target, the item regains its solidity and functions normally, though the target can’t drop or remove the item (other than by using the full-round action), nor can it be disarmed or stolen. If the item is destroyed, the spell ends. If the ghost brand spell is dispelled while the object is inside the target’s body, the object bursts out of the target’s flesh, dealing 3d6 points of piercing and slashing damage to the target that bypasses DR, as well as 1d6 points of bleed damage.","source":"Ultimate Intrigue pg. 215"}]}};
+
+applyGlobalSources();
+PRESENT_CT=PFCastingTime.presentCategories(SPELLS);
+renderButtons();renderCtButtons();renderSources();renderList();
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
+}
+</script>
+</body>
+</html>

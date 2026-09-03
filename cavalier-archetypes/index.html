@@ -1,0 +1,146 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><title>Cavalier Archetype Spells</title><link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#10151d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Archetype Spells"><link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#0f1117;--panel:#181c24;--panel2:#202633;--text:#eef2f7;--muted:#9ba7b7;--gold:#d5ad55;--gold2:#f1d78b;--border:#313949}*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-family:Inter,system-ui,sans-serif;background:#0f1117;color:var(--text)}header,main{max-width:1180px;margin:auto;padding:12px 16px}header{border-bottom:1px solid var(--border)}h1{margin:0;font-size:1.35rem}.sub{color:var(--muted);font-size:.78rem;margin:2px 0 8px}label{font-size:.68rem;color:var(--muted);display:block;margin-bottom:2px}select,input{width:100%;background:#121721;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px}.levels{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}button{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 9px;cursor:pointer}button.active,button.primary{background:#5a4318;border-color:#816427;color:#fff1c2}.toolbar{display:grid;grid-template-columns:1fr 160px auto;gap:6px;margin-bottom:8px}.count{color:var(--muted);font-size:.78rem;margin:4px 0 8px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:6px}section{margin:8px 0 14px}h2{font-size:.95rem;color:var(--gold2);margin:6px 0}.card{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px}.head{display:flex;justify-content:space-between;gap:8px}.name{font-weight:750}.savebadge{font-size:.58rem;color:var(--muted);margin-top:2px}.sourcebadge{font-size:.56rem;color:#7d8aa3;margin-top:2px;font-style:italic}.desc{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.25}.desc summary{cursor:pointer;color:var(--gold2);font-size:.68rem;list-style:none}.desc summary::-webkit-details-marker{display:none}.desc summary:before{content:"▸ ";display:inline-block}.desc[open] summary:before{content:"▾ "}.desc[open] summary{margin-bottom:3px}.stat-block{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:5px 7px;margin-bottom:5px}.stat-row{font-size:.68rem;line-height:1.5}.stat-row b{color:var(--gold2);font-weight:700;margin-right:4px}.effect-text p{margin:0 0 6px}.effect-text p:last-child{margin-bottom:0}.favbtn{background:none;border:none;font-size:1.1rem;line-height:1;cursor:pointer;padding:0 4px;color:var(--muted)}.favbtn.active{color:var(--gold2)}.sourcesbox{position:relative}.sourcesbox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-size:.78rem;list-style:none;white-space:nowrap}.sourcesbox summary::-webkit-details-marker{display:none}.sourcesbox[open] summary{border-color:var(--gold)}.sourcesPanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px;z-index:20;max-height:300px;overflow-y:auto;min-width:220px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.sourcesPanel label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);padding:3px 0;cursor:pointer}.sourcesPanel input{width:auto}.sourcesPanel .srcActions{display:flex;gap:6px;margin-bottom:6px}.sourcesPanel .srcActions button{font-size:.65rem;padding:4px 7px}.emptyHint{color:var(--muted);font-size:.85rem;line-height:1.5;padding:24px 8px;text-align:center;border:1px dashed var(--border);border-radius:10px}
+@media(max-width:780px){header,main{padding:6px 8px}.toolbar{grid-template-columns:1fr;gap:4px}.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px}.card{padding:6px}.name{font-size:.8rem}.desc{font-size:.62rem}}
+</style>
+</head>
+<body>
+<a href="../" title="Pathfinder Tools" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></a>
+<style>@media(max-width:900px){header,main{padding-left:60px !important}}</style>
+<header><h1>Cavalier Archetype Spells</h1><div class="sub">Pathfinder 1e — Cavalier doesn't normally cast spells. These 4 archetypes trade away class features for real spells or spell-like abilities — pick one below to see exactly what it grants. A reference tool for browsing, searching, and shortlisting — not a session play-tool.</div>
+<div class="levels" id="levelButtons"></div>
+<div class="levels" id="ctButtons"></div>
+</header><main>
+<div class="toolbar"><div class="searchWrap"><svg class="searchIcon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="search" placeholder="Search spell name or description..."><button id="searchClear" type="button" title="Clear search" aria-label="Clear search">&times;</button></div><style>.searchWrap{position:relative}.searchWrap input{padding-left:26px;padding-right:24px}.searchIcon{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.searchWrap button{position:absolute;right:1px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:4px 7px}.searchWrap button:hover{color:var(--text)}</style><select id="filter"><option value="all">All spells</option><option value="favorites">Favorites only</option></select><select id="archetype"><option value="">— No archetype selected —</option><option value="Ghost Rider">Ghost Rider</option><option value="Herald Squire">Herald Squire</option><option value="Hooded Knight">Hooded Knight</option><option value="Verdivant">Verdivant</option></select><details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details></div>
+<div class="count" id="resultCount"></div>
+<div id="list"></div>
+</main>
+<script src="../assets/valid-sources.js"></script>
+<script src="../assets/casting-time.js"></script>
+<script src="../assets/spell-crossref.js"></script>
+<script>
+const STORE_KEY='cavalierArchetypeSpellsPF1V1';
+const $=id=>document.getElementById(id);
+function statRow(label,val){return val?`<div class="stat-row"><b>${label}</b> ${val}</div>`:''}
+function loadStore(){
+  let raw=localStorage.getItem(STORE_KEY);
+  if(raw){try{let s=JSON.parse(raw);if(s)return s}catch(e){}}
+  return {fav:{},excludedSources:{},show:[0,1,2,3,4,5,6],sourcesCustomized:false};
+}
+let store=loadStore();
+if(store.sourcesCustomized===undefined) store.sourcesCustomized=Object.keys(store.excludedSources||{}).length>0;
+function save(){localStorage.setItem(STORE_KEY,JSON.stringify(store));}
+function currentSpells(){let a=ARCHETYPES[store.archetype];return (a&&a.spells)||SPELLS;}
+function applyGlobalSources(){
+  if(store.sourcesCustomized) return;
+  let allSrc=[...new Set(currentSpells().map(s=>s.source||'Unknown'))];
+  store.excludedSources=PFSources.computeExcludedSources(allSrc, PFSources.loadGlobalExcludedLocal());
+}
+let PRESENT_CT=[];
+function renderCtButtons(){
+  let b=$('ctButtons'); if(!b) return;
+  if(PRESENT_CT.length<2){ b.style.display='none'; b.innerHTML=''; return; }
+  b.style.display=''; b.innerHTML='';
+  let shown=store.ctShow||PRESENT_CT;
+  let all=document.createElement('button');all.textContent='All';all.className=shown.length===PRESENT_CT.length?'active':'';
+  all.onclick=()=>{store.ctShow=null;save();renderList();renderCtButtons()};
+  b.appendChild(all);
+  PRESENT_CT.forEach(c=>{
+    let x=document.createElement('button');x.textContent=PFCastingTime.CT_LABELS[c];
+    x.className=(shown.length<PRESENT_CT.length&&shown.includes(c))?'active':'';
+    x.onclick=()=>{
+      let cur=store.ctShow||PRESENT_CT.slice();
+      if(cur.length===PRESENT_CT.length){store.ctShow=[c]}
+      else if(cur.includes(c)){let next=cur.filter(v=>v!==c);store.ctShow=next.length?next:null}
+      else{store.ctShow=[...cur,c]}
+      save();renderList();renderCtButtons()
+    };
+    b.appendChild(x)
+  });
+}
+
+function renderButtons(){
+  let b=$('levelButtons');b.innerHTML='';
+  let all=document.createElement('button');all.textContent='All';all.className=store.show.length===7?'active':'';
+  all.onclick=()=>{store.show=[0,1,2,3,4,5,6];save();renderList()};b.appendChild(all);
+  for(let l=0;l<=6;l++){
+    let x=document.createElement('button');x.textContent=l===0?'Orisons':'L'+l;
+    x.className=(store.show.length<7&&store.show.includes(l))?'active':'';
+    x.onclick=()=>{
+      if(store.show.length===7){store.show=[l]}
+      else if(store.show.includes(l)){let next=store.show.filter(v=>v!==l);store.show=next.length?next:[0,1,2,3,4,5,6]}
+      else{store.show=[...store.show,l].sort((a,b)=>a-b)}
+      save();renderList()
+    };
+    b.appendChild(x)
+  }
+}
+function buildCard(s){
+  let key=s.l+'|'+s.n;
+  let fav=!!store.fav[key];
+  let card=document.createElement('div');
+  card.className='card';
+  card.innerHTML=`<div class="head"><div><div class="name">${s.n} <span style="color:var(--muted);font-weight:400;font-size:.72rem">L${s.l}</span></div>${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}</div><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button></div><details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${PFSpellRefs.linkify(p,s.n)}</p>`).join('')}</div></details>`;
+  card.querySelector('.favbtn').onclick=()=>{if(fav)delete store.fav[key];else store.fav[key]=true;save();renderList()};
+  return card;
+}
+function renderList(){
+  let out=$('list');
+  if(!store.archetype){
+    out.innerHTML='<div class="emptyHint">Cavalier doesn\'t normally cast spells — pick an archetype above to see what it grants.</div>';
+    $('resultCount').textContent='';
+    return;
+  }
+  let q=$('search').value.toLowerCase(),f=$('filter').value;
+  out.innerHTML='';
+  let total=0;
+  for(let l of store.show){
+    let ctShown=store.ctShow||PRESENT_CT;
+    let arr=currentSpells().filter(s=>s.l===l&&(s.n+' '+(s.effect||'')).toLowerCase().includes(q)&&!store.excludedSources[s.source||'Unknown']&&(()=>{let cats=PFCastingTime.ctCategory(s.castingTime);return cats.length===0||cats.some(c=>ctShown.includes(c))})());
+    if(f==='favorites')arr=arr.filter(s=>!!store.fav[l+'|'+s.n]);
+    if(!arr.length)continue;
+    total+=arr.length;
+    let sec=document.createElement('section');
+    sec.innerHTML=`<h2>${l===0?'Orisons (0-level)':'Level '+l}</h2><div class="grid"></div>`;
+    let g=sec.querySelector('.grid');
+    arr.sort((a,b)=>a.n.localeCompare(b.n)).forEach(s=>g.appendChild(buildCard(s)));
+    out.appendChild(sec);
+  }
+  if(!total){ out.innerHTML='<div class="emptyHint">No spells match the current filters.</div>'; }
+  $('resultCount').textContent=total+' spell'+(total===1?'':'s')+' shown';
+}
+function renderSources(){
+  let box=$('sourceList');box.innerHTML='';
+  let all=[...new Set(currentSpells().map(s=>s.source||'Unknown'))].sort();
+  all.forEach(src=>{
+    let lbl=document.createElement('label');
+    let cb=document.createElement('input');cb.type='checkbox';cb.checked=!store.excludedSources[src];
+    cb.onchange=()=>{store.sourcesCustomized=true;if(cb.checked)delete store.excludedSources[src];else store.excludedSources[src]=true;save();renderList();renderSourcesNote()};
+    lbl.appendChild(cb);lbl.appendChild(document.createTextNode(src));box.appendChild(lbl);
+  });
+  renderSourcesNote();
+}
+function renderSourcesNote(){
+  let el=$('sourcesNote');if(!el)return;
+  el.textContent=store.sourcesCustomized?'Customized for this page':'Following the site\'s global Valid Sources';
+}
+$('search').oninput=renderList;$('searchClear').onclick=()=>{$('search').value='';renderList();$('search').focus()};
+$('filter').onchange=renderList;
+$('srcAll').onclick=()=>{store.sourcesCustomized=true;store.excludedSources={};save();renderSources();renderList()};
+$('srcNone').onclick=()=>{store.sourcesCustomized=true;[...new Set(currentSpells().map(s=>s.source||'Unknown'))].forEach(src=>store.excludedSources[src]=true);save();renderSources();renderList()};
+$('srcResetGlobal').onclick=()=>{store.sourcesCustomized=false;applyGlobalSources();save();renderSources();renderList()};
+$('archetype').value=store.archetype||'';
+$('archetype').onchange=()=>{store.archetype=$('archetype').value;save();renderSources();renderList()};
+
+const SPELLS=[];
+const ARCHETYPES={"Ghost Rider":{"source":"Occult Adventures pg. 117","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 1 spell entries, 0 were already present, and all 1 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Water Walk","l":2,"school":"Transmutation [water]","castingTime":"1 standard action","components":"V, S, DF","range":"Touch","target":"One touched creature/level","duration":"10 min./level (D)","save":"Will negates (harmless)","sr":"Yes (harmless)","effect":"The transmuted creatures can tread on any liquid as if it were firm ground. Mud, oil, snow, quicksand, running water, ice, and even lava can be traversed easily, since the subjects' feet hover an inch or two above the surface. Creatures crossing molten lava still take damage from the heat because they are near it. The subjects can walk, run, charge, or otherwise move across the surface as if it were normal ground.\n\nIf the spell is cast underwater (or while the subjects are partially or wholly submerged in whatever liquid they are in), the subjects are borne toward the surface at 60 feet per round until they can stand on it.","source":"Core Rulebook"}]},"Herald Squire":{"source":"Knights of the Inner Sea pg. 21","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 1 spell entries, 0 were already present, and all 1 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Tongues","l":2,"school":"divination","castingTime":"1 standard action","components":"V, M/DF (a clay model of a ziggurat)","range":"touch","target":"creature touched","duration":"10 min./level","save":"Will negates (harmless)","sr":"no","effect":"This spell grants the creature touched the ability to speak and understand the language of any intelligent creature, whether it is a racial tongue or a regional dialect. The subject can speak only one language at a time, although it may be able to understand several languages. Tongues does not enable the subject to speak with creatures who don't speak. The subject can make itself understood as far as its voice carries. This spell does not predispose any creature addressed toward the subject in any way.\nTongues can be made permanent with a permanency spell.","source":"PRPG Core Rulebook pg. 360"}]},"Hooded Knight":{"source":"Legacy of the First World pg. 26","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 3 spell entries, 0 were already present, and all 3 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Mount","l":1,"school":"conjuration (summoning)","castingTime":"1 round","components":"V, S, M (a bit of horse hair)","range":"close (25 ft. + 5 ft./2 levels)","target":"one mount","duration":"2 hours/level (D)","save":"none","sr":"no","effect":"You summon a light horse or a pony (your choice) to serve you as a mount. The steed serves willingly and well. The mount comes with a bit and bridle and a riding saddle.","source":"PRPG Core Rulebook pg. 315"},{"n":"Dimension Door","l":3,"school":"conjuration (teleportation)","castingTime":"1 standard action","components":"V","range":"long (400 ft. + 40 ft./level)","target":"you and touched objects or other touched willing creatures","duration":"instantaneous","save":"none and Will negates (object)","sr":"no and yes (object)","effect":"You instantly transfer yourself from your current location to any other spot within range. You always arrive at exactly the spot desired—whether by simply visualizing the area or by stating direction. After using this spell, you can't take any other actions until your next turn. You can bring along objects as long as their weight doesn't exceed your maximum load. You may also bring one additional willing Medium or smaller creature (carrying gear or objects up to its maximum load) or its equivalent per three caster levels. A Large creature counts as two Medium creatures, a Huge creature counts as two Large creatures, and so forth. All creatures to be transported must be in contact with one another, and at least one of those creatures must be in contact with you.\n\nIf you arrive in a place that is already occupied by a solid body, you and each creature traveling with you take 1d6 points of damage and are shunted to a random open space on a suitable surface within 100 feet of the intended location.\n\nIf there is no free space within 100 feet, you and each creature traveling with you take an additional 2d6 points of damage and are shunted to a free space within 1,000 feet. If there is no free space within 1,000 feet, you and each creature travelling with you take an additional 4d6 points of damage and the spell simply fails.","source":"PRPG Core Rulebook pg. 269"},{"n":"Teleport, Greater","l":5,"school":"conjuration (teleportation)","castingTime":"1 standard action","components":"V","range":"personal and touch","target":"you and touched objects or other touched willing creatures","duration":"instantaneous","save":"none and Will negates (object)","sr":"no and yes (object)","effect":"As teleport, but arrival is always on target with no chance of a mishap or off-target arrival, even for unfamiliar destinations.","source":"PRPG Core Rulebook pg. 349"}]},"Verdivant":{"source":"Wilderness Origins pg. 15","note":"This archetype grants the listed spells or spell-like abilities directly. The base class has 0 spells; this implementation grants 3 spell entries, 0 were already present, and all 3 are genuinely new. This includes expressly spell-derived archetype powers, while effects mentioned only as comparisons or rules references are excluded.","spells":[{"n":"Air Walk","l":4,"school":"transmutation [air]","castingTime":"1 standard action","components":"V, S, DF","range":"touch","target":"creature (Gargantuan or smaller) touched","duration":"10 min./level","save":"none","sr":"yes (harmless)","effect":"The subject can tread on air as if walking on solid ground. Moving upward is similar to walking up a hill. The maximum upward or downward angle possible is 45 degrees, at a rate equal to half the air walker's normal speed.\nA strong wind (21+ miles per hour) can push the subject along or hold it back. At the end of a creature's turn each round, the wind blows the air walker 5 feet for each 5 miles per hour of wind speed. The creature may be subject to additional penalties in exceptionally strong or turbulent winds, such as loss of control over movement or physical damage from being buffeted about.\nShould the spell duration expire while the subject is still aloft, the magic fails slowly. The subject floats downward 60 feet per round for 1d6 rounds. If it reaches the ground in that amount of time, it lands safely. If not, it falls the rest of the distance, taking 1d6 points of damage per 10 feet of fall. Since dispelling a spell effectively ends it, the subject also descends in this way if the air walk spell is dispelled, but not if it is negated by an antimagic field.\nYou can cast air walk on a specially trained mount so it can be ridden through the air. You can train a mount to move with the aid of air walk (counts as a trick; see Handle Animal skill) with 1 week of work and a DC 25 Handle Animal check.","source":"PRPG Core Rulebook pg. 239"},{"n":"Break Enchantment","l":4,"school":"abjuration","castingTime":"1 minute","components":"V, S","range":"close (25 ft. + 5 ft./2 levels)","target":"up to one creature per level, all within 30 ft. of each other","duration":"instantaneous","save":"see text","sr":"no","effect":"This spell frees victims from enchantments, transmutations, and curses. Break enchantment can reverse even an instantaneous effect. For each such effect, you make a caster level check (1d20 + caster level, maximum +15) against a DC of 11 + caster level of the effect. Success means that the creature is free of the spell, curse, or effect. For a cursed magic item, the DC is equal to the DC of the curse.\n\nIf the spell is one that cannot be dispelled by dispel magic or stone to flesh, break enchantment works only if that spell is 5th level or lower.\n\nIf the effect comes from a permanent magic item, break enchantment does not remove the curse from the item, but it does free the victim from the item's effects.","source":"PRPG Core Rulebook pg. 251"},{"n":"Freedom of Movement","l":4,"school":"abjuration","castingTime":"1 standard action","components":"V, S, M (a leather strip bound to the target), DF","range":"personal or touch","target":"you or creature touched","duration":"10 min./level","save":"Will negates (harmless)","sr":"yes (harmless)","effect":"This spell enables you or a creature you touch to move and attack normally for the duration of the spell, even under the influence of magic that usually impedes movement, such as paralysis, solid fog, slow, and web. All combat maneuver checks made to grapple the target automatically fail. The subject automatically succeeds on any combat maneuver checks and Escape Artist checks made to escape a grapple or a pin.\nThe spell also allows the subject to move and attack normally while underwater, even with slashing weapons such as axes and swords or with bludgeoning weapons such as flails, hammers, and maces, provided that the weapon is wielded in the hand rather than hurled. The freedom of movement spell does not, however, grant water breathing.","source":"PRPG Core Rulebook pg. 287"}]}};
+
+applyGlobalSources();
+PRESENT_CT=PFCastingTime.presentCategories(SPELLS);
+renderButtons();renderCtButtons();renderSources();renderList();
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
+}
+</script>
+</body>
+</html>
