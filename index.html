@@ -225,6 +225,7 @@
 </head>
 <body>
 <div class="vignette"></div>
+<button id="sanctumLogout" type="button" title="Log out" style="position:fixed;top:10px;right:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid rgba(233,200,116,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#e9c874" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button>
 <div class="stage">
   <div class="crest">
     <p class="eyebrow">Pathfinder Tools</p>
@@ -266,5 +267,29 @@
     </a>
   </div>
 </div>
+<script>
+(function(){
+  const SYNC_CODE_KEY='pf1_sync_code_v1';
+  const SYNC_USER_KEY='pf1_sync_user_v1';
+  const SYNC_PIN_KEY='pf1_sync_pin_v1';
+  const ALL_APP_KEYS=[
+    'pf1_universal_damage_calc_profiles_v1','clericUniversalSpellbookPF1V1',
+    'paladinUniversalSpellbookPF1V1','druidUniversalSpellbookPF1V1','alchemistUniversalSpellbookPF1V1',
+    'bardUniversalSpellbookPF1V1','sorcererUniversalSpellbookPF1V1','wizardUniversalSpellbookPF1V1','rangerUniversalSpellbookPF1V1','uranClericSpellbookPF1V1',
+    'pf1_companion_damage_calc_profiles_v1','hunterUniversalSpellbookPF1V1','witchUniversalSpellbookPF1V1','antipaladinUniversalSpellbookPF1V1','skaldUniversalSpellbookPF1V1','investigatorUniversalSpellbookPF1V1','warpriestUniversalSpellbookPF1V1','inquisitorUniversalSpellbookPF1V1','magusUniversalSpellbookPF1V1','mesmeristUniversalSpellbookPF1V1','spiritualistUniversalSpellbookPF1V1','mediumUniversalSpellbookPF1V1','occultistUniversalSpellbookPF1V1','psychicUniversalSpellbookPF1V1','shamanUniversalSpellbookPF1V1','bloodragerUniversalSpellbookPF1V1','summonerUniversalSpellbookPF1V1','oracleUniversalSpellbookPF1V1','arcanistUniversalSpellbookPF1V1',
+    'kennethPaladinSpellbookPF1CoreV1','gabrielPaladinSpellbookPF1CoreV1',
+    'kennethDamageCalcPF1V1','gabrielDamageCalcPF1V1',
+    'pf1_merged_characters_v1'
+  ];
+  document.getElementById('sanctumLogout').onclick=()=>{
+    if(!confirm('Log out on this device? This clears every character saved locally here (so the next person\'s code doesn\'t get them merged in) — your data stays safe in the cloud under your code.'))return;
+    localStorage.removeItem(SYNC_CODE_KEY);
+    localStorage.removeItem(SYNC_USER_KEY);
+    localStorage.removeItem(SYNC_PIN_KEY);
+    ALL_APP_KEYS.forEach(k=>localStorage.removeItem(k));
+    location.reload();
+  };
+})();
+</script>
 </body>
 </html>
