@@ -106,7 +106,7 @@ details.subsection .links{padding:0 10px 10px}
 </div>
 <main>
 <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-<div><h1 id="pageTitle">Pathfinder Tools</h1><a id="allToolsLink" href="hub.html" style="display:none;font-size:.78rem;color:var(--muted)">&larr; All tools</a></div>
+<div><h1 id="pageTitle">Pathfinder Tools</h1></div>
 <button id="syncLogout" type="button" style="background:#3a1d21;border:1px solid #67343b;color:#f0a0a0;border-radius:8px;padding:8px 12px;font-size:.8rem;cursor:pointer;white-space:nowrap">Log out</button>
 </div>
 
@@ -541,9 +541,9 @@ details.subsection .links{padding:0 10px 10px}
 // Sanctum) opens that <details> and every ancestor <details> it's nested inside, hides
 // every OTHER top-level section (and sibling subsection) so the page reads as its own
 // focused destination instead of the full tools list, drops the now-redundant
-// dropdown/accordion header(s) since there's nothing left to toggle, retitles the page
-// to match the exact wording on the Sanctum's own pentacle, and offers an "All tools"
-// link back to the unfiltered page.
+// dropdown/accordion header(s) since there's nothing left to toggle, and retitles the
+// page to match the exact wording on the Sanctum's own pentacle. No link back to the
+// unfiltered list -- the pentacle icon is the only way back, on purpose.
 (function(){
   const hash=location.hash.replace('#','');
   if(!hash) return;
@@ -584,7 +584,6 @@ details.subsection .links{padding:0 10px 10px}
     document.getElementById('pageTitle').textContent=title;
     document.title=title+' — Pathfinder Tools';
   }
-  document.getElementById('allToolsLink').style.display='inline';
   requestAnimationFrame(()=>el.scrollIntoView({behavior:'smooth', block:'start'}));
 })();
 </script>
