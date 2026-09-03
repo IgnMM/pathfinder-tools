@@ -31,6 +31,17 @@ details.section[open] .chevron{transform:rotate(180deg)}
 .links{padding:4px 16px 16px;max-width:640px}
 .links a{display:block;padding:14px 16px;margin:8px 0;border:1px solid var(--border);border-radius:12px;color:#fff;text-decoration:none;background:var(--navy);font-size:1rem;font-weight:700}
 .links small{color:var(--muted);font-weight:400}
+/* Menus with a lot of choices (Spell Libraries, Character Spell Sheets) shouldn't be
+   one long single-column scroll -- let them use the page's real width instead. */
+#subsection-spell-libraries .links,
+#subsection-character-sheets .links{
+  max-width:none;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:8px;
+}
+#subsection-spell-libraries .links a,
+#subsection-character-sheets .links a{ margin:0 }
 
 .classGrid{padding:4px 16px 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .classCard{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:16px 10px;border:1px solid var(--border);border-radius:14px;background:var(--navy);text-decoration:none;color:#fff;cursor:pointer;transition:border-color .15s ease,transform .15s ease}
