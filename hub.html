@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pathfinder Tools</title>
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#10151d;--card:#191d27;--border:#343946;--muted:#aeb5c3;--gold:#d6b35f;--blue:#6aa8d9;--green:#72c69c;--purple:#b98aef}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--navy);color:#fff;margin:0;display:flex;justify-content:center;min-height:100vh}
+main{width:min(94vw,1400px);padding:32px 0 48px}
+h1{margin:0 0 24px}
+
+details.section{background:var(--card);border:1px solid var(--border);border-radius:16px;margin:14px 0;overflow:hidden;border-top:3px solid var(--accent)}
+details.section > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:18px 20px;-webkit-tap-highlight-color:transparent}
+details.section > summary::-webkit-details-marker{display:none}
+details.section > summary::marker{content:""}
+
+.icon{flex:none;width:56px;height:56px;border-radius:14px;background:rgba(255,255,255,.04);display:grid;place-items:center}
+.icon svg{width:34px;height:34px}
+
+.section-title{flex:1;min-width:0}
+.section-title .name{font-size:1.15rem;font-weight:700;color:#fff}
+.section-title .count{display:block;font-size:.85rem;color:var(--muted);margin-top:2px}
+
+.chevron{flex:none;width:20px;height:20px;color:var(--muted);transition:transform .18s ease}
+details.section[open] .chevron{transform:rotate(180deg)}
+
+.links{padding:4px 16px 16px;max-width:640px}
+.links a{display:block;padding:14px 16px;margin:8px 0;border:1px solid var(--border);border-radius:12px;color:#fff;text-decoration:none;background:var(--navy);font-size:1rem;font-weight:700}
+.links small{color:var(--muted);font-weight:400}
+/* Menus with a lot of choices (Spell Libraries, Character Spell Sheets) shouldn't be
+   one long single-column scroll -- let them use the page's real width instead. */
+#section-spells>.links,
+#subsection-spell-libraries .links,
+#subsection-character-sheets .links{
+  max-width:none;
+}
+#subsection-spell-libraries .links,
+#subsection-character-sheets .links{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:8px;
+}
+#subsection-spell-libraries .links a,
+#subsection-character-sheets .links a{ margin:0 }
+
+.classGrid{padding:4px 16px 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.classCard{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:16px 10px;border:1px solid var(--border);border-radius:14px;background:var(--navy);text-decoration:none;color:#fff;cursor:pointer;transition:border-color .15s ease,transform .15s ease}
+.classCard:hover{border-color:var(--ccolor);transform:translateY(-2px)}
+.classCard .ccIcon{width:44px;height:44px;border-radius:12px;background:color-mix(in srgb,var(--ccolor) 16%,transparent);display:grid;place-items:center}
+.classCard .ccIcon svg{width:26px;height:26px}
+.classCard .ccName{font-size:.88rem;font-weight:700;color:var(--ccolor)}
+.classCard .ccCount{font-size:.66rem;color:var(--muted);line-height:1.3}
+.classCard.otrosCard{border-style:dashed}
+.otrosGrid{padding:0 16px 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.otrosGrid[hidden]{display:none}
+.otrosChip{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 8px;border:1px dashed var(--border);border-radius:10px;font-size:.78rem;font-weight:700;color:var(--muted);text-align:center;text-decoration:none;cursor:pointer}.otrosChip:hover{border-color:#8a8f9c;color:var(--text)}
+.otrosChip .ocCount{font-size:.62rem;font-weight:400;color:var(--muted);opacity:.75}
+.subsectionLabel{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:16px 4px 4px;padding-top:12px;border-top:1px solid var(--border)}
+.subsectionLabel:first-child{margin-top:4px;padding-top:0;border-top:none}
+
+details.subsection{margin:10px 4px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:rgba(255,255,255,.03)}
+details.subsection + details.subsection{margin-top:10px}
+details.subsection > summary{list-style:none;cursor:pointer;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;-webkit-tap-highlight-color:transparent}
+details.subsection > summary::-webkit-details-marker{display:none}
+details.subsection > summary::marker{content:""}
+details.subsection > summary .subname{font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+details.subsection > summary .subcount{font-size:.72rem;color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0}
+details.subsection .schevron{flex:none;width:16px;height:16px;color:var(--muted);transition:transform .18s ease}
+details.subsection[open] .schevron{transform:rotate(180deg)}
+details.subsection .links{padding:0 10px 10px}
+
+.sourcesWrap{padding:4px 16px 16px}
+.sourcesNote{color:var(--muted);font-size:.82rem;line-height:1.45;margin:0 0 12px}
+.sourcesToolbar{display:flex;gap:8px;margin-bottom:8px}
+.sourcesToolbar input[type=text]{flex:1;min-width:0;background:var(--navy);color:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:.85rem}
+.sourcesToolbar button{background:#232838;color:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:.8rem;cursor:pointer;white-space:nowrap}
+.sourcesList{max-height:340px;overflow-y:auto;border:1px solid var(--border);border-radius:10px;background:var(--navy);padding:4px}
+.sourcesList label{display:flex;align-items:center;gap:8px;padding:6px 8px;font-size:.85rem;border-radius:6px;cursor:pointer}
+.sourcesList label:hover{background:rgba(255,255,255,.04)}
+.sourcesList input{width:auto;flex:none}
+.sourcesStatus{color:var(--muted);font-size:.75rem;margin-top:8px}
+</style>
+</head>
+<body>
+<a href="./" title="The Sanctum" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10.3"/><polygon points="12.0,2.4 14.3,8.8 21.1,9.0 15.7,13.2 17.6,19.8 12.0,15.9 6.4,19.8 8.3,13.2 2.9,9.0 9.7,8.8"/></svg></a>
+<div id="syncGate" style="display:none;position:fixed;inset:0;z-index:9999;
+  background-image:linear-gradient(to bottom, rgba(6,4,3,.1) 0%, rgba(6,4,3,.15) 50%, rgba(6,4,3,.94) 100%), url('assets/gate-bg.jpg');
+  background-size:cover;background-position:center;
+  align-items:flex-end;justify-content:center;padding:0 16px 26px">
+  <div style="max-width:380px;width:100%;background:rgba(12,9,6,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(233,200,116,.35);border-radius:12px;padding:18px 20px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.55)">
+    <h2 style="font-family:'Cinzel Decorative',serif;margin:0 0 6px;color:#e9c874;font-size:1.15rem;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.7)">Welcome, Traveler</h2>
+    <p style="color:#d8cdb9;font-size:.78rem;margin:0 0 12px;line-height:1.4;font-family:'Cinzel',Georgia,serif">Speak a name and PIN — the same words on any device bring your characters with you.</p>
+    <div style="display:flex;gap:8px">
+      <input id="gateUser" type="text" placeholder="USERNAME" style="flex:1;min-width:0;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+      <input id="gatePin" type="text" placeholder="PIN" style="width:78px;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="gateNew" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.4);background:rgba(233,200,116,.08);color:#e9c874;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">New User</button>
+      <button id="gateLogin" style="flex:1;padding:10px;border-radius:8px;border:1px solid #f1d78b;background:linear-gradient(180deg,#e9c874,#b0863c);color:#241708;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">Log In</button>
+    </div>
+  </div>
+</div>
+<main>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+<h1>Pathfinder Tools</h1>
+<button id="syncLogout" type="button" style="background:#3a1d21;border:1px solid #67343b;color:#f0a0a0;border-radius:8px;padding:8px 12px;font-size:.8rem;cursor:pointer;white-space:nowrap">Log out</button>
+</div>
+
+<details class="section" style="--accent:var(--gold)">
+<summary>
+<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><polygon points="32,4 58,20 58,44 32,60 6,44 6,20"/><path d="M32,4 L32,60 M6,20 L58,44 M58,20 L6,44" stroke-width="1.5" opacity=".6"/></svg></span>
+<span class="section-title"><span class="name">Damage Calculator</span><span class="count">2 tools — save by name</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="links">
+<a href="calc/">Character Hit&amp;Damage Calculator<br><small>Any character — feats, traits, spells &amp; more</small></a>
+<a href="companion/">Companion &amp; Mount Hit&amp;Damage Calculator<br><small>Animal companions, mounts &amp; similar allies — natural attacks</small></a>
+</div>
+</details>
+
+<details class="section" id="section-spells" style="--accent:var(--blue)">
+<summary>
+<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><polygon points="30,12 10,18 10,48 30,52 30,12"/><polygon points="34,12 54,18 54,48 34,52 34,12"/></svg></span>
+<span class="section-title"><span class="name">Spells</span><span class="count">Libraries &amp; Character Spell Sheets</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="links">
+<details class="subsection" id="subsection-spell-libraries">
+<summary>
+<span class="subname">Spell Libraries</span>
+<svg class="schevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="links">
+<a href="cleric-oracle-library/">Cleric / Oracle Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="wizard-sorcerer-library/">Wizard / Sorcerer Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="arcanist-library/">Arcanist Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="bard-library/">Bard Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="witch-library/">Witch Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="druid-library/">Druid Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="ranger-library/">Ranger Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="paladin-library/">Paladin Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="hunter-library/">Hunter Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="antipaladin-library/">Antipaladin Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="alchemist-library/">Alchemist Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="skald-library/">Skald Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="investigator-library/">Investigator Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="warpriest-library/">Warpriest Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="inquisitor-library/">Inquisitor Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="magus-library/">Magus Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="mesmerist-library/">Mesmerist Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="spiritualist-library/">Spiritualist Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="medium-library/">Medium Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="occultist-library/">Occultist Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="psychic-library/">Psychic Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="shaman-library/">Shaman Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="bloodrager-library/">Bloodrager Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+<a href="summoner-library/">Summoner Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
+</div>
+</details>
+<details class="subsection" id="subsection-character-sheets">
+<summary>
+<span class="subname">Character Spell Sheets</span>
+<svg class="schevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="classGrid">
+<a class="classCard" href="alchemist/" style="--ccolor:#8fd66b">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#8fd66b" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M27,8 L37,8 M29,8 L29,24 L15,49 C13,53 15,57 19,57 L45,57 C49,57 51,53 49,49 L35,24 L35,8"/></svg></span>
+<span class="ccName">Alchemist</span>
+<span class="ccCount">5/5 archetypes</span>
+</a>
+<a class="classCard" href="antipaladin/" style="--ccolor:#a83f4a">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#a83f4a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,10 C20,10 12,18 12,29 C12,37 16,42 20,46 L20,52 L44,52 L44,46 C48,42 52,37 52,29 C52,18 44,10 32,10 Z"/><path d="M18,16 L10,8 M46,16 L54,8"/><circle cx="23" cy="29" r="3"/><circle cx="41" cy="29" r="3"/><path d="M28,41 L36,41"/></svg></span>
+<span class="ccName">Antipaladin</span>
+<span class="ccCount">0/0 archetypes</span>
+</a>
+<a class="classCard" href="arcanist/" style="--ccolor:#7fa8e0">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#7fa8e0" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,20 C25,16 15,16 9,20 L9,50 C15,46 25,46 32,50 C39,46 49,46 55,50 L55,20 C49,16 39,16 32,20 Z M32,20 L32,50"/><path d="M32,4 L34,9 L39,9 L35,12 L37,17 L32,14 L27,17 L29,12 L25,9 L30,9 Z"/></svg></span>
+<span class="ccName">Arcanist</span>
+<span class="ccCount">5/5 archetypes</span>
+</a>
+<a class="classCard" href="bard/" style="--ccolor:#e08fd6">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#e08fd6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M12,20 C12,10 21,6 32,6 C43,6 52,10 52,20 C52,33 44,43 32,43 C20,43 12,33 12,20 Z"/><path d="M22,20 L22,24 M42,20 L42,24 M24,31 C27,35 37,35 40,31"/></svg></span>
+<span class="ccName">Bard</span>
+<span class="ccCount">11/11 archetypes</span>
+</a>
+<a class="classCard" href="bloodrager/" style="--ccolor:#c94a4a">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#c94a4a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,7 C32,7 15,30 15,43 C15,52 22,59 32,59 C42,59 49,52 49,43 C49,30 32,7 32,7 Z"/><path d="M32,23 L26,38 L34,38 L28,53"/></svg></span>
+<span class="ccName">Bloodrager</span>
+<span class="ccCount">5/5 archetypes</span>
+</a>
+<a class="classCard" href="cleric/" style="--ccolor:#e8c15c">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#e8c15c" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><circle cx="32" cy="32" r="12"/><path d="M32,6 L32,16 M32,48 L32,58 M6,32 L16,32 M48,32 L58,32 M13,13 L20,20 M44,44 L51,51 M51,13 L44,20 M20,44 L13,51"/></svg></span>
+<span class="ccName">Cleric</span>
+<span class="ccCount">1/1 archetypes</span>
+</a>
+<a class="classCard" href="druid/" style="--ccolor:#7fc98a">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#7fc98a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,8 C49,10 53,27 44,42 C35,55 17,52 13,37 C9,22 19,8 32,8 Z"/><path d="M15,49 L43,21"/></svg></span>
+<span class="ccName">Druid</span>
+<span class="ccCount">8/8 archetypes</span>
+</a>
+<a class="classCard" href="hunter/" style="--ccolor:#a3c96a">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#a3c96a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><circle cx="32" cy="41" r="11"/><circle cx="16" cy="23" r="5.5"/><circle cx="30" cy="14" r="5.5"/><circle cx="46" cy="23" r="5.5"/></svg></span>
+<span class="ccName">Hunter</span>
+<span class="ccCount">1/1 archetypes</span>
+</a>
+<a class="classCard" href="inquisitor/" style="--ccolor:#8a5fa8">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#8a5fa8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,7 L57,53 L7,53 Z"/><circle cx="32" cy="38" r="8"/><circle cx="32" cy="38" r="2.4"/></svg></span>
+<span class="ccName">Inquisitor</span>
+<span class="ccCount">4/4 archetypes</span>
+</a>
+<a class="classCard" href="investigator/" style="--ccolor:#6fa8a3">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#6fa8a3" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><circle cx="26" cy="26" r="16"/><path d="M38,38 L55,55"/></svg></span>
+<span class="ccName">Investigator</span>
+<span class="ccCount">2/2 archetypes</span>
+</a>
+<a class="classCard" href="magus/" style="--ccolor:#6a7fd9">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#6a7fd9" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,5 L32,42 M25,42 L39,42 M27,48 L37,48 L32,59 Z"/><path d="M19,13 C19,13 23,17 23,21 C23,25 19,27 19,27"/><path d="M45,13 C45,13 41,17 41,21 C41,25 45,27 45,27"/></svg></span>
+<span class="ccName">Magus</span>
+<span class="ccCount">6/6 archetypes</span>
+</a>
+<a class="classCard" href="medium/" style="--ccolor:#8f7fb0">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#8f7fb0" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,55 L32,25 M23,55 L41,55"/><path d="M32,25 C27,20 27,13 32,6 C37,13 37,20 32,25 Z"/><circle cx="18" cy="34" r="2"/><circle cx="46" cy="30" r="2"/><circle cx="14" cy="47" r="1.6"/></svg></span>
+<span class="ccName">Medium</span>
+<span class="ccCount">1/1 archetypes</span>
+</a>
+<a class="classCard" href="mesmerist/" style="--ccolor:#c96fb0">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#c96fb0" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,32 m0,-19 a19,19 0 1,1 -0.01,0" opacity=".9"/><path d="M32,32 m0,-12 a12,12 0 1,0 0.01,0" opacity=".9"/><path d="M32,32 m0,-5 a5,5 0 1,1 -0.01,0" opacity=".9"/></svg></span>
+<span class="ccName">Mesmerist</span>
+<span class="ccCount">2/2 archetypes</span>
+</a>
+<a class="classCard" href="occultist/" style="--ccolor:#b08f4a">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#b08f4a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,20 L32,10 M32,54 L32,44 M44,32 L54,32 M10,32 L20,32 M40,24 L47,17 M17,47 L24,40 M40,40 L47,47 M17,17 L24,24"/><path d="M32,25 L39,32 L32,39 L25,32 Z"/></svg></span>
+<span class="ccName">Occultist</span>
+<span class="ccCount">3/3 archetypes</span>
+</a>
+<a class="classCard" href="oracle/" style="--ccolor:#c9a6f0">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#c9a6f0" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M6,25 C14,12 50,12 58,25 C50,38 14,38 6,25 Z"/><circle cx="32" cy="25" r="7"/><path d="M32,39 C32,39 27,47 32,54 C37,47 32,39 32,39 Z"/></svg></span>
+<span class="ccName">Oracle</span>
+<span class="ccCount">19/19 archetypes</span>
+</a>
+<a class="classCard" href="paladin/" style="--ccolor:#f0d878">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#f0d878" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,7 L53,15 L53,31 C53,45 43,54 32,58 C21,54 11,45 11,31 L11,15 Z"/><path d="M32,20 L32,45 M20,32 L44,32"/></svg></span>
+<span class="ccName">Paladin</span>
+<span class="ccCount">6/6 archetypes</span>
+</a>
+<a class="classCard" href="psychic/" style="--ccolor:#d64a9b">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#d64a9b" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M19,20 C19,11 27,7 32,7 C37,7 45,11 45,20 C49,22 49,31 45,33 C49,37 45,45 38,45 L38,51 L26,51 L26,45 C19,45 15,37 19,33 C15,31 15,22 19,20 Z"/><path d="M32,7 L32,45"/></svg></span>
+<span class="ccName">Psychic</span>
+<span class="ccCount">3/3 archetypes</span>
+</a>
+<a class="classCard" href="ranger/" style="--ccolor:#8bb86a">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#8bb86a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M17,9 C17,9 13,32 17,55"/><path d="M17,32 L55,32"/><path d="M47,24 L55,32 L47,40"/></svg></span>
+<span class="ccName">Ranger</span>
+<span class="ccCount">10/10 archetypes</span>
+</a>
+<a class="classCard" href="shaman/" style="--ccolor:#6ab88a">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#6ab88a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="24" y="7" width="16" height="15" rx="2"/><rect x="24" y="24.5" width="16" height="15" rx="2"/><rect x="24" y="42" width="16" height="15" rx="2"/><circle cx="29" cy="14" r="1.5"/><circle cx="35" cy="14" r="1.5"/><circle cx="29" cy="32" r="1.5"/><circle cx="35" cy="32" r="1.5"/><circle cx="29" cy="49.5" r="1.5"/><circle cx="35" cy="49.5" r="1.5"/></svg></span>
+<span class="ccName">Shaman</span>
+<span class="ccCount">17/17 archetypes</span>
+</a>
+<a class="classCard" href="skald/" style="--ccolor:#d67a4a">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#d67a4a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M14,13 C14,13 41,17 49,35 C53,44 49,52 41,52 C35,52 31,47 33,42"/><path d="M41,52 C41,52 45,54 49,52"/></svg></span>
+<span class="ccName">Skald</span>
+<span class="ccCount">3/3 archetypes</span>
+</a>
+<a class="classCard" href="sorcerer/" style="--ccolor:#e07a5f">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#e07a5f" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,6 L37,27 L58,32 L37,37 L32,58 L27,37 L6,32 L27,27 Z"/></svg></span>
+<span class="ccName">Sorcerer</span>
+<span class="ccCount">1/1 archetypes</span>
+</a>
+<a class="classCard" href="spiritualist/" style="--ccolor:#7f9bc9">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#7f9bc9" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M16,54 L16,28 C16,14 23,6 32,6 C41,6 48,14 48,28 L48,54 L42,48 L36,54 L32,48 L26,54 L20,48 Z"/><circle cx="24" cy="26" r="2.2"/><circle cx="40" cy="26" r="2.2"/></svg></span>
+<span class="ccName">Spiritualist</span>
+<span class="ccCount">3/3 archetypes</span>
+</a>
+<a class="classCard" href="summoner/" style="--ccolor:#4ab098">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#4ab098" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><circle cx="32" cy="32" r="21"/><path d="M25,41 C25,41 20,28 29,22 C36,17 38,26 33,30 C28,34 35,39 39,32"/></svg></span>
+<span class="ccName">Summoner</span>
+<span class="ccCount">22/22 archetypes</span>
+</a>
+<a class="classCard" href="warpriest/" style="--ccolor:#c9a03f">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#c9a03f" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,19 L32,58"/><rect x="17" y="6" width="30" height="17" rx="2"/><path d="M32,6 L32,23" stroke-width="1.5" opacity=".5"/></svg></span>
+<span class="ccName">Warpriest</span>
+<span class="ccCount">2/2 archetypes</span>
+</a>
+<a class="classCard" href="witch/" style="--ccolor:#9b6fd6">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#9b6fd6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M10,26 L54,26 L48,53 C46,57 18,57 16,53 Z"/><path d="M20,26 C20,16 26,10 32,10 C38,10 44,16 44,26"/></svg></span>
+<span class="ccName">Witch</span>
+<span class="ccCount">3/3 archetypes</span>
+</a>
+<a class="classCard" href="wizard/" style="--ccolor:#6aa8d9">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#6aa8d9" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32,5 L48,50 L16,50 Z"/><path d="M16,50 C16,50 24,54 32,54 C40,54 48,50 48,50"/><circle cx="32" cy="24" r="2"/></svg></span>
+<span class="ccName">Wizard</span>
+<span class="ccCount">2/2 archetypes</span>
+</a>
+<div class="classCard otrosCard" id="otrosCard" style="--ccolor:#8a8f9c">
+<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#8a8f9c" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M14,20 L50,20 M14,32 L50,32 M14,44 L50,44"/></svg></span>
+<span class="ccName">Other</span>
+<span class="ccCount">Classes without their own list — loose archetypes</span>
+</div>
+<div class="otrosGrid" id="otrosGrid" hidden>
+<a class="otrosChip" href="fighter-archetypes/">Fighter<span class="ocCount">3/3 archetypes</span></a>
+<a class="otrosChip" href="barbarian-archetypes/">Barbarian<span class="ocCount">7/7 archetypes</span></a>
+<a class="otrosChip" href="rogue-archetypes/">Rogue<span class="ocCount">17/17 archetypes</span></a>
+<a class="otrosChip" href="monk-archetypes/">Monk<span class="ocCount">22/22 archetypes</span></a>
+<a class="otrosChip" href="monk-unchained-archetypes/">Monk (Unchained)<span class="ocCount">6/6 archetypes</span></a>
+<a class="otrosChip" href="cavalier-archetypes/">Cavalier<span class="ocCount">4/4 archetypes</span></a>
+<a class="otrosChip" href="gunslinger-archetypes/">Gunslinger<span class="ocCount">4/4 archetypes</span></a>
+<a class="otrosChip" href="ninja-archetypes/">Ninja<span class="ocCount">2/2 archetypes</span></a>
+<a class="otrosChip" href="samurai-archetypes/">Samurai<span class="ocCount">2/2 archetypes</span></a>
+<a class="otrosChip" href="vigilante-archetypes/">Vigilante<span class="ocCount">12/12 archetypes</span></a>
+<a class="otrosChip" href="shifter-archetypes/">Shifter<span class="ocCount">6/6 archetypes</span></a>
+<a class="otrosChip" href="swashbuckler-archetypes/">Swashbuckler<span class="ocCount">4/4 archetypes</span></a>
+<a class="otrosChip" href="brawler-archetypes/">Brawler<span class="ocCount">2/2 archetypes</span></a>
+<a class="otrosChip" href="kineticist-archetypes/">Kineticist<span class="ocCount">6/6 archetypes</span></a>
+</div>
+</div>
+</details>
+</div>
+</details>
+
+<details class="section" style="--accent:var(--green)">
+<summary>
+<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="10" y="24" width="44" height="16"/><ellipse cx="10" cy="32" rx="5" ry="8"/><ellipse cx="54" cy="32" rx="5" ry="8"/><path d="M18 28 L46 28 M18 34 L46 34 M18 40 L38 40" stroke-width="1.5" opacity=".6"/></svg></span>
+<span class="section-title"><span class="name">Characters</span><span class="count">Fixed &amp; merged character sheets</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="links">
+<a href="uran/" data-restrict-users="ABU,GRIPAU">Uran<br><small>Cleric Spellbook</small></a>
+<a href="kenneth/" data-restrict-users="KOS">Kenneth<br><small>Damage + Spells</small></a>
+<a href="gabriel/" data-restrict-users="SALVA">Gabriel<br><small>Damage + Spells</small></a>
+<a href="character/">Merged Characters<br><small>Combine any Calculator + Spellbook profile into one sheet</small></a>
+</div>
+</details>
+
+<details class="section" id="section-sources" style="--accent:var(--purple)">
+<summary>
+<span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--purple)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="10" y="10" width="10" height="10" rx="2"/><path d="M12 15 L14 17 L18 12"/><line x1="26" y1="15" x2="54" y2="15"/><rect x="10" y="27" width="10" height="10" rx="2"/><path d="M12 32 L14 34 L18 29"/><line x1="26" y1="32" x2="54" y2="32"/><rect x="10" y="44" width="10" height="10" rx="2"/><line x1="26" y1="49" x2="54" y2="49"/></svg></span>
+<span class="section-title"><span class="name">Valid Sources</span><span class="count" id="sourcesCount">— sourcebooks allowed</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</summary>
+<div class="sourcesWrap">
+<p class="sourcesNote">Sets the default sourcebooks allowed across every tool and character on this site. Any character can still override this individually (e.g. add a race's own splatbook once a character actually is that race).</p>
+<div class="sourcesToolbar"><input id="sourcesSearch" type="text" placeholder="Search sourcebooks..."><button id="sourcesAll" type="button">All</button><button id="sourcesNone" type="button">None</button><button id="sourcesReset" type="button">Reset to defaults</button></div>
+<div class="sourcesList" id="sourcesList"></div>
+<div class="sourcesStatus" id="sourcesStatus"></div>
+</div>
+</details>
+
+</main></body>
+<script src="assets/valid-sources.js"></script>
+<script>
+// This landing page has no character data of its own — it's just a launcher. But since
+// everyone enters here first (not via a direct tool link), the welcome gate lives here
+// too: pick a code once, and every tool auto-connects with it afterwards (shared
+// localStorage, same origin). It also now hosts the "Valid Sources" global setting
+// (see the second script block below), which does talk to Firebase.
+(function(){
+  const SYNC_CODE_KEY='pf1_sync_code_v1';
+  const SYNC_USER_KEY='pf1_sync_user_v1';
+  const SYNC_PIN_KEY='pf1_sync_pin_v1';
+  // Every localStorage key any tool on this site writes to, for the global "Log out".
+  const ALL_APP_KEYS=[
+    'pf1_universal_damage_calc_profiles_v1','clericUniversalSpellbookPF1V1',
+    'paladinUniversalSpellbookPF1V1','druidUniversalSpellbookPF1V1','alchemistUniversalSpellbookPF1V1',
+    'bardUniversalSpellbookPF1V1','sorcererUniversalSpellbookPF1V1','wizardUniversalSpellbookPF1V1','rangerUniversalSpellbookPF1V1','uranClericSpellbookPF1V1',
+    'pf1_companion_damage_calc_profiles_v1','hunterUniversalSpellbookPF1V1','witchUniversalSpellbookPF1V1','antipaladinUniversalSpellbookPF1V1','skaldUniversalSpellbookPF1V1','investigatorUniversalSpellbookPF1V1','warpriestUniversalSpellbookPF1V1','inquisitorUniversalSpellbookPF1V1','magusUniversalSpellbookPF1V1','mesmeristUniversalSpellbookPF1V1','spiritualistUniversalSpellbookPF1V1','mediumUniversalSpellbookPF1V1','occultistUniversalSpellbookPF1V1','psychicUniversalSpellbookPF1V1','shamanUniversalSpellbookPF1V1','bloodragerUniversalSpellbookPF1V1','summonerUniversalSpellbookPF1V1','oracleUniversalSpellbookPF1V1','arcanistUniversalSpellbookPF1V1',
+    'kennethPaladinSpellbookPF1CoreV1','gabrielPaladinSpellbookPF1CoreV1',
+    'kennethDamageCalcPF1V1','gabrielDamageCalcPF1V1'
+  ];
+  function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
+  // Some character links (Uran, Kenneth) are restricted to the specific player who plays
+  // them — everyone else on the site simply doesn't see the link. Marked via a
+  // data-restrict-users="NAME1,NAME2" attribute on the <a> itself; matched case-insensitively
+  // against the current device's saved sync username (not synced data — purely local/visual).
+  function applyUserVisibility(){
+    const user=(localStorage.getItem(SYNC_USER_KEY)||'').trim().toUpperCase();
+    document.querySelectorAll('a[data-restrict-users]').forEach(a=>{
+      const allowed=a.getAttribute('data-restrict-users').split(',').map(s=>s.trim().toUpperCase());
+      a.style.display = allowed.includes(user) ? '' : 'none';
+    });
+  }
+  function showGate(){
+    const gate=document.getElementById('syncGate');
+    gate.style.display='flex';
+    document.getElementById('gateNew').onclick=submitGate;
+    document.getElementById('gateLogin').onclick=submitGate;
+    document.getElementById('gateUser').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('gatePin').focus(); });
+    document.getElementById('gatePin').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
+    document.getElementById('gateUser').focus();
+  }
+  function submitGate(){
+    const user=document.getElementById('gateUser').value.trim(), pin=document.getElementById('gatePin').value.trim();
+    if(!user){ document.getElementById('gateUser').focus(); return; }
+    const norm=normCode(user+'-'+pin);
+    if(!norm) return;
+    localStorage.setItem(SYNC_CODE_KEY, norm);
+    localStorage.setItem(SYNC_USER_KEY, user);
+    localStorage.setItem(SYNC_PIN_KEY, pin);
+    document.getElementById('syncGate').style.display='none';
+    applyUserVisibility();
+    if(window.__pfSourcesConnect) window.__pfSourcesConnect(norm);
+  }
+  document.getElementById('syncLogout').onclick=()=>{
+    if(!confirm('Log out on this device? This clears every character saved locally here (so the next person\'s code doesn\'t get them merged in) — your data stays safe in the cloud under your code.'))return;
+    localStorage.removeItem(SYNC_CODE_KEY);
+    localStorage.removeItem(SYNC_USER_KEY);
+    localStorage.removeItem(SYNC_PIN_KEY);
+    ALL_APP_KEYS.forEach(k=>localStorage.removeItem(k));
+    location.reload();
+  };
+  if(!localStorage.getItem(SYNC_CODE_KEY)) showGate();
+  applyUserVisibility();
+})();
+(function(){
+  const otrosCard=document.getElementById('otrosCard'),otrosGrid=document.getElementById('otrosGrid');
+  if(otrosCard&&otrosGrid){
+    otrosCard.addEventListener('click',()=>{
+      const willShow=otrosGrid.hasAttribute('hidden');
+      if(willShow)otrosGrid.removeAttribute('hidden');else otrosGrid.setAttribute('hidden','');
+      otrosCard.style.borderColor=willShow?'var(--ccolor)':'';
+    });
+  }
+})();
+</script>
+<script>
+// "Valid Sources" — the global default sourcebook list every tool/character on this
+// site follows unless manually customized. Synced to the same Firestore doc as every
+// other tool here, under its own field so it doesn't collide with any character data.
+(function(){
+  const SYNC_CODE_KEY='pf1_sync_code_v1';
+  const APP_FIELD='globalSources';
+  const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
+  const $=id=>document.getElementById(id);
+  let db=null, docRef=null, unsubscribe=null, applyingRemote=false, pushTimer=null, fsApi=null;
+
+  let excluded=PFSources.loadGlobalExcludedLocal();
+
+  function setStatus(msg){ let el=$('sourcesStatus'); if(el) el.textContent=msg; }
+  function updateCount(){
+    let total=PFSources.ALL_BOOKS.length, validCount=total-Object.keys(excluded).filter(k=>excluded[k]).length;
+    let el=$('sourcesCount'); if(el) el.textContent=validCount+'/'+total+' sourcebooks valid';
+  }
+
+  function renderList(){
+    let q=($('sourcesSearch').value||'').toLowerCase();
+    let box=$('sourcesList'); box.innerHTML='';
+    PFSources.ALL_BOOKS.filter(b=>b.toLowerCase().includes(q)).forEach(book=>{
+      let lbl=document.createElement('label');
+      let cb=document.createElement('input'); cb.type='checkbox'; cb.checked=!excluded[book];
+      cb.onchange=()=>{
+        if(cb.checked) delete excluded[book]; else excluded[book]=true;
+        persist();
+      };
+      lbl.appendChild(cb);
+      lbl.appendChild(document.createTextNode(book));
+      box.appendChild(lbl);
+    });
+    updateCount();
+  }
+
+  function persist(){
+    PFSources.saveGlobalExcludedLocal(excluded);
+    updateCount();
+    pushToCloud();
+  }
+
+  $('sourcesSearch').oninput=renderList;
+  $('sourcesAll').onclick=()=>{ excluded={}; persist(); renderList(); };
+  $('sourcesNone').onclick=()=>{ PFSources.ALL_BOOKS.forEach(b=>excluded[b]=true); persist(); renderList(); };
+  $('sourcesReset').onclick=()=>{
+    if(!confirm('Reset Valid Sources to the site defaults? This only changes the global list — characters you already customized individually are not affected.')) return;
+    excluded=Object.assign({}, PFSources.DEFAULT_EXCLUDED_BOOKS);
+    persist(); renderList();
+  };
+
+  function applyRemote(remoteExcluded){
+    applyingRemote=true;
+    excluded=remoteExcluded||{};
+    PFSources.saveGlobalExcludedLocal(excluded);
+    renderList();
+    applyingRemote=false;
+  }
+
+  function pushToCloud(){
+    if(!docRef||applyingRemote) return;
+    clearTimeout(pushTimer);
+    pushTimer=setTimeout(async ()=>{
+      try{ await fsApi.setDoc(docRef, {[APP_FIELD]:{excluded:JSON.parse(JSON.stringify(excluded))}, updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true}); setStatus('Synced ✓'); }
+      catch(e){ setStatus('Sync error: '+e.message); }
+    }, 700);
+  }
+
+  async function connect(code){
+    const norm=(code||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80);
+    if(!norm) return;
+    setStatus('Connecting…');
+    try{
+      if(!fsApi){
+        const [{initializeApp}, fs] = await Promise.all([
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+          import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+        ]);
+        fsApi=fs;
+        const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
+        db=fsApi.getFirestore(app);
+      }
+      if(unsubscribe){ unsubscribe(); unsubscribe=null; }
+      docRef=fsApi.doc(db,'pf_sync',norm);
+      const snap=await fsApi.getDoc(docRef);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      if(remote && remote.excluded){
+        applyRemote(remote.excluded);
+      } else {
+        await fsApi.setDoc(docRef, {[APP_FIELD]:{excluded:JSON.parse(JSON.stringify(excluded))}, updatedAt: Date.now(), writerId: WRITER_ID}, {merge:true});
+      }
+      unsubscribe=fsApi.onSnapshot(docRef, (snap2)=>{
+        if(snap2.metadata.hasPendingWrites) return;
+        const data=snap2.data();
+        if(!data || !data[APP_FIELD]) return;
+        if(data.writerId===WRITER_ID){ setStatus('Synced ✓'); return; }
+        applyRemote(data[APP_FIELD].excluded);
+        setStatus('Synced ✓ (updated from another device)');
+      }, (err)=>setStatus('Sync error: '+err.message));
+      setStatus('Synced ✓');
+    }catch(e){ setStatus('Sync error: '+e.message); }
+  }
+
+  window.__pfSourcesConnect=connect;
+  renderList();
+  const savedCode=localStorage.getItem(SYNC_CODE_KEY);
+  if(savedCode) connect(savedCode);
+})();
+</script>
+<script>
+// Deep-link support: coming in from #section-id or #subsection-id (e.g. from the
+// pentacle hub) opens that <details> and every ancestor <details> it's nested inside,
+// then scrolls it into view -- so a link can land the user with the right accordion
+// already expanded instead of a collapsed page they have to hunt through.
+(function(){
+  const hash=location.hash.replace('#','');
+  if(!hash) return;
+  const el=document.getElementById(hash);
+  if(!el) return;
+  let node=el;
+  while(node){
+    if(node.tagName==='DETAILS') node.open=true;
+    node=node.parentElement;
+  }
+  requestAnimationFrame(()=>el.scrollIntoView({behavior:'smooth', block:'start'}));
+})();
+</script>
+</html>
