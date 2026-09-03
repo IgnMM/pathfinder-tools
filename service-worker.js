@@ -1,4 +1,4 @@
-const CACHE_NAME = "pathfinder-paladins-folders-v142";
+const CACHE_NAME = "pathfinder-paladins-folders-v143";
 const ASSETS = [
   "./","./index.html","./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
   "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/casting-time.js",
