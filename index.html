@@ -33,9 +33,13 @@ details.section[open] .chevron{transform:rotate(180deg)}
 .links small{color:var(--muted);font-weight:400}
 /* Menus with a lot of choices (Spell Libraries, Character Spell Sheets) shouldn't be
    one long single-column scroll -- let them use the page's real width instead. */
+#section-spells>.links,
 #subsection-spell-libraries .links,
 #subsection-character-sheets .links{
   max-width:none;
+}
+#subsection-spell-libraries .links,
+#subsection-character-sheets .links{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
   gap:8px;
