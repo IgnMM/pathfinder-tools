@@ -540,13 +540,20 @@ details.subsection .links{padding:0 10px 10px}
 // Deep-link support: coming in from #section-id or #subsection-id (e.g. from the
 // Sanctum) opens that <details> and every ancestor <details> it's nested inside, hides
 // every OTHER top-level section (and sibling subsection) so the page reads as its own
-// focused destination instead of the full tools list, retitles the header to match, and
-// offers an "All tools" link back to the unfiltered page.
+// focused destination instead of the full tools list, drops the now-redundant
+// dropdown/accordion header(s) since there's nothing left to toggle, retitles the page
+// to match the exact wording on the Sanctum's own pentacle, and offers an "All tools"
+// link back to the unfiltered page.
 (function(){
   const hash=location.hash.replace('#','');
   if(!hash) return;
   const el=document.getElementById(hash);
   if(!el) return;
+  const SANCTUM_TITLES={
+    'subsection-spell-libraries':'Spell Library',
+    'subsection-character-sheets':'Character Spellbook',
+    'section-sources':'Sources'
+  };
   let node=el, topSection=null;
   while(node){
     if(node.tagName==='DETAILS'){
@@ -559,17 +566,23 @@ details.subsection .links{padding:0 10px 10px}
     document.querySelectorAll('main > details.section').forEach(sec=>{
       if(sec!==topSection) sec.style.display='none';
     });
+    // Its own summary bar would just be a second, now-pointless "click to expand" —
+    // the page title already says what this is, so drop it and show the content plainly.
+    const topSummary=topSection.querySelector(':scope > summary');
+    if(topSummary) topSummary.style.display='none';
   }
   if(el.classList.contains('subsection')){
     const parentLinks=el.parentElement;
     parentLinks.querySelectorAll(':scope > details.subsection').forEach(sub=>{
       if(sub!==el) sub.style.display='none';
     });
+    const elSummary=el.querySelector(':scope > summary');
+    if(elSummary) elSummary.style.display='none';
   }
-  const nameEl=el.querySelector(':scope > summary .name, :scope > summary .subname');
-  if(nameEl){
-    document.getElementById('pageTitle').textContent=nameEl.textContent;
-    document.title=nameEl.textContent+' — Pathfinder Tools';
+  const title=SANCTUM_TITLES[hash];
+  if(title){
+    document.getElementById('pageTitle').textContent=title;
+    document.title=title+' — Pathfinder Tools';
   }
   document.getElementById('allToolsLink').style.display='inline';
   requestAnimationFrame(()=>el.scrollIntoView({behavior:'smooth', block:'start'}));
