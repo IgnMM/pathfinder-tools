@@ -106,14 +106,14 @@ details.subsection .links{padding:0 10px 10px}
 </div>
 </details>
 
-<details class="section" style="--accent:var(--blue)">
+<details class="section" id="section-spells" style="--accent:var(--blue)">
 <summary>
 <span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><polygon points="30,12 10,18 10,48 30,52 30,12"/><polygon points="34,12 54,18 54,48 34,52 34,12"/></svg></span>
 <span class="section-title"><span class="name">Spells</span><span class="count">Libraries &amp; Character Spell Sheets</span></span>
 <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
 </summary>
 <div class="links">
-<details class="subsection">
+<details class="subsection" id="subsection-spell-libraries">
 <summary>
 <span class="subname">Spell Libraries</span>
 <svg class="schevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -145,7 +145,7 @@ details.subsection .links{padding:0 10px 10px}
 <a href="summoner-library/">Summoner Spell Library<br><small>Browse, search &amp; shortlist — not a play-tool</small></a>
 </div>
 </details>
-<details class="subsection">
+<details class="subsection" id="subsection-character-sheets">
 <summary>
 <span class="subname">Character Spell Sheets</span>
 <svg class="schevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -321,7 +321,7 @@ details.subsection .links{padding:0 10px 10px}
 </div>
 </details>
 
-<details class="section" style="--accent:var(--purple)">
+<details class="section" id="section-sources" style="--accent:var(--purple)">
 <summary>
 <span class="icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--purple)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="10" y="10" width="10" height="10" rx="2"/><path d="M12 15 L14 17 L18 12"/><line x1="26" y1="15" x2="54" y2="15"/><rect x="10" y="27" width="10" height="10" rx="2"/><path d="M12 32 L14 34 L18 29"/><line x1="26" y1="32" x2="54" y2="32"/><rect x="10" y="44" width="10" height="10" rx="2"/><line x1="26" y1="49" x2="54" y2="49"/></svg></span>
 <span class="section-title"><span class="name">Valid Sources</span><span class="count" id="sourcesCount">— sourcebooks allowed</span></span>
@@ -518,6 +518,24 @@ details.subsection .links{padding:0 10px 10px}
   renderList();
   const savedCode=localStorage.getItem(SYNC_CODE_KEY);
   if(savedCode) connect(savedCode);
+})();
+</script>
+<script>
+// Deep-link support: coming in from #section-id or #subsection-id (e.g. from the
+// pentacle hub) opens that <details> and every ancestor <details> it's nested inside,
+// then scrolls it into view -- so a link can land the user with the right accordion
+// already expanded instead of a collapsed page they have to hunt through.
+(function(){
+  const hash=location.hash.replace('#','');
+  if(!hash) return;
+  const el=document.getElementById(hash);
+  if(!el) return;
+  let node=el;
+  while(node){
+    if(node.tagName==='DETAILS') node.open=true;
+    node=node.parentElement;
+  }
+  requestAnimationFrame(()=>el.scrollIntoView({behavior:'smooth', block:'start'}));
 })();
 </script>
 </html>
