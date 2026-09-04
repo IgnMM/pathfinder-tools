@@ -42,7 +42,14 @@ input,select{width:100%;background:#0f161f;color:var(--text);border:1px solid va
 button{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:8px 12px;cursor:pointer;font-size:.85rem}
 button.primary{background:var(--gold);color:#151515;border:0;font-weight:700}
 button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
-.statsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}
+/* Six 2-digit stat boxes don't need a 320px column each -- a small square box (label
+   above, centered number below) reads far better than a giant field stretched to fit a
+   grid track meant for "Character Level"-sized rows. */
+.statsGrid{display:grid;grid-template-columns:repeat(6,minmax(52px,1fr));gap:8px;max-width:460px}
+.statsGrid>div{text-align:center}
+.statsGrid label{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.statsGrid input{width:100%;text-align:center;padding:8px 2px;font-size:1rem;font-weight:700}
+@media(max-width:520px){.statsGrid{grid-template-columns:repeat(3,1fr);max-width:none}}
 .card-char{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));gap:2px 18px;align-content:start}
 .card-char>h2,.card-char>h3,.card-char>#babSequenceBox{grid-column:1/-1}
 .card-char>h2{margin-top:0}
@@ -51,16 +58,14 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
    -- capping them to 2 columns (instead of 1/-1) lets whatever comes next flow into the
    rest of that same row instead of always starting a fresh one. */
 .card-char>.emptyNote,.card-char>.raceNote{grid-column:span 2}
-/* The Ability Scores block is really just 6 more fields, not its own section -- let it
-   dissolve into the parent grid (display:contents drops the wrapper, promoting its
-   6 .row children to flow as ordinary grid items) instead of walling them off as one
-   full-width unit. */
-.card-char>.statsGrid{display:contents}
+/* The stat block is sized to its own compact grid above, not the wide field columns --
+   let it claim 2 of those columns' worth of width so something can still share its row. */
+.card-char>.statsGrid{grid-column:span 2}
 .card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));gap:2px 18px;align-content:start}
 .card-char>#mythicTierBox>.emptyNote,.card-char>#offhandBox>.emptyNote,.card-char>#offhandBox>h3,.card-char>#ammoBox>.emptyNote{grid-column:1/-1}
 #categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;align-items:start}
 #categories .catBlock{margin-bottom:0}
-@media(max-width:520px){.card-char,.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-template-columns:1fr}.card-char>.emptyNote,.card-char>.raceNote{grid-column:1/-1}}
+@media(max-width:520px){.card-char,.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-template-columns:1fr}.card-char>.emptyNote,.card-char>.raceNote,.card-char>.statsGrid{grid-column:1/-1}}
 .profileBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .profileBar select{width:auto;min-width:160px}
 .mainGrid{display:grid;grid-template-columns:1fr;gap:14px}
