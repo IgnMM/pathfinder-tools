@@ -59,7 +59,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .statsGrid input{width:100%;text-align:center;padding:8px 2px;font-size:1rem;font-weight:700}
 @media(max-width:520px){.statsGrid{grid-template-columns:repeat(3,1fr);max-width:none}}
 .card-char{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));gap:2px 18px;align-content:start}
-.card-char>h2,.card-char>h3,.card-char>#babSequenceBox{grid-column:1/-1}
+.card-char>h2,.card-char>h3{grid-column:1/-1}
+.card-char>#babSequenceBox{grid-column:span 2;align-self:center}
 .card-char>h2{margin-top:0}
 .card-char>h3{margin:12px 0 4px}
 /* Notes explain the field right before them, but don't need the full row to themselves
@@ -175,8 +176,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="row"><label>Caster Level</label><input id="casterLevel" type="number" min="0" max="20" value="10"></div>
 <div class="emptyNote">Caster Level is often lower than Character Level — a Paladin/Ranger's is Character Level − 3 (starting at 4th level), for example. Set it independently; it pre-fills spell entries below that scale with caster level (Divine Favor, Magic Weapon Greater, Wrath, Gorum's Armor...) instead of Character Level.</div>
 <div class="row"><label>Number of Attacks</label><input id="numAttacks" type="number" min="1" max="8" value="1"></div>
-<div class="row"><label>BAB</label></div>
-<div id="babSequenceBox" style="margin:-4px 0 9px"></div>
+<div id="babSequenceBox"></div>
 <div class="emptyNote">Type each attack's base attack bonus directly — no formula, no assumed "-5 per attack." Set "Number of Attacks" first, then fill in each box; the first box is also used as "BAB" everywhere else in the calculator (Power Attack scaling, etc.). Character Level only pre-fills level-scaling fields elsewhere (Sneak Attack dice, caster level, bard/paladin level...) when you add them from the catalog below — it no longer affects BAB.</div>
 <div class="row"><label>Play with Mythic rules?</label><input id="mythicEnabled" type="checkbox" style="width:auto;justify-self:start"></div>
 <div id="mythicTierBox" style="display:none">
@@ -2944,6 +2944,10 @@ function renderBabInputs(){
   let box=$('babSequenceBox');
   box.innerHTML='';
   box.style.cssText='display:flex;flex-wrap:wrap;gap:6px;align-items:center';
+  let babLabel=document.createElement('label');
+  babLabel.textContent='BAB';
+  babLabel.style.cssText='color:var(--muted);font-size:.85rem;margin-right:2px';
+  box.appendChild(babLabel);
   p.babList.forEach((v,i)=>{
     let inp=document.createElement('input');
     inp.type='text'; inp.inputMode='numeric'; inp.value=v;
