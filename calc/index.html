@@ -69,17 +69,27 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 @media(max-width:520px){.statsGrid{grid-template-columns:repeat(3,1fr);max-width:none}}
 .card-char{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));gap:2px 18px;align-content:start}
 .card-char>h2,.card-char>h3{grid-column:1/-1}
+/* Every Character & Weapons row: label sized to its own text (shrinkable, so it wraps
+   instead of overflowing if a row is ever squeezed) rather than 1fr, which let it swallow
+   all the row's spare width and strand the input far to the right of its own label --
+   right under whatever field's box sits above it in the next row. Input/select then fills
+   the rest, which also gives long dropdown values (weapon names, alignments...) more room
+   than the old fixed 110px. Declared before the more specific row overrides below so those
+   still win on equal selector specificity. */
+.card-char>.row{grid-template-columns:minmax(0,max-content) 1fr}
+/* Grid items default to min-width:auto, which floors their shrink at their own
+   min-content size -- for a multi-word label that's still fairly wide, silently
+   resisting the minmax(0,...) above and squeezing the input column down to a sliver
+   in a narrow track. min-width:0 lets the label actually wrap down to its narrowest
+   word instead. */
+.card-char>.row>label{min-width:0}
 /* BAB pills live inside the Number of Attacks row itself (3rd column) so they're
    always right next to it, regardless of how many other fields already filled that
-   row -- a separate grid item could get pushed to a fresh row instead. The label
-   column is sized to its own text (max-content), not 1fr -- 1fr let it swallow all
-   the row's spare width, stranding the input far to the right of its own label and
-   right under the neighboring field's box above it. */
+   row -- a separate grid item could get pushed to a fresh row instead. */
 .card-char>.numAttacksRow{grid-template-columns:max-content 60px auto;column-gap:8px;grid-column:span 2}
 .card-char>.numAttacksRow #babSequenceBox{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-/* Character/Caster Level are 1-2 digit numbers -- the default 110px input column
-   (sized for wider fields) reads as oversized next to them. */
-.card-char>.row.rowNarrow{grid-template-columns:1fr 60px}
+/* Character/Caster Level are 1-2 digit numbers -- fill-width input reads as oversized. */
+.card-char>.row.rowNarrow{grid-template-columns:max-content 60px}
 .card-char>h2{margin-top:0}
 .card-char>h3{margin:12px 0 4px}
 /* Notes explain the field right before them, but don't need the full row to themselves
@@ -3901,12 +3911,12 @@ function collectContributions(ctx){
     let isOff=a.on===false;
     if(m.special==='furious-focus'){
       if(!isOff) furiousFocusOn=true;
-      breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Cancels Power Attack penalty on first attack only'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
+      breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Cancels Power Attack penalty on first attack only'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff,reflectedElsewhere:true});
       return;
     }
     if(m.special==='flurry-of-blows' || m.special==='flurry-of-blows-zen'){
       if(!isOff){ flurryOfBlowsOn=true; flurryMonkLevel=(a.cfg&&a.cfg.monkLevel)||1; flurryIsZen=(m.special==='flurry-of-blows-zen'); }
-      breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Replaces the Full Attack line above with its own progression (monk level '+((a.cfg&&a.cfg.monkLevel)||1)+')'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
+      breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Replaces the Full Attack line above with its own progression (monk level '+((a.cfg&&a.cfg.monkLevel)||1)+')'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff,reflectedElsewhere:true});
       return;
     }
     let r=m.compute(ctx,a.cfg||{});
@@ -3937,7 +3947,7 @@ function collectContributions(ctx){
       }
     }
     if(isOff) noteText = (noteText||'')+' (not active this turn)';
-    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:noteText,suppressed:false,off:isOff});
+    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:noteText,suppressed:false,off:isOff,reflectedElsewhere:m.special==='pa-no-crit'});
   });
   if(mythicWeaponFocusOn){
     let wfOn=p.active.some(a=>a.id==='weapon-focus' && a.on!==false);
@@ -4020,8 +4030,12 @@ function renderUnmodeledEffects(breakdown){
   // that happens to be showing 0 right now (Fate's Favored with no other luck bonus active,
   // Favored Enemy against the wrong target, etc.) is a correctly-computed conditional bonus,
   // not an unaccounted-for effect -- it's already doing its job, just not this turn.
+  // A few type:'special' entries (Furious Focus, Flurry of Blows, the PA/Deadly Aim
+  // no-crit-mult house rule) are switches whose effect IS fully baked into a specific result
+  // above (Single Attack, Full Attack, Critical Damage) via bespoke logic elsewhere -- they're
+  // flagged reflectedElsewhere so they don't get flagged here too.
   let box=$('unmodeledBox'), list=$('unmodeledList');
-  let items=breakdown.filter(b=>!b.off && !b.suppressed && b.type==='special' && b.note);
+  let items=breakdown.filter(b=>!b.off && !b.suppressed && !b.reflectedElsewhere && b.type==='special' && b.note);
   if(!items.length){ box.style.display='none'; list.innerHTML=''; return; }
   box.style.display='block';
   list.innerHTML=items.map(b=>`<div class="unmodeledItem"><b>${b.name}</b> — ${b.note}</div>`).join('');
