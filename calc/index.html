@@ -50,7 +50,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .statsGrid label{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
 .statsGrid input{width:100%;text-align:center;padding:8px 2px;font-size:1rem;font-weight:700}
 @media(max-width:520px){.statsGrid{grid-template-columns:repeat(3,1fr);max-width:none}}
-.card-char{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));grid-auto-flow:dense;gap:2px 18px;align-content:start}
+.card-char{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));gap:2px 18px;align-content:start}
 .card-char>h2,.card-char>h3,.card-char>#babSequenceBox{grid-column:1/-1}
 .card-char>h2{margin-top:0}
 .card-char>h3{margin:12px 0 4px}
@@ -61,7 +61,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 /* The stat block is sized to its own compact grid above, not the wide field columns --
    let it claim 2 of those columns' worth of width so something can still share its row. */
 .card-char>.statsGrid{grid-column:span 2}
-.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));grid-auto-flow:dense;gap:2px 18px;align-content:start}
+.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));gap:2px 18px;align-content:start}
 .card-char>#mythicTierBox>.emptyNote,.card-char>#offhandBox>.emptyNote,.card-char>#offhandBox>h3,.card-char>#ammoBox>.emptyNote{grid-column:1/-1}
 #categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;align-items:start}
 #categories .catBlock{margin-bottom:0}
