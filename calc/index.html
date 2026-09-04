@@ -294,6 +294,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <option value="evilDragon">Evil Dragon</option>
   <option value="evilOutsider">Evil Outsider</option>
   <option value="demon">Demon (Evil Outsider)</option>
+  <option value="goodDragon">Good Dragon</option>
+  <option value="goodOutsider">Good Outsider</option>
   <option value="construct">Construct / Object</option>
   <option value="ooze">Ooze</option>
   <option value="elemental">Elemental</option>
@@ -531,6 +533,7 @@ const TARGET_FLAG_MAP={
   none:{}, evil:{evil:true}, undead:{undead:true}, evilUndead:{evil:true,undead:true},
   evilDragon:{evil:true,dragon:true}, evilOutsider:{evil:true,outsider:true,evilOutsiderFlag:true},
   demon:{evil:true,outsider:true,demon:true,evilOutsiderFlag:true}, construct:{construct:true},
+  goodDragon:{good:true,dragon:true}, goodOutsider:{good:true,outsider:true},
   good:{good:true}, lawful:{lawful:true}, chaotic:{chaotic:true},
   // PF1e RAW: constructs and (non-incorporeal) undead are NOT immune to critical hits or
   // sneak attack/precision damage (that's a 3.5e rule that didn't carry over). The actual
@@ -895,6 +898,15 @@ const MODIFIERS = [
    let flags=TARGET_FLAG_MAP[ctx.currentTarget]||{};
    let doubles=flags.undead||(flags.evil&&flags.dragon)||(flags.evil&&flags.outsider);
    return {attack:ctx.cha,damage:dmg,note:'+'+ctx.cha+' atk / +'+dmg+' dmg (untyped)'+(doubles?' — DOUBLED to +'+(dmg*2)+' on the first successful hit only (evil outsider/evil dragon/undead), see "First Smite Hit" result above':'')};
+ }},
+{id:'smite-good',name:'Smite Good',category:'other',source:'Antipaladin class feature',appliesTo:['attack','damage'],type:'untyped',
+ desc:'CHA bonus to attack, antipaladin level to damage vs the smited target (untyped — mirrors Smite Evil). If the target is a good outsider or a good-aligned dragon, this damage bonus is DOUBLED — but only on the first successful hit, same restriction as Smite Evil (see "First Smite Hit" result above). RAW also doubles it against a good creature with cleric or paladin levels; that specific case has no matching flag on the Current Target picker above (it\'s about class levels, not creature type) — double the number by hand if it applies.',
+ configFields:[{key:'antipalLvl',label:'Antipaladin level',type:'number',default:7,linkLevel:true}],
+ compute:(ctx,cfg)=>{
+   let dmg=cfg.antipalLvl||0;
+   let flags=TARGET_FLAG_MAP[ctx.currentTarget]||{};
+   let doubles=(flags.good&&flags.dragon)||(flags.good&&flags.outsider);
+   return {attack:ctx.cha,damage:dmg,note:'+'+ctx.cha+' atk / +'+dmg+' dmg (untyped)'+(doubles?' — DOUBLED to +'+(dmg*2)+' on the first successful hit only (good outsider/good dragon), see "First Smite Hit" result above':'')};
  }},
 {id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
  desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls.',
@@ -3374,10 +3386,15 @@ function collectContributions(ctx){
     let r=m.compute(ctx,a.cfg||{});
     let effType=r.type||m.type;
     if(!isOff && (m.id==='power-attack'||m.id==='deadly-aim')){ powerAttackOn=true; powerAttackAtkVal=r.attack; powerAttackDmgVal=r.damage; }
-    if(!isOff && m.id==='smite-evil'){
+    if(!isOff && (m.id==='smite-evil' || m.id==='smite-good')){
+      // Smite Good is the Antipaladin's mirror of Smite Evil -- mechanically identical,
+      // so it shares the same "First Smite Hit" results rather than getting its own
+      // (no build has both active at once).
       smiteEvilOn=true; smiteDmgVal=r.damage;
       let flags=TARGET_FLAG_MAP[ctx.currentTarget]||{};
-      smiteDoubles=!!(flags.undead||(flags.evil&&flags.dragon)||(flags.evil&&flags.outsider));
+      smiteDoubles = m.id==='smite-evil'
+        ? !!(flags.undead||(flags.evil&&flags.dragon)||(flags.evil&&flags.outsider))
+        : !!((flags.good&&flags.dragon)||(flags.good&&flags.outsider));
     }
     if(!isOff){
       if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name});
