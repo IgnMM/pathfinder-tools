@@ -78,11 +78,11 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
    still win on equal selector specificity. */
 .card-char>.row{grid-template-columns:minmax(0,max-content) 1fr}
 /* Grid items default to min-width:auto, which floors their shrink at their own
-   min-content size -- for a multi-word label that's still fairly wide, silently
-   resisting the minmax(0,...) above and squeezing the input column down to a sliver
-   in a narrow track. min-width:0 lets the label actually wrap down to its narrowest
-   word instead. */
-.card-char>.row>label{min-width:0}
+   min-content size -- for a multi-word label that's still fairly wide, or a <select>
+   whose widest option is wider than a narrow-viewport track, that silently resists the
+   minmax(0,...)/1fr above and overflows the row instead of shrinking. min-width:0 lets
+   both the label wrap and the input/select shrink down to their track's real width. */
+.card-char>.row>label,.card-char>.row>input,.card-char>.row>select{min-width:0}
 /* BAB pills live inside the Number of Attacks row itself (3rd column) so they're
    always right next to it, regardless of how many other fields already filled that
    row -- a separate grid item could get pushed to a fresh row instead. */
@@ -103,7 +103,18 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .card-char>#mythicTierBox>.emptyNote,.card-char>#offhandBox>.emptyNote,.card-char>#offhandBox>h3,.card-char>#ammoBox>.emptyNote{grid-column:1/-1}
 #categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;align-items:start}
 #categories .catBlock{margin-bottom:0}
-@media(max-width:520px){.card-char,.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-template-columns:1fr}.card-char>.emptyNote,.card-char>.raceNote,.card-char>.statsGrid{grid-column:1/-1}}
+@media(max-width:520px){
+.card-char,.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-template-columns:1fr}
+.card-char>.emptyNote,.card-char>.raceNote,.card-char>.statsGrid,.card-char>.numAttacksRow{grid-column:1/-1}
+/* At mobile width the 3rd column (BAB pills) has too little room and wraps into a tall
+   vertical stack, which then centers the label/input way down the middle of that height.
+   Two rows instead: label+input on top, BAB pills below spanning full width to wrap
+   normally (horizontally, several per line) instead of vertically in a narrow column. */
+.card-char>.numAttacksRow{grid-template-columns:1fr 60px;grid-template-areas:"label input" "bab bab";row-gap:6px}
+.card-char>.numAttacksRow label{grid-area:label}
+.card-char>.numAttacksRow input{grid-area:input}
+.card-char>.numAttacksRow #babSequenceBox{grid-area:bab}
+}
 .profileBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .profileBar select{width:auto;min-width:160px}
 .mainGrid{display:grid;grid-template-columns:1fr;gap:14px}
@@ -1285,8 +1296,9 @@ const MODIFIERS = [
 
 // ---------------- TRAITS (deity-specific) ----------------
 {id:'a-shining-beacon',name:'A Shining Beacon',category:'trait',source:'Inner Sea Gods',deity:'Iomedae',appliesTo:['damage'],type:'trait',
- desc:"You deal extra damage, equal to your weapon's critical hit modifier, on a successful critical hit against a demon — added after damage is totaled, NOT multiplied by the crit multiplier. This calculator doesn't have a separate 'confirmed crit only, unmultiplied' bucket, so this isn't auto-added to Critical Damage above — add it by hand when you actually confirm a crit against a demon.",
- compute:(ctx)=>({attack:0,damage:0,note:'on a confirmed crit vs a demon only: +'+(ctx.critMult||2)+' dmg, unmultiplied — add by hand to Critical Damage above'})},
+ special:'shining-beacon',
+ desc:"You deal extra damage, equal to your weapon's critical hit modifier, on a successful critical hit against a demon — added after damage is totaled, NOT multiplied by the crit multiplier. Automatically added to Critical Damage above (and any Vital Strike / Smite crit figures) when Current Target is set to a demon-matching category — it only applies on an actual confirmed critical hit, which this calculator can't detect for you, so don't count it if this particular attack didn't crit.",
+ compute:(ctx)=>({attack:0,damage:0,note:targetMatches(ctx,'demon')?('included in Critical Damage above (+'+(ctx.critMult||2)+', unmultiplied) — only counts on an actual confirmed crit'):'target isn\'t a demon — see Current Target above'})},
 {id:'ancestors-blade',name:"Ancestor's Blade",category:'trait',source:'Divine Anthology',deity:'Shizuru',appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"You gain a trait bonus on attack rolls with your heirloom weapon type when you smite evil. Only relevant while Smite Evil (above) is active.",
@@ -1379,8 +1391,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:'+'+v+' dmg'+' (untyped)'}}},
 {id:'beast-hunter',name:"Beast Hunter",category:'feat',source:"Ultimate Wilderness",appliesTo:['attack'],type:'insight',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Base attack bonus +1; Knowledge (nature) or Survival 1 rank. Pick one of the ranger’s favored terrains. You gain a +2 bonus on Survival checks to track animals native to that terrain. Additionally, against animals native to that terrain that are at least one size category larger than you, you gain a +1 dodge bonus to your AC and a +1 insight bonus on attack rolls.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (insight)'}}},
+ desc:"Base attack bonus +1; Knowledge (nature) or Survival 1 rank. Pick one of the ranger’s favored terrains. You gain a +2 bonus on Survival checks to track animals native to that terrain. Additionally, against animals native to that terrain that are at least one size category larger than you, you gain a +1 dodge bonus to your AC and a +1 insight bonus on attack rolls. This calculator can't track \"native to your terrain and 1+ size larger\" — toggle this off by hand when it doesn't apply.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk (insight) — only vs. a qualifying larger animal, always on otherwise'}}},
 {id:'beastmaster-ire',name:"Beastmaster Ire",category:'feat',source:"Ultimate Wilderness",appliesTo:['attack'],type:'morale',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"Cha 13, Alertness, Beastmaster Salvation, Beastmaster Style, Handle Animal 9 ranks, Sense Motive 5 ranks. When you activate Beastmaster Style’s benefit, you gain a +2 morale bonus on melee weapon attack rolls and +4 morale bonus on weapon damage rolls against the attacking creature. If the enemy attack dealt damage to your animal companion, these bonuses increase to +4 and +8, respectively. These bonuses last until the…",
@@ -1391,7 +1403,7 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (morale)'}}},
 {id:'big-game-hunter',name:"Big Game Hunter",category:'feat',source:"Rise of the Runelords Player's Guide",appliesTo:['attack'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"You gain a +1 bonus on attack rolls and a +2 bonus on weapon damage rolls against Large or larger creatures.",
+ desc:"You gain a +1 bonus on attack rolls and a +2 bonus on weapon damage rolls against Large or larger creatures. There's no tracked (Large or larger creatures) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (untyped)'}}},
 {id:'blood-feast',name:"Blood Feast",category:'feat',source:"Horror Adventures",appliesTo:['attack','damage'],type:'morale',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
@@ -1431,7 +1443,7 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:'+'+v+' dmg'+' (untyped)'}}},
 {id:'cunning-killer',name:"Cunning Killer",category:'feat',source:"Blood of the Beast",appliesTo:['attack','damage'],type:'insight',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Base attack bonus +2, Knowledge (arcana, dungeoneering, local, nature, planes, or religion) 3 ranks. When you succeed at a Knowledge check to identify a creature with an Intelligence score of 2 or less, you gain a +1 insight bonus on attack and damage rolls against that creature for a number of rounds equal to your Intelligence bonus. When your base attack bonus reaches +4 and every 4 points thereafter, increase the…",
+ desc:"Base attack bonus +2, Knowledge (arcana, dungeoneering, local, nature, planes, or religion) 3 ranks. When you succeed at a Knowledge check to identify a creature with an Intelligence score of 2 or less, you gain a +1 insight bonus on attack and damage rolls against that creature for a number of rounds equal to your Intelligence bonus. When your base attack bonus reaches +4 and every 4 points thereafter, increase the… There's no tracked (the specific low-Intelligence creature you just identified) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:'+'+v+' atk'+' '+'+'+v+' dmg'+' (insight)'}}},
 {id:'damned-soldier',name:"Damned Soldier",category:'feat',source:"Book of the Damned",appliesTo:['damage'],type:'profane',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
@@ -1450,9 +1462,9 @@ const MODIFIERS = [
  desc:"Demonic Style, Improved Bull Rush, Power Attack, base attack bonus +5. While using Demonic Style, when you successfully bull rush an opponent as part of a charge, you gain a +2 bonus on melee weapon damage rolls against that opponent for every 5 feet it was moved by your bull rush. This bonus lasts until the end of your next turn, and it stacks with the damage bonus granted by Demonic…",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:'+'+v+' dmg'+' (untyped)'}}},
 {id:'demonic-nemesis',name:"Demonic Nemesis",category:'feat',source:"Demon Hunter's Handbook",appliesTo:['damage'],type:'untyped',
- configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"Demon HunterISWG, Knowledge (planes) 6 ranks. When you take this feat, choose a demon lord. When fighting followers of that demon lord, including cultists or demons, you gain a +2 bonus on damage rolls and rolls to confirm critical hits against these creatures.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:'+'+v+' dmg'+' (untyped)'}}},
+ configFields:[{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:'demon'},{key:'value',label:'Bonus value',type:'number',default:2}],
+ desc:"Demon HunterISWG, Knowledge (planes) 6 ranks. When you take this feat, choose a demon lord. When fighting followers of that demon lord, including cultists or demons, you gain a +2 bonus on damage rolls and rolls to confirm critical hits against these creatures. (also matches non-demon followers of your chosen demon lord (e.g. cultists) too broadly, or misses demons who aren't followers of that lord)",
+ compute:(ctx,cfg)=>{if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match — see the "Vs enemy type" field above'};let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:'+'+v+' dmg'+' (untyped)'}}},
 {id:'dirty-fighting',name:"Dirty Fighting",category:'feat',source:"Dirty Tactics Toolbox",appliesTo:['attack'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"When you attempt a combat maneuver check against a foe you are flanking, you can forgo the +2 bonus on your attack roll for flanking to instead have the combat maneuver not provoke an attack of opportunity. If you have a feat or ability that allows you to attempt the combat maneuver without provoking an attack of…",
@@ -1539,12 +1551,12 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk'+' (morale)'}}},
 {id:'giant-killer',name:"Giant Killer",category:'feat',source:"Advanced Race Guide",appliesTo:['attack'],type:'circumstance',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"Str 13, Cleave, Goblin Cleaver, Orc Hewer, Power Attack, Strike Back, base attack bonus +11, dwarf. This functions as Goblin Cleaver, but your additional attacks can be made against creatures one size category larger than you or smaller. In addition, any such attacks made against humanoids (giant) gain a +2 circumstance bonus on attack rolls.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk'+' (circumstance)'}}},
+ desc:"Str 13, Cleave, Goblin Cleaver, Orc Hewer, Power Attack, Strike Back, base attack bonus +11, dwarf. This functions as Goblin Cleaver, but your additional attacks can be made against creatures one size category larger than you or smaller. In addition, any such attacks made against humanoids (giant) gain a +2 circumstance bonus on attack rolls. There's no tracked \"giant\" enemy category here — toggle this off by hand when not fighting a giant.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk (circumstance) — vs. giants only, always on otherwise'}}},
 {id:'giant-vendetta',name:"Giant Vendetta",category:'feat',source:"Giant Hunter's Handbook",appliesTo:['attack'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"You must have been knocked unconscious in an encounter with a challenging giant foe or have a regional background trait tied to giants (such as those presented in this section). Choose one kind of giant (such as hill or stone); you must choose a kind of giant that allows you to qualify for this feat. You gain a +1 bonus on attack rolls against giants of that kind. You also gain a +1 bonus on Knowledge (local) checks regarding giants of that kind and can attempt those Knowledge checks…",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (untyped)'}}},
+ desc:"You must have been knocked unconscious in an encounter with a challenging giant foe or have a regional background trait tied to giants (such as those presented in this section). Choose one kind of giant (such as hill or stone); you must choose a kind of giant that allows you to qualify for this feat. You gain a +1 bonus on attack rolls against giants of that kind. You also gain a +1 bonus on Knowledge (local) checks regarding giants of that kind and can attempt those Knowledge checks… There's no tracked \"giant\" enemy category here — toggle this off by hand when not fighting your chosen kind of giant.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk (untyped) — vs. your chosen giant kind only, always on otherwise'}}},
 {id:'gloom-strike',name:"Gloom Strike",category:'feat',source:"Advanced Race Guide",appliesTo:['attack'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Blind-Fight, fetchling. When you are within an area of dim light or darkness, you gain a +1 bonus on attack rolls against enemies that are also within dim light or darkness.",
@@ -1559,8 +1571,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (untyped)'}}},
 {id:'goblin-cleaver',name:"Goblin Cleaver",category:'feat',source:"Advanced Race Guide",appliesTo:['attack'],type:'circumstance',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"Str 13, Cleave, Power Attack, dwarf. When using Cleave or Great Cleave, if your initial attack hits, you may take your additional attacks against any creature smaller than you that you threaten; your targets need not be adjacent to one another. Additional attacks you make against humanoids (goblinoid) gain a +2 circumstance bonus on attack rolls.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk'+' (circumstance)'}}},
+ desc:"Str 13, Cleave, Power Attack, dwarf. When using Cleave or Great Cleave, if your initial attack hits, you may take your additional attacks against any creature smaller than you that you threaten; your targets need not be adjacent to one another. Additional attacks you make against humanoids (goblinoid) gain a +2 circumstance bonus on attack rolls. There's no tracked \"goblinoid\" enemy category here — toggle this off by hand when not fighting a goblinoid.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk (circumstance) — vs. goblinoids only, always on otherwise'}}},
 {id:'gray-maiden-initiate',name:"Gray Maiden Initiate",category:'feat',source:"Adventurer's Guide",appliesTo:['damage'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Female, must be taken at 1st level. You are affiliated with the Gray Maidens. In addition, choose two of the following benefits to represent the focus of your initial training and indoctrination.  Avenging Knight : Like the Queens of the Night, you crave vengeance upon those who have wronged you. You gain a +1 bonus on damage rolls against any creature…",
@@ -1635,7 +1647,7 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (untyped)'}}},
 {id:'measure-foe',name:"Measure Foe",category:'feat',source:"Ultimate Intrigue",appliesTo:['attack'],type:'insight',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Street Smarts, base attack bonus +1. You can attempt a Sense Motive check as a free action to deduce a foe’s martial training after observing the foe’s movements for at least 1 minute or observing the foe’s attacks for at least 2 rounds. You take a -10 penalty on your check if you are observing movements, rather than attacks. The DC equals 20 + the…",
+ desc:"Street Smarts, base attack bonus +1. You can attempt a Sense Motive check as a free action to deduce a foe’s martial training after observing the foe’s movements for at least 1 minute or observing the foe’s attacks for at least 2 rounds. You take a -10 penalty on your check if you are observing movements, rather than attacks. The DC equals 20 + the… There's no tracked (the specific foe whose martial training you deduced) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (insight)'}}},
 {id:'monkey-shine',name:"Monkey Shine",category:'feat',source:"Ultimate Combat",appliesTo:['attack'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:4}],
@@ -1663,8 +1675,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (untyped)'}}},
 {id:'nature-s-wrath',name:"Nature's Wrath",category:'feat',source:"Villain Codex",appliesTo:['attack'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Int 1, any nongood alignment, plant type. You are no longer immune to effects that cause morale bonuses or effects with the emotion descriptor, and you take a –1 penalty on saves against anger or rage emotion effects. You gain a +1 bonus on attack rolls against humanoid creatures.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (untyped)'}}},
+ desc:"Int 1, any nongood alignment, plant type. You are no longer immune to effects that cause morale bonuses or effects with the emotion descriptor, and you take a –1 penalty on saves against anger or rage emotion effects. You gain a +1 bonus on attack rolls against humanoid creatures. There's no tracked \"humanoid\" enemy category here — toggle this off by hand when not fighting a humanoid.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk (untyped) — vs. humanoids only, always on otherwise'}}},
 {id:'net-and-trident',name:"Net and Trident",category:'feat',source:"Ultimate Combat",appliesTo:['damage'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"Dex 15, Exotic Weapon Proficiency (net), Net Adept, Two-Weapon Fighting. You can treat a net as a one-handed ranged weapon, allowing you to wield a light or one-handed melee weapon and still make ranged attacks with your net. When you use your light or one-handed melee weapon to attack an entangled opponent, you gain a +2 bonus on damage rolls and on attack rolls to confirm a critical hit.",
@@ -1687,8 +1699,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk'+' (untyped)'}}},
 {id:'orc-hewer',name:"Orc Hewer",category:'feat',source:"Advanced Race Guide",appliesTo:['attack'],type:'circumstance',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"Str 13, Cleave, Goblin Cleaver, Power Attack, dwarf. This feat functions as Goblin Cleaver, but your additional attacks can be made against creatures your size or smaller. In addition, any such attacks that you make against humanoids (orc) gain a +2 circumstance bonus on attack rolls.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk'+' (circumstance)'}}},
+ desc:"Str 13, Cleave, Goblin Cleaver, Power Attack, dwarf. This feat functions as Goblin Cleaver, but your additional attacks can be made against creatures your size or smaller. In addition, any such attacks that you make against humanoids (orc) gain a +2 circumstance bonus on attack rolls. There's no tracked \"orc\" enemy category here — toggle this off by hand when not fighting an orc.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk (circumstance) — vs. orcs only, always on otherwise'}}},
 {id:'orc-rampage',name:"Orc Rampage",category:'feat',source:"Weapon Master's Handbook",appliesTo:['attack'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Bullying BlowARG, Intimidating Prowess, Orc Fury Style, Intimidate 5 ranks, weapon familiarity racial trait. While using Orc Fury Style, you gain a +1 bonus on attack rolls and damage rolls against shaken opponents, and you don’t take an attack penalty when using the Bullying Blow feat.",
@@ -1714,9 +1726,9 @@ const MODIFIERS = [
  desc:"Weapon Finesse, base attack bonus +1. When wielding a light weapon, you can choose to take a -1 penalty on all melee attack rolls and combat maneuver checks to gain a +2 bonus on all melee damage rolls. This bonus to damage is halved (-50%) if you are making an attack with an off-hand weapon or secondary natural weapon. When your base attack bonus reaches…",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:'+'+v+' dmg'+' (untyped)'}}},
 {id:'planar-hunter',name:"Planar Hunter",category:'feat',source:"Champions of Balance",appliesTo:['attack'],type:'untyped',
- configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"Knowledge (planes) 5 ranks, favored terrain (any plane) class feature. When you are on one of the planes you’ve selected as a favored terrain, you gain a +2 bonus on weapon attack rolls against outsiders native to that plane. You also ignore up to 5 points of damage reduction when making weapon attacks against outsiders native to that plane, except for damage reduction without a type…",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk'+' (untyped)'}}},
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:'outsider'}],
+ desc:"Knowledge (planes) 5 ranks, favored terrain (any plane) class feature. When you are on one of the planes you’ve selected as a favored terrain, you gain a +2 bonus on weapon attack rolls against outsiders native to that plane. You also ignore up to 5 points of damage reduction when making weapon attacks against outsiders native to that plane, except for damage reduction without a type… Tracked as \"vs Outsider\" broadly (also matches outsiders not native to your terrain plane) — toggle off by hand if it doesn't actually qualify.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target isn\'t an outsider — see the "Vs enemy type" field above'};return {attack:v,damage:0,note:'+'+v+' atk'+' (untyped)'}}},
 {id:'precipice-strike',name:"Precipice Strike",category:'feat',source:"Heroes from the Fringe",appliesTo:['attack'],type:'circumstance',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"Dex 15, base attack bonus +6, cragkin half-orc. When you and the target of your attack are both in difficult terrain, treat the target as if he were flat-footed. In addition, if you attack a flat-footed enemy from a higher elevation (including while falling), you gain a +2 circumstance bonus on your attack roll.",
@@ -1799,7 +1811,7 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk'+' (untyped)'}}},
 {id:'steadfast-slayer',name:"Steadfast Slayer",category:'feat',source:"Melee Tactics Toolbox",appliesTo:['damage'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"If you are the only character threatening an opponent and you successfully attack the opponent with a two-handed melee weapon, for each size category larger than you that opponent is, you gain a +2 bonus on your melee damage roll.",
+ desc:"If you are the only character threatening an opponent and you successfully attack the opponent with a two-handed melee weapon, for each size category larger than you that opponent is, you gain a +2 bonus on your melee damage roll. There's no tracked (an opponent 1+ size category larger than you, while alone and using a two-handed melee weapon) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:'+'+v+' dmg'+' (untyped)'}}},
 {id:'stick-fighting-style',name:"Stick-Fighting Style",category:'feat',source:"Martial Arts Handbook",appliesTo:['attack'],type:'enhancement',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
@@ -1895,11 +1907,11 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'ash-bane',name:"Ash Bane",category:'trait',source:"People of the Wastes",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Requirement(s) Wastelands You have built up a resistance to the diseases that ash giants and their vermin guardians carry. You gain a +2 trait bonus on Fortitude saving throws to resist the disease abilities of ash giants and creatures with the vermin type. In addition, you gain a +1 trait bonus on melee attack rolls…",
+ desc:"Requirement(s) Wastelands You have built up a resistance to the diseases that ash giants and their vermin guardians carry. You gain a +2 trait bonus on Fortitude saving throws to resist the disease abilities of ash giants and creatures with the vermin type. In addition, you gain a +1 trait bonus on melee attack rolls… There's no tracked (ash giants and vermin-type creatures) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'big-game-hunter-2',name:"Big Game Hunter",category:'trait',source:"People of the North",appliesTo:['damage'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Requirement(s) Realm of the Mammoth Lords You have spent long hours hunting giant creatures and have become skilled at bringing them down quickly. You gain a +1 trait bonus on weapon damage rolls against Large or larger creatures of the animal type.",
+ desc:"Requirement(s) Realm of the Mammoth Lords You have spent long hours hunting giant creatures and have become skilled at bringing them down quickly. You gain a +1 trait bonus on weapon damage rolls against Large or larger creatures of the animal type. There's no tracked (Large or larger animals) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
 {id:'black-as-night',name:"Black as Night",category:'trait',source:"Knights of the Inner Sea",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
@@ -1911,8 +1923,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
 {id:'blooded',name:"Blooded",category:'trait',source:"Dwarves of Golarion",appliesTo:['damage'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Requirement(s) Mindspin Mountains Desperate battles have honed your fighting skills against the ancient enemies of the dwarves. You receive a +1 trait bonus on weapon damage rolls against giants, goblins, and orcs.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
+ desc:"Requirement(s) Mindspin Mountains Desperate battles have honed your fighting skills against the ancient enemies of the dwarves. You receive a +1 trait bonus on weapon damage rolls against giants, goblins, and orcs. There's no tracked giant/goblin/orc enemy category here — toggle this off by hand against anything else.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg (trait) — vs. giants/goblins/orcs only, always on otherwise'}}},
 {id:'briar-bandit',name:"Briar Bandit",category:'trait',source:"Kobolds of Golarion",appliesTo:['damage'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"Requirement(s) Forest The time you've spent crawling through thorny brambles and other thick underbrush during raids and ambushes taught you how to move without disturbing the dense flora around you. When in overgrown areas, you gain a +2 trait bonus on Stealth checks and a +1 trait bonus on damage rolls with sneak…",
@@ -1930,9 +1942,9 @@ const MODIFIERS = [
  desc:"Requirement(s) Carpenden [in Andoran] Your regular participation in the moonmelon festival has made you wickedly effective at hurling harmless objects. You gain a +2 trait bonus on attack rolls when throwing items that do not deal normal hit point damage (such as weapons that deal nonlethal damage or items such as…",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'chelish-guerrilla',name:"Chelish Guerrilla",category:'trait',source:"Monster Summoner's Handbook",appliesTo:['damage'],type:'trait',
- configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"Requirement(s) Cheliax In overthrowing House Thrune, you’ve spent many years training to face the diabolist nobles and the devils they bind. You gain a +2 trait bonus on Knowledge checks to identify devils (and their special powers and weaknesses) and a +1 trait bonus on weapon damage rolls against devils.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:'evilOutsiderFlag'}],
+ desc:"Requirement(s) Cheliax In overthrowing House Thrune, you’ve spent many years training to face the diabolist nobles and the devils they bind. You gain a +2 trait bonus on Knowledge checks to identify devils (and their special powers and weaknesses) and a +1 trait bonus on weapon damage rolls against devils. Tracked as \"vs Evil Outsider\" broadly (there's no dedicated devil category — also matches demons and other evil outsiders) — toggle off by hand if it isn't actually a devil.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target isn\'t an evil outsider — see the "Vs enemy type" field above'};return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
 {id:'chilled-by-brutality',name:"Chilled by Brutality",category:'trait',source:"Giant Hunter's Handbook",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"Requirement(s) Tundra—Cloud, Frost, River, Rune, Taiga You were part of a group that was mercilessly attacked by giants of the tundra, who may have gone so far as to eat the dead and dying. After that, little can faze you, but you strongly prefer to finish fights with giants quickly to prevent anything like that from…",
@@ -1942,9 +1954,9 @@ const MODIFIERS = [
  desc:"Requirement(s) Kasatha You were attacked by strangers that threatened to expose your existence to dangerous forces and you defended yourself using cover. You gain a +1 trait bonus on ranged weapon damage rolls as long as you have cover from your opponent.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
 {id:'crusader',name:"Crusader",category:'trait',source:"Divine Anthology",appliesTo:['attack'],type:'trait',
- configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"From studying “Prime Commander” and reading accounts of the battles in the Worldwound, you have trained to be a crusader against demonic forces. You gain a +1 trait bonus on attack rolls against outsiders with the chaotic subtype.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:'chaotic'}],
+ desc:"From studying “Prime Commander” and reading accounts of the battles in the Worldwound, you have trained to be a crusader against demonic forces. You gain a +1 trait bonus on attack rolls against outsiders with the chaotic subtype. Tracked as \"vs Chaotic\" broadly (there's no combined chaotic-outsider category — also matches non-outsider chaotic creatures) — toggle off by hand if it isn't actually a chaotic outsider.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match — see the "Vs enemy type" field above'};return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'deep-guardian',name:"Deep Guardian",category:'trait',source:"Dwarves of Golarion",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Requirement(s) Dwarf The subtle power of the deep places of the world flows within you, and grants you mastery of summoning beings of earth and stone. Any creature you conjure with a summon spell that has the earth subtype or a burrow speed gains a +1 morale bonus on attack rolls and a +1 enhancement bonus to Armor…",
@@ -1955,7 +1967,7 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:'+'+v+' atk'+' '+'+'+v+' dmg'+' (trait)'}}},
 {id:'div-hunter',name:"Div Hunter",category:'trait',source:"Monster Summoner's Handbook",appliesTo:['damage'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"Requirement(s) Thuvia Divs have tormented you and your loved ones for as long as you can remember. You’ve improved your skills to better oppose the creatures. You gain a +2 trait bonus on Knowledge checks to identify divs (and their special powers and weaknesses) and a +1 trait bonus on weapon damage rolls against…",
+ desc:"Requirement(s) Thuvia Divs have tormented you and your loved ones for as long as you can remember. You’ve improved your skills to better oppose the creatures. You gain a +2 trait bonus on Knowledge checks to identify divs (and their special powers and weaknesses) and a +1 trait bonus on weapon damage rolls against… There's no tracked (divs) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
 {id:'dockside-brawler',name:"Dockside Brawler",category:'trait',source:"Skull & Shackles Player's Guide",appliesTo:['damage'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
@@ -2019,7 +2031,7 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'gnoll-killer',name:"Gnoll Killer",category:'trait',source:"Legacy of Fire Player's Guide",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"You grew up in rural Katapesh, in a region where gnoll activity was a fact of life. You killed your first gnoll at a young age when a group of gnoll slavers attacked your village, home, or caravan, and your hatred of gnolls has only grown since then. Something in your past fueled your hatred of gnolls even further—…",
+ desc:"You grew up in rural Katapesh, in a region where gnoll activity was a fact of life. You killed your first gnoll at a young age when a group of gnoll slavers attacked your village, home, or caravan, and your hatred of gnolls has only grown since then. Something in your past fueled your hatred of gnolls even further—… There's no tracked (gnolls) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'goblin-bravery',name:"Goblin Bravery",category:'trait',source:"We Be Goblins!",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
@@ -2071,7 +2083,7 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
 {id:'monster-hunter',name:"Monster Hunter",category:'trait',source:"Rise of the Runelords Anniversary Edition Player's Guide",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Perhaps you came to the Varisian Gulf in search of the Sandpoint Devil, or maybe you followed fisherman’s tales of Old Murdermaw— regardless, you’ve ventured through Varisia to hunt down famous monsters. While they have all eluded you so far, you made it to Sandpoint to research and restock before heading back ou",
+ desc:"Perhaps you came to the Varisian Gulf in search of the Sandpoint Devil, or maybe you followed fisherman’s tales of Old Murdermaw— regardless, you’ve ventured through Varisia to hunt down famous monsters. While they have all eluded you so far, you made it to Sandpoint to research and restock before heading back ou There's no tracked (the specific condition described above) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'nagaji-nationalist',name:"Nagaji Nationalist",category:'trait',source:"Inner Sea Races",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
@@ -2102,9 +2114,9 @@ const MODIFIERS = [
  desc:"Giant Hunter's Handbook pg. 31 You grew up in a tranquil, happy home near the mountains, but that peace was shattered when giants came down from the mountains to raid your settlement. The giants killed your parents and left you a young orphan, and since that day, you’ve sworn to avenge the deaths of your kin. You gain…",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'outsider-enemy',name:"Outsider Enemy",category:'trait',source:"Blood of the Ancients",appliesTo:['attack','damage'],type:'trait',
- configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"One of your ancestors was a conjurer who specialized in binding outsiders of a particular type. You have inherited some of his skills, but also some of his enemies. Choose a single outsider subtype. The DC of your spells increases by 1 against outsiders of the chosen subtype. Outsiders of the chosen subtype gain a +1…",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:'+'+v+' atk'+' '+'+'+v+' dmg'+' (trait)'}}},
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:'outsider'}],
+ desc:"One of your ancestors was a conjurer who specialized in binding outsiders of a particular type. You have inherited some of his skills, but also some of his enemies. Choose a single outsider subtype. The DC of your spells increases by 1 against outsiders of the chosen subtype. Outsiders of the chosen subtype gain a +1… Tracked as \"vs Outsider\" broadly (also matches outsiders of a different subtype than your chosen one) — toggle off by hand if it isn't the right subtype. Source text is cut off here, so double-check the exact attack/damage benefit against the original.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target isn\'t an outsider — see the "Vs enemy type" field above'};return {attack:v,damage:v,note:'+'+v+' atk'+' '+'+'+v+' dmg'+' (trait)'}}},
 {id:'peg-leg',name:"Peg Leg",category:'trait',source:"Skull & Shackles Player's Guide",appliesTo:['damage'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"One of your legs was bitten off below the knee by a shark when you were just a child, and was replaced with a wooden peg leg ( Pathfinder Player Companion: Pirates of the Inner Sea 20). You’ve long since gotten used to your prosthesis, however, and take none of the normal penalties from having a peg leg. You’ve had to…",
@@ -2146,9 +2158,9 @@ const MODIFIERS = [
  desc:"Advanced Player's Guide pg. 332 , Taldor, Echoes of Glory pg. 13 Requirement(s) Marsh or River You learned to swim right after you learned to walk. When you were a youth, a gang of river pirates put you to work swimming in nighttime rivers and canals with a dagger between your teeth so you could sever the anchor ropes…",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
 {id:'robot-slayer',name:"Robot Slayer",category:'trait',source:"Iron Gods Player's Guide",appliesTo:['attack'],type:'trait',
- configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"People of the River pg. 31 The strange automatons that plague the wilds of Numeria are a blight upon the world, and the idea that there could be countless more of these creatures lying in wait in the unknown ruins scattered throughout the region chills your blood. Khonnir’s recovery of a deactivated robot from the…",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
+ configFields:[{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:'construct'},{key:'value',label:'Bonus value',type:'number',default:1}],
+ desc:"People of the River pg. 31 The strange automatons that plague the wilds of Numeria are a blight upon the world, and the idea that there could be countless more of these creatures lying in wait in the unknown ruins scattered throughout the region chills your blood. Khonnir’s recovery of a deactivated robot from the… (robots/automatons are Constructs in PF1e — this also matches other constructs the trait may not have intended)",
+ compute:(ctx,cfg)=>{if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match — see the "Vs enemy type" field above'};let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'ruthless',name:"Ruthless",category:'trait',source:"Dwarves of Golarion",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Requirement(s) Dwarf You never hesitate to strike a killing blow. You gain a +1 trait bonus on attack rolls to confirm critical hits.",
@@ -2159,7 +2171,7 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
 {id:'seasoned-hunter',name:"Seasoned Hunter",category:'trait',source:"Ruins of Azlant Player's Guide",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"You grew up hunting every season, any season. Maybe you grew up in a rural area and hunted to put food on the table, or perhaps you come from a comfortable lifestyle where hunting for sport is an excellent excuse to camp in the wilderness and hone your skills. After sharing stories of your most exciting hunts and…",
+ desc:"You grew up hunting every season, any season. Maybe you grew up in a rural area and hunted to put food on the table, or perhaps you come from a comfortable lifestyle where hunting for sport is an excellent excuse to camp in the wilderness and hone your skills. After sharing stories of your most exciting hunts and… There's no tracked (the specific condition described above) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'shadow-stabber',name:"Shadow Stabber",category:'trait',source:"Blood of Fiends",appliesTo:['damage'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
@@ -2167,7 +2179,7 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
 {id:'slayer-of-the-deep',name:"Slayer of the Deep",category:'trait',source:"Dragon Empires Primer",appliesTo:['damage'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Requirement(s) Tian Xia Darklands You have hunted monsters throughout the Darklands and know how to take advantage of their weaknesses. You gain a +1 trait bonus on damage rolls made against creatures of the aberration type.",
+ desc:"Requirement(s) Tian Xia Darklands You have hunted monsters throughout the Darklands and know how to take advantage of their weaknesses. You gain a +1 trait bonus on damage rolls made against creatures of the aberration type. There's no tracked (aberrations) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
 {id:'spellcaster-s-anathema',name:"Spellcaster's Anathema",category:'trait',source:"People of the Wastes",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
@@ -2308,7 +2320,7 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk'+' (untyped)'}}},
 {id:'bloodstone-manhunter-p4',name:"Bloodstone Manhunter",category:'feat',source:"Faction Guide pg. 56\nYou are skilled at fighting criminal humans such as bandits.",appliesTo:['attack','damage'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"You gain a +1 bonus on Bluff, Knowledge, Perception, Sense Motive, and Survival checks against humans, and a +1 bonus on weapon attack and damage rolls against humans. If you have a favored enemy bonus against humans, this feat does not stack with that bonus.",
+ desc:"You gain a +1 bonus on Bluff, Knowledge, Perception, Sense Motive, and Survival checks against humans, and a +1 bonus on weapon attack and damage rolls against humans. If you have a favored enemy bonus against humans, this feat does not stack with that bonus. There's no tracked (humans) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:'+'+v+' atk'+' '+'+'+v+' dmg'+' (untyped)'}}},
 {id:'bullseye-shot-p4',name:"Bullseye Shot",category:'feat',source:"Inner Sea Gods pg. 208, Faiths of Purity pg. 24\nYou slow your breath, calm yourself, and hit the bullseye, just as you were trained to do.",appliesTo:['attack'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:4}],
@@ -2371,9 +2383,9 @@ const MODIFIERS = [
  desc:"You are not staggered while using the Diehard feat, but if you take a move and a standard action or a full-round action while you are at 0 or fewer hit points you take 1 point of damage. Further, while using the Diehard feat, you gain a +2 bonus on melee attacks and damage rolls.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:0,damage:v,note:'+'+v+' dmg'+' (untyped)'}}},
 {id:'demon-hunter-p4',name:"Demon Hunter",category:'feat',source:"Inner Sea World Guide pg. 286, Pathfinder Campaign Setting pg. 98\nYou are well-versed in demonic lore.",appliesTo:['attack'],type:'morale',
- configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:'demon'}],
  desc:"You gain a +2 bonus on Knowledge (planes) checks to know the powers and abilities of demons. You gain a +2 morale bonus on all attack rolls and a +2 morale bonus on caster level checks to penetrate spell resistance made against creatures with the demon subtype you recognize as demons.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:'+'+v+' atk'+' (morale)'}}},
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target isn\'t a demon — see the "Vs enemy type" field above'};return {attack:v,damage:0,type:'morale',note:'+'+v+' atk'+' (morale, vs demon)'}}},
 {id:'desperate-battler-p4',name:"Desperate Battler",category:'feat',source:"Inner Sea World Guide pg. 286, Pathfinder Campaign Setting pg. 130\nYour experiences fighting against numerous foes that have already overwhelmed your allies, friends, and family have forced you to excel at fighting on your own.",appliesTo:['attack','damage'],type:'morale',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"When no ally is within 10 feet of you and you are not receiving benefits from the aid another action, you gain a +1 morale bonus on melee attack and damage rolls.",
@@ -2391,7 +2403,7 @@ const MODIFIERS = [
  compute:(ctx)=>{let v=(ctx.wis||0);return {attack:0,damage:v,note:'+'+v+' (untyped, from your wis modifier)'}}},
 {id:'dog-killer-horse-hunter-p4',name:"Dog Killer, Horse Hunter",category:'feat',source:"Goblins of Golarion pg. 24\nEmbracing fear and hatred of your ancestral foes allows you to make particularly telling blows.",appliesTo:['attack','damage'],type:'morale',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"You gain a +2 morale bonus on all attack and damage rolls made against dogs and horses (including doglike and horse-like targets such a nightmares or worgs). Additionally, you gain a +2 bonus on rolls to confirm critical hits against these foes.",
+ desc:"You gain a +2 morale bonus on all attack and damage rolls made against dogs and horses (including doglike and horse-like targets such a nightmares or worgs). Additionally, you gain a +2 bonus on rolls to confirm critical hits against these foes. There's no tracked (dogs, horses, and similar creatures (nightmares, worgs...)) enemy category here — toggle this off by hand when it doesn't apply.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:'+'+v+' atk'+' '+'+'+v+' dmg'+' (morale)'}}},
 {id:'draconian-law-p4',name:"Draconian Law",category:'feat',source:"Legacy of Dragons pg. 19\nYour code of honor extends to all aspects of life, including the judgment of your foes.",appliesTo:['attack'],type:'circumstance',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
@@ -2755,7 +2767,7 @@ const MODIFIERS = [
  compute:()=>({attack:0,damage:0,note:'special — not added to totals, see description'})},
 {id:'mythic-heathen-slayer',name:'Heathen Slayer',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'untyped',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:'1st-tier Hierophant path ability: +2 (rising to +4 at 6th tier — edit the value above) bonus on weapon attack and damage rolls against a chosen rival deity\'s followers.',
+ desc:'1st-tier Hierophant path ability: +2 (rising to +4 at 6th tier — edit the value above) bonus on weapon attack and damage rolls against a chosen rival deity\'s followers. There\'s no tracked (followers of your chosen rival deity) enemy category here — toggle this off by hand when it doesn\'t apply.',
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}}},
 {id:'mythic-overflowing-grace',name:'Overflowing Grace',category:'mythic',subcat:'path',source:'Mythic Adventures',appliesTo:['attack'],type:'sacred',
  desc:'1st-tier Hierophant path ability: healing a creature to full HP with positive energy grants it +1 sacred (or profane, for undead healed with negative energy) on attack rolls and other checks/saves for 1 minute.',
@@ -4229,6 +4241,11 @@ function compute(){
     // Mythic Power Attack: its damage bonus is doubled again before the crit multiplier
     critDmg += powerAttackDmgVal*critMult;
   }
+  // A Shining Beacon: flat +critMult damage on a confirmed crit vs a demon, unmultiplied
+  // (added after the crit multiplier is applied to everything else) -- same treatment as
+  // the Power Attack no-crit-mult house rule above.
+  let shiningBeaconOn = p.active.some(a=>a.id==='a-shining-beacon' && a.on!==false) && targetMatches(ctx,'demon');
+  if(shiningBeaconOn) critDmg += critMult;
 
   // Vital Strike's own dedicated numbers -- same formula as Normal/Critical Damage
   // above, just starting from dmg*vsMult when Mythic Vital Strike also multiplies the
@@ -4241,6 +4258,7 @@ function compute(){
   } else if(ctx.mythicPowerAttackOn && powerAttackOn && powerAttackDmgVal){
     critDmgVS += powerAttackDmgVal*critMult;
   }
+  if(shiningBeaconOn) critDmgVS += critMult;
 
   // Smite Evil: on the first successful hit against an evil outsider, evil dragon, or
   // undead, its damage bonus doubles (see the modifier's own note above) — add one more
