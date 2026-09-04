@@ -3133,28 +3133,44 @@ if(window.PFConditions){ let cloudSaveBtn=$('cloudSave'); if(cloudSaveBtn&&cloud
   };
 })();
 
+// Shared "info" badge: a small icon that reveals a text popover on click (and closes on
+// a second click, or a click anywhere else) -- used to keep explanatory text available
+// without it permanently claiming layout space. Usable anywhere on the page.
+function makeNoteIcon(text){
+  const note=document.createElement('span');
+  note.className='noteIcon';
+  note.setAttribute('role','button');
+  note.setAttribute('tabindex','0');
+  note.title='More info';
+  const pop=document.createElement('div');
+  pop.className='notePopover';
+  pop.textContent=text;
+  note.appendChild(pop);
+  function toggle(e){
+    e.stopPropagation();
+    const willOpen=!note.classList.contains('open');
+    document.querySelectorAll('.noteIcon.open').forEach(o=>{ if(o!==note) o.classList.remove('open'); });
+    note.classList.toggle('open', willOpen);
+  }
+  note.addEventListener('click', toggle);
+  note.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(e); } });
+  return note;
+}
+document.addEventListener('click', ()=>{ document.querySelectorAll('.noteIcon.open').forEach(o=>o.classList.remove('open')); });
+
 // Field notes: collapse the always-visible explanatory text into a small "info" badge
-// attached to the field it explains, revealed by click (and closed by clicking it
-// again or clicking anywhere else) -- keeps the notes available without them claiming
+// attached to the field it explains -- keeps the notes available without them claiming
 // grid space and forcing whatever comes after onto a new row. Inserted right after the
 // anchor's own <label> text (inline), not floated at the row's outer corner -- a badge
 // sitting at a row's edge reads as belonging to whichever field starts right after it.
 (function(){
   const notes=[...document.querySelectorAll('.card-char .emptyNote, .card-char .raceNote')];
-  notes.forEach(note=>{
-    let anchor=note.previousElementSibling;
+  notes.forEach(oldNote=>{
+    let anchor=oldNote.previousElementSibling;
     while(anchor && (anchor.classList.contains('emptyNote') || anchor.classList.contains('raceNote'))) anchor=anchor.previousElementSibling;
     if(!anchor) return;
-    const text=note.textContent;
-    note.textContent='';
-    note.className='noteIcon';
-    note.setAttribute('role','button');
-    note.setAttribute('tabindex','0');
-    note.title='More info';
-    const pop=document.createElement('div');
-    pop.className='notePopover';
-    pop.textContent=text;
-    note.appendChild(pop);
+    const icon=makeNoteIcon(oldNote.textContent);
+    oldNote.remove();
     const label = anchor.tagName==='LABEL' ? anchor : anchor.querySelector(':scope > label');
     const attachPoint = label || anchor;
     let holder=attachPoint.querySelector(':scope > .noteIconHolder');
@@ -3164,17 +3180,8 @@ if(window.PFConditions){ let cloudSaveBtn=$('cloudSave'); if(cloudSaveBtn&&cloud
       if(!label) anchor.style.position='relative';
       attachPoint.appendChild(holder);
     }
-    holder.appendChild(note);
-    function toggle(e){
-      e.stopPropagation();
-      const willOpen=!note.classList.contains('open');
-      document.querySelectorAll('.card-char .noteIcon.open').forEach(o=>{ if(o!==note) o.classList.remove('open'); });
-      note.classList.toggle('open', willOpen);
-    }
-    note.addEventListener('click', toggle);
-    note.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(e); } });
+    holder.appendChild(icon);
   });
-  document.addEventListener('click', ()=>{ document.querySelectorAll('.card-char .noteIcon.open').forEach(o=>o.classList.remove('open')); });
 })();
 
 // ---------- Modifier catalog UI ----------
@@ -3206,7 +3213,9 @@ function renderCategories(){
     }
     if(cat.k==='houserule'){
       let n=document.createElement('div'); n.className='emptyNote';
-      n.textContent='"+ Custom" here (or in any category) DOES apply automatically — it adds a real flat attack/damage bonus to the totals below, no extra setup needed. What it can\'t do is change how the math itself works (e.g. "damage isn\'t multiplied on a crit") — that kind of rule needs to be coded by hand, like the one entry below. If your house rule is a simple flat number, "+ Custom" is the right tool; if it changes the shape of a formula, ask and it can be added properly.';
+      n.style.cssText='display:flex;align-items:center;gap:4px';
+      n.append('How "+ Custom" behaves here');
+      n.appendChild(makeNoteIcon('"+ Custom" here (or in any category) DOES apply automatically — it adds a real flat attack/damage bonus to the totals below, no extra setup needed. What it can\'t do is change how the math itself works (e.g. "damage isn\'t multiplied on a crit") — that kind of rule needs to be coded by hand, like the one entry below. If your house rule is a simple flat number, "+ Custom" is the right tool; if it changes the shape of a formula, ask and it can be added properly.'));
       block.appendChild(n);
     }
     if(cat.subcats){
