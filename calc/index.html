@@ -2879,7 +2879,7 @@ function loadProfileIntoUI(){
   let p=currentProfile();
   $('characterLevel').value=p.characterLevel; $('casterLevel').value=p.casterLevel; $('numAttacks').value=(p.babList&&p.babList.length)||1; $('mythicEnabled').checked=!!p.mythicEnabled; $('mythicTier').value=p.mythicTier; $('currentTarget').value=p.currentTarget; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
   renderBabInputs();
-  $('mythicTierBox').style.display = p.mythicEnabled ? 'block' : 'none';
+  $('mythicTierBox').style.display = p.mythicEnabled ? 'grid' : 'none';
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
   $('style').value=p.style; $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat; $('enh').value=p.enh; $('critMult').value=p.critMult;
@@ -2888,10 +2888,10 @@ function loadProfileIntoUI(){
   $('ammoEnh').value=p.ammoEnh;
   $('race').value=p.race||''; $('alignment').value=p.alignment||'';
   $('deity').value=p.deity||'';
-  $('customWeapon').style.display = p.weapon==='custom' ? 'block' : 'none';
+  $('customWeapon').style.display = p.weapon==='custom' ? 'grid' : 'none';
   $('offCustomWeapon').style.display = p.offWeapon==='custom' ? 'block' : 'none';
-  $('offhandBox').style.display = p.style==='twf' ? 'block' : 'none';
-  $('ammoBox').style.display = p.style==='ranged' ? 'block' : 'none';
+  $('offhandBox').style.display = p.style==='twf' ? 'grid' : 'none';
+  $('ammoBox').style.display = p.style==='ranged' ? 'grid' : 'none';
   updateEnhLabel();
   applyRaceSourceExclusions();
   renderSources();
@@ -2981,7 +2981,7 @@ $('deleteProfile').onclick=()=>{
 ['characterLevel','casterLevel','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offWeapon','offCustomDice','offCustomThreat','offCritMult','offEnh','offLight','enh','ammoEnh','critMult'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
-      $('customWeapon').style.display = $('weapon').value==='custom' ? 'block' : 'none';
+      $('customWeapon').style.display = $('weapon').value==='custom' ? 'grid' : 'none';
       let w=WEAPONS[$('weapon').value];
       if(w) $('critMult').value=w.mult;
     }
@@ -2991,14 +2991,14 @@ $('deleteProfile').onclick=()=>{
       if(ow) $('offCritMult').value=ow.mult;
     }
     if(id==='style'){
-      $('offhandBox').style.display = $('style').value==='twf' ? 'block' : 'none';
-      $('ammoBox').style.display = $('style').value==='ranged' ? 'block' : 'none';
+      $('offhandBox').style.display = $('style').value==='twf' ? 'grid' : 'none';
+      $('ammoBox').style.display = $('style').value==='ranged' ? 'grid' : 'none';
       updateEnhLabel();
       renderCategories();
     }
     syncUIIntoProfile();
     if(id==='mythicEnabled'){
-      $('mythicTierBox').style.display = $('mythicEnabled').checked ? 'block' : 'none';
+      $('mythicTierBox').style.display = $('mythicEnabled').checked ? 'grid' : 'none';
       renderCategories();
     }
     compute();
