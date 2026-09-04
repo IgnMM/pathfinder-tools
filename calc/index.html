@@ -931,22 +931,24 @@ const MODIFIERS = [
 
 // ---------------- OTHER (class features / combat rules) ----------------
 {id:'smite-evil',name:'Smite Evil',category:'other',source:'Paladin class feature',appliesTo:['attack','damage'],type:'untyped',
- desc:'CHA bonus to attack, paladin level to damage vs the smited target (untyped — no named bonus type given in the rules text). If the target is an evil outsider, evil dragon, or undead, this damage bonus is DOUBLED — but only on the first successful hit against it, not on later iteratives or later hits (handled as a note, not added to the flat total, same as other "first attack only" effects in this calculator).',
+ desc:'CHA bonus to attack, paladin level to damage vs the smited target (untyped — no named bonus type given in the rules text). This Cha bonus is unconditional RAW, so it includes active Cha-boosting effects (Eagle\'s Splendor) even if Charisma isn\'t your selected "Ability -> Attack rolls" above. If the target is an evil outsider, evil dragon, or undead, this damage bonus is DOUBLED — but only on the first successful hit against it, not on later iteratives or later hits (handled as a note, not added to the flat total, same as other "first attack only" effects in this calculator).',
  configFields:[{key:'palLvl',label:'Paladin level',type:'number',default:7,linkLevel:true}],
  compute:(ctx,cfg)=>{
    let dmg=cfg.palLvl||0;
+   let cha=ctx.effectiveCha!==undefined?ctx.effectiveCha:ctx.cha;
    let flags=TARGET_FLAG_MAP[ctx.currentTarget]||{};
    let doubles=flags.undead||(flags.evil&&flags.dragon)||(flags.evil&&flags.outsider);
-   return {attack:ctx.cha,damage:dmg,note:'+'+ctx.cha+' atk / +'+dmg+' dmg (untyped)'+(doubles?' — DOUBLED to +'+(dmg*2)+' on the first successful hit only (evil outsider/evil dragon/undead), see "First Smite Hit" result above':'')};
+   return {attack:cha,damage:dmg,note:'+'+cha+' atk / +'+dmg+' dmg (untyped)'+(doubles?' — DOUBLED to +'+(dmg*2)+' on the first successful hit only (evil outsider/evil dragon/undead), see "First Smite Hit" result above':'')};
  }},
 {id:'smite-good',name:'Smite Good',category:'other',source:'Antipaladin class feature',appliesTo:['attack','damage'],type:'untyped',
- desc:'CHA bonus to attack, antipaladin level to damage vs the smited target (untyped — mirrors Smite Evil). If the target is a good outsider or a good-aligned dragon, this damage bonus is DOUBLED — but only on the first successful hit, same restriction as Smite Evil (see "First Smite Hit" result above). RAW also doubles it against a good creature with cleric or paladin levels; that specific case has no matching flag on the Current Target picker above (it\'s about class levels, not creature type) — double the number by hand if it applies.',
+ desc:'CHA bonus to attack, antipaladin level to damage vs the smited target (untyped — mirrors Smite Evil). This Cha bonus is unconditional RAW, so it includes active Cha-boosting effects (Eagle\'s Splendor) even if Charisma isn\'t your selected "Ability -> Attack rolls" above. If the target is a good outsider or a good-aligned dragon, this damage bonus is DOUBLED — but only on the first successful hit, same restriction as Smite Evil (see "First Smite Hit" result above). RAW also doubles it against a good creature with cleric or paladin levels; that specific case has no matching flag on the Current Target picker above (it\'s about class levels, not creature type) — double the number by hand if it applies.',
  configFields:[{key:'antipalLvl',label:'Antipaladin level',type:'number',default:7,linkLevel:true}],
  compute:(ctx,cfg)=>{
    let dmg=cfg.antipalLvl||0;
+   let cha=ctx.effectiveCha!==undefined?ctx.effectiveCha:ctx.cha;
    let flags=TARGET_FLAG_MAP[ctx.currentTarget]||{};
    let doubles=(flags.good&&flags.dragon)||(flags.good&&flags.outsider);
-   return {attack:ctx.cha,damage:dmg,note:'+'+ctx.cha+' atk / +'+dmg+' dmg (untyped)'+(doubles?' — DOUBLED to +'+(dmg*2)+' on the first successful hit only (good outsider/good dragon), see "First Smite Hit" result above':'')};
+   return {attack:cha,damage:dmg,note:'+'+cha+' atk / +'+dmg+' dmg (untyped)'+(doubles?' — DOUBLED to +'+(dmg*2)+' on the first successful hit only (good outsider/good dragon), see "First Smite Hit" result above':'')};
  }},
 {id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
  desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls.',
@@ -2027,8 +2029,8 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'giant-slayer',name:"Giant Slayer",category:'trait',source:"Rise of the Runelords Anniversary Edition Player's Guide",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Your family’s village was plundered by giants in the wilds of Varisia, leaving nothing but a smoldering ruin. After the destruction of your village, your family trained for combat against giants to prevent such a tragedy from ever happening again. Since hearing of giants mobilizing throughout the countryside, you v",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
+ desc:"Your family’s village was plundered by giants in the wilds of Varisia, leaving nothing but a smoldering ruin. After the destruction of your village, your family trained for combat against giants to prevent such a tragedy from ever happening again. Since hearing of giants mobilizing throughout the countryside, you v There's no tracked \"giant\" enemy category here — toggle this off by hand when not fighting a giant.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk (trait) — vs. giants only, always on otherwise'}}},
 {id:'gnoll-killer',name:"Gnoll Killer",category:'trait',source:"Legacy of Fire Player's Guide",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"You grew up in rural Katapesh, in a region where gnoll activity was a fact of life. You killed your first gnoll at a young age when a group of gnoll slavers attacked your village, home, or caravan, and your hatred of gnolls has only grown since then. Something in your past fueled your hatred of gnolls even further—… There's no tracked (gnolls) enemy category here — toggle this off by hand when it doesn't apply.",
@@ -2090,9 +2092,9 @@ const MODIFIERS = [
  desc:"Requirement(s) Nagaji Your loyalty to the nagaji nation of Nagajor is powerful. You gain a +1 trait bonus on attack rolls and saving throws against foes that directly threaten the safety of Nagajor.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:0,note:'+'+v+' atk'+' (trait)'}}},
 {id:'nexian-corpse-hunter',name:"Nexian Corpse Hunter",category:'trait',source:"Advanced Class Origins",appliesTo:['damage'],type:'trait',
- configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
- desc:"Requirement(s) Nex After years spent fighting the undead legions of Geb, you have developed a knack for killing undead creatures with magic. You gain a +1 bonus on damage rolls from your spells against undead.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:'undead'}],
+ desc:"Requirement(s) Nex After years spent fighting the undead legions of Geb, you have developed a knack for killing undead creatures with magic. You gain a +1 bonus on damage rolls from your spells against undead. (Spell damage, not weapon damage — included for completeness, though this calculator's totals are weapon-attack-focused.)",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target isn\'t undead — see the "Vs enemy type" field above'};return {attack:0,damage:v,note:'+'+v+' dmg (trait, spell damage)'}}},
 {id:'nightstall-urchin',name:"Nightstall Urchin",category:'trait',source:"Legacy of Fire Player's Guide",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"Requirement(s) Katapesh You grew up an orphan on the streets of Katapesh, and spent many years of childhood in the Nightstalls, Katapesh’s most infamous market. The strange and often horrific sights you saw there forced you to grow up fast—there’s little that can shock or unsettle you. You gain a +2 trait bonus on…",
@@ -2226,9 +2228,9 @@ const MODIFIERS = [
  desc:"People of the Sands pg. 31 You have dedicated your life to eradicating the scourge of the undead from Golarion. You have spent countless hours studying the different types of undead and have trained endlessly to learn the best ways to defeat them. If any undead creatures come out of the tombs of Wati’s necropolis,…",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:0,damage:v,note:'+'+v+' dmg'+' (trait)'}}},
 {id:'undead-slayer',name:"Undead Slayer",category:'trait',source:"Bastards of Golarion",appliesTo:['attack','damage'],type:'trait',
- configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
+ configFields:[{key:'value',label:'Bonus value',type:'number',default:1},{key:'vsFlag',label:'Vs enemy type',type:'select',options:VS_FLAG_OPTIONS,default:'undead'}],
  desc:"Requirement(s) Dhampir Filled with wrath against the monsters whose unclean blood makes you an outcast, you gain a +1 trait bonus on attack and damage rolls against undead creatures.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:'+'+v+' atk'+' '+'+'+v+' dmg'+' (trait)'}}},
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target isn\'t undead — see the "Vs enemy type" field above'};return {attack:v,damage:v,note:'+'+v+' atk'+' '+'+'+v+' dmg'+' (trait)'}}},
 {id:'zealous-garundi',name:"Zealous (Garundi)",category:'trait',source:"Inner Sea Races",appliesTo:['attack'],type:'trait',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"Requirement(s) Human—Garundi You felt lost and aimless in your youth until a patron’s emotional intervention showed you the power of throwing yourself completely into what you do. Once per day, you can add a +2 trait bonus on any attack roll, saving throw, or skill check. You must choose to apply this bonus before…",
@@ -3918,6 +3920,12 @@ function collectContributions(ctx){
   // Prayer...) that touches attack/damage, so Fate's Favored's own +1 only applies then.
   ctx.hasLuckAttack = p.active.some(a=>{ if(a.id==='fates-favored'||a.on===false) return false; let mm=MODIFIERS.find(x=>x.id===a.id); return mm && mm.type==='luck' && mm.appliesTo.includes('attack'); });
   ctx.hasLuckDamage = p.active.some(a=>{ if(a.id==='fates-favored'||a.on===false) return false; let mm=MODIFIERS.find(x=>x.id===a.id); return mm && mm.type==='luck' && mm.appliesTo.includes('damage'); });
+  // Smite Evil/Good's Cha-to-attack bonus is unconditional RAW (always Cha, regardless of
+  // which ability is selected for "Ability -> Attack rolls" above) -- so it needs its own
+  // effective-Cha figure that includes active Cha-boosting effects (Eagle's Splendor),
+  // instead of reusing ctx.cha directly, which is just the raw ability-score field and
+  // ignores every buff (those only reach atkStat/dmgStat-gated totals via abilityBuffBonus).
+  ctx.effectiveCha = ctx.cha + p.active.filter(a=>{ let mm=MODIFIERS.find(x=>x.id===a.id); return mm && mm.type==='enhancement-cha' && a.on!==false; }).reduce((sum,a)=>{ let mm=MODIFIERS.find(x=>x.id===a.id); let scoreBonus=(a.cfg&&a.cfg.value!==undefined)?a.cfg.value:4; return sum+scoreBonus/2; },0);
   p.active.forEach(a=>{
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
     let isOff=a.on===false;
