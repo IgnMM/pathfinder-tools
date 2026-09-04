@@ -330,6 +330,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div class="result" id="firstSmiteCritBox" style="display:none"><div class="small">Critical First Smite Hit</div><div class="big" id="dmgFirstSmiteCrit">—</div></div>
   <div class="result" id="vsDmgBox" style="display:none"><div class="small">Vital Strike Damage <span style="font-weight:400">(single attack-action only)</span></div><div class="big" id="dmgVS">—</div></div>
   <div class="result" id="vsCritBox" style="display:none"><div class="small">Vital Strike Critical Damage</div><div class="big" id="dmgVSCrit">—</div></div>
+  <div class="result" id="vsSmiteBox" style="display:none"><div class="small">Vital Strike First Smite Hit</div><div class="big" id="dmgVSSmite">—</div></div>
+  <div class="result" id="vsSmiteCritBox" style="display:none"><div class="small">Vital Strike Critical First Smite Hit</div><div class="big" id="dmgVSSmiteCrit">—</div></div>
   <div class="result" id="offAtkBox" style="display:none"><div class="small">Off-Hand Attack</div><div class="big" id="offAtk">+0</div></div>
   <div class="result" id="offDmgBox" style="display:none"><div class="small">Off-Hand Damage</div><div class="big" id="offDmg">—</div></div>
   <div class="result" id="offCritBox" style="display:none"><div class="small">Off-Hand Critical Damage</div><div class="big" id="offCrit">—</div></div>
@@ -3675,6 +3677,11 @@ function compute(){
   // as the rest of the fixed damage) to get the "first hit" figures shown separately.
   let smiteFirstDmg = (smiteEvilOn && smiteDoubles) ? dmg + smiteDmgVal : null;
   let smiteFirstCritDmg = (smiteEvilOn && smiteDoubles) ? critDmg + smiteDmgVal*critMult : null;
+  // Same combo, but for a Vital Strike attack instead of a normal one -- built from
+  // dmgVS/critDmgVS (the Vital Strike figures) the same way the pair above is built
+  // from dmg/critDmg.
+  let vsSmiteFirstDmg = (smiteEvilOn && smiteDoubles && vsMult) ? dmgVS + smiteDmgVal : null;
+  let vsSmiteFirstCritDmg = (smiteEvilOn && smiteDoubles && vsMult) ? critDmgVS + smiteDmgVal*critMult : null;
 
   // dmgNormalDice/dmgCritDiceStr stay the plain, non-Vital-Strike dice string; the
   // Vital-Strike-multiplied version is computed separately as dmgVSDice/dmgVSCritDiceStr
@@ -3725,6 +3732,13 @@ function compute(){
   if(vsMult){
     $('dmgVS').textContent=`${dmgVSDice} ${signed(dmgVS)}`;
     $('dmgVSCrit').textContent=`${dmgVSCritDiceStr} ${signed(critDmgVS)} (threat ${displayThreat}/×${critMult})`;
+  }
+  let vsSmiteOn = smiteFirstOn && vsMult;
+  $('vsSmiteBox').style.display = vsSmiteOn ? 'block' : 'none';
+  $('vsSmiteCritBox').style.display = vsSmiteOn ? 'block' : 'none';
+  if(vsSmiteOn){
+    $('dmgVSSmite').textContent=`${dmgVSDice} ${signed(vsSmiteFirstDmg)}`;
+    $('dmgVSSmiteCrit').textContent=`${dmgVSCritDiceStr} ${signed(vsSmiteFirstCritDmg)} (threat ${displayThreat}/×${critMult})`;
   }
 
   notes.push('Base attack: BAB '+signed(bab)+' + '+ABIL_LABEL[atkStat]+' '+signed(atkAbilityMod)+' + enhancement '+signed(effectiveEnh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
