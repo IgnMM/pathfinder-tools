@@ -4014,13 +4014,14 @@ function markSuppressed(entries,breakdown){
 }
 
 function renderUnmodeledEffects(breakdown){
-  // Anything active (checked on, not suppressed) that contributes exactly 0/0 but still
-  // has a note is, by construction, an effect the flat-number engine can't add for you --
-  // it changes how you roll, needs a resource tracked, only applies conditionally, etc.
-  // Surface those explicitly instead of letting them blend into the breakdown table as
-  // just another zero row.
+  // Only type:'special' entries are STRUCTURALLY unable to add a number -- their compute()
+  // always returns 0/0 no matter the state, because the real effect changes how you roll,
+  // needs a resource tracked, or otherwise can't be reduced to a flat bonus. Everything else
+  // that happens to be showing 0 right now (Fate's Favored with no other luck bonus active,
+  // Favored Enemy against the wrong target, etc.) is a correctly-computed conditional bonus,
+  // not an unaccounted-for effect -- it's already doing its job, just not this turn.
   let box=$('unmodeledBox'), list=$('unmodeledList');
-  let items=breakdown.filter(b=>!b.off && !b.suppressed && b.atk===0 && b.dmg===0 && b.note);
+  let items=breakdown.filter(b=>!b.off && !b.suppressed && b.type==='special' && b.note);
   if(!items.length){ box.style.display='none'; list.innerHTML=''; return; }
   box.style.display='block';
   list.innerHTML=items.map(b=>`<div class="unmodeledItem"><b>${b.name}</b> — ${b.note}</div>`).join('');
