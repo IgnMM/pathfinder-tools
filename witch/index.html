@@ -74,6 +74,24 @@ if(!store.deletedProfiles) store.deletedProfiles={};
 if(!store.profiles[store.active])store.active=Object.keys(store.profiles)[0];
 Object.values(store.profiles).forEach(p=>{ if(p.sourcesCustomized===undefined) p.sourcesCustomized=Object.keys(p.excludedSources||{}).length>0; });
 Object.values(store.profiles).forEach(applyDefaultsToState);
+
+(function pruneStaleEntries(){
+  // Spell renames/dedup fixes over time can leave orphaned "level|name" keys in
+  // prep/fav/cast/forbidden pointing at a spell that no longer exists under that exact
+  // name -- invisible in the UI, but still counted by prepCount(), silently eating a
+  // normal preparation slot (e.g. blocking the last level-3 slot even though only N-1
+  // spells are visibly checked). Prune per profile, against that profile's own
+  // archetype spell list (not just the base SPELLS), since prep is per-profile.
+  let changed=false;
+  Object.values(store.profiles).forEach(p=>{
+    let list=(ARCHETYPES[p.archetype]&&ARCHETYPES[p.archetype].spells)||SPELLS;
+    let validKeys=new Set(list.map(s=>s.l+'|'+s.n));
+    ['prep','fav','cast','forbidden'].forEach(field=>{
+      Object.keys(p[field]).forEach(k=>{ if(!validKeys.has(k)){ delete p[field][k]; changed=true; } });
+    });
+  });
+  if(changed) localStorage.setItem(STORE_KEY, JSON.stringify(store));
+})();
 function applyGlobalSourcesToProfile(p){
   if(p.sourcesCustomized) return;
   let allSrc=[...new Set(SPELLS.map(s=>s.source||'Unknown'))];
