@@ -304,7 +304,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
     <option value="3">×3</option>
     <option value="4">×4</option>
   </select></div>
-  <div class="emptyNote">Attack penalties follow the standard two-weapon-fighting table (-6/-10 normal, -4/-4 light) and are automatically reduced if you add the "Two-Weapon Fighting" feat below; off-hand damage uses half your damage-ability bonus (from "Ability → Damage rolls" above) unless "Double Slice" is active.</div>
+  <div class="emptyNote">Attack penalties follow the standard two-weapon-fighting table (-6/-10 normal, -4/-8 light) and are automatically reduced if you add the "Two-Weapon Fighting" feat below (to -4/-4, or -2/-2 combined with a light off-hand weapon); off-hand damage uses half your damage-ability bonus (from "Ability → Damage rolls" above) unless "Double Slice" is active.</div>
 </div>
 <div id="ammoBox" class="offhandBox" style="display:none">
   <h3 style="margin-top:0">Ammunition</h3>
@@ -4108,7 +4108,9 @@ function critDiceForMult(dieSize, critMult){
   return count+'d'+dieSize;
 }
 
-const TWF_PENALTIES={ normal:{noFeat:{main:-6,off:-10}, feat:{main:-4,off:-4}}, light:{noFeat:{main:-4,off:-4}, feat:{main:-2,off:-2}} };
+// Core Rulebook "Two-Weapon Fighting Penalties" table:
+// Normal: -6/-10. Off-hand light: -4/-8. TWF feat: -4/-4. TWF feat + off-hand light: -2/-2.
+const TWF_PENALTIES={ normal:{noFeat:{main:-6,off:-10}, feat:{main:-4,off:-4}}, light:{noFeat:{main:-4,off:-8}, feat:{main:-2,off:-2}} };
 
 const ABIL_LABEL={str:'STR',dex:'DEX',con:'CON',int:'INT',wis:'WIS',cha:'CHA',none:'no ability'};
 
