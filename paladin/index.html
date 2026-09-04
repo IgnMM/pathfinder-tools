@@ -345,15 +345,18 @@ function renderList(){
     });
     let eligible=arr.filter(s=>canCast(l)&&!alignmentBlocks(s)&&state.forbidden[l+'|'+s.n]===undefined);
     let ineligible=arr.filter(s=>!(canCast(l)&&!alignmentBlocks(s)&&state.forbidden[l+'|'+s.n]===undefined));
-    if(!eligible.length&&!(state.showIneligible&&ineligible.length))continue;
+    let preppedIneligible=ineligible.filter(s=>(state.prep[l+'|'+s.n]||0)>0);
+    let otherIneligible=ineligible.filter(s=>!((state.prep[l+'|'+s.n]||0)>0));
+    if(!eligible.length&&!preppedIneligible.length&&!(state.showIneligible&&otherIneligible.length))continue;
     let sec=document.createElement('section');
     sec.innerHTML=`<h2>Level ${l} <span class="dc">DC ${10+l+mod()}</span></h2><div class="grid"></div>`;
     let g=sec.querySelector('.grid');
     eligible.sort((a,b)=>a.n.localeCompare(b.n)).forEach(s=>g.appendChild(buildCard(l,s,false)));
-    if(state.showIneligible&&ineligible.length){
-      let sep=document.createElement('div');sep.className='ineligibleSep';sep.textContent='Not currently eligible ('+ineligible.length+')';
+    preppedIneligible.sort((a,b)=>a.n.localeCompare(b.n)).forEach(s=>g.appendChild(buildCard(l,s,true)));
+    if(state.showIneligible&&otherIneligible.length){
+      let sep=document.createElement('div');sep.className='ineligibleSep';sep.textContent='Not currently eligible ('+otherIneligible.length+')';
       g.appendChild(sep);
-      ineligible.sort((a,b)=>a.n.localeCompare(b.n)).forEach(s=>g.appendChild(buildCard(l,s,true)))
+      otherIneligible.sort((a,b)=>a.n.localeCompare(b.n)).forEach(s=>g.appendChild(buildCard(l,s,true)))
     }
     out.appendChild(sec)
   }
