@@ -4263,10 +4263,16 @@ function compute(){
   // string, not this flat total).
   let dmgVS = (vsMult && mythicVitalStrikeOn) ? dmg*vsMult : dmg;
   let critDmgVS = dmgVS*critMult;
+  // Power Attack's own damage is part of dmg, so it's already been scaled ×vsMult inside
+  // dmgVS above (Mythic Vital Strike RAW: "multiply the Strength bonus, magic bonus, and
+  // other bonuses that would normally be multiplied on a critical hit" -- Power Attack's
+  // bonus qualifies). Any adjustment below that carves Power Attack's damage back out of
+  // dmgVS has to remove that same already-scaled amount, not the plain (non-VS) value.
+  let powerAttackDmgValVS = (vsMult && mythicVitalStrikeOn) ? powerAttackDmgVal*vsMult : powerAttackDmgVal;
   if(paNoCritMult && powerAttackOn && powerAttackDmgVal){
-    critDmgVS = (dmgVS-powerAttackDmgVal)*critMult + powerAttackDmgVal;
+    critDmgVS = (dmgVS-powerAttackDmgValVS)*critMult + powerAttackDmgValVS;
   } else if(ctx.mythicPowerAttackOn && powerAttackOn && powerAttackDmgVal){
-    critDmgVS += powerAttackDmgVal*critMult;
+    critDmgVS += powerAttackDmgValVS*critMult;
   }
   if(shiningBeaconOn) critDmgVS += critMult;
 
