@@ -35,7 +35,15 @@ h3{font-size:14px;margin:14px 0 8px;color:#fff}
 .card-active{border-top-color:var(--green)}
 .card-active h2{color:var(--green)}
 .card-results{border-top-color:var(--violet)}
-.card-results h2{color:var(--violet)}
+.card-results h2{color:var(--violet);display:flex;align-items:center;gap:10px}
+.pinBtn{font-size:.7rem;padding:4px 9px;border-radius:999px;background:var(--panel2);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-weight:400}
+.pinBtn.active{background:var(--gold);color:#151515;border-color:var(--gold);font-weight:700}
+/* Pinning floats Results over the page (desktop only) so it stays visible while
+   scrolling through a long Modifiers catalog, instead of always being pinned. */
+@media(min-width:901px){
+  .card-results.pinned{position:fixed;top:16px;right:16px;width:340px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow-y:auto;z-index:300;box-shadow:0 16px 40px rgba(0,0,0,.55)}
+  .card-results.pinned .resultBox{grid-template-columns:1fr}
+}
 .row{display:grid;grid-template-columns:1fr 110px;gap:8px;align-items:center;margin:7px 0}
 label{color:var(--muted);font-size:.85rem}
 input,select{width:100%;background:#0f161f;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px;font-size:.9rem}
@@ -104,6 +112,12 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .sourcesbox{position:relative}.sourcesbox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-size:.78rem;list-style:none;white-space:nowrap}.sourcesbox summary::-webkit-details-marker{display:none}.sourcesbox[open] summary{border-color:var(--gold)}.sourcesPanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px;z-index:20;max-height:320px;overflow-y:auto;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.sourcesPanel label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);padding:3px 0;cursor:pointer}.sourcesPanel input{width:auto}.sourcesPanel .srcActions{display:flex;gap:6px;margin-bottom:6px}.sourcesPanel .srcActions button{font-size:.65rem;padding:4px 7px}
 .raceNote{font-size:.68rem;color:var(--muted);margin:2px 0 6px}
 .offhandBox{border:1px dashed var(--border);border-radius:10px;padding:8px;margin-top:8px}
+.noteIconHolder{position:absolute;top:-6px;right:-6px;display:flex;gap:4px;z-index:10}
+.noteIcon{width:18px;height:18px;border-radius:50%;background:var(--panel2);border:1px solid var(--border);color:var(--gold2);cursor:pointer;position:relative;flex:none}
+.noteIcon::before{content:"ⓘ";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.68rem;line-height:1}
+.noteIcon:hover,.noteIcon.open{border-color:var(--gold)}
+.notePopover{display:none;position:absolute;top:24px;right:0;width:260px;max-width:70vw;background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:10px;font-size:.72rem;color:var(--muted);font-style:italic;line-height:1.4;text-align:left;box-shadow:0 10px 28px rgba(0,0,0,.45)}
+.noteIcon.open .notePopover{display:block}
 .subcatHeading{font-size:.68rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px;padding-top:6px;border-top:1px dashed var(--border)}
 .subcatHeading:first-of-type{border-top:none;padding-top:0;margin-top:2px}
 .saveIndicator{font-size:.72rem;color:var(--green);opacity:0;transition:opacity .25s ease}
@@ -293,8 +307,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div id="breakdownTables"></div>
 </section>
 
-<section class="card card-results">
-<h2>Results</h2>
+<section class="card card-results" id="resultsCard">
+<h2>Results <button type="button" id="pinResults" class="pinBtn" title="Keep Results visible while scrolling (desktop)">📌 Pin</button></h2>
 <div class="resultBox">
   <div class="result"><div class="small">Single Attack (first attack)</div><div class="big" id="toHit">+0</div></div>
   <div class="result"><div class="small">Full Attack</div><div class="big" id="fullAttack">+0</div></div>
@@ -3087,6 +3101,58 @@ function renderSources(){
 $('srcAll').onclick=()=>{ let p=currentProfile(); p.excludedSources={}; applyRaceSourceExclusions(); saveStore(); renderSources(); renderCategories(); compute(); };
 $('srcNone').onclick=()=>{ let p=currentProfile(); [...new Set(MODIFIERS.map(m=>m.source||'Unknown'))].forEach(src=>p.excludedSources[src]=true); saveStore(); renderSources(); renderCategories(); compute(); };
 if(window.PFConditions){ let cloudSaveBtn=$('cloudSave'); if(cloudSaveBtn&&cloudSaveBtn.parentElement) PFConditions.mount(cloudSaveBtn.parentElement, {before:cloudSaveBtn}); }
+
+// Results panel: click-to-pin (desktop only) so it floats over the page and stays
+// visible while scrolling the Modifiers catalog below, instead of being sticky always.
+(function(){
+  const btn=$('pinResults'), card=$('resultsCard');
+  if(!btn||!card) return;
+  btn.onclick=()=>{
+    const on=card.classList.toggle('pinned');
+    btn.classList.toggle('active', on);
+    btn.textContent = on ? '📌 Unpin' : '📌 Pin';
+  };
+})();
+
+// Field notes: collapse the always-visible explanatory text into a small "info" badge
+// attached to the field it explains, revealed by click (and closed by clicking it
+// again or clicking anywhere else) -- keeps the notes available without them claiming
+// grid space and forcing whatever comes after onto a new row.
+(function(){
+  const notes=[...document.querySelectorAll('.card-char .emptyNote, .card-char .raceNote')];
+  notes.forEach(note=>{
+    let anchor=note.previousElementSibling;
+    while(anchor && (anchor.classList.contains('emptyNote') || anchor.classList.contains('raceNote'))) anchor=anchor.previousElementSibling;
+    if(!anchor) return;
+    const text=note.textContent;
+    note.textContent='';
+    note.className='noteIcon';
+    note.setAttribute('role','button');
+    note.setAttribute('tabindex','0');
+    note.title='More info';
+    const pop=document.createElement('div');
+    pop.className='notePopover';
+    pop.textContent=text;
+    note.appendChild(pop);
+    let holder=anchor.querySelector(':scope > .noteIconHolder');
+    if(!holder){
+      holder=document.createElement('div');
+      holder.className='noteIconHolder';
+      anchor.style.position='relative';
+      anchor.appendChild(holder);
+    }
+    holder.appendChild(note);
+    function toggle(e){
+      e.stopPropagation();
+      const willOpen=!note.classList.contains('open');
+      document.querySelectorAll('.card-char .noteIcon.open').forEach(o=>{ if(o!==note) o.classList.remove('open'); });
+      note.classList.toggle('open', willOpen);
+    }
+    note.addEventListener('click', toggle);
+    note.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(e); } });
+  });
+  document.addEventListener('click', ()=>{ document.querySelectorAll('.card-char .noteIcon.open').forEach(o=>o.classList.remove('open')); });
+})();
 
 // ---------- Modifier catalog UI ----------
 function renderCategories(){
