@@ -44,14 +44,23 @@ button.primary{background:var(--gold);color:#151515;border:0;font-weight:700}
 button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .statsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}
 .card-char{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));gap:2px 18px;align-content:start}
-.card-char>h2,.card-char>h3,.card-char>.emptyNote,.card-char>.raceNote,.card-char>.statsGrid,.card-char>#babSequenceBox{grid-column:1/-1}
+.card-char>h2,.card-char>h3,.card-char>#babSequenceBox{grid-column:1/-1}
 .card-char>h2{margin-top:0}
 .card-char>h3{margin:12px 0 4px}
+/* Notes explain the field right before them, but don't need the full row to themselves
+   -- capping them to 2 columns (instead of 1/-1) lets whatever comes next flow into the
+   rest of that same row instead of always starting a fresh one. */
+.card-char>.emptyNote,.card-char>.raceNote{grid-column:span 2}
+/* The Ability Scores block is really just 6 more fields, not its own section -- let it
+   dissolve into the parent grid (display:contents drops the wrapper, promoting its
+   6 .row children to flow as ordinary grid items) instead of walling them off as one
+   full-width unit. */
+.card-char>.statsGrid{display:contents}
 .card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));gap:2px 18px;align-content:start}
 .card-char>#mythicTierBox>.emptyNote,.card-char>#offhandBox>.emptyNote,.card-char>#offhandBox>h3,.card-char>#ammoBox>.emptyNote{grid-column:1/-1}
 #categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;align-items:start}
 #categories .catBlock{margin-bottom:0}
-@media(max-width:520px){.card-char,.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-template-columns:1fr}}
+@media(max-width:520px){.card-char,.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-template-columns:1fr}.card-char>.emptyNote,.card-char>.raceNote{grid-column:1/-1}}
 .profileBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .profileBar select{width:auto;min-width:160px}
 .mainGrid{display:grid;grid-template-columns:1fr;gap:14px}
