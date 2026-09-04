@@ -299,6 +299,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 </section>
 
 </div>
+<script src="../assets/conditions.js"></script>
 <script>
 // Full Simple/Martial/Exotic weapon catalog (Core Rulebook, Ultimate Combat, Ultimate
 // Equipment, Advanced Race Guide), sourced from Archives of Nethys (aonprd.com), Medium
@@ -2708,9 +2709,68 @@ const MODIFIERS = [
  special:'pa-no-crit',
  desc:'Standard PF1e RAW: Power Attack\'s (and Deadly Aim\'s) damage bonus IS multiplied by the weapon\'s critical multiplier, because it becomes part of the weapon\'s damage roll before the crit is applied. Some tables house-rule this to NOT be multiplied. Add this entry if that\'s how your table plays it — Power Attack/Deadly Aim\'s damage will then be added once, unmultiplied, after the crit multiplier is applied to everything else.',
  compute:()=>({attack:0,damage:0,note:'Power Attack/Deadly Aim damage excluded from the crit multiplier — see Critical Damage'})},
+
+// ---------------- CONDITIONS (Core Rulebook pg. 565) ----------------
+// Only conditions with a clean, direct Hit/Damage number are modeled as a flat
+// modifier below. Conditions that instead limit you to a single attack (no full
+// attack) or block attacking entirely don't reduce to a flat atk/dmg number, so
+// they're toggled the same way but just carry a descriptive note in the Active
+// Effects summary instead — see the Conditions reference button for full rules text.
+{id:'cond-shaken',name:'Shaken',category:'condition',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
+ desc:'-2 on attack rolls (also on saving throws, skill checks, and ability checks — not tracked by this calculator). Less severe than Frightened or Panicked.',
+ compute:()=>({attack:-2,damage:0,note:'-2 atk'})},
+{id:'cond-frightened',name:'Frightened',category:'condition',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
+ desc:'-2 on attack rolls (also saves/skill/ability checks). Must flee from the source of fear as best it can — can only fight if cornered.',
+ compute:()=>({attack:-2,damage:0,note:'-2 atk'})},
+{id:'cond-sickened',name:'Sickened',category:'condition',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
+ desc:'-2 on all attack rolls AND weapon damage rolls (also saving throws, skill checks, ability checks).',
+ compute:()=>({attack:-2,damage:-2,note:'-2 atk / -2 dmg'})},
+{id:'cond-entangled',name:'Entangled',category:'condition',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
+ desc:'-2 on all attack rolls (also -4 Dexterity, half speed, cannot run or charge). Casting a spell while entangled requires a concentration check (DC 15 + spell level).',
+ compute:()=>({attack:-2,damage:0,note:'-2 atk'})},
+{id:'cond-grappled',name:'Grappled',category:'condition',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
+ desc:'-2 on all attack rolls and combat maneuver checks, except those made to grapple or escape a grapple (also -4 Dexterity, cannot move, cannot take two-handed actions, no attacks of opportunity).',
+ compute:()=>({attack:-2,damage:0,note:'-2 atk (does not apply to grapple/escape checks themselves)'})},
+{id:'cond-prone',name:'Prone',category:'condition',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
+ desc:'-4 on melee attack rolls. Ranged weapons cannot be used at all while prone, except a crossbow — this calculator only applies the melee penalty below; zero out your attack manually if using a ranged weapon (other than a crossbow).',
+ compute:()=>({attack:-4,damage:0,note:'-4 atk (melee only — most ranged weapons cannot be used at all while prone)'})},
+{id:'cond-dazzled',name:'Dazzled',category:'condition',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
+ desc:'-1 on attack rolls and sight-based Perception checks, from overstimulated eyes.',
+ compute:()=>({attack:-1,damage:0,note:'-1 atk'})},
+{id:'cond-staggered',name:'Staggered',category:'condition',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'Only a single move action OR standard action each round (not both, and no full-round actions) — free/swift/immediate actions are still allowed. In practice: you can make a single attack, but not a full attack.',
+ compute:()=>({attack:0,damage:0,note:'Single attack only this round — ignore the Full Attack line, use Single Attack (first attack) instead'})},
+{id:'cond-disabled',name:'Disabled',category:'condition',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'0 hit points, or stable with negative hit points. A single move action OR standard action each round (not both). Moving is safe, but a standard action (including an attack) deals 1 point of damage to yourself after it resolves, unless it healed you.',
+ compute:()=>({attack:0,damage:0,note:'Single attack only this round (costs 1 HP of self-damage unless it healed you) — ignore the Full Attack line'})},
+{id:'cond-stunned',name:'Stunned',category:'condition',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'Drops everything held, can\'t take any actions, -2 AC, loses Dexterity bonus to AC.',
+ compute:()=>({attack:0,damage:0,note:'Cannot attack this round'})},
+{id:'cond-nauseated',name:'Nauseated',category:'condition',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'Unable to attack, cast spells, concentrate on spells, or do anything else requiring attention. The only action possible is a single move action per turn.',
+ compute:()=>({attack:0,damage:0,note:'Cannot attack — only a single move action is possible'})},
+{id:'cond-cowering',name:'Cowering',category:'condition',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'Frozen in fear, can take no actions. -2 AC, loses Dexterity bonus to AC.',
+ compute:()=>({attack:0,damage:0,note:'Cannot attack this round'})},
+{id:'cond-dazed',name:'Dazed',category:'condition',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'Can take no actions (typically lasts 1 round), but no penalty to AC.',
+ compute:()=>({attack:0,damage:0,note:'Cannot attack this round'})},
+{id:'cond-confused',name:'Confused',category:'condition',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'Roll randomly each round: 1-25% act normally, 26-50% babble incoherently, 51-75% attack self, 76-100% attack the nearest creature. Too random to model as a flat modifier — roll on the table in the Conditions reference each round.',
+ compute:()=>({attack:0,damage:0,note:'Random each round (see Conditions reference table) — not modeled numerically'})},
+{id:'cond-paralyzed',name:'Paralyzed',category:'condition',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'Helpless: frozen in place, unable to move or act. Effective Strength and Dexterity scores of 0. Can take only purely mental actions.',
+ compute:()=>({attack:0,damage:0,note:'Cannot attack — helpless'})},
+{id:'cond-pinned',name:'Pinned',category:'condition',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'Cannot move, loses Dexterity bonus, additional -4 AC. Severely limited in the actions it can take — a more severe version of Grappled (their effects don\'t stack).',
+ compute:()=>({attack:0,damage:0,note:'Cannot attack — severely restricted (see Conditions reference)'})},
+{id:'cond-panicked',name:'Panicked',category:'condition',source:'Core Rulebook',appliesTo:[],type:'special',
+ desc:'Must drop anything held and flee at top speed from the source of fear (and any other danger) along a random path — no other actions possible. If cornered, cowers and uses total defense instead of attacking. -2 on saves/skill/ability checks (no attack roll penalty listed, since a panicked creature generally isn\'t attacking).',
+ compute:()=>({attack:0,damage:0,note:'Cannot attack (flees, or cowers if cornered)'})},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
+  {k:'condition',label:'Conditions'},
   {k:'weapon',label:'Weapon Effects',subcats:[{k:'spell',label:'Enchanting Spells'},{k:'elemental',label:'Elemental'},{k:'alignment',label:'Alignment'},{k:'other',label:'Other Properties'}]},
   {k:'mythic',label:'Mythic',subcats:[{k:'feat',label:'Mythic Feats'},{k:'path',label:'Path Abilities'},{k:'universal',label:'Universal (Surge, etc.)'},{k:'other',label:'Custom / Other'}]},
   {k:'houserule',label:'House Rules'}];
@@ -3015,6 +3075,7 @@ function renderSources(){
 }
 $('srcAll').onclick=()=>{ let p=currentProfile(); p.excludedSources={}; applyRaceSourceExclusions(); saveStore(); renderSources(); renderCategories(); compute(); };
 $('srcNone').onclick=()=>{ let p=currentProfile(); [...new Set(MODIFIERS.map(m=>m.source||'Unknown'))].forEach(src=>p.excludedSources[src]=true); saveStore(); renderSources(); renderCategories(); compute(); };
+if(window.PFConditions){ let cloudSaveBtn=$('cloudSave'); if(cloudSaveBtn&&cloudSaveBtn.parentElement) PFConditions.mount(cloudSaveBtn.parentElement, {before:cloudSaveBtn}); }
 
 // ---------- Modifier catalog UI ----------
 function renderCategories(){
