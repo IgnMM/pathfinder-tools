@@ -43,17 +43,15 @@ button{background:var(--panel2);color:var(--text);border:1px solid var(--line);b
 button.primary{background:var(--gold);color:#151515;border:0;font-weight:700}
 button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .statsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}
-.card-char{display:flex;flex-wrap:wrap;gap:2px 18px;align-content:flex-start}
-.card-char>h2{flex:1 1 100%;margin-top:0}
-.card-char>h3{flex:1 1 100%;margin:12px 0 4px}
-.card-char>.row{flex:1 1 260px}
-.card-char>.emptyNote,.card-char>.raceNote,.card-char>.statsGrid,.card-char>#babSequenceBox{flex:1 1 100%}
-.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:2px 18px;align-content:flex-start}
-.card-char>#mythicTierBox>.row,.card-char>#customWeapon>.row,.card-char>#offhandBox>.row,.card-char>#ammoBox>.row{flex:1 1 260px}
-.card-char>#mythicTierBox>.emptyNote,.card-char>#offhandBox>.emptyNote,.card-char>#offhandBox>h3,.card-char>#ammoBox>.emptyNote{flex:1 1 100%}
+.card-char{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2px 18px;align-content:start}
+.card-char>h2,.card-char>h3,.card-char>.emptyNote,.card-char>.raceNote,.card-char>.statsGrid,.card-char>#babSequenceBox{grid-column:1/-1}
+.card-char>h2{margin-top:0}
+.card-char>h3{margin:12px 0 4px}
+.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2px 18px;align-content:start}
+.card-char>#mythicTierBox>.emptyNote,.card-char>#offhandBox>.emptyNote,.card-char>#offhandBox>h3,.card-char>#ammoBox>.emptyNote{grid-column:1/-1}
 #categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;align-items:start}
 #categories .catBlock{margin-bottom:0}
-@media(max-width:520px){.card-char>.row,.card-char>#mythicTierBox>.row,.card-char>#customWeapon>.row,.card-char>#offhandBox>.row,.card-char>#ammoBox>.row{flex-basis:100%}}
+@media(max-width:520px){.card-char,.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-template-columns:1fr}}
 .profileBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .profileBar select{width:auto;min-width:160px}
 .mainGrid{display:grid;grid-template-columns:1fr;gap:14px}
