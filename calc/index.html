@@ -328,6 +328,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div class="result" id="firstSmiteBox" style="display:none"><div class="small">First Smite Hit</div><div class="big" id="dmgFirstSmite">—</div></div>
   <div class="result"><div class="small">Critical Damage</div><div class="big" id="dmgCrit">—</div></div>
   <div class="result" id="firstSmiteCritBox" style="display:none"><div class="small">Critical First Smite Hit</div><div class="big" id="dmgFirstSmiteCrit">—</div></div>
+  <div class="result" id="vsDmgBox" style="display:none"><div class="small">Vital Strike Damage <span style="font-weight:400">(single attack-action only)</span></div><div class="big" id="dmgVS">—</div></div>
+  <div class="result" id="vsCritBox" style="display:none"><div class="small">Vital Strike Critical Damage</div><div class="big" id="dmgVSCrit">—</div></div>
   <div class="result" id="offAtkBox" style="display:none"><div class="small">Off-Hand Attack</div><div class="big" id="offAtk">+0</div></div>
   <div class="result" id="offDmgBox" style="display:none"><div class="small">Off-Hand Damage</div><div class="big" id="offDmg">—</div></div>
   <div class="result" id="offCritBox" style="display:none"><div class="small">Off-Hand Critical Damage</div><div class="big" id="offCrit">—</div></div>
@@ -3574,9 +3576,10 @@ function compute(){
   let vsActive=p.active.filter(a=>a.on!==false && vsMultMap[a.id]);
   let vsMult=vsActive.length?Math.max(...vsActive.map(a=>vsMultMap[a.id])):0;
   let leadBladesOn=p.active.some(a=>a.id==='lead-blades' && a.on!==false);
-  if(vsMult && mythicVitalStrikeOn){
-    dmg = dmg*vsMult; // Mythic Vital Strike: Str/enhancement/etc. bonuses are multiplied too, not just weapon dice
-  }
+  // dmg is deliberately left as the plain non-Vital-Strike figure here -- Normal/Critical
+  // Damage below always show a regular attack. The Vital Strike variant is computed
+  // separately further down and shown in its own dedicated result row, since it's a
+  // single attack-action choice, not something that silently replaces the normal numbers.
 
   let atkFirst = atk;
   let notes=[];
@@ -3654,6 +3657,18 @@ function compute(){
     critDmg += powerAttackDmgVal*critMult;
   }
 
+  // Vital Strike's own dedicated numbers -- same formula as Normal/Critical Damage
+  // above, just starting from dmg*vsMult when Mythic Vital Strike also multiplies the
+  // flat bonuses (plain Vital Strike only affects the dice, handled below via the dice
+  // string, not this flat total).
+  let dmgVS = (vsMult && mythicVitalStrikeOn) ? dmg*vsMult : dmg;
+  let critDmgVS = dmgVS*critMult;
+  if(paNoCritMult && powerAttackOn && powerAttackDmgVal){
+    critDmgVS = (dmgVS-powerAttackDmgVal)*critMult + powerAttackDmgVal;
+  } else if(ctx.mythicPowerAttackOn && powerAttackOn && powerAttackDmgVal){
+    critDmgVS += powerAttackDmgVal*critMult;
+  }
+
   // Smite Evil: on the first successful hit against an evil outsider, evil dragon, or
   // undead, its damage bonus doubles (see the modifier's own note above) — add one more
   // copy of that same bonus (already multiplied by critMult for the crit version, same
@@ -3661,22 +3676,27 @@ function compute(){
   let smiteFirstDmg = (smiteEvilOn && smiteDoubles) ? dmg + smiteDmgVal : null;
   let smiteFirstCritDmg = (smiteEvilOn && smiteDoubles) ? critDmg + smiteDmgVal*critMult : null;
 
+  // dmgNormalDice/dmgCritDiceStr stay the plain, non-Vital-Strike dice string; the
+  // Vital-Strike-multiplied version is computed separately as dmgVSDice/dmgVSCritDiceStr
+  // for its own dedicated result row below.
   let dmgNormalDice=effDice, dmgCritDiceStr=critDice;
+  let dmgVSDice=effDice, dmgVSCritDiceStr=critDice;
   if(vsMult){
-    dmgNormalDice=diceMultiply(effDice,vsMult);
-    dmgCritDiceStr=critDice+(vsMult>1?' + '+diceMultiply(effDice,vsMult-1)+' (Vital Strike, unmultiplied)':'');
+    dmgVSDice=diceMultiply(effDice,vsMult);
+    dmgVSCritDiceStr=critDice+(vsMult>1?' + '+diceMultiply(effDice,vsMult-1)+' (Vital Strike, unmultiplied)':'');
   }
   // Extra damage dice from active Weapon Effects (Flaming, Bane, Holy, etc.) are shown
   // as dice terms alongside the weapon's own dice — never folded into the flat number,
   // since this engine never resolves dice to a value. "normal" dice apply on any hit
   // and are NOT multiplied on a crit (RAW), so they're appended to both lines as-is;
   // "crit" dice (Flaming Burst's bonus die, Thundering, etc.) only fire on a confirmed
-  // crit, so they're appended to Critical Damage only.
+  // crit, so they're appended to Critical Damage only. Applies to both the plain and
+  // Vital Strike dice strings — a Flaming weapon still burns on a Vital Strike attack.
   let extraNormalTerms = (extraDiceMain||[]).filter(e=>e.normal).map(e=>e.normal);
   let extraCritOnlyTerms = (extraDiceMain||[]).filter(e=>e.crit).map(e=>e.crit);
-  if(extraNormalTerms.length) dmgNormalDice += ' + ' + extraNormalTerms.join(' + ');
+  if(extraNormalTerms.length){ dmgNormalDice += ' + ' + extraNormalTerms.join(' + '); dmgVSDice += ' + ' + extraNormalTerms.join(' + '); }
   let critDiceTerms = extraNormalTerms.concat(extraCritOnlyTerms);
-  if(critDiceTerms.length) dmgCritDiceStr += ' + ' + critDiceTerms.join(' + ');
+  if(critDiceTerms.length){ dmgCritDiceStr += ' + ' + critDiceTerms.join(' + '); dmgVSCritDiceStr += ' + ' + critDiceTerms.join(' + '); }
 
   // Keen only affects the hand(s) it's tagged for — "Off-Hand Only" shouldn't change the
   // main weapon's displayed threat range (and vice versa). Ranged's "weapon"/"ammo" tags
@@ -3686,6 +3706,10 @@ function compute(){
   let displayThreat = hasKeen ? keenThreatRange(ctx.weaponThreatLow) : w.threat;
 
   $('toHit').textContent=signed(atkFirst);
+  // Vital Strike replaces a full attack with a single attack-action strike -- the Full
+  // Attack line (multiple iteratives) doesn't apply that turn, so it's hidden rather than
+  // shown alongside numbers that don't actually go together.
+  $('fullAttack').closest('.result').style.display = vsMult ? 'none' : '';
   $('fullAttack').textContent=iteratives.map(signed).join(' / ');
   $('dmgNormal').textContent=`${dmgNormalDice} ${signed(dmg)}`;
   $('dmgCrit').textContent=`${dmgCritDiceStr} ${signed(critDmg)} (threat ${displayThreat}/×${critMult})`;
@@ -3695,6 +3719,12 @@ function compute(){
   if(smiteFirstOn){
     $('dmgFirstSmite').textContent=`${dmgNormalDice} ${signed(smiteFirstDmg)}`;
     $('dmgFirstSmiteCrit').textContent=`${dmgCritDiceStr} ${signed(smiteFirstCritDmg)} (threat ${displayThreat}/×${critMult})`;
+  }
+  $('vsDmgBox').style.display = vsMult ? 'block' : 'none';
+  $('vsCritBox').style.display = vsMult ? 'block' : 'none';
+  if(vsMult){
+    $('dmgVS').textContent=`${dmgVSDice} ${signed(dmgVS)}`;
+    $('dmgVSCrit').textContent=`${dmgVSCritDiceStr} ${signed(critDmgVS)} (threat ${displayThreat}/×${critMult})`;
   }
 
   notes.push('Base attack: BAB '+signed(bab)+' + '+ABIL_LABEL[atkStat]+' '+signed(atkAbilityMod)+' + enhancement '+signed(effectiveEnh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
@@ -3708,7 +3738,7 @@ function compute(){
     notes.push('Mythic Power Attack: damage bonus doubled before the crit multiplier — an extra '+signed(powerAttackDmgVal*critMult)+' added to Critical Damage.');
   }
   if(vsMult){
-    notes.push('Vital Strike is active: Normal/Critical Damage above already include the extra weapon dice'+(mythicVitalStrikeOn?' and, with Mythic Vital Strike, your Str/enhancement/etc. bonuses are multiplied ×'+vsMult+' too':'')+'. This is a single attack-action strike, not part of a full attack — the Full Attack line no longer applies this turn.');
+    notes.push('Vital Strike is active: see the dedicated "Vital Strike Damage"/"Vital Strike Critical Damage" rows above for its numbers (dice ×'+vsMult+(mythicVitalStrikeOn?', and with Mythic Vital Strike your Str/enhancement/etc. bonuses are multiplied ×'+vsMult+' too':'')+'). Normal/Critical Damage above stay the plain non-Vital-Strike figures. This is a single attack-action strike, not part of a full attack — the Full Attack line is hidden this turn.');
   }
   if(leadBladesOn){
     notes.push('Lead Blades is active: Normal/Critical Damage above already use the upsized weapon die ('+w.dice+' → '+effDice+'), assuming a Medium wielder. Does not affect thrown/ranged or off-hand weapons the spell wasn\'t cast on, or anyone but you wielding the weapon.');
