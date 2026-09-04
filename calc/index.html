@@ -34,6 +34,15 @@ h3{font-size:14px;margin:14px 0 8px;color:#fff}
 .card-mod h2{color:var(--blue)}
 .card-active{border-top-color:var(--green)}
 .card-active h2{color:var(--green)}
+/* An active effect that contributes nothing to the numbers above (Vital Strike-style
+   "changes how you roll", conditional-on-something-else, resource-tracked, etc.) is
+   easy to miss sitting in a wide breakdown table as just another 0/0 row -- this callout
+   puts it somewhere it can't be scrolled past unnoticed. */
+.unmodeledBox{background:rgba(230,126,34,.12);border:1px solid #e67e22;border-radius:12px;padding:12px 14px;margin-bottom:14px}
+.unmodeledHeader{font-weight:800;color:#f0a850;font-size:.85rem;margin-bottom:8px}
+.unmodeledItem{font-size:.8rem;line-height:1.4;padding:7px 0;border-top:1px dashed rgba(230,126,34,.35)}
+.unmodeledItem:first-child{border-top:none;padding-top:0}
+.unmodeledItem b{color:#fff}
 .card-results{border-top-color:var(--violet)}
 .card-results h2{color:var(--violet);display:flex;align-items:center;gap:10px}
 .pinBtn{font-size:.7rem;padding:4px 9px;border-radius:999px;background:var(--panel2);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-weight:400}
@@ -318,6 +327,10 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 
 <section class="card card-active">
 <h2>Active Effects</h2>
+<div id="unmodeledBox" class="unmodeledBox" style="display:none">
+  <div class="unmodeledHeader">⚠ Active, but NOT included in the numbers above — read before you roll</div>
+  <div id="unmodeledList"></div>
+</div>
 <div id="breakdownTables"></div>
 </section>
 
@@ -3487,6 +3500,18 @@ function markSuppressed(entries,breakdown){
   breakdown.forEach(b=>{ if(suppressedSources.has(b.name)||suppressedSources.has(b.name.replace(' (custom)',''))) b.suppressed=true; });
 }
 
+function renderUnmodeledEffects(breakdown){
+  // Anything active (checked on, not suppressed) that contributes exactly 0/0 but still
+  // has a note is, by construction, an effect the flat-number engine can't add for you --
+  // it changes how you roll, needs a resource tracked, only applies conditionally, etc.
+  // Surface those explicitly instead of letting them blend into the breakdown table as
+  // just another zero row.
+  let box=$('unmodeledBox'), list=$('unmodeledList');
+  let items=breakdown.filter(b=>!b.off && !b.suppressed && b.atk===0 && b.dmg===0 && b.note);
+  if(!items.length){ box.style.display='none'; list.innerHTML=''; return; }
+  box.style.display='block';
+  list.innerHTML=items.map(b=>`<div class="unmodeledItem"><b>${b.name}</b> — ${b.note}</div>`).join('');
+}
 function renderBreakdown(breakdown){
   let box=$('breakdownTables'); box.innerHTML='';
   if(!breakdown.length){ box.innerHTML='<div class="emptyNote">No modifiers active yet — add some from the categories above.</div>'; return; }
@@ -3560,6 +3585,7 @@ function compute(){
   let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen,smiteEvilOn,smiteDmgVal,smiteDoubles}=collectContributions(ctx);
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
   markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
+  renderUnmodeledEffects(breakdown);
   renderBreakdown(breakdown);
 
   let atkAbilityMod = atkStat==='none' ? 0 : ctx[atkStat];
