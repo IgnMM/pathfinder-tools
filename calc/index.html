@@ -1081,6 +1081,9 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:"You know how to pull your blows against favored enemies without losing accuracy.",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' '+"trait"}}},
+{id:"fates-favored",name:"Fate's Favored",category:"trait",source:"Faiths of Purity",appliesTo:["attack","damage"],type:"untyped",
+ desc:"Whenever a spell or effect bestows a luck bonus on you, that bonus increases by 1. Only does something while another luck-bonus modifier is also active (Divine Favor, Prayer...) -- toggle it on alongside one of those, not instead of it. Typed \"untyped\" here on purpose: the +1 has to add on top of that luck bonus, not get compared against it as if it were a second, separate luck source.",
+ compute:(ctx)=>({attack: ctx.hasLuckAttack?1:0, damage: ctx.hasLuckDamage?1:0, note: (ctx.hasLuckAttack||ctx.hasLuckDamage) ? '+1 to your active luck bonus'+(ctx.hasLuckAttack&&ctx.hasLuckDamage?' (atk & dmg)':ctx.hasLuckAttack?' (atk)':' (dmg)') : 'no luck bonus currently active -- does nothing right now'})},
 {id:"fencer",name:"Fencer",category:"trait",source:"Ultimate Campaign",appliesTo:["attack"],type:"trait",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Long hours of blade training make your attacks of opportunity with swords more precise.",
@@ -3321,6 +3324,11 @@ function collectContributions(ctx){
   let mythicFuriousFocusOn = p.active.some(a=>a.id==='mythic-furious-focus' && a.on!==false);
   let mythicWeaponFocusOn = p.active.some(a=>a.id==='mythic-weapon-focus' && a.on!==false);
   let mythicPrecisionOn = p.active.some(a=>a.id==='mythic-precision' && a.on!==false);
+  // Fate's Favored doesn't grant its own luck bonus -- it increases whatever OTHER luck
+  // bonus you already have by 1. Detect any other active type:'luck' entry (Divine Favor,
+  // Prayer...) that touches attack/damage, so Fate's Favored's own +1 only applies then.
+  ctx.hasLuckAttack = p.active.some(a=>{ if(a.id==='fates-favored'||a.on===false) return false; let mm=MODIFIERS.find(x=>x.id===a.id); return mm && mm.type==='luck' && mm.appliesTo.includes('attack'); });
+  ctx.hasLuckDamage = p.active.some(a=>{ if(a.id==='fates-favored'||a.on===false) return false; let mm=MODIFIERS.find(x=>x.id===a.id); return mm && mm.type==='luck' && mm.appliesTo.includes('damage'); });
   p.active.forEach(a=>{
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
     let isOff=a.on===false;
