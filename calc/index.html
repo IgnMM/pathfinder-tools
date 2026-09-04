@@ -4287,7 +4287,13 @@ function compute(){
   let dmgVSDice=effDice, dmgVSCritDiceStr=critDice;
   if(vsMult){
     dmgVSDice=diceMultiply(effDice,vsMult);
-    dmgVSCritDiceStr=critDice+(vsMult>1?' + '+diceMultiply(effDice,vsMult-1)+' (Vital Strike, unmultiplied)':'');
+    // RAW (FAQ ruling): on a crit while using Vital Strike, only the weapon's normal dice
+    // are multiplied -- the Vital Strike extra dice are added unmultiplied. Mythic Vital
+    // Strike explicitly overrides this: "all your extra damage dice are multiplied by your
+    // weapon's critical hit multiplier" too, i.e. the whole (weapon + VS) dice pool crits.
+    dmgVSCritDiceStr = mythicVitalStrikeOn
+      ? diceMultiply(effDice, vsMult*critMult)
+      : critDice+(vsMult>1?' + '+diceMultiply(effDice,vsMult-1)+' (Vital Strike, unmultiplied)':'');
   }
   // Extra damage dice from active Weapon Effects (Flaming, Bane, Holy, etc.) are shown
   // as dice terms alongside the weapon's own dice — never folded into the flat number,
