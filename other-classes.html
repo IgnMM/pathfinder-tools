@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Other Classes</title>
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#10151d;--card:#191d27;--border:#343946;--muted:#aeb5c3;--gold:#d6b35f;--gold2:#f1d78b}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--navy);color:#fff;margin:0;display:flex;justify-content:center;min-height:100vh}
+main{width:min(94vw,1200px);padding:32px 0 48px}
+h1{font-family:'Cinzel Decorative',serif;font-size:1.7rem;color:var(--gold);margin:0 0 6px;letter-spacing:.03em}
+.subtitle{color:var(--muted);font-size:.9rem;margin:0 0 28px;max-width:640px;line-height:1.5}
+.otherGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px}
+.otherCard{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:#fff;background:var(--card);border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:12px;padding:18px 18px 16px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.otherCard:hover,.otherCard:focus-visible{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.otherCard:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.otherCard .ocName{font-family:'Cinzel',Georgia,serif;font-size:1.05rem;font-weight:600}
+.otherCard .ocCount{font-size:.76rem;color:var(--muted)}
+.backLink{display:inline-block;margin-bottom:22px;color:var(--gold2);text-decoration:none;font-size:.85rem}
+.backLink:hover{text-decoration:underline}
+@media(max-width:640px){main{padding:24px 0 36px}h1{font-size:1.4rem}.otherGrid{grid-template-columns:repeat(2,1fr);gap:10px}.otherCard{padding:14px 14px 12px}}
+</style>
+</head>
+<body>
+<a href="./" title="The Sanctum" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10.3"/><polygon points="12.0,2.4 14.3,8.8 21.1,9.0 15.7,13.2 17.6,19.8 12.0,15.9 6.4,19.8 8.3,13.2 2.9,9.0 9.7,8.8"/></svg></a>
+<main>
+<a class="backLink" href="hub.html">&larr; Back to Pathfinder Tools</a>
+<h1>Other Classes</h1>
+<p class="subtitle">Classes without their own spell list or Character Spell Sheet — browse their archetypes here instead.</p>
+<div class="otherGrid">
+<a class="otherCard" href="fighter-archetypes/"><span class="ocName">Fighter</span><span class="ocCount">3 archetypes</span></a>
+<a class="otherCard" href="barbarian-archetypes/"><span class="ocName">Barbarian</span><span class="ocCount">7 archetypes</span></a>
+<a class="otherCard" href="rogue-archetypes/"><span class="ocName">Rogue</span><span class="ocCount">17 archetypes</span></a>
+<a class="otherCard" href="monk-archetypes/"><span class="ocName">Monk</span><span class="ocCount">22 archetypes</span></a>
+<a class="otherCard" href="monk-unchained-archetypes/"><span class="ocName">Monk (Unchained)</span><span class="ocCount">6 archetypes</span></a>
+<a class="otherCard" href="cavalier-archetypes/"><span class="ocName">Cavalier</span><span class="ocCount">4 archetypes</span></a>
+<a class="otherCard" href="gunslinger-archetypes/"><span class="ocName">Gunslinger</span><span class="ocCount">4 archetypes</span></a>
+<a class="otherCard" href="ninja-archetypes/"><span class="ocName">Ninja</span><span class="ocCount">2 archetypes</span></a>
+<a class="otherCard" href="samurai-archetypes/"><span class="ocName">Samurai</span><span class="ocCount">2 archetypes</span></a>
+<a class="otherCard" href="vigilante-archetypes/"><span class="ocName">Vigilante</span><span class="ocCount">12 archetypes</span></a>
+<a class="otherCard" href="shifter-archetypes/"><span class="ocName">Shifter</span><span class="ocCount">6 archetypes</span></a>
+<a class="otherCard" href="swashbuckler-archetypes/"><span class="ocName">Swashbuckler</span><span class="ocCount">4 archetypes</span></a>
+<a class="otherCard" href="brawler-archetypes/"><span class="ocName">Brawler</span><span class="ocCount">2 archetypes</span></a>
+<a class="otherCard" href="kineticist-archetypes/"><span class="ocName">Kineticist</span><span class="ocCount">6 archetypes</span></a>
+</div>
+</main>
+</body>
+</html>

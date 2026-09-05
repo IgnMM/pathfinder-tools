@@ -35,57 +35,76 @@ details.section[open] .chevron{transform:rotate(180deg)}
 .links small{color:var(--muted);font-weight:400}
 /* Menus with a lot of choices (Spell Libraries, Character Spell Sheets) shouldn't be
    one long single-column scroll -- let them use the page's real width instead. */
-#section-spells>.links,
-#subsection-spell-libraries .links,
-#subsection-character-sheets .links{
+#section-spells>.links{
   max-width:none;
+  padding:8px 8px 20px;
 }
-#subsection-spell-libraries .links,
-#subsection-character-sheets .links{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:8px;
-}
-#subsection-spell-libraries .links a,
-#subsection-character-sheets .links a{ margin:0 }
 
-/* Character Spell Sheet: arcane-seal cards over the kit's parchment/seal background.
-   Kept the classGrid/classCard names (existing responsive grid, existing Otros-toggle
-   JS below depends on the exact class names) -- only the card's inner visual changed,
-   from a flat icon tile to the kit's glowing arcane-seal + rune. */
-.classGrid{position:relative;padding:20px 16px 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px;border-radius:16px;background:#0b0e14 url('assets/arcane-seals-background.png') center/cover no-repeat}
-@media(max-width:600px){.classGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.classCard{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:14px 8px;border-radius:14px;text-decoration:none;color:#fff;cursor:pointer;transition:transform .15s ease}
-.classCard:hover{transform:translateY(-2px)}
-.classCard .arcane-seal{--class-color:var(--ccolor);width:44px;height:44px;font-size:44px}
-.classCard .class-rune{width:26px;height:26px}
-.classCard .ccName{font-size:.86rem;font-weight:700;color:var(--ccolor);text-shadow:0 1px 4px rgba(0,0,0,.8)}
-.classCard.otrosCard{border:1px dashed var(--border);background:rgba(11,14,20,.75)}
+/* Character Spell Sheet: engraved-stone seals (stone-runes/class-assets/seals/*.png)
+   floating directly over the background -- no card box, no flat icon. Grid columns are
+   pinned per breakpoint (5/3/3) rather than left to auto-fit, to hit those exact
+   targets; 1fr tracks still mean no fixed widths and no overflow risk. */
+.classGrid{position:relative;padding:44px 28px 48px;display:grid;grid-template-columns:repeat(5,1fr);gap:56px 18px;border-radius:16px;background:#0b0e14 url('assets/stone-runes/arcane-seals-background.png') center/cover no-repeat}
+@media(max-width:1000px){.classGrid{grid-template-columns:repeat(3,1fr);gap:46px 14px;padding:36px 20px 40px}}
+@media(max-width:640px){.classGrid{grid-template-columns:repeat(3,minmax(115px,1fr));gap:34px 8px;padding:28px 10px 32px;overflow-x:auto}}
+.class-seal{display:flex!important;flex-direction:column;align-items:center;text-align:center;gap:0;text-decoration:none;color:#fff;cursor:pointer;background:none!important;border:0!important;padding:2px!important;margin:0!important;border-radius:10px;transition:transform .2s ease,filter .2s ease}
+.class-seal:hover,.class-seal:focus-visible{transform:translateY(-6px) scale(1.03);filter:brightness(1.08) drop-shadow(0 0 12px color-mix(in srgb,var(--ccolor) 45%,transparent))}
+.class-seal:focus-visible{outline:2px solid var(--ccolor);outline-offset:5px}
+.class-seal img{width:clamp(115px,16vw,190px);height:auto;filter:drop-shadow(0 10px 14px rgba(0,0,0,.65))}
+.class-seal span{font-family:'Cinzel',Georgia,serif;font-size:1.02rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.95),0 0 12px color-mix(in srgb,var(--ccolor) 60%,transparent);margin-top:14px}
+@media(prefers-reduced-motion:reduce){.class-seal{transition:none}.class-seal:hover,.class-seal:focus-visible{transform:none}}
 
-/* Spell Library: transparent tome grid over the kit's library background -- each tome
-   uses the same rune/color as its class's arcane seal above. */
-.tomeGrid{position:relative;padding:20px 16px 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;border-radius:16px;background:#0b0e14 url('assets/arcane-library-background.png') center/cover no-repeat}
-@media(max-width:600px){.tomeGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.spell-tome{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:0;aspect-ratio:3/4;padding:10px 8px 12px;border-radius:8px 8px 3px 3px;text-decoration:none;color:#fff;cursor:pointer;background:linear-gradient(160deg,color-mix(in srgb,var(--class-color) 30%,#241a10) 0%,color-mix(in srgb,var(--class-color) 12%,#140f0a) 100%);border:1px solid color-mix(in srgb,var(--class-color) 45%,#3a2c1a);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05),0 4px 10px rgba(0,0,0,.4);transition:transform .15s ease,box-shadow .15s ease}
-.spell-tome:hover{transform:translateY(-3px) rotate(-1deg);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 8px 18px rgba(0,0,0,.5)}
-.spell-tome span{font-size:.76rem;font-weight:700;text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.8);line-height:1.2}
-.otrosGrid{padding:0 16px 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
-.otrosGrid[hidden]{display:none}
-.otrosChip{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 8px;border:1px dashed var(--border);border-radius:10px;font-size:.78rem;font-weight:700;color:var(--muted);text-align:center;text-decoration:none;cursor:pointer}.otrosChip:hover{border-color:#8a8f9c;color:var(--text)}
-.otrosChip .ocCount{font-size:.62rem;font-weight:400;color:var(--muted);opacity:.75}
+/* Spell Library: engraved-stone book spines (stone-runes/class-assets/spines/*.png,
+   rune already baked in) standing on three explicit shelf rows, each with its own
+   drawn wooden ledge so the books read as resting on a shelf rather than a grid. */
+.tomeGrid{position:relative;padding:26px 22px 22px;display:flex;flex-direction:column;gap:30px;border-radius:16px;background:#0b0e14 url('assets/stone-runes/arcane-library-background.png') center/cover no-repeat}
+.shelfRow{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;gap:6px;padding-bottom:14px}
+.shelfRow::after{content:"";position:absolute;left:-3%;right:-3%;bottom:0;height:13px;background:linear-gradient(180deg,#4a341c,#1c130b);border-top:2px solid #6b4e2a;border-radius:2px;box-shadow:0 7px 14px rgba(0,0,0,.65),inset 0 2px 2px rgba(255,255,255,.1)}
+.library-book{position:relative;z-index:1;display:flex!important;flex-direction:column;align-items:center;text-decoration:none;cursor:pointer;transition:transform .2s ease,filter .2s ease;background:none!important;border:0!important;padding:0!important;margin:0!important;border-radius:0!important}
+.library-book:hover,.library-book:focus-visible{transform:translateY(-6px) scale(1.03);filter:brightness(1.08) drop-shadow(0 0 12px color-mix(in srgb,var(--class-color) 45%,transparent))}
+.library-book:focus-visible{outline:2px solid var(--class-color);outline-offset:4px;border-radius:6px}
+.library-book img{width:clamp(62px,9vw,105px);height:auto;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(0,0,0,.65))}
+.library-book span{margin-top:6px;font-family:'Cinzel',Georgia,serif;font-size:.68rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;text-align:center;color:#fff3d6;text-shadow:0 1px 5px rgba(0,0,0,.95);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:640px){.tomeGrid{padding:20px 12px 18px;gap:24px}.shelfRow{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:12px;-webkit-overflow-scrolling:touch}.shelfRow::after{left:0;right:0}.library-book{flex:none}}
+@media(prefers-reduced-motion:reduce){.library-book{transition:none}.library-book:hover,.library-book:focus-visible{transform:none}}
 .subsectionLabel{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:16px 4px 4px;padding-top:12px;border-top:1px solid var(--border)}
 .subsectionLabel:first-child{margin-top:4px;padding-top:0;border-top:none}
 
-details.subsection{margin:10px 4px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:rgba(255,255,255,.03)}
-details.subsection + details.subsection{margin-top:10px}
-details.subsection > summary{list-style:none;cursor:pointer;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;-webkit-tap-highlight-color:transparent}
+details.subsection{margin:22px 0 0;border:0;border-radius:0;background:none}
+details.subsection:first-of-type{margin-top:6px}
+details.subsection + details.subsection{margin-top:30px}
+details.subsection > summary{list-style:none;cursor:pointer;padding:0 2px 12px;display:flex;align-items:center;gap:10px;-webkit-tap-highlight-color:transparent;border-bottom:1px solid rgba(255,255,255,.08)}
 details.subsection > summary::-webkit-details-marker{display:none}
 details.subsection > summary::marker{content:""}
-details.subsection > summary .subname{font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
-details.subsection > summary .subcount{font-size:.72rem;color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0}
-details.subsection .schevron{flex:none;width:16px;height:16px;color:var(--muted);transition:transform .18s ease}
+details.subsection > summary .subname{font-family:'Cinzel Decorative',serif;font-size:1.15rem;font-weight:700;letter-spacing:.05em;color:var(--gold)}
+details.subsection > summary .subcount{font-size:.78rem;color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0}
+details.subsection .schevron{flex:none;width:18px;height:18px;color:var(--muted);transition:transform .18s ease;margin-left:auto}
 details.subsection[open] .schevron{transform:rotate(180deg)}
-details.subsection .links{padding:0 10px 10px}
+details.subsection .links{padding:0}
+
+/* Scene focus mode: while a Spells subsection (Spell Libraries / Character Spell
+   Sheets) is open, everything else on the page steps aside so that subsection reads
+   as its own full scene -- background, classes, one title, nothing else. The small
+   fixed sanctum icon (top-left) stays, matching every other standalone tool page.
+   Matched two ways on purpose: the :has() version is pure CSS, so the browser applies
+   it in the very same style pass as the native [open] toggle -- no flash of the old,
+   everything-visible layout while JS catches up. body.sceneFocus (set by the 'toggle'
+   listener below) is the fallback for browsers without :has() support. */
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) #pageHeader{display:none!important}
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) #section-damage,
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) #section-other-characters,
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) #section-sources,
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) #section-spells>summary,
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) details.subsection:not([open]){
+  display:none;
+}
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) main{padding-top:8px}
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) #section-spells{margin:0;border:0;border-radius:0;background:none}
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) #section-spells>.links{padding:0}
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) details.subsection{margin:0}
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) details.subsection>summary{justify-content:center;padding:10px 2px 16px;border-bottom:0}
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) details.subsection>summary .subname{font-size:1.5rem}
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) details.subsection>summary .schevron{display:none}
 
 .sourcesWrap{padding:4px 16px 16px}
 .sourcesNote{color:var(--muted);font-size:.82rem;line-height:1.45;margin:0 0 12px}
@@ -119,7 +138,7 @@ details.subsection .links{padding:0 10px 10px}
   </div>
 </div>
 <main>
-<div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+<div id="pageHeader" style="display:flex;justify-content:space-between;align-items:center;gap:12px">
 <div><h1 id="pageTitle">Pathfinder Tools</h1></div>
 <button id="syncLogout" type="button" style="background:#3a1d21;border:1px solid #67343b;color:#f0a0a0;border-radius:8px;padding:8px 12px;font-size:.8rem;cursor:pointer;white-space:nowrap">Log out</button>
 </div>
@@ -156,27 +175,10 @@ details.subsection .links{padding:0 10px 10px}
 <svg class="schevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
 </summary>
 <div class="classGrid" id="classSheetGrid">
-<div class="classCard otrosCard" id="otrosCard" style="--ccolor:#8a8f9c">
-<span class="ccIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#8a8f9c" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M14,20 L50,20 M14,32 L50,32 M14,44 L50,44"/></svg></span>
-<span class="ccName">Other</span>
-<span class="ccCount">Classes without their own list — loose archetypes</span>
-</div>
-<div class="otrosGrid" id="otrosGrid" hidden>
-<a class="otrosChip" href="fighter-archetypes/">Fighter<span class="ocCount">3/3 archetypes</span></a>
-<a class="otrosChip" href="barbarian-archetypes/">Barbarian<span class="ocCount">7/7 archetypes</span></a>
-<a class="otrosChip" href="rogue-archetypes/">Rogue<span class="ocCount">17/17 archetypes</span></a>
-<a class="otrosChip" href="monk-archetypes/">Monk<span class="ocCount">22/22 archetypes</span></a>
-<a class="otrosChip" href="monk-unchained-archetypes/">Monk (Unchained)<span class="ocCount">6/6 archetypes</span></a>
-<a class="otrosChip" href="cavalier-archetypes/">Cavalier<span class="ocCount">4/4 archetypes</span></a>
-<a class="otrosChip" href="gunslinger-archetypes/">Gunslinger<span class="ocCount">4/4 archetypes</span></a>
-<a class="otrosChip" href="ninja-archetypes/">Ninja<span class="ocCount">2/2 archetypes</span></a>
-<a class="otrosChip" href="samurai-archetypes/">Samurai<span class="ocCount">2/2 archetypes</span></a>
-<a class="otrosChip" href="vigilante-archetypes/">Vigilante<span class="ocCount">12/12 archetypes</span></a>
-<a class="otrosChip" href="shifter-archetypes/">Shifter<span class="ocCount">6/6 archetypes</span></a>
-<a class="otrosChip" href="swashbuckler-archetypes/">Swashbuckler<span class="ocCount">4/4 archetypes</span></a>
-<a class="otrosChip" href="brawler-archetypes/">Brawler<span class="ocCount">2/2 archetypes</span></a>
-<a class="otrosChip" href="kineticist-archetypes/">Kineticist<span class="ocCount">6/6 archetypes</span></a>
-</div>
+<a class="class-seal" id="otrosCard" href="other-classes.html" style="--ccolor:#d8c789" aria-label="Other classes without their own list — browse by archetype, on its own page">
+<img src="assets/stone-runes/class-assets/seals/other-seal.png" alt="">
+<span>Other</span>
+</a>
 </div>
 </details>
 </div>
@@ -275,39 +277,39 @@ details.subsection .links{padding:0 10px 10px}
   if(!localStorage.getItem(SYNC_CODE_KEY)) showGate();
   applyUserVisibility();
 })();
-(function(){
-  const otrosCard=document.getElementById('otrosCard'),otrosGrid=document.getElementById('otrosGrid');
-  if(otrosCard&&otrosGrid){
-    otrosCard.addEventListener('click',()=>{
-      const willShow=otrosGrid.hasAttribute('hidden');
-      if(willShow)otrosGrid.removeAttribute('hidden');else otrosGrid.setAttribute('hidden','');
-      otrosCard.style.borderColor=willShow?'var(--ccolor)':'';
-    });
-  }
-})();
-// Character Spell Sheet seals and Spell Library tomes are both generated from the one
-// shared PF_CLASS_VISUALS catalog (assets/class-visuals.js) -- no rune/color is ever
-// defined twice. Counters are deliberately not shown (a "5/5" badge reads as a progress
-// bar, not as "5 things exist here").
+// Character Spell Sheet seals and Spell Library spines are both generated from the one
+// shared PF_CLASS_VISUALS catalog (assets/class-visuals.js) for the hover-glow accent
+// color only -- the actual artwork is the finished engraved-stone PNGs in
+// assets/stone-runes/class-assets/ (seals already carry their rune in the ring, spines
+// already carry it on the cover, per assets/stone-runes/README.md -- never re-overlaid,
+// never reinterpreted here).
 (function(){
   const CV=window.PF_CLASS_VISUALS;
   if(!CV) return;
   const CLASS_ORDER=['alchemist','antipaladin','arcanist','bard','bloodrager','cleric','druid','hunter',
     'inquisitor','investigator','magus','medium','mesmerist','occultist','oracle','paladin','psychic',
     'ranger','shaman','skald','sorcerer','spiritualist','summoner','warpriest','witch','wizard'];
+  // Available archetypes per class (content that exists, not a completion count -- no
+  // "x/x" and no progress bar, per the kit's own README).
+  const ARCHETYPE_COUNTS={alchemist:5,antipaladin:0,arcanist:5,bard:11,bloodrager:5,cleric:1,druid:8,
+    hunter:1,inquisitor:4,investigator:2,magus:6,medium:1,mesmerist:2,occultist:3,oracle:19,paladin:6,
+    psychic:3,ranger:10,shaman:17,skald:3,sorcerer:1,spiritualist:3,summoner:22,warpriest:2,witch:3,wizard:2};
   const label=s=>s.charAt(0).toUpperCase()+s.slice(1);
 
   const sheetGrid=document.getElementById('classSheetGrid'), otrosCardEl=document.getElementById('otrosCard');
   if(sheetGrid && otrosCardEl){
     const html=CLASS_ORDER.map(cls=>{
       const v=CV[cls]||CV.other;
-      return `<a class="classCard" href="${cls}/" style="--ccolor:${v.color}"><div class="arcane-seal" style="--class-color:${v.color}"><svg class="class-rune"><use href="assets/class-runes.svg#rune-${v.rune}"></use></svg></div><span class="ccName">${label(cls)}</span></a>`;
+      const n=ARCHETYPE_COUNTS[cls]||0;
+      const name=label(cls);
+      return `<a class="class-seal" href="${cls}/" style="--ccolor:${v.color}" aria-label="Open ${name} Character Spell Sheet (${n} archetype${n===1?'':'s'})"><img src="assets/stone-runes/class-assets/seals/${cls}-seal.png" alt="" loading="lazy"><span>${name}</span></a>`;
     }).join('');
     otrosCardEl.insertAdjacentHTML('beforebegin', html);
   }
 
   // A handful of classes share one library page (no separate Oracle/Sorcerer spell list
-  // from Cleric's/Wizard's) -- each tome still keys its rune/color off its own primary class.
+  // from Cleric's/Wizard's) -- each spine still keys its rune/color off its own primary
+  // class, and the label uses that library's own combined name.
   const LIBRARIES=[
     {href:'cleric-oracle-library/', cls:'cleric', label:'Cleric / Oracle'},
     {href:'wizard-sorcerer-library/', cls:'wizard', label:'Wizard / Sorcerer'},
@@ -336,11 +338,34 @@ details.subsection .links{padding:0 10px 10px}
   ];
   const tomeGrid=document.getElementById('tomeGrid');
   if(tomeGrid){
-    tomeGrid.innerHTML=LIBRARIES.map(lib=>{
-      const v=CV[lib.cls]||CV.other;
-      return `<a class="spell-tome" href="${lib.href}" style="--class-color:${v.color}"><svg class="class-rune tome-rune"><use href="assets/class-runes.svg#rune-${v.rune}"></use></svg><span>${lib.label}</span></a>`;
-    }).join('');
+    // Three explicit shelf rows (8 tomes each) instead of one continuous wrap, so each
+    // row gets its own drawn wooden ledge underneath -- reads as three shelves, not a grid.
+    const ROWS=3, perRow=Math.ceil(LIBRARIES.length/ROWS);
+    let html='';
+    for(let r=0;r<ROWS;r++){
+      const chunk=LIBRARIES.slice(r*perRow,(r+1)*perRow);
+      if(!chunk.length) continue;
+      html+='<div class="shelfRow">'+chunk.map(lib=>{
+        const v=CV[lib.cls]||CV.other;
+        return `<a class="library-book" href="${lib.href}" style="--class-color:${v.color}" aria-label="Open ${lib.label} Spell Library"><img src="assets/stone-runes/class-assets/spines/${lib.cls}-spine.png" alt="" loading="lazy"><span>${lib.label}</span></a>`;
+      }).join('')+'</div>';
+    }
+    tomeGrid.innerHTML=html;
   }
+})();
+// Scene focus: while Spell Libraries or Character Spell Sheets is open, hide every
+// other section (and the outer "Spells" bar itself) so that subsection fills the page
+// as its own scene -- background, classes, one title, nothing else.
+(function(){
+  const spells=document.getElementById('section-spells');
+  const libs=document.getElementById('subsection-spell-libraries');
+  const sheets=document.getElementById('subsection-character-sheets');
+  if(!spells||!libs||!sheets) return;
+  const update=()=>{
+    document.body.classList.toggle('sceneFocus', spells.open && (libs.open || sheets.open));
+  };
+  [spells,libs,sheets].forEach(el=>el.addEventListener('toggle', update));
+  update();
 })();
 </script>
 <script>

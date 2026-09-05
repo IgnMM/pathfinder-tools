@@ -159,6 +159,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .datalistInputWrap{position:relative}
 .emptyNote{font-size:.72rem;color:var(--muted);font-style:italic;padding:4px 2px}
 .sourcesbox{position:relative}.sourcesbox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-size:.78rem;list-style:none;white-space:nowrap}.sourcesbox summary::-webkit-details-marker{display:none}.sourcesbox[open] summary{border-color:var(--gold)}.sourcesPanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px;z-index:20;max-height:320px;overflow-y:auto;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.sourcesPanel label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);padding:3px 0;cursor:pointer}.sourcesPanel input{width:auto}.sourcesPanel .srcActions{display:flex;gap:6px;margin-bottom:6px}.sourcesPanel .srcActions button{font-size:.65rem;padding:4px 7px}
+.sourcesPanel.menuPanel{display:flex;flex-direction:column;gap:4px;min-width:190px}.sourcesPanel.menuPanel button,.sourcesPanel.menuPanel a{display:block;width:100%;text-align:left;box-sizing:border-box;font-size:.82rem;text-decoration:none;color:var(--gold2)}.sourcesPanel.menuPanel button{color:var(--text)}
+.switchAccount summary::-webkit-details-marker{display:none}
 .raceNote{font-size:.68rem;color:var(--muted);margin:2px 0 6px}
 .offhandBox{border:1px dashed var(--border);border-radius:10px;padding:8px;margin-top:8px}
 /* Inline, right after the label text it explains -- not floated at a row's outer
@@ -204,20 +206,28 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
     <span id="profileIdentityCluster" style="display:contents">
     <label style="margin:0">Character:</label>
     <select id="profileSelect"></select><span id="profileUpdated" style="font-size:.7rem;color:var(--muted);margin:0 4px"></span>
-    <button id="newProfile">New</button>
-    <button id="dupProfile">Save As…</button>
-    <button id="renameProfile">Rename</button>
-    <a href="../character/" style="font-size:.8rem;color:var(--gold2);white-space:nowrap" title="Link this character's Damage profile with one of your Spellbook profiles into a single combined sheet">🔗 Merge with Spellbook</a>
-    <button class="danger" id="deleteProfile">Delete</button>
+    <details class="sourcesbox" id="charActionsBox"><summary title="More character actions">⋯</summary><div class="sourcesPanel menuPanel">
+      <button id="newProfile" type="button">New</button>
+      <button id="dupProfile" type="button">Save As…</button>
+      <button id="renameProfile" type="button">Rename</button>
+      <a href="../character/" title="Link this character's Damage profile with one of your Spellbook profiles into a single combined sheet">🔗 Merge with Spellbook</a>
+      <button class="danger" id="deleteProfile" type="button">Delete</button>
+    </div></details>
     </span>
     <span id="saveIndicator" class="saveIndicator">✓ Saved</span>
     <details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button></div><div id="sourceList"></div></div></details>
     <button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button><span id="syncStatus" style="font-size:.75rem;color:var(--muted)"></span><details class="sourcesbox" id="accountBox"><summary>Account</summary><div class="sourcesPanel" style="min-width:220px">
-      <div class="row"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase"></div>
-      <div class="row"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase"></div>
-      <button id="syncConnect" type="button">Connect</button>
-      <button id="syncLogout" type="button" class="danger">Log out</button>
-            <div style="font-size:.72rem;color:var(--muted);margin-top:6px">Use the same code on another device to see the same characters there. Whoever knows the code can read/write this data — pick something private, not "1234".</div>
+      <div style="font-size:.85rem;margin-bottom:8px">Connected as <strong id="accountUserDisplay">—</strong></div>
+      <button id="syncLogout" type="button" class="danger" style="width:100%">Log out</button>
+      <details class="switchAccount" style="margin-top:10px">
+        <summary style="font-size:.72rem;color:var(--gold2);cursor:pointer;list-style:none">Not you? Switch account</summary>
+        <div style="margin-top:8px">
+          <div class="row"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase"></div>
+          <div class="row"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase"></div>
+          <button id="syncConnect" type="button" style="margin-top:6px">Connect</button>
+        </div>
+      </details>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:10px">Use the same code on another device to see the same characters there. Whoever knows the code can read/write this data — pick something private, not "1234".</div>
     </div></details>
   </div>
 </header>
@@ -3393,9 +3403,47 @@ function signed(n){return (n>=0?'+':'')+n}
 // ---------- Profiles ----------
 const STORE_KEY='pf1_universal_damage_calc_profiles_v1';
 function loadStore(){ let s=JSON.parse(localStorage.getItem(STORE_KEY)||'null'); if(!s||!s.profiles||!s.profiles.length){ s={active:'New Character',profiles:[defaultProfile('New Character')]}; } return s; }
+// Per-profile last-write-wins merge, shared by every save path (this tab's own local
+// save, and the cloud sync code further down). A profile from either side only replaces
+// the other's copy of that same name if its own _updatedAt is newer -- so two tabs open
+// on two different characters (e.g. a PC and its companion/mount) never clobber each
+// other, even though each tab's copy of the OTHER character's data is stale.
+function mergeStores(local, remote){
+  if(!remote || !remote.profiles || !remote.profiles.length) return local;
+  if(!local || !local.profiles || !local.profiles.length) return remote;
+  let merged=JSON.parse(JSON.stringify(remote));
+  merged.deletedProfiles=merged.deletedProfiles||{};
+  Object.keys(local.deletedProfiles||{}).forEach(name=>{
+    let lt=local.deletedProfiles[name]||0, rt=merged.deletedProfiles[name]||0;
+    if(lt>rt) merged.deletedProfiles[name]=lt;
+  });
+  local.profiles.forEach(lp=>{
+    let idx=merged.profiles.findIndex(rp=>rp.name===lp.name);
+    if(idx===-1){ merged.profiles.push(lp); return; }
+    let rp=merged.profiles[idx];
+    let lt=lp._updatedAt||0, rt=rp._updatedAt||0;
+    if(lt>rt) merged.profiles[idx]=lp;
+  });
+  // A tombstone newer than a profile's own last edit means it was deleted or renamed
+  // away after that edit landed elsewhere -- drop it so it doesn't resurrect elsewhere.
+  Object.keys(merged.deletedProfiles).forEach(name=>{
+    let idx=merged.profiles.findIndex(p=>p.name===name);
+    if(idx!==-1 && merged.deletedProfiles[name]>=(merged.profiles[idx]._updatedAt||0)) merged.profiles.splice(idx,1);
+  });
+  if(!merged.profiles.length){ merged.profiles=[defaultProfile('Recovered Character')]; merged.deletedProfiles={}; }
+  if(!merged.profiles.some(p=>p.name===merged.active)) merged.active=merged.profiles[0].name;
+  return merged;
+}
 let saveIndicatorTimer=null;
 function saveStore(){
   let _p=currentProfile(); if(_p) _p._updatedAt=Date.now();
+  // Re-read disk fresh (not this tab's in-memory copy) before writing, and merge rather
+  // than overwrite -- a different tab/character may have saved its own edits since this
+  // tab last loaded. This tab's own active profile still wins for itself (its _updatedAt
+  // was just set above), everything else defers to whatever's newest on disk.
+  const wantActive=store.active;
+  store=mergeStores(store, loadStore());
+  store.active=wantActive;
   localStorage.setItem(STORE_KEY, JSON.stringify(store));
   let el=document.getElementById('saveIndicator');
   if(el){
@@ -3581,6 +3629,9 @@ $('deleteProfile').onclick=()=>{
   store.profiles=store.profiles.filter(p=>p.name!==store.active);
   store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
+document.querySelector('#charActionsBox .menuPanel').addEventListener('click', e=>{
+  if(e.target.closest('button,a')) document.getElementById('charActionsBox').open=false;
+});
 
 ['characterLevel','casterLevel','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offWeapon','offCustomDice','offCustomThreat','offCritMult','offEnh','offLight','enh','ammoEnh','critMult'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
@@ -4470,7 +4521,7 @@ function compute(){
       // Weapons card header instead of sitting in the (now hidden) toolbar row. Account
       // (sync setup) is left behind to be hidden with the rest of the bar -- the sync
       // code is normally entered once at the Sanctum gate and shared site-wide already.
-      bar.querySelectorAll('.sourcesbox:not(#accountBox)').forEach(el=>slot.appendChild(el));
+      bar.querySelectorAll('.sourcesbox:not(#accountBox):not(#charActionsBox)').forEach(el=>slot.appendChild(el));
       slot.style.display='flex';
       bar.style.display='none';
     }
@@ -4513,34 +4564,10 @@ if("serviceWorker" in navigator){
 
   function normCode(s){ return (s||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80); }
   function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
+  function refreshAccountDisplay(){ let el=$('accountUserDisplay'); if(el) el.textContent=$('syncUser').value.trim()||'Guest'; }
 
-  function mergeStores(local, remote){
-    if(!remote || !remote.profiles || !remote.profiles.length) return local;
-    if(!local || !local.profiles || !local.profiles.length) return remote;
-    let merged=JSON.parse(JSON.stringify(remote));
-    merged.deletedProfiles=merged.deletedProfiles||{};
-    Object.keys(local.deletedProfiles||{}).forEach(name=>{
-      let lt=local.deletedProfiles[name]||0, rt=merged.deletedProfiles[name]||0;
-      if(lt>rt) merged.deletedProfiles[name]=lt;
-    });
-    local.profiles.forEach(lp=>{
-      let idx=merged.profiles.findIndex(rp=>rp.name===lp.name);
-      if(idx===-1){ merged.profiles.push(lp); return; }
-      // Per profile, keep whichever side was actually edited more recently.
-      let rp=merged.profiles[idx];
-      let lt=lp._updatedAt||0, rt=rp._updatedAt||0;
-      if(lt>rt) merged.profiles[idx]=lp;
-    });
-    // A tombstone newer than a profile's own last edit means it was deleted or renamed
-    // away after that edit landed elsewhere -- drop it so it doesn't resurrect elsewhere.
-    Object.keys(merged.deletedProfiles).forEach(name=>{
-      let idx=merged.profiles.findIndex(p=>p.name===name);
-      if(idx!==-1 && merged.deletedProfiles[name]>=(merged.profiles[idx]._updatedAt||0)) merged.profiles.splice(idx,1);
-    });
-    if(!merged.profiles.length){ merged.profiles=[defaultProfile('Recovered Character')]; merged.deletedProfiles={}; }
-    if(!merged.profiles.some(p=>p.name===merged.active)) merged.active=merged.profiles[0].name;
-    return merged;
-  }
+  // mergeStores is now shared (defined once, top-level, next to saveStore) so this
+  // tab's local saves and its cloud sync use the exact same per-profile merge logic.
 
   function applyStoreLocally(newStore){
     store=newStore;
@@ -4654,6 +4681,8 @@ if("serviceWorker" in navigator){
     localStorage.setItem(SYNC_USER_KEY, user);
     localStorage.setItem(SYNC_PIN_KEY, pin);
     connect(user+'-'+pin, false);
+    refreshAccountDisplay();
+    $('accountBox').querySelector('.switchAccount').open=false;
   }
 
   $('syncConnect').onclick=()=>connectFromFields('syncUser','syncPin');
@@ -4691,6 +4720,7 @@ if("serviceWorker" in navigator){
     localStorage.setItem(SYNC_USER_KEY, user);
     localStorage.setItem(SYNC_PIN_KEY, pin);
     connect(user+'-'+pin);
+    refreshAccountDisplay();
   }
 
   const savedCode=localStorage.getItem(SYNC_CODE_KEY);
@@ -4702,6 +4732,7 @@ if("serviceWorker" in navigator){
     if(savedUser!==null && savedPin!==null){ connect(savedUser+'-'+savedPin, true); }
     else{ $('syncUser').value=savedCode; connect(savedCode, true); } // pre-existing session from before username/PIN were split
   } else { showGate(); }
+  refreshAccountDisplay();
 })();
 </script>
 </body>
