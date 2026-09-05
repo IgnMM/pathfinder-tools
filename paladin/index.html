@@ -73,7 +73,7 @@ const MIN_LEVEL={1:4,2:7,3:10,4:13};
 const STORE_KEY='paladinUniversalSpellbookPF1V1';
 const $=id=>document.getElementById(id);
 function statRow(label,val){return val?`<div class="stat-row"><b>${label}</b> ${val}</div>`:''}
-function defaultState(){return {archetype:'',level:4,cha:10,race:'',oaths:[],prep:{},oathPrep:{},oathCast:{},used:[0,0,0,0,0],show:[1,2,3,4],fav:{},cast:{},excludedSources:{},showIneligible:false,forbidden:{},sourcesCustomized:false};}
+function defaultState(){return {archetype:'',level:4,cha:18,race:'',oaths:[],prep:{},oathPrep:{},oathCast:{},used:[0,0,0,0,0],show:[1,2,3,4],fav:{},cast:{},excludedSources:{},showIneligible:false,forbidden:{},sourcesCustomized:false};}
 function applyDefaultsToState(s){let d=defaultState();Object.keys(d).forEach(k=>{if(s[k]===undefined)s[k]=d[k]});if(s.oath){if(!s.oaths.includes(s.oath))s.oaths.push(s.oath);delete s.oath}return s}
 function loadStore(){
   let raw=localStorage.getItem(STORE_KEY);

@@ -249,7 +249,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="row rowNarrow"><label>Caster Level</label><input id="casterLevel" type="number" min="0" max="20" value="10"></div>
 <div class="emptyNote">Caster Level is often lower than Character Level — a Paladin/Ranger's is Character Level − 3 (starting at 4th level), for example. Set it independently; it pre-fills spell entries below that scale with caster level (Divine Favor, Magic Weapon Greater, Wrath, Gorum's Armor...) instead of Character Level.</div>
 <div class="row numAttacksRow"><label>Number of Attacks</label><input id="numAttacks" type="number" min="1" max="8" value="1"><div id="babSequenceBox"></div></div>
-<div class="emptyNote">Type each attack's base attack bonus directly — no formula, no assumed "-5 per attack." Set "Number of Attacks" first, then fill in each box; the first box is also used as "BAB" everywhere else in the calculator (Power Attack scaling, etc.). Character Level only pre-fills level-scaling fields elsewhere (Sneak Attack dice, caster level, bard/paladin level...) when you add them from the catalog below — it no longer affects BAB.</div>
+<div class="emptyNote">Character Level defaults this to full BAB (level, level-5, level-10...) — type over any box for a 3/4 or 1/2 BAB class, multiple iteratives, etc. The first box is also used as "BAB" everywhere else in the calculator (Power Attack scaling, etc.). Character Level also pre-fills other level-scaling fields (Sneak Attack dice, caster level, bard/paladin level...) when you add them from the catalog below.</div>
 <div class="row"><label>Play with Mythic rules?</label><input id="mythicEnabled" type="checkbox" style="width:auto;justify-self:start"></div>
 <div id="mythicTierBox" style="display:none">
 <div class="row"><label>Mythic Tier</label><input id="mythicTier" type="number" min="0" max="10" value="0"></div>
@@ -3462,7 +3462,7 @@ function saveStore(){
   }
 }
 function defaultProfile(name){
-  return {name, babList:[6], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
+  return {name, babList:[10], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
     style:'twoHanded', atkStat:'str', dmgStat:'str', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
     enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:'', deity:''};
 }
@@ -3574,10 +3574,11 @@ function updateEnhLabel(){
 }
 $('numAttacks').addEventListener('input', ()=>{ renderBabInputs(); syncUIIntoProfile(); compute(); });
 
-// BAB is entered directly per attack — no formula, no "-5 per attack" assumption. The
-// player sets how many attacks they have (Number of Attacks) and types each attack's own
-// base attack bonus by hand. p.babList[0] is still "BAB" for every other formula in the
-// calculator (Power Attack scaling, etc.) exactly like the old single BAB field was.
+// BAB is entered directly per attack, editable by hand at any time. Character Level (and
+// adding more attack boxes) seed a full-BAB default -- level, level-5, level-10... -- since
+// that's the common case, but typing over any box always wins; it's never recomputed except
+// when Character Level itself changes. p.babList[0] is still "BAB" for every other formula
+// in the calculator (Power Attack scaling, etc.) exactly like the old single BAB field was.
 function renderBabInputs(){
   let p=currentProfile();
   let n=Math.max(1, Math.min(8, +$('numAttacks').value||1));
@@ -3659,6 +3660,16 @@ document.querySelector('#charActionsBox .menuPanel').addEventListener('click', e
       $('ammoBox').style.display = $('style').value==='ranged' ? 'grid' : 'none';
       updateEnhLabel();
       renderCategories();
+    }
+    if(id==='characterLevel'){
+      // Default the BAB sequence to full BAB at the new level (level, level-5, level-10...)
+      // for however many attacks are already set -- a starting point the player can still
+      // type over by hand, same as any babList box.
+      let lvl=Math.max(1, +$('characterLevel').value||1);
+      let p=currentProfile();
+      let n=(p.babList&&p.babList.length)||1;
+      p.babList=Array.from({length:n},(_,i)=>Math.max(0, lvl-5*i));
+      renderBabInputs();
     }
     syncUIIntoProfile();
     if(id==='mythicEnabled'){
