@@ -43,6 +43,8 @@ h3{font-size:14px;margin:14px 0 8px;color:#fff}
 .unmodeledItem{font-size:.8rem;line-height:1.4;padding:7px 0;border-top:1px dashed rgba(230,126,34,.35)}
 .unmodeledItem:first-child{border-top:none;padding-top:0}
 .unmodeledItem b{color:#fff}
+.ackBtn{display:block;margin-top:5px;font-size:.68rem;padding:3px 8px;border-radius:999px;background:rgba(230,126,34,.18);border:1px solid #e67e22;color:#f0a850;cursor:pointer}
+.ackBtn:hover{background:rgba(230,126,34,.32)}
 .card-results{border-top-color:var(--violet)}
 .card-results h2{color:var(--violet);display:flex;align-items:center;gap:10px}
 .pinBtn{font-size:.7rem;padding:4px 9px;border-radius:999px;background:var(--panel2);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-weight:400}
@@ -3867,6 +3869,7 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom, pStyle){
   };
   div.querySelector('.onChk').addEventListener('change',(e)=>{
     activeRec.on=e.target.checked;
+    if(activeRec.on) activeRec.ack=false; // reactivating is a fair point to remind the player again
     div.classList.toggle('off', !activeRec.on);
     saveStore(); compute();
   });
@@ -3929,17 +3932,17 @@ function collectContributions(ctx){
   // instead of reusing ctx.cha directly, which is just the raw ability-score field and
   // ignores every buff (those only reach atkStat/dmgStat-gated totals via abilityBuffBonus).
   ctx.effectiveCha = ctx.cha + p.active.filter(a=>{ let mm=MODIFIERS.find(x=>x.id===a.id); return mm && mm.type==='enhancement-cha' && a.on!==false; }).reduce((sum,a)=>{ let mm=MODIFIERS.find(x=>x.id===a.id); let scoreBonus=(a.cfg&&a.cfg.value!==undefined)?a.cfg.value:4; return sum+scoreBonus/2; },0);
-  p.active.forEach(a=>{
+  p.active.forEach((a,activeIdx)=>{
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
     let isOff=a.on===false;
     if(m.special==='furious-focus'){
       if(!isOff) furiousFocusOn=true;
-      breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Cancels Power Attack penalty on first attack only'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff,reflectedElsewhere:true});
+      breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Cancels Power Attack penalty on first attack only'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff,reflectedElsewhere:true,activeIdx,ack:!!a.ack});
       return;
     }
     if(m.special==='flurry-of-blows' || m.special==='flurry-of-blows-zen'){
       if(!isOff){ flurryOfBlowsOn=true; flurryMonkLevel=(a.cfg&&a.cfg.monkLevel)||1; flurryIsZen=(m.special==='flurry-of-blows-zen'); }
-      breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Replaces the Full Attack line above with its own progression (monk level '+((a.cfg&&a.cfg.monkLevel)||1)+')'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff,reflectedElsewhere:true});
+      breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Replaces the Full Attack line above with its own progression (monk level '+((a.cfg&&a.cfg.monkLevel)||1)+')'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff,reflectedElsewhere:true,activeIdx,ack:!!a.ack});
       return;
     }
     let r=m.compute(ctx,a.cfg||{});
@@ -3970,7 +3973,7 @@ function collectContributions(ctx){
       }
     }
     if(isOff) noteText = (noteText||'')+' (not active this turn)';
-    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:noteText,suppressed:false,off:isOff,reflectedElsewhere:m.special==='pa-no-crit'});
+    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:noteText,suppressed:false,off:isOff,reflectedElsewhere:m.special==='pa-no-crit',activeIdx,ack:!!a.ack});
   });
   if(mythicWeaponFocusOn){
     let wfOn=p.active.some(a=>a.id==='weapon-focus' && a.on!==false);
@@ -4057,11 +4060,22 @@ function renderUnmodeledEffects(breakdown){
   // no-crit-mult house rule) are switches whose effect IS fully baked into a specific result
   // above (Single Attack, Full Attack, Critical Damage) via bespoke logic elsewhere -- they're
   // flagged reflectedElsewhere so they don't get flagged here too.
+  // Acknowledged items (the player clicked "OK, read it") drop out of this callout and
+  // just sit in the regular breakdown table below like any other modifier -- re-toggling
+  // the modifier off then on clears the acknowledgement, since reactivating it later
+  // (a different target, a different round) is a reasonable point to remind them again.
   let box=$('unmodeledBox'), list=$('unmodeledList');
-  let items=breakdown.filter(b=>!b.off && !b.suppressed && !b.reflectedElsewhere && b.type==='special' && b.note);
+  let items=breakdown.filter(b=>!b.off && !b.suppressed && !b.reflectedElsewhere && b.type==='special' && b.note && !b.ack);
   if(!items.length){ box.style.display='none'; list.innerHTML=''; return; }
   box.style.display='block';
-  list.innerHTML=items.map(b=>`<div class="unmodeledItem"><b>${b.name}</b> — ${b.note}</div>`).join('');
+  list.innerHTML=items.map(b=>`<div class="unmodeledItem"><b>${b.name}</b> — ${b.note}<button class="ackBtn" data-ack-idx="${b.activeIdx}" type="button">OK, I've read it</button></div>`).join('');
+  list.querySelectorAll('[data-ack-idx]').forEach(btn=>{
+    btn.onclick=()=>{
+      let p=currentProfile();
+      let idx=+btn.dataset.ackIdx;
+      if(p.active[idx]){ p.active[idx].ack=true; saveStore(); compute(); }
+    };
+  });
 }
 function renderBreakdown(breakdown){
   let box=$('breakdownTables'); box.innerHTML='';
