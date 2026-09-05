@@ -44,7 +44,7 @@ const name=params.get('name');
 const cls=params.get('cls');
 const dmgProfile=params.get('dmg')||name;
 const spellsProfile=params.get('spells')||name;
-const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid',alchemist:'Alchemist',bard:'Bard',sorcerer:'Sorcerer',wizard:'Wizard',ranger:'Ranger'};
+const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid',alchemist:'Alchemist',bard:'Bard',sorcerer:'Sorcerer',wizard:'Wizard',ranger:'Ranger',antipaladin:'Antipaladin',arcanist:'Arcanist',bloodrager:'Bloodrager',hunter:'Hunter',inquisitor:'Inquisitor',investigator:'Investigator',magus:'Magus',medium:'Medium',mesmerist:'Mesmerist',occultist:'Occultist',oracle:'Oracle',psychic:'Psychic',shaman:'Shaman',skald:'Skald',spiritualist:'Spiritualist',summoner:'Summoner',warpriest:'Warpriest',witch:'Witch'};
 
 if(!name || !CLASS_LABELS[cls]){
   document.getElementById('app').innerHTML = '<div class="errBox"><p>Missing or invalid character link.</p><p><a href="index.html">← Back to Merged Characters</a></p></div>';

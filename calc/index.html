@@ -199,14 +199,16 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <h1>Character Hit&amp;Damage Calculator</h1>
   <div class="subtitle">Pathfinder 1e — attack/damage modifiers with correct bonus-type stacking. Every change saves automatically to this browser — there's no Save button because there's nothing to lose; use "Save As" to keep a copy under a different character's name. Want your characters on another device too? Set a Sync code below (top right).</div>
   <div class="profileBar" style="margin-top:10px">
+    <span id="profileIdentityCluster" style="display:contents">
     <label style="margin:0">Character:</label>
     <select id="profileSelect"></select><span id="profileUpdated" style="font-size:.7rem;color:var(--muted);margin:0 4px"></span>
     <button id="newProfile">New</button>
     <button id="dupProfile">Save As…</button>
     <button id="renameProfile">Rename</button>
     <a href="../character/" style="font-size:.8rem;color:var(--gold2);white-space:nowrap" title="Link this character's Damage profile with one of your Spellbook profiles into a single combined sheet">🔗 Merge with Spellbook</a>
-    <span id="saveIndicator" class="saveIndicator">✓ Saved</span>
     <button class="danger" id="deleteProfile">Delete</button>
+    </span>
+    <span id="saveIndicator" class="saveIndicator">✓ Saved</span>
     <details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button></div><div id="sourceList"></div></div></details>
     <button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button><span id="syncStatus" style="font-size:.75rem;color:var(--muted)"></span><details class="sourcesbox"><summary>Account</summary><div class="sourcesPanel" style="min-width:220px">
       <div class="row"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase"></div>
@@ -4438,6 +4440,13 @@ function compute(){
   const wantProfile=new URLSearchParams(location.search).get('profile');
   if(!wantProfile) return;
   window.__pinnedProfile=wantProfile;
+  // Deep-linked in (a merged character's iframe, or an "Open in Calculator" link) --
+  // the embedding page already shows this character's name and its own Save/Load, so
+  // the Calculator's own profile-switcher (which could navigate away from the pinned
+  // character entirely) and New/Save As/Rename/Delete are redundant chrome here, not
+  // just visual clutter but actively confusing next to the outer page's own identity bar.
+  let identityCluster=document.getElementById('profileIdentityCluster');
+  if(identityCluster) identityCluster.style.display='none';
   let justCreated=false;
   if(!store.profiles.some(p=>p.name===wantProfile)){ store.profiles.push(defaultProfile(wantProfile)); justCreated=true; }
   store.active=wantProfile;

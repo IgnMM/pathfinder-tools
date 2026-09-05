@@ -44,10 +44,13 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 </div>
 <a href="../" title="The Sanctum" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10.3"/><polygon points="12.0,2.4 14.3,8.8 21.1,9.0 15.7,13.2 17.6,19.8 12.0,15.9 6.4,19.8 8.3,13.2 2.9,9.0 9.7,8.8"/></svg></a>
 <style>@media(max-width:900px){header,main{padding-left:60px !important}}</style>
-<header><h1>Merged Characters</h1><div class="sub">Combine a Character Hit&amp;Damage Calculator profile with a Universal Spellbook profile — same character, one document, a button to switch between Damage and Spells. Works exactly like Kenneth's or Gabriel's sheet, for any character you create.</div></header>
+<header><h1>Merged Characters</h1><div class="sub">Every character you have anywhere on this account — a Damage Calculator profile, a Spellbook profile, or already both linked together. Pick one below to open it, or link a matching Calculator + Spellbook pair into one combined sheet (works exactly like Kenneth's or Gabriel's).</div></header>
 <main>
-<div class="card">
-<div class="newForm">
+<div id="allCharsList"></div>
+<div id="allCharsEmpty" class="emptyNote" style="display:none">No characters found yet on this account — create one in the Calculator or a Spellbook tool first, then come back here to link them.</div>
+<details class="card" id="newCharDetails">
+<summary style="cursor:pointer;font-weight:700;color:var(--gold2)">Or create a brand-new character from scratch ▾</summary>
+<div class="newForm" style="margin-top:10px">
   <div><label>Character name</label><input id="newName" type="text" placeholder="e.g. Thorgar" style="width:180px"></div>
   <div><label id="newClassLabel">Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option><option value="alchemist">Alchemist</option><option value="bard">Bard</option><option value="sorcerer">Sorcerer</option><option value="wizard">Wizard</option><option value="ranger">Ranger</option><option value="antipaladin">Antipaladin</option><option value="arcanist">Arcanist</option><option value="bloodrager">Bloodrager</option><option value="hunter">Hunter</option><option value="inquisitor">Inquisitor</option><option value="investigator">Investigator</option><option value="magus">Magus</option><option value="medium">Medium</option><option value="mesmerist">Mesmerist</option><option value="occultist">Occultist</option><option value="oracle">Oracle</option><option value="psychic">Psychic</option><option value="shaman">Shaman</option><option value="skald">Skald</option><option value="spiritualist">Spiritualist</option><option value="summoner">Summoner</option><option value="warpriest">Warpriest</option><option value="witch">Witch</option></select></div>
   <button class="primary" id="createBtn">Create</button>
@@ -59,9 +62,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
   <div><label>Spellbook profile name (exact)</label><input id="newSpellsProfile" type="text" placeholder="defaults to character name" style="width:200px"></div>
 </div>
 <div class="sub" style="margin:8px 0 0">By default, creates (or reuses, if the name already exists) a Damage Calculator profile and a Spellbook profile under the character name, and links them together. Use the fields above if your existing profiles have different names — the link points at those exact profiles instead of creating new blank ones.</div>
-</div>
-<div id="charList"></div>
-<div id="emptyNote" class="emptyNote" style="display:none">No merged characters yet — create one above.</div>
+</details>
 <div style="display:flex;gap:8px;margin-top:10px"><button id="cloudSave" class="primary">Save to cloud</button><button id="cloudLoad">Load from cloud</button></div>
 <div class="syncStatus" id="syncStatus"></div>
 </main>
@@ -181,40 +182,120 @@ function resolveUnifiedName(cls, name, dmg, spells){
   return {dmg: name, spells: name};
 }
 
-function renderList(){
-  let box=$('charList'); box.innerHTML='';
-  $('emptyNote').style.display = merged.length ? 'none' : 'block';
-  merged.forEach((c,i)=>{
+// Scans every source of truth on this device/account -- the Calculator's own profile
+// list, every class's Spellbook profile store, and the existing Merged Characters links
+// -- and groups everything by character name so the page can show what's ACTUALLY out
+// there instead of asking the user to remember and type it themselves.
+function scanAllCharacters(){
+  let byName={};
+  function ensure(name){ if(!byName[name]) byName[name]={name, calc:false, spellClasses:[], mergedEntry:null}; return byName[name]; }
+
+  try{
+    let raw=localStorage.getItem('pf1_universal_damage_calc_profiles_v1');
+    if(raw){ let store=JSON.parse(raw); (store.profiles||[]).forEach(p=>{ ensure(p.name).calc=true; }); }
+  }catch(e){}
+
+  ALL_CLASSES.forEach(cls=>{
+    try{
+      let raw=localStorage.getItem(cls+'UniversalSpellbookPF1V1');
+      if(!raw) return;
+      let store=JSON.parse(raw);
+      Object.keys(store.profiles||{}).forEach(name=>{ ensure(name).spellClasses.push(cls); });
+    }catch(e){}
+  });
+
+  // Merged entries own the display name; their underlying dmg/spells profile names (which
+  // can differ from the display name via the advanced fields) are "claimed" so those raw
+  // profiles don't also show up as their own separate, redundant rows below.
+  let claimed=new Set();
+  merged.forEach(c=>{
+    ensure(c.name).mergedEntry=c;
+    claimed.add(dmgOf(c));
+    claimed.add(spellsOf(c));
+  });
+  Object.keys(byName).forEach(name=>{
+    if(!byName[name].mergedEntry && claimed.has(name)) delete byName[name];
+  });
+
+  return Object.values(byName).sort((a,b)=>a.name.localeCompare(b.name));
+}
+
+function linkCharacter(name, cls, dmgProfile, spellsProfile){
+  let dmg=dmgProfile||name, spells=spellsProfile||name;
+  const resolved=resolveUnifiedName(cls, name, dmg, spells);
+  if(!resolved) return null; // name collision on rename -- caller should leave its form open
+  dmg=resolved.dmg; spells=resolved.spells;
+  if(!merged.some(c=>c.name===name && c.cls===cls)){
+    let entry={name, cls};
+    if(dmg!==name) entry.dmgProfile=dmg;
+    if(spells!==name) entry.spellsProfile=spells;
+    merged.push(entry);
+    persist();
+  }
+  return {dmg, spells};
+}
+function openUrl(name, cls, dmg, spells){
+  return 'view.html?name='+encodeURIComponent(name)+'&cls='+encodeURIComponent(cls)+'&dmg='+encodeURIComponent(dmg)+'&spells='+encodeURIComponent(spells);
+}
+
+function renderAllChars(){
+  let box=$('allCharsList'); box.innerHTML='';
+  let all=scanAllCharacters();
+  $('allCharsEmpty').style.display = all.length ? 'none' : 'block';
+  all.forEach(entry=>{
     let card=document.createElement('div'); card.className='card charCard';
-    let dmg=dmgOf(c), spells=spellsOf(c);
-    let linkNote = (dmg!==c.name || spells!==c.name)
-      ? `<div class="link">Damage: <b>${dmg}</b> · Spells: <b>${spells}</b></div>` : '';
-    card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${c.name}</div><div class="cls">${CLASS_LABELS[c.cls]||c.cls} spellcaster</div>${linkNote}</div>
-      <div class="actions">
-        <a href="view.html?name=${encodeURIComponent(c.name)}&cls=${encodeURIComponent(c.cls)}&dmg=${encodeURIComponent(dmg)}&spells=${encodeURIComponent(spells)}"><button class="primary">Open</button></a>
-        <button data-edit="${i}">Edit link</button>
-        <button class="danger" data-unlink="${i}">Unlink</button>
-      </div>
-      <div class="editBox" id="editBox${i}">
-        <div><label>Damage profile name (exact)</label><input id="editDmg${i}" type="text" value="${dmg}" style="width:200px"></div>
-        <div><label>Spellbook profile name (exact)</label><input id="editSpells${i}" type="text" value="${spells}" style="width:200px"></div>
-        <button class="primary" data-save="${i}">Save link</button>
-      </div>`;
-    card.querySelector('[data-unlink]').onclick=()=>{
-      if(!confirm('Unlink "'+c.name+'"? This only removes the merge — the Damage Calculator and Spellbook data for this character stay safe in each tool.')) return;
-      merged.splice(i,1); persist(); renderList();
-    };
-    card.querySelector('[data-edit]').onclick=()=>{ $('editBox'+i).classList.toggle('show'); };
-    card.querySelector('[data-save]').onclick=()=>{
-      let nd=$('editDmg'+i).value.trim(), ns=$('editSpells'+i).value.trim();
-      if(!nd||!ns) return;
-      const resolved=resolveUnifiedName(c.cls, c.name, nd, ns);
-      if(!resolved) return; // name collision on rename -- leave the edit box open so the user can fix it
-      nd=resolved.dmg; ns=resolved.spells;
-      c.dmgProfile = (nd===c.name) ? undefined : nd;
-      c.spellsProfile = (ns===c.name) ? undefined : ns;
-      persist(); renderList();
-    };
+    if(entry.mergedEntry){
+      let c=entry.mergedEntry, dmg=dmgOf(c), spells=spellsOf(c);
+      let i=merged.indexOf(c);
+      let linkNote=(dmg!==c.name || spells!==c.name)
+        ? `<div class="link">Damage: <b>${dmg}</b> · Spells: <b>${spells}</b></div>` : '';
+      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${c.name}</div><div class="cls">Merged — ${CLASS_LABELS[c.cls]||c.cls} spellcaster</div>${linkNote}</div>
+        <div class="actions">
+          <a href="${openUrl(c.name,c.cls,dmg,spells)}"><button class="primary">Open</button></a>
+          <button data-edit>Edit link</button>
+          <button class="danger" data-unlink>Unlink</button>
+        </div>
+        <div class="editBox" id="editBox${i}">
+          <div><label>Damage profile name (exact)</label><input id="editDmg${i}" type="text" value="${dmg}" style="width:200px"></div>
+          <div><label>Spellbook profile name (exact)</label><input id="editSpells${i}" type="text" value="${spells}" style="width:200px"></div>
+          <button class="primary" data-save>Save link</button>
+        </div>`;
+      card.querySelector('[data-unlink]').onclick=()=>{
+        if(!confirm('Unlink "'+c.name+'"? This only removes the merge — the Damage Calculator and Spellbook data for this character stay safe in each tool.')) return;
+        merged.splice(i,1); persist(); renderAllChars();
+      };
+      card.querySelector('[data-edit]').onclick=()=>{ $('editBox'+i).classList.toggle('show'); };
+      card.querySelector('[data-save]').onclick=()=>{
+        let nd=$('editDmg'+i).value.trim(), ns=$('editSpells'+i).value.trim();
+        if(!nd||!ns) return;
+        const resolved=resolveUnifiedName(c.cls, c.name, nd, ns);
+        if(!resolved) return; // name collision on rename -- leave the edit box open so the user can fix it
+        nd=resolved.dmg; ns=resolved.spells;
+        c.dmgProfile=(nd===c.name)?undefined:nd;
+        c.spellsProfile=(ns===c.name)?undefined:ns;
+        persist(); renderAllChars();
+      };
+    } else if(entry.calc && entry.spellClasses.length){
+      // Found on both sides but never linked -- offer to merge instead of asking the user
+      // to retype the name into the create form below.
+      let cls=entry.spellClasses[0];
+      let clsNote=entry.spellClasses.length>1 ? entry.spellClasses.map(c=>CLASS_LABELS[c]||c).join('/') : (CLASS_LABELS[cls]||cls);
+      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${entry.name}</div><div class="cls">Damage Calculator + ${clsNote} Spellbook — not yet merged</div></div>
+        <div class="actions"><button class="primary" data-merge>Merge</button></div>`;
+      card.querySelector('[data-merge]').onclick=()=>{
+        let linked=linkCharacter(entry.name, cls, entry.name, entry.name);
+        if(!linked) return;
+        location.href=openUrl(entry.name, cls, linked.dmg, linked.spells);
+      };
+    } else if(entry.calc){
+      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${entry.name}</div><div class="cls">Damage Calculator only</div></div>
+        <div class="actions"><a href="../calc/index.html?profile=${encodeURIComponent(entry.name)}"><button class="primary">Open in Calculator</button></a></div>`;
+    } else {
+      let clsNote=entry.spellClasses.map(c=>CLASS_LABELS[c]||c).join(' / ');
+      let links=entry.spellClasses.map(cls=>`<a href="../${cls}/index.html?profile=${encodeURIComponent(entry.name)}"><button class="primary">Open in ${CLASS_LABELS[cls]||cls}</button></a>`).join(' ');
+      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${entry.name}</div><div class="cls">${clsNote} Spellbook only</div></div>
+        <div class="actions">${links}</div>`;
+    }
     box.appendChild(card);
   });
 }
@@ -227,18 +308,9 @@ $('createBtn').onclick=()=>{
   let dmgProfile=$('newDmgProfile').value.trim();
   let spellsProfile=$('newSpellsProfile').value.trim();
   if(!name){ $('newName').focus(); return; }
-  let dmg=dmgProfile||name, spells=spellsProfile||name;
-  const resolved=resolveUnifiedName(cls, name, dmg, spells);
-  if(!resolved) return; // name collision on rename -- let the user fix the form instead of creating a broken link
-  dmg=resolved.dmg; spells=resolved.spells;
-  if(!merged.some(c=>c.name===name && c.cls===cls)){
-    let entry={name, cls};
-    if(dmg!==name) entry.dmgProfile=dmg;
-    if(spells!==name) entry.spellsProfile=spells;
-    merged.push(entry);
-    persist();
-  }
-  location.href='view.html?name='+encodeURIComponent(name)+'&cls='+encodeURIComponent(cls)+'&dmg='+encodeURIComponent(dmg)+'&spells='+encodeURIComponent(spells);
+  let linked=linkCharacter(name, cls, dmgProfile, spellsProfile);
+  if(!linked) return; // name collision on rename -- let the user fix the form instead of creating a broken link
+  location.href=openUrl(name, cls, linked.dmg, linked.spells);
 };
 
 // ---------- Cross-device sync (Firebase Firestore) ----------
@@ -267,7 +339,7 @@ $('createBtn').onclick=()=>{
   function applyLocal(list){
     merged=list||[];
     saveMergedLocal();
-    renderList();
+    renderAllChars();
   }
 
   async function ensureDocRef(code){
@@ -346,7 +418,7 @@ $('createBtn').onclick=()=>{
   } else { showGate(); }
 })();
 
-renderList();
+renderAllChars();
 if("serviceWorker" in navigator){
   window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
 }
