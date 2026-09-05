@@ -45,6 +45,24 @@ details.section[open] .chevron{transform:rotate(180deg)}
    pinned per breakpoint (5/3/3) rather than left to auto-fit, to hit those exact
    targets; 1fr tracks still mean no fixed widths and no overflow risk. */
 .classGrid{position:relative;padding:44px 28px 48px;display:grid;grid-template-columns:repeat(5,1fr);gap:56px 18px;border-radius:16px;background:#0b0e14 url('assets/stone-runes/arcane-seals-background.png') center/cover no-repeat}
+/* Full-bleed background: only meaningful in scene focus (the only time these grids are
+   visible at all), since the outer "Spells" card otherwise clips overflow for its own
+   rounded corners. The grid content itself stays inset near its old ~1400px width via
+   the same calc() as the page's own max-width -- only the photo behind it reaches the
+   true screen edges. */
+:is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) #section-spells{overflow:visible}
+@media(min-width:641px){
+  :is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) .classGrid,
+  :is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) .library-scroll{
+    box-sizing:border-box;
+    width:100vw;
+    margin-left:calc(50% - 50vw);
+    border-radius:0;
+    padding-left:max(28px, calc((100vw - 1400px)/2 + 28px));
+    padding-right:max(28px, calc((100vw - 1400px)/2 + 28px));
+  }
+  :is(body.sceneFocus, body:has(#section-spells[open] details.subsection[open])) .library-map{border-radius:0}
+}
 @media(max-width:1000px){.classGrid{grid-template-columns:repeat(3,1fr);gap:46px 14px;padding:36px 20px 40px}}
 @media(max-width:640px){.classGrid{grid-template-columns:repeat(3,minmax(115px,1fr));gap:34px 8px;padding:28px 10px 32px;overflow-x:auto}}
 .class-seal{display:flex!important;flex-direction:column;align-items:center;text-align:center;gap:0;text-decoration:none;color:#fff;cursor:pointer;background:none!important;border:0!important;padding:2px!important;margin:0!important;border-radius:10px;transition:transform .2s ease,filter .2s ease}
@@ -54,19 +72,33 @@ details.section[open] .chevron{transform:rotate(180deg)}
 .class-seal span{font-family:'Cinzel',Georgia,serif;font-size:1.02rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.95),0 0 12px color-mix(in srgb,var(--ccolor) 60%,transparent);margin-top:14px}
 @media(prefers-reduced-motion:reduce){.class-seal{transition:none}.class-seal:hover,.class-seal:focus-visible{transform:none}}
 
-/* Spell Library: engraved-stone book spines (stone-runes/class-assets/spines/*.png,
-   rune already baked in) standing on three explicit shelf rows, each with its own
-   drawn wooden ledge so the books read as resting on a shelf rather than a grid. */
-.tomeGrid{position:relative;padding:26px 22px 22px;display:flex;flex-direction:column;gap:30px;border-radius:16px;background:#0b0e14 url('assets/stone-runes/arcane-library-background.png') center/cover no-repeat}
-.shelfRow{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;gap:6px;padding-bottom:14px}
-.shelfRow::after{content:"";position:absolute;left:-3%;right:-3%;bottom:0;height:13px;background:linear-gradient(180deg,#4a341c,#1c130b);border-top:2px solid #6b4e2a;border-radius:2px;box-shadow:0 7px 14px rgba(0,0,0,.65),inset 0 2px 2px rgba(255,255,255,.1)}
-.library-book{position:relative;z-index:1;display:flex!important;flex-direction:column;align-items:center;text-decoration:none;cursor:pointer;transition:transform .2s ease,filter .2s ease;background:none!important;border:0!important;padding:0!important;margin:0!important;border-radius:0!important}
-.library-book:hover,.library-book:focus-visible{transform:translateY(-6px) scale(1.03);filter:brightness(1.08) drop-shadow(0 0 12px color-mix(in srgb,var(--class-color) 45%,transparent))}
-.library-book:focus-visible{outline:2px solid var(--class-color);outline-offset:4px;border-radius:6px}
-.library-book img{width:clamp(62px,9vw,105px);height:auto;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(0,0,0,.65))}
-.library-book span{margin-top:6px;font-family:'Cinzel',Georgia,serif;font-size:.68rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;text-align:center;color:#fff3d6;text-shadow:0 1px 5px rgba(0,0,0,.95);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-@media(max-width:640px){.tomeGrid{padding:20px 12px 18px;gap:24px}.shelfRow{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:12px;-webkit-overflow-scrolling:touch}.shelfRow::after{left:0;right:0}.library-book{flex:none}}
-@media(prefers-reduced-motion:reduce){.library-book{transition:none}.library-book:hover,.library-book:focus-visible{transform:none}}
+/* Spell Library: the shelf photo carries only the books themselves (no labels baked
+   in), so hitboxes and their name plates are real elements positioned over it in
+   percentages -- hitbox and art scale together at any width, and the name plate is
+   ordinary text, not a photo slice, so it's crisp and identically placed on every row
+   with no per-row measurement to get right. No floating books, no height mismatches,
+   no displaced runes, no gap with the background. */
+.library-scroll{overflow-x:auto}
+.library-map{position:relative;width:100%;aspect-ratio:1672/941;border-radius:16px;overflow:hidden}
+.library-map>img{display:block;width:100%;height:100%;object-fit:cover}
+/* The hover "lens" is sized and positioned to exactly one book's own small, narrow
+   rectangle (hugging just the spine, not the wider click area) with overflow hidden,
+   holding an oversized copy of the same (browser-cached) image offset so only that
+   book's slice shows through -- like a window cut exactly to the book's own size.
+   Scaling *that small box* on hover grows just the book in place; scaling a full-size
+   clipped copy (the first attempt) grew the whole clip "window" instead, which read
+   as a block popping up, not the book. */
+.bookLens{position:absolute;overflow:hidden;border-radius:40%/8%;pointer-events:none;opacity:0;transform:scale(1);transition:transform .2s ease,filter .2s ease,opacity .2s ease}
+.bookLens img{position:absolute;max-width:none}
+.bookLens.lit{opacity:1;transform:scale(1.12);filter:brightness(1.18) drop-shadow(0 0 12px var(--class-color)) drop-shadow(0 0 28px var(--class-color))}
+.book-hitbox{position:absolute;display:block!important;border:0!important;background:transparent!important;padding:0!important;margin:0!important;cursor:pointer}
+/* The name plate is real text now, not a photo slice, so its glow is a plain
+   text-shadow/scale -- pixel-perfect and identical on every row automatically. */
+.bookLabel{position:absolute;left:1%;right:1%;bottom:1%;display:block;text-align:center;font-family:'Cinzel',Georgia,serif;font-size:clamp(.48rem,1.1vw,.72rem);font-weight:700;letter-spacing:.01em;text-transform:uppercase;color:#f1d78b;background:rgba(10,7,4,.82);border:1px solid rgba(255,214,140,.45);border-radius:4px;padding:3px 1px;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:transform .2s ease,filter .2s ease}
+.book-hitbox:hover .bookLabel,.book-hitbox:focus-visible .bookLabel{transform:scale(1.12);filter:brightness(1.25) drop-shadow(0 0 4px var(--class-color)) drop-shadow(0 0 8px var(--class-color))}
+@media(prefers-reduced-motion:reduce){.bookLabel{transition:none}}
+@media(max-width:640px){.library-map{min-width:900px}}
+@media(prefers-reduced-motion:reduce){.bookLens{transition:none}}
 .subsectionLabel{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:16px 4px 4px;padding-top:12px;border-top:1px solid var(--border)}
 .subsectionLabel:first-child{margin-top:4px;padding-top:0;border-top:none}
 
@@ -167,7 +199,7 @@ details.subsection .links{padding:0}
 <span class="subname">Spell Libraries</span>
 <svg class="schevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
 </summary>
-<div class="tomeGrid" id="tomeGrid"></div>
+<div class="library-scroll"><div class="library-map" id="libraryMap"><img src="assets/stone-runes/library-map.png" alt="Spellbook library shelves"><div class="bookLens" id="bookLens" aria-hidden="true"><img src="assets/stone-runes/library-map.png" alt=""></div></div></div>
 </details>
 <details class="subsection" id="subsection-character-sheets">
 <summary>
@@ -307,50 +339,60 @@ details.subsection .links{padding:0}
     otrosCardEl.insertAdjacentHTML('beforebegin', html);
   }
 
-  // A handful of classes share one library page (no separate Oracle/Sorcerer spell list
-  // from Cleric's/Wizard's) -- each spine still keys its rune/color off its own primary
-  // class, and the label uses that library's own combined name.
-  const LIBRARIES=[
-    {href:'cleric-oracle-library/', cls:'cleric', label:'Cleric / Oracle'},
-    {href:'wizard-sorcerer-library/', cls:'wizard', label:'Wizard / Sorcerer'},
-    {href:'arcanist-library/', cls:'arcanist', label:'Arcanist'},
-    {href:'bard-library/', cls:'bard', label:'Bard'},
-    {href:'witch-library/', cls:'witch', label:'Witch'},
-    {href:'druid-library/', cls:'druid', label:'Druid'},
-    {href:'ranger-library/', cls:'ranger', label:'Ranger'},
-    {href:'paladin-library/', cls:'paladin', label:'Paladin'},
-    {href:'hunter-library/', cls:'hunter', label:'Hunter'},
-    {href:'antipaladin-library/', cls:'antipaladin', label:'Antipaladin'},
-    {href:'alchemist-library/', cls:'alchemist', label:'Alchemist'},
-    {href:'skald-library/', cls:'skald', label:'Skald'},
-    {href:'investigator-library/', cls:'investigator', label:'Investigator'},
-    {href:'warpriest-library/', cls:'warpriest', label:'Warpriest'},
-    {href:'inquisitor-library/', cls:'inquisitor', label:'Inquisitor'},
-    {href:'magus-library/', cls:'magus', label:'Magus'},
-    {href:'mesmerist-library/', cls:'mesmerist', label:'Mesmerist'},
-    {href:'spiritualist-library/', cls:'spiritualist', label:'Spiritualist'},
-    {href:'medium-library/', cls:'medium', label:'Medium'},
-    {href:'occultist-library/', cls:'occultist', label:'Occultist'},
-    {href:'psychic-library/', cls:'psychic', label:'Psychic'},
-    {href:'shaman-library/', cls:'shaman', label:'Shaman'},
-    {href:'bloodrager-library/', cls:'bloodrager', label:'Bloodrager'},
-    {href:'summoner-library/', cls:'summoner', label:'Summoner'}
+  // The library shelf photo carries only the books (no labels baked in) -- every
+  // class's name plate below is real text, added here, not sliced from the image.
+  // This grid says where each book's transparent hitbox sits, as percentages of the
+  // image, so hitbox and art scale together at any width. Measured directly off the
+  // image (9 evenly spaced columns x 3 rows); a couple of classes share one combined
+  // library page, same as before.
+  const LIB_ROWS=[
+    ['cleric','oracle','wizard','sorcerer','arcanist','bard','witch','magus','druid'],
+    ['paladin','ranger','warpriest','hunter','inquisitor','alchemist','antipaladin','skald','bloodrager'],
+    ['investigator','mesmerist','spiritualist','medium','occultist','psychic','shaman','summoner','other']
   ];
-  const tomeGrid=document.getElementById('tomeGrid');
-  if(tomeGrid){
-    // Three explicit shelf rows (8 tomes each) instead of one continuous wrap, so each
-    // row gets its own drawn wooden ledge underneath -- reads as three shelves, not a grid.
-    const ROWS=3, perRow=Math.ceil(LIBRARIES.length/ROWS);
+  const LIB_HREF={cleric:'cleric-oracle-library/', oracle:'cleric-oracle-library/', wizard:'wizard-sorcerer-library/', sorcerer:'wizard-sorcerer-library/', other:'other-classes.html'};
+  const COL_LEFT0=16.50, COL_PITCH=(78.35-16.50)/8, BOX_W=7.70;
+  const ROW_TOP0=2.50, ROW_PITCH=26.30, BOX_H=26.99;
+  const libraryMap=document.getElementById('libraryMap');
+  const bookLens=document.getElementById('bookLens');
+  if(libraryMap){
     let html='';
-    for(let r=0;r<ROWS;r++){
-      const chunk=LIBRARIES.slice(r*perRow,(r+1)*perRow);
-      if(!chunk.length) continue;
-      html+='<div class="shelfRow">'+chunk.map(lib=>{
-        const v=CV[lib.cls]||CV.other;
-        return `<a class="library-book" href="${lib.href}" style="--class-color:${v.color}" aria-label="Open ${lib.label} Spell Library"><img src="assets/stone-runes/class-assets/spines/${lib.cls}-spine.png" alt="" loading="lazy"><span>${lib.label}</span></a>`;
-      }).join('')+'</div>';
+    LIB_ROWS.forEach((row,r)=>{
+      row.forEach((cls,c)=>{
+        const v=CV[cls]||CV.other;
+        const href=LIB_HREF[cls]||`${cls}-library/`;
+        const left=(COL_LEFT0+COL_PITCH*c).toFixed(2), top=(ROW_TOP0+ROW_PITCH*r).toFixed(2);
+        const name=label(cls);
+        html+=`<a class="book-hitbox" href="${href}" data-left="${left}" data-top="${top}" data-w="${BOX_W}" data-h="${BOX_H}" data-color="${v.color}" style="left:${left}%;top:${top}%;width:${BOX_W}%;height:${BOX_H}%;--class-color:${v.color}" aria-label="Open ${name} Spell Library"><span class="bookLabel">${name}</span></a>`;
+      });
+    });
+    libraryMap.insertAdjacentHTML('beforeend', html);
+    const bookLensImg=bookLens&&bookLens.querySelector('img');
+    if(bookLens&&bookLensImg){
+      const light=hitbox=>{
+        const l0=+hitbox.dataset.left, t0=+hitbox.dataset.top, w0=+hitbox.dataset.w, h0=+hitbox.dataset.h;
+        const color=hitbox.dataset.color;
+        // The click target (w0/h0) generously covers book+label+margin for easy clicking,
+        // but the glow should hug only the spine itself -- narrow inset on both sides,
+        // and stop well above where the name plate now floats.
+        const insetX=w0*0.24;
+        const l=l0+insetX, t=t0, w=w0-insetX*2, h=h0*0.78;
+        bookLens.style.left=l+'%'; bookLens.style.top=t+'%'; bookLens.style.width=w+'%'; bookLens.style.height=h+'%';
+        bookLensImg.style.width=(100/w*100)+'%';
+        bookLensImg.style.height=(100/h*100)+'%';
+        bookLensImg.style.left=(-(l/w*100))+'%';
+        bookLensImg.style.top=(-(t/h*100))+'%';
+        bookLens.style.setProperty('--class-color', color);
+        bookLens.classList.add('lit');
+      };
+      const unlight=()=>bookLens.classList.remove('lit');
+      libraryMap.querySelectorAll('.book-hitbox').forEach(hitbox=>{
+        hitbox.addEventListener('mouseenter', ()=>light(hitbox));
+        hitbox.addEventListener('mouseleave', unlight);
+        hitbox.addEventListener('focus', ()=>light(hitbox));
+        hitbox.addEventListener('blur', unlight);
+      });
     }
-    tomeGrid.innerHTML=html;
   }
 })();
 // Scene focus: while Spell Libraries or Character Spell Sheets is open, hide every
