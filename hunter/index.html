@@ -187,9 +187,14 @@ PRESENT_CT=PFCastingTime.presentCategories(SPELLS);
 // creates) that profile on load, so an iframe pointed here from a merged sheet
 // always shows the right character without the user picking it manually.
 (function(){
-  const wantProfile=new URLSearchParams(location.search).get('profile');
+  const params=new URLSearchParams(location.search);
+  const wantProfile=params.get('profile');
   if(!wantProfile) return;
   window.__pinnedProfile=wantProfile;
+  if(params.get('embedded')==='1'){
+    let bar=document.querySelector('.profileBar');
+    if(bar) bar.style.display='none';
+  }
   let identityCluster=document.getElementById('profileIdentityCluster');
   if(identityCluster) identityCluster.style.display='none';
   let justCreated=false;

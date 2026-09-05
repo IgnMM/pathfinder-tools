@@ -1,6 +1,6 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><title>Merged Characters</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><title>My Characters</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#10151d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Merged Characters"><link rel="apple-touch-icon" href="icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#10151d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="My Characters"><link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{--bg:#0f1117;--panel:#181c24;--panel2:#202633;--text:#eef2f7;--muted:#9ba7b7;--gold:#d5ad55;--gold2:#f1d78b;--border:#313949}*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-family:Inter,system-ui,sans-serif;background:#0f1117;color:var(--text)}header,main{max-width:760px;margin:auto;padding:12px 16px}header{border-bottom:1px solid var(--border)}h1{margin:0;font-size:1.35rem}.sub{color:var(--muted);font-size:.82rem;margin:6px 0 8px;line-height:1.4}
 select,input{background:#121721;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px}
@@ -22,6 +22,12 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 .charCard .link{color:var(--muted);font-size:.72rem;margin-top:2px}
 .editBox{display:none;gap:8px;flex-wrap:wrap;align-items:end;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);width:100%}
 .editBox.show{display:flex}
+.moreMenu{position:relative}
+.moreMenu summary{list-style:none;cursor:pointer;border:1px solid var(--border);background:var(--panel2);color:var(--text);border-radius:8px;padding:8px 10px;font-weight:700}
+.moreMenu summary::-webkit-details-marker{display:none}
+.moreMenu[open] summary{border-color:var(--gold)}
+.morePanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:6px;z-index:20;display:flex;flex-direction:column;gap:4px;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.morePanel button{width:100%;text-align:left}
 </style>
 </head>
 <body>
@@ -44,7 +50,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 </div>
 <a href="../" title="The Sanctum" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10.3"/><polygon points="12.0,2.4 14.3,8.8 21.1,9.0 15.7,13.2 17.6,19.8 12.0,15.9 6.4,19.8 8.3,13.2 2.9,9.0 9.7,8.8"/></svg></a>
 <style>@media(max-width:900px){header,main{padding-left:60px !important}}</style>
-<header><h1>Merged Characters</h1><div class="sub">Every character you have anywhere on this account — a Damage Calculator profile, a Spellbook profile, or already both linked together. Pick one below to open it, or link a matching Calculator + Spellbook pair into one combined sheet (works exactly like Kenneth's or Gabriel's).</div></header>
+<header><h1>My Characters</h1><div class="sub">Every character you have anywhere on this account. Pick one below to open it as one combined sheet — Damage and Spells together, switchable with a tab.</div></header>
 <main>
 <div id="allCharsList"></div>
 <div id="allCharsEmpty" class="emptyNote" style="display:none">No characters found yet on this account — create one in the Calculator or a Spellbook tool first, then come back here to link them.</div>
@@ -53,7 +59,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 <div class="newForm" style="margin-top:10px">
   <div><label>Character name</label><input id="newName" type="text" placeholder="e.g. Thorgar" style="width:180px"></div>
   <div><label id="newClassLabel">Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option><option value="alchemist">Alchemist</option><option value="bard">Bard</option><option value="sorcerer">Sorcerer</option><option value="wizard">Wizard</option><option value="ranger">Ranger</option><option value="antipaladin">Antipaladin</option><option value="arcanist">Arcanist</option><option value="bloodrager">Bloodrager</option><option value="hunter">Hunter</option><option value="inquisitor">Inquisitor</option><option value="investigator">Investigator</option><option value="magus">Magus</option><option value="medium">Medium</option><option value="mesmerist">Mesmerist</option><option value="occultist">Occultist</option><option value="oracle">Oracle</option><option value="psychic">Psychic</option><option value="shaman">Shaman</option><option value="skald">Skald</option><option value="spiritualist">Spiritualist</option><option value="summoner">Summoner</option><option value="warpriest">Warpriest</option><option value="witch">Witch</option></select></div>
-  <button class="primary" id="createBtn">Create</button>
+  <button class="primary" id="createBtn">Create new Spellcaster</button>
 </div>
 <div id="nameFoundStatus" style="font-size:.78rem;color:var(--muted);margin-top:6px;min-height:1.1em"></div>
 <button class="advToggle" id="advToggle" type="button">Already have separate Damage / Spellbook profiles to link? ▾</button>
@@ -168,6 +174,50 @@ function renameProfileInClassStore(cls, oldName, newName){
   localStorage.setItem(key, JSON.stringify(store));
   return true;
 }
+// Real deletion (not just unlinking) -- removes the profile's actual data from its own
+// tool's store, tombstoned the same way Rename does so the deletion propagates to other
+// devices/the cloud on that tool's next sync instead of the old data quietly resurrecting.
+function deleteCalcProfile(name){
+  const key='pf1_universal_damage_calc_profiles_v1';
+  let raw=localStorage.getItem(key); if(!raw) return;
+  let store; try{ store=JSON.parse(raw); }catch(e){ return; }
+  if(!store || !store.profiles) return;
+  if(store.profiles.length<=1) return; // at least one Calculator profile must remain, same guard the Calculator's own Delete uses
+  store.deletedProfiles=store.deletedProfiles||{};
+  store.deletedProfiles[name]=Date.now();
+  store.profiles=store.profiles.filter(p=>p.name!==name);
+  if(store.active===name) store.active=store.profiles[0].name;
+  localStorage.setItem(key, JSON.stringify(store));
+}
+function deleteSpellProfile(cls, name){
+  const key=cls+'UniversalSpellbookPF1V1';
+  let raw=localStorage.getItem(key); if(!raw) return;
+  let store; try{ store=JSON.parse(raw); }catch(e){ return; }
+  if(!store || !store.profiles || !store.profiles[name]) return;
+  let names=Object.keys(store.profiles);
+  if(names.length<=1) return; // at least one Spellbook profile must remain for this class
+  store.deletedProfiles=store.deletedProfiles||{};
+  store.deletedProfiles[name]=Date.now();
+  delete store.profiles[name];
+  if(store.active===name) store.active=Object.keys(store.profiles)[0];
+  localStorage.setItem(key, JSON.stringify(store));
+}
+// Deletes every real profile behind a character-list entry (whichever tool(s) it
+// actually exists in), plus its Merged Characters link if it has one.
+function deleteCharacterEverywhere(entry){
+  if(entry.mergedEntry){
+    let c=entry.mergedEntry;
+    deleteCalcProfile(dmgOf(c));
+    deleteSpellProfile(c.cls, spellsOf(c));
+    let i=merged.indexOf(c);
+    if(i!==-1) merged.splice(i,1);
+    persist();
+  } else {
+    if(entry.calc) deleteCalcProfile(entry.name);
+    entry.spellClasses.forEach(cls=>deleteSpellProfile(cls, entry.name));
+  }
+}
+
 // If Damage and Spells end up with different names, make the user resolve it instead of
 // silently letting the merged character show two different names in its two tabs.
 // Returns the (possibly now-unified) {dmg, spells}, or null if the user should stay on the form.
@@ -249,19 +299,26 @@ function renderAllChars(){
       let i=merged.indexOf(c);
       let linkNote=(dmg!==c.name || spells!==c.name)
         ? `<div class="link">Damage: <b>${dmg}</b> · Spells: <b>${spells}</b></div>` : '';
-      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${c.name}</div><div class="cls">Merged — ${CLASS_LABELS[c.cls]||c.cls} spellcaster</div>${linkNote}</div>
+      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${c.name}</div><div class="cls">${CLASS_LABELS[c.cls]||c.cls} spellcaster</div>${linkNote}</div>
         <div class="actions">
-          <a href="${openUrl(c.name,c.cls,dmg,spells)}"><button class="primary">Open</button></a>
-          <button data-edit>Edit link</button>
-          <button class="danger" data-unlink>Unlink</button>
+          <a href="${openUrl(c.name,c.cls,dmg,spells)}"><button class="primary">Open Character</button></a>
+          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel">
+            <button data-edit>Edit link</button>
+            <button class="danger" data-unlink>Remove from My Characters</button>
+            <button class="danger" data-delete>Delete character</button>
+          </div></details>
         </div>
         <div class="editBox" id="editBox${i}">
           <div><label>Damage profile name (exact)</label><input id="editDmg${i}" type="text" value="${dmg}" style="width:200px"></div>
           <div><label>Spellbook profile name (exact)</label><input id="editSpells${i}" type="text" value="${spells}" style="width:200px"></div>
           <button class="primary" data-save>Save link</button>
         </div>`;
+      card.querySelector('[data-delete]').onclick=()=>{
+        if(!confirm('Delete "'+c.name+'" completely? This removes the actual Damage Calculator and Spellbook data, not just the link — it cannot be undone.')) return;
+        deleteCharacterEverywhere(entry); renderAllChars();
+      };
       card.querySelector('[data-unlink]').onclick=()=>{
-        if(!confirm('Unlink "'+c.name+'"? This only removes the merge — the Damage Calculator and Spellbook data for this character stay safe in each tool.')) return;
+        if(!confirm('Remove "'+c.name+'" from My Characters? This only removes it from this list — the Damage Calculator and Spellbook data stay safe in each tool.')) return;
         merged.splice(i,1); persist(); renderAllChars();
       };
       card.querySelector('[data-edit]').onclick=()=>{ $('editBox'+i).classList.toggle('show'); };
@@ -276,25 +333,46 @@ function renderAllChars(){
         persist(); renderAllChars();
       };
     } else if(entry.calc && entry.spellClasses.length){
-      // Found on both sides but never linked -- offer to merge instead of asking the user
-      // to retype the name into the create form below.
+      // Found on both sides but never linked yet -- "Open Character" both links them (silently,
+      // no separate "merge" step/terminology the player needs to understand) and opens the
+      // combined sheet in one action, same label as an already-linked character above.
       let cls=entry.spellClasses[0];
       let clsNote=entry.spellClasses.length>1 ? entry.spellClasses.map(c=>CLASS_LABELS[c]||c).join('/') : (CLASS_LABELS[cls]||cls);
-      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${entry.name}</div><div class="cls">Damage Calculator + ${clsNote} Spellbook — not yet merged</div></div>
-        <div class="actions"><button class="primary" data-merge>Merge</button></div>`;
+      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${entry.name}</div><div class="cls">${clsNote} spellcaster</div></div>
+        <div class="actions">
+          <button class="primary" data-merge>Open Character</button>
+          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button class="danger" data-delete>Delete character</button></div></details>
+        </div>`;
       card.querySelector('[data-merge]').onclick=()=>{
         let linked=linkCharacter(entry.name, cls, entry.name, entry.name);
         if(!linked) return;
         location.href=openUrl(entry.name, cls, linked.dmg, linked.spells);
       };
+      card.querySelector('[data-delete]').onclick=()=>{
+        if(!confirm('Delete "'+entry.name+'" completely? This removes the actual Damage Calculator and '+clsNote+' Spellbook data — it cannot be undone.')) return;
+        deleteCharacterEverywhere(entry); renderAllChars();
+      };
     } else if(entry.calc){
       card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${entry.name}</div><div class="cls">Damage Calculator only</div></div>
-        <div class="actions"><a href="../calc/index.html?profile=${encodeURIComponent(entry.name)}"><button class="primary">Open in Calculator</button></a></div>`;
+        <div class="actions">
+          <a href="../calc/index.html?profile=${encodeURIComponent(entry.name)}"><button class="primary">Open in Calculator</button></a>
+          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button class="danger" data-delete>Delete character</button></div></details>
+        </div>`;
+      card.querySelector('[data-delete]').onclick=()=>{
+        if(!confirm('Delete "'+entry.name+'" completely? This removes the actual Damage Calculator data — it cannot be undone.')) return;
+        deleteCharacterEverywhere(entry); renderAllChars();
+      };
     } else {
       let clsNote=entry.spellClasses.map(c=>CLASS_LABELS[c]||c).join(' / ');
       let links=entry.spellClasses.map(cls=>`<a href="../${cls}/index.html?profile=${encodeURIComponent(entry.name)}"><button class="primary">Open in ${CLASS_LABELS[cls]||cls}</button></a>`).join(' ');
       card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${entry.name}</div><div class="cls">${clsNote} Spellbook only</div></div>
-        <div class="actions">${links}</div>`;
+        <div class="actions">${links}
+          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button class="danger" data-delete>Delete character</button></div></details>
+        </div>`;
+      card.querySelector('[data-delete]').onclick=()=>{
+        if(!confirm('Delete "'+entry.name+'" completely? This removes the actual '+clsNote+' Spellbook data — it cannot be undone.')) return;
+        deleteCharacterEverywhere(entry); renderAllChars();
+      };
     }
     box.appendChild(card);
   });

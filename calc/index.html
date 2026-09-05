@@ -212,7 +212,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
     </span>
     <span id="saveIndicator" class="saveIndicator">✓ Saved</span>
     <details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button></div><div id="sourceList"></div></div></details>
-    <button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button><span id="syncStatus" style="font-size:.75rem;color:var(--muted)"></span><details class="sourcesbox"><summary>Account</summary><div class="sourcesPanel" style="min-width:220px">
+    <button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button><span id="syncStatus" style="font-size:.75rem;color:var(--muted)"></span><details class="sourcesbox" id="accountBox"><summary>Account</summary><div class="sourcesPanel" style="min-width:220px">
       <div class="row"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase"></div>
       <div class="row"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase"></div>
       <button id="syncConnect" type="button">Connect</button>
@@ -225,7 +225,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="mainGrid">
 <div>
 <section class="card card-char">
-<h2>Character &amp; Weapons</h2>
+<h2 style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span>Character &amp; Weapons</span><span id="embeddedToolsSlot" style="display:none;gap:8px;font-weight:400;font-size:.8rem"></span></h2>
 <div class="row rowNarrow"><label>Character Level</label><input id="characterLevel" type="number" min="1" max="20" value="10"></div>
 <div class="row rowNarrow"><label>Caster Level</label><input id="casterLevel" type="number" min="0" max="20" value="10"></div>
 <div class="emptyNote">Caster Level is often lower than Character Level — a Paladin/Ranger's is Character Level − 3 (starting at 4th level), for example. Set it independently; it pre-fills spell entries below that scale with caster level (Divine Favor, Magic Weapon Greater, Wrath, Gorum's Armor...) instead of Character Level.</div>
@@ -4450,17 +4450,31 @@ function compute(){
 // Deep-link support for merged character sheets: ?profile=Name switches to (or
 // creates) that profile on load, so an iframe pointed here from a merged sheet
 // always shows the right character without the user picking it manually.
+// ?embedded=1 (only ever set by a My Characters sheet's own iframe) additionally hides
+// the ENTIRE profile toolbar -- the outer sheet already shows this character's name and
+// its own Save character/Load character, so the dropdown (which could navigate away from
+// the pinned character), New/Save As/Rename/Delete/Merge link/cloud sync/Account are all
+// redundant, duplicate chrome. A bare ?profile= with no ?embedded=1 (e.g. "Open in
+// Calculator" from My Characters, opened as its own page, not iframed) keeps the full
+// toolbar, since nothing else on the page provides those actions in that case.
 (function(){
-  const wantProfile=new URLSearchParams(location.search).get('profile');
+  const params=new URLSearchParams(location.search);
+  const wantProfile=params.get('profile');
   if(!wantProfile) return;
   window.__pinnedProfile=wantProfile;
-  // Deep-linked in (a merged character's iframe, or an "Open in Calculator" link) --
-  // the embedding page already shows this character's name and its own Save/Load, so
-  // the Calculator's own profile-switcher (which could navigate away from the pinned
-  // character entirely) and New/Save As/Rename/Delete are redundant chrome here, not
-  // just visual clutter but actively confusing next to the outer page's own identity bar.
-  let identityCluster=document.getElementById('profileIdentityCluster');
-  if(identityCluster) identityCluster.style.display='none';
+  if(params.get('embedded')==='1'){
+    let bar=document.querySelector('.profileBar');
+    let slot=document.getElementById('embeddedToolsSlot');
+    if(bar && slot){
+      // Sources and Conditions stay reachable, just relocated up into the Character &
+      // Weapons card header instead of sitting in the (now hidden) toolbar row. Account
+      // (sync setup) is left behind to be hidden with the rest of the bar -- the sync
+      // code is normally entered once at the Sanctum gate and shared site-wide already.
+      bar.querySelectorAll('.sourcesbox:not(#accountBox)').forEach(el=>slot.appendChild(el));
+      slot.style.display='flex';
+      bar.style.display='none';
+    }
+  }
   let justCreated=false;
   if(!store.profiles.some(p=>p.name===wantProfile)){ store.profiles.push(defaultProfile(wantProfile)); justCreated=true; }
   store.active=wantProfile;
