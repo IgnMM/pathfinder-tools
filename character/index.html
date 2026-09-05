@@ -49,9 +49,10 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 <div class="card">
 <div class="newForm">
   <div><label>Character name</label><input id="newName" type="text" placeholder="e.g. Thorgar" style="width:180px"></div>
-  <div><label>Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option><option value="alchemist">Alchemist</option><option value="bard">Bard</option><option value="sorcerer">Sorcerer</option><option value="wizard">Wizard</option><option value="ranger">Ranger</option></select></div>
+  <div><label id="newClassLabel">Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option><option value="alchemist">Alchemist</option><option value="bard">Bard</option><option value="sorcerer">Sorcerer</option><option value="wizard">Wizard</option><option value="ranger">Ranger</option><option value="antipaladin">Antipaladin</option><option value="arcanist">Arcanist</option><option value="bloodrager">Bloodrager</option><option value="hunter">Hunter</option><option value="inquisitor">Inquisitor</option><option value="investigator">Investigator</option><option value="magus">Magus</option><option value="medium">Medium</option><option value="mesmerist">Mesmerist</option><option value="occultist">Occultist</option><option value="oracle">Oracle</option><option value="psychic">Psychic</option><option value="shaman">Shaman</option><option value="skald">Skald</option><option value="spiritualist">Spiritualist</option><option value="summoner">Summoner</option><option value="warpriest">Warpriest</option><option value="witch">Witch</option></select></div>
   <button class="primary" id="createBtn">Create</button>
 </div>
+<div id="nameFoundStatus" style="font-size:.78rem;color:var(--muted);margin-top:6px;min-height:1.1em"></div>
 <button class="advToggle" id="advToggle" type="button">Already have separate Damage / Spellbook profiles to link? ▾</button>
 <div class="advBox" id="advBox">
   <div><label>Damage profile name (exact)</label><input id="newDmgProfile" type="text" placeholder="defaults to character name" style="width:200px"></div>
@@ -68,7 +69,59 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 <script>
 const $=id=>document.getElementById(id);
 const MERGED_KEY='pf1_merged_characters_v1';
-const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid',alchemist:'Alchemist',bard:'Bard',sorcerer:'Sorcerer',wizard:'Wizard',ranger:'Ranger'};
+const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid',alchemist:'Alchemist',bard:'Bard',sorcerer:'Sorcerer',wizard:'Wizard',ranger:'Ranger',antipaladin:'Antipaladin',arcanist:'Arcanist',bloodrager:'Bloodrager',hunter:'Hunter',inquisitor:'Inquisitor',investigator:'Investigator',magus:'Magus',medium:'Medium',mesmerist:'Mesmerist',occultist:'Occultist',oracle:'Oracle',psychic:'Psychic',shaman:'Shaman',skald:'Skald',spiritualist:'Spiritualist',summoner:'Summoner',warpriest:'Warpriest',witch:'Witch'};
+const ALL_CLASSES=Object.keys(CLASS_LABELS);
+
+// Look across every class's Spellbook store for a profile named `name`, so the user
+// doesn't have to remember/pick a class for a character that already exists -- only a
+// genuinely new character (found nowhere) or an ambiguous name (found under 2+ classes)
+// still needs a manual choice.
+function findClassesForName(name){
+  if(!name) return [];
+  let found=[];
+  ALL_CLASSES.forEach(cls=>{
+    try{
+      let raw=localStorage.getItem(cls+'UniversalSpellbookPF1V1');
+      if(!raw) return;
+      let store=JSON.parse(raw);
+      if(store && store.profiles && Object.prototype.hasOwnProperty.call(store.profiles, name)) found.push(cls);
+    }catch(e){}
+  });
+  return found;
+}
+function hasCalcProfile(name){
+  try{
+    let raw=localStorage.getItem('pf1_universal_damage_calc_profiles_v1');
+    if(!raw) return false;
+    let store=JSON.parse(raw);
+    return !!(store && store.profiles && store.profiles.some(p=>p.name===name));
+  }catch(e){ return false; }
+}
+function updateClassAutoDetect(){
+  let name=$('newName').value.trim();
+  let matches=findClassesForName(name);
+  let sel=$('newClass'), label=$('newClassLabel'), status=$('nameFoundStatus');
+  if(matches.length===1){
+    sel.value=matches[0];
+    label.textContent='Spellcasting class (detected from existing profile)';
+  } else if(matches.length>1){
+    label.textContent='Spellcasting class (found under several classes below — pick one)';
+  } else {
+    label.textContent='Spellcasting class'+(name?' (new character)':'');
+  }
+  // Show exactly where a name already exists before Create commits to anything, so
+  // linking an existing Calculator/Spellbook pair (or noticing it's already merged)
+  // doesn't require guessing first.
+  if(!name){ status.textContent=''; return; }
+  let inCalc=hasCalcProfile(name);
+  let inMerged=merged.some(c=>c.name===name);
+  let parts=[];
+  parts.push('Damage Calculator: '+(inCalc?'✓ found':'not found'));
+  parts.push(matches.length ? (matches.map(c=>CLASS_LABELS[c]||c).join('/')+' Spellbook: ✓ found') : 'Spellbook: not found under any class');
+  if(inMerged) parts.push('⚠ already a Merged Character — Create will just reopen it');
+  status.textContent = parts.join(' · ');
+}
+$('newName').addEventListener('input', updateClassAutoDetect);
 
 function loadMerged(){
   try{ let raw=localStorage.getItem(MERGED_KEY); if(raw){ let s=JSON.parse(raw); if(Array.isArray(s)) return s; } }catch(e){}
