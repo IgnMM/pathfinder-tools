@@ -1,0 +1,9 @@
+.class-rune{width:1em;height:1em;display:block;color:var(--class-color);filter:drop-shadow(0 0 7px color-mix(in srgb,var(--class-color) 65%,transparent))}
+.arcane-seal{--class-color:#d5ad55;position:relative;display:grid;place-items:center;isolation:isolate}
+.arcane-seal::before,.arcane-seal::after{content:"";position:absolute;border:1px solid color-mix(in srgb,var(--class-color) 55%,transparent);border-radius:50%;inset:-22%;z-index:-1;transition:.25s}
+.arcane-seal::after{inset:-9%;border-style:dashed;opacity:.6}
+.class-card:hover .arcane-seal::before{transform:rotate(18deg) scale(1.06);box-shadow:0 0 20px color-mix(in srgb,var(--class-color) 28%,transparent)}
+.class-card:hover .arcane-seal::after{transform:rotate(-24deg)}
+.tome-rune{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-size:clamp(22px,3vw,42px)}
+@media(max-width:700px){.arcane-seal{font-size:40px}.tome-rune{font-size:26px}}
+@media(prefers-reduced-motion:reduce){.arcane-seal::before,.arcane-seal::after{transition:none}.class-card:hover .arcane-seal::before,.class-card:hover .arcane-seal::after{transform:none}}
