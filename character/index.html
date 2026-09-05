@@ -183,11 +183,13 @@ function deleteCalcProfile(name){
   let raw=localStorage.getItem(key); if(!raw) return;
   let store; try{ store=JSON.parse(raw); }catch(e){ return; }
   if(!store || !store.profiles) return;
-  if(store.profiles.length<=1) return; // at least one Calculator profile must remain, same guard the Calculator's own Delete uses
+  // Each tool's own Delete button keeps at least one profile around (its dropdown always
+  // needs something selected) -- but a full "Delete character" here is allowed to empty
+  // the store completely, since the whole point is removing this character everywhere.
   store.deletedProfiles=store.deletedProfiles||{};
   store.deletedProfiles[name]=Date.now();
   store.profiles=store.profiles.filter(p=>p.name!==name);
-  if(store.active===name) store.active=store.profiles[0].name;
+  if(store.active===name) store.active=store.profiles[0]?store.profiles[0].name:null;
   localStorage.setItem(key, JSON.stringify(store));
 }
 function deleteSpellProfile(cls, name){
@@ -195,12 +197,10 @@ function deleteSpellProfile(cls, name){
   let raw=localStorage.getItem(key); if(!raw) return;
   let store; try{ store=JSON.parse(raw); }catch(e){ return; }
   if(!store || !store.profiles || !store.profiles[name]) return;
-  let names=Object.keys(store.profiles);
-  if(names.length<=1) return; // at least one Spellbook profile must remain for this class
   store.deletedProfiles=store.deletedProfiles||{};
   store.deletedProfiles[name]=Date.now();
   delete store.profiles[name];
-  if(store.active===name) store.active=Object.keys(store.profiles)[0];
+  if(store.active===name) store.active=Object.keys(store.profiles)[0]||null;
   localStorage.setItem(key, JSON.stringify(store));
 }
 // Deletes every real profile behind a character-list entry (whichever tool(s) it
