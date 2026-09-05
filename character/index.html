@@ -60,6 +60,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
   <div><label>Character name</label><input id="newName" type="text" placeholder="e.g. Thorgar" style="width:180px"></div>
   <div><label id="newClassLabel">Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option><option value="alchemist">Alchemist</option><option value="bard">Bard</option><option value="sorcerer">Sorcerer</option><option value="wizard">Wizard</option><option value="ranger">Ranger</option><option value="antipaladin">Antipaladin</option><option value="arcanist">Arcanist</option><option value="bloodrager">Bloodrager</option><option value="hunter">Hunter</option><option value="inquisitor">Inquisitor</option><option value="investigator">Investigator</option><option value="magus">Magus</option><option value="medium">Medium</option><option value="mesmerist">Mesmerist</option><option value="occultist">Occultist</option><option value="oracle">Oracle</option><option value="psychic">Psychic</option><option value="shaman">Shaman</option><option value="skald">Skald</option><option value="spiritualist">Spiritualist</option><option value="summoner">Summoner</option><option value="warpriest">Warpriest</option><option value="witch">Witch</option></select></div>
   <button class="primary" id="createBtn">Create new Spellcaster</button>
+  <button id="createSpellbookOnlyBtn" title="Just a Spellbook profile, no Damage Calculator profile — useful for an NPC or a caster you don't track weapon damage for">Spellbook only</button>
 </div>
 <div id="nameFoundStatus" style="font-size:.78rem;color:var(--muted);margin-top:6px;min-height:1.1em"></div>
 <button class="advToggle" id="advToggle" type="button">Already have separate Damage / Spellbook profiles to link? ▾</button>
@@ -389,6 +390,15 @@ $('createBtn').onclick=()=>{
   let linked=linkCharacter(name, cls, dmgProfile, spellsProfile);
   if(!linked) return; // name collision on rename -- let the user fix the form instead of creating a broken link
   location.href=openUrl(name, cls, linked.dmg, linked.spells);
+};
+$('createSpellbookOnlyBtn').onclick=()=>{
+  // No Damage Calculator profile at all, no My Characters link -- just the Spellbook
+  // profile itself. Its own tool's ?profile= deep link creates the blank profile on
+  // arrival (same as the "Open in X" links below already rely on).
+  let name=$('newName').value.trim();
+  let cls=$('newClass').value;
+  if(!name){ $('newName').focus(); return; }
+  location.href='../'+cls+'/index.html?profile='+encodeURIComponent(name);
 };
 
 // ---------- Cross-device sync (Firebase Firestore) ----------
