@@ -117,7 +117,10 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .card-char>.numAttacksRow input{grid-area:input}
 .card-char>.numAttacksRow #babSequenceBox{grid-area:bab}
 }
-.profileBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.profileBar{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
+.profileBarLeft,.profileBarRight{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.profileBarRight{margin-left:auto}
+.titleRow{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.titleRow h1{margin:0}
 .profileBar select{width:auto;min-width:160px}
 .mainGrid{display:grid;grid-template-columns:1fr;gap:14px}
 .catBlock{border:1px solid var(--border);border-radius:12px;padding:10px;margin-bottom:10px}
@@ -200,9 +203,13 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <style>@media(max-width:900px){.wrap{padding-left:60px !important}}</style>
 <div class="wrap">
 <header>
+  <div class="titleRow">
   <h1>Character Hit&amp;Damage Calculator</h1>
-  <div class="subtitle">Pathfinder 1e — attack/damage modifiers with correct bonus-type stacking. Every change saves automatically to this browser — there's no Save button because there's nothing to lose; use "Save As" to keep a copy under a different character's name. Want your characters on another device too? Set a Sync code below (top right).</div>
+  <details class="sourcesbox" id="sourcesBoxTop"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button></div><div id="sourceList"></div></div></details>
+  </div>
+  <div class="subtitle">Pathfinder 1e — attack/damage modifiers with correct bonus-type stacking. Every change saves automatically to this browser — there's no Save button because there's nothing to lose; use "Save As" to keep a copy under a different character's name. Want your characters on another device too? Set a Sync code below.</div>
   <div class="profileBar" style="margin-top:10px">
+    <div class="profileBarLeft">
     <span id="profileIdentityCluster" style="display:contents">
     <label style="margin:0">Character:</label>
     <select id="profileSelect"></select><span id="profileUpdated" style="font-size:.7rem;color:var(--muted);margin:0 4px"></span>
@@ -215,7 +222,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
     </div></details>
     </span>
     <span id="saveIndicator" class="saveIndicator">✓ Saved</span>
-    <details class="sourcesbox"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button></div><div id="sourceList"></div></div></details>
+    </div>
+    <div class="profileBarRight">
     <button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button><span id="syncStatus" style="font-size:.75rem;color:var(--muted)"></span><details class="sourcesbox" id="accountBox"><summary>Account</summary><div class="sourcesPanel" style="min-width:220px">
       <div style="font-size:.85rem;margin-bottom:8px">Connected as <strong id="accountUserDisplay">—</strong></div>
       <button id="syncLogout" type="button" class="danger" style="width:100%">Log out</button>
@@ -229,13 +237,14 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
       </details>
       <div style="font-size:.72rem;color:var(--muted);margin-top:10px">Use the same code on another device to see the same characters there. Whoever knows the code can read/write this data — pick something private, not "1234".</div>
     </div></details>
+    </div>
   </div>
 </header>
 
 <div class="mainGrid">
 <div>
 <section class="card card-char">
-<h2 style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span>Character &amp; Weapons</span><span id="embeddedToolsSlot" style="display:none;gap:8px;font-weight:400;font-size:.8rem"></span></h2>
+<h2 style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span>Character &amp; Weapons</span><span id="embeddedToolsSlot" style="display:flex;gap:8px;font-weight:400;font-size:.8rem"></span></h2>
 <div class="row rowNarrow"><label>Character Level</label><input id="characterLevel" type="number" min="1" max="20" value="10"></div>
 <div class="row rowNarrow"><label>Caster Level</label><input id="casterLevel" type="number" min="0" max="20" value="10"></div>
 <div class="emptyNote">Caster Level is often lower than Character Level — a Paladin/Ranger's is Character Level − 3 (starting at 4th level), for example. Set it independently; it pre-fills spell entries below that scale with caster level (Divine Favor, Magic Weapon Greater, Wrath, Gorum's Armor...) instead of Character Level.</div>
@@ -3741,7 +3750,7 @@ function renderSources(){
 }
 $('srcAll').onclick=()=>{ let p=currentProfile(); p.excludedSources={}; applyRaceSourceExclusions(); saveStore(); renderSources(); renderCategories(); compute(); };
 $('srcNone').onclick=()=>{ let p=currentProfile(); [...new Set(MODIFIERS.map(m=>m.source||'Unknown'))].forEach(src=>p.excludedSources[src]=true); saveStore(); renderSources(); renderCategories(); compute(); };
-if(window.PFConditions){ let cloudSaveBtn=$('cloudSave'); if(cloudSaveBtn&&cloudSaveBtn.parentElement) PFConditions.mount(cloudSaveBtn.parentElement, {before:cloudSaveBtn}); }
+if(window.PFConditions){ let toolsSlot=document.getElementById('embeddedToolsSlot'); if(toolsSlot) PFConditions.mount(toolsSlot); }
 
 // Results panel: click-to-pin (desktop only) so it floats over the page and stays
 // visible while scrolling the Modifiers catalog below, instead of being sticky always.
@@ -4502,10 +4511,12 @@ function compute(){
 // creates) that profile on load, so an iframe pointed here from a merged sheet
 // always shows the right character without the user picking it manually.
 // ?embedded=1 (only ever set by a My Characters sheet's own iframe) additionally hides
-// the ENTIRE profile toolbar -- the outer sheet already shows this character's name and
+// the profile toolbar row -- the outer sheet already shows this character's name and
 // its own Save character/Load character, so the dropdown (which could navigate away from
 // the pinned character), New/Save As/Rename/Delete/Merge link/cloud sync/Account are all
-// redundant, duplicate chrome. A bare ?profile= with no ?embedded=1 (e.g. "Open in
+// redundant, duplicate chrome. Sources (top-right, next to the title) and Conditions
+// (in the Character & Weapons header) live outside this bar entirely, so they stay put
+// and reachable either way. A bare ?profile= with no ?embedded=1 (e.g. "Open in
 // Calculator" from My Characters, opened as its own page, not iframed) keeps the full
 // toolbar, since nothing else on the page provides those actions in that case.
 (function(){
@@ -4515,16 +4526,7 @@ function compute(){
   window.__pinnedProfile=wantProfile;
   if(params.get('embedded')==='1'){
     let bar=document.querySelector('.profileBar');
-    let slot=document.getElementById('embeddedToolsSlot');
-    if(bar && slot){
-      // Sources and Conditions stay reachable, just relocated up into the Character &
-      // Weapons card header instead of sitting in the (now hidden) toolbar row. Account
-      // (sync setup) is left behind to be hidden with the rest of the bar -- the sync
-      // code is normally entered once at the Sanctum gate and shared site-wide already.
-      bar.querySelectorAll('.sourcesbox:not(#accountBox):not(#charActionsBox)').forEach(el=>slot.appendChild(el));
-      slot.style.display='flex';
-      bar.style.display='none';
-    }
+    if(bar) bar.style.display='none';
   }
   let justCreated=false;
   if(!store.profiles.some(p=>p.name===wantProfile)){ store.profiles.push(defaultProfile(wantProfile)); justCreated=true; }
