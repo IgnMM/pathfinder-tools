@@ -144,18 +144,6 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <p style="font-size:.85rem;line-height:1.5">— A <b>Character</b> or <b>Cohort / Independent Creature</b> uses the normal character rules: <a href="../calc/" style="color:var(--gold2)">open it in the Character Hit&amp;Damage Calculator</a> instead.<br>— <b>Familiar</b>, <b>Eidolon</b> and <b>Phantom</b> are coming in a following update.</p>
 </div>
 
-<div id="mountedContextBox" class="card card-char" style="display:none">
-<h2>Mounted Context</h2>
-<div class="row"><label>Mounted context</label>
-  <select id="mountedContext">
-    <option value="off">Off (not mounted)</option>
-    <option value="mounted">Mounted</option>
-    <option value="charge">Mounted charge</option>
-  </select>
-</div>
-<div class="row"><label>Mount attacking too?</label><input id="mountAttackingToo" type="checkbox" style="width:auto;justify-self:start"></div>
-<div class="emptyNote">This calculator only handles the mount itself — the rider is a separate character with their own sheet in the Character Hit&amp;Damage Calculator; read the two results side by side rather than mixing them here. Uncheck "Mount attacking too?" to hide the mount's own attack block below when it's just carrying the rider this round (e.g. focusing on the lance charge). No mounted-charge multiplier is applied automatically to the mount's own natural attacks below — only to the rider's weapon, per the rules.</div>
-</div>
 
 <div id="mainCalcArea">
 <div class="mainGrid">
@@ -293,9 +281,6 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:4}],
  desc:'Teamwork feat: +4 circumstance bonus on attacks of opportunity against a creature threatened by both the companion and an adjacent ally who also has this feat.',
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:4);return {attack:v,damage:0,note:signed(v)+' atk (circumstance, attacks of opportunity only)'}}},
-{id:'spirited-charge',name:'Spirited Charge',category:'feat',source:'Core Rulebook',appliesTo:['damage'],type:'untyped',
- desc:'"When mounted and using the charge action, you deal double damage with a melee weapon" — a natural weapon included. Requires Ride 1 rank, Mounted Combat, Ride-By Attack. A multiplier on the whole damage roll, not an additive bonus — not modeled as a number here: double the Normal Damage of whichever attack line you use on the charge, by hand.',
- compute:()=>({attack:0,damage:0,note:'special — doubles the Normal Damage of the attack used on this mounted charge (not added to totals above, apply by hand)'})},
 {id:'aid-another',name:'Aid Another',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'circumstance',allowMultiple:true,
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
  desc:'An adjacent ally spends a standard action and succeeds at an attack roll (DC 10 vs the target\'s AC) to grant a +2 bonus on the companion\'s next attack roll against that same target. Add once per ally who successfully aids.',
@@ -413,7 +398,6 @@ function defaultProfile(name){
       {name:'Claw',die:'1d4',atkBonus:7,strMode:'full',threat:'20',critMult:2},
       {name:'Bite',die:'1d6',atkBonus:2,strMode:'half',threat:'20',critMult:2}
     ],
-    mountedContext:'off', mountAttackingToo:true,
     active:[], custom:[], excludedSources:{}};
 }
 // Entity types this calculator can actually compute today vs. ones the selector shows
@@ -437,9 +421,9 @@ store.profiles.forEach(p=>{
   if(!p.dmgStat) p.dmgStat='str';
   if(!p.attackLines) p.attackLines=[];
   if(!p.entityType) p.entityType='animal-companion'; // every sheet made before the entity selector was an animal companion in all but name
-  if(!p.mountedContext) p.mountedContext='off';
-  delete p.riderName; // this tool only handles the mount itself now — the rider is a separate Character sheet
-  if(p.mountAttackingToo===undefined) p.mountAttackingToo=true;
+  // "Mounted" by itself changes nothing about hit/damage -- a rider ability that DOES
+  // change something is added as an Active Effect instead, so these fields were dropped.
+  delete p.mountedContext; delete p.riderName; delete p.mountAttackingToo;
 });
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
@@ -478,7 +462,6 @@ function applyEntityTypeUI(){
   let implemented=IMPLEMENTED_ENTITY_TYPES.includes(type);
   $('entityNotImplementedNote').style.display=implemented?'none':'block';
   $('mainCalcArea').style.display=implemented?'block':'none';
-  $('mountedContextBox').style.display=(implemented && type==='mount')?'block':'none';
 }
 
 function loadProfileIntoUI(){
@@ -487,7 +470,6 @@ function loadProfileIntoUI(){
   $('singleAttack').checked=!!p.singleAttack;
   $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con; $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat;
-  $('mountedContext').value=p.mountedContext||'off'; $('mountAttackingToo').checked=p.mountAttackingToo!==false;
   applyEntityTypeUI();
   renderAttackLines();
   renderSources();
@@ -502,13 +484,12 @@ function syncUIIntoProfile(){
   p.singleAttack=$('singleAttack').checked;
   p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value; p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value;
-  p.mountedContext=$('mountedContext').value; p.mountAttackingToo=$('mountAttackingToo').checked;
   saveStore();
 }
 
 populateEntityTypeSelect();
 
-['hitDice','casterLevel','bab','singleAttack','str','dex','con','int','wis','cha','atkStat','dmgStat','mountedContext','mountAttackingToo'].forEach(id=>{
+['hitDice','casterLevel','bab','singleAttack','str','dex','con','int','wis','cha','atkStat','dmgStat'].forEach(id=>{
   $(id).addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); });
 });
 $('entityType').addEventListener('change', ()=>{ syncUIIntoProfile(); applyEntityTypeUI(); compute(); });
