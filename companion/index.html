@@ -288,6 +288,11 @@ function effectiveCompanionLevel(sourceClass, ownerLevel){
 // manufactured-weapon effects (companions fight with natural attacks), no PC-only
 // class features. Hit/damage bonuses only, per the same stacking rules as the
 // Character calculator (same bonus type never stacks with itself).
+//
+// TODO (pending architecture change): this hand-picked subset duplicates part of the
+// shared Character Calculator catalog instead of reusing it with metadata-driven
+// filtering (see character_catalog_companion_compatibility.json / companion-calculator-
+// implementation-spec.md section 5). Keep it in sync manually until that refactor lands.
 const MODIFIERS = [
 {id:'power-attack',name:'Power Attack',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
  desc:'-1 atk / +2 dmg per step (1 step at BAB 1-3, +1 more step every 4 BAB thereafter); the +2 becomes +3 if "Only one natural attack this round?" is checked above. Requires Str 13. RAW: this damage bonus IS multiplied on a critical hit — add the House Rule below if your table plays it differently.',
@@ -724,6 +729,15 @@ $('addAttackLine').onclick=()=>{
   saveStore(); renderAttackLines(); compute();
 };
 
+// Rider-only effects that must never be offered here: they modify the RIDER's own
+// attack (or a maneuver the rider performs), not the mount's/companion's. This
+// calculator has no rider block and never shows rider results, so these belong
+// exclusively to the Character Calculator. A cohort acting as its own rider is a
+// character for this purpose and uses Character Calculator, not this one.
+const RIDER_ONLY_IDS = new Set([
+  'mounted-archery', 'mythic-mounted-archery', 'spirited-charge', 'trample', 'saddle-surge'
+]);
+
 // ---------- Modifier catalog UI ----------
 function renderCategories(){
   let box=$('categories'); box.innerHTML='';
@@ -738,10 +752,10 @@ function renderCategories(){
     addRow.innerHTML=`<input list="${listId}" placeholder="Search ${cat.label.toLowerCase()} to add..." id="add_${cat.k}"><datalist id="${listId}"></datalist><button data-cat="${cat.k}" class="addBtn">Add</button><button data-cat="${cat.k}" class="addCustomBtn">+ Custom</button>`;
     block.appendChild(addRow);
     let dl=addRow.querySelector('datalist');
-    MODIFIERS.filter(m=>m.category===cat.k && (m.allowMultiple || !p.active.some(a=>a.id===m.id)) && !p.excludedSources[m.source]).forEach(m=>{
+    MODIFIERS.filter(m=>m.category===cat.k && !RIDER_ONLY_IDS.has(m.id) && (m.allowMultiple || !p.active.some(a=>a.id===m.id)) && !p.excludedSources[m.source]).forEach(m=>{
       let o=document.createElement('option'); o.value=m.name; dl.appendChild(o);
     });
-    if(!MODIFIERS.some(m=>m.category===cat.k && !p.excludedSources[m.source])){
+    if(!MODIFIERS.some(m=>m.category===cat.k && !RIDER_ONLY_IDS.has(m.id) && !p.excludedSources[m.source])){
       let n=document.createElement('div'); n.className='emptyNote';
       n.textContent='Every catalog entry in this category belongs to a source you\'ve excluded, or there are none yet — check Sources above, or use "+ Custom".';
       block.appendChild(n);
@@ -834,6 +848,10 @@ function collectContributions(ctx){
   let powerAttackOn=false, powerAttackDmgVal=0, powerAttackAtkVal=0;
   p.active.forEach(a=>{
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
+    // Re-validate here, not just at selection time: an old saved profile (or a manually
+    // edited one) could carry a rider-only id that the add-list above no longer offers.
+    // Never let it contribute to this entity's own numbers.
+    if(RIDER_ONLY_IDS.has(m.id)) return;
     let isOff=a.on===false;
     let r=m.compute(ctx,a.cfg||{});
     let effType=r.type||m.type;
