@@ -69,7 +69,7 @@ const MIN_LEVEL={0:1,1:1,2:4,3:6,4:8,5:10,6:12,7:14,8:16,9:18};
 const STORE_KEY='sorcererUniversalSpellbookPF1V1';
 const $=id=>document.getElementById(id);
 function statRow(label,val){return val?`<div class="stat-row"><b>${label}</b> ${val}</div>`:''}
-function defaultState(){return {archetype:'',level:1,cha:18,race:'',bloodline1:'',known:{},used:[0,0,0,0,0,0,0,0,0,0],show:[0,1,2,3,4,5,6,7,8,9],fav:{},excludedSources:{},showIneligible:false,forbidden:{},allowed:{},sourcesCustomized:false};}
+function defaultState(){return {archetype:'',level:1,cha:18,race:'',bloodline1:'',known:{},cast:{},used:[0,0,0,0,0,0,0,0,0,0],show:[0,1,2,3,4,5,6,7,8,9],fav:{},excludedSources:{},showIneligible:false,forbidden:{},allowed:{},sourcesCustomized:false};}
 function applyDefaultsToState(s){let d=defaultState();Object.keys(d).forEach(k=>{if(s[k]===undefined)s[k]=d[k]});return s}
 function loadStore(){
   let raw=localStorage.getItem(STORE_KEY);
@@ -268,11 +268,11 @@ function buildCard(l,s,ineligible){
   let key=l+'|'+s.n;
   let bloodGranted=isBloodlineSpell(l,s.n);
   let known=!!state.known[key]||bloodGranted;
-  let fav=!!state.fav[key];
+  let fav=!!state.fav[key];let cap=l>0?normalSlots(l):0;let cast=Math.min(state.cast[key]||0,cap);state.cast[key]=cast;
   let realReasons=reasonsFor(l,s);let overridden=!!state.allowed[key]&&realReasons.length>0;let reasons=(realReasons.length&&!overridden)?realReasons:[];
   let card=document.createElement('div');
   card.className='card'+(canCast(l)?'':' disabled')+(ineligible&&!overridden?' ineligible':'');
-  card.innerHTML=`<div class="head"><div><div class="name">${s.n}</div>${bloodGranted?'<div class="badge">Bloodline spell</div>':''}${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}${reasons.length?`<div class="reasontag">${reasons.join('; ')}</div>`:''}${overridden?'<div class="overridetag">Allowed anyway</div>':''}</div><div class="prep"><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button>${realReasons.length?`<button class="allowbtn${state.allowed[key]?' active':''}" title="${state.allowed[key]?'Stop allowing (undo override)':'Allow anyway (bypass this restriction)'}" aria-label="Allow anyway">🔓</button>`:''}<button class="forbidbtn${state.forbidden[key]!==undefined?' active':''}" title="Mark as prohibited" aria-label="Prohibited">🚫</button><button class="knowbtn${known?' active':''}"${bloodGranted?' title="Automatically known from your bloodline — does not count against your normal known-spell limit"':''}>${bloodGranted?'Bloodline ✓':(known?'Known ✓':'Known')}</button></div></div><details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${PFSpellRefs.linkify(p,s.n)}</p>`).join('')}</div></details>`;
+  card.innerHTML=`<div class="head"><div><div class="name">${s.n}</div>${bloodGranted?'<div class="badge">Bloodline spell</div>':''}${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}${reasons.length?`<div class="reasontag">${reasons.join('; ')}</div>`:''}${overridden?'<div class="overridetag">Allowed anyway</div>':''}</div><div class="prep"><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button>${realReasons.length?`<button class="allowbtn${state.allowed[key]?' active':''}" title="${state.allowed[key]?'Stop allowing (undo override)':'Allow anyway (bypass this restriction)'}" aria-label="Allow anyway">🔓</button>`:''}<button class="forbidbtn${state.forbidden[key]!==undefined?' active':''}" title="Mark as prohibited" aria-label="Prohibited">🚫</button><button class="knowbtn${known?' active':''}"${bloodGranted?' title="Automatically known from your bloodline — does not count against your normal known-spell limit"':''}>${bloodGranted?'Bloodline ✓':(known?'Known ✓':'Known')}</button></div></div>${(known&&cap>0)?`<div class="pips" title="Click to mark cast today"><span class="pipdots">${Array.from({length:cap},(_,i)=>`<span class="pip${i<cast?' used':''}"></span>`).join('')}</span><span class="pipcount">${cast}/${cap} cast</span></div>`:''}<details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${PFSpellRefs.linkify(p,s.n)}</p>`).join('')}</div></details>`;
   card.querySelector('.knowbtn').onclick=overridden?()=>{if(known){delete state.known[key]}else{state.known[key]=true}save();render()}:card.querySelector('.knowbtn').onclick=()=>{
     if(bloodGranted)return;
     if(!canCast(l))return;
@@ -283,7 +283,7 @@ function buildCard(l,s,ineligible){
     }
     save();render()
   };
-  card.querySelector('.favbtn').onclick=()=>{if(fav)delete state.fav[key];else state.fav[key]=true;save();render()};
+  let pips=card.querySelector('.pips');if(pips)pips.onclick=()=>{let nc=(cast+1)%(cap+1);let delta=nc-cast;state.cast[key]=nc;state.used[l]=Math.max(0,Math.min(cap,(state.used[l]||0)+delta));save();render()};card.querySelector('.favbtn').onclick=()=>{if(fav)delete state.fav[key];else state.fav[key]=true;save();render()};
   let ab=card.querySelector('.allowbtn');if(ab)ab.onclick=()=>{if(state.allowed[key])delete state.allowed[key];else state.allowed[key]=true;save();render()};card.querySelector('.forbidbtn').onclick=()=>{if(state.forbidden[key]!==undefined){delete state.forbidden[key]}else{let note=prompt('Optional note — why is this spell prohibited?','')||'';state.forbidden[key]=note}save();render()};
   return card
 }
@@ -338,8 +338,8 @@ function renderBloodlineInfo(){
   let skill=d.classSkill?`<div style="font-size:.7rem"><b>Class Skill:</b> <span style="color:var(--muted,#9ba7b7)">${d.classSkill}</span></div>`:'';
   box.innerHTML=`<details class="rulenote"><summary>🩸 Bloodline: ${name}</summary><div>${skill}${arcana}${powers}<div style="font-size:.62rem;color:var(--muted,#9ba7b7);margin-top:4px">Bonus feats (7th/13th/20th level) aren't tracked here.</div></div></details>`;
 }
-$('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];save();render()};
-$('cha').onchange=e=>{state.cha=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];save();render()};
+$('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};save();render()};
+$('cha').onchange=e=>{state.cha=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};save();render()};
 function applyRaceSourceExclusions(){
   RACE_ONLY_SOURCES.forEach(src=>{
     let allowed=RACE_SOURCE_MAP[state.race]&&RACE_SOURCE_MAP[state.race].includes(src);
@@ -347,10 +347,10 @@ function applyRaceSourceExclusions(){
   });
 }
 $('race').oninput=()=>{state.race=$('race').value.trim();applyRaceSourceExclusions();save();renderSources();render()};
-$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=state.used.map(()=>0);save();renderSources();render()};
+$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=state.used.map(()=>0);state.cast={};save();renderSources();render()};
 $('search').oninput=renderList;$('searchClear').onclick=()=>{$('search').value='';renderList();$('search').focus()};$('filter').onchange=renderList;$('showIneligible').checked=state.showIneligible;$('showIneligible').onchange=()=>{state.showIneligible=$('showIneligible').checked;save();renderList()};
 $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};save();renderSources();renderList()};$('srcNone').onclick=()=>{state.sourcesCustomized=true;[...new Set(currentSpells().map(s=>s.source||'Unknown'))].forEach(src=>state.excludedSources[src]=true);save();renderSources();renderList()};
-$('newDay').onclick=()=>{state.used=[0,0,0,0,0,0,0,0,0,0];save();render()};
+$('newDay').onclick=()=>{state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};save();render()};
 $('clear').onclick=()=>{state.known={};save();render()};
 
 // Full Wizard/Sorcerer spell list (levels 0-9, identical list for both classes per RAW),
