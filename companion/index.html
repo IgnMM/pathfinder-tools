@@ -358,6 +358,17 @@ const CATS=[{k:'feat',label:'Feats'},{k:'spell',label:'Spells'},{k:'other',label
 // ---------- Profiles ----------
 const STORE_KEY='pf1_companion_damage_calc_profiles_v1';
 function loadStore(){ let s=JSON.parse(localStorage.getItem(STORE_KEY)||'null'); if(!s||!s.profiles||!s.profiles.length){ s={active:'New Companion',profiles:[defaultProfile('New Companion')]}; } return s; }
+// The URL's own ?profile= is this TAB's source of truth for which sheet it shows --
+// store.active is shared localStorage, so without this, refreshing one tab after
+// switching profiles in a DIFFERENT tab silently swaps to whatever that other tab left
+// active (the "refreshing Hulkran loaded Kenneth" bug). Every profile switch in this
+// tab re-pins its own URL; a tab that never had ?profile= claims its current one on
+// first load so it stays independent from here on.
+function pinUrlToProfile(name){
+  const url=new URL(location.href);
+  url.searchParams.set('profile', name);
+  history.replaceState(null, '', url.pathname+url.search+url.hash);
+}
 let saveIndicatorTimer=null;
 function saveStore(){
   let _p=currentProfile(); if(_p) _p._updatedAt=Date.now();
@@ -436,12 +447,12 @@ function syncUIIntoProfile(){
   $(id).addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); });
 });
 
-$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; saveStore(); loadProfileIntoUI(); updateProfileDate(); updateSyncStatusForActive(); };
+$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; pinUrlToProfile(store.active); saveStore(); loadProfileIntoUI(); updateProfileDate(); updateSyncStatusForActive(); };
 $('newProfile').onclick=()=>{
   let name=prompt('Name for the new companion sheet:','New Companion');
   if(!name) return;
   if(store.profiles.some(p=>p.name===name)){ alert('A companion with that name already exists.'); return; }
-  store.profiles.push(defaultProfile(name)); store.active=name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
+  store.profiles.push(defaultProfile(name)); store.active=name; pinUrlToProfile(name); saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 $('dupProfile').onclick=()=>{
   let src=currentProfile();
@@ -449,7 +460,7 @@ $('dupProfile').onclick=()=>{
   if(!name) return;
   if(store.profiles.some(p=>p.name===name)){ alert('A companion with that name already exists.'); return; }
   let copy=JSON.parse(JSON.stringify(src)); copy.name=name;
-  store.profiles.push(copy); store.active=name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
+  store.profiles.push(copy); store.active=name; pinUrlToProfile(name); saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 $('renameProfile').onclick=()=>{
   let p=currentProfile();
@@ -457,7 +468,7 @@ $('renameProfile').onclick=()=>{
   if(!name || name===p.name) return;
   if(store.profiles.some(x=>x.name===name)){ alert('A companion with that name already exists.'); return; }
   let oldName=p.name;
-  p.name=name; store.active=name;
+  p.name=name; store.active=name; pinUrlToProfile(name);
   store.deletedProfiles[oldName]=Date.now(); // old name shouldn't resurrect on other devices after a rename
   saveStore(); populateProfileSelect();
 };
@@ -466,7 +477,7 @@ $('deleteProfile').onclick=()=>{
   if(!confirm('Delete "'+currentProfile().name+'"? This cannot be undone.')) return;
   store.deletedProfiles[store.active]=Date.now(); // so this deletion propagates to other devices/the cloud instead of the old name quietly resurrecting there
   store.profiles=store.profiles.filter(p=>p.name!==store.active);
-  store.active=store.profiles[0].name; saveStore(); populateProfileSelect(); loadProfileIntoUI();
+  store.active=store.profiles[0].name; pinUrlToProfile(store.active); saveStore(); populateProfileSelect(); loadProfileIntoUI();
 };
 
 // ---------- Sources ----------
@@ -768,7 +779,13 @@ function compute(){
 // creates) that profile on load.
 (function(){
   const wantProfile=new URLSearchParams(location.search).get('profile');
-  if(!wantProfile) return;
+  if(!wantProfile){
+    // No ?profile= yet (first-ever visit, or an old bookmark) -- claim whatever is
+    // currently active as THIS tab's own identity so it can never silently follow
+    // another tab's later switch.
+    pinUrlToProfile(store.active);
+    return;
+  }
   window.__pinnedProfile=wantProfile;
   if(!store.profiles.some(p=>p.name===wantProfile)) store.profiles.push(defaultProfile(wantProfile));
   store.active=wantProfile;
