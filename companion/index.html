@@ -436,9 +436,8 @@ function defaultProfile(name){
   return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:7, casterLevel:10, bab:7, singleAttack:false,
     str:18,dex:15,con:15,int:2,wis:12,cha:6, atkStat:'str', dmgStat:'str',
     attackLines:[
-      {name:'Claw',die:'1d4',atkBonus:7,strMode:'full',threat:'20',critMult:2},
-      {name:'Claw',die:'1d4',atkBonus:7,strMode:'full',threat:'20',critMult:2},
-      {name:'Bite',die:'1d6',atkBonus:2,strMode:'half',threat:'20',critMult:2}
+      {name:'Claw',qty:2,atkType:'natural',mode:'primary',die:'1d4',atkBonus:7,hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2,enhancement:0,range:'',extra:'',manualHitAdj:0,manualDmgAdj:0,noDamage:false},
+      {name:'Bite',qty:1,atkType:'natural',mode:'secondary',die:'1d6',atkBonus:2,hitAbility:'str',dmgAbility:'str',dmgAbilityMult:0.5,threat:'20',critMult:2,enhancement:0,range:'',extra:'',manualHitAdj:0,manualDmgAdj:0,noDamage:false}
     ],
     active:[], custom:[], excludedSources:{}};
 }
@@ -468,6 +467,27 @@ store.profiles.forEach(p=>{
   delete p.mountedContext; delete p.riderName; delete p.mountAttackingToo;
   if(p.sourceClass===undefined) p.sourceClass='';
   if(p.ownerLevel===undefined) p.ownerLevel=p.characterLevel||7;
+  // Migrate old attack lines (strMode full/half/none, no qty/type/per-line ability) to
+  // the new manual-attack schema -- preserves the same hit/damage math as before.
+  p.attackLines.forEach(line=>{
+    if(line.strMode!==undefined){
+      line.dmgAbilityMult = line.strMode==='full' ? 1 : line.strMode==='half' ? 0.5 : 0;
+      line.mode = line.strMode==='full' ? 'primary' : line.strMode==='half' ? 'secondary' : 'other';
+      delete line.strMode;
+    }
+    if(line.qty===undefined) line.qty=1;
+    if(!line.atkType) line.atkType='natural';
+    if(!line.mode) line.mode='primary';
+    if(!line.hitAbility) line.hitAbility=p.atkStat||'str';
+    if(!line.dmgAbility) line.dmgAbility=p.dmgStat||'str';
+    if(line.dmgAbilityMult===undefined) line.dmgAbilityMult=1;
+    if(line.enhancement===undefined) line.enhancement=0;
+    if(line.range===undefined) line.range='';
+    if(line.extra===undefined) line.extra='';
+    if(line.manualHitAdj===undefined) line.manualHitAdj=0;
+    if(line.manualDmgAdj===undefined) line.manualDmgAdj=0;
+    if(line.noDamage===undefined) line.noDamage=false;
+  });
 });
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
@@ -622,42 +642,85 @@ $('srcAll').onclick=()=>{ let p=currentProfile(); p.excludedSources={}; saveStor
 $('srcNone').onclick=()=>{ let p=currentProfile(); [...new Set(MODIFIERS.map(m=>m.source||'Unknown'))].forEach(src=>p.excludedSources[src]=true); saveStore(); renderSources(); renderCategories(); compute(); };
 
 // ---------- Attack Lines ----------
+const ABILITY_OPTS=[['str','STR'],['dex','DEX'],['con','CON'],['int','INT'],['wis','WIS'],['cha','CHA'],['none','None']];
+const ATK_TYPE_OPTS=[['natural','Natural'],['manufactured','Manufactured'],['ranged-natural','Ranged natural'],['touch','Touch'],['ranged-touch','Ranged touch'],['other','Other']];
+const DMG_MULT_OPTS=[0,0.5,1,1.5];
+function abilitySelectHtml(cls,current){
+  return `<select class="${cls}">`+ABILITY_OPTS.map(([v,l])=>`<option value="${v}"${current===v?' selected':''}>${l}</option>`).join('')+'</select>';
+}
 function renderAttackLines(){
   let p=currentProfile();
   if(!p.attackLines) p.attackLines=[];
   let box=$('attackLinesBox'); box.innerHTML='';
   p.attackLines.forEach((line,i)=>{
     let div=document.createElement('div'); div.className='atkLine';
+    let multIsPreset=DMG_MULT_OPTS.includes(+line.dmgAbilityMult);
     div.innerHTML=`
-      <input class="alName" list="natAttackNames" placeholder="Name (e.g. Claw)" value="${(line.name||'').replace(/"/g,'&quot;')}">
-      <input class="alDie" placeholder="Die (1d4)" value="${line.die||''}">
-      <input class="alAtk" type="number" placeholder="Atk bonus" value="${line.atkBonus||0}" title="BAB + size, before ability mod & modifiers">
-      <select class="alStr">
-        <option value="full"${line.strMode==='full'?' selected':''}>Primary (full Str)</option>
-        <option value="half"${line.strMode==='half'?' selected':''}>Secondary (half Str)</option>
-        <option value="none"${line.strMode==='none'?' selected':''}>No Str</option>
+      <input class="alName" list="natAttackNames" placeholder="Name (e.g. Claw)" value="${(line.name||'').replace(/"/g,'&quot;')}" title="Free name — Bite, Claw, Tail Slap, Web, Spit...">
+      <input class="alQty" type="number" min="1" value="${line.qty||1}" style="width:44px" title="Quantity (e.g. 2 for a pair of claws) — shown as one line, but ×N in the results">
+      <select class="alType" title="Attack type">${ATK_TYPE_OPTS.map(([v,l])=>`<option value="${v}"${line.atkType===v?' selected':''}>${l}</option>`).join('')}</select>
+      <select class="alMode" title="Primary/Secondary">
+        <option value="primary"${(line.mode||'primary')==='primary'?' selected':''}>Primary</option>
+        <option value="secondary"${line.mode==='secondary'?' selected':''}>Secondary</option>
+        <option value="other"${line.mode==='other'?' selected':''}>Other</option>
       </select>
+      <input class="alDie" placeholder="Die (1d4)" value="${line.die||''}" title="Base damage dice">
       <input class="alThreat" placeholder="Threat" value="${line.threat||'20'}" title="Threat range, e.g. 20 or 19–20">
-      <select class="alCrit">
+      <select class="alCrit" title="Critical multiplier">
         <option value="2"${(line.critMult||2)==2?' selected':''}>×2</option>
         <option value="3"${line.critMult==3?' selected':''}>×3</option>
         <option value="4"${line.critMult==4?' selected':''}>×4</option>
       </select>
+      <input class="alAtk" type="number" placeholder="Atk bonus" value="${line.atkBonus||0}" title="BAB + size, before ability mod & modifiers" style="width:56px">
+      <label style="font-size:.68rem;color:var(--muted)">Hit:${abilitySelectHtml('alHitAbility',line.hitAbility||'str')}</label>
+      <label style="font-size:.68rem;color:var(--muted)">Dmg:${abilitySelectHtml('alDmgAbility',line.dmgAbility||'str')}</label>
+      <select class="alDmgMult" title="Ability-to-damage multiplier">
+        ${DMG_MULT_OPTS.map(v=>`<option value="${v}"${multIsPreset&&+line.dmgAbilityMult===v?' selected':''}>×${v}</option>`).join('')}
+        <option value="custom"${!multIsPreset?' selected':''}>Custom</option>
+      </select>
+      ${!multIsPreset?`<input class="alDmgMultCustom" type="number" step="0.1" value="${line.dmgAbilityMult!==undefined?line.dmgAbilityMult:1}" style="width:52px" title="Custom ability-to-damage multiplier">`:''}
+      <input class="alEnh" type="number" value="${line.enhancement||0}" style="width:48px" title="Enhancement bonus (attack &amp; damage)">
+      <input class="alRange" placeholder="Range" value="${(line.range||'').replace(/"/g,'&quot;')}" style="width:70px" title="Range, if applicable (e.g. 50 ft.)">
+      <input class="alExtra" placeholder="Special effects / extra dice" value="${(line.extra||'').replace(/"/g,'&quot;')}" style="width:150px" title="Free text — e.g. +1d6 fire, entangled, poison DC 15">
+      <label style="font-size:.68rem;color:var(--muted)">Hit adj<input class="alManHit" type="number" value="${line.manualHitAdj||0}" style="width:44px"></label>
+      <label style="font-size:.68rem;color:var(--muted)">Dmg adj<input class="alManDmg" type="number" value="${line.manualDmgAdj||0}" style="width:44px"></label>
+      <label style="font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:3px"><input class="alNoDmg" type="checkbox" style="width:auto"${line.noDamage?' checked':''}> Does not deal damage</label>
       <button class="rm" type="button" title="Remove">✕</button>`;
-    div.querySelector('.alName').addEventListener('input',e=>{ line.name=e.target.value; saveStore(); compute(); });
-    div.querySelector('.alDie').addEventListener('input',e=>{ line.die=e.target.value; saveStore(); compute(); });
-    div.querySelector('.alAtk').addEventListener('input',e=>{ line.atkBonus=+e.target.value||0; saveStore(); compute(); });
-    div.querySelector('.alStr').addEventListener('change',e=>{ line.strMode=e.target.value; saveStore(); compute(); });
-    div.querySelector('.alThreat').addEventListener('input',e=>{ line.threat=e.target.value; saveStore(); compute(); });
-    div.querySelector('.alCrit').addEventListener('change',e=>{ line.critMult=+e.target.value; saveStore(); compute(); });
+    const upd=(field,parse)=>e=>{ line[field]=parse?parse(e.target.value):e.target.value; saveStore(); compute(); };
+    div.querySelector('.alName').addEventListener('input',upd('name'));
+    div.querySelector('.alQty').addEventListener('input',upd('qty',v=>Math.max(1,+v||1)));
+    div.querySelector('.alType').addEventListener('change',upd('atkType'));
+    div.querySelector('.alMode').addEventListener('change',upd('mode'));
+    div.querySelector('.alDie').addEventListener('input',upd('die'));
+    div.querySelector('.alThreat').addEventListener('input',upd('threat'));
+    div.querySelector('.alCrit').addEventListener('change',upd('critMult',Number));
+    div.querySelector('.alAtk').addEventListener('input',upd('atkBonus',v=>+v||0));
+    div.querySelector('.alHitAbility').addEventListener('change',upd('hitAbility'));
+    div.querySelector('.alDmgAbility').addEventListener('change',upd('dmgAbility'));
+    div.querySelector('.alDmgMult').addEventListener('change',e=>{
+      if(e.target.value==='custom'){ line.dmgAbilityMult=1.25; } else { line.dmgAbilityMult=+e.target.value; }
+      saveStore(); renderAttackLines(); compute();
+    });
+    let customEl=div.querySelector('.alDmgMultCustom');
+    if(customEl) customEl.addEventListener('input',upd('dmgAbilityMult',v=>+v||0));
+    div.querySelector('.alEnh').addEventListener('input',upd('enhancement',v=>+v||0));
+    div.querySelector('.alRange').addEventListener('input',upd('range'));
+    div.querySelector('.alExtra').addEventListener('input',upd('extra'));
+    div.querySelector('.alManHit').addEventListener('input',upd('manualHitAdj',v=>+v||0));
+    div.querySelector('.alManDmg').addEventListener('input',upd('manualDmgAdj',v=>+v||0));
+    div.querySelector('.alNoDmg').addEventListener('change',e=>{ line.noDamage=e.target.checked; saveStore(); compute(); });
     div.querySelector('.rm').addEventListener('click',()=>{ p.attackLines.splice(i,1); saveStore(); renderAttackLines(); compute(); });
     box.appendChild(div);
   });
 }
+function newAttackLine(){
+  return {name:'',qty:1,atkType:'natural',mode:'primary',die:'1d4',atkBonus:+$('bab').value||0,threat:'20',critMult:2,
+    hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,enhancement:0,range:'',extra:'',manualHitAdj:0,manualDmgAdj:0,noDamage:false};
+}
 $('addAttackLine').onclick=()=>{
   let p=currentProfile();
   if(!p.attackLines) p.attackLines=[];
-  p.attackLines.push({name:'',die:'1d4',atkBonus:+$('bab').value||0,strMode:'full',threat:'20',critMult:2});
+  p.attackLines.push(newAttackLine());
   saveStore(); renderAttackLines(); compute();
 };
 
@@ -862,13 +925,15 @@ function compute(){
     t.innerHTML='<thead><tr><th>Attack</th><th class="num">To-Hit</th><th>Normal Damage</th><th>Critical Damage</th></tr></thead>';
     let tbody=document.createElement('tbody');
     p.attackLines.forEach((line,i)=>{
-      let strContribution;
-      if(line.strMode==='full') strContribution = (ctx.style==='twoHanded' && dmgAbilityMod>0) ? Math.floor(dmgAbilityMod*1.5) : dmgAbilityMod;
-      else if(line.strMode==='half') strContribution = dmgAbilityMod<0 ? dmgAbilityMod : Math.floor(dmgAbilityMod/2);
-      else strContribution = 0;
+      let hitAb=line.hitAbility||'str', dmgAb=line.dmgAbility||'str';
+      let hitAbilityMod = hitAb==='none' ? 0 : (ctx[hitAb]||0);
+      let dmgAbilityMod2 = dmgAb==='none' ? 0 : (ctx[dmgAb]||0);
+      let dmgMult = line.dmgAbilityMult!==undefined ? +line.dmgAbilityMult : 1;
+      let strContribution = Math.floor(dmgAbilityMod2*dmgMult);
+      let enh=+line.enhancement||0, manHit=+line.manualHitAdj||0, manDmg=+line.manualDmgAdj||0;
       let lineAtkFromMods = (furiousFocusOn && powerAttackOn && i===0) ? (atkFromMods - powerAttackAtkVal) : atkFromMods;
-      let atk = (+line.atkBonus||0) + atkAbilityMod + lineAtkFromMods;
-      let dmgBonus = strContribution + dmgFromMods;
+      let atk = (+line.atkBonus||0) + hitAbilityMod + lineAtkFromMods + enh + manHit;
+      let dmgBonus = strContribution + dmgFromMods + enh + manDmg;
       let die = (line.die||'1d4').trim();
       let effDie = die;
       if(strongJawOn) effDie = diceSizeUp(diceSizeUp(effDie));
@@ -882,8 +947,14 @@ function compute(){
         normalDiceStr = diceMultiply(effDie, vsMult);
         if(vsMult>1) critDice += ' + '+diceMultiply(effDie, vsMult-1)+' (Vital Strike, unmultiplied)';
       }
+      let qty=Math.max(1,+line.qty||1);
+      let nameLabel=(qty>1?qty+'× ':'')+(line.name||'Attack');
+      let subLabel=[line.range,line.extra].filter(Boolean).join(' — ');
+      let nameCell=`${nameLabel}${(furiousFocusOn && powerAttackOn && i===0)?' <span class="typeTag" title="Furious Focus waives Power Attack\'s attack penalty here">Furious Focus</span>':''}${subLabel?`<div class="desc" style="font-size:.68rem;color:var(--muted);margin-top:2px">${subLabel}</div>`:''}`;
+      let dmgCell = line.noDamage ? '—' : (normalDiceStr+' '+signed(dmgBonus));
+      let critCell = line.noDamage ? '—' : (critDice+' '+signed(critDmg)+' (threat '+(line.threat||'20')+'/×'+critMult+')');
       let tr=document.createElement('tr');
-      tr.innerHTML=`<td>${line.name||'Attack'}${(furiousFocusOn && powerAttackOn && i===0)?' <span class="typeTag" title="Furious Focus waives Power Attack\'s attack penalty here">Furious Focus</span>':''}</td><td class="num">${signed(atk)}</td><td>${normalDiceStr} ${signed(dmgBonus)}</td><td>${critDice} ${signed(critDmg)} (threat ${line.threat||'20'}/×${critMult})</td>`;
+      tr.innerHTML=`<td>${nameCell}</td><td class="num">${signed(atk)}</td><td>${dmgCell}</td><td>${critCell}</td>`;
       tbody.appendChild(tr);
     });
     t.appendChild(tbody); box.appendChild(t);
