@@ -153,9 +153,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
     <option value="charge">Mounted charge</option>
   </select>
 </div>
-<div class="row"><label>Rider</label><input id="riderName" type="text" placeholder="Rider's name"></div>
 <div class="row"><label>Mount attacking too?</label><input id="mountAttackingToo" type="checkbox" style="width:auto;justify-self:start"></div>
-<div class="emptyNote">The rider's own feats and gear never become the mount's — a rider ability only affects this block if its own text says so. This calculator doesn't (yet) compute the rider's attack here: open the rider as their own sheet in the Character Hit&amp;Damage Calculator and read the two results side by side. Uncheck "Mount attacking too?" to hide the mount's own attack block below when it's just carrying the rider this round (e.g. focusing on the lance charge). No mounted-charge multiplier is applied automatically to the mount's own natural attacks below — only to the rider's weapon, per the rules.</div>
+<div class="emptyNote">This calculator only handles the mount itself — the rider is a separate character with their own sheet in the Character Hit&amp;Damage Calculator; read the two results side by side rather than mixing them here. Uncheck "Mount attacking too?" to hide the mount's own attack block below when it's just carrying the rider this round (e.g. focusing on the lance charge). No mounted-charge multiplier is applied automatically to the mount's own natural attacks below — only to the rider's weapon, per the rules.</div>
 </div>
 
 <div id="mainCalcArea">
@@ -414,7 +413,7 @@ function defaultProfile(name){
       {name:'Claw',die:'1d4',atkBonus:7,strMode:'full',threat:'20',critMult:2},
       {name:'Bite',die:'1d6',atkBonus:2,strMode:'half',threat:'20',critMult:2}
     ],
-    mountedContext:'off', riderName:'', mountAttackingToo:true,
+    mountedContext:'off', mountAttackingToo:true,
     active:[], custom:[], excludedSources:{}};
 }
 // Entity types this calculator can actually compute today vs. ones the selector shows
@@ -439,7 +438,7 @@ store.profiles.forEach(p=>{
   if(!p.attackLines) p.attackLines=[];
   if(!p.entityType) p.entityType='animal-companion'; // every sheet made before the entity selector was an animal companion in all but name
   if(!p.mountedContext) p.mountedContext='off';
-  if(p.riderName===undefined) p.riderName='';
+  delete p.riderName; // this tool only handles the mount itself now — the rider is a separate Character sheet
   if(p.mountAttackingToo===undefined) p.mountAttackingToo=true;
 });
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
@@ -471,6 +470,7 @@ function populateEntityTypeSelect(){
     sel.appendChild(o);
   });
 }
+
 function applyEntityTypeUI(){
   let p=currentProfile();
   let type=p.entityType||'animal-companion';
@@ -487,7 +487,7 @@ function loadProfileIntoUI(){
   $('singleAttack').checked=!!p.singleAttack;
   $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con; $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat;
-  $('mountedContext').value=p.mountedContext||'off'; $('riderName').value=p.riderName||''; $('mountAttackingToo').checked=p.mountAttackingToo!==false;
+  $('mountedContext').value=p.mountedContext||'off'; $('mountAttackingToo').checked=p.mountAttackingToo!==false;
   applyEntityTypeUI();
   renderAttackLines();
   renderSources();
@@ -502,13 +502,13 @@ function syncUIIntoProfile(){
   p.singleAttack=$('singleAttack').checked;
   p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value; p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value;
-  p.mountedContext=$('mountedContext').value; p.riderName=$('riderName').value; p.mountAttackingToo=$('mountAttackingToo').checked;
+  p.mountedContext=$('mountedContext').value; p.mountAttackingToo=$('mountAttackingToo').checked;
   saveStore();
 }
 
 populateEntityTypeSelect();
 
-['hitDice','casterLevel','bab','singleAttack','str','dex','con','int','wis','cha','atkStat','dmgStat','mountedContext','riderName','mountAttackingToo'].forEach(id=>{
+['hitDice','casterLevel','bab','singleAttack','str','dex','con','int','wis','cha','atkStat','dmgStat','mountedContext','mountAttackingToo'].forEach(id=>{
   $(id).addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); });
 });
 $('entityType').addEventListener('change', ()=>{ syncUIIntoProfile(); applyEntityTypeUI(); compute(); });
