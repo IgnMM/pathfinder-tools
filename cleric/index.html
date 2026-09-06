@@ -372,8 +372,8 @@ function renderSources(){let box=$('sourceList');box.innerHTML='';let all=[...ne
   document.querySelector('.rulenote summary').title=$('ruleNote').textContent;
   renderButtons();renderCtButtons();renderSlots();renderSources();renderList()
 }
-$('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];save();render()};
-$('wis').onchange=e=>{state.wis=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];save();render()};
+$('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};state.domainCast={};save();render()};
+$('wis').onchange=e=>{state.wis=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};state.domainCast={};save();render()};
 $('alignment').onchange=e=>{state.alignment=e.target.value;save();render()};
 function applyRaceSourceExclusions(){
   RACE_ONLY_SOURCES.forEach(src=>{
@@ -382,7 +382,7 @@ function applyRaceSourceExclusions(){
   });
 }
 $('race').oninput=()=>{state.race=$('race').value.trim();applyRaceSourceExclusions();save();renderSources();render()};
-$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=state.used.map(()=>0);save();renderSources();render()};
+$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=state.used.map(()=>0);state.cast={};state.domainCast={};save();renderSources();render()};
 $('domain1').oninput=()=>{state.domain1=$('domain1').value.trim();refreshSubdomainList('domain1','subdomainList1','subdomain1');save();render()};
 $('domain2').oninput=()=>{state.domain2=$('domain2').value.trim();refreshSubdomainList('domain2','subdomainList2','subdomain2');save();render()};
 $('subdomain1').oninput=()=>{state.subdomain1=$('subdomain1').value.trim();save();render()};

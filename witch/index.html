@@ -342,8 +342,8 @@ function renderPatronInfo(){
   let spells=Object.entries(d.bonusSpells).sort((a,b)=>Number(a[0])-Number(b[0])).map(([wLvl,spellName])=>`<div style="margin:2px 0"><b>Witch ${wLvl}</b> — <span style="color:var(--muted,#9ba7b7)">${spellName}</span></div>`).join('');
   box.innerHTML=`<details class="rulenote"><summary>🔮 Patron: ${name}</summary><div>${spells}<div style="font-size:.62rem;color:var(--muted,#9ba7b7);margin-top:4px">Each spell above is automatically added to your familiar's repertoire (marked "Patron ✓" on its card) once you reach that witch level — no need to add it to your spellbook by hand.</div></div></details>`;
 }
-$('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];save();render()};
-$('int').onchange=e=>{state.int=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];save();render()};
+$('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};save();render()};
+$('int').onchange=e=>{state.int=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};save();render()};
 function applyRaceSourceExclusions(){
   RACE_ONLY_SOURCES.forEach(src=>{
     let allowed=RACE_SOURCE_MAP[state.race]&&RACE_SOURCE_MAP[state.race].includes(src);
@@ -351,7 +351,7 @@ function applyRaceSourceExclusions(){
   });
 }
 $('race').oninput=()=>{state.race=$('race').value.trim();applyRaceSourceExclusions();save();renderSources();render()};
-$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=state.used.map(()=>0);save();renderSources();render()};
+$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=state.used.map(()=>0);state.cast={};save();renderSources();render()};
 $('search').oninput=renderList;$('searchClear').onclick=()=>{$('search').value='';renderList();$('search').focus()};$('filter').onchange=renderList;$('showIneligible').checked=state.showIneligible;$('showIneligible').onchange=()=>{state.showIneligible=$('showIneligible').checked;save();renderList()};
 $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};save();renderSources();renderList()};$('srcNone').onclick=()=>{state.sourcesCustomized=true;[...new Set(currentSpells().map(s=>s.source||'Unknown'))].forEach(src=>state.excludedSources[src]=true);save();renderSources();renderList()};
 $('newDay').onclick=()=>{state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};save();render()};

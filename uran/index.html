@@ -265,8 +265,8 @@ function renderSources(){let box=$('sourceList');box.innerHTML='';let all=[...ne
   document.querySelector('.rulenote summary').title=$('ruleNote').textContent;
   renderButtons();renderCtButtons();renderSlots();renderSources();renderList()
 }
-$('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];save();render()};
-$('wis').onchange=e=>{state.wis=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];save();render()};
+$('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};state.domainCast={};save();render()};
+$('wis').onchange=e=>{state.wis=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};state.domainCast={};save();render()};
 $('alignment').onchange=e=>{state.alignment=e.target.value;save();render()};
 function applyRaceSourceExclusions(){
   RACE_ONLY_SOURCES.forEach(src=>{
