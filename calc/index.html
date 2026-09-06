@@ -335,7 +335,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div id="ammoBox" class="offhandBox" style="display:none">
   <h3 style="margin-top:0">Ammunition</h3>
   <div class="row"><label>Ammunition Enhancement (+X)</label><input id="ammoEnh" type="number" min="0" max="10" value="0"></div>
-  <div class="emptyNote">RAW: a projectile weapon's own enhancement bonus (above) only helps overcome damage reduction — it is NOT added to attack or damage rolls. The bonus that IS added comes from the ammunition's own enhancement bonus, set here. Weapon Effects below (Flaming, Keen, Bane, etc.) can be tagged "Ammunition Only" / "Bow/Crossbow Only" for your own bookkeeping — informational only, since a ranged attack only produces one attack/damage total either way.</div>
+  <div class="emptyNote">RAW: the bow/crossbow's own enhancement bonus (above) applies to attack and damage rolls like any other magic weapon. If the ammunition also carries its own separate enhancement bonus, set it here — enhancement bonuses of the same type don't stack, so the higher of the two applies, not both added together. Weapon Effects below (Flaming, Keen, Bane, etc.) can be tagged "Ammunition Only" / "Bow/Crossbow Only" for your own bookkeeping — informational only, since a ranged attack only produces one attack/damage total either way.</div>
 </div>
 <div class="row"><label>Critical Multiplier</label>
 <select id="critMult">
@@ -3584,11 +3584,9 @@ store.profiles.forEach(p=>{
   if(p.mythicTier===undefined) p.mythicTier=0;
   if(p.mythicEnabled===undefined) p.mythicEnabled=false;
   if(p.currentTarget===undefined) p.currentTarget='none';
-  // Ranged weapons: the bow/crossbow's own enhancement bonus doesn't add to attack/damage
-  // (RAW — it only overcomes DR), the ammunition's does. Before this existed, `enh` was
-  // used for both roles at once for a ranged build, so copy its value into the new
-  // ammoEnh field on migration — this keeps every existing ranged character's totals
-  // exactly the same as before, while `enh` going forward only affects DR.
+  // ammoEnh holds a separately-enhanced ammunition's own bonus (doesn't stack with the
+  // launcher's enh -- the higher of the two applies, see compute()). Default it to
+  // match enh on migration so an old ranged profile's total is unaffected either way.
   if(p.ammoEnh===undefined) p.ammoEnh = (p.style==='ranged') ? (p.enh||0) : 0;
   if(p.active) p.active.forEach(a=>{ if(!a.weaponSlot) a.weaponSlot='both'; });
   if(p.characterLevel===undefined) p.characterLevel=10;
@@ -3662,7 +3660,7 @@ function syncUIIntoProfile(){
   saveStore();
 }
 function updateEnhLabel(){
-  $('enhLabel').textContent = $('style').value==='ranged' ? 'Bow/Crossbow Enhancement (+X, overcomes DR only)' : 'Weapon Base Enhancement (+X)';
+  $('enhLabel').textContent = $('style').value==='ranged' ? 'Bow/Crossbow Enhancement (+X)' : 'Weapon Base Enhancement (+X)';
 }
 $('numAttacks').addEventListener('input', ()=>{ renderBabInputs(); syncUIIntoProfile(); compute(); });
 
@@ -4330,9 +4328,13 @@ function compute(){
   // The ×1.5 two-handed multiplier only applies to a positive ability bonus — a
   // negative modifier (a penalty) is not multiplied, it applies in full (RAW).
   let strDmgMod = (style==='twoHanded' && dmgAbilityMod>0) ? roundFrac(dmgAbilityMod*1.5) : dmgAbilityMod;
-  // RAW: for a ranged weapon, only the ammunition's enhancement bonus is added to
-  // attack/damage — the bow/crossbow's own enhancement bonus only overcomes DR.
-  let effectiveEnh = style==='ranged' ? ammoEnh : enh;
+  // RAW (Core Rulebook, "Magic Weapons"): a magic weapon applies its own enhancement
+  // bonus to both attack and damage rolls -- this includes bows/crossbows, which are
+  // weapons like any other. Enhancement is a bonus type, so a separately-enhanced
+  // ammunition doesn't stack additively with the launcher's own bonus; use whichever
+  // is higher (e.g. +1 bow firing +2 arrows nets +2, not +3; +1 bow firing ordinary
+  // arrows nets +1).
+  let effectiveEnh = style==='ranged' ? Math.max(enh, ammoEnh) : enh;
   let baseAtk = bab + atkAbilityMod + effectiveEnh;
   let baseDmg = strDmgMod + effectiveEnh;
 
@@ -4557,8 +4559,8 @@ function compute(){
 
   notes.push('Base attack: BAB '+signed(bab)+' + '+ABIL_LABEL[atkStat]+' '+signed(atkAbilityMod)+' + enhancement '+signed(effectiveEnh)+' = '+signed(baseAtk)+', then modifiers = '+signed(atkFromMods)+'.');
   notes.push('Base damage: '+ABIL_LABEL[dmgStat]+' '+signed(dmgAbilityMod)+(style==='twoHanded'&&dmgStat!=='none'?' (×1.5, two-handed)':'')+' + enhancement '+signed(effectiveEnh)+' = '+signed(baseDmg)+', then modifiers = '+signed(dmgFromMods)+'.');
-  if(style==='ranged'){
-    notes.push('Ranged: only the ammunition\'s enhancement bonus (+'+ammoEnh+') is added to attack/damage above — the bow/crossbow\'s own enhancement bonus (+'+enh+') only helps overcome damage reduction, per RAW.');
+  if(style==='ranged' && enh && ammoEnh && enh!==ammoEnh){
+    notes.push('Ranged: the bow/crossbow enhancement (+'+enh+') and the ammunition enhancement (+'+ammoEnh+') are both enhancement-type bonuses, so they don\'t stack — only the higher one (+'+effectiveEnh+') is added to attack/damage above.');
   }
   if(paNoCritMult && powerAttackOn && powerAttackDmgVal){
     notes.push('House rule: Power Attack/Deadly Aim damage ('+signed(powerAttackDmgVal)+') excluded from the ×'+critMult+' crit multiplier — added once instead of being multiplied like the rest of Critical Damage.');
