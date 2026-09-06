@@ -250,6 +250,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="emptyNote">Caster Level is often lower than Character Level — a Paladin/Ranger's is Character Level − 3 (starting at 4th level), for example. Set it independently; it pre-fills spell entries below that scale with caster level (Divine Favor, Magic Weapon Greater, Wrath, Gorum's Armor...) instead of Character Level.</div>
 <div class="row numAttacksRow"><label>Number of Attacks</label><input id="numAttacks" type="number" min="1" max="8" value="1"><div id="babSequenceBox"></div></div>
 <div class="emptyNote">Character Level defaults this to full BAB (level, level-5, level-10...) — type over any box for a 3/4 or 1/2 BAB class, multiple iteratives, etc. The first box is also used as "BAB" everywhere else in the calculator (Power Attack scaling, etc.). Character Level also pre-fills other level-scaling fields (Sneak Attack dice, caster level, bard/paladin level...) when you add them from the catalog below.</div>
+<div class="row"><label>Round STR/Power Attack fractions up?</label><input id="roundFracUp" type="checkbox" style="width:auto;justify-self:start"></div>
+<div class="emptyNote">Affects the handful of places that halve or ×1.5 a number (two-handed/off-hand Strength bonus, Power Attack/Deadly Aim two-handed damage). Off by default, matching the rules (round down); check it only if your table rounds up instead.</div>
 <div class="row"><label>Play with Mythic rules?</label><input id="mythicEnabled" type="checkbox" style="width:auto;justify-self:start"></div>
 <div id="mythicTierBox" style="display:none">
 <div class="row"><label>Mythic Tier</label><input id="mythicTier" type="number" min="0" max="10" value="0"></div>
@@ -627,7 +629,7 @@ function isCritImmune(ctx){
 function abilityBuffBonus(ctx, ability, scoreBonus){
   let modBonus = scoreBonus/2;
   let attack = (ctx.atkStat===ability) ? modBonus : 0;
-  let damage = (ctx.dmgStat===ability) ? ((ctx.style==='twoHanded' && modBonus>0) ? Math.floor(modBonus*1.5) : modBonus) : 0;
+  let damage = (ctx.dmgStat===ability) ? ((ctx.style==='twoHanded' && modBonus>0) ? roundFrac(modBonus*1.5) : modBonus) : 0;
   return {attack, damage, modBonus};
 }
 
@@ -635,7 +637,7 @@ const MODIFIERS = [
 // ---------------- FEATS ----------------
 {id:'power-attack',name:'Power Attack',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
  desc:'-1 atk / +2 dmg per step (1 step at BAB 1-3, +1 more step every 4 BAB thereafter); the +2 becomes +3 two-handed (×1.5), or +1 off-hand (×0.5). RAW: this damage bonus IS multiplied on a critical hit (it becomes part of the weapon\'s damage roll) — add the "Power Attack/Deadly Aim damage not multiplied on crit" House Rule below if your table plays it differently. If Mythic Power Attack is also active, the per-step damage rises from +2 to +3 (before the two-handed/off-hand multiplier) and is doubled again on a confirmed crit — see Critical Damage.',
- compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);let perStep=ctx.mythicPowerAttackOn?3:2;let dPerStep=ctx.style==='twoHanded'?Math.floor(perStep*1.5):perStep;let d=dPerStep*step;return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg'+(ctx.mythicPowerAttackOn?' (Mythic Power Attack: +'+perStep+'/step)':'')+(ctx.style==='twf'?' (this is the primary-hand rate, applied to both hands here for simplicity — off-hand Power Attack damage is normally half this, ×0.5 instead of the primary hand\'s ×1)':'')}}},
+ compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);let perStep=ctx.mythicPowerAttackOn?3:2;let dPerStep=ctx.style==='twoHanded'?roundFrac(perStep*1.5):perStep;let d=dPerStep*step;return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg'+(ctx.mythicPowerAttackOn?' (Mythic Power Attack: +'+perStep+'/step)':'')+(ctx.style==='twf'?' (this is the primary-hand rate, applied to both hands here for simplicity — off-hand Power Attack damage is normally half this, ×0.5 instead of the primary hand\'s ×1)':'')}}},
 {id:'furious-focus',name:'Furious Focus',category:'feat',source:'Advanced Player\'s Guide',appliesTo:['attack'],type:'special',
  desc:'Requires Power Attack. No Power Attack penalty on your FIRST attack of the turn only (handled specially in the summary, not in the flat total below).',
  special:'furious-focus', compute:()=>({attack:0,damage:0,note:'applied to first attack only — see summary'})},
@@ -3492,6 +3494,11 @@ const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label
 
 const $=id=>document.getElementById(id);
 function mod(score){return Math.floor((Number(score)-10)/2)}
+const ROUND_FRAC_KEY='pf1_calc_round_frac_up_v1';
+// Only the handful of spots that halve or x1.5 a number (two-handed/off-hand Strength
+// bonus, Power Attack/Deadly Aim two-handed damage) -- ability modifiers themselves
+// always round down per the rules, regardless of this setting.
+function roundFrac(n){ let el=document.getElementById('roundFracUp'); return (el&&el.checked) ? Math.ceil(n) : Math.floor(n); }
 function signed(n){return (n>=0?'+':'')+n}
 
 // ---------- Profiles ----------
@@ -3768,6 +3775,13 @@ $('deity').addEventListener('input', ()=>{
   syncUIIntoProfile();
   saveStore();
   renderCategories();
+  compute();
+});
+// Rounding preference is a device setting, not per-character -- plain localStorage,
+// not part of the profile store.
+$('roundFracUp').checked = localStorage.getItem(ROUND_FRAC_KEY)==='1';
+$('roundFracUp').addEventListener('input', ()=>{
+  localStorage.setItem(ROUND_FRAC_KEY, $('roundFracUp').checked ? '1' : '0');
   compute();
 });
 $('race').addEventListener('input', ()=>{
@@ -4315,7 +4329,7 @@ function compute(){
   let dmgAbilityMod = dmgStat==='none' ? 0 : ctx[dmgStat];
   // The ×1.5 two-handed multiplier only applies to a positive ability bonus — a
   // negative modifier (a penalty) is not multiplied, it applies in full (RAW).
-  let strDmgMod = (style==='twoHanded' && dmgAbilityMod>0) ? Math.floor(dmgAbilityMod*1.5) : dmgAbilityMod;
+  let strDmgMod = (style==='twoHanded' && dmgAbilityMod>0) ? roundFrac(dmgAbilityMod*1.5) : dmgAbilityMod;
   // RAW: for a ranged weapon, only the ammunition's enhancement bonus is added to
   // attack/damage — the bow/crossbow's own enhancement bonus only overcomes DR.
   let effectiveEnh = style==='ranged' ? ammoEnh : enh;
@@ -4566,7 +4580,7 @@ function compute(){
     let offAtk = bab + atkAbilityMod + offEnh + pen.off + atkFromModsOff;
     // Off-hand damage uses half the damage ability bonus, rounded down — but a negative
     // modifier (a penalty) applies in full to both hands, it is not halved (RAW).
-    let offDmgAbility = hasDoubleSlice ? dmgAbilityMod : (dmgAbilityMod<0 ? dmgAbilityMod : Math.floor(dmgAbilityMod/2));
+    let offDmgAbility = hasDoubleSlice ? dmgAbilityMod : (dmgAbilityMod<0 ? dmgAbilityMod : roundFrac(dmgAbilityMod/2));
     let offDmg = offDmgAbility + offEnh + dmgFromModsOff;
     if(hasMythicTWF) notes.push('Mythic Two-Weapon Fighting: two-weapon attack penalties fully waived (spending mythic power) instead of just reduced.');
     iteratives = babList.map(b => b + (mainAtk-bab));
