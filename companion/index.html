@@ -150,21 +150,34 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div>
 <section class="card card-char">
 <h2>Companion &amp; Attacks</h2>
+<div class="row"><label>Source class</label>
+  <select id="sourceClass">
+    <option value="">Other / homebrew</option>
+    <option value="druid">Druid</option>
+    <option value="hunter">Hunter</option>
+    <option value="ranger">Ranger</option>
+    <option value="paladin">Paladin (mount)</option>
+    <option value="cavalier">Cavalier (mount)</option>
+  </select>
+</div>
+<div class="row"><label>Class level</label><input id="ownerLevel" type="number" min="1" max="20" value="7"></div>
+<div id="effectiveLevelNote" class="emptyNote"></div>
 <div class="row"><label>Hit Dice</label><input id="hitDice" type="number" min="1" max="30" value="7"></div>
 <div class="row"><label>Caster Level (of whoever casts buffs on it)</label><input id="casterLevel" type="number" min="0" max="20" value="10"></div>
 <div class="row"><label>Base Attack Bonus</label><input id="bab" type="number" value="7"></div>
-<div class="emptyNote">Feeds Power Attack's BAB-based scaling only — each attack below has its own Attack Bonus field, typed directly (no formula assumed), exactly like the Character calculator's BAB boxes.</div>
+<div class="emptyNote">Feeds Power Attack's BAB-based scaling only — each attack below has its own Attack Bonus field, typed directly. For Druid/Hunter/Ranger, this is pre-filled from the Animal Companion Base Statistics table at the effective companion level below (overwritten each time Source class or Class level changes — type over it afterward if you need to).</div>
 <div class="row"><label>Only one natural attack this round?</label><input id="singleAttack" type="checkbox" style="width:auto;justify-self:start"></div>
 <div class="emptyNote">Check this only if the companion is making a single natural attack this turn (not a full attack with multiple attack types) — like a two-handed weapon, its Strength (and Power Attack) bonus to damage then becomes ×1.5 instead of ×1. Leave unchecked for the common case (e.g. bite + 2 claws together).</div>
 <h3>Ability Scores</h3>
 <div class="statsGrid">
-<div><label>STR</label><input id="str" type="number" value="18"></div>
-<div><label>DEX</label><input id="dex" type="number" value="15"></div>
+<div><label>STR (base)</label><input id="str" type="number" value="18"></div>
+<div><label>DEX (base)</label><input id="dex" type="number" value="15"></div>
 <div><label>CON</label><input id="con" type="number" value="15"></div>
 <div><label>INT</label><input id="int" type="number" value="2"></div>
 <div><label>WIS</label><input id="wis" type="number" value="12"></div>
 <div><label>CHA</label><input id="cha" type="number" value="6"></div>
 </div>
+<div id="strDexAdjNote" class="emptyNote"></div>
 <div class="row" style="margin-top:10px"><label>Ability → Attack rolls</label>
 <select id="atkStat">
   <option value="str" selected>Strength</option>
@@ -237,6 +250,35 @@ function abilityBuffBonus(ctx, ability, scoreBonus){
   let attack = (ctx.atkStat===ability) ? modBonus : 0;
   let damage = (ctx.dmgStat===ability) ? ((ctx.style==='twoHanded' && modBonus>0) ? Math.floor(modBonus*1.5) : modBonus) : 0;
   return {attack, damage, modBonus};
+}
+
+// ---------------- Animal Companion progression (Druid/Hunter/Ranger only) ----------------
+// Core Rulebook "Animal Companion Base Statistics" table, indexed by effective companion
+// level 1-20. Only the two columns that actually change hit/damage here: BAB and the
+// Str/Dex advancement bonus (added on top of the base creature's own Str/Dex, per "Add
+// this figure to the animal's Strength and Dexterity scores"). HD/Fort/Ref/Will/Natural
+// Armor/Skills/Feats/tricks aren't modeled -- this calculator is hit/damage only.
+// Source: https://legacy.aonprd.com/coreRulebook/classes/druid.html -- verify against
+// Nethys before relying on this in play; transcribing a dense table always carries risk.
+const ANIMAL_COMPANION_TABLE=[
+  null, // no level 0
+  {bab:1,strDexAdj:0}, {bab:2,strDexAdj:0}, {bab:2,strDexAdj:1}, {bab:3,strDexAdj:1},
+  {bab:3,strDexAdj:1}, {bab:4,strDexAdj:2}, {bab:4,strDexAdj:2}, {bab:5,strDexAdj:2},
+  {bab:6,strDexAdj:3}, {bab:6,strDexAdj:3}, {bab:6,strDexAdj:3}, {bab:7,strDexAdj:4},
+  {bab:8,strDexAdj:4}, {bab:9,strDexAdj:4}, {bab:9,strDexAdj:5}, {bab:9,strDexAdj:5},
+  {bab:10,strDexAdj:5}, {bab:11,strDexAdj:6}, {bab:11,strDexAdj:6}, {bab:12,strDexAdj:6}
+];
+// Ranger gives up a combat style for a companion at 4th level; per the rules "the
+// ranger's effective druid level is equal to his ranger level – 3." Druid and Hunter
+// both use their own class level as-is (Hunter has full animal companion progression
+// from 1st level, like a druid). Paladin/Cavalier mounts use a DIFFERENT table entirely
+// -- not the Animal Companion one -- so they're intentionally left unmodeled here rather
+// than guessed; set BAB/scores by hand for those until that table is added.
+function effectiveCompanionLevel(sourceClass, ownerLevel){
+  let lvl=Math.max(0, +ownerLevel||0);
+  if(sourceClass==='druid' || sourceClass==='hunter') return Math.min(20, lvl);
+  if(sourceClass==='ranger') return Math.min(20, Math.max(0, lvl-3));
+  return null; // paladin, cavalier, or no source class -- not modeled, fully manual
 }
 
 // ---------------- MODIFIERS CATALOG ----------------
@@ -391,7 +433,7 @@ function saveStore(){
   }
 }
 function defaultProfile(name){
-  return {name, entityType:'animal-companion', characterLevel:7, casterLevel:10, bab:7, singleAttack:false,
+  return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:7, casterLevel:10, bab:7, singleAttack:false,
     str:18,dex:15,con:15,int:2,wis:12,cha:6, atkStat:'str', dmgStat:'str',
     attackLines:[
       {name:'Claw',die:'1d4',atkBonus:7,strMode:'full',threat:'20',critMult:2},
@@ -424,6 +466,8 @@ store.profiles.forEach(p=>{
   // "Mounted" by itself changes nothing about hit/damage -- a rider ability that DOES
   // change something is added as an Active Effect instead, so these fields were dropped.
   delete p.mountedContext; delete p.riderName; delete p.mountAttackingToo;
+  if(p.sourceClass===undefined) p.sourceClass='';
+  if(p.ownerLevel===undefined) p.ownerLevel=p.characterLevel||7;
 });
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
@@ -464,13 +508,40 @@ function applyEntityTypeUI(){
   $('mainCalcArea').style.display=implemented?'block':'none';
 }
 
+// Recomputes the effective companion level from Source class + Class level, and — for
+// Druid/Hunter/Ranger only — pre-fills BAB from the Animal Companion table and shows the
+// Str/Dex advancement that compute() adds on top of the base scores. Paladin/Cavalier
+// mounts and "Other" get no auto-fill: that table doesn't exist here yet, everything
+// stays exactly what you typed.
+function applyProgressionUI(autoFillBab){
+  let cls=$('sourceClass').value, ownerLvl=+$('ownerLevel').value||0;
+  let eff=effectiveCompanionLevel(cls, ownerLvl);
+  let effNote=$('effectiveLevelNote'), adjNote=$('strDexAdjNote');
+  if(cls==='paladin'||cls==='cavalier'){
+    effNote.textContent='Paladin/Cavalier mounts use a different progression table, not modeled here yet — set BAB and ability scores by hand.';
+    adjNote.textContent='';
+    return;
+  }
+  if(!cls || eff===null || eff<=0){
+    effNote.textContent = cls==='ranger' ? 'A ranger companion starts at 4th level (effective level = ranger level − 3) — not active yet at this level.' : '';
+    adjNote.textContent='';
+    return;
+  }
+  let row=ANIMAL_COMPANION_TABLE[Math.max(1,Math.min(20,eff))];
+  effNote.textContent='Effective companion level '+eff+' (Animal Companion Base Statistics, Core Rulebook).';
+  adjNote.textContent = row.strDexAdj ? ('Str/Dex advancement at this level: +'+row.strDexAdj+' — already added to the base scores above for the actual attack/damage math.') : 'No Str/Dex advancement yet at this level.';
+  if(autoFillBab) $('bab').value=row.bab;
+}
+
 function loadProfileIntoUI(){
   let p=currentProfile();
+  $('sourceClass').value=p.sourceClass||''; $('ownerLevel').value=p.ownerLevel;
   $('hitDice').value=p.characterLevel; $('casterLevel').value=p.casterLevel; $('bab').value=p.bab;
   $('singleAttack').checked=!!p.singleAttack;
   $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con; $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat;
   applyEntityTypeUI();
+  applyProgressionUI(false);
   renderAttackLines();
   renderSources();
   renderCategories();
@@ -480,6 +551,7 @@ function loadProfileIntoUI(){
 function syncUIIntoProfile(){
   let p=currentProfile();
   p.entityType=$('entityType').value;
+  p.sourceClass=$('sourceClass').value; p.ownerLevel=+$('ownerLevel').value||0;
   p.characterLevel=+$('hitDice').value; p.casterLevel=+$('casterLevel').value; p.bab=+$('bab').value;
   p.singleAttack=$('singleAttack').checked;
   p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value; p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
@@ -493,6 +565,9 @@ populateEntityTypeSelect();
   $(id).addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); });
 });
 $('entityType').addEventListener('change', ()=>{ syncUIIntoProfile(); applyEntityTypeUI(); compute(); });
+['sourceClass','ownerLevel'].forEach(id=>{
+  $(id).addEventListener('input', ()=>{ applyProgressionUI(true); syncUIIntoProfile(); compute(); });
+});
 
 $('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; pinUrlToProfile(store.active); saveStore(); loadProfileIntoUI(); updateProfileDate(); updateSyncStatusForActive(); };
 $('newProfile').onclick=()=>{
@@ -752,9 +827,13 @@ function renderBreakdown(breakdown){
 // ---------- Compute ----------
 function compute(){
   let p=currentProfile();
+  // Str/Dex advancement (Animal Companion table) adds onto the BASE scores typed above
+  // before taking the modifier -- Druid/Hunter/Ranger only, per applyProgressionUI().
+  let eff=effectiveCompanionLevel($('sourceClass').value, +$('ownerLevel').value||0);
+  let strDexAdj = (eff && eff>=1 && eff<=20) ? ANIMAL_COMPANION_TABLE[eff].strDexAdj : 0;
   let ctx={
     bab:+$('bab').value,
-    str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value),
+    str:mod(+$('str').value+strDexAdj), dex:mod(+$('dex').value+strDexAdj), con:mod($('con').value),
     int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value),
     style: $('singleAttack').checked ? 'twoHanded' : 'oneHanded',
     atkStat:$('atkStat').value, dmgStat:$('dmgStat').value
