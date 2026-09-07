@@ -618,6 +618,17 @@ function isCritImmune(ctx){
   return !!(TARGET_FLAG_MAP[ctx.currentTarget]||{}).critImmune;
 }
 
+// A catalog entry's own `type` field doubles as its PF1e bonus type for ability-score
+// stacking purposes, usually tagged "<bonustype>-<ability>" (e.g. 'enhancement-str',
+// 'alchemical-dex') by this file's own convention; a handful of multi-ability entries
+// (the Rage SPELL, Unliving Rage, etc.) already use a bare PF1e type with no ability
+// suffix ('morale', 'profane'...) since the same type applies to every ability they
+// touch. Strips the suffix when present; passes a bare type straight through.
+function inferBonusType(modType){
+  if(!modType) return 'untyped';
+  let m=/^(.+)-(str|dex|con|int|wis|cha)$/.exec(modType);
+  return m ? m[1] : modType;
+}
 // Shared engine for ability-score-boost spells (Bull's Strength, Cat's Grace, etc.).
 // scoreBonus is the enhancement/other bonus the spell grants to the raw ability score
 // (always an even number for these spells, so it converts to exactly scoreBonus/2 on
@@ -635,9 +646,16 @@ function abilityBuffBonus(ctx, ability, scoreBonus, bonusType){
   // and (for damage) multiplied ×1.5 once for a two-handed weapon. Multiplying/flooring
   // each source independently first and then summing the results (the old behavior)
   // double-rounds and silently produces the wrong total once more than one source is
-  // active -- see resolveAbilityComposites's own comment for a worked example.
+  // active -- see resolveAbilityComposites's own comment for a worked example. Callers
+  // that don't pass an explicit bonusType (i.e. every pre-existing ability-buff spell/
+  // mutagen entry, none of which were touched for this) get it inferred from the
+  // calling modifier's own `type` field instead (ctx._currentModType, set by the
+  // caller) -- so e.g. Bull's Strength correctly registers as 'enhancement' and a
+  // mutagen as 'alchemical', not the 'untyped' bucket (which stacks with everything,
+  // including a second same-type source that RAW says should NOT stack).
+  let effType = bonusType || inferBonusType(ctx._currentModType);
   if(scoreBonus){
-    (ctx._abilitySink=ctx._abilitySink||[]).push({ability, value:scoreBonus, type:bonusType||'untyped', source:ctx._currentModName||'?'});
+    (ctx._abilitySink=ctx._abilitySink||[]).push({ability, value:scoreBonus, type:effType, source:ctx._currentModName||'?'});
   }
   let modBonus = scoreBonus/2;
   let attack = (ctx.atkStat===ability) ? modBonus : 0;
@@ -659,12 +677,23 @@ function abilityBuffBonus(ctx, ability, scoreBonus, bonusType){
 // atkArr/dmgArr (and, if provided, a breakdown row). PF1e stacks ability-score bonuses
 // at the SCORE level before deriving a modifier -- e.g. Rage's +4 morale STR and
 // Enlarge Person's +2 size STR are different types, so they sum to +6 (not each
-// separately floored): net score bonus 6 -> modifier delta 3 -> ×1.5 (two-handed,
-// floored) = 4 added to damage, in ONE step. Doing this per-source instead (as the
-// engine did before) double-rounds: e.g. two separate +1-modifier sources of DIFFERENT
-// types would each floor(1×1.5)=1, summing to 2, when the correct combined result is
-// floor(2×1.5)=3 -- a real, silent shortfall whenever more than one ability-score
-// effect on the same ability is active at once.
+// separately floored): net score bonus 6 -> modifier +5 (STR 20) becomes +8 (STR 26).
+//
+// Critically, the resulting ×1.5-for-two-handed-damage step is NOT "take the modifier
+// DELTA and multiply that" -- Math.floor doesn't distribute over subtraction, so
+// floor(finalMod×1.5) - floor(baseMod×1.5) is NOT the same as floor((finalMod-baseMod)
+// ×1.5) whenever the two modifiers lose a different rounding fraction. Worked example
+// (STR 20->26, two-handed): base modifier +5, final +8, delta +3. The CORRECT damage
+// contribution is floor(5×1.5)=7 for the base and floor(8×1.5)=12 for the final, a
+// delta of +5 -- but floor(3×1.5)=floor(4.5)=4 (the old, wrong approach here) silently
+// loses 1 point of damage, because +5's ×1.5 has a .5 remainder that gets floored away
+// while +8's doesn't. So this computes the FULL before/after damage contribution (via
+// abilityDamage()) and takes ITS delta, never the modifier delta multiplied directly.
+// Attack has no such issue -- it's never multiplied, so the modifier delta alone is
+// exact.
+function abilityDamageContribution(mod, style){
+  return (style==='twoHanded' && mod>0) ? roundFrac(mod*1.5) : mod;
+}
 function resolveAbilityComposites(ctx, atkArr, dmgArr, breakdownArr){
   let entries = ctx._abilitySink;
   if(!entries || !entries.length) return;
@@ -676,14 +705,16 @@ function resolveAbilityComposites(ctx, atkArr, dmgArr, breakdownArr){
     if(!delta) return;
     let atkOn = ctx.atkStat===ability, dmgOn = ctx.dmgStat===ability;
     if(!atkOn && !dmgOn) return;
-    let dmgDelta = dmgOn ? ((ctx.style==='twoHanded' && delta>0) ? roundFrac(delta*1.5) : delta) : null;
+    let baseMod = ctx[ability];
+    let finalMod = baseMod + delta;
+    let dmgDelta = dmgOn ? (abilityDamageContribution(finalMod,ctx.style) - abilityDamageContribution(baseMod,ctx.style)) : null;
     if(atkOn) atkArr.push({value:delta,type:'untyped',source:'Ability Score Effects'});
     if(dmgOn) dmgArr.push({value:dmgDelta,type:'untyped',source:'Ability Score Effects'});
     if(breakdownArr){
       let sources=[...new Set(byAbility[ability].map(e=>e.source))].join(', ');
-      let noteParts=['Combined '+ABIL_LABEL[ability]+' effects from: '+sources+' → net '+signed(netScoreBonus)+' to the score ('+signed(delta)+' modifier).'];
+      let noteParts=['Combined '+ABIL_LABEL[ability]+' effects from: '+sources+' → net '+signed(netScoreBonus)+' to the score ('+signed(baseMod)+' → '+signed(finalMod)+' modifier).'];
       if(atkOn) noteParts.push(signed(delta)+' to attack (never multiplied).');
-      if(dmgOn) noteParts.push(signed(dmgDelta)+' to damage'+(ctx.style==='twoHanded'&&delta>0?' (×1.5 two-handed, applied once and rounded down)':'')+'.');
+      if(dmgOn) noteParts.push(signed(dmgDelta)+' to damage'+(ctx.style==='twoHanded'?' (from the full modifier before/after, ×1.5 two-handed each time and rounded down — not the delta alone)':'')+'.');
       breakdownArr.push({name:'Ability Score Effects ('+ABIL_LABEL[ability]+')',category:'other',type:'untyped',
         atk:atkOn?delta:null, dmg:dmgOn?dmgDelta:null, note:noteParts.join(' '), suppressed:false, off:false});
     }
@@ -4160,7 +4191,12 @@ function collectContributions(ctx){
   // effective-Cha figure that includes active Cha-boosting effects (Eagle's Splendor),
   // instead of reusing ctx.cha directly, which is just the raw ability-score field and
   // ignores every buff (those only reach atkStat/dmgStat-gated totals via abilityBuffBonus).
-  ctx.effectiveCha = ctx.cha + p.active.filter(a=>{ let mm=MODIFIERS.find(x=>x.id===a.id); return mm && mm.type==='enhancement-cha' && a.on!==false; }).reduce((sum,a)=>{ let mm=MODIFIERS.find(x=>x.id===a.id); let scoreBonus=(a.cfg&&a.cfg.value!==undefined)?a.cfg.value:4; return sum+scoreBonus/2; },0);
+  // These are all the same 'enhancement-cha' type -- RAW, same-type bonuses to an ability
+  // score don't stack, only the highest applies -- so this takes the max active scoreBonus,
+  // not the sum (summing would let e.g. Eagle's Splendor + Eagle's Splendor, Mass both
+  // active wrongly double the bonus).
+  let effCha_scoreBonuses = p.active.filter(a=>{ let mm=MODIFIERS.find(x=>x.id===a.id); return mm && mm.type==='enhancement-cha' && a.on!==false; }).map(a=>(a.cfg&&a.cfg.value!==undefined)?a.cfg.value:4);
+  ctx.effectiveCha = ctx.cha + (effCha_scoreBonuses.length ? Math.max(...effCha_scoreBonuses)/2 : 0);
   p.active.forEach((a,activeIdx)=>{
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
     let isOff=a.on===false;
@@ -4174,7 +4210,7 @@ function collectContributions(ctx){
       breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Replaces the Full Attack line above with its own progression (monk level '+((a.cfg&&a.cfg.monkLevel)||1)+')'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff,reflectedElsewhere:true,activeIdx,ack:!!a.ack});
       return;
     }
-    ctx._currentModName=m.name; ctx._abilityBuffAtkContrib=0; ctx._abilityBuffDmgContrib=0;
+    ctx._currentModName=m.name; ctx._currentModType=m.type; ctx._abilityBuffAtkContrib=0; ctx._abilityBuffDmgContrib=0;
     let sinkLenBefore=ctx._abilitySink.length;
     let r=m.compute(ctx,a.cfg||{});
     let usedAbilityBuff = ctx._abilitySink.length>sinkLenBefore;
@@ -4265,7 +4301,7 @@ function collectSlotEntries(ctx, slot){
       let ws=a.weaponSlot||'both';
       if(ws!=='both' && ws!==slot) return;
     }
-    ctx._currentModName=m.name; ctx._abilityBuffAtkContrib=0; ctx._abilityBuffDmgContrib=0;
+    ctx._currentModName=m.name; ctx._currentModType=m.type; ctx._abilityBuffAtkContrib=0; ctx._abilityBuffDmgContrib=0;
     let r=m.compute(ctx,a.cfg||{});
     // See collectContributions's matching comment -- recovers just the flat part of
     // r.attack/r.damage, since any ability-derived part is combined once (across every
