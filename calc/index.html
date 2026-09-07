@@ -626,11 +626,68 @@ function isCritImmune(ctx){
 // "Attack rolls"/"Damage rolls" above (ctx.atkStat/ctx.dmgStat) — a Dex buff on a
 // Strength-based fighter correctly contributes nothing, same as picking "— none —"
 // there does for the character's own ability score already.
-function abilityBuffBonus(ctx, ability, scoreBonus){
+function abilityBuffBonus(ctx, ability, scoreBonus, bonusType){
+  // Registers this source's raw score bonus into ctx._abilitySink (a per-pass sink the
+  // caller resets before iterating active modifiers -- see resolveAbilityComposites),
+  // so multiple ability-score effects on the same ability -- e.g. Rage's morale bonus
+  // and Enlarge Person's size bonus -- get PF1e-stacked (same type: highest only;
+  // different types: sum) into ONE net score bonus BEFORE it's converted to a modifier
+  // and (for damage) multiplied ×1.5 once for a two-handed weapon. Multiplying/flooring
+  // each source independently first and then summing the results (the old behavior)
+  // double-rounds and silently produces the wrong total once more than one source is
+  // active -- see resolveAbilityComposites's own comment for a worked example.
+  if(scoreBonus){
+    (ctx._abilitySink=ctx._abilitySink||[]).push({ability, value:scoreBonus, type:bonusType||'untyped', source:ctx._currentModName||'?'});
+  }
   let modBonus = scoreBonus/2;
   let attack = (ctx.atkStat===ability) ? modBonus : 0;
   let damage = (ctx.dmgStat===ability) ? ((ctx.style==='twoHanded' && modBonus>0) ? roundFrac(modBonus*1.5) : modBonus) : 0;
+  // Tracked so the caller can recover any FLAT (non-ability-derived) portion of a
+  // modifier's own returned attack/damage by subtraction -- see collectContributions
+  // and collectSlotEntries. Every existing ability-buff-only catalog entry returns
+  // exactly the sum of its abilityBuffBonus call(s) with nothing else added, so this
+  // subtraction yields exactly 0 for them (their whole effect now flows through the
+  // combined "Ability Score Effects" line instead); Enlarge Person is the one entry
+  // that adds a flat term (its -1 size penalty to attack) alongside two abilityBuffBonus
+  // calls, and the subtraction correctly recovers just that flat -1.
+  ctx._abilityBuffAtkContrib = (ctx._abilityBuffAtkContrib||0) + attack;
+  ctx._abilityBuffDmgContrib = (ctx._abilityBuffDmgContrib||0) + damage;
   return {attack, damage, modBonus};
+}
+// Resolves ctx._abilitySink (populated by abilityBuffBonus calls during the pass the
+// caller just ran) into at most one combined atk/dmg entry PER ABILITY, appended to
+// atkArr/dmgArr (and, if provided, a breakdown row). PF1e stacks ability-score bonuses
+// at the SCORE level before deriving a modifier -- e.g. Rage's +4 morale STR and
+// Enlarge Person's +2 size STR are different types, so they sum to +6 (not each
+// separately floored): net score bonus 6 -> modifier delta 3 -> ×1.5 (two-handed,
+// floored) = 4 added to damage, in ONE step. Doing this per-source instead (as the
+// engine did before) double-rounds: e.g. two separate +1-modifier sources of DIFFERENT
+// types would each floor(1×1.5)=1, summing to 2, when the correct combined result is
+// floor(2×1.5)=3 -- a real, silent shortfall whenever more than one ability-score
+// effect on the same ability is active at once.
+function resolveAbilityComposites(ctx, atkArr, dmgArr, breakdownArr){
+  let entries = ctx._abilitySink;
+  if(!entries || !entries.length) return;
+  let byAbility={};
+  entries.forEach(e=>{ (byAbility[e.ability]=byAbility[e.ability]||[]).push(e); });
+  Object.keys(byAbility).forEach(ability=>{
+    let netScoreBonus=stackTotal(byAbility[ability]);
+    let delta=netScoreBonus/2;
+    if(!delta) return;
+    let atkOn = ctx.atkStat===ability, dmgOn = ctx.dmgStat===ability;
+    if(!atkOn && !dmgOn) return;
+    let dmgDelta = dmgOn ? ((ctx.style==='twoHanded' && delta>0) ? roundFrac(delta*1.5) : delta) : null;
+    if(atkOn) atkArr.push({value:delta,type:'untyped',source:'Ability Score Effects'});
+    if(dmgOn) dmgArr.push({value:dmgDelta,type:'untyped',source:'Ability Score Effects'});
+    if(breakdownArr){
+      let sources=[...new Set(byAbility[ability].map(e=>e.source))].join(', ');
+      let noteParts=['Combined '+ABIL_LABEL[ability]+' effects from: '+sources+' → net '+signed(netScoreBonus)+' to the score ('+signed(delta)+' modifier).'];
+      if(atkOn) noteParts.push(signed(delta)+' to attack (never multiplied).');
+      if(dmgOn) noteParts.push(signed(dmgDelta)+' to damage'+(ctx.style==='twoHanded'&&delta>0?' (×1.5 two-handed, applied once and rounded down)':'')+'.');
+      breakdownArr.push({name:'Ability Score Effects ('+ABIL_LABEL[ability]+')',category:'other',type:'untyped',
+        atk:atkOn?delta:null, dmg:dmgOn?dmgDelta:null, note:noteParts.join(' '), suppressed:false, off:false});
+    }
+  });
 }
 
 const MODIFIERS = [
@@ -1085,8 +1142,11 @@ const MODIFIERS = [
 // ---------------- OTHER (batch 2 — class features / combat rules) ----------------
 {id:"rage",name:"Rage",category:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"morale",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:"Barbarian rage grants a morale bonus to Strength and Constitution (+4 base → +2 to the modifier, +6 Greater Rage → +3, +8 Mighty Rage → +4), indirectly boosting melee attack/damage via the Strength modifier. The value below is already the resulting modifier bonus, not the raw ability score bonus — route it through here rather than editing STR directly to avoid double-counting.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:v,note:signed(v)+' '+"morale"}},companionCompatibility:{"schemaVersion":1,"attackRequirements":["meleeAttack"],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":true,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"mount":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"familiar":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"eidolon":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"phantom":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"cohort":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"high"}},
+ desc:"Barbarian rage grants a morale bonus to Strength and Constitution (+4 base → +2 to the modifier, +6 Greater Rage → +3, +8 Mighty Rage → +4), indirectly boosting melee attack/damage via the Strength modifier. The value below is already the resulting modifier bonus, not the raw ability score bonus — route it through here rather than editing STR directly to avoid double-counting. Correctly stacks (as a morale bonus) with a different-type Strength effect active at the same time, e.g. Enlarge Person's size bonus — see \"Ability Score Effects\" in the results.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);let r=abilityBuffBonus(ctx,'str',v*2,'morale');return {attack:r.attack,damage:r.damage,note:signed(v)+' to the Strength modifier (morale)'}},companionCompatibility:{"schemaVersion":1,"attackRequirements":["meleeAttack"],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":true,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"mount":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"familiar":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"eidolon":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"phantom":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"cohort":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"high"}},
+{id:'enlarge-person',name:'Enlarge Person',category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'size',
+ desc:"Humanoid creatures only. +2 size bonus to Strength, −2 size penalty to Dexterity, and a −1 size penalty to attack rolls (the attack penalty always applies; the Strength/Dexterity changes only actually change your attack/damage here if that ability is the one selected above, same rule as every other ability-score effect). Also increases your weapon's damage die one size category (Medium→Large, per the Core Rulebook conversion table) — this is reflected directly in the dice shown in Normal/Critical Damage below, not as a number here. Being a size bonus/penalty, it stacks with a different-type Strength/Dexterity effect (e.g. Rage's morale bonus) but not with another size bonus/penalty on the same ability — see \"Ability Score Effects\" in the results for the combined total.",
+ compute:(ctx)=>{let rStr=abilityBuffBonus(ctx,'str',2,'size');let rDex=abilityBuffBonus(ctx,'dex',-2,'size');let atk=-1+rStr.attack+rDex.attack;let dmg=rStr.damage+rDex.damage;return {attack:atk,damage:dmg,type:'size',note:'-1 size penalty to attack (always applies) — Strength/Dexterity changes feed into "Ability Score Effects" below; weapon die increased one size category, see Normal/Critical Damage notes'}},companionCompatibility:{"schemaVersion":1,"attackRequirements":[],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":true,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Enlarge Person only targets humanoid creatures; most companions aren't humanoid."},"mount":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Enlarge Person only targets humanoid creatures; most mounts aren't humanoid."},"familiar":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Enlarge Person only targets humanoid creatures; familiars aren't humanoid."},"eidolon":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Eidolons aren't humanoid by default."},"phantom":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Phantoms aren't humanoid."},"cohort":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["humanoidTarget"],"reason":"A humanoid cohort can receive this spell if it is a legal target and no immunity blocks it."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"medium"}},
 {id:"sneak-attack",name:"Sneak Attack",category:"other",source:"Core Rulebook",appliesTo:["damage"],type:"none",
  configFields:[{key:'rogueLevel',label:'Rogue level',type:'number',default:1,linkLevel:true}],
  desc:"Extra precision damage dice (1d6 per two rogue levels) against flat-footed or flanked targets; not multiplied on a critical hit. Immune: oozes, elementals, swarms, incorporeal creatures (set Current Target above). NOT immune in PF1e (unlike 3.5e): constructs, ordinary undead.",
@@ -4075,6 +4135,7 @@ function stackTotal(entries){
 function collectContributions(ctx){
   let p=currentProfile();
   let atkEntries=[], dmgEntries=[]; let breakdown=[]; let extraDiceList=[]; let furiousFocusOn=false, powerAttackOn=false, powerAttackAtkVal=0, powerAttackDmgVal=0; let flurryOfBlowsOn=false, flurryMonkLevel=0, flurryIsZen=false; let smiteEvilOn=false, smiteDmgVal=0, smiteDoubles=false;
+  ctx._abilitySink=[]; // reset for this pass -- see resolveAbilityComposites below
   // Mythic feats that modify another entry's own formula (Mythic Power Attack/Deadly
   // Aim/Vital Strike) have to be known BEFORE that entry computes, regardless of which
   // order they appear in p.active — so scan for them first and pass as ctx flags.
@@ -4113,7 +4174,21 @@ function collectContributions(ctx){
       breakdown.push({name:m.name,category:m.category,type:'special',atk:0,dmg:0,note:'Replaces the Full Attack line above with its own progression (monk level '+((a.cfg&&a.cfg.monkLevel)||1)+')'+(isOff?' (not active this turn)':''),suppressed:false,off:isOff,reflectedElsewhere:true,activeIdx,ack:!!a.ack});
       return;
     }
+    ctx._currentModName=m.name; ctx._abilityBuffAtkContrib=0; ctx._abilityBuffDmgContrib=0;
+    let sinkLenBefore=ctx._abilitySink.length;
     let r=m.compute(ctx,a.cfg||{});
+    let usedAbilityBuff = ctx._abilitySink.length>sinkLenBefore;
+    // Recover just the FLAT (non-ability-derived) part of this modifier's own attack/
+    // damage by subtracting out whatever its own abilityBuffBonus call(s) contributed
+    // (tracked via ctx._abilityBuffAtkContrib/DmgContrib) -- for every ability-buff-only
+    // entry (Bull's Strength, mutagens, etc.) that's exactly 0, since their whole return
+    // IS that sum; Enlarge Person is the one entry that also has a flat term (-1 size
+    // penalty to attack) alongside its Strength/Dexterity contributions, and this
+    // correctly isolates just that flat part. The ability-derived part itself is NOT
+    // added here at all -- it's combined across every active ability-score effect and
+    // added exactly once via resolveAbilityComposites, after this loop.
+    let realAtk = r.attack - (ctx._abilityBuffAtkContrib||0);
+    let realDmg = r.damage - (ctx._abilityBuffDmgContrib||0);
     let effType=r.type||m.type;
     if(!isOff && (m.id==='power-attack'||m.id==='deadly-aim')){ powerAttackOn=true; powerAttackAtkVal=r.attack; powerAttackDmgVal=r.damage; }
     if(!isOff && (m.id==='smite-evil' || m.id==='smite-good')){
@@ -4127,11 +4202,20 @@ function collectContributions(ctx){
         : !!((flags.good&&flags.dragon)||(flags.good&&flags.outsider));
     }
     if(!isOff){
-      if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name});
-      if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name});
+      if(m.appliesTo.includes('attack')) atkEntries.push({value:realAtk,type:effType,source:m.name});
+      if(m.appliesTo.includes('damage')) dmgEntries.push({value:realDmg,type:effType,source:m.name});
       if(r.extraDice) extraDiceList.push(r.extraDice);
     }
     let noteText = (r.note && r.note.startsWith('special')) ? m.desc : r.note;
+    if(usedAbilityBuff && !isOff){
+      let abilitiesTouched=[...new Set(ctx._abilitySink.slice(sinkLenBefore).map(e=>e.ability))];
+      let relevant=abilitiesTouched.filter(ab=>ctx.atkStat===ab||ctx.dmgStat===ab);
+      let flatNote=(realAtk||realDmg)?(' Also '+signed(realAtk)+' atk / '+signed(realDmg)+' dmg, flat (not ability-derived).'):'';
+      noteText = (relevant.length
+        ? ('Feeds into your '+relevant.map(ab=>ABIL_LABEL[ab]).join('/')+' modifier — see "Ability Score Effects" in the results below for the combined total (stacked with any other active effect on the same ability).')
+        : ('no ability-score effect right now — '+abilitiesTouched.map(ab=>ABIL_LABEL[ab]).join(' or ')+" isn't your selected attack/damage ability above")
+      ) + flatNote;
+    }
     if(m.category==='weapon' && !isOff){
       let ws=a.weaponSlot||'both';
       if(ctx.style==='twf' && ws!=='both'){
@@ -4141,8 +4225,9 @@ function collectContributions(ctx){
       }
     }
     if(isOff) noteText = (noteText||'')+' (not active this turn)';
-    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?r.attack:null,dmg:m.appliesTo.includes('damage')?r.damage:null,note:noteText,suppressed:false,off:isOff,reflectedElsewhere:m.special==='pa-no-crit',activeIdx,ack:!!a.ack});
+    breakdown.push({name:m.name,category:m.category,type:effType,atk:m.appliesTo.includes('attack')?realAtk:null,dmg:m.appliesTo.includes('damage')?realDmg:null,note:noteText,suppressed:false,off:isOff,reflectedElsewhere:m.special==='pa-no-crit'||usedAbilityBuff,activeIdx,ack:!!a.ack});
   });
+  resolveAbilityComposites(ctx, atkEntries, dmgEntries, breakdown);
   if(mythicWeaponFocusOn){
     let wfOn=p.active.some(a=>a.id==='weapon-focus' && a.on!==false);
     let gwfOn=p.active.some(a=>a.id==='greater-weapon-focus' && a.on!==false);
@@ -4172,6 +4257,7 @@ function collectContributions(ctx){
 function collectSlotEntries(ctx, slot){
   let p=currentProfile();
   let atk=[], dmg=[], extraDice=[];
+  ctx._abilitySink=[]; // own pass, independent of collectContributions's -- see resolveAbilityComposites
   p.active.forEach(a=>{
     if(a.on===false) return;
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
@@ -4179,10 +4265,17 @@ function collectSlotEntries(ctx, slot){
       let ws=a.weaponSlot||'both';
       if(ws!=='both' && ws!==slot) return;
     }
+    ctx._currentModName=m.name; ctx._abilityBuffAtkContrib=0; ctx._abilityBuffDmgContrib=0;
     let r=m.compute(ctx,a.cfg||{});
+    // See collectContributions's matching comment -- recovers just the flat part of
+    // r.attack/r.damage, since any ability-derived part is combined once (across every
+    // active ability-score effect) via resolveAbilityComposites below instead of being
+    // added per-source here.
+    let realAtk = r.attack - (ctx._abilityBuffAtkContrib||0);
+    let realDmg = r.damage - (ctx._abilityBuffDmgContrib||0);
     let effType=r.type||m.type;
-    if(m.appliesTo.includes('attack')) atk.push({value:r.attack,type:effType,source:m.name});
-    if(m.appliesTo.includes('damage')) dmg.push({value:r.damage,type:effType,source:m.name});
+    if(m.appliesTo.includes('attack')) atk.push({value:realAtk,type:effType,source:m.name});
+    if(m.appliesTo.includes('damage')) dmg.push({value:realDmg,type:effType,source:m.name});
     if(r.extraDice) extraDice.push(r.extraDice);
   });
   p.custom.forEach(c=>{
@@ -4194,6 +4287,7 @@ function collectSlotEntries(ctx, slot){
     if(c.atk) atk.push({value:c.atk,type:c.type,source:c.name});
     if(c.dmg) dmg.push({value:c.dmg,type:c.type,source:c.name});
   });
+  resolveAbilityComposites(ctx, atk, dmg, null);
   return {atk,dmg,extraDice};
 }
 
@@ -4360,6 +4454,12 @@ function compute(){
   let vsActive=p.active.filter(a=>a.on!==false && vsMultMap[a.id]);
   let vsMult=vsActive.length?Math.max(...vsActive.map(a=>vsMultMap[a.id])):0;
   let leadBladesOn=p.active.some(a=>a.id==='lead-blades' && a.on!==false);
+  let enlargePersonOn=p.active.some(a=>a.id==='enlarge-person' && a.on!==false);
+  // Enlarge Person's own "increase weapon damage die one size category" uses the exact
+  // same Medium->Large conversion table as Lead Blades -- RAW, size-increase effects of
+  // this kind don't stack/compound with each other, so having both active still only
+  // upsizes the die once (never twice), same as the game rule.
+  let dieSizeUpOn = leadBladesOn || enlargePersonOn;
   // dmg is deliberately left as the plain non-Vital-Strike figure here -- Normal/Critical
   // Damage below always show a regular attack. The Vital Strike variant is computed
   // separately further down and shown in its own dedicated result row, since it's a
@@ -4430,7 +4530,7 @@ function compute(){
     }
   }
 
-  let effDice = leadBladesOn ? diceSizeUp(w.dice) : w.dice;
+  let effDice = dieSizeUpOn ? diceSizeUp(w.dice) : w.dice;
   let critDice=diceMultiply(effDice,critMult);
   let critDmg=dmg*critMult;
   let paNoCritMult = p.active.some(a=>a.id==='hr-pa-no-crit' && a.on!==false);
@@ -4570,8 +4670,9 @@ function compute(){
   if(vsMult){
     notes.push('Vital Strike is active: see the dedicated "Vital Strike Damage"/"Vital Strike Critical Damage" rows above for its numbers (dice ×'+vsMult+(mythicVitalStrikeOn?', and with Mythic Vital Strike your Str/enhancement/etc. bonuses are multiplied ×'+vsMult+' too':'')+'). Normal/Critical Damage above stay the plain non-Vital-Strike figures. This is a single attack-action strike, not part of a full attack — the Full Attack line is hidden this turn.');
   }
-  if(leadBladesOn){
-    notes.push('Lead Blades is active: Normal/Critical Damage above already use the upsized weapon die ('+w.dice+' → '+effDice+'), assuming a Medium wielder. Does not affect thrown/ranged or off-hand weapons the spell wasn\'t cast on, or anyone but you wielding the weapon.');
+  if(dieSizeUpOn){
+    let dieSizeUpSource = (leadBladesOn && enlargePersonOn) ? 'Lead Blades and Enlarge Person are both active' : (leadBladesOn ? 'Lead Blades is active' : 'Enlarge Person is active');
+    notes.push(dieSizeUpSource+': Normal/Critical Damage above already use the upsized weapon die ('+w.dice+' → '+effDice+'), assuming a Medium wielder'+((leadBladesOn && enlargePersonOn)?' (the two effects don\'t stack for a further increase — RAW, this kind of size-up doesn\'t compound)':'')+'. Does not affect thrown/ranged or off-hand weapons the spell wasn\'t cast on, or anyone but you wielding the weapon.');
   }
   if(isCritImmune(ctx)){
     notes.push('Current Target is immune to critical hits and precision damage (oozes, elementals, swarms, and incorporeal creatures are — constructs and ordinary undead are NOT, unlike 3.5e) — Critical Damage above doesn\'t apply, and Sneak Attack/Precise Strike are suppressed.');
@@ -4621,7 +4722,7 @@ function compute(){
     $('offAtk').textContent=offIteratives.map(signed).join(' / ');
     let offExtraNormal=(extraDiceOff||[]).filter(e=>e.normal).map(e=>e.normal);
     let offExtraCritOnly=(extraDiceOff||[]).filter(e=>e.crit).map(e=>e.crit);
-    let effDiceOff = leadBladesOn ? diceSizeUp(wOff.dice) : wOff.dice;
+    let effDiceOff = dieSizeUpOn ? diceSizeUp(wOff.dice) : wOff.dice;
     let offDmgDice = effDiceOff + (offExtraNormal.length ? ' + '+offExtraNormal.join(' + ') : '');
     $('offDmg').textContent=`${offDmgDice} ${signed(offDmg)}`;
     let offDisplayThreat = hasKeenOff ? keenThreatRange(parseThreatLow(wOff.threat)) : wOff.threat;
