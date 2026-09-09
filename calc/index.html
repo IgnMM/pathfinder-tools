@@ -3580,8 +3580,35 @@ const MODIFIERS = [
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
   {k:'condition',label:'Conditions'},
   {k:'weapon',label:'Weapon Effects',subcats:[{k:'spell',label:'Enchanting Spells'},{k:'elemental',label:'Elemental'},{k:'alignment',label:'Alignment'},{k:'other',label:'Other Properties'}]},
+  {k:'magicitem',label:'Magic Items'},
   {k:'mythic',label:'Mythic',subcats:[{k:'feat',label:'Mythic Feats'},{k:'path',label:'Path Abilities'},{k:'universal',label:'Universal (Surge, etc.)'},{k:'other',label:'Custom / Other'}]},
   {k:'houserule',label:'House Rules'}];
+
+// Magic Items: not a catalog (no two "Belt of Giant Strength +4"s are alike), so this
+// category skips the search/"+Custom" prompt-chain flow and gets its own small form
+// instead -- pick a slot, type a value, and the bonus TYPE defaults to whatever's most
+// common for that slot in PF1e (Belt/Headband -> enhancement, Ring -> deflection,
+// Cloak -> resistance, Amulet -> enhancement (Amulet of Mighty Fists), Gloves ->
+// competence (Gloves of Dueling)...) but is always a real dropdown, changeable for any
+// item that doesn't follow the usual convention.
+const MAGIC_ITEM_SLOTS=[
+  {v:'belt',l:'Belt',type:'enhancement'},
+  {v:'headband',l:'Headband',type:'enhancement'},
+  {v:'head',l:'Head',type:'insight'},
+  {v:'eyes',l:'Eyes',type:'insight'},
+  {v:'neck',l:'Neck / Amulet',type:'enhancement'},
+  {v:'shoulders',l:'Shoulders / Cloak',type:'resistance'},
+  {v:'chest',l:'Chest',type:'enhancement'},
+  {v:'body',l:'Body (Armor)',type:'enhancement'},
+  {v:'armor',l:'Armor',type:'enhancement'},
+  {v:'shield',l:'Shield',type:'enhancement'},
+  {v:'hands',l:'Hands / Gloves',type:'competence'},
+  {v:'ring',l:'Ring',type:'deflection'},
+  {v:'wrists',l:'Wrists / Bracers',type:'enhancement'},
+  {v:'feet',l:'Feet / Boots',type:'competence'},
+  {v:'slotless',l:'Slotless / Other',type:'untyped'}
+];
+const MAGIC_ITEM_BONUS_TYPES=['enhancement','untyped','morale','luck','sacred','profane','competence','insight','circumstance','deflection','resistance','trait','other-named-type'];
 
 const $=id=>document.getElementById(id);
 function mod(score){return Math.floor((Number(score)-10)/2)}
@@ -4024,6 +4051,36 @@ function renderCategories(){
     let activeInCat=p.active.filter(a=>{ let m=MODIFIERS.find(x=>x.id===a.id); return m && m.category===cat.k; });
     let customInCat=p.custom.filter(c=>c.category===cat.k);
     block.innerHTML=`<h3>${cat.label} <span class="count">${activeInCat.length+customInCat.length} active</span></h3>`;
+    if(cat.k==='magicitem'){
+      let form=document.createElement('div'); form.className='addRow'; form.style.cssText='flex-wrap:wrap;align-items:flex-end;gap:8px';
+      form.innerHTML=`
+        <label style="font-size:.68rem;color:var(--muted)">Slot<br><select id="miSlot">${MAGIC_ITEM_SLOTS.map(s=>`<option value="${s.v}">${s.l}</option>`).join('')}</select></label>
+        <label style="font-size:.68rem;color:var(--muted)">Name<br><input id="miName" placeholder="e.g. Belt of Giant Strength +4" style="width:180px"></label>
+        <label style="font-size:.68rem;color:var(--muted)">Value<br><input id="miValue" type="number" value="1" style="width:60px"></label>
+        <label style="font-size:.68rem;color:var(--muted)">Applies to<br><select id="miAppliesTo"><option value="both">Attack &amp; Damage</option><option value="attack">Attack only</option><option value="damage">Damage only</option></select></label>
+        <label style="font-size:.68rem;color:var(--muted)">Bonus type<br><select id="miType">${MAGIC_ITEM_BONUS_TYPES.map(t=>`<option value="${t}">${t}</option>`).join('')}</select></label>
+        <button id="miAdd" type="button">+ Add Magic Item</button>`;
+      block.appendChild(form);
+      let slotSel=form.querySelector('#miSlot'), typeSel=form.querySelector('#miType');
+      slotSel.onchange=()=>{ typeSel.value=(MAGIC_ITEM_SLOTS.find(s=>s.v===slotSel.value)||{}).type||'enhancement'; };
+      typeSel.value=MAGIC_ITEM_SLOTS[0].type;
+      form.querySelector('#miAdd').onclick=()=>{
+        let slot=MAGIC_ITEM_SLOTS.find(s=>s.v===slotSel.value);
+        let name=form.querySelector('#miName').value.trim() || slot.l;
+        let value=Number(form.querySelector('#miValue').value)||0;
+        let appliesTo=form.querySelector('#miAppliesTo').value;
+        let type=typeSel.value;
+        let p2=currentProfile();
+        p2.custom.push({id:'custom-'+Date.now(), name, category:'magicitem', subcat:'other',
+          appliesTo: appliesTo==='both'?['attack','damage']:[appliesTo],
+          type, atk: appliesTo!=='damage'?value:0, dmg: appliesTo!=='attack'?value:0,
+          note: slot.l+' — '+type+' '+signed(value), on:true, custom:true});
+        saveStore(); renderCategories(); compute();
+      };
+      let n=document.createElement('div'); n.className='emptyNote';
+      n.textContent='The bonus type defaults to the item slot\'s usual PF1e convention (Belt/Headband → enhancement, Ring → deflection, Cloak → resistance, Gloves → competence, Amulet → enhancement, e.g. Amulet of Mighty Fists...) — change the dropdown for anything unusual. Same stacking rules as everything else: two items with the same type don\'t stack, only the higher counts.';
+      block.appendChild(n);
+    } else {
     let addRow=document.createElement('div'); addRow.className='addRow';
     let listId='dl_'+cat.k;
     addRow.innerHTML=`<input list="${listId}" placeholder="Search ${cat.label.toLowerCase()} to add..." id="add_${cat.k}"><datalist id="${listId}"></datalist><button data-cat="${cat.k}" class="addBtn">Add</button><button data-cat="${cat.k}" class="addCustomBtn">+ Custom</button>`;
@@ -4040,6 +4097,7 @@ function renderCategories(){
       let n=document.createElement('div'); n.className='emptyNote';
       n.textContent='Every catalog entry in this category belongs to a source you\'ve excluded — check the Sources panel above, or use "+ Custom".';
       block.appendChild(n);
+    }
     }
     if(cat.k==='houserule'){
       let n=document.createElement('div'); n.className='emptyNote';
