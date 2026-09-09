@@ -314,6 +314,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 </select></div>
 <div class="emptyNote" id="atkAbilityNote">Pick whichever ability your build actually uses for each roll — they don't have to match, and you can pick the same one for both (e.g. Weapon Finesse: Dex to attack, Str to damage; Agile/Slashing Grace: Dex to both; a bow: Dex to attack, none to damage; a thrown weapon: Str to both). The calculator doesn't check weapon-by-weapon eligibility, so choose what fits your character.</div>
 <div class="row"><label id="enhLabel">Weapon Base Enhancement (+X)</label><input id="enh" type="number" min="0" max="10" value="2"></div>
+<div class="row" id="compositeBowStrRow" style="display:none"><label>Composite Bow STR Rating (+X)</label><input id="compositeBowStrRating" type="number" min="0" max="10" value="0"></div>
 <div id="offhandBox" class="offhandBox" style="display:none">
   <h3 style="margin-top:0">Off-Hand Weapon</h3>
   <div class="row"><label>Off-Hand Weapon Type</label>
@@ -514,8 +515,8 @@ const WEAPONS={
   amentum:{dice:'1d6',threat:'20',mult:2,cat:'martial-ranged',source:'Ultimate Combat',ranged:true,ammo:'thrown',name:'Amentum'},
   atlatl:{dice:'1d6',threat:'20',mult:2,cat:'martial-ranged',source:'Ultimate Equipment',ranged:true,ammo:'thrown',name:'Atlatl'},
   chakram:{dice:'1d8',threat:'20',mult:2,cat:'martial-ranged',source:'Ultimate Equipment',ranged:true,ammo:'thrown',name:'Chakram'},
-  compositeLongbow:{dice:'1d8',threat:'20',mult:3,cat:'martial-ranged',source:'Core Rulebook',ranged:true,ammo:'arrows',name:'Composite longbow'},
-  compositeShortbow:{dice:'1d6',threat:'20',mult:3,cat:'martial-ranged',source:'Core Rulebook',ranged:true,ammo:'arrows',name:'Composite shortbow'},
+  compositeLongbow:{dice:'1d8',threat:'20',mult:3,cat:'martial-ranged',source:'Core Rulebook',ranged:true,ammo:'arrows',name:'Composite longbow',compositeBow:true},
+  compositeShortbow:{dice:'1d6',threat:'20',mult:3,cat:'martial-ranged',source:'Core Rulebook',ranged:true,ammo:'arrows',name:'Composite shortbow',compositeBow:true},
   hungaMunga:{dice:'1d6',threat:'20',mult:2,cat:'martial-ranged',source:'Ultimate Equipment',ranged:true,ammo:'thrown',name:'Hunga munga'},
   joltingDart:{dice:'1d4',threat:'20',mult:2,cat:'martial-ranged',source:'Advanced Race Guide',ranged:true,ammo:'thrown',name:'Jolting dart'},
   longbow:{dice:'1d8',threat:'20',mult:3,cat:'martial-ranged',source:'Core Rulebook',ranged:true,ammo:'arrows',name:'Longbow'},
@@ -707,6 +708,12 @@ function resolveAbilityComposites(ctx, atkArr, dmgArr, breakdownArr){
     if(!atkOn && !dmgOn) return;
     let baseMod = ctx[ability];
     let finalMod = baseMod + delta;
+    // COMPOSITE-BOW-001: the composite bow STR-rating cap needs the fully-resolved
+    // ("final") ability modifier -- after every active buff/penalty and PF1e stacking
+    // conflict is folded in -- so stash it here where it's already computed, rather
+    // than re-deriving it a second time in compute().
+    ctx._finalAbilityMods = ctx._finalAbilityMods || {};
+    ctx._finalAbilityMods[ability] = finalMod;
     let dmgDelta = dmgOn ? (abilityDamageContribution(finalMod,ctx.style) - abilityDamageContribution(baseMod,ctx.style)) : null;
     if(atkOn) atkArr.push({value:delta,type:'untyped',source:'Ability Score Effects'});
     if(dmgOn) dmgArr.push({value:dmgDelta,type:'untyped',source:'Ability Score Effects'});
@@ -3674,7 +3681,7 @@ function saveStore(){
 function defaultProfile(name){
   return {name, babList:[10], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
     style:'twoHanded', atkStat:'str', dmgStat:'str', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
-    enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:'', deity:''};
+    enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:'', deity:'', compositeBowStrRating:0};
 }
 let store=loadStore();
 if(!store.deletedProfiles) store.deletedProfiles={};
@@ -3702,6 +3709,7 @@ store.profiles.forEach(p=>{
   if(p.mythicTier===undefined) p.mythicTier=0;
   if(p.mythicEnabled===undefined) p.mythicEnabled=false;
   if(p.currentTarget===undefined) p.currentTarget='none';
+  if(p.compositeBowStrRating===undefined) p.compositeBowStrRating=0;
   // ammoEnh holds a separately-enhanced ammunition's own bonus (doesn't stack with the
   // launcher's enh -- the higher of the two applies, see compute()). Default it to
   // match enh on migration so an old ranged profile's total is unaffected either way.
@@ -3748,6 +3756,8 @@ function loadProfileIntoUI(){
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
   $('style').value=p.style; $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat; $('enh').value=p.enh; $('critMult').value=p.critMult;
+  $('compositeBowStrRating').value=p.compositeBowStrRating||0;
+  $('compositeBowStrRow').style.display = (WEAPONS[p.weapon]&&WEAPONS[p.weapon].compositeBow) ? 'grid' : 'none';
   $('offWeapon').value=p.offWeapon; $('offCustomDice').value=p.offCustomDice; $('offCustomThreat').value=p.offCustomThreat; $('offCritMult').value=p.offCritMult;
   $('offEnh').value=p.offEnh; $('offLight').checked=!!p.offLight;
   $('ammoEnh').value=p.ammoEnh;
@@ -3770,6 +3780,7 @@ function syncUIIntoProfile(){
   p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
   p.style=$('style').value; p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
+  p.compositeBowStrRating=+$('compositeBowStrRating').value||0;
   p.offWeapon=$('offWeapon').value; p.offCustomDice=$('offCustomDice').value; p.offCustomThreat=$('offCustomThreat').value; p.offCritMult=+$('offCritMult').value;
   p.offEnh=+$('offEnh').value; p.offLight=$('offLight').checked;
   p.ammoEnh=+$('ammoEnh').value;
@@ -3851,12 +3862,16 @@ document.querySelector('#charActionsBox .menuPanel').addEventListener('click', e
   if(e.target.closest('button,a')) document.getElementById('charActionsBox').open=false;
 });
 
-['characterLevel','casterLevel','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offWeapon','offCustomDice','offCustomThreat','offCritMult','offEnh','offLight','enh','ammoEnh','critMult'].forEach(id=>{
+['characterLevel','casterLevel','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offWeapon','offCustomDice','offCustomThreat','offCritMult','offEnh','offLight','enh','ammoEnh','critMult','compositeBowStrRating'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'grid' : 'none';
       let w=WEAPONS[$('weapon').value];
       if(w) $('critMult').value=w.mult;
+      // COMPOSITE-BOW-001: the STR rating field/logic only applies to actual composite
+      // bows -- ordinary bows never add a positive STR bonus to damage at all, so the
+      // field (and its cap/penalty math in compute()) stays hidden and inert for them.
+      $('compositeBowStrRow').style.display = (w&&w.compositeBow) ? 'grid' : 'none';
     }
     if(id==='offWeapon'){
       $('offCustomWeapon').style.display = $('offWeapon').value==='custom' ? 'block' : 'none';
@@ -4506,6 +4521,35 @@ function compute(){
   let ctxOff = Object.assign({}, ctx, {weaponDice:wOff.dice, critMult:offCritMultVal, weaponThreatLow:parseThreatLow(wOff.threat)});
 
   let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen,smiteEvilOn,smiteDmgVal,smiteDoubles}=collectContributions(ctx);
+
+  // COMPOSITE-BOW-001: a composite bow's STR rating caps how much of the wielder's
+  // fully-resolved STR modifier (after every active buff/penalty and PF1e stacking
+  // conflict — ctx._finalAbilityMods, populated by resolveAbilityComposites inside
+  // collectContributions above) can add to damage, and imposes a flat -2 on attack
+  // rolls if that STR modifier falls short of the bow's rating. Pushed as plain
+  // untyped correction/penalty entries (same pattern as the ENH-001 fix below) so it
+  // composes automatically with crit multiplication, Vital Strike, Deadly Aim, etc.
+  // instead of needing special-cased math for each — verified this composes correctly
+  // by hand: base + (buff delta) + (cap correction) always reduces to exactly
+  // min(finalStrMod, bowRating), regardless of whether a STR buff is active. A normal
+  // (non-composite) bow never gets this treatment at all -- the field stays hidden and
+  // this block is skipped -- since ordinary bows don't add STR to damage in the first
+  // place. Must run before markSuppressed/renderBreakdown below, which is why it's
+  // here and not further down where baseDmg/strDmgMod get computed.
+  if(WEAPONS[weaponKey] && WEAPONS[weaponKey].compositeBow && dmgStat==='str'){
+    let bowRating = +p.compositeBowStrRating||0;
+    let finalStrMod = (ctx._finalAbilityMods && ctx._finalAbilityMods.str!==undefined) ? ctx._finalAbilityMods.str : ctx.str;
+    let cappedStr = Math.min(finalStrMod, bowRating);
+    let strCapDelta = cappedStr - finalStrMod; // <= 0: the correction to subtract from the uncapped total already flowing through baseDmg + the "Ability Score Effects" entry
+    let atkPenalty = finalStrMod < bowRating ? -2 : 0;
+    if(strCapDelta) dmgEntries.push({value:strCapDelta, type:'untyped', source:'Composite Bow STR Rating cap'});
+    if(atkPenalty) atkEntries.push({value:atkPenalty, type:'untyped', source:'Composite Bow (STR below rating)'});
+    breakdown.push({name:'Composite Bow STR Rating', category:'other', type:'untyped',
+      atk: atkPenalty||null, dmg: strCapDelta||null,
+      note:'Final STR modifier '+signed(finalStrMod)+'; bow rated for '+signed(bowRating)+' STR — applies '+signed(cappedStr)+' to damage'+(atkPenalty?'; STR is below the bow\'s rating: '+signed(atkPenalty)+' to attack rolls with it.':'.'),
+      suppressed:false, off:false});
+  }
+
   markSuppressed(atkEntries,breakdown.filter(b=>b.atk!==null));
   markSuppressed(dmgEntries,breakdown.filter(b=>b.dmg!==null));
   renderUnmodeledEffects(breakdown);
