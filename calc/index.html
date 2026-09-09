@@ -101,12 +101,12 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 /* The stat block is sized to its own compact grid above, not the wide field columns --
    let it claim 2 of those columns' worth of width so something can still share its row. */
 .card-char>.statsGrid{grid-column:span 2}
-.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));gap:2px 18px;align-content:start}
-.card-char>#mythicTierBox>.emptyNote,.card-char>#offhandBox>.emptyNote,.card-char>#offhandBox>h3,.card-char>#ammoBox>.emptyNote{grid-column:1/-1}
+.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox,.card-char>#manufacturedBox,.card-char>#unarmedBox,.card-char>#naturalAttacksBox,#offhandBox>#offManufacturedBox,#offhandBox>#offUnarmedBox,#offhandBox>#offNaturalBox{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,320px));gap:2px 18px;align-content:start}
+.card-char>#mythicTierBox>.emptyNote,.card-char>#offhandBox>.emptyNote,.card-char>#offhandBox>h3,.card-char>#ammoBox>.emptyNote,.card-char>#naturalAttacksBox>.emptyNote,.card-char>#naturalAttacksBox>.atkLinesBox,.card-char>#naturalAttacksBox>#addNaturalAttack{grid-column:1/-1}
 #categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;align-items:start}
 #categories .catBlock{margin-bottom:0}
 @media(max-width:520px){
-.card-char,.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox{grid-template-columns:1fr}
+.card-char,.card-char>#mythicTierBox,.card-char>#customWeapon,.card-char>#offhandBox,.card-char>#ammoBox,.card-char>#manufacturedBox,.card-char>#unarmedBox,.card-char>#naturalAttacksBox,#offhandBox>#offManufacturedBox,#offhandBox>#offUnarmedBox,#offhandBox>#offNaturalBox{grid-template-columns:1fr}
 .card-char>.emptyNote,.card-char>.raceNote,.card-char>.statsGrid,.card-char>.numAttacksRow{grid-column:1/-1}
 /* At mobile width the 3rd column (BAB pills) has too little room and wraps into a tall
    vertical stack, which then centers the label/input way down the middle of that height.
@@ -159,6 +159,9 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 .result .big{font-size:18px;font-weight:800;margin-top:4px;color:#fff}
 .result .small{font-size:11px;color:var(--muted)}
 .full{grid-column:1/-1}
+.atkLinesBox{display:flex;flex-direction:column;gap:6px;margin:6px 0}
+.atkLine{display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:6px}
+.atkLine input,.atkLine select{width:auto;padding:6px 7px;font-size:.82rem}
 .datalistInputWrap{position:relative}
 .emptyNote{font-size:.72rem;color:var(--muted);font-style:italic;padding:4px 2px}
 .sourcesbox{position:relative}.sourcesbox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-size:.78rem;list-style:none;white-space:nowrap}.sourcesbox summary::-webkit-details-marker{display:none}.sourcesbox[open] summary{border-color:var(--gold)}.sourcesPanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:8px;z-index:20;max-height:320px;overflow-y:auto;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.sourcesPanel label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);padding:3px 0;cursor:pointer}.sourcesPanel input{width:auto}.sourcesPanel .srcActions{display:flex;gap:6px;margin-bottom:6px}.sourcesPanel .srcActions button{font-size:.65rem;padding:4px 7px}
@@ -279,12 +282,36 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <option value="LE">Lawful Evil</option><option value="NE">Neutral Evil</option><option value="CE">Chaotic Evil</option>
 </select></div>
 <h3>Weapon</h3>
+<div class="row"><label>Attack Category</label>
+<select id="weaponCategory">
+  <option value="manufactured" selected>Manufactured Weapon</option>
+  <option value="unarmed">Unarmed Strike</option>
+  <option value="natural">Natural Attack(s)</option>
+</select></div>
+<div id="manufacturedBox">
 <div class="row"><label>Weapon Type</label>
 <select id="weapon"></select></div>
 <div id="customWeapon" style="display:none">
   <div class="row"><label>Base Damage Dice</label><input id="customDice" value="1d8"></div>
   <div class="row"><label>Threat Range</label><input id="customThreat" value="20"></div>
-  <div class="row"><label title="Natural attacks (bite, claw, etc.) don't get Lead Blades/Gravity Bow's size-up — only carried melee weapons or bows/crossbows do.">Natural/Unarmed Attack (not carried)</label><input id="customNatural" type="checkbox" style="width:auto;justify-self:start"></div>
+</div>
+</div>
+<div id="unarmedBox" style="display:none">
+  <div class="row"><label>Unarmed Strike Dice</label><input id="unarmedDice" value="1d3"></div>
+  <div class="row"><label>Threat Range</label><input id="unarmedThreat" value="20"></div>
+</div>
+<div id="naturalAttacksBox" style="display:none">
+  <div class="row"><label>Natural attacks from</label>
+  <select id="naturalOrigin">
+    <option value="">— unset —</option>
+    <option value="racial">Racial</option>
+    <option value="class">Class feature</option>
+    <option value="wildshape">Wild Shape / Polymorph</option>
+    <option value="other">Other</option>
+  </select></div>
+  <div id="naturalAttackLines" class="atkLinesBox"></div>
+  <button type="button" id="addNaturalAttack">+ Add Attack</button>
+  <div class="emptyNote">Attack bonus per line is BAB-derived automatically: Primary uses your full BAB; Secondary/Conditional use BAB−5 (e.g. a Rake, "Conditional", uses Secondary's math and is only usable when its own trigger is met). Str-mult ×1.5 = only attack this round, ×1 = multiple primary attacks, ×0.5 = secondary/conditional.</div>
 </div>
 <div class="row"><label>Fighting Style</label>
 <select id="style">
@@ -318,12 +345,27 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="row" id="compositeBowStrRow" style="display:none"><label>Composite Bow STR Rating (+X)</label><input id="compositeBowStrRating" type="number" min="0" max="10" value="0"></div>
 <div id="offhandBox" class="offhandBox" style="display:none">
   <h3 style="margin-top:0">Off-Hand Weapon</h3>
+  <div class="row"><label>Off-Hand Attack Category</label>
+  <select id="offWeaponCategory">
+    <option value="manufactured" selected>Manufactured Weapon</option>
+    <option value="unarmed">Unarmed Strike</option>
+    <option value="natural">Natural Attack</option>
+  </select></div>
+  <div id="offManufacturedBox">
   <div class="row"><label>Off-Hand Weapon Type</label>
   <select id="offWeapon"></select></div>
   <div id="offCustomWeapon" style="display:none">
     <div class="row"><label>Off-Hand Base Damage Dice</label><input id="offCustomDice" value="1d6"></div>
     <div class="row"><label>Off-Hand Threat Range</label><input id="offCustomThreat" value="20"></div>
-    <div class="row"><label title="Natural attacks (bite, claw, etc.) don't get Lead Blades/Gravity Bow's size-up — only carried melee weapons or bows/crossbows do.">Off-Hand Natural/Unarmed Attack (not carried)</label><input id="offCustomNatural" type="checkbox" style="width:auto;justify-self:start"></div>
+  </div>
+  </div>
+  <div id="offUnarmedBox" style="display:none">
+    <div class="row"><label>Off-Hand Unarmed Strike Dice</label><input id="offUnarmedDice" value="1d3"></div>
+    <div class="row"><label>Off-Hand Threat Range</label><input id="offUnarmedThreat" value="20"></div>
+  </div>
+  <div id="offNaturalBox" style="display:none">
+    <div class="row"><label>Off-Hand Natural Attack Dice</label><input id="offNaturalDice" value="1d4"></div>
+    <div class="row"><label>Off-Hand Threat Range</label><input id="offNaturalThreat" value="20"></div>
   </div>
   <div class="row"><label>Off-Hand Enhancement (+X)</label><input id="offEnh" type="number" min="0" max="10" value="0"></div>
   <div class="row"><label>Off-Hand Weapon Is Light</label><input id="offLight" type="checkbox" checked style="width:auto;justify-self:start"></div>
@@ -393,6 +435,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <section class="card card-results" id="resultsCard">
 <h2>Results <button type="button" id="pinResults" class="pinBtn" title="Keep Results visible while scrolling (desktop)">📌 Pin</button></h2>
 <div class="resultBox">
+  <div id="singleAtkResults" style="display:contents">
   <div class="result"><div class="small">Single Attack (first attack)</div><div class="big" id="toHit">+0</div></div>
   <div class="result"><div class="small">Full Attack</div><div class="big" id="fullAttack">+0</div></div>
   <div class="result"><div class="small">Normal Damage</div><div class="big" id="dmgNormal">—</div></div>
@@ -406,6 +449,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div class="result" id="offAtkBox" style="display:none"><div class="small">Off-Hand Attack</div><div class="big" id="offAtk">+0</div></div>
   <div class="result" id="offDmgBox" style="display:none"><div class="small">Off-Hand Damage</div><div class="big" id="offDmg">—</div></div>
   <div class="result" id="offCritBox" style="display:none"><div class="small">Off-Hand Critical Damage</div><div class="big" id="offCrit">—</div></div>
+  </div>
+  <div class="result full" id="naturalAttacksResultBox" style="display:none"><div class="small">Natural Attacks</div><div id="naturalAttackResults" style="margin-top:6px"></div></div>
   <div class="result full"><div class="small">Notes</div><div id="notes" style="margin-top:6px;line-height:1.5;font-size:.85rem"></div></div>
 </div>
 </section>
@@ -580,18 +625,11 @@ const WEAPONS={
   repeatingLightCrossbow:{dice:'1d8',threat:'19–20',mult:2,cat:'exotic-ranged',source:'Core Rulebook',ranged:true,ammo:'bolts',name:'Repeating light crossbow'},
   ropeDart:{dice:'1d4',threat:'20',mult:2,cat:'exotic-ranged',source:'Ultimate Combat',ranged:true,ammo:'thrown',name:'Rope dart'},
   shuriken:{dice:'1d2',threat:'20',mult:2,cat:'exotic-ranged',source:'Core Rulebook',ranged:true,ammo:'thrown',name:'Shuriken'},
-  throwingShield:{dice:'1d6',threat:'20',mult:2,cat:'exotic-ranged',source:'Ultimate Combat',ranged:true,ammo:'thrown',name:'Throwing shield'},
-  natBite:{dice:'1d6',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Bite'},
-  natClaw:{dice:'1d4',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Claw'},
-  natSlam:{dice:'1d4',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Slam'},
-  natGore:{dice:'1d6',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Gore'},
-  natTailSlap:{dice:'1d6',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Tail slap'},
-  natTentacle:{dice:'1d4',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Tentacle'},
-  natWing:{dice:'1d4',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Wing'}
+  throwingShield:{dice:'1d6',threat:'20',mult:2,cat:'exotic-ranged',source:'Ultimate Combat',ranged:true,ammo:'thrown',name:'Throwing shield'}
 };
 
-const WEAPON_CAT_ORDER=["simple-light","simple-one-handed","simple-two-handed","simple-ranged","martial-light","martial-one-handed","martial-two-handed","martial-ranged","exotic-light","exotic-one-handed","exotic-two-handed","exotic-ranged","natural"];
-const WEAPON_CAT_LABEL={"simple-light":"Simple, Light","simple-one-handed":"Simple, One-Handed","simple-two-handed":"Simple, Two-Handed","simple-ranged":"Simple, Ranged","martial-light":"Martial, Light","martial-one-handed":"Martial, One-Handed","martial-two-handed":"Martial, Two-Handed","martial-ranged":"Martial, Ranged","exotic-light":"Exotic, Light","exotic-one-handed":"Exotic, One-Handed","exotic-two-handed":"Exotic, Two-Handed","exotic-ranged":"Exotic, Ranged","natural":"Natural Attacks (Medium creature)"};
+const WEAPON_CAT_ORDER=["simple-light","simple-one-handed","simple-two-handed","simple-ranged","martial-light","martial-one-handed","martial-two-handed","martial-ranged","exotic-light","exotic-one-handed","exotic-two-handed","exotic-ranged"];
+const WEAPON_CAT_LABEL={"simple-light":"Simple, Light","simple-one-handed":"Simple, One-Handed","simple-two-handed":"Simple, Two-Handed","simple-ranged":"Simple, Ranged","martial-light":"Martial, Light","martial-one-handed":"Martial, One-Handed","martial-two-handed":"Martial, Two-Handed","martial-ranged":"Martial, Ranged","exotic-light":"Exotic, Light","exotic-one-handed":"Exotic, One-Handed","exotic-two-handed":"Exotic, Two-Handed","exotic-ranged":"Exotic, Ranged"};
 
 const RACES=["Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Aasimar","Adaro","Android","Aphorite","Aquatic Elf","Astomoi","Being of Ib","Boggard","Caligni","Catfolk","Cecaelia","Changeling","Deep One Hybrid","Dhampir","Drow","Drow Noble","Duergar","Duskwalker","Fetchling","Ganzi","Gathlain","Ghoran","Gillman","Goblin","Green Martian","Grindylow","Grippli","Hobgoblin","Ifrit","Kasatha","Kitsune","Kobold","Kuru","Lashunta","Locathah","Merfolk","Monkey Goblin","Munavri","Nagaji","Naiad","Orang-Pendak","Orc","Oread","Primitive Human","Ratfolk","Reborn Samsaran","Reptoid","Rougarou","Sahuagin","Samsaran","Shabti","Skinwalker","Strix","Suli","Svirfneblin","Sylph","Syrinx","Tengu","Tiefling","Triaxian","Triton","Trox","Undine","Vanara","Vine Leshy","Vishkanya","Wayang","Wyrwood","Wyvaran","Yaddithian"];
 const RACE_SOURCE_MAP={"Dwarf":["Dwarves of Golarion"],"Goblin":["Goblins of Golarion"],"Kobold":["Kobolds of Golarion"],"Orc":["Orcs of Golarion"],"Half-Orc":["Orcs of Golarion"],"Human":["Humans of Golarion"]};
@@ -993,11 +1031,11 @@ const MODIFIERS = [
  compute:(ctx)=>{let vs=targetMatches(ctx,'good');return {attack:5,damage:5,extraDice:vs?{normal:'2d6'}:undefined,note:'+5 atk / +5 dmg (enhancement)'+(vs?' + 2d6 unholy vs good (not multiplied on crit/Vital Strike)':' — no good target selected above, so no +2d6')}},companionCompatibility:{"schemaVersion":1,"attackRequirements":["manufacturedWeaponOrNamedWeapon"],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"applicable-to-matching-attack","mode":"equipment-effect","requirements":["manufacturedWeaponOrNamedWeapon"],"reason":"Apply only if the entity is using the affected manufactured or named weapon."},"mount":{"status":"applicable-to-matching-attack","mode":"equipment-effect","requirements":["manufacturedWeaponOrNamedWeapon"],"reason":"Apply only if the entity is using the affected manufactured or named weapon."},"familiar":{"status":"applicable-to-matching-attack","mode":"equipment-effect","requirements":["manufacturedWeaponOrNamedWeapon"],"reason":"Apply only if the entity is using the affected manufactured or named weapon."},"eidolon":{"status":"applicable-to-matching-attack","mode":"equipment-effect","requirements":["manufacturedWeaponOrNamedWeapon"],"reason":"Apply only if the entity is using the affected manufactured or named weapon."},"phantom":{"status":"applicable-to-matching-attack","mode":"equipment-effect","requirements":["manufacturedWeaponOrNamedWeapon"],"reason":"Apply only if the entity is using the affected manufactured or named weapon."},"cohort":{"status":"applicable-to-matching-attack","mode":"equipment-effect","requirements":["manufacturedWeaponOrNamedWeapon"],"reason":"Apply only if the entity is using the affected manufactured or named weapon."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"medium"}},
 {id:'magic-fang',name:'Magic Fang',category:'weapon',subcat:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'enhancement',
  desc:'+1 enhancement bonus on attack and damage rolls with one natural weapon or unarmed strike.',
- compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement, natural weapon/unarmed only)'}),companionCompatibility:{"schemaVersion":1,"attackRequirements":["naturalAttack","unarmedStrike"],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":true},"entities":{"animalCompanion":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"mount":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"familiar":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"eidolon":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"phantom":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"cohort":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"medium"}},
+ compute:(ctx)=>(ctx.weaponCategory==='natural'||ctx.weaponCategory==='unarmed')?{attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement, natural weapon/unarmed only)'}:{attack:0,damage:0,note:'no effect — main Attack Category is Manufactured Weapon (Magic Fang only affects a natural weapon or unarmed strike)'},companionCompatibility:{"schemaVersion":1,"attackRequirements":["naturalAttack","unarmedStrike"],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":true},"entities":{"animalCompanion":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"mount":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"familiar":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"eidolon":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"phantom":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"cohort":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"medium"}},
 {id:'greater-magic-fang',name:'Magic Fang, Greater',category:'weapon',subcat:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
  desc:'+1 enhancement bonus per 4 caster levels (max +5) on attack and damage rolls with natural weapons/unarmed strikes.',
  configFields:[{key:'cl',label:'Caster level',type:'number',default:8,linkLevel:'cl'}],
- compute:(ctx,cfg)=>{let b=Math.min(5,Math.floor((cfg.cl||1)/4));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement, natural weapons/unarmed only)'}},companionCompatibility:{"schemaVersion":1,"attackRequirements":["naturalAttack","unarmedStrike"],"featurePrerequisites":["spellcasting"],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":true},"entities":{"animalCompanion":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"mount":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"familiar":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"eidolon":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"phantom":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"cohort":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"medium"}},
+ compute:(ctx,cfg)=>{let b=Math.min(5,Math.floor((cfg.cl||1)/4));return (ctx.weaponCategory==='natural'||ctx.weaponCategory==='unarmed')?{attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement, natural weapons/unarmed only)'}:{attack:0,damage:0,note:'no effect — main Attack Category is Manufactured Weapon (Greater Magic Fang only affects natural weapons/unarmed strikes)'}},companionCompatibility:{"schemaVersion":1,"attackRequirements":["naturalAttack","unarmedStrike"],"featurePrerequisites":["spellcasting"],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":true},"entities":{"animalCompanion":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"mount":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"familiar":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"eidolon":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"phantom":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."},"cohort":{"status":"applicable-to-matching-attack","mode":"attack-effect","requirements":["naturalAttack"],"reason":"Apply only to the selected natural attack(s)."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"medium"}},
 {id:'shillelagh',name:'Shillelagh',category:'weapon',subcat:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'enhancement',
  desc:'+1 enhancement bonus on attack and damage rolls with your club or quarterstaff (it also deals damage as if two size categories larger, not modeled here — adjust your weapon dice by hand).',
  compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement) — plus larger damage dice, not modeled'}),companionCompatibility:{"schemaVersion":1,"attackRequirements":[],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"mount":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"familiar":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"eidolon":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"phantom":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"cohort":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"low"}},
@@ -1196,7 +1234,14 @@ const MODIFIERS = [
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);let r=abilityBuffBonus(ctx,'str',v*2,'morale');return {attack:r.attack,damage:r.damage,note:signed(v)+' to the Strength modifier (morale)'}},companionCompatibility:{"schemaVersion":1,"attackRequirements":["meleeAttack"],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":true,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"mount":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"familiar":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"eidolon":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"phantom":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."},"cohort":{"status":"conditional","mode":"active-effect-or-owned-feature","requirements":["meleeAttack","notImmuneToMindAffecting"],"reason":"May affect the entity when the described combat situation and attack requirements are true."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"high"}},
 {id:'enlarge-person',name:'Enlarge Person',category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'size',
  desc:"Humanoid creatures only. +2 size bonus to Strength, −2 size penalty to Dexterity, and a −1 size penalty to attack rolls (the attack penalty always applies; the Strength/Dexterity changes only actually change your attack/damage here if that ability is the one selected above, same rule as every other ability-score effect). Also increases your weapon's damage die one size category (Medium→Large, per the Core Rulebook conversion table) — this is reflected directly in the dice shown in Normal/Critical Damage below, not as a number here. Being a size bonus/penalty, it stacks with a different-type Strength/Dexterity effect (e.g. Rage's morale bonus) but not with another size bonus/penalty on the same ability — see \"Ability Score Effects\" in the results for the combined total.",
- compute:(ctx)=>{let rStr=abilityBuffBonus(ctx,'str',2,'size');let rDex=abilityBuffBonus(ctx,'dex',-2,'size');let atk=-1+rStr.attack+rDex.attack;let dmg=rStr.damage+rDex.damage;return {attack:atk,damage:dmg,type:'size',note:'-1 size penalty to attack (always applies) — Strength/Dexterity changes feed into "Ability Score Effects" below; weapon die increased one size category, see Normal/Critical Damage notes'}},companionCompatibility:{"schemaVersion":1,"attackRequirements":[],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":true,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Enlarge Person only targets humanoid creatures; most companions aren't humanoid."},"mount":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Enlarge Person only targets humanoid creatures; most mounts aren't humanoid."},"familiar":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Enlarge Person only targets humanoid creatures; familiars aren't humanoid."},"eidolon":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Eidolons aren't humanoid by default."},"phantom":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Phantoms aren't humanoid."},"cohort":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["humanoidTarget"],"reason":"A humanoid cohort can receive this spell if it is a legal target and no immunity blocks it."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"medium"}},
+ compute:(ctx)=>{let rStr=abilityBuffBonus(ctx,'str',2,'size');let rDex=abilityBuffBonus(ctx,'dex',-2,'size');let atk=-1+rStr.attack+rDex.attack;let dmg=rStr.damage+rDex.damage;return {attack:atk,damage:dmg,type:'size',note:'-1 size penalty to attack (always applies) — Strength/Dexterity changes feed into "Ability Score Effects" below; weapon die increased one size category, see Normal/Critical Damage notes. Only a valid choice if you\'re currently humanoid and a legal target (e.g. mid-Wild-Shape into a non-humanoid form usually isn\'t) — the calculator can\'t check this automatically.'}},companionCompatibility:{"schemaVersion":1,"attackRequirements":[],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":true,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Enlarge Person only targets humanoid creatures; most companions aren't humanoid."},"mount":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Enlarge Person only targets humanoid creatures; most mounts aren't humanoid."},"familiar":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Enlarge Person only targets humanoid creatures; familiars aren't humanoid."},"eidolon":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Eidolons aren't humanoid by default."},"phantom":{"status":"not-applicable","mode":"received-effect","requirements":["humanoidTarget"],"reason":"Phantoms aren't humanoid."},"cohort":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["humanoidTarget"],"reason":"A humanoid cohort can receive this spell if it is a legal target and no immunity blocks it."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"medium"}},
+{id:'strong-jaw',name:'Strong Jaw',category:'spell',source:'Advanced Class Guide',appliesTo:[],type:'special',
+ desc:'Every natural attack you make deals damage as if it were two size categories larger (an EFFECTIVE size increase, not an actual size change) — applies when the main Attack Category is Natural Attack or Unarmed Strike, not a Manufactured Weapon. Per the PF1e FAQ ("Size increases and effective size increases"), stacks with an actual size increase like Enlarge Person/Animal Growth, not with another effective increase (Lead Blades/Gravity Bow don\'t apply to Natural/Unarmed anyway). Not a flat number here — while active on an eligible category, the dice shown are automatically upsized two steps.',
+ compute:()=>({attack:0,damage:0,note:'special — see Normal/Critical Damage or Natural Attacks above for the two-step size-up'})},
+{id:'animal-growth',name:'Animal Growth',category:'spell',source:'Core Rulebook',appliesTo:['attack','damage'],type:'size',
+ desc:'Animal creatures only — grows the target one size category (an ACTUAL size increase). Only a valid choice if your character is CURRENTLY a creature of the Animal type (e.g. mid-Wild-Shape into an animal form) — the calculator can\'t check this automatically, it\'s on you to only activate it when legitimate. +8 size bonus to Strength (below), -1 size penalty on attack rolls from growing (always applied), +4 size bonus to Constitution and -2 size penalty to Dexterity (not modeled here). Does not stack with Enlarge Person or another casting of itself (same actual-size-increase category) — but does stack with an effective size increase like Strong Jaw.',
+ configFields:[{key:'value',label:'Str size bonus',type:'number',default:8}],
+ compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'str',cfg.value!==undefined?cfg.value:8,'size');let atk=r.attack-1;return {attack:atk,damage:r.damage,type:'size',note:signed(atk)+' atk / '+signed(r.damage)+' dmg — weapon die increased one size category, see Normal/Critical Damage notes'}}},
 {id:"sneak-attack",name:"Sneak Attack",category:"other",source:"Core Rulebook",appliesTo:["damage"],type:"none",
  configFields:[{key:'rogueLevel',label:'Rogue level',type:'number',default:1,linkLevel:true}],
  desc:"Extra precision damage dice (1d6 per two rogue levels) against flat-footed or flanked targets; not multiplied on a critical hit. Immune: oozes, elementals, swarms, incorporeal creatures (set Current Target above). NOT immune in PF1e (unlike 3.5e): constructs, ordinary undead.",
@@ -3691,8 +3736,9 @@ function saveStore(){
   }
 }
 function defaultProfile(name){
-  return {name, babList:[10], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20', customNatural:false,
-    style:'twoHanded', atkStat:'str', dmgStat:'str', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offCustomNatural:false, offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
+  return {name, babList:[10], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weaponCategory:'manufactured', weapon:'longsword', customDice:'1d8', customThreat:'20',
+    unarmedDice:'1d3', unarmedThreat:'20', naturalAttacks:[], naturalOrigin:'',
+    style:'twoHanded', atkStat:'str', dmgStat:'str', offWeaponCategory:'manufactured', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offUnarmedDice:'1d3', offUnarmedThreat:'20', offNaturalDice:'1d4', offNaturalThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
     enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:'', deity:'', compositeBowStrRating:0};
 }
 let store=loadStore();
@@ -3722,8 +3768,23 @@ store.profiles.forEach(p=>{
   if(p.mythicEnabled===undefined) p.mythicEnabled=false;
   if(p.currentTarget===undefined) p.currentTarget='none';
   if(p.compositeBowStrRating===undefined) p.compositeBowStrRating=0;
-  if(p.customNatural===undefined) p.customNatural=false;
-  if(p.offCustomNatural===undefined) p.offCustomNatural=false;
+  // Natural/Unarmed used to be a single "not carried" checkbox on the custom-dice
+  // fields -- replaced by an explicit Manufactured/Unarmed/Natural Attack Category
+  // selector, since Lead Blades/Gravity Bow/Magic Fang/Strong Jaw each care about a
+  // DIFFERENT one of those three, not just "carried vs not". A checked box migrates to
+  // 'unarmed' (the old checkbox's most common real use before Natural Attack existed
+  // as its own multi-line system) rather than silently dropping the distinction.
+  if(!p.weaponCategory) p.weaponCategory = p.customNatural ? 'unarmed' : 'manufactured';
+  if(!p.offWeaponCategory) p.offWeaponCategory = p.offCustomNatural ? 'unarmed' : 'manufactured';
+  delete p.customNatural; delete p.offCustomNatural;
+  if(p.unarmedDice===undefined) p.unarmedDice='1d3';
+  if(p.unarmedThreat===undefined) p.unarmedThreat='20';
+  if(p.offUnarmedDice===undefined) p.offUnarmedDice='1d3';
+  if(p.offUnarmedThreat===undefined) p.offUnarmedThreat='20';
+  if(p.offNaturalDice===undefined) p.offNaturalDice='1d4';
+  if(p.offNaturalThreat===undefined) p.offNaturalThreat='20';
+  if(!p.naturalAttacks) p.naturalAttacks=[];
+  if(p.naturalOrigin===undefined) p.naturalOrigin='';
   // ammoEnh holds a separately-enhanced ammunition's own bonus (doesn't stack with the
   // launcher's enh -- the higher of the two applies, see compute()). Default it to
   // match enh on migration so an old ranged profile's total is unaffected either way.
@@ -3768,19 +3829,34 @@ function loadProfileIntoUI(){
   renderBabInputs();
   $('mythicTierBox').style.display = p.mythicEnabled ? 'grid' : 'none';
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
-  $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat; $('customNatural').checked=!!p.customNatural;
+  $('weaponCategory').value=p.weaponCategory||'manufactured';
+  $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
+  $('unarmedDice').value=p.unarmedDice||'1d3'; $('unarmedThreat').value=p.unarmedThreat||'20';
+  $('naturalOrigin').value=p.naturalOrigin||'';
   $('style').value=p.style; $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat; $('enh').value=p.enh; $('critMult').value=p.critMult;
   $('compositeBowStrRating').value=p.compositeBowStrRating||0;
   $('compositeBowStrRow').style.display = (WEAPONS[p.weapon]&&WEAPONS[p.weapon].compositeBow) ? 'grid' : 'none';
-  $('offWeapon').value=p.offWeapon; $('offCustomDice').value=p.offCustomDice; $('offCustomThreat').value=p.offCustomThreat; $('offCustomNatural').checked=!!p.offCustomNatural; $('offCritMult').value=p.offCritMult;
+  $('offWeaponCategory').value=p.offWeaponCategory||'manufactured';
+  $('offWeapon').value=p.offWeapon; $('offCustomDice').value=p.offCustomDice; $('offCustomThreat').value=p.offCustomThreat; $('offCritMult').value=p.offCritMult;
+  $('offUnarmedDice').value=p.offUnarmedDice||'1d3'; $('offUnarmedThreat').value=p.offUnarmedThreat||'20';
+  $('offNaturalDice').value=p.offNaturalDice||'1d4'; $('offNaturalThreat').value=p.offNaturalThreat||'20';
   $('offEnh').value=p.offEnh; $('offLight').checked=!!p.offLight;
   $('ammoEnh').value=p.ammoEnh;
   $('race').value=p.race||''; $('alignment').value=p.alignment||'';
   $('deity').value=p.deity||'';
+  $('manufacturedBox').style.display = p.weaponCategory==='manufactured' ? 'grid' : 'none';
+  $('unarmedBox').style.display = p.weaponCategory==='unarmed' ? 'grid' : 'none';
+  $('naturalAttacksBox').style.display = p.weaponCategory==='natural' ? 'grid' : 'none';
   $('customWeapon').style.display = p.weapon==='custom' ? 'grid' : 'none';
+  $('offManufacturedBox').style.display = p.offWeaponCategory==='manufactured' ? 'grid' : 'none';
+  $('offUnarmedBox').style.display = p.offWeaponCategory==='unarmed' ? 'grid' : 'none';
+  $('offNaturalBox').style.display = p.offWeaponCategory==='natural' ? 'grid' : 'none';
   $('offCustomWeapon').style.display = p.offWeapon==='custom' ? 'block' : 'none';
-  $('offhandBox').style.display = p.style==='twf' ? 'grid' : 'none';
+  // Natural Attack mode replaces the whole main-hand attack routine (a per-line results
+  // table, not one To-Hit/Full Attack pair) -- TWF/off-hand doesn't compose with that.
+  $('offhandBox').style.display = (p.style==='twf' && p.weaponCategory!=='natural') ? 'grid' : 'none';
   $('ammoBox').style.display = p.style==='ranged' ? 'grid' : 'none';
+  renderNaturalAttackLines();
   updateEnhLabel();
   applyRaceSourceExclusions();
   renderSources();
@@ -3792,10 +3868,16 @@ function syncUIIntoProfile(){
   let p=currentProfile();
   p.characterLevel=+$('characterLevel').value; p.casterLevel=+$('casterLevel').value; p.mythicEnabled=$('mythicEnabled').checked; p.mythicTier=+$('mythicTier').value; p.currentTarget=$('currentTarget').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
   p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
-  p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value; p.customNatural=$('customNatural').checked;
+  p.weaponCategory=$('weaponCategory').value;
+  p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
+  p.unarmedDice=$('unarmedDice').value; p.unarmedThreat=$('unarmedThreat').value;
+  p.naturalOrigin=$('naturalOrigin').value;
   p.style=$('style').value; p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
   p.compositeBowStrRating=+$('compositeBowStrRating').value||0;
-  p.offWeapon=$('offWeapon').value; p.offCustomDice=$('offCustomDice').value; p.offCustomThreat=$('offCustomThreat').value; p.offCustomNatural=$('offCustomNatural').checked; p.offCritMult=+$('offCritMult').value;
+  p.offWeaponCategory=$('offWeaponCategory').value;
+  p.offWeapon=$('offWeapon').value; p.offCustomDice=$('offCustomDice').value; p.offCustomThreat=$('offCustomThreat').value; p.offCritMult=+$('offCritMult').value;
+  p.offUnarmedDice=$('offUnarmedDice').value; p.offUnarmedThreat=$('offUnarmedThreat').value;
+  p.offNaturalDice=$('offNaturalDice').value; p.offNaturalThreat=$('offNaturalThreat').value;
   p.offEnh=+$('offEnh').value; p.offLight=$('offLight').checked;
   p.ammoEnh=+$('ammoEnh').value;
   p.race=$('race').value.trim(); p.alignment=$('alignment').value;
@@ -3876,7 +3958,7 @@ document.querySelector('#charActionsBox .menuPanel').addEventListener('click', e
   if(e.target.closest('button,a')) document.getElementById('charActionsBox').open=false;
 });
 
-['characterLevel','casterLevel','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','customNatural','style','atkStat','dmgStat','offWeapon','offCustomDice','offCustomThreat','offCustomNatural','offCritMult','offEnh','offLight','enh','ammoEnh','critMult','compositeBowStrRating'].forEach(id=>{
+['characterLevel','casterLevel','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weaponCategory','weapon','customDice','customThreat','unarmedDice','unarmedThreat','naturalOrigin','style','atkStat','dmgStat','offWeaponCategory','offWeapon','offCustomDice','offCustomThreat','offUnarmedDice','offUnarmedThreat','offNaturalDice','offNaturalThreat','offCritMult','offEnh','offLight','enh','ammoEnh','critMult','compositeBowStrRating'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'grid' : 'none';
@@ -3887,13 +3969,26 @@ document.querySelector('#charActionsBox .menuPanel').addEventListener('click', e
       // field (and its cap/penalty math in compute()) stays hidden and inert for them.
       $('compositeBowStrRow').style.display = (w&&w.compositeBow) ? 'grid' : 'none';
     }
+    if(id==='weaponCategory'){
+      let cat=$('weaponCategory').value;
+      $('manufacturedBox').style.display = cat==='manufactured' ? 'grid' : 'none';
+      $('unarmedBox').style.display = cat==='unarmed' ? 'grid' : 'none';
+      $('naturalAttacksBox').style.display = cat==='natural' ? 'grid' : 'none';
+      $('offhandBox').style.display = ($('style').value==='twf' && cat!=='natural') ? 'grid' : 'none';
+    }
     if(id==='offWeapon'){
       $('offCustomWeapon').style.display = $('offWeapon').value==='custom' ? 'block' : 'none';
       let ow=WEAPONS[$('offWeapon').value];
       if(ow) $('offCritMult').value=ow.mult;
     }
+    if(id==='offWeaponCategory'){
+      let cat=$('offWeaponCategory').value;
+      $('offManufacturedBox').style.display = cat==='manufactured' ? 'grid' : 'none';
+      $('offUnarmedBox').style.display = cat==='unarmed' ? 'grid' : 'none';
+      $('offNaturalBox').style.display = cat==='natural' ? 'grid' : 'none';
+    }
     if(id==='style'){
-      $('offhandBox').style.display = $('style').value==='twf' ? 'grid' : 'none';
+      $('offhandBox').style.display = ($('style').value==='twf' && $('weaponCategory').value!=='natural') ? 'grid' : 'none';
       $('ammoBox').style.display = $('style').value==='ranged' ? 'grid' : 'none';
       updateEnhLabel();
       renderCategories();
@@ -4536,18 +4631,28 @@ function compute(){
   let babList = (p.babList && p.babList.length) ? p.babList : [6];
   let bab=babList[0], enh=+$('enh').value, ammoEnh=+$('ammoEnh').value, critMult=+$('critMult').value;
   let style=$('style').value, atkStat=$('atkStat').value, dmgStat=$('dmgStat').value;
+  let weaponCategory=$('weaponCategory').value;
   let weaponKey=$('weapon').value;
-  let w = weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey];
-  let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, atkStat, dmgStat, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value, critMult, weaponThreatLow:parseThreatLow(w.threat)};
+  // Unarmed uses its own fixed dice field; Natural mode replaces the whole single-weapon
+  // pipeline below with a separate per-line renderer at the end of compute(), so `w` here
+  // is just a harmless placeholder that keeps every weaponDice-reading modifier from
+  // crashing -- its own results panel stays hidden whenever weaponCategory==='natural'.
+  let w = weaponCategory==='unarmed' ? {dice:$('unarmedDice').value||'1d3', threat:$('unarmedThreat').value||'20', ranged:false}
+        : weaponCategory==='natural' ? {dice:'1d4', threat:'20', ranged:false}
+        : (weaponKey==='custom' ? {dice:$('customDice').value||'1d8', threat:$('customThreat').value||'20'} : WEAPONS[weaponKey]);
+  let ctx={bab, mythicTier:+$('mythicTier').value, str:mod($('str').value), dex:mod($('dex').value), con:mod($('con').value), int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value), style, atkStat, dmgStat, alignment:$('alignment').value, weaponDice:w.dice, currentTarget:$('currentTarget').value, critMult, weaponThreatLow:parseThreatLow(w.threat), weaponCategory};
 
   // Off-hand weapon has its own type/dice/threat/crit multiplier (can differ from the
   // main weapon) — build a second ctx for it so Weapon Effects tagged "Off-Hand Only"
   // compute against ITS dice/crit mult (e.g. Keen's threat range, a Burst property's
   // crit-only die), not the main weapon's.
+  let offWeaponCategory=$('offWeaponCategory').value;
   let offWeaponKey=$('offWeapon').value;
-  let wOff = offWeaponKey==='custom' ? {dice:$('offCustomDice').value||'1d6', threat:$('offCustomThreat').value||'20'} : (WEAPONS[offWeaponKey]||w);
+  let wOff = offWeaponCategory==='unarmed' ? {dice:$('offUnarmedDice').value||'1d3', threat:$('offUnarmedThreat').value||'20', ranged:false}
+           : offWeaponCategory==='natural' ? {dice:$('offNaturalDice').value||'1d4', threat:$('offNaturalThreat').value||'20', ranged:false}
+           : (offWeaponKey==='custom' ? {dice:$('offCustomDice').value||'1d6', threat:$('offCustomThreat').value||'20'} : (WEAPONS[offWeaponKey]||w));
   let offCritMultVal = +$('offCritMult').value || critMult;
-  let ctxOff = Object.assign({}, ctx, {weaponDice:wOff.dice, critMult:offCritMultVal, weaponThreatLow:parseThreatLow(wOff.threat)});
+  let ctxOff = Object.assign({}, ctx, {weaponDice:wOff.dice, critMult:offCritMultVal, weaponThreatLow:parseThreatLow(wOff.threat), weaponCategory:offWeaponCategory});
 
   let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen,smiteEvilOn,smiteDmgVal,smiteDoubles}=collectContributions(ctx);
 
@@ -4635,25 +4740,32 @@ function compute(){
   let vsMult=vsActive.length?Math.max(...vsActive.map(a=>vsMultMap[a.id])):0;
   let leadBladesRec=p.active.find(a=>a.id==='lead-blades' && a.on!==false);
   let gravityBowRec=p.active.find(a=>a.id==='gravity-bow' && a.on!==false);
+  let strongJawRec=p.active.find(a=>a.id==='strong-jaw' && a.on!==false);
   let enlargePersonOn=p.active.some(a=>a.id==='enlarge-person' && a.on!==false);
-  // Enlarge Person is an ACTUAL size increase (affects the whole character, both hands);
-  // Lead Blades/Gravity Bow are EFFECTIVE size increases (only the specific weapon type
-  // they name). Per the PF1e FAQ ("Size increases and effective size increases"), one of
-  // each category stacks -- so a carried melee weapon with both Lead Blades and Enlarge
-  // Person active gets TWO steps, not one. Two effective-category sources can't both apply
-  // to the same weapon anyway, since Lead Blades is melee-only and Gravity Bow is
-  // bow/crossbow-only.
-  let mainIsCarriedMelee = weaponKey==='custom' ? !$('customNatural').checked : !!(w && !w.ranged && !w.natural);
-  let mainIsBowOrCrossbow = weaponKey!=='custom' && !!(w && w.ranged && (w.ammo==='arrows'||w.ammo==='bolts'));
-  let offIsCarriedMelee = offWeaponKey==='custom' ? !$('offCustomNatural').checked : !!(wOff && !wOff.ranged && !wOff.natural);
-  let offIsBowOrCrossbow = offWeaponKey!=='custom' && !!(wOff && wOff.ranged && (wOff.ammo==='arrows'||wOff.ammo==='bolts'));
+  let animalGrowthOn=p.active.some(a=>a.id==='animal-growth' && a.on!==false);
+  // Enlarge Person and Animal Growth are both ACTUAL size increases (affect the whole
+  // character) -- same category, don't stack with each other, at most 1 step. Lead
+  // Blades (Manufactured melee only), Gravity Bow (Manufactured bow/crossbow only), and
+  // Strong Jaw (Natural/Unarmed only, worth its own text's TWO steps, not one) are each
+  // EFFECTIVE size increases gated to a different Attack Category, so at most one of
+  // them can ever apply to a given hand. Per the PF1e FAQ ("Size increases and effective
+  // size increases"), one of each CATEGORY stacks -- an actual + an effective increase
+  // combine (e.g. Enlarge Person + Strong Jaw on a Natural attack = 1+2 = 3 steps).
+  let mainIsCarriedMelee = weaponCategory==='manufactured' && !!(w && !w.ranged);
+  let mainIsBowOrCrossbow = weaponCategory==='manufactured' && !!(w && w.ranged && (w.ammo==='arrows'||w.ammo==='bolts'));
+  let mainIsNaturalOrUnarmed = weaponCategory==='natural' || weaponCategory==='unarmed';
+  let offIsCarriedMelee = offWeaponCategory==='manufactured' && !!(wOff && !wOff.ranged);
+  let offIsBowOrCrossbow = offWeaponCategory==='manufactured' && !!(wOff && wOff.ranged && (wOff.ammo==='arrows'||wOff.ammo==='bolts'));
+  let offIsNaturalOrUnarmed = offWeaponCategory==='natural' || offWeaponCategory==='unarmed';
   let leadBladesOnMain = !!leadBladesRec && (leadBladesRec.weaponSlot||'both')!=='off' && mainIsCarriedMelee;
   let leadBladesOnOff = !!leadBladesRec && (leadBladesRec.weaponSlot||'both')!=='main' && offIsCarriedMelee;
   let gravityBowOnMain = !!gravityBowRec && (gravityBowRec.weaponSlot||'both')!=='off' && mainIsBowOrCrossbow;
   let gravityBowOnOff = !!gravityBowRec && (gravityBowRec.weaponSlot||'both')!=='main' && offIsBowOrCrossbow;
-  let actualSizeSteps = enlargePersonOn ? 1 : 0;
-  let effectiveSizeStepsMain = (leadBladesOnMain || gravityBowOnMain) ? 1 : 0;
-  let effectiveSizeStepsOff = (leadBladesOnOff || gravityBowOnOff) ? 1 : 0;
+  let strongJawOnMain = !!strongJawRec && (strongJawRec.weaponSlot||'both')!=='off' && mainIsNaturalOrUnarmed;
+  let strongJawOnOff = !!strongJawRec && (strongJawRec.weaponSlot||'both')!=='main' && offIsNaturalOrUnarmed;
+  let actualSizeSteps = (enlargePersonOn || animalGrowthOn) ? 1 : 0;
+  let effectiveSizeStepsMain = strongJawOnMain ? 2 : ((leadBladesOnMain || gravityBowOnMain) ? 1 : 0);
+  let effectiveSizeStepsOff = strongJawOnOff ? 2 : ((leadBladesOnOff || gravityBowOnOff) ? 1 : 0);
   let totalSizeStepsMain = actualSizeSteps + effectiveSizeStepsMain;
   let totalSizeStepsOff = actualSizeSteps + effectiveSizeStepsOff;
   let dieSizeUpOn = totalSizeStepsMain>0;
@@ -4877,17 +4989,22 @@ function compute(){
   if(vsMult){
     notes.push('Vital Strike is active: see the dedicated "Vital Strike Damage"/"Vital Strike Critical Damage" rows above for its numbers (dice ×'+vsMult+(mythicVitalStrikeOn?', and with Mythic Vital Strike your Str/enhancement/etc. bonuses are multiplied ×'+vsMult+' too':'')+'). Normal/Critical Damage above stay the plain non-Vital-Strike figures. This is a single attack-action strike, not part of a full attack — the Full Attack line is hidden this turn.');
   }
-  if(totalSizeStepsMain>0){
-    let sources=[];
-    if(actualSizeSteps) sources.push('Enlarge Person (actual size increase)');
-    if(effectiveSizeStepsMain) sources.push(gravityBowOnMain ? 'Gravity Bow (effective size increase)' : 'Lead Blades (effective size increase)');
-    notes.push(sources.join(' + ')+': Normal/Critical Damage above already use the upsized weapon die ('+w.dice+' → '+effDice+', '+totalSizeStepsMain+' step'+(totalSizeStepsMain>1?'s':'')+'), assuming a Medium wielder. Per the PF1e FAQ ("Size increases and effective size increases"), an actual size increase and an effective size increase stack with each other — this is why both active at once gives 2 steps instead of 1. Doesn\'t affect a weapon Lead Blades/Gravity Bow don\'t apply to (ranged/thrown/natural for Lead Blades; anything but a carried bow or crossbow for Gravity Bow), or anyone but you wielding the weapon.');
-  }
-  if(leadBladesRec && !mainIsCarriedMelee && (leadBladesRec.weaponSlot||'both')!=='off'){
-    notes.push('Lead Blades is active but the main-hand weapon isn\'t a carried melee weapon (it\'s ranged, thrown, or a natural attack) — Lead Blades only affects melee weapons you\'re carrying, so it doesn\'t apply here.');
-  }
-  if(gravityBowRec && !mainIsBowOrCrossbow && (gravityBowRec.weaponSlot||'both')!=='off'){
-    notes.push('Gravity Bow is active but the main-hand weapon isn\'t a bow or crossbow — Gravity Bow only affects bows/crossbows, so it doesn\'t apply here.');
+  if(weaponCategory!=='natural'){
+    if(totalSizeStepsMain>0){
+      let sources=[];
+      if(actualSizeSteps) sources.push(animalGrowthOn ? 'Animal Growth (actual size increase)' : 'Enlarge Person (actual size increase)');
+      if(effectiveSizeStepsMain) sources.push(strongJawOnMain ? 'Strong Jaw (effective size increase)' : (gravityBowOnMain ? 'Gravity Bow (effective size increase)' : 'Lead Blades (effective size increase)'));
+      notes.push(sources.join(' + ')+': Normal/Critical Damage above already use the upsized weapon die ('+w.dice+' → '+effDice+', '+totalSizeStepsMain+' step'+(totalSizeStepsMain>1?'s':'')+'), assuming a Medium wielder. Per the PF1e FAQ ("Size increases and effective size increases"), an actual size increase and an effective size increase stack with each other. Doesn\'t affect a weapon these don\'t apply to (Lead Blades: Manufactured melee only; Gravity Bow: Manufactured bow/crossbow only; Strong Jaw: Natural/Unarmed only), or anyone but you.');
+    }
+    if(leadBladesRec && !mainIsCarriedMelee && (leadBladesRec.weaponSlot||'both')!=='off'){
+      notes.push('Lead Blades is active but the main Attack Category isn\'t a carried Manufactured melee weapon — Lead Blades only affects melee weapons you\'re carrying, so it doesn\'t apply here.');
+    }
+    if(gravityBowRec && !mainIsBowOrCrossbow && (gravityBowRec.weaponSlot||'both')!=='off'){
+      notes.push('Gravity Bow is active but the main Attack Category isn\'t a Manufactured bow or crossbow — Gravity Bow only affects bows/crossbows, so it doesn\'t apply here.');
+    }
+    if(strongJawRec && !mainIsNaturalOrUnarmed && (strongJawRec.weaponSlot||'both')!=='off'){
+      notes.push('Strong Jaw is active but the main Attack Category is Manufactured Weapon — Strong Jaw only affects Natural Attacks/Unarmed Strikes, so it doesn\'t apply here.');
+    }
   }
   if(isCritImmune(ctx)){
     notes.push('Current Target is immune to critical hits and precision damage (oozes, elementals, swarms, and incorporeal creatures are — constructs and ordinary undead are NOT, unlike 3.5e) — Critical Damage above doesn\'t apply, and Sneak Attack/Precise Strike are suppressed.');
@@ -4950,7 +5067,120 @@ function compute(){
     notes.push('Two-Weapon Fighting: penalties '+pen.main+'/'+pen.off+' ('+(offLight?'light':'normal')+' off-hand'+(hasTWF?', Two-Weapon Fighting feat applied':'')+'). Off-hand damage uses '+(hasDoubleSlice?'full':'half')+' of your damage ability modifier'+(hasDoubleSlice?' (Double Slice active)':'')+'. Modifier totals: main hand '+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg, off-hand '+signed(atkFromModsOff)+' atk / '+signed(dmgFromModsOff)+' dmg — Weapon Effects tagged "Main Hand Only"/"Off-Hand Only" above only count for that hand and use THAT weapon\'s own dice/crit multiplier (e.g. a Flaming Burst crit die uses the off-hand weapon\'s crit multiplier if tagged Off-Hand Only); everything else (and anything left on "Both Hands") counts for both.');
   }
   $('notes').innerHTML=notes.map(n=>'• '+n).join('<br>');
+
+  // Natural Attack mode replaces the single-weapon results above entirely with a
+  // per-line table (one row per attack, since a creature's natural attack routine is
+  // several simultaneous attacks, not one weapon with iteratives).
+  $('singleAtkResults').style.display = weaponCategory==='natural' ? 'none' : 'contents';
+  $('naturalAttacksResultBox').style.display = weaponCategory==='natural' ? 'block' : 'none';
+  if(weaponCategory==='natural'){
+    renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, totalSizeStepsMain, paNoCritMult, powerAttackOn, powerAttackDmgVal);
+  }
 }
+
+function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, sizeSteps, paNoCritMult, powerAttackOn, powerAttackDmgVal){
+  let box=$('naturalAttackResults');
+  let lines = p.naturalAttacks||[];
+  if(!lines.length){
+    box.innerHTML='<div class="emptyNote">No natural attacks added yet — use "+ Add Attack" above.</div>';
+    return;
+  }
+  let t=document.createElement('table'); t.className='breakTable';
+  t.innerHTML='<thead><tr><th>Attack</th><th class="num">To-Hit</th><th>Normal Damage</th><th>Critical Damage</th></tr></thead>';
+  let tbody=document.createElement('tbody');
+  lines.forEach(line=>{
+    let kind=line.kind||'primary';
+    let babBonus = kind==='primary' ? babList[0] : (babList[0]-5);
+    let atkAbility=line.atkAbility||'str', dmgAbility=line.dmgAbility||'str';
+    let atkAbilityMod = atkAbility==='none' ? 0 : (ctx[atkAbility]||0);
+    let dmgAbilityMod = dmgAbility==='none' ? 0 : (ctx[dmgAbility]||0);
+    let mult = line.dmgAbilityMult!==undefined ? +line.dmgAbilityMult : 1;
+    let dmgAbilityContribution = Math.floor(dmgAbilityMod*mult);
+    let atk = babBonus + atkAbilityMod + atkFromMods;
+    let dmg = dmgAbilityContribution + dmgFromMods;
+    let die=(line.die||'1d4').trim();
+    let effDie = applySizeSteps(die, sizeSteps);
+    let critMult = +line.critMult||2;
+    let critDmg = dmg*critMult;
+    if(paNoCritMult && powerAttackOn && powerAttackDmgVal) critDmg = (dmg-powerAttackDmgVal)*critMult + powerAttackDmgVal;
+    else if(ctx.mythicPowerAttackOn && powerAttackOn && powerAttackDmgVal) critDmg += powerAttackDmgVal*critMult;
+    let critDice = diceMultiply(effDie, critMult);
+    let qty=Math.max(1,+line.qty||1);
+    let kindLabel = kind==='secondary'?'Secondary':kind==='conditional'?'Conditional':'Primary';
+    let threat = line.threat||'20';
+    let tr=document.createElement('tr');
+    tr.innerHTML=`<td>${(qty>1?qty+'× ':'')+esc(line.name||'Attack')} <span class="typeTag">${kindLabel}</span></td><td class="num">${signed(atk)}</td><td>${effDie} ${signed(dmg)}</td><td>${critDice} ${signed(critDmg)} (threat ${threat}/×${critMult})</td>`;
+    tbody.appendChild(tr);
+  });
+  t.appendChild(tbody);
+  box.innerHTML=''; box.appendChild(t);
+}
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+const NAT_ABILITY_OPTS=[['str','STR'],['dex','DEX'],['con','CON'],['int','INT'],['wis','WIS'],['cha','CHA'],['none','none']];
+function natAbilitySelectHtml(cls,current){
+  return `<select class="${cls}">`+NAT_ABILITY_OPTS.map(([v,l])=>`<option value="${v}"${(current||'str')===v?' selected':''}>${l}</option>`).join('')+'</select>';
+}
+const NAT_DMG_MULT_OPTS=[1,1.5,0.5,0];
+function newNaturalAttack(){
+  return {name:'',qty:1,kind:'primary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2};
+}
+function renderNaturalAttackLines(){
+  let p=currentProfile();
+  if(!p.naturalAttacks) p.naturalAttacks=[];
+  let box=$('naturalAttackLines'); box.innerHTML='';
+  p.naturalAttacks.forEach((line,i)=>{
+    let div=document.createElement('div'); div.className='atkLine';
+    let multIsPreset=NAT_DMG_MULT_OPTS.includes(+line.dmgAbilityMult);
+    div.innerHTML=`
+      <input class="alName" placeholder="Name (e.g. Bite)" value="${esc(line.name||'')}" title="Free name — Bite, Claw, Gore, Tail Slap...">
+      <input class="alQty" type="number" min="1" value="${line.qty||1}" style="width:44px" title="Quantity (e.g. 2 for a pair of claws)">
+      <select class="alKind" title="Primary/Secondary/Conditional">
+        <option value="primary"${(line.kind||'primary')==='primary'?' selected':''}>Primary</option>
+        <option value="secondary"${line.kind==='secondary'?' selected':''}>Secondary</option>
+        <option value="conditional"${line.kind==='conditional'?' selected':''}>Conditional</option>
+      </select>
+      <input class="alDie" placeholder="Die (1d4)" value="${line.die||''}" title="Base damage dice" style="width:70px">
+      <input class="alThreat" placeholder="Threat" value="${line.threat||'20'}" title="Threat range, e.g. 20 or 19–20" style="width:60px">
+      <select class="alCrit" title="Critical multiplier">
+        <option value="2"${(line.critMult||2)==2?' selected':''}>×2</option>
+        <option value="3"${line.critMult==3?' selected':''}>×3</option>
+        <option value="4"${line.critMult==4?' selected':''}>×4</option>
+      </select>
+      <label style="font-size:.68rem;color:var(--muted)">Atk:${natAbilitySelectHtml('alAtkAbility',line.atkAbility)}</label>
+      <label style="font-size:.68rem;color:var(--muted)">Dmg:${natAbilitySelectHtml('alDmgAbility',line.dmgAbility)}</label>
+      <select class="alDmgMult" title="Ability-to-damage multiplier">
+        ${NAT_DMG_MULT_OPTS.map(v=>`<option value="${v}"${multIsPreset&&+line.dmgAbilityMult===v?' selected':''}>×${v}</option>`).join('')}
+        <option value="custom"${!multIsPreset?' selected':''}>Custom</option>
+      </select>
+      ${!multIsPreset?`<input class="alDmgMultCustom" type="number" step="0.1" value="${line.dmgAbilityMult!==undefined?line.dmgAbilityMult:1}" style="width:52px" title="Custom ability-to-damage multiplier">`:''}
+      <button class="rm" type="button" title="Remove">✕</button>`;
+    const upd=(field,parse)=>e=>{ line[field]=parse?parse(e.target.value):e.target.value; saveStore(); compute(); };
+    div.querySelector('.alName').addEventListener('input',upd('name'));
+    div.querySelector('.alQty').addEventListener('input',upd('qty',v=>Math.max(1,+v||1)));
+    div.querySelector('.alKind').addEventListener('change',upd('kind'));
+    div.querySelector('.alDie').addEventListener('input',upd('die'));
+    div.querySelector('.alThreat').addEventListener('input',upd('threat'));
+    div.querySelector('.alCrit').addEventListener('change',upd('critMult',Number));
+    div.querySelector('.alAtkAbility').addEventListener('change',upd('atkAbility'));
+    div.querySelector('.alDmgAbility').addEventListener('change',upd('dmgAbility'));
+    div.querySelector('.alDmgMult').addEventListener('change',e=>{
+      if(e.target.value==='custom'){ line.dmgAbilityMult=1.25; } else { line.dmgAbilityMult=+e.target.value; }
+      saveStore(); renderNaturalAttackLines(); compute();
+    });
+    let customEl=div.querySelector('.alDmgMultCustom');
+    if(customEl) customEl.addEventListener('input',upd('dmgAbilityMult',v=>+v||0));
+    div.querySelector('.rm').addEventListener('click',()=>{ p.naturalAttacks.splice(i,1); saveStore(); renderNaturalAttackLines(); compute(); });
+    box.appendChild(div);
+  });
+}
+$('addNaturalAttack').addEventListener('click',()=>{
+  let p=currentProfile();
+  if(!p.naturalAttacks) p.naturalAttacks=[];
+  p.naturalAttacks.push(newNaturalAttack());
+  saveStore(); renderNaturalAttackLines(); compute();
+});
 
 // Deep-link support for merged character sheets: ?profile=Name switches to (or
 // creates) that profile on load, so an iframe pointed here from a merged sheet
