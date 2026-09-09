@@ -311,9 +311,11 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
     <option value="wildshape">Wild Shape / Polymorph</option>
     <option value="other">Other</option>
   </select></div>
+  <div class="row" id="naturalVSRow" style="display:none"><label title="Vital Strike replaces your whole attack routine with a single attack-action strike — only one line can ever benefit from it.">Vital Strike attack</label>
+  <select id="naturalVSLine"></select></div>
   <div id="naturalAttackLines" class="atkLinesBox"></div>
   <button type="button" id="addNaturalAttack">+ Add Attack</button>
-  <div class="emptyNote">Attack bonus per line is BAB-derived automatically: Primary uses your full BAB; Secondary/Conditional use BAB−5 (e.g. a Rake, "Conditional", uses Secondary's math and is only usable when its own trigger is met). Str-mult ×1.5 = only attack this round, ×1 = multiple primary attacks, ×0.5 = secondary/conditional. A picked form's attack dice are already sized for that form (e.g. a Large Dire Wolf's Bite) — Enlarge Person/Animal Growth/Strong Jaw still size them up further on top if legitimately active.</div>
+  <div class="emptyNote">Attack bonus per line is BAB-derived automatically: Primary uses your full BAB; Secondary/Conditional use BAB−5 (or BAB−2 with Multiattack — e.g. a Rake, "Conditional", uses Secondary's math and is only usable when its own trigger is met). Str-mult ×1.5 = only attack this round, ×1 = multiple primary attacks, ×0.5 = secondary/conditional — Power Attack's damage bonus is rated at this same multiplier per line, not once globally. A picked form's attack dice are already sized for that form (e.g. a Large Dire Wolf's Bite) — Enlarge Person/Animal Growth/Strong Jaw still size them up further on top if legitimately active.</div>
 </div>
 <div class="row"><label>Fighting Style</label>
 <select id="style">
@@ -453,6 +455,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div class="result" id="offCritBox" style="display:none"><div class="small">Off-Hand Critical Damage</div><div class="big" id="offCrit">—</div></div>
   </div>
   <div class="result full" id="naturalAttacksResultBox" style="display:none"><div class="small">Natural Attacks</div><div id="naturalAttackResults" style="margin-top:6px"></div></div>
+  <div class="result full" id="naturalVSResultBox" style="display:none"></div>
   <div class="result full"><div class="small">Notes</div><div id="notes" style="margin-top:6px;line-height:1.5;font-size:.85rem"></div></div>
 </div>
 </section>
@@ -858,7 +861,19 @@ const MODIFIERS = [
 // ---------------- FEATS ----------------
 {id:'power-attack',name:'Power Attack',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
  desc:'-1 atk / +2 dmg per step (1 step at BAB 1-3, +1 more step every 4 BAB thereafter); the +2 becomes +3 two-handed (×1.5), or +1 off-hand (×0.5). RAW: this damage bonus IS multiplied on a critical hit (it becomes part of the weapon\'s damage roll) — add the "Power Attack/Deadly Aim damage not multiplied on crit" House Rule below if your table plays it differently. If Mythic Power Attack is also active, the per-step damage rises from +2 to +3 (before the two-handed/off-hand multiplier) and is doubled again on a confirmed crit — see Critical Damage.',
- compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);let perStep=ctx.mythicPowerAttackOn?3:2;let dPerStep=ctx.style==='twoHanded'?roundFrac(perStep*1.5):perStep;let d=dPerStep*step;return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg'+(ctx.mythicPowerAttackOn?' (Mythic Power Attack: +'+perStep+'/step)':'')+(ctx.style==='twf'?' (this is the primary-hand rate, applied to both hands here for simplicity — off-hand Power Attack damage is normally half this, ×0.5 instead of the primary hand\'s ×1)':'')}},companionCompatibility:{"schemaVersion":1,"attackRequirements":["twoWeaponRoutine","criticalContext"],"featurePrerequisites":["mythic"],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"Animal Companion may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"mount":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"Mount may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"familiar":{"status":"base-or-granted-only","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"A familiar does not gain freely selectable feats from master level progression; keep base-creature or explicitly granted feats only."},"eidolon":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"Eidolon may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"phantom":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"Phantom may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"cohort":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"Cohort / Independent Creature may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"medium"}},
+ compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);let perStep=ctx.mythicPowerAttackOn?3:2;
+   // PA-NATURAL-001: Natural Attack mode has several simultaneous lines, each with its
+   // own Str-multiplier (×1.5 single primary / ×1 primary / ×0.5 secondary) -- Power
+   // Attack's damage bonus has to scale per LINE at that same rate, not once globally at
+   // a single style-wide rate. So the flat damage contribution is suppressed here (left
+   // at 0) and recomputed per line inside renderNaturalAttackResults using this exact
+   // step/perStep formula with each line's own multiplier; the attack penalty (-step)
+   // is universal regardless of category, so it still applies normally here.
+   if(ctx.weaponCategory==='natural') return {attack:-step,damage:0,note:'-'+step+' atk — damage computed per attack line below (rated by each line\'s Str multiplier)'};
+   let dPerStep=ctx.style==='twoHanded'?roundFrac(perStep*1.5):perStep;let d=dPerStep*step;return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg'+(ctx.mythicPowerAttackOn?' (Mythic Power Attack: +'+perStep+'/step)':'')+(ctx.style==='twf'?' (this is the primary-hand rate, applied to both hands here for simplicity — off-hand Power Attack damage is normally half this, ×0.5 instead of the primary hand\'s ×1)':'')}},companionCompatibility:{"schemaVersion":1,"attackRequirements":["twoWeaponRoutine","criticalContext"],"featurePrerequisites":["mythic"],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"Animal Companion may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"mount":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"Mount may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"familiar":{"status":"base-or-granted-only","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"A familiar does not gain freely selectable feats from master level progression; keep base-creature or explicitly granted feats only."},"eidolon":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"Eidolon may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"phantom":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"Phantom may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"cohort":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":["twoWeaponRoutine","criticalContext","mythic"],"reason":"Cohort / Independent Creature may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"medium"}},
+{id:'multiattack',name:'Multiattack',category:'feat',source:'Bestiary (Monster Feat)',appliesTo:[],type:'special',
+ desc:'Requires 3 or more natural attacks. Reduces the penalty on Secondary (and Conditional, which uses the same math) natural attacks from −5 to −2 in the Natural Attacks results below. Not a flat attack/damage number — only relevant in Natural Attack mode, and the calculator can\'t verify you actually have 3+ natural attacks, so it\'s on you to only activate it when legitimate.',
+ compute:()=>({attack:0,damage:0,note:'reduces the Secondary/Conditional natural attack penalty from -5 to -2 in Natural Attack mode'})},
 {id:'furious-focus',name:'Furious Focus',category:'feat',source:'Advanced Player\'s Guide',appliesTo:['attack'],type:'special',
  desc:'Requires Power Attack. No Power Attack penalty on your FIRST attack of the turn only (handled specially in the summary, not in the flat total below).',
  special:'furious-focus', compute:()=>({attack:0,damage:0,note:'applied to first attack only — see summary'}),companionCompatibility:{"schemaVersion":1,"attackRequirements":[],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":[],"reason":"Animal Companion may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"mount":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":[],"reason":"Mount may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"familiar":{"status":"base-or-granted-only","mode":"owned-option","requirements":[],"reason":"A familiar does not gain freely selectable feats from master level progression; keep base-creature or explicitly granted feats only."},"eidolon":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":[],"reason":"Eidolon may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"phantom":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":[],"reason":"Phantom may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."},"cohort":{"status":"selectable-if-prerequisites","mode":"owned-option","requirements":[],"reason":"Cohort / Independent Creature may use feats it legally possesses, but every prerequisite and physical/attack requirement must be validated."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"low"}},
@@ -3816,7 +3831,7 @@ function saveStore(){
 }
 function defaultProfile(name){
   return {name, babList:[10], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weaponCategory:'manufactured', weapon:'longsword', customDice:'1d8', customThreat:'20',
-    unarmedDice:'1d3', unarmedThreat:'20', naturalAttacks:[], naturalOrigin:'', wildShapeFormId:'', wildShapeBaseStr:0, wildShapeBaseDex:0, wildShapeBaseCon:0,
+    unarmedDice:'1d3', unarmedThreat:'20', naturalAttacks:[], naturalOrigin:'', naturalVSLineIndex:0, wildShapeFormId:'', wildShapeBaseStr:0, wildShapeBaseDex:0, wildShapeBaseCon:0,
     style:'twoHanded', atkStat:'str', dmgStat:'str', offWeaponCategory:'manufactured', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offUnarmedDice:'1d3', offUnarmedThreat:'20', offNaturalDice:'1d4', offNaturalThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
     enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:'', deity:'', compositeBowStrRating:0};
 }
@@ -3864,6 +3879,7 @@ store.profiles.forEach(p=>{
   if(p.offNaturalThreat===undefined) p.offNaturalThreat='20';
   if(!p.naturalAttacks) p.naturalAttacks=[];
   if(p.naturalOrigin===undefined) p.naturalOrigin='';
+  if(p.naturalVSLineIndex===undefined) p.naturalVSLineIndex=0;
   if(p.wildShapeFormId===undefined) p.wildShapeFormId='';
   if(p.wildShapeBaseStr===undefined) p.wildShapeBaseStr=0;
   if(p.wildShapeBaseDex===undefined) p.wildShapeBaseDex=0;
@@ -5182,36 +5198,49 @@ function compute(){
   $('singleAtkResults').style.display = weaponCategory==='natural' ? 'none' : 'contents';
   $('naturalAttacksResultBox').style.display = weaponCategory==='natural' ? 'block' : 'none';
   if(weaponCategory==='natural'){
-    renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, totalSizeStepsMain, paNoCritMult, powerAttackOn, powerAttackDmgVal);
+    renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, totalSizeStepsMain, paNoCritMult, powerAttackOn, vsMult, mythicVitalStrikeOn);
   }
 }
 
-function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, sizeSteps, paNoCritMult, powerAttackOn, powerAttackDmgVal){
+function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, sizeSteps, paNoCritMult, powerAttackOn, vsMult, mythicVitalStrikeOn){
   let box=$('naturalAttackResults');
   let lines = p.naturalAttacks||[];
   if(!lines.length){
     box.innerHTML='<div class="emptyNote">No natural attacks added yet — use "+ Add Attack" above.</div>';
+    $('naturalVSResultBox').style.display='none';
     return;
   }
+  let hasMultiattack = p.active.some(a=>a.id==='multiattack' && a.on!==false);
+  let secondaryPenalty = hasMultiattack ? -2 : -5;
+  // PA-NATURAL-001: Power Attack's damage bonus, rated per line at THAT line's own
+  // Str-multiplier (×1.5/×1/×0.5) -- same step/perStep formula as the catalog entry,
+  // generalized from "two-handed or not" to "whatever this line's multiplier is". The
+  // per-step amount is rounded down BEFORE multiplying by the step count, same as the
+  // existing two-handed math, for consistency.
+  let paBabStep = powerAttackOn ? (1+Math.floor(Math.max(1,ctx.bab)/4)) : 0;
+  let paPerStep = ctx.mythicPowerAttackOn ? 3 : 2;
+  let lineComputed=[]; // stashed for the Vital Strike block below, keyed by index
   let t=document.createElement('table'); t.className='breakTable';
   t.innerHTML='<thead><tr><th>Attack</th><th class="num">To-Hit</th><th>Normal Damage</th><th>Critical Damage</th></tr></thead>';
   let tbody=document.createElement('tbody');
-  lines.forEach(line=>{
+  lines.forEach((line,idx)=>{
     let kind=line.kind||'primary';
-    let babBonus = kind==='primary' ? babList[0] : (babList[0]-5);
+    let babBonus = kind==='primary' ? babList[0] : (babList[0]+secondaryPenalty);
     let atkAbility=line.atkAbility||'str', dmgAbility=line.dmgAbility||'str';
     let atkAbilityMod = atkAbility==='none' ? 0 : (ctx[atkAbility]||0);
     let dmgAbilityMod = dmgAbility==='none' ? 0 : (ctx[dmgAbility]||0);
     let mult = line.dmgAbilityMult!==undefined ? +line.dmgAbilityMult : 1;
     let dmgAbilityContribution = Math.floor(dmgAbilityMod*mult);
+    let paDmg = powerAttackOn ? roundFrac(paPerStep*mult)*paBabStep : 0;
     let atk = babBonus + atkAbilityMod + atkFromMods;
-    let dmg = dmgAbilityContribution + dmgFromMods;
+    let dmg = dmgAbilityContribution + dmgFromMods + paDmg;
     let die=(line.die||'1d4').trim();
     let effDie = applySizeSteps(die, sizeSteps);
     let critMult = +line.critMult||2;
     let critDmg = dmg*critMult;
-    if(paNoCritMult && powerAttackOn && powerAttackDmgVal) critDmg = (dmg-powerAttackDmgVal)*critMult + powerAttackDmgVal;
-    else if(ctx.mythicPowerAttackOn && powerAttackOn && powerAttackDmgVal) critDmg += powerAttackDmgVal*critMult;
+    if(paNoCritMult && powerAttackOn && paDmg) critDmg = (dmg-paDmg)*critMult + paDmg;
+    else if(ctx.mythicPowerAttackOn && powerAttackOn && paDmg) critDmg += paDmg*critMult;
+    lineComputed[idx] = {dmg, effDie, critMult, paDmg, atk};
     let critDice = diceMultiply(effDie, critMult);
     let qty=Math.max(1,+line.qty||1);
     let kindLabel = kind==='secondary'?'Secondary':kind==='conditional'?'Conditional':'Primary';
@@ -5222,6 +5251,41 @@ function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, s
   });
   t.appendChild(tbody);
   box.innerHTML=''; box.appendChild(t);
+
+  // Vital Strike (plain/Improved/Greater, + Mythic) only ever applies to ONE attack this
+  // round (it replaces your whole routine with a single attack-action strike) -- computed
+  // here against the user-selected line's own dice/modifiers, never the old placeholder.
+  let vsBox=$('naturalVSResultBox');
+  let vsIdx=Math.min(Math.max(0,+p.naturalVSLineIndex||0), lines.length-1);
+  if(vsMult && lineComputed[vsIdx]){
+    let {dmg, effDie, critMult, paDmg} = lineComputed[vsIdx];
+    let line=lines[vsIdx];
+    let threat=line.threat||'20';
+    let dmgVS = (vsMult && mythicVitalStrikeOn) ? dmg*vsMult : dmg;
+    let critDmgVS = (vsMult && mythicVitalStrikeOn) ? dmg*(vsMult+critMult-1) : dmgVS*critMult;
+    let paDmgVS = (vsMult && mythicVitalStrikeOn) ? paDmg*vsMult : paDmg;
+    if(paNoCritMult && powerAttackOn && paDmg){
+      if(vsMult && mythicVitalStrikeOn){
+        let combinedMult = vsMult+critMult-1;
+        critDmgVS = (dmg-paDmg)*combinedMult + paDmg*vsMult;
+      } else {
+        critDmgVS = (dmgVS-paDmgVS)*critMult + paDmgVS;
+      }
+    } else if(ctx.mythicPowerAttackOn && powerAttackOn && paDmg){
+      critDmgVS += paDmgVS*critMult;
+    }
+    let dmgVSDice = diceMultiply(effDie, vsMult);
+    let critDice = diceMultiply(effDie, critMult);
+    let dmgVSCritDiceStr = critDice + (vsMult>1 ? ' + '+diceMultiply(effDie, vsMult-1)+' (Vital Strike, unmultiplied)' : '');
+    vsBox.style.display='block';
+    vsBox.innerHTML=`<div class="small">Vital Strike — ${esc(line.name||'Attack')} <span style="font-weight:400">(single attack-action only; Full Attack above no longer applies this turn)</span></div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:4px">
+        <div><div class="small">Vital Strike Damage</div><div class="big">${dmgVSDice} ${signed(dmgVS)}</div></div>
+        <div><div class="small">Vital Strike Critical Damage</div><div class="big">${dmgVSCritDiceStr} ${signed(critDmgVS)} (threat ${threat}/×${critMult})</div></div>
+      </div>`;
+  } else {
+    vsBox.style.display='none';
+  }
 }
 
 function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
@@ -5282,7 +5346,28 @@ function renderNaturalAttackLines(){
     div.querySelector('.rm').addEventListener('click',()=>{ p.naturalAttacks.splice(i,1); saveStore(); renderNaturalAttackLines(); compute(); });
     box.appendChild(div);
   });
+  renderNaturalVSSelect();
 }
+// Vital Strike is a single attack-action strike -- only ever one attack this round, so
+// with several natural attack lines the player must say which one it replaces. Shown
+// only when there's an actual choice to make (2+ lines); with exactly one line it's
+// unambiguous already and the row stays hidden.
+function renderNaturalVSSelect(){
+  let p=currentProfile();
+  let lines=p.naturalAttacks||[];
+  let row=$('naturalVSRow'), sel=$('naturalVSLine');
+  if(lines.length<2){ row.style.display='none'; return; }
+  row.style.display='grid';
+  let idx=Math.min(Math.max(0,+p.naturalVSLineIndex||0), lines.length-1);
+  sel.innerHTML = lines.map((line,i)=>`<option value="${i}">${esc(line.name||'Attack '+(i+1))}</option>`).join('');
+  sel.value=idx;
+  p.naturalVSLineIndex=idx;
+}
+$('naturalVSLine').addEventListener('change',()=>{
+  let p=currentProfile();
+  p.naturalVSLineIndex=+$('naturalVSLine').value||0;
+  saveStore(); compute();
+});
 $('addNaturalAttack').addEventListener('click',()=>{
   let p=currentProfile();
   if(!p.naturalAttacks) p.naturalAttacks=[];
