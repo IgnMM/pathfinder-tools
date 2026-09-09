@@ -806,10 +806,19 @@ function abilityBuffBonus(ctx, ability, scoreBonus, bonusType){
 // abilityDamage()) and takes ITS delta, never the modifier delta multiplied directly.
 // Attack has no such issue -- it's never multiplied, so the modifier delta alone is
 // exact.
-function abilityDamageContribution(mod, style){
+function abilityDamageContribution(mod, style, slot, hasDoubleSlice){
+  // TWF-DMG-001: the off-hand gets half the ability modifier (rounded down, a penalty
+  // applied in full) UNLESS Double Slice grants the full modifier there too -- and this
+  // must be computed on the FULLY-RESOLVED (post-buff) modifier as a whole, never by
+  // halving the base modifier and adding an unhalved buff delta on top afterward (those
+  // differ whenever floor((base+buff)/2) != floor(base/2)+buff, e.g. base +6 with a +1
+  // buff: correct is floor(7/2)=+3, not floor(6/2)+1=+4). Callers must always run BOTH
+  // the base and the final modifier through this same function and take the delta of
+  // the two results -- never apply this rate to a delta directly.
+  if(slot==='off') return hasDoubleSlice ? mod : (mod<0 ? mod : roundFrac(mod/2));
   return (style==='twoHanded' && mod>0) ? roundFrac(mod*1.5) : mod;
 }
-function resolveAbilityComposites(ctx, atkArr, dmgArr, breakdownArr){
+function resolveAbilityComposites(ctx, atkArr, dmgArr, breakdownArr, slot){
   let entries = ctx._abilitySink;
   if(!entries || !entries.length) return;
   let byAbility={};
@@ -828,14 +837,17 @@ function resolveAbilityComposites(ctx, atkArr, dmgArr, breakdownArr){
     // than re-deriving it a second time in compute().
     ctx._finalAbilityMods = ctx._finalAbilityMods || {};
     ctx._finalAbilityMods[ability] = finalMod;
-    let dmgDelta = dmgOn ? (abilityDamageContribution(finalMod,ctx.style) - abilityDamageContribution(baseMod,ctx.style)) : null;
+    // TWF-DMG-001: run base and final through the SAME rate function (which already
+    // applies the off-hand's half-rate/Double-Slice rule via `slot`) and take ITS
+    // delta -- never halve the base alone and add an unhalved buff delta afterward.
+    let dmgDelta = dmgOn ? (abilityDamageContribution(finalMod,ctx.style,slot,ctx.hasDoubleSlice) - abilityDamageContribution(baseMod,ctx.style,slot,ctx.hasDoubleSlice)) : null;
     if(atkOn) atkArr.push({value:delta,type:'untyped',source:'Ability Score Effects'});
     if(dmgOn) dmgArr.push({value:dmgDelta,type:'untyped',source:'Ability Score Effects'});
     if(breakdownArr){
       let sources=[...new Set(byAbility[ability].map(e=>e.source))].join(', ');
       let noteParts=['Combined '+ABIL_LABEL[ability]+' effects from: '+sources+' → net '+signed(netScoreBonus)+' to the score ('+signed(baseMod)+' → '+signed(finalMod)+' modifier).'];
       if(atkOn) noteParts.push(signed(delta)+' to attack (never multiplied).');
-      if(dmgOn) noteParts.push(signed(dmgDelta)+' to damage'+(ctx.style==='twoHanded'?' (from the full modifier before/after, ×1.5 two-handed each time and rounded down — not the delta alone)':'')+'.');
+      if(dmgOn) noteParts.push(signed(dmgDelta)+' to damage'+(ctx.style==='twoHanded'?' (from the full modifier before/after, ×1.5 two-handed each time and rounded down — not the delta alone)':(slot==='off'?' (off-hand: from the full modifier before/after, '+(ctx.hasDoubleSlice?'Double Slice — full rate':'half rate rounded down')+' each time and — not the delta alone)':''))+'.');
       breakdownArr.push({name:'Ability Score Effects ('+ABIL_LABEL[ability]+')',category:'other',type:'untyped',
         atk:atkOn?delta:null, dmg:dmgOn?dmgDelta:null, note:noteParts.join(' '), suppressed:false, off:false});
     }
@@ -4554,6 +4566,10 @@ function collectSlotEntries(ctx, slot){
   let p=currentProfile();
   let atk=[], dmg=[], extraDice=[];
   ctx._abilitySink=[]; // own pass, independent of collectContributions's -- see resolveAbilityComposites
+  // TWF-DMG-001: resolveAbilityComposites below needs to know whether Double Slice is
+  // active to correctly rate an ability buff's OFF-HAND damage contribution (full rate
+  // instead of half) -- stashed on ctx since resolveAbilityComposites only takes ctx.
+  ctx.hasDoubleSlice = p.active.some(a=>a.id==='double-slice' && a.on!==false);
   p.active.forEach(a=>{
     if(a.on===false) return;
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
@@ -4583,7 +4599,7 @@ function collectSlotEntries(ctx, slot){
     if(c.atk) atk.push({value:c.atk,type:c.type,source:c.name});
     if(c.dmg) dmg.push({value:c.dmg,type:c.type,source:c.name});
   });
-  resolveAbilityComposites(ctx, atk, dmg, null);
+  resolveAbilityComposites(ctx, atk, dmg, null, slot);
   return {atk,dmg,extraDice};
 }
 
@@ -5104,8 +5120,12 @@ function compute(){
     let mainAtk = bab + atkAbilityMod + pen.main + atkFromMods;
     let offAtk = bab + atkAbilityMod + pen.off + atkFromModsOff;
     // Off-hand damage uses half the damage ability bonus, rounded down — but a negative
-    // modifier (a penalty) applies in full to both hands, it is not halved (RAW).
-    let offDmgAbility = hasDoubleSlice ? dmgAbilityMod : (dmgAbilityMod<0 ? dmgAbilityMod : roundFrac(dmgAbilityMod/2));
+    // modifier (a penalty) applies in full to both hands, it is not halved (RAW). Uses
+    // the same rate function resolveAbilityComposites now uses for a buff's OWN off-hand
+    // delta (TWF-DMG-001), so this base contribution and dmgFromModsOff's ability-buff
+    // portion always sum to the correctly-rated FULL modifier -- never half-the-base
+    // plus an unhalved buff on top.
+    let offDmgAbility = abilityDamageContribution(dmgAbilityMod, style, 'off', hasDoubleSlice);
     let offDmg = offDmgAbility + dmgFromModsOff;
     if(hasMythicTWF) notes.push('Mythic Two-Weapon Fighting: two-weapon attack penalties fully waived (spending mythic power) instead of just reduced.');
     iteratives = babList.map(b => b + (mainAtk-bab));
