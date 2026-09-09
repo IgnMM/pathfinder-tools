@@ -26,14 +26,16 @@
 </div>
 <a href="../" title="The Sanctum" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10.3"/><polygon points="12.0,2.4 14.3,8.8 21.1,9.0 15.7,13.2 17.6,19.8 12.0,15.9 6.4,19.8 8.3,13.2 2.9,9.0 9.7,8.8"/></svg></a><button type="button" onclick="history.length>1?history.back():location.href='../'" title="Back" style="position:fixed;top:10px;left:60px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><script>if(window.self!==window.top){let el=document.currentScript.previousElementSibling;while(el){el.style.display='none';el=el.previousElementSibling;}}</script>
 <style>@media(max-width:900px){header,main{padding-left:110px !important}}</style>
-<header><div class="titleRow"><h1 style="display:flex;align-items:center;gap:10px"><img src="../assets/stone-runes/class-assets/runes/shaman-rune.png" alt="" style="width:40px;height:40px;object-fit:cover;object-position:center;clip-path:circle(41% at 50% 50%);flex:none">Shaman Spellbook</h1><details class="sourcesbox" id="sourcesBoxTop"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details></div><div class="profileBar"><div class="profileBarLeft"><span id="profileIdentityCluster" style="display:contents"><label>Character:</label><select id="profileSelect"></select><span id="profileUpdated" style="font-size:.7rem;color:var(--muted);margin:0 4px"></span><button id="newProfile">New</button><button id="dupProfile">Save As…</button><button id="renameProfile">Rename</button><a href="../character/" style="font-size:.8rem;color:var(--gold2);white-space:nowrap;margin:0 4px" title="Link this character's Spellbook profile with a Damage Calculator profile into a single combined sheet">🔗 Merge with Calculator</a><button class="danger" id="deleteProfile">Delete</button></span><span id="saveIndicator" class="saveIndicator">✓ Saved</span></div><div class="profileBarRight"><button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button><span id="syncStatus" style="font-size:.7rem;color:var(--muted)"></span><details class="sourcesbox"><summary>Account</summary><div class="sourcesPanel" style="min-width:220px"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase;margin-bottom:6px"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase;margin-bottom:6px"><button id="syncConnect" type="button">Connect</button><button id="syncLogout" type="button" class="danger">Log out</button><div style="font-size:.68rem;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div></div></details></div></div><div class="sub">Pathfinder 1e full Occult/Paizo shaman spell list — reusable for any shaman, save each one under their own name. Shamans prepare from the full list like a cleric, no alignment restriction. Their Spirit (chosen at 1st level, granting bonus spirit magic) and the daily-changing Wandering Spirit aren’t modeled here.</div><div class="controls">
+<header><div class="titleRow"><h1 style="display:flex;align-items:center;gap:10px"><img src="../assets/stone-runes/class-assets/runes/shaman-rune.png" alt="" style="width:40px;height:40px;object-fit:cover;object-position:center;clip-path:circle(41% at 50% 50%);flex:none">Shaman Spellbook</h1><details class="sourcesbox" id="sourcesBoxTop"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details></div><div class="profileBar"><div class="profileBarLeft"><span id="profileIdentityCluster" style="display:contents"><label>Character:</label><select id="profileSelect"></select><span id="profileUpdated" style="font-size:.7rem;color:var(--muted);margin:0 4px"></span><button id="newProfile">New</button><button id="dupProfile">Save As…</button><button id="renameProfile">Rename</button><a href="../character/" style="font-size:.8rem;color:var(--gold2);white-space:nowrap;margin:0 4px" title="Link this character's Spellbook profile with a Damage Calculator profile into a single combined sheet">🔗 Merge with Calculator</a><button class="danger" id="deleteProfile">Delete</button></span><span id="saveIndicator" class="saveIndicator">✓ Saved</span></div><div class="profileBarRight"><button id="cloudSave" type="button" class="primary">Save to cloud</button><button id="cloudLoad" type="button">Load from cloud</button><span id="syncStatus" style="font-size:.7rem;color:var(--muted)"></span><details class="sourcesbox"><summary>Account</summary><div class="sourcesPanel" style="min-width:220px"><label>Username</label><input id="syncUser" type="text" placeholder="USERNAME" style="width:130px;text-transform:uppercase;margin-bottom:6px"><label>PIN</label><input id="syncPin" type="text" placeholder="PIN" style="width:130px;text-transform:uppercase;margin-bottom:6px"><button id="syncConnect" type="button">Connect</button><button id="syncLogout" type="button" class="danger">Log out</button><div style="font-size:.68rem;color:var(--muted);margin-top:6px">Same code as your other Pathfinder tools — enter it once anywhere and it applies everywhere on this device. Whoever knows the code can read/write this data.</div></div></details></div></div><div class="sub">Pathfinder 1e full Occult/Paizo shaman spell list — reusable for any shaman, save each one under their own name. Shamans prepare from the full list like a cleric, no alignment restriction. Their Spirit (chosen at 1st level) grants Spirit Magic — see the panel above the spell list — and the daily-changing Wandering Spirit can swap it for a different spirit for the day.</div><div class="controls">
 <div><label>Shaman Level</label><select id="level"></select></div>
 <div><label>Wisdom</label><select id="wis"></select></div>
 <div><label>Race</label><input id="race" list="raceList" placeholder="Search race..." autocomplete="off"></div>
 <div><label>Archetype</label><select id="archetype"><option value="">— Base Shaman —</option><option value="Animist">Animist</option><option value="Benefactor">Benefactor</option><option value="Crystal Tender">Crystal Tender</option><option value="Deep Shaman">Deep Shaman</option><option value="Draconic Shaman">Draconic Shaman</option><option value="Grasping Vine">Grasping Vine</option><option value="Name-Keeper">Name-Keeper</option><option value="Overseer">Overseer</option><option value="Possessed Shaman">Possessed Shaman</option><option value="Primal Warden">Primal Warden</option><option value="Serendipity Shaman">Serendipity Shaman</option><option value="Speaker for the Past">Speaker for the Past</option><option value="Spirit Warden">Spirit Warden</option><option value="True Silvered Throne">True Silvered Throne</option><option value="Unsworn Shaman">Unsworn Shaman</option><option value="Visionary">Visionary</option><option value="Witch Doctor">Witch Doctor</option></select></div>
+<div><label>Spirit</label><select id="spirit"></select></div>
+<div class="row" id="wanderingSpiritRow" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;align-items:center"><label class="ineligibleToggle" style="grid-column:1/-1"><input type="checkbox" id="wanderingSpiritActive"> Using Wandering Spirit today</label><select id="wanderingSpiritName" style="grid-column:1/-1"></select></div>
 </div>
 <datalist id="raceList"></datalist>
-<div class="stats"><div class="stat"><b id="cl">0</b><span>Caster level</span></div><div class="stat"><b id="daily">0</b><span>Total spell slots/day</span></div><div class="stat"><b id="prepared">0</b><span>Prepared in normal slots</span></div></div><div id="levelButtons" class="levels"></div><div id="ctButtons" class="levels"></div><details class="rulenote"><summary>ⓘ spell preparation</summary><div id="ruleNote"></div></details></header><main><div id="slots" class="slotbar"></div><div class="toolbar"><div class="searchWrap"><svg class="searchIcon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="search" placeholder="Search spell name or description..."><button id="searchClear" type="button" title="Clear search" aria-label="Clear search">&times;</button></div><style>.searchWrap{position:relative}.searchWrap input{padding-left:26px;padding-right:24px}.searchIcon{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.searchWrap button{position:absolute;right:1px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:4px 7px}.searchWrap button:hover{color:var(--text)}</style><select id="filter"><option value="all">All spells</option><option value="prepared">Prepared only</option><option value="unprepared">Unprepared only</option><option value="ready">Ready to cast</option><option value="favorites">Favorites only</option></select><label class="ineligibleToggle"><input type="checkbox" id="showIneligible"> Show ineligible</label><button class="primary" id="newDay">New Day</button><button id="clear">Clear</button></div><div id="list"></div></main>
+<div class="stats"><div class="stat"><b id="cl">0</b><span>Caster level</span></div><div class="stat"><b id="daily">0</b><span>Total spell slots/day</span></div><div class="stat"><b id="prepared">0</b><span>Prepared in normal slots</span></div></div><div id="levelButtons" class="levels"></div><div id="ctButtons" class="levels"></div><details class="rulenote"><summary>ⓘ spell preparation</summary><div id="ruleNote"></div></details></header><main><div id="spiritMagicBox"></div><div id="slots" class="slotbar"></div><div class="toolbar"><div class="searchWrap"><svg class="searchIcon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="search" placeholder="Search spell name or description..."><button id="searchClear" type="button" title="Clear search" aria-label="Clear search">&times;</button></div><style>.searchWrap{position:relative}.searchWrap input{padding-left:26px;padding-right:24px}.searchIcon{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.searchWrap button{position:absolute;right:1px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:4px 7px}.searchWrap button:hover{color:var(--text)}</style><select id="filter"><option value="all">All spells</option><option value="prepared">Prepared only</option><option value="unprepared">Unprepared only</option><option value="ready">Ready to cast</option><option value="favorites">Favorites only</option></select><label class="ineligibleToggle"><input type="checkbox" id="showIneligible"> Show ineligible</label><button class="primary" id="newDay">New Day</button><button id="clear">Clear</button></div><div id="list"></div></main>
 <script src="../assets/valid-sources.js"></script>
 <script src="../assets/casting-time.js"></script>
 <script src="../assets/spell-crossref.js"></script>
@@ -56,10 +58,38 @@ const RACE_ONLY_SOURCES=[...new Set(Object.values(RACE_SOURCE_MAP).flat())];
 
 const BASE={"1":[3,1,0,0,0,0,0,0,0,0],"2":[4,2,0,0,0,0,0,0,0,0],"3":[4,2,1,0,0,0,0,0,0,0],"4":[4,3,2,0,0,0,0,0,0,0],"5":[4,3,2,1,0,0,0,0,0,0],"6":[4,3,3,2,0,0,0,0,0,0],"7":[4,4,3,2,1,0,0,0,0,0],"8":[4,4,3,3,2,0,0,0,0,0],"9":[4,4,4,3,2,1,0,0,0,0],"10":[4,4,4,3,3,2,0,0,0,0],"11":[4,4,4,4,3,2,1,0,0,0],"12":[4,4,4,4,3,3,2,0,0,0],"13":[4,4,4,4,4,3,2,1,0,0],"14":[4,4,4,4,4,3,3,2,0,0],"15":[4,4,4,4,4,4,3,2,1,0],"16":[4,4,4,4,4,4,3,3,2,0],"17":[4,4,4,4,4,4,4,3,2,1],"18":[4,4,4,4,4,4,4,3,3,2],"19":[4,4,4,4,4,4,4,4,3,3],"20":[4,4,4,4,4,4,4,4,4,4]};
 const MIN_LEVEL={0:1,1:1,2:3,3:5,4:7,5:9,6:11,7:13,8:15,9:17};
+// SHAMAN-002: Spirit (chosen at 1st level) and the daily-changing Wandering Spirit
+// (a 4th-level hex) grant "Spirit Magic": one spontaneous spell slot per spell level
+// she can cast (never orisons), cast directly from the spirit's own fixed spell list --
+// separate from, and never counted toward, her normal prepared slots/knownCap. Every
+// spirit's own list verified against Archives of Nethys (ShamanSpiritDisplay.aspx).
+// Dark Tapestry (Horror Realms) is the one official spirit left out: half its list is
+// the non-standard "Contact Entity I-IV" spells, which aren't in this site's spell
+// database under any name, so a card could not be sourced for it in this pass.
+const SPIRITS={
+  'Battle':{source:'Advanced Class Guide pg. 40',spells:{1:'Enlarge Person',2:'Fog Cloud',3:'Magic Vestment',4:'Wall of Fire',5:'Righteous Might',6:"Mass Bull's Strength",7:'Control Weather',8:'Earthquake',9:'Storm of Vengeance'}},
+  'Bones':{source:'Advanced Class Guide pg. 40',spells:{1:'Cause Fear',2:'False Life',3:'Animate Dead',4:'Fear',5:'Slay Living',6:'Circle of Death',7:'Control Undead',8:'Horrid Wilting',9:'Wail of the Banshee'}},
+  'Flame':{source:'Advanced Class Guide pg. 41',spells:{1:'Burning Hands',2:'Resist Energy',3:'Fireball',4:'Wall of Fire',5:'Summon Monster V',6:'Fire Seeds',7:'Fire Storm',8:'Incendiary Cloud',9:'Fiery Body'}},
+  'Heavens':{source:'Advanced Class Guide pg. 41',spells:{1:'Color Spray',2:'Hypnotic Pattern',3:'Daylight',4:'Rainbow Pattern',5:'Overland Flight',6:'Chain Lightning',7:'Prismatic Spray',8:'Sunburst',9:'Meteor Swarm'}},
+  'Life':{source:'Advanced Class Guide pg. 41',spells:{1:'Detect Undead',2:'Lesser Restoration',3:'Neutralize Poison',4:'Restoration',5:'Breath of Life',6:'Heal',7:'Greater Restoration',8:'Mass Heal',9:'True Resurrection'}},
+  'Lore':{source:'Advanced Class Guide pg. 42',spells:{1:'Identify',2:'Tongues',3:'Locate Object',4:'Legend Lore',5:'Contact Other Plane',6:"Mass Owl's Wisdom",7:'Vision',8:'Moment of Prescience',9:'Time Stop'}},
+  'Nature':{source:'Advanced Class Guide pg. 42',spells:{1:'Charm Animal',2:'Barkskin',3:'Speak with Plants',4:'Grove of Respite',5:'Awaken',6:'Stone Tell',7:'Creeping Doom',8:'Animal Shapes',9:'World Wave'}},
+  'Stone':{source:'Advanced Class Guide pg. 42',spells:{1:'Magic Stone',2:'Stone Call',3:'Meld into Stone',4:'Wall of Stone',5:'Stoneskin',6:'Stone Tell',7:'Statue',8:'Repel Metal or Stone',9:'Clashing Rocks'}},
+  'Waves':{source:'Advanced Class Guide pg. 43',spells:{1:'Hydraulic Push',2:'Slipstream',3:'Water Breathing',4:'Wall of Ice',5:'Geyser',6:'Fluid Form',7:'Vortex',8:'Seamantle',9:'Tsunami'}},
+  'Wind':{source:'Advanced Class Guide pg. 46',spells:{1:'Alter Winds',2:'Gust of Wind',3:'Cloak of Winds',4:'River of Wind',5:'Control Winds',6:'Sirocco',7:'Control Weather',8:'Whirlwind',9:'Winds of Vengeance'}},
+  'Wood':{source:'Ultimate Wilderness pg. 93',spells:{1:'Shillelagh',2:'Barkskin',3:'Minor Creation',4:'Thorn Body',5:'Tree Stride',6:'Ironwood',7:'Transmute Metal to Wood',8:'Changestaff',9:'Wooden Phalanx'}},
+  'Ancestors':{source:'Cohorts and Companions pg. 19',spells:{1:'Unseen Servant',2:'Spiritual Weapon',3:'Heroism',4:'Spiritual Ally',5:'Telekinesis',6:'Heroism, Greater',7:'Ethereal Jaunt',8:'Vision',9:'Astral Projection'}},
+  'Frost':{source:'Heroes of Golarion pg. 10',spells:{1:'Frostbite',2:'Elemental Touch',3:'Elemental Aura',4:'Ice Storm',5:'Summon Monster V',6:'Freezing Sphere',7:'Ice Body',8:'Polar Ray',9:'Icy Prison, Mass'}},
+  'Mammoth':{source:"Adventurer's Guide pg. 132",spells:{1:'Enlarge Person',2:"Bull's Strength",3:'Rage',4:'Stoneskin',5:'Beast Shape III',6:'Tar Pool',7:"Summon Nature's Ally VII",8:'Frightful Aspect',9:'Polar Midnight'}},
+  'Slums':{source:'Heroes of the Streets pg. 21',spells:{1:'Charm Person',2:'Summon Swarm',3:'Hold Person',4:'Confusion',5:'Wall of Stone',6:'Mislead',7:'Hold Person, Mass',8:'Maze',9:'Imprisonment'}},
+  'Tribe':{source:'Wilderness Origins pg. 24',spells:{1:'Bless',2:'Shield Other',3:'Create Food and Water',4:'Spiritual Ally',5:'Life Bubble',6:'Battlemind Link',7:'Vision',8:'Discern Location',9:'Mass Heal'}}
+};
+function spiritSpellAt(spiritName,l){let sp=SPIRITS[spiritName];return sp?sp.spells[l]:null}
+function effectiveSpirit(){return (state.wanderingSpiritActive&&state.wanderingSpiritName)?state.wanderingSpiritName:state.spirit}
 const STORE_KEY='shamanUniversalSpellbookPF1V1';
 const $=id=>document.getElementById(id);
 function statRow(label,val){return val?`<div class="stat-row"><b>${label}</b> ${val}</div>`:''}
-function defaultState(){return {archetype:'',level:1,wis:18,race:'',prep:{},used:[0,0,0,0,0,0,0,0,0,0],show:[0,1,2,3,4,5,6,7,8,9],fav:{},cast:{},excludedSources:{},showIneligible:false,forbidden:{},allowed:{},sourcesCustomized:false};}
+function defaultState(){return {archetype:'',level:1,wis:18,race:'',prep:{},used:[0,0,0,0,0,0,0,0,0,0],show:[0,1,2,3,4,5,6,7,8,9],fav:{},cast:{},excludedSources:{},showIneligible:false,forbidden:{},allowed:{},sourcesCustomized:false,spirit:'',wanderingSpiritActive:false,wanderingSpiritName:'',spiritCast:{}};}
 function applyDefaultsToState(s){let d=defaultState();Object.keys(d).forEach(k=>{if(s[k]===undefined)s[k]=d[k]});return s}
 function loadStore(){
   let raw=localStorage.getItem(STORE_KEY);
@@ -121,6 +151,10 @@ let state=store.profiles[store.active];
 
 for(let i=1;i<=20;i++)$('level').add(new Option(i,i));
 for(let i=8;i<=30;i++)$('wis').add(new Option(i,i));
+$('spirit').add(new Option('— choose a Spirit —',''));
+Object.keys(SPIRITS).sort().forEach(n=>$('spirit').add(new Option(n,n)));
+$('wanderingSpiritName').add(new Option('— choose the Wandering Spirit —',''));
+Object.keys(SPIRITS).sort().forEach(n=>$('wanderingSpiritName').add(new Option(n,n)));
 RACES.forEach(n=>{let o=document.createElement('option');o.value=n;$('raceList').appendChild(o)});
 ['race'].forEach(alwaysOpenDatalist);
 
@@ -158,6 +192,9 @@ function loadProfileIntoUI(){
   $('level').value=state.level;$('wis').value=state.wis;
   $('race').value=state.race;
   $('archetype').value=state.archetype||'';
+  $('spirit').value=state.spirit||'';
+  $('wanderingSpiritActive').checked=!!state.wanderingSpiritActive;
+  $('wanderingSpiritName').value=state.wanderingSpiritName||'';
   $('showIneligible').checked=state.showIneligible;
   applyRaceSourceExclusions();
   render();
@@ -223,7 +260,7 @@ function baseSlots(l){return (BASE[state.level]||[0,0,0,0,0,0,0,0,0,0])[l]||0}
 function canCast(l){return state.level>=MIN_LEVEL[l]&&state.wis>=10+l&&(baseSlots(l)>0||bonus(l)>0)}
 function normalSlots(l){return canCast(l)?baseSlots(l)+bonus(l):0}
 function prepCount(l){return Object.entries(state.prep).filter(([k,v])=>v&&+k.split('|')[0]===l).reduce((a,[k,v])=>a+v,0)}
-function totalDaily(){let n=0;for(let l=0;l<=9;l++)n+=normalSlots(l);return n}
+function totalDaily(){let n=0;for(let l=1;l<=9;l++)n+=normalSlots(l);return n}
 
 function normName(n){return (n||'').replace(/\s*\([^)]*\)\s*$/,'').trim().toLowerCase()}
 
@@ -247,20 +284,34 @@ function renderSlots(){
   let b=$('slots');b.innerHTML='';
   for(let l=0;l<=9;l++){
     let d=document.createElement('div');d.className='slot'+(canCast(l)?'':' disabled');
-    let n=normalSlots(l),used=Math.min(state.used[l]||0,n);state.used[l]=used;
-    d.innerHTML=`<b>${l===0?'Ori':'L'+l}</b> ${n-used}/${n} remaining<br><small>${n} normal${l===0?' (not expended)':''}</small>`;
-    d.onclick=()=>{if(!canCast(l))return;state.used[l]=(used+1)%(n+1);save();renderSlots()};
+    let n=normalSlots(l);
+    if(l===0){
+      // SHAMAN-001: orisons are cast at will once prepared -- never expended, so this
+      // box isn't a consumable click target the way every other level's is. Also
+      // self-heals state.used[0] back to 0 for any profile saved before this fix.
+      state.used[0]=0;
+      d.innerHTML=`<b>Ori</b> ${prepCount(0)}/${n} prepared<br><small>cast at will</small>`;
+    } else {
+      let used=Math.min(state.used[l]||0,n);state.used[l]=used;
+      d.innerHTML=`<b>L${l}</b> ${n-used}/${n} remaining<br><small>${n} normal</small>`;
+      d.onclick=()=>{if(!canCast(l))return;state.used[l]=(used+1)%(n+1);save();renderSlots()};
+    }
     b.appendChild(d)
   }
 }
 function reasonsFor(l,s){let r=[];if(!canCast(l)){if(state.level<MIN_LEVEL[l])r.push('Requires shaman level '+MIN_LEVEL[l]+'+');else if(state.wis<10+l)r.push('Requires Wisdom '+(10+l)+'+');else r.push('No spell slots at this level yet')}let key=l+'|'+s.n;if(state.forbidden[key]!==undefined)r.push('Marked prohibited'+(state.forbidden[key]?': '+state.forbidden[key]:''));return r}
 function buildCard(l,s,ineligible){
   let key=l+'|'+s.n,c=state.prep[key]||0;
-  let fav=!!state.fav[key],cast=Math.min(state.cast[key]||0,c);state.cast[key]=cast;
+  let fav=!!state.fav[key],cast=(l===0)?0:Math.min(state.cast[key]||0,c);state.cast[key]=cast;
   let realReasons=reasonsFor(l,s);let overridden=!!state.allowed[key]&&realReasons.length>0;let reasons=(realReasons.length&&!overridden)?realReasons:[];
   let card=document.createElement('div');
   card.className='card'+(canCast(l)?'':' disabled')+(ineligible&&!overridden?' ineligible':'');
-  card.innerHTML=`<div class="head"><div><div class="name">${s.n}</div>${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}${reasons.length?`<div class="reasontag">${reasons.join('; ')}</div>`:''}${overridden?'<div class="overridetag">Allowed anyway</div>':''}</div><div class="prep"><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button>${realReasons.length?`<button class="allowbtn${state.allowed[key]?' active':''}" title="${state.allowed[key]?'Stop allowing (undo override)':'Allow anyway (bypass this restriction)'}" aria-label="Allow anyway">🔓</button>`:''}<button class="forbidbtn${state.forbidden[key]!==undefined?' active':''}" title="Mark as prohibited" aria-label="Prohibited">🚫</button><button class="minus">−</button><span class="count">${c}</span><button class="plus">+</button></div></div>${c>0?`<div class="pips" title="Click to mark cast today"><span class="pipdots">${Array.from({length:c},(_,i)=>`<span class="pip${i<cast?' used':''}"></span>`).join('')}</span><span class="pipcount">${cast}/${c} cast</span></div>`:''}<details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${PFSpellRefs.linkify(p,s.n)}</p>`).join('')}</div></details>`;
+  // SHAMAN-001: orisons (0-level) are prepared like any other level (a "how many
+  // distinct orisons do you know" cap, via prepCount(0)<=normalSlots(0) below,
+  // unchanged), but RAW they're cast AT WILL once prepared -- unlimited uses/day, no
+  // consumable counter, never touching used[0]. Every other level still gets the
+  // normal cast-today pip.
+  card.innerHTML=`<div class="head"><div><div class="name">${s.n}</div>${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}${reasons.length?`<div class="reasontag">${reasons.join('; ')}</div>`:''}${overridden?'<div class="overridetag">Allowed anyway</div>':''}</div><div class="prep"><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button>${realReasons.length?`<button class="allowbtn${state.allowed[key]?' active':''}" title="${state.allowed[key]?'Stop allowing (undo override)':'Allow anyway (bypass this restriction)'}" aria-label="Allow anyway">🔓</button>`:''}<button class="forbidbtn${state.forbidden[key]!==undefined?' active':''}" title="Mark as prohibited" aria-label="Prohibited">🚫</button><button class="minus">−</button><span class="count">${c}</span><button class="plus">+</button></div></div>${(c>0&&l===0)?`<div class="pipcount">Cast at will — orisons don't expend a slot</div>`:''}${(c>0&&l>0)?`<div class="pips" title="Click to mark cast today"><span class="pipdots">${Array.from({length:c},(_,i)=>`<span class="pip${i<cast?' used':''}"></span>`).join('')}</span><span class="pipcount">${cast}/${c} cast</span></div>`:''}<details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${PFSpellRefs.linkify(p,s.n)}</p>`).join('')}</div></details>`;
   card.querySelector('.plus').onclick=overridden?()=>{state.prep[key]=c+1;save();render()}:()=>{if(!canCast(l))return;if(prepCount(l)>=normalSlots(l))return alert('All normal level '+l+' preparation slots are already filled.');state.prep[key]=c+1;save();render()};
   card.querySelector('.minus').onclick=()=>{if(c>0){state.prep[key]=c-1;save();render()}};
   card.querySelector('.favbtn').onclick=()=>{if(fav)delete state.fav[key];else state.fav[key]=true;save();render()};
@@ -277,7 +328,7 @@ function renderList(){
       let key=l+'|'+s.n,p=(state.prep[key]||0)>0,fav=!!state.fav[key];
       if(f==='prepared')return p;
       if(f==='unprepared')return !p;
-      if(f==='ready')return p&&(state.cast[key]||0)<(state.prep[key]||0);
+      if(f==='ready')return p&&(l===0||(state.cast[key]||0)<(state.prep[key]||0));
       if(f==='favorites')return fav;
       return true
     });
@@ -301,14 +352,39 @@ function renderList(){
 }
 function renderSources(){let box=$('sourceList');box.innerHTML='';let all=[...new Set(currentSpells().map(s=>s.source||'Unknown'))].sort();all.forEach(src=>{let lbl=document.createElement('label');let cb=document.createElement('input');cb.type='checkbox';cb.checked=!state.excludedSources[src];cb.onchange=()=>{state.sourcesCustomized=true;if(cb.checked)delete state.excludedSources[src];else state.excludedSources[src]=true;save();renderList();renderSourcesNote()};lbl.appendChild(cb);lbl.appendChild(document.createTextNode(src));box.appendChild(lbl)});renderSourcesNote()}function renderSourcesNote(){let el=$('sourcesNote');if(!el)return;el.textContent=state.sourcesCustomized?'Customized for this character':'Following the site\'s global Valid Sources'}$('srcResetGlobal').onclick=()=>{state.sourcesCustomized=false;applyGlobalSourcesToProfile(state);save();renderSources();renderList()};function render(){
   $('cl').textContent=state.level;
+  $('wanderingSpiritActive').checked=!!state.wanderingSpiritActive;
   $('daily').textContent=totalDaily();
   $('prepared').textContent=Object.values(state.prep).reduce((a,v)=>a+(+v||0),0);
-  $('ruleNote').textContent='Preparation is tracked per spell level, like a cleric, from the full shaman spell list — no alignment restriction. Their Spirit (chosen at 1st level) and the daily-changing Wandering Spirit grant separate spirit magic and bonus spells that aren\'t modeled here.';
+  $('ruleNote').textContent='Preparation is tracked per spell level, like a cleric, from the full shaman spell list — no alignment restriction. Their Spirit (chosen at 1st level) grants Spirit Magic: one spontaneous spell slot per spell level (see the panel above the spell list), cast directly from the spirit\'s own list, separate from and never counted toward normal preparation. The daily-changing Wandering Spirit (a 4th-level hex) lets her swap to a different spirit\'s list for the day instead.';
   document.querySelector('.rulenote summary').title=$('ruleNote').textContent;
-  renderButtons();renderCtButtons();renderSlots();renderSources();renderList()
+  renderButtons();renderCtButtons();renderSlots();renderSpiritMagic();renderSources();renderList()
 }
-$('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};save();render()};
+function renderSpiritMagic(){
+  let box=$('spiritMagicBox');if(!box)return;
+  let spiritName=effectiveSpirit();
+  let sp=spiritName?SPIRITS[spiritName]:null;
+  if(!sp){box.innerHTML='';return;}
+  let rows=[];
+  for(let l=1;l<=9;l++){
+    if(!canCast(l))continue;
+    let name=sp.spells[l];
+    if(!name)continue;
+    let cast=!!state.spiritCast[l];
+    let key=l+'|'+name;
+    let hasCard=currentSpells().some(s=>s.l===l&&s.n===name);
+    rows.push(`<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:8px"><div><b>L${l}</b> ${name}${hasCard?'':' <span style="color:var(--muted);font-size:.7rem">(no catalog entry — search/reference this spell elsewhere)</span>'}</div><button class="spiritCastBtn${cast?' active':''}" data-level="${l}">${cast?'Cast ✓':'Cast today'}</button></div>`);
+  }
+  if(!rows.length){box.innerHTML='';return;}
+  box.innerHTML=`<div class="rulenote" style="margin-bottom:10px"><b>Spirit Magic — ${spiritName}</b>${(state.wanderingSpiritActive&&state.wanderingSpiritName)?' (Wandering Spirit today)':''}<div style="font-size:.72rem;color:var(--muted);margin:4px 0 8px">One spontaneous spell slot per spell level, cast from ${spiritName}'s own list — separate from your normal prepared slots, never counted against them.</div>${rows.join('')}</div>`;
+  box.querySelectorAll('.spiritCastBtn').forEach(btn=>{
+    btn.onclick=()=>{let l=+btn.dataset.level;state.spiritCast[l]=!state.spiritCast[l];save();renderSpiritMagic()};
+  });
+}
+$('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};state.spiritCast={};save();render()};
 $('wis').onchange=e=>{state.wis=+e.target.value;state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};save();render()};
+$('spirit').onchange=e=>{state.spirit=e.target.value;state.spiritCast={};save();render()};
+$('wanderingSpiritActive').onchange=()=>{state.wanderingSpiritActive=$('wanderingSpiritActive').checked;state.spiritCast={};save();render()};
+$('wanderingSpiritName').onchange=e=>{state.wanderingSpiritName=e.target.value;state.spiritCast={};save();render()};
 function applyRaceSourceExclusions(){
   RACE_ONLY_SOURCES.forEach(src=>{
     let allowed=RACE_SOURCE_MAP[state.race]&&RACE_SOURCE_MAP[state.race].includes(src);
@@ -316,10 +392,10 @@ function applyRaceSourceExclusions(){
   });
 }
 $('race').oninput=()=>{state.race=$('race').value.trim();applyRaceSourceExclusions();save();renderSources();render()};
-$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=state.used.map(()=>0);state.cast={};save();renderSources();render()};
+$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=state.used.map(()=>0);state.cast={};state.spiritCast={};save();renderSources();render()};
 $('search').oninput=renderList;$('searchClear').onclick=()=>{$('search').value='';renderList();$('search').focus()};$('filter').onchange=renderList;$('showIneligible').checked=state.showIneligible;$('showIneligible').onchange=()=>{state.showIneligible=$('showIneligible').checked;save();renderList()};
 $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};save();renderSources();renderList()};$('srcNone').onclick=()=>{state.sourcesCustomized=true;[...new Set(currentSpells().map(s=>s.source||'Unknown'))].forEach(src=>state.excludedSources[src]=true);save();renderSources();renderList()};
-$('newDay').onclick=()=>{state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};save();render()};
+$('newDay').onclick=()=>{state.used=[0,0,0,0,0,0,0,0,0,0];state.cast={};state.spiritCast={};state.wanderingSpiritActive=false;save();render()};
 $('clear').onclick=()=>{state.prep={};state.cast={};save();render()};
 loadProfileIntoUI();
 if("serviceWorker" in navigator){
