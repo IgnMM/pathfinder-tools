@@ -303,7 +303,7 @@ function buildCard(l,s,ineligible){
     save();render();
   };
   let pips=card.querySelector('.pips');if(pips)pips.onclick=()=>{
-    if(state.forbidden[key]!==undefined&&!overridden)return;
+    if((state.forbidden[key]!==undefined||!canCast(l))&&!overridden)return;
     let nc=(cast+1)%(cap+1);let delta=nc-cast;
     if(!overridden&&delta>0&&(state.used[l]||0)>=cap)return;
     state.cast[key]=nc;state.used[l]=Math.max(0,Math.min(cap,(state.used[l]||0)+delta));save();render()
