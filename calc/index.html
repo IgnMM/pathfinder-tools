@@ -654,14 +654,14 @@ const WILD_SHAPE_FORMS=[
  {id:'leopard',name:'Leopard',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
    {name:'Bite',qty:1,kind:'primary',die:'1d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Claw',qty:2,kind:'primary',die:'1d3',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
-   {name:'Rake',qty:2,kind:'conditional',die:'1d3',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+   {name:'Rake',qty:2,kind:'conditional',minTier:'BS III',die:'1d3',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
  {id:'boar',name:'Boar',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
    {name:'Gore',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
  {id:'monitor-lizard',name:'Monitor Lizard',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
    {name:'Bite',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
  {id:'constrictor-snake',name:'Constrictor Snake',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
    {name:'Bite',qty:1,kind:'primary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2},
-   {name:'Constrict',qty:1,kind:'conditional',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+   {name:'Constrict',qty:1,kind:'conditional',minTier:'BS III',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
  {id:'deinonychus',name:'Deinonychus',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
    {name:'Talon',qty:2,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Bite',qty:1,kind:'primary',die:'1d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
@@ -674,11 +674,11 @@ const WILD_SHAPE_FORMS=[
  {id:'lion',name:'Lion',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
    {name:'Bite',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Claw',qty:2,kind:'primary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
-   {name:'Rake',qty:2,kind:'conditional',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+   {name:'Rake',qty:2,kind:'conditional',minTier:'BS III',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
  {id:'tiger',name:'Tiger',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
    {name:'Claw',qty:2,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Bite',qty:1,kind:'primary',die:'2d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
-   {name:'Rake',qty:2,kind:'conditional',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+   {name:'Rake',qty:2,kind:'conditional',minTier:'BS III',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
  {id:'crocodile',name:'Crocodile',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
    {name:'Bite',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Tail Slap',qty:1,kind:'secondary',die:'1d12',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:0.5,threat:'20',critMult:2}]},
@@ -693,7 +693,7 @@ const WILD_SHAPE_FORMS=[
  {id:'elephant',name:'Elephant',size:'Huge',tier:'Beast Shape III',lvl:8,str:6,dex:-4,con:0,attacks:[
    {name:'Gore',qty:1,kind:'primary',die:'2d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Slam',qty:1,kind:'primary',die:'2d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
-   {name:'Trample',qty:1,kind:'conditional',die:'2d8',atkAbility:'none',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+   {name:'Trample',qty:1,kind:'conditional',minTier:'BS III',die:'2d8',atkAbility:'none',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
  {id:'ankylosaurus',name:'Ankylosaurus',size:'Huge',tier:'Beast Shape III',lvl:8,str:6,dex:-4,con:0,attacks:[
    {name:'Tail',qty:1,kind:'primary',die:'3d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]}
 ];
@@ -3904,6 +3904,7 @@ function loadProfileIntoUI(){
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
   $('unarmedDice').value=p.unarmedDice||'1d3'; $('unarmedThreat').value=p.unarmedThreat||'20';
   $('naturalOrigin').value=p.naturalOrigin||'';
+  populateWildShapeFormSelect();
   $('wildShapeForm').value=p.wildShapeFormId||'';
   $('style').value=p.style; $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat; $('enh').value=p.enh; $('critMult').value=p.critMult;
   $('compositeBowStrRating').value=p.compositeBowStrRating||0;
@@ -5254,14 +5255,23 @@ $('addNaturalAttack').addEventListener('click',()=>{
   saveStore(); renderNaturalAttackLines(); compute();
 });
 
+// Every form is always selectable, regardless of the sheet's own level -- the minimum
+// druid level/tier is shown as pure information (and an optional ⚠ warning once we have
+// a level to compare against, via the sheet's existing Character Level field), never as
+// a block. The player is responsible for only picking a form legal for their build.
 function populateWildShapeFormSelect(){
   let sel=$('wildShapeForm');
+  let prevVal=sel.value;
+  let charLevel=+((currentProfile()||{}).characterLevel)||0;
   sel.innerHTML='<option value="">— none / manual —</option>';
   WILD_SHAPE_FORMS.forEach(f=>{
     let o=document.createElement('option'); o.value=f.id;
-    o.textContent=f.name+' ('+f.size+', '+f.tier+', druid lvl '+f.lvl+'+)';
+    let label=f.name+' — '+f.size+' — '+f.tier;
+    if(charLevel && charLevel<f.lvl) label+=' ⚠ Normally requires '+f.tier+' (druid lvl '+f.lvl+'+)';
+    o.textContent=label;
     sel.appendChild(o);
   });
+  sel.value=prevVal;
 }
 populateWildShapeFormSelect();
 $('wildShapeForm').addEventListener('change',()=>{
@@ -5288,7 +5298,11 @@ $('wildShapeForm').addEventListener('change',()=>{
     p.wildShapeFormId=formId;
     p.weaponCategory='natural';
     p.naturalOrigin='wildshape';
-    p.naturalAttacks=f.attacks.map(a=>Object.assign({},a));
+    // A conditional special ability (Rake/Constrict/Trample) always gets added along
+    // with the rest of the form's routine -- its minimum tier is shown right in the
+    // name as information, never as a block, per the same "inform and warn, allow
+    // manual correction" principle as the form picker itself.
+    p.naturalAttacks=f.attacks.map(a=>Object.assign({}, a, {name: a.minTier ? a.name+' — '+a.minTier : a.name}));
   }
   saveStore(); loadProfileIntoUI();
 });
