@@ -316,7 +316,7 @@ function buildCard(l,s,ineligible){
   card.querySelector('.minus').onclick=()=>{if(c>0){state.prep[key]=c-1;save();render()}};
   card.querySelector('.favbtn').onclick=()=>{if(fav)delete state.fav[key];else state.fav[key]=true;save();render()};
   let ab=card.querySelector('.allowbtn');if(ab)ab.onclick=()=>{if(state.allowed[key])delete state.allowed[key];else state.allowed[key]=true;save();render()};card.querySelector('.forbidbtn').onclick=()=>{if(state.forbidden[key]!==undefined){delete state.forbidden[key]}else{let note=prompt('Optional note — why is this spell prohibited?','')||'';state.forbidden[key]=note}save();render()};
-  let pips=card.querySelector('.pips');if(pips)pips.onclick=()=>{let nc=(cast+1)%(c+1);let delta=nc-cast;state.cast[key]=nc;let cap=normalSlots(l);state.used[l]=Math.max(0,Math.min(cap,(state.used[l]||0)+delta));save();render()};
+  let pips=card.querySelector('.pips');if(pips)pips.onclick=()=>{if(state.forbidden[key]!==undefined&&!overridden)return;let nc=(cast+1)%(c+1);let delta=nc-cast;state.cast[key]=nc;let cap=normalSlots(l);state.used[l]=Math.max(0,Math.min(cap,(state.used[l]||0)+delta));save();render()};
   return card
 }
 function renderList(){
