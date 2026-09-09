@@ -580,11 +580,18 @@ const WEAPONS={
   repeatingLightCrossbow:{dice:'1d8',threat:'19–20',mult:2,cat:'exotic-ranged',source:'Core Rulebook',ranged:true,ammo:'bolts',name:'Repeating light crossbow'},
   ropeDart:{dice:'1d4',threat:'20',mult:2,cat:'exotic-ranged',source:'Ultimate Combat',ranged:true,ammo:'thrown',name:'Rope dart'},
   shuriken:{dice:'1d2',threat:'20',mult:2,cat:'exotic-ranged',source:'Core Rulebook',ranged:true,ammo:'thrown',name:'Shuriken'},
-  throwingShield:{dice:'1d6',threat:'20',mult:2,cat:'exotic-ranged',source:'Ultimate Combat',ranged:true,ammo:'thrown',name:'Throwing shield'}
+  throwingShield:{dice:'1d6',threat:'20',mult:2,cat:'exotic-ranged',source:'Ultimate Combat',ranged:true,ammo:'thrown',name:'Throwing shield'},
+  natBite:{dice:'1d6',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Bite'},
+  natClaw:{dice:'1d4',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Claw'},
+  natSlam:{dice:'1d4',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Slam'},
+  natGore:{dice:'1d6',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Gore'},
+  natTailSlap:{dice:'1d6',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Tail slap'},
+  natTentacle:{dice:'1d4',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Tentacle'},
+  natWing:{dice:'1d4',threat:'20',mult:2,cat:'natural',source:'Core Rulebook (Bestiary Appendix)',ranged:false,natural:true,name:'Wing'}
 };
 
-const WEAPON_CAT_ORDER=["simple-light","simple-one-handed","simple-two-handed","simple-ranged","martial-light","martial-one-handed","martial-two-handed","martial-ranged","exotic-light","exotic-one-handed","exotic-two-handed","exotic-ranged"];
-const WEAPON_CAT_LABEL={"simple-light":"Simple, Light","simple-one-handed":"Simple, One-Handed","simple-two-handed":"Simple, Two-Handed","simple-ranged":"Simple, Ranged","martial-light":"Martial, Light","martial-one-handed":"Martial, One-Handed","martial-two-handed":"Martial, Two-Handed","martial-ranged":"Martial, Ranged","exotic-light":"Exotic, Light","exotic-one-handed":"Exotic, One-Handed","exotic-two-handed":"Exotic, Two-Handed","exotic-ranged":"Exotic, Ranged"};
+const WEAPON_CAT_ORDER=["simple-light","simple-one-handed","simple-two-handed","simple-ranged","martial-light","martial-one-handed","martial-two-handed","martial-ranged","exotic-light","exotic-one-handed","exotic-two-handed","exotic-ranged","natural"];
+const WEAPON_CAT_LABEL={"simple-light":"Simple, Light","simple-one-handed":"Simple, One-Handed","simple-two-handed":"Simple, Two-Handed","simple-ranged":"Simple, Ranged","martial-light":"Martial, Light","martial-one-handed":"Martial, One-Handed","martial-two-handed":"Martial, Two-Handed","martial-ranged":"Martial, Ranged","exotic-light":"Exotic, Light","exotic-one-handed":"Exotic, One-Handed","exotic-two-handed":"Exotic, Two-Handed","exotic-ranged":"Exotic, Ranged","natural":"Natural Attacks (Medium creature)"};
 
 const RACES=["Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Aasimar","Adaro","Android","Aphorite","Aquatic Elf","Astomoi","Being of Ib","Boggard","Caligni","Catfolk","Cecaelia","Changeling","Deep One Hybrid","Dhampir","Drow","Drow Noble","Duergar","Duskwalker","Fetchling","Ganzi","Gathlain","Ghoran","Gillman","Goblin","Green Martian","Grindylow","Grippli","Hobgoblin","Ifrit","Kasatha","Kitsune","Kobold","Kuru","Lashunta","Locathah","Merfolk","Monkey Goblin","Munavri","Nagaji","Naiad","Orang-Pendak","Orc","Oread","Primitive Human","Ratfolk","Reborn Samsaran","Reptoid","Rougarou","Sahuagin","Samsaran","Shabti","Skinwalker","Strix","Suli","Svirfneblin","Sylph","Syrinx","Tengu","Tiefling","Triaxian","Triton","Trox","Undine","Vanara","Vine Leshy","Vishkanya","Wayang","Wyrwood","Wyvaran","Yaddithian"];
 const RACE_SOURCE_MAP={"Dwarf":["Dwarves of Golarion"],"Goblin":["Goblins of Golarion"],"Kobold":["Kobolds of Golarion"],"Orc":["Orcs of Golarion"],"Half-Orc":["Orcs of Golarion"],"Human":["Humans of Golarion"]};
@@ -4636,9 +4643,9 @@ function compute(){
   // Person active gets TWO steps, not one. Two effective-category sources can't both apply
   // to the same weapon anyway, since Lead Blades is melee-only and Gravity Bow is
   // bow/crossbow-only.
-  let mainIsCarriedMelee = weaponKey==='custom' ? !$('customNatural').checked : !!(w && !w.ranged);
+  let mainIsCarriedMelee = weaponKey==='custom' ? !$('customNatural').checked : !!(w && !w.ranged && !w.natural);
   let mainIsBowOrCrossbow = weaponKey!=='custom' && !!(w && w.ranged && (w.ammo==='arrows'||w.ammo==='bolts'));
-  let offIsCarriedMelee = offWeaponKey==='custom' ? !$('offCustomNatural').checked : !!(wOff && !wOff.ranged);
+  let offIsCarriedMelee = offWeaponKey==='custom' ? !$('offCustomNatural').checked : !!(wOff && !wOff.ranged && !wOff.natural);
   let offIsBowOrCrossbow = offWeaponKey!=='custom' && !!(wOff && wOff.ranged && (wOff.ammo==='arrows'||wOff.ammo==='bolts'));
   let leadBladesOnMain = !!leadBladesRec && (leadBladesRec.weaponSlot||'both')!=='off' && mainIsCarriedMelee;
   let leadBladesOnOff = !!leadBladesRec && (leadBladesRec.weaponSlot||'both')!=='main' && offIsCarriedMelee;

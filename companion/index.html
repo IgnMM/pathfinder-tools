@@ -241,9 +241,17 @@ function diceMultiply(dice,mult){
 }
 // Official Core Rulebook "Weapon Damage Size Conversion" table (one size category
 // larger). Applied twice for Strong Jaw ("as if two sizes larger").
-const SIZE_UP_MEDIUM_TO_LARGE={'1':'1d2','1d2':'1d3','1d3':'1d4','1d4':'1d6','1d6':'1d8','1d8':'2d6','1d10':'2d8','1d12':'3d6','2d4':'2d6','2d6':'3d6','2d8':'3d8','2d10':'4d8'};
+// Single per-die-value chain (see the identical table in calc/index.html) -- correct
+// however many times it's applied in a row, including Strong Jaw's own two-step effect
+// stacked with Animal Growth's one-step actual increase (three total steps).
+const SIZE_UP_MEDIUM_TO_LARGE={'1':'1d2','1d2':'1d3','1d3':'1d4','1d4':'1d6','1d6':'1d8','1d8':'2d6','1d10':'2d8','1d12':'3d6','2d4':'2d6','2d6':'3d6','2d8':'3d8','2d10':'4d8','3d6':'4d6','3d8':'4d8','4d8':'6d8'};
 function diceSizeUp(dice){
   return SIZE_UP_MEDIUM_TO_LARGE[String(dice).trim()] || dice;
+}
+function applySizeSteps(dice, steps){
+  let d=dice;
+  for(let i=0;i<steps;i++) d=diceSizeUp(d);
+  return d;
 }
 function abilityBuffBonus(ctx, ability, scoreBonus){
   let modBonus = scoreBonus/2;
@@ -363,11 +371,11 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
  compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'int',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Intelligence isn\'t the selected attack/damage ability above'}}},
 {id:'strong-jaw',name:'Strong Jaw',category:'spell',source:'Advanced Class Guide (Druid 4th / Ranger 3rd)',appliesTo:[],type:'special',
- desc:'Touch spell. Every natural attack the target makes deals damage as if it were two size categories larger (does not change anything else, and does not stack with actual size increases). Not a flat number here — while active, every attack line\'s Damage Die above is automatically shown upsized two steps.',
+ desc:'Touch spell. Every natural attack the target makes deals damage as if it were two size categories larger (an EFFECTIVE size increase — does not change anything else about the creature). Per the PF1e FAQ ("Size increases and effective size increases"), this stacks with an actual size increase like Animal Growth (one of each category) — not with another effective increase, or another casting of itself. Not a flat number here — while active, every attack line\'s Damage Die above is automatically shown upsized two steps (three if Animal Growth is also active).',
  compute:()=>({attack:0,damage:0,note:'special — every attack line\'s Damage Die above already shows the two-step size-up'})},
 {id:'animal-growth',name:'Animal Growth',category:'spell',source:'Core Rulebook (Druid 5th / Ranger 4th)',appliesTo:['attack','damage'],type:'size',
  configFields:[{key:'value',label:'Str size bonus',type:'number',default:8}],
- desc:'Touch spell — the target animal grows one size category: +8 size bonus to Strength (below), -1 size penalty on attack rolls from growing (applied automatically, always — not tied to which ability is selected above), +4 size bonus to Constitution and -2 size penalty to Dexterity (not modeled here, ability-score-only effect), +2 natural armor (not modeled here). Assumes growing exactly ONE size category (the common case) — adjust by hand for a different starting size. Does NOT stack with Strong Jaw or another casting of itself (same size-changing effect). While active, every attack line\'s Damage Die above is shown one size step larger.',
+ desc:'Touch spell — the target animal grows one size category (an ACTUAL size increase): +8 size bonus to Strength (below), -1 size penalty on attack rolls from growing (applied automatically, always — not tied to which ability is selected above), +4 size bonus to Constitution and -2 size penalty to Dexterity (not modeled here, ability-score-only effect), +2 natural armor (not modeled here). Assumes growing exactly ONE size category (the common case) — adjust by hand for a different starting size. Does NOT stack with another casting of itself (same actual-size-increase effect), but per the PF1e FAQ ("Size increases and effective size increases") it DOES stack with an effective size increase like Strong Jaw (one of each category). While active, every attack line\'s Damage Die above is shown one size step larger (three if Strong Jaw is also active).',
  compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'str',cfg.value!==undefined?cfg.value:8);let atk=r.attack-1;return {attack:atk,damage:r.damage,note:signed(atk)+' atk ('+(r.attack?('+'+r.attack+' size from Strength, -1 size penalty from growing'):'-1 size penalty from growing, no Strength effect since Strength isn\'t the selected attack ability above')+') / '+signed(r.damage)+' dmg'}}},
 {id:'heroism',name:'Heroism',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'morale',
  desc:'+2 morale bonus on attack rolls (also on saves and skill checks, not modeled here).',
@@ -953,9 +961,13 @@ function compute(){
       let atk = (+line.atkBonus||0) + hitAbilityMod + lineAtkFromMods + enh + manHit;
       let dmgBonus = strContribution + dmgFromMods + enh + manDmg;
       let die = (line.die||'1d4').trim();
-      let effDie = die;
-      if(strongJawOn) effDie = diceSizeUp(diceSizeUp(effDie));
-      else if(animalGrowthOn) effDie = diceSizeUp(effDie);
+      // Animal Growth is an ACTUAL size increase (1 step); Strong Jaw is an EFFECTIVE
+      // size increase (2 steps, per its own text: "as if it were two size categories
+      // larger" -- without actually changing size). Per the PF1e FAQ ("Size increases
+      // and effective size increases"), one of each category stacks -- so both active at
+      // once give 1+2 = 3 total steps, not just Strong Jaw's 2.
+      let sizeSteps = (animalGrowthOn?1:0) + (strongJawOn?2:0);
+      let effDie = applySizeSteps(die, sizeSteps);
       let critMult = +line.critMult||2;
       let critDmg = dmgBonus*critMult;
       if(paNoCritMult && powerAttackOn && powerAttackDmgVal) critDmg = (dmgBonus-powerAttackDmgVal)*critMult + powerAttackDmgVal;
@@ -981,9 +993,9 @@ function compute(){
   let notes=[];
   notes.push('Shared modifiers this turn: '+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg (from active Feats/Spells/Other Effects above) — applied to every attack line.');
   notes.push('"Primary (full Str)" lines use '+(ctx.style==='twoHanded'?'×1.5 Str (only one natural attack this round)':'×1 Str')+'; "Secondary (half Str)" lines use half (rounded down — a penalty is not halved).');
-  if(strongJawOn) notes.push('Strong Jaw is active — every attack line\'s Damage Die above already shows the two-size-category increase.');
-  if(animalGrowthOn && !strongJawOn) notes.push('Animal Growth is active — every attack line\'s Damage Die above already shows the one-size-category increase.');
-  if(animalGrowthOn && strongJawOn) notes.push('Both Strong Jaw and Animal Growth are active — these don\'t stack per RAW; the Damage Die above only shows Strong Jaw\'s two-step increase, remove one of the two.');
+  if(strongJawOn && !animalGrowthOn) notes.push('Strong Jaw is active — every attack line\'s Damage Die above already shows the two-size-category (effective) increase.');
+  if(animalGrowthOn && !strongJawOn) notes.push('Animal Growth is active — every attack line\'s Damage Die above already shows the one-size-category (actual) increase.');
+  if(animalGrowthOn && strongJawOn) notes.push('Both Animal Growth (actual size increase) and Strong Jaw (effective size increase) are active — per the PF1e FAQ, one of each category stacks, so every attack line\'s Damage Die above already shows all 3 steps combined (1 from Animal Growth + 2 from Strong Jaw).');
   if(powerAttackOn) notes.push('Power Attack\'s damage bonus is shared across every line at its full rate for simplicity — on a Secondary (half Str) line, its real Power Attack contribution is normally half that.');
   if(vsMult) notes.push('Vital Strike is active: Normal/Critical Damage above already include the extra dice for every line — remember this only applies to a single attack action (you should really only be using one attack line this round, matching "Only one natural attack this round?" above).');
   if(furiousFocusOn && !powerAttackOn) notes.push('Furious Focus is active but Power Attack isn\'t — Furious Focus has no effect without it.');
