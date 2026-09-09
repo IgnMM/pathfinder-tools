@@ -33,7 +33,7 @@
 <div><label>Archetype</label><select id="archetype"><option value="">— Base Investigator —</option><option value="Psychic Detective">Psychic Detective</option><option value="Questioner">Questioner</option></select></div>
 </div>
 <datalist id="raceList"></datalist>
-<div class="stats"><div class="stat"><b id="cl">0</b><span>Caster level</span></div><div class="stat"><b id="daily">0</b><span>Total spell slots/day</span></div><div class="stat"><b id="prepared">0</b><span>Prepared in normal slots</span></div></div><div id="levelButtons" class="levels"></div><div id="ctButtons" class="levels"></div><details class="rulenote"><summary>ⓘ caster level &amp; alignment</summary><div id="ruleNote"></div></details></header><main><div id="slots" class="slotbar"></div><div class="toolbar"><div class="searchWrap"><svg class="searchIcon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="search" placeholder="Search spell name or description..."><button id="searchClear" type="button" title="Clear search" aria-label="Clear search">&times;</button></div><style>.searchWrap{position:relative}.searchWrap input{padding-left:26px;padding-right:24px}.searchIcon{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.searchWrap button{position:absolute;right:1px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:4px 7px}.searchWrap button:hover{color:var(--text)}</style><select id="filter"><option value="all">All spells</option><option value="prepared">Prepared only</option><option value="unprepared">Unprepared only</option><option value="ready">Ready to cast</option><option value="favorites">Favorites only</option></select><label class="ineligibleToggle"><input type="checkbox" id="showIneligible"> Show ineligible</label><button class="primary" id="newDay">New Day</button><button id="clear">Clear</button></div><div id="list"></div></main>
+<div class="stats"><div class="stat"><b id="cl">0</b><span>Caster level</span></div><div class="stat"><b id="daily">0</b><span>Total spell slots/day</span></div><div class="stat"><b id="prepared">0</b><span id="preparedLabel">Prepared in normal slots</span></div></div><div id="levelButtons" class="levels"></div><div id="ctButtons" class="levels"></div><details class="rulenote"><summary>ⓘ caster level &amp; alignment</summary><div id="ruleNote"></div></details></header><main><div id="slots" class="slotbar"></div><div class="toolbar"><div class="searchWrap"><svg class="searchIcon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="search" placeholder="Search spell name or description..."><button id="searchClear" type="button" title="Clear search" aria-label="Clear search">&times;</button></div><style>.searchWrap{position:relative}.searchWrap input{padding-left:26px;padding-right:24px}.searchIcon{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.searchWrap button{position:absolute;right:1px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:4px 7px}.searchWrap button:hover{color:var(--text)}</style><select id="filter"><option value="all">All spells</option><option value="prepared" id="filterPrepared">Prepared only</option><option value="unprepared" id="filterUnprepared">Unprepared only</option><option value="ready">Ready to cast</option><option value="favorites">Favorites only</option></select><label class="ineligibleToggle"><input type="checkbox" id="showIneligible"> Show ineligible</label><button class="primary" id="newDay">New Day</button><button id="clear">Clear</button></div><div id="list"></div></main>
 <script src="../assets/valid-sources.js"></script>
 <script src="../assets/casting-time.js"></script>
 <script src="../assets/spell-crossref.js"></script>
@@ -61,10 +61,28 @@ const BASE={"1":[1,0,0,0,0,0],"2":[2,0,0,0,0,0],"3":[3,0,0,0,0,0],"4":[3,1,0,0,0
 // the table above first shows a real number for that column, which is also the earliest an
 // Intelligence-based bonus extract of that level could appear.
 const MIN_LEVEL={1:1,2:4,3:7,4:10,5:13,6:16};
+// INV-ARCH-001: Psychic Detective and Questioner both REPLACE the investigator's own
+// extract-preparation engine with true spontaneous casting (known spells drawn from a
+// shared daily slot pool), using another class's own spells-known/slots-per-day
+// progression at the investigator's own level -- not the extract table above, and not
+// the "prepare copies" model the rest of this file uses. Tables copied verbatim from
+// that class's own tool (bard/index.html, psychic/index.html) so the numbers stay a
+// single source of truth rather than being retyped and risking a transcription error.
+const QUESTIONER_SLOTS={"1":[0,1,0,0,0,0,0],"2":[0,2,0,0,0,0,0],"3":[0,3,0,0,0,0,0],"4":[0,3,1,0,0,0,0],"5":[0,4,2,0,0,0,0],"6":[0,4,3,0,0,0,0],"7":[0,4,3,1,0,0,0],"8":[0,4,4,2,0,0,0],"9":[0,5,4,3,0,0,0],"10":[0,5,4,3,1,0,0],"11":[0,5,4,4,2,0,0],"12":[0,5,5,4,3,0,0],"13":[0,5,5,4,3,1,0],"14":[0,5,5,4,4,2,0],"15":[0,5,5,5,4,3,0],"16":[0,5,5,5,4,3,1],"17":[0,5,5,5,4,4,2],"18":[0,5,5,5,5,4,3],"19":[0,5,5,5,5,5,4],"20":[0,5,5,5,5,5,5]};
+const QUESTIONER_KNOWN={"1":[4,2,0,0,0,0,0],"2":[5,3,0,0,0,0,0],"3":[6,4,0,0,0,0,0],"4":[6,4,2,0,0,0,0],"5":[6,4,3,0,0,0,0],"6":[6,4,4,0,0,0,0],"7":[6,5,4,2,0,0,0],"8":[6,5,4,3,0,0,0],"9":[6,5,4,4,0,0,0],"10":[6,5,5,4,2,0,0],"11":[6,6,5,4,3,0,0],"12":[6,6,5,4,4,0,0],"13":[6,6,5,5,4,2,0],"14":[6,6,6,5,4,3,0],"15":[6,6,6,5,4,4,0],"16":[6,6,6,5,5,4,2],"17":[6,6,6,6,5,4,3],"18":[6,6,6,6,5,4,4],"19":[6,6,6,6,5,5,4],"20":[6,6,6,6,6,5,5]};
+const PSYDET_SLOTS={"1":[0,3,0,0,0,0,0,0,0,0],"2":[0,4,0,0,0,0,0,0,0,0],"3":[0,5,0,0,0,0,0,0,0,0],"4":[0,6,3,0,0,0,0,0,0,0],"5":[0,6,4,0,0,0,0,0,0,0],"6":[0,6,5,3,0,0,0,0,0,0],"7":[0,6,6,4,0,0,0,0,0,0],"8":[0,6,6,5,3,0,0,0,0,0],"9":[0,6,6,6,4,0,0,0,0,0],"10":[0,6,6,6,5,3,0,0,0,0],"11":[0,6,6,6,6,4,0,0,0,0],"12":[0,6,6,6,6,5,3,0,0,0],"13":[0,6,6,6,6,6,4,0,0,0],"14":[0,6,6,6,6,6,5,3,0,0],"15":[0,6,6,6,6,6,6,4,0,0],"16":[0,6,6,6,6,6,6,5,3,0],"17":[0,6,6,6,6,6,6,6,4,0],"18":[0,6,6,6,6,6,6,6,5,3],"19":[0,6,6,6,6,6,6,6,6,4],"20":[0,6,6,6,6,6,6,6,6,6]};
+const PSYDET_KNOWN={"1":[4,2,0,0,0,0,0,0,0,0],"2":[5,2,0,0,0,0,0,0,0,0],"3":[5,3,0,0,0,0,0,0,0,0],"4":[6,3,1,0,0,0,0,0,0,0],"5":[6,4,2,0,0,0,0,0,0,0],"6":[7,4,2,1,0,0,0,0,0,0],"7":[7,5,3,2,0,0,0,0,0,0],"8":[8,5,3,2,1,0,0,0,0,0],"9":[8,5,4,3,2,0,0,0,0,0],"10":[9,5,4,3,2,1,0,0,0,0],"11":[9,5,4,4,3,2,0,0,0,0],"12":[9,5,5,4,3,2,1,0,0,0],"13":[9,5,5,4,4,3,2,0,0,0],"14":[9,5,5,4,4,3,2,1,0,0],"15":[9,5,5,4,4,4,3,2,0,0],"16":[9,5,5,4,4,4,3,2,1,0],"17":[9,5,5,4,4,4,3,3,2,0],"18":[9,5,5,4,4,4,3,3,2,1],"19":[9,5,5,4,4,4,3,3,3,2],"20":[9,5,5,4,4,4,3,3,3,3]};
+const SPONTANEOUS_ARCHETYPES={
+  'Questioner':{slots:QUESTIONER_SLOTS,known:QUESTIONER_KNOWN,maxLevel:6},
+  'Psychic Detective':{slots:PSYDET_SLOTS,known:PSYDET_KNOWN,maxLevel:9}
+};
+function spontAdapter(){return SPONTANEOUS_ARCHETYPES[state.archetype]||null}
+function minLevel(){return spontAdapter()?0:1}
+function maxLevel(){let sa=spontAdapter();return sa?sa.maxLevel:6}
 const STORE_KEY='investigatorUniversalSpellbookPF1V1';
 const $=id=>document.getElementById(id);
 function statRow(label,val){return val?`<div class="stat-row"><b>${label}</b> ${val}</div>`:''}
-function defaultState(){return {archetype:'',level:1,int:18,race:'',prep:{},used:[0,0,0,0,0,0,0],show:[1,2,3,4,5,6],fav:{},cast:{},excludedSources:{},showIneligible:false,forbidden:{},allowed:{},sourcesCustomized:false};}
+function defaultState(){return {archetype:'',level:1,int:18,race:'',prep:{},known:{},used:Array(10).fill(0),show:[1,2,3,4,5,6],fav:{},cast:{},excludedSources:{},showIneligible:false,forbidden:{},allowed:{},sourcesCustomized:false};}
 function applyDefaultsToState(s){let d=defaultState();Object.keys(d).forEach(k=>{if(s[k]===undefined)s[k]=d[k]});return s}
 function loadStore(){
   let raw=localStorage.getItem(STORE_KEY);
@@ -88,7 +106,7 @@ Object.values(store.profiles).forEach(applyDefaultsToState);
   Object.values(store.profiles).forEach(p=>{
     let list=(ARCHETYPES[p.archetype]&&ARCHETYPES[p.archetype].spells)||SPELLS;
     let validKeys=new Set(list.map(s=>s.l+'|'+s.n));
-    ['prep','fav','cast','forbidden'].forEach(field=>{
+    ['prep','fav','cast','forbidden','known'].forEach(field=>{
       Object.keys(p[field]).forEach(k=>{ if(!validKeys.has(k)){ delete p[field][k]; changed=true; } });
     });
   });
@@ -224,25 +242,28 @@ PRESENT_CT=PFCastingTime.presentCategories(SPELLS);
 })();
 populateProfileSelect();
 function mod(){return Math.floor((state.int-10)/2)}
-function bonus(l){let m=mod();if(m<l)return 0;return 1+Math.floor((m-l)/4)}
-function baseSlots(l){return (BASE[state.level]||[0,0,0,0])[l-1]||0}
+function bonus(l){if(l===0)return 0;let m=mod();if(m<l)return 0;return 1+Math.floor((m-l)/4)}
+function baseSlots(l){let sa=spontAdapter();if(sa)return (sa.slots[state.level]||[])[l]||0;return (BASE[state.level]||[0,0,0,0])[l-1]||0}
+function knownCap(l){let sa=spontAdapter();if(!sa)return 0;return (sa.known[state.level]||[])[l]||0}
 function casterLevel(){return state.level}
-function canCast(l){return state.level>=MIN_LEVEL[l]&&state.int>=10+l&&(baseSlots(l)>0||bonus(l)>0)}
-function normalSlots(l){return canCast(l)?baseSlots(l)+bonus(l):0}
+function canCast(l){let sa=spontAdapter();if(sa)return state.int>=10+l&&knownCap(l)>0;return state.level>=MIN_LEVEL[l]&&state.int>=10+l&&(baseSlots(l)>0||bonus(l)>0)}
+function normalSlots(l){if(l===0)return 0;return canCast(l)?baseSlots(l)+bonus(l):0}
 function prepCount(l){return Object.entries(state.prep).filter(([k,v])=>v&&+k.split('|')[0]===l).reduce((a,[k,v])=>a+v,0)}
-function totalDaily(){let n=0;for(let l=1;l<=6;l++)n+=normalSlots(l);return n}
+function knownCount(l){return Object.keys(state.known).filter(k=>state.known[k]&&+k.split('|')[0]===l).length}
+function totalDaily(){let n=0;for(let l=1;l<=maxLevel();l++)n+=normalSlots(l);return n}
 
 
 function renderButtons(){
   let b=$('levelButtons');b.innerHTML='';
-  let all=document.createElement('button');all.textContent='All';all.className=state.show.length===6?'active':'';
-  all.onclick=()=>{state.show=[1,2,3,4,5,6];save();render()};b.appendChild(all);
-  for(let l=1;l<=6;l++){
-    let x=document.createElement('button');x.textContent='L'+l;
-    x.className=(state.show.length<6&&state.show.includes(l))?'active':'';
+  let mn=minLevel(),mx=maxLevel(),full=[];for(let l=mn;l<=mx;l++)full.push(l);
+  let all=document.createElement('button');all.textContent='All';all.className=state.show.length===full.length?'active':'';
+  all.onclick=()=>{state.show=full.slice();save();render()};b.appendChild(all);
+  for(let l=mn;l<=mx;l++){
+    let x=document.createElement('button');x.textContent=l===0?'Ori':'L'+l;
+    x.className=(state.show.length<full.length&&state.show.includes(l))?'active':'';
     x.onclick=()=>{
-      if(state.show.length===6){state.show=[l]}
-      else if(state.show.includes(l)){let next=state.show.filter(v=>v!==l);state.show=next.length?next:[1,2,3,4,5,6]}
+      if(state.show.length===full.length){state.show=[l]}
+      else if(state.show.includes(l)){let next=state.show.filter(v=>v!==l);state.show=next.length?next:full.slice()}
       else{state.show=[...state.show,l].sort((a,b)=>a-b)}
       save();render()
     };
@@ -251,17 +272,58 @@ function renderButtons(){
 }
 function renderSlots(){
   let b=$('slots');b.innerHTML='';
-  for(let l=1;l<=6;l++){
+  let sa=spontAdapter();
+  for(let l=minLevel();l<=maxLevel();l++){
     let d=document.createElement('div');d.className='slot'+(canCast(l)?'':' disabled');
-    let n=normalSlots(l),used=Math.min(state.used[l]||0,n);state.used[l]=used;
-    d.innerHTML=`<b>L${l}</b> ${n-used}/${n} remaining<br><small>${n} normal</small>`;
-    d.onclick=()=>{if(!canCast(l))return;state.used[l]=(used+1)%(n+1);save();renderSlots()};
+    if(sa&&l===0){
+      d.innerHTML=`<b>Ori</b> ${knownCount(0)}/${knownCap(0)} known<br><small>cast at will</small>`;
+    } else {
+      let n=normalSlots(l),used=Math.min(state.used[l]||0,n);state.used[l]=used;
+      d.innerHTML=`<b>L${l}</b> ${n-used}/${n} remaining<br><small>${n} ${sa?'slots/day':'normal'}</small>`;
+      d.onclick=()=>{if(!canCast(l))return;state.used[l]=(used+1)%(n+1);save();renderSlots()};
+    }
     b.appendChild(d)
   }
 }
-function reasonsFor(l,s){let r=[];if(!canCast(l)){if(state.level<MIN_LEVEL[l])r.push('Requires investigator level '+MIN_LEVEL[l]+'+');else if(state.int<10+l)r.push('Requires Intelligence '+(10+l)+'+');else r.push('No extract slots at this level yet')}let key=l+'|'+s.n;if(state.forbidden[key]!==undefined)r.push('Marked prohibited'+(state.forbidden[key]?': '+state.forbidden[key]:''));return r}
+function reasonsFor(l,s){
+  let r=[];let sa=spontAdapter();
+  if(!canCast(l)){
+    if(sa){
+      if(state.int<10+l)r.push('Requires Intelligence '+(10+l)+'+');
+      else r.push('No spells known at this level yet');
+    } else {
+      if(state.level<MIN_LEVEL[l])r.push('Requires investigator level '+MIN_LEVEL[l]+'+');
+      else if(state.int<10+l)r.push('Requires Intelligence '+(10+l)+'+');
+      else r.push('No extract slots at this level yet');
+    }
+  }
+  let key=l+'|'+s.n;if(state.forbidden[key]!==undefined)r.push('Marked prohibited'+(state.forbidden[key]?': '+state.forbidden[key]:''));
+  return r
+}
 function buildCard(l,s,ineligible){
-  let key=l+'|'+s.n,c=state.prep[key]||0;
+  let sa=spontAdapter();
+  let key=l+'|'+s.n;
+  if(sa){
+    let known=!!state.known[key];
+    let fav=!!state.fav[key];let cap=l>0?normalSlots(l):0;let cast=Math.min(state.cast[key]||0,cap);state.cast[key]=cast;
+    let realReasons=reasonsFor(l,s);let overridden=!!state.allowed[key]&&realReasons.length>0;let reasons=(realReasons.length&&!overridden)?realReasons:[];
+    let card=document.createElement('div');
+    card.className='card'+(canCast(l)?'':' disabled')+(ineligible&&!overridden?' ineligible':'');
+    card.innerHTML=`<div class="head"><div><div class="name">${s.n}</div>${s.save?`<div class="savebadge">Save: ${s.save}</div>`:''}${s.source?`<div class="sourcebadge">${s.source}</div>`:''}${reasons.length?`<div class="reasontag">${reasons.join('; ')}</div>`:''}${overridden?'<div class="overridetag">Allowed anyway</div>':''}</div><div class="prep"><button class="favbtn${fav?' active':''}" title="Favorite" aria-label="Favorite">${fav?'★':'☆'}</button>${realReasons.length?`<button class="allowbtn${state.allowed[key]?' active':''}" title="${state.allowed[key]?'Stop allowing (undo override)':'Allow anyway (bypass this restriction)'}" aria-label="Allow anyway">🔓</button>`:''}<button class="forbidbtn${state.forbidden[key]!==undefined?' active':''}" title="Mark as prohibited" aria-label="Prohibited">🚫</button><button class="knowbtn${known?' active':''}">${known?'Known ✓':'Known'}</button></div></div>${(known&&cap>0)?`<div class="pips" title="Click to mark cast today"><span class="pipdots">${Array.from({length:cap},(_,i)=>`<span class="pip${i<cast?' used':''}"></span>`).join('')}</span><span class="pipcount">${cast}/${cap} cast</span></div>`:''}${(known&&l===0)?`<div class="pipcount">Cast at will — cantrips don't expend a slot</div>`:''}<details class="desc"><summary>Description</summary><div class="stat-block">${statRow('School',s.school)}${statRow('Casting Time',s.castingTime)}${statRow('Components',s.components)}${statRow('Range',s.range)}${statRow('Target/Area',s.target)}${statRow('Duration',s.duration)}${statRow('Saving Throw',s.save)}${statRow('Spell Resistance',s.sr)}</div><div class="effect-text">${(s.effect||'').split('\n\n').map(p=>`<p>${PFSpellRefs.linkify(p,s.n)}</p>`).join('')}</div></details>`;
+    card.querySelector('.knowbtn').onclick=()=>{
+      if(known){delete state.known[key];save();render();return;}
+      if(!overridden){
+        if(!canCast(l))return;
+        if(knownCount(l)>=knownCap(l))return alert('All '+knownCap(l)+' known spell'+(knownCap(l)===1?'':'s')+' at this level are already chosen.');
+      }
+      state.known[key]=true;save();render();
+    };
+    let pips=card.querySelector('.pips');if(pips)pips.onclick=()=>{let nc=(cast+1)%(cap+1);let delta=nc-cast;if(!overridden&&delta>0&&(state.used[l]||0)>=cap)return;state.cast[key]=nc;state.used[l]=Math.max(0,Math.min(cap,(state.used[l]||0)+delta));save();render()};
+    card.querySelector('.favbtn').onclick=()=>{if(fav)delete state.fav[key];else state.fav[key]=true;save();render()};
+    let ab=card.querySelector('.allowbtn');if(ab)ab.onclick=()=>{if(state.allowed[key])delete state.allowed[key];else state.allowed[key]=true;save();render()};card.querySelector('.forbidbtn').onclick=()=>{if(state.forbidden[key]!==undefined){delete state.forbidden[key]}else{let note=prompt('Optional note — why is this spell prohibited?','')||'';state.forbidden[key]=note}save();render()};
+    return card
+  }
+  let c=state.prep[key]||0;
   let fav=!!state.fav[key],cast=Math.min(state.cast[key]||0,c);state.cast[key]=cast;
   let realReasons=reasonsFor(l,s);let overridden=!!state.allowed[key]&&realReasons.length>0;let reasons=(realReasons.length&&!overridden)?realReasons:[];
   let card=document.createElement('div');
@@ -276,11 +338,21 @@ function buildCard(l,s,ineligible){
 }
 function renderList(){
   let q=$('search').value.toLowerCase(),f=$('filter').value,out=$('list');out.innerHTML='';
+  let sa=spontAdapter();
   for(let l of state.show){
     let ctShown=state.ctShow||PRESENT_CT;
     let arr=currentSpells().filter(s=>s.l===l&&(s.n+' '+(s.effect||'')).toLowerCase().includes(q)&&!state.excludedSources[s.source||'Unknown']&&(()=>{let cats=PFCastingTime.ctCategory(s.castingTime);return cats.length===0||cats.some(c=>ctShown.includes(c))})());
     arr=arr.filter(s=>{
-      let key=l+'|'+s.n,p=(state.prep[key]||0)>0,fav=!!state.fav[key];
+      let key=l+'|'+s.n,fav=!!state.fav[key];
+      if(sa){
+        let k=!!state.known[key];
+        if(f==='prepared')return k;
+        if(f==='unprepared')return !k;
+        if(f==='ready')return k&&(l===0||(state.cast[key]||0)<normalSlots(l));
+        if(f==='favorites')return fav;
+        return true
+      }
+      let p=(state.prep[key]||0)>0;
       if(f==='prepared')return p;
       if(f==='unprepared')return !p;
       if(f==='ready')return p&&(state.cast[key]||0)<(state.prep[key]||0);
@@ -289,8 +361,8 @@ function renderList(){
     });
     let eligible=arr.filter(s=>(canCast(l)&&state.forbidden[l+'|'+s.n]===undefined)||state.allowed[l+'|'+s.n]);
     let ineligible=arr.filter(s=>!((canCast(l)&&state.forbidden[l+'|'+s.n]===undefined)||state.allowed[l+'|'+s.n]));
-    let preppedIneligible=ineligible.filter(s=>(state.prep[l+'|'+s.n]||0)>0);
-    let otherIneligible=ineligible.filter(s=>!((state.prep[l+'|'+s.n]||0)>0));
+    let preppedIneligible=ineligible.filter(s=>sa?!!state.known[l+'|'+s.n]:(state.prep[l+'|'+s.n]||0)>0);
+    let otherIneligible=ineligible.filter(s=>sa?!state.known[l+'|'+s.n]:!((state.prep[l+'|'+s.n]||0)>0));
     if(!eligible.length&&!preppedIneligible.length&&!(state.showIneligible&&otherIneligible.length))continue;
     let sec=document.createElement('section');
     sec.innerHTML=`<h2>Level ${l} <span class="dc">DC ${10+l+mod()}</span></h2><div class="grid"></div>`;
@@ -309,13 +381,17 @@ function renderSources(){let box=$('sourceList');box.innerHTML='';let all=[...ne
 function render(){
   $('cl').textContent=casterLevel();
   $('daily').textContent=totalDaily();
-  $('prepared').textContent=Object.values(state.prep).reduce((a,v)=>a+(+v||0),0);
-  $('ruleNote').textContent='Investigators can be any alignment — no extract is ever blocked by alignment. Caster level equals investigator level exactly, and 1st-level extracts are available from level 1; extracts only go up to 6th level, unlike a full 9th-level caster. Bonus extracts and DCs use INTELLIGENCE — an investigator needs Intelligence 10 + extract level just to prepare an extract of that level at all. Extracts are prepared like spells but consumed by drinking, like a potion, once made.';
+  let sa=spontAdapter();
+  $('prepared').textContent=sa?Object.values(state.known).filter(Boolean).length:Object.values(state.prep).reduce((a,v)=>a+(+v||0),0);
+  $('preparedLabel').textContent=sa?'Spells known':'Prepared in normal slots';
+  $('filterPrepared').textContent=sa?'Known only':'Prepared only';
+  $('filterUnprepared').textContent=sa?'Unknown only':'Unprepared only';
+  $('ruleNote').textContent=sa?('This archetype replaces extract preparation with true spontaneous casting: you have a fixed list of KNOWN spells (click "Known" to learn one, up to the cap shown per level) drawn from a shared pool of spell slots per day. The known/slots-per-day progression is borrowed from '+(state.archetype==='Questioner'?'the bard\'s':'the psychic\'s')+' own table at your investigator level — not the extract table. Casting a known spell (via its pips) draws from that level\'s shared pool; cantrips are cast at will and never expend a slot. Bonus spells and DCs still use INTELLIGENCE, and investigators can be any alignment.'):'Investigators can be any alignment — no extract is ever blocked by alignment. Caster level equals investigator level exactly, and 1st-level extracts are available from level 1; extracts only go up to 6th level, unlike a full 9th-level caster. Bonus extracts and DCs use INTELLIGENCE — an investigator needs Intelligence 10 + extract level just to prepare an extract of that level at all. Extracts are prepared like spells but consumed by drinking, like a potion, once made.';
   document.querySelector('.rulenote summary').title=$('ruleNote').textContent;
   renderButtons();renderCtButtons();renderSlots();renderSources();renderList()
 }
-$('level').onchange=e=>{state.level=+e.target.value;state.used=[0,0,0,0,0,0,0];state.cast={};save();render()};
-$('int').onchange=e=>{state.int=+e.target.value;state.used=[0,0,0,0,0,0,0];state.cast={};save();render()};
+$('level').onchange=e=>{state.level=+e.target.value;state.used=Array(10).fill(0);state.cast={};save();render()};
+$('int').onchange=e=>{state.int=+e.target.value;state.used=Array(10).fill(0);state.cast={};save();render()};
 function applyRaceSourceExclusions(){
   RACE_ONLY_SOURCES.forEach(src=>{
     let allowed=RACE_SOURCE_MAP[state.race]&&RACE_SOURCE_MAP[state.race].includes(src);
@@ -323,11 +399,11 @@ function applyRaceSourceExclusions(){
   });
 }
 $('race').oninput=()=>{state.race=$('race').value.trim();applyRaceSourceExclusions();save();renderSources();render()};
-$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=state.used.map(()=>0);state.cast={};save();renderSources();render()};
+$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=Array(10).fill(0);state.cast={};state.show=(()=>{let a=[];for(let l=minLevel();l<=maxLevel();l++)a.push(l);return a})();save();renderSources();render()};
 $('search').oninput=renderList;$('searchClear').onclick=()=>{$('search').value='';renderList();$('search').focus()};$('filter').onchange=renderList;$('showIneligible').checked=state.showIneligible;$('showIneligible').onchange=()=>{state.showIneligible=$('showIneligible').checked;save();renderList()};
 $('srcAll').onclick=()=>{state.sourcesCustomized=true;state.excludedSources={};save();renderSources();renderList()};$('srcNone').onclick=()=>{state.sourcesCustomized=true;[...new Set(currentSpells().map(s=>s.source||'Unknown'))].forEach(src=>state.excludedSources[src]=true);save();renderSources();renderList()};
-$('newDay').onclick=()=>{state.used=[0,0,0,0,0];state.cast={};save();render()};
-$('clear').onclick=()=>{state.prep={};state.cast={};save();render()};
+$('newDay').onclick=()=>{state.used=Array(10).fill(0);state.cast={};save();render()};
+$('clear').onclick=()=>{state.prep={};state.known={};state.cast={};save();render()};
 
 // Full Investigator extract list (levels 1-6), derived from this site's own
 // spell-master-index.json; use the Sources panel to narrow
