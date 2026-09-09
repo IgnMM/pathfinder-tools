@@ -178,6 +178,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div><label>CHA</label><input id="cha" type="number" value="6"></div>
 </div>
 <div id="strDexAdjNote" class="emptyNote"></div>
+<div id="multiattackNote" class="emptyNote"></div>
 <div class="row" style="margin-top:10px"><label>Ability → Attack rolls</label>
 <select id="atkStat">
   <option value="str" selected>Strength</option>
@@ -549,20 +550,25 @@ function applyEntityTypeUI(){
 function applyProgressionUI(autoFillBab){
   let cls=$('sourceClass').value, ownerLvl=+$('ownerLevel').value||0;
   let eff=effectiveCompanionLevel(cls, ownerLvl);
-  let effNote=$('effectiveLevelNote'), adjNote=$('strDexAdjNote');
+  let effNote=$('effectiveLevelNote'), adjNote=$('strDexAdjNote'), maNote=$('multiattackNote');
   if(cls==='paladin'||cls==='cavalier'){
     effNote.textContent='Paladin/Cavalier mounts use a different progression table, not modeled here yet — set BAB and ability scores by hand.';
-    adjNote.textContent='';
+    adjNote.textContent=''; maNote.textContent='';
     return;
   }
   if(!cls || eff===null || eff<=0){
     effNote.textContent = cls==='ranger' ? 'A ranger companion starts at 4th level (effective level = ranger level − 3) — not active yet at this level.' : '';
-    adjNote.textContent='';
+    adjNote.textContent=''; maNote.textContent='';
     return;
   }
   let row=ANIMAL_COMPANION_TABLE[Math.max(1,Math.min(20,eff))];
   effNote.textContent='Effective companion level '+eff+' (Animal Companion Base Statistics, Core Rulebook).';
   adjNote.textContent = row.strDexAdj ? ('Str/Dex advancement at this level: +'+row.strDexAdj+' — already added to the base scores above for the actual attack/damage math.') : 'No Str/Dex advancement yet at this level.';
+  // At effective companion level 9, the Animal Companion table grants Multiattack if the
+  // companion already has 3+ natural attacks, or (if it doesn't) a second attack with one
+  // of its existing natural weapons at -5 -- purely informational since which applies
+  // depends on the companion's own attack list, which the player must judge themselves.
+  maNote.textContent = eff>=9 ? 'Effective level 9+: qualifies for Multiattack if it already has 3+ natural attacks — add the Multiattack feat above (reduces Secondary attack penalties from -5 to -2). Otherwise it instead gains a second attack with one existing natural weapon at -5 — add that as a new attack line by hand.' : '';
   if(autoFillBab) $('bab').value=row.bab;
 }
 
