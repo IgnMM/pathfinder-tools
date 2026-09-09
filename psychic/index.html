@@ -440,7 +440,20 @@ function applyRaceSourceExclusions(){
   });
 }
 $('race').oninput=()=>{state.race=$('race').value.trim();applyRaceSourceExclusions();save();renderSources();render()};
-$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=state.used.map(()=>0);state.cast={};save();renderSources();render()};
+// STATE-ARCH-002: switching archetype can leave stale keys in state.known (etc.)
+// pointing at spells that no longer exist in the new archetype's currentSpells() --
+// knownCount() counted them anyway (since it only reads state.known, never checks
+// against the active list), so an invisible "known" spell from the OLD archetype could
+// silently eat into the new archetype's knownCap, blocking a legitimate new pick with
+// no way for the player to see why. Prune on every archetype change instead.
+function pruneInvalidKeys(){
+  let valid=new Set(currentSpells().map(s=>s.l+'|'+s.n));
+  ['known','fav','cast','forbidden','allowed'].forEach(field=>{
+    if(!state[field])return;
+    Object.keys(state[field]).forEach(k=>{ if(!valid.has(k)) delete state[field][k]; });
+  });
+}
+$('archetype').onchange=e=>{state.archetype=e.target.value;state.used=state.used.map(()=>0);state.cast={};pruneInvalidKeys();save();renderSources();render()};
 $('formlessBodyActive').onchange=()=>{state.formlessBodyActive=$('formlessBodyActive').checked;save();render()};
 $('constellation1').onchange=()=>{state.constellation1=$('constellation1').value;state.constellationPrep={};state.constellationCast={};save();render()};
 $('constellation2').onchange=()=>{state.constellation2=$('constellation2').value;state.constellationPrep={};state.constellationCast={};save();render()};
