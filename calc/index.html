@@ -4707,7 +4707,17 @@ function compute(){
   // only ever excludes PA from the CRITICAL-hit multiplier, never from the Mythic Vital
   // Strike multiplier).
   let dmgVS = (vsMult && mythicVitalStrikeOn) ? dmg*vsMult : dmg;
-  let critDmgVS = dmgVS*critMult;
+  // COMBINED-MULT-001 fix: dmgVS above already has the Mythic Vital Strike multiplier
+  // baked in, so multiplying it by critMult again (the old `dmgVS*critMult` default)
+  // compounds the two multipliers instead of combining them -- PF1e RAW is that
+  // multiple multipliers on the SAME flat value combine additively, not
+  // multiplicatively (1 + (vsMult-1) + (critMult-1), e.g. two x3's make x5, not x9).
+  // This default is what's actually used whenever Power Attack/Deadly Aim isn't in the
+  // picture (the branches below only ever override it when PA/DA IS active); the
+  // paNoCritMult branch already gets this right for its own case via the identical
+  // `vsMult + critMult - 1` formula, applied to `dmg` (the un-multiplied flat total)
+  // rather than to the already-VS-scaled dmgVS, for the same reason.
+  let critDmgVS = (vsMult && mythicVitalStrikeOn) ? dmg*(vsMult+critMult-1) : dmgVS*critMult;
   // Power Attack's own damage is part of dmg, so it's already been scaled ×vsMult inside
   // dmgVS above (Mythic Vital Strike scales it same as every other flat bonus). Any
   // adjustment below that carves Power Attack's damage back out of dmgVS to protect it
