@@ -284,6 +284,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div id="customWeapon" style="display:none">
   <div class="row"><label>Base Damage Dice</label><input id="customDice" value="1d8"></div>
   <div class="row"><label>Threat Range</label><input id="customThreat" value="20"></div>
+  <div class="row"><label title="Natural attacks (bite, claw, etc.) don't get Lead Blades/Gravity Bow's size-up — only carried melee weapons or bows/crossbows do.">Natural/Unarmed Attack (not carried)</label><input id="customNatural" type="checkbox" style="width:auto;justify-self:start"></div>
 </div>
 <div class="row"><label>Fighting Style</label>
 <select id="style">
@@ -322,6 +323,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div id="offCustomWeapon" style="display:none">
     <div class="row"><label>Off-Hand Base Damage Dice</label><input id="offCustomDice" value="1d6"></div>
     <div class="row"><label>Off-Hand Threat Range</label><input id="offCustomThreat" value="20"></div>
+    <div class="row"><label title="Natural attacks (bite, claw, etc.) don't get Lead Blades/Gravity Bow's size-up — only carried melee weapons or bows/crossbows do.">Off-Hand Natural/Unarmed Attack (not carried)</label><input id="offCustomNatural" type="checkbox" style="width:auto;justify-self:start"></div>
   </div>
   <div class="row"><label>Off-Hand Enhancement (+X)</label><input id="offEnh" type="number" min="0" max="10" value="0"></div>
   <div class="row"><label>Off-Hand Weapon Is Light</label><input id="offLight" type="checkbox" checked style="width:auto;justify-self:start"></div>
@@ -1090,6 +1092,9 @@ const MODIFIERS = [
 {id:"lead-blades",name:"Lead Blades",category:"spell",source:"Advanced Player's Guide",appliesTo:["damage"],type:"untyped",
  desc:"All melee weapons you're carrying deal damage as if one size category larger (e.g. a Medium longsword's 1d8 becomes 2d6). Personal only — doesn't affect anyone else wielding your weapon. Applied automatically to Normal/Critical Damage above; assumes a Medium wielder, per the Core Rulebook's Weapon Damage Size Conversion table.",
  compute:()=>({attack:0,damage:0,note:'weapon damage die increased one size category — applied automatically to Normal/Critical Damage above'}),companionCompatibility:{"schemaVersion":1,"attackRequirements":["meleeAttack","manufacturedWeaponOrNamedWeapon","criticalContext"],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["meleeAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","manufacturedMeleeWeaponCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."},"mount":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["meleeAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","manufacturedMeleeWeaponCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."},"familiar":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["meleeAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","manufacturedMeleeWeaponCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."},"eidolon":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["meleeAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","manufacturedMeleeWeaponCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."},"phantom":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["meleeAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","manufacturedMeleeWeaponCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."},"cohort":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["meleeAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","manufacturedMeleeWeaponCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"high"}},
+{id:"gravity-bow",name:"Gravity Bow",category:"spell",source:"Advanced Player's Guide",appliesTo:["damage"],type:"untyped",
+ desc:"Arrows/bolts fired from a bow or crossbow you're carrying deal damage as if the weapon were one size category larger (e.g. a Medium longbow's 1d8 becomes 2d6). Bows/crossbows only — doesn't affect thrown weapons, range increment, or ammo size. Personal only — if anyone else fires your bow, it deals normal damage. Applied automatically to Normal/Critical Damage above; assumes a Medium wielder, per the Core Rulebook's Weapon Damage Size Conversion table.",
+ compute:()=>({attack:0,damage:0,note:'weapon damage die increased one size category — applied automatically to Normal/Critical Damage above'}),companionCompatibility:{"schemaVersion":1,"attackRequirements":["rangedAttack","manufacturedWeaponOrNamedWeapon","criticalContext"],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["rangedAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","bowOrCrossbowCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."},"mount":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["rangedAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","bowOrCrossbowCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."},"familiar":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["rangedAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","bowOrCrossbowCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."},"eidolon":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["rangedAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","bowOrCrossbowCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."},"phantom":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["rangedAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","bowOrCrossbowCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."},"cohort":{"status":"applicable-if-valid-target","mode":"received-effect","requirements":["rangedAttack","manufacturedWeaponOrNamedWeapon","criticalContext","casterIsEntityOrShareSpells","bowOrCrossbowCarried"],"reason":"The entity can receive this spell if it is a legal target and no immunity blocks it."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"high"}},
 {id:"magic-stone",name:"Magic Stone",category:"weapon",subcat:"spell",source:"Core Rulebook",appliesTo:["attack","damage"],type:"enhancement",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"+1 enhancement bonus on attack and damage rolls for up to 3 enchanted thrown/slung pebbles.",
@@ -3679,8 +3684,8 @@ function saveStore(){
   }
 }
 function defaultProfile(name){
-  return {name, babList:[10], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20',
-    style:'twoHanded', atkStat:'str', dmgStat:'str', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
+  return {name, babList:[10], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weapon:'longsword', customDice:'1d8', customThreat:'20', customNatural:false,
+    style:'twoHanded', atkStat:'str', dmgStat:'str', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offCustomNatural:false, offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
     enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:'', deity:'', compositeBowStrRating:0};
 }
 let store=loadStore();
@@ -3710,6 +3715,8 @@ store.profiles.forEach(p=>{
   if(p.mythicEnabled===undefined) p.mythicEnabled=false;
   if(p.currentTarget===undefined) p.currentTarget='none';
   if(p.compositeBowStrRating===undefined) p.compositeBowStrRating=0;
+  if(p.customNatural===undefined) p.customNatural=false;
+  if(p.offCustomNatural===undefined) p.offCustomNatural=false;
   // ammoEnh holds a separately-enhanced ammunition's own bonus (doesn't stack with the
   // launcher's enh -- the higher of the two applies, see compute()). Default it to
   // match enh on migration so an old ranged profile's total is unaffected either way.
@@ -3754,11 +3761,11 @@ function loadProfileIntoUI(){
   renderBabInputs();
   $('mythicTierBox').style.display = p.mythicEnabled ? 'grid' : 'none';
   $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
-  $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
+  $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat; $('customNatural').checked=!!p.customNatural;
   $('style').value=p.style; $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat; $('enh').value=p.enh; $('critMult').value=p.critMult;
   $('compositeBowStrRating').value=p.compositeBowStrRating||0;
   $('compositeBowStrRow').style.display = (WEAPONS[p.weapon]&&WEAPONS[p.weapon].compositeBow) ? 'grid' : 'none';
-  $('offWeapon').value=p.offWeapon; $('offCustomDice').value=p.offCustomDice; $('offCustomThreat').value=p.offCustomThreat; $('offCritMult').value=p.offCritMult;
+  $('offWeapon').value=p.offWeapon; $('offCustomDice').value=p.offCustomDice; $('offCustomThreat').value=p.offCustomThreat; $('offCustomNatural').checked=!!p.offCustomNatural; $('offCritMult').value=p.offCritMult;
   $('offEnh').value=p.offEnh; $('offLight').checked=!!p.offLight;
   $('ammoEnh').value=p.ammoEnh;
   $('race').value=p.race||''; $('alignment').value=p.alignment||'';
@@ -3778,10 +3785,10 @@ function syncUIIntoProfile(){
   let p=currentProfile();
   p.characterLevel=+$('characterLevel').value; p.casterLevel=+$('casterLevel').value; p.mythicEnabled=$('mythicEnabled').checked; p.mythicTier=+$('mythicTier').value; p.currentTarget=$('currentTarget').value; p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value;
   p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
-  p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value;
+  p.weapon=$('weapon').value; p.customDice=$('customDice').value; p.customThreat=$('customThreat').value; p.customNatural=$('customNatural').checked;
   p.style=$('style').value; p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value; p.enh=+$('enh').value; p.critMult=+$('critMult').value;
   p.compositeBowStrRating=+$('compositeBowStrRating').value||0;
-  p.offWeapon=$('offWeapon').value; p.offCustomDice=$('offCustomDice').value; p.offCustomThreat=$('offCustomThreat').value; p.offCritMult=+$('offCritMult').value;
+  p.offWeapon=$('offWeapon').value; p.offCustomDice=$('offCustomDice').value; p.offCustomThreat=$('offCustomThreat').value; p.offCustomNatural=$('offCustomNatural').checked; p.offCritMult=+$('offCritMult').value;
   p.offEnh=+$('offEnh').value; p.offLight=$('offLight').checked;
   p.ammoEnh=+$('ammoEnh').value;
   p.race=$('race').value.trim(); p.alignment=$('alignment').value;
@@ -3862,7 +3869,7 @@ document.querySelector('#charActionsBox .menuPanel').addEventListener('click', e
   if(e.target.closest('button,a')) document.getElementById('charActionsBox').open=false;
 });
 
-['characterLevel','casterLevel','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','style','atkStat','dmgStat','offWeapon','offCustomDice','offCustomThreat','offCritMult','offEnh','offLight','enh','ammoEnh','critMult','compositeBowStrRating'].forEach(id=>{
+['characterLevel','casterLevel','mythicEnabled','mythicTier','currentTarget','str','dex','con','int','wis','cha','weapon','customDice','customThreat','customNatural','style','atkStat','dmgStat','offWeapon','offCustomDice','offCustomThreat','offCustomNatural','offCritMult','offEnh','offLight','enh','ammoEnh','critMult','compositeBowStrRating'].forEach(id=>{
   $(id).addEventListener('input', ()=>{
     if(id==='weapon'){
       $('customWeapon').style.display = $('weapon').value==='custom' ? 'grid' : 'none';
@@ -4476,9 +4483,19 @@ function diceMultiply(dice,mult){
 // (one size category larger — used by Lead Blades and any other "as if one size larger" effect
 // for a Medium wielder, which covers virtually every PC). Not the generic FAQ dice-step chart —
 // this is the dedicated size-conversion table, so no ambiguity about how many steps to take.
-const SIZE_UP_MEDIUM_TO_LARGE={'1':'1d2','1d2':'1d3','1d3':'1d4','1d4':'1d6','1d6':'1d8','1d8':'2d6','1d10':'2d8','1d12':'3d6','2d4':'2d6','2d6':'3d6','2d8':'3d8','2d10':'4d8'};
+// A single per-die-value chain (each die value belongs to exactly one row of the Core
+// Rulebook's Weapon Damage Size Conversion table), so this same table is correct however
+// many times it's applied in a row -- '3d6'/'3d8'/'4d8' are here so a second application
+// (e.g. Lead Blades + Enlarge Person both active) correctly reaches Huge-tier dice instead
+// of silently no-op'ing on the second step.
+const SIZE_UP_MEDIUM_TO_LARGE={'1':'1d2','1d2':'1d3','1d3':'1d4','1d4':'1d6','1d6':'1d8','1d8':'2d6','1d10':'2d8','1d12':'3d6','2d4':'2d6','2d6':'3d6','2d8':'3d8','2d10':'4d8','3d6':'4d6','3d8':'4d8','4d8':'6d8'};
 function diceSizeUp(dice){
   return SIZE_UP_MEDIUM_TO_LARGE[String(dice).trim()] || dice;
+}
+function applySizeSteps(dice, steps){
+  let d=dice;
+  for(let i=0;i<steps;i++) d=diceSizeUp(d);
+  return d;
 }
 function maxDiceValue(dice){
   const m=String(dice).match(/^(\d+)d(\d+)$/i);
@@ -4609,13 +4626,30 @@ function compute(){
   let vsMultMap={'vital-strike':2,'vital-strike-improved':3,'vital-strike-greater':4};
   let vsActive=p.active.filter(a=>a.on!==false && vsMultMap[a.id]);
   let vsMult=vsActive.length?Math.max(...vsActive.map(a=>vsMultMap[a.id])):0;
-  let leadBladesOn=p.active.some(a=>a.id==='lead-blades' && a.on!==false);
+  let leadBladesRec=p.active.find(a=>a.id==='lead-blades' && a.on!==false);
+  let gravityBowRec=p.active.find(a=>a.id==='gravity-bow' && a.on!==false);
   let enlargePersonOn=p.active.some(a=>a.id==='enlarge-person' && a.on!==false);
-  // Enlarge Person's own "increase weapon damage die one size category" uses the exact
-  // same Medium->Large conversion table as Lead Blades -- RAW, size-increase effects of
-  // this kind don't stack/compound with each other, so having both active still only
-  // upsizes the die once (never twice), same as the game rule.
-  let dieSizeUpOn = leadBladesOn || enlargePersonOn;
+  // Enlarge Person is an ACTUAL size increase (affects the whole character, both hands);
+  // Lead Blades/Gravity Bow are EFFECTIVE size increases (only the specific weapon type
+  // they name). Per the PF1e FAQ ("Size increases and effective size increases"), one of
+  // each category stacks -- so a carried melee weapon with both Lead Blades and Enlarge
+  // Person active gets TWO steps, not one. Two effective-category sources can't both apply
+  // to the same weapon anyway, since Lead Blades is melee-only and Gravity Bow is
+  // bow/crossbow-only.
+  let mainIsCarriedMelee = weaponKey==='custom' ? !$('customNatural').checked : !!(w && !w.ranged);
+  let mainIsBowOrCrossbow = weaponKey!=='custom' && !!(w && w.ranged && (w.ammo==='arrows'||w.ammo==='bolts'));
+  let offIsCarriedMelee = offWeaponKey==='custom' ? !$('offCustomNatural').checked : !!(wOff && !wOff.ranged);
+  let offIsBowOrCrossbow = offWeaponKey!=='custom' && !!(wOff && wOff.ranged && (wOff.ammo==='arrows'||wOff.ammo==='bolts'));
+  let leadBladesOnMain = !!leadBladesRec && (leadBladesRec.weaponSlot||'both')!=='off' && mainIsCarriedMelee;
+  let leadBladesOnOff = !!leadBladesRec && (leadBladesRec.weaponSlot||'both')!=='main' && offIsCarriedMelee;
+  let gravityBowOnMain = !!gravityBowRec && (gravityBowRec.weaponSlot||'both')!=='off' && mainIsBowOrCrossbow;
+  let gravityBowOnOff = !!gravityBowRec && (gravityBowRec.weaponSlot||'both')!=='main' && offIsBowOrCrossbow;
+  let actualSizeSteps = enlargePersonOn ? 1 : 0;
+  let effectiveSizeStepsMain = (leadBladesOnMain || gravityBowOnMain) ? 1 : 0;
+  let effectiveSizeStepsOff = (leadBladesOnOff || gravityBowOnOff) ? 1 : 0;
+  let totalSizeStepsMain = actualSizeSteps + effectiveSizeStepsMain;
+  let totalSizeStepsOff = actualSizeSteps + effectiveSizeStepsOff;
+  let dieSizeUpOn = totalSizeStepsMain>0;
   // dmg is deliberately left as the plain non-Vital-Strike figure here -- Normal/Critical
   // Damage below always show a regular attack. The Vital Strike variant is computed
   // separately further down and shown in its own dedicated result row, since it's a
@@ -4686,7 +4720,7 @@ function compute(){
     }
   }
 
-  let effDice = dieSizeUpOn ? diceSizeUp(w.dice) : w.dice;
+  let effDice = applySizeSteps(w.dice, totalSizeStepsMain);
   let critDice=diceMultiply(effDice,critMult);
   let critDmg=dmg*critMult;
   let paNoCritMult = p.active.some(a=>a.id==='hr-pa-no-crit' && a.on!==false);
@@ -4836,9 +4870,17 @@ function compute(){
   if(vsMult){
     notes.push('Vital Strike is active: see the dedicated "Vital Strike Damage"/"Vital Strike Critical Damage" rows above for its numbers (dice ×'+vsMult+(mythicVitalStrikeOn?', and with Mythic Vital Strike your Str/enhancement/etc. bonuses are multiplied ×'+vsMult+' too':'')+'). Normal/Critical Damage above stay the plain non-Vital-Strike figures. This is a single attack-action strike, not part of a full attack — the Full Attack line is hidden this turn.');
   }
-  if(dieSizeUpOn){
-    let dieSizeUpSource = (leadBladesOn && enlargePersonOn) ? 'Lead Blades and Enlarge Person are both active' : (leadBladesOn ? 'Lead Blades is active' : 'Enlarge Person is active');
-    notes.push(dieSizeUpSource+': Normal/Critical Damage above already use the upsized weapon die ('+w.dice+' → '+effDice+'), assuming a Medium wielder'+((leadBladesOn && enlargePersonOn)?' (the two effects don\'t stack for a further increase — RAW, this kind of size-up doesn\'t compound)':'')+'. Does not affect thrown/ranged or off-hand weapons the spell wasn\'t cast on, or anyone but you wielding the weapon.');
+  if(totalSizeStepsMain>0){
+    let sources=[];
+    if(actualSizeSteps) sources.push('Enlarge Person (actual size increase)');
+    if(effectiveSizeStepsMain) sources.push(gravityBowOnMain ? 'Gravity Bow (effective size increase)' : 'Lead Blades (effective size increase)');
+    notes.push(sources.join(' + ')+': Normal/Critical Damage above already use the upsized weapon die ('+w.dice+' → '+effDice+', '+totalSizeStepsMain+' step'+(totalSizeStepsMain>1?'s':'')+'), assuming a Medium wielder. Per the PF1e FAQ ("Size increases and effective size increases"), an actual size increase and an effective size increase stack with each other — this is why both active at once gives 2 steps instead of 1. Doesn\'t affect a weapon Lead Blades/Gravity Bow don\'t apply to (ranged/thrown/natural for Lead Blades; anything but a carried bow or crossbow for Gravity Bow), or anyone but you wielding the weapon.');
+  }
+  if(leadBladesRec && !mainIsCarriedMelee && (leadBladesRec.weaponSlot||'both')!=='off'){
+    notes.push('Lead Blades is active but the main-hand weapon isn\'t a carried melee weapon (it\'s ranged, thrown, or a natural attack) — Lead Blades only affects melee weapons you\'re carrying, so it doesn\'t apply here.');
+  }
+  if(gravityBowRec && !mainIsBowOrCrossbow && (gravityBowRec.weaponSlot||'both')!=='off'){
+    notes.push('Gravity Bow is active but the main-hand weapon isn\'t a bow or crossbow — Gravity Bow only affects bows/crossbows, so it doesn\'t apply here.');
   }
   if(isCritImmune(ctx)){
     notes.push('Current Target is immune to critical hits and precision damage (oozes, elementals, swarms, and incorporeal creatures are — constructs and ordinary undead are NOT, unlike 3.5e) — Critical Damage above doesn\'t apply, and Sneak Attack/Precise Strike are suppressed.');
@@ -4888,7 +4930,7 @@ function compute(){
     $('offAtk').textContent=offIteratives.map(signed).join(' / ');
     let offExtraNormal=(extraDiceOff||[]).filter(e=>e.normal).map(e=>e.normal);
     let offExtraCritOnly=(extraDiceOff||[]).filter(e=>e.crit).map(e=>e.crit);
-    let effDiceOff = dieSizeUpOn ? diceSizeUp(wOff.dice) : wOff.dice;
+    let effDiceOff = applySizeSteps(wOff.dice, totalSizeStepsOff);
     let offDmgDice = effDiceOff + (offExtraNormal.length ? ' + '+offExtraNormal.join(' + ') : '');
     $('offDmg').textContent=`${offDmgDice} ${signed(offDmg)}`;
     let offDisplayThreat = hasKeenOff ? keenThreatRange(parseThreatLow(wOff.threat)) : wOff.threat;
