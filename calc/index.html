@@ -301,6 +301,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div class="row"><label>Threat Range</label><input id="unarmedThreat" value="20"></div>
 </div>
 <div id="naturalAttacksBox" style="display:none">
+  <div class="row"><label title="Picking a form fills in Str/Dex (as an adjustment to your own scores, undone by switching back to — none —) and replaces the attack list below with that form's routine — still fully editable afterward.">Wild Shape / Polymorph Form (optional preset)</label>
+  <select id="wildShapeForm"><option value="">— none / manual —</option></select></div>
   <div class="row"><label>Natural attacks from</label>
   <select id="naturalOrigin">
     <option value="">— unset —</option>
@@ -311,7 +313,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   </select></div>
   <div id="naturalAttackLines" class="atkLinesBox"></div>
   <button type="button" id="addNaturalAttack">+ Add Attack</button>
-  <div class="emptyNote">Attack bonus per line is BAB-derived automatically: Primary uses your full BAB; Secondary/Conditional use BAB−5 (e.g. a Rake, "Conditional", uses Secondary's math and is only usable when its own trigger is met). Str-mult ×1.5 = only attack this round, ×1 = multiple primary attacks, ×0.5 = secondary/conditional.</div>
+  <div class="emptyNote">Attack bonus per line is BAB-derived automatically: Primary uses your full BAB; Secondary/Conditional use BAB−5 (e.g. a Rake, "Conditional", uses Secondary's math and is only usable when its own trigger is met). Str-mult ×1.5 = only attack this round, ×1 = multiple primary attacks, ×0.5 = secondary/conditional. A picked form's attack dice are already sized for that form (e.g. a Large Dire Wolf's Bite) — Enlarge Person/Animal Growth/Strong Jaw still size them up further on top if legitimately active.</div>
 </div>
 <div class="row"><label>Fighting Style</label>
 <select id="style">
@@ -630,6 +632,71 @@ const WEAPONS={
 
 const WEAPON_CAT_ORDER=["simple-light","simple-one-handed","simple-two-handed","simple-ranged","martial-light","martial-one-handed","martial-two-handed","martial-ranged","exotic-light","exotic-one-handed","exotic-two-handed","exotic-ranged"];
 const WEAPON_CAT_LABEL={"simple-light":"Simple, Light","simple-one-handed":"Simple, One-Handed","simple-two-handed":"Simple, Two-Handed","simple-ranged":"Simple, Ranged","martial-light":"Martial, Light","martial-one-handed":"Martial, One-Handed","martial-two-handed":"Martial, Two-Handed","martial-ranged":"Martial, Ranged","exotic-light":"Exotic, Light","exotic-one-handed":"Exotic, One-Handed","exotic-two-handed":"Exotic, Two-Handed","exotic-ranged":"Exotic, Ranged"};
+
+// Common druid Wild Shape animal forms (Beast Shape I-III tiers). str/dex/con are fixed
+// polymorph ADJUSTMENTS to the druid's own ability scores (not replacement values), per
+// the Beast Shape spells. Attack dice/routines are the named Bestiary stat block's, which
+// are already correctly sized for that form -- no further size-up applies to them. A
+// conditional attack whose source data flagged grantedByCoreWildShape:false (Crocodile's
+// Death Roll, Rhinoceros's Powerful Charge -- both separate extraordinary abilities not
+// in Beast Shape's granted-ability list) is omitted; everything else is included.
+const WILD_SHAPE_FORMS=[
+ {id:'eagle',name:'Eagle',size:'Small',tier:'Beast Shape I',lvl:4,str:0,dex:2,con:0,attacks:[
+   {name:'Talon',qty:2,kind:'primary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Bite',qty:1,kind:'primary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+ {id:'octopus',name:'Octopus',size:'Small',tier:'Beast Shape I',lvl:4,str:0,dex:2,con:0,attacks:[
+   {name:'Bite',qty:1,kind:'primary',die:'1d3',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+ {id:'wolf',name:'Wolf',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
+   {name:'Bite',qty:1,kind:'primary',die:'1d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+ {id:'cheetah',name:'Cheetah',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
+   {name:'Bite',qty:1,kind:'primary',die:'1d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Claw',qty:2,kind:'primary',die:'1d3',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+ {id:'leopard',name:'Leopard',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
+   {name:'Bite',qty:1,kind:'primary',die:'1d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Claw',qty:2,kind:'primary',die:'1d3',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Rake',qty:2,kind:'conditional',die:'1d3',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+ {id:'boar',name:'Boar',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
+   {name:'Gore',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+ {id:'monitor-lizard',name:'Monitor Lizard',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
+   {name:'Bite',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+ {id:'constrictor-snake',name:'Constrictor Snake',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
+   {name:'Bite',qty:1,kind:'primary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2},
+   {name:'Constrict',qty:1,kind:'conditional',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+ {id:'deinonychus',name:'Deinonychus',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
+   {name:'Talon',qty:2,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Bite',qty:1,kind:'primary',die:'1d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Foreclaw',qty:2,kind:'secondary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:0.5,threat:'20',critMult:2}]},
+ {id:'dire-wolf',name:'Dire Wolf',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
+   {name:'Bite',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+ {id:'grizzly-bear',name:'Grizzly Bear',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
+   {name:'Claw',qty:2,kind:'primary',die:'1d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Bite',qty:1,kind:'primary',die:'1d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+ {id:'lion',name:'Lion',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
+   {name:'Bite',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Claw',qty:2,kind:'primary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Rake',qty:2,kind:'conditional',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+ {id:'tiger',name:'Tiger',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
+   {name:'Claw',qty:2,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Bite',qty:1,kind:'primary',die:'2d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Rake',qty:2,kind:'conditional',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+ {id:'crocodile',name:'Crocodile',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
+   {name:'Bite',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Tail Slap',qty:1,kind:'secondary',die:'1d12',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:0.5,threat:'20',critMult:2}]},
+ {id:'shark',name:'Shark',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
+   {name:'Bite',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+ {id:'gorilla',name:'Gorilla',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
+   {name:'Slam',qty:2,kind:'primary',die:'1d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+ {id:'horse',name:'Horse',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
+   {name:'Hoof',qty:2,kind:'secondary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:0.5,threat:'20',critMult:2}]},
+ {id:'rhinoceros',name:'Rhinoceros',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
+   {name:'Gore',qty:1,kind:'primary',die:'2d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+ {id:'elephant',name:'Elephant',size:'Huge',tier:'Beast Shape III',lvl:8,str:6,dex:-4,con:0,attacks:[
+   {name:'Gore',qty:1,kind:'primary',die:'2d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Slam',qty:1,kind:'primary',die:'2d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
+   {name:'Trample',qty:1,kind:'conditional',die:'2d8',atkAbility:'none',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+ {id:'ankylosaurus',name:'Ankylosaurus',size:'Huge',tier:'Beast Shape III',lvl:8,str:6,dex:-4,con:0,attacks:[
+   {name:'Tail',qty:1,kind:'primary',die:'3d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]}
+];
 
 const RACES=["Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Aasimar","Adaro","Android","Aphorite","Aquatic Elf","Astomoi","Being of Ib","Boggard","Caligni","Catfolk","Cecaelia","Changeling","Deep One Hybrid","Dhampir","Drow","Drow Noble","Duergar","Duskwalker","Fetchling","Ganzi","Gathlain","Ghoran","Gillman","Goblin","Green Martian","Grindylow","Grippli","Hobgoblin","Ifrit","Kasatha","Kitsune","Kobold","Kuru","Lashunta","Locathah","Merfolk","Monkey Goblin","Munavri","Nagaji","Naiad","Orang-Pendak","Orc","Oread","Primitive Human","Ratfolk","Reborn Samsaran","Reptoid","Rougarou","Sahuagin","Samsaran","Shabti","Skinwalker","Strix","Suli","Svirfneblin","Sylph","Syrinx","Tengu","Tiefling","Triaxian","Triton","Trox","Undine","Vanara","Vine Leshy","Vishkanya","Wayang","Wyrwood","Wyvaran","Yaddithian"];
 const RACE_SOURCE_MAP={"Dwarf":["Dwarves of Golarion"],"Goblin":["Goblins of Golarion"],"Kobold":["Kobolds of Golarion"],"Orc":["Orcs of Golarion"],"Half-Orc":["Orcs of Golarion"],"Human":["Humans of Golarion"]};
@@ -3737,7 +3804,7 @@ function saveStore(){
 }
 function defaultProfile(name){
   return {name, babList:[10], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weaponCategory:'manufactured', weapon:'longsword', customDice:'1d8', customThreat:'20',
-    unarmedDice:'1d3', unarmedThreat:'20', naturalAttacks:[], naturalOrigin:'',
+    unarmedDice:'1d3', unarmedThreat:'20', naturalAttacks:[], naturalOrigin:'', wildShapeFormId:'', wildShapeBaseStr:0, wildShapeBaseDex:0, wildShapeBaseCon:0,
     style:'twoHanded', atkStat:'str', dmgStat:'str', offWeaponCategory:'manufactured', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offUnarmedDice:'1d3', offUnarmedThreat:'20', offNaturalDice:'1d4', offNaturalThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
     enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:'', deity:'', compositeBowStrRating:0};
 }
@@ -3785,6 +3852,10 @@ store.profiles.forEach(p=>{
   if(p.offNaturalThreat===undefined) p.offNaturalThreat='20';
   if(!p.naturalAttacks) p.naturalAttacks=[];
   if(p.naturalOrigin===undefined) p.naturalOrigin='';
+  if(p.wildShapeFormId===undefined) p.wildShapeFormId='';
+  if(p.wildShapeBaseStr===undefined) p.wildShapeBaseStr=0;
+  if(p.wildShapeBaseDex===undefined) p.wildShapeBaseDex=0;
+  if(p.wildShapeBaseCon===undefined) p.wildShapeBaseCon=0;
   // ammoEnh holds a separately-enhanced ammunition's own bonus (doesn't stack with the
   // launcher's enh -- the higher of the two applies, see compute()). Default it to
   // match enh on migration so an old ranged profile's total is unaffected either way.
@@ -3833,6 +3904,7 @@ function loadProfileIntoUI(){
   $('weapon').value=p.weapon; $('customDice').value=p.customDice; $('customThreat').value=p.customThreat;
   $('unarmedDice').value=p.unarmedDice||'1d3'; $('unarmedThreat').value=p.unarmedThreat||'20';
   $('naturalOrigin').value=p.naturalOrigin||'';
+  $('wildShapeForm').value=p.wildShapeFormId||'';
   $('style').value=p.style; $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat; $('enh').value=p.enh; $('critMult').value=p.critMult;
   $('compositeBowStrRating').value=p.compositeBowStrRating||0;
   $('compositeBowStrRow').style.display = (WEAPONS[p.weapon]&&WEAPONS[p.weapon].compositeBow) ? 'grid' : 'none';
@@ -5180,6 +5252,45 @@ $('addNaturalAttack').addEventListener('click',()=>{
   if(!p.naturalAttacks) p.naturalAttacks=[];
   p.naturalAttacks.push(newNaturalAttack());
   saveStore(); renderNaturalAttackLines(); compute();
+});
+
+function populateWildShapeFormSelect(){
+  let sel=$('wildShapeForm');
+  sel.innerHTML='<option value="">— none / manual —</option>';
+  WILD_SHAPE_FORMS.forEach(f=>{
+    let o=document.createElement('option'); o.value=f.id;
+    o.textContent=f.name+' ('+f.size+', '+f.tier+', druid lvl '+f.lvl+'+)';
+    sel.appendChild(o);
+  });
+}
+populateWildShapeFormSelect();
+$('wildShapeForm').addEventListener('change',()=>{
+  let p=currentProfile();
+  let formId=$('wildShapeForm').value;
+  if(!formId){
+    // Revert to the true base scores captured when a form was first applied -- only if
+    // we're actually reverting FROM a form (untouched otherwise, so this never clobbers
+    // manually-typed Str/Dex for someone who never used the picker).
+    if(p.wildShapeFormId){
+      p.str=p.wildShapeBaseStr; p.dex=p.wildShapeBaseDex; p.con=p.wildShapeBaseCon;
+    }
+    p.wildShapeFormId='';
+  } else {
+    let f=WILD_SHAPE_FORMS.find(x=>x.id===formId);
+    if(!f) return;
+    // Capture the true base scores only the FIRST time a form is applied (switching
+    // directly between two forms should adjust from the real base, not from whatever
+    // the previous form already added).
+    if(!p.wildShapeFormId){
+      p.wildShapeBaseStr=+$('str').value; p.wildShapeBaseDex=+$('dex').value; p.wildShapeBaseCon=+$('con').value;
+    }
+    p.str=p.wildShapeBaseStr+f.str; p.dex=p.wildShapeBaseDex+f.dex; p.con=p.wildShapeBaseCon+f.con;
+    p.wildShapeFormId=formId;
+    p.weaponCategory='natural';
+    p.naturalOrigin='wildshape';
+    p.naturalAttacks=f.attacks.map(a=>Object.assign({},a));
+  }
+  saveStore(); loadProfileIntoUI();
 });
 
 // Deep-link support for merged character sheets: ?profile=Name switches to (or
