@@ -1367,10 +1367,10 @@ const MODIFIERS = [
  configFields:[{key:'value',label:'Bonus value',type:'number',default:1}],
  desc:"Fighter's untyped bonus to attack and damage rolls with weapons from a trained weapon group; bonuses from overlapping groups don't stack (use the highest).",
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' '+"untyped"}},companionCompatibility:{"schemaVersion":1,"attackRequirements":[],"featurePrerequisites":["weaponTrainingFeature"],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"normally-unavailable","mode":"active-effect-or-owned-feature","requirements":["weaponTrainingFeature"],"reason":"Not part of normal companion progression; allow only when an explicit class feature, archetype, evolution or granted ability provides it."},"mount":{"status":"normally-unavailable","mode":"active-effect-or-owned-feature","requirements":["weaponTrainingFeature"],"reason":"Not part of normal companion progression; allow only when an explicit class feature, archetype, evolution or granted ability provides it."},"familiar":{"status":"normally-unavailable","mode":"active-effect-or-owned-feature","requirements":["weaponTrainingFeature"],"reason":"Not part of normal companion progression; allow only when an explicit class feature, archetype, evolution or granted ability provides it."},"eidolon":{"status":"normally-unavailable","mode":"active-effect-or-owned-feature","requirements":["weaponTrainingFeature"],"reason":"Not part of normal companion progression; allow only when an explicit class feature, archetype, evolution or granted ability provides it."},"phantom":{"status":"normally-unavailable","mode":"active-effect-or-owned-feature","requirements":["weaponTrainingFeature"],"reason":"Not part of normal companion progression; allow only when an explicit class feature, archetype, evolution or granted ability provides it."},"cohort":{"status":"normally-unavailable","mode":"active-effect-or-owned-feature","requirements":["weaponTrainingFeature"],"reason":"Not part of normal companion progression; allow only when an explicit class feature, archetype, evolution or granted ability provides it."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"high"}},
-{id:"bane",name:"Bane",category:"weapon",subcat:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"enhancement",
+{id:"bane",name:"Bane",category:"weapon",subcat:"other",source:"Core Rulebook",appliesTo:["attack","damage"],type:"special",
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2},{key:'vsFlag',label:'Designated foe type',type:'select',options:VS_FLAG_OPTIONS,default:''}],
- desc:"Bane weapon: +2 enhancement bonus to attack rolls and an extra 2d6 damage (dice, not a flat number) against its designated foe type. Pick the weapon's designated foe type above so it turns on/off automatically with Current Target.",
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match this weapon\'s designated foe type — see the field above'};return {attack:v,damage:0,note:signed(v)+' '+"enhancement"+" (plus 2d6 extra damage, added to Normal/Critical Damage below as dice, not a flat number)",extraDice:{normal:'2d6 vs designated foe'}}},companionCompatibility:{"schemaVersion":1,"attackRequirements":[],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"mount":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"familiar":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"eidolon":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"phantom":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"cohort":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"low"}},
+ desc:"Bane weapon: against its designated foe type, +2 to attack AND damage rolls, ADDED ON TOP of the weapon's own enhancement bonus (a +3 bane weapon fights as +5 vs that foe) — this does not compete in the normal enhancement stacking pool, since Bane's bonus is a separate effective increase, not a second enhancement bonus of the same kind (a lower actual enhancement never loses to it). The flat +2 IS multiplied on a critical hit. Also deals an extra 2d6 damage (dice, unmultiplied on a crit or Vital Strike) against that foe. If a Divine Bond point funds Bane instead of the weapon's own enhancement, don't also count that point toward the Base Weapon Enhancement field above. Pick the weapon's designated foe type above so it turns on/off automatically with Current Target.",
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);if(!targetMatches(ctx,cfg.vsFlag))return{attack:0,damage:0,note:'target doesn\'t match this weapon\'s designated foe type — see the field above'};return {attack:v,damage:v,note:signed(v)+' atk / '+signed(v)+' dmg (added on top of the weapon\'s own enhancement, does not compete with/get suppressed by it) — plus 2d6 extra damage, added to Normal/Critical Damage below as dice, not a flat number, and never multiplied on a crit or Vital Strike',extraDice:{normal:'2d6 vs designated foe'}}},companionCompatibility:{"schemaVersion":1,"attackRequirements":[],"featurePrerequisites":[],"targetRules":{"personalOnly":false,"humanoidRestricted":false,"livingOnly":false,"mindAffecting":false,"weaponOnly":false,"naturalWeaponOnly":false},"entities":{"animalCompanion":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"mount":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"familiar":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"eidolon":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"phantom":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."},"cohort":{"status":"applicable-to-matching-attack","mode":"equipment-or-attack-effect","requirements":[],"reason":"Apply only to attacks that satisfy the effect description."}},"calculatorBehavior":"calculate-when-valid","reviewPriority":"low"}},
 
 // ---------------- OTHER (alchemist mutagens) ----------------
 {id:"mutagen-str",name:"Mutagen (Strength)",category:"other",source:"Alchemist class feature (Core Rulebook)",appliesTo:["attack","damage"],type:"alchemical-str",
@@ -4389,9 +4389,17 @@ function renderCategories(){
     let atk=Number(prompt('Attack roll bonus (number, can be negative, 0 if none):','0'))||0;
     let dmg=Number(prompt('Damage bonus (number, can be negative, 0 if none):','0'))||0;
     let type=prompt('Bonus type (untyped / dodge / morale / luck / sacred / profane / competence / insight / enhancement / circumstance / trait / other-named-type):','untyped')||'untyped';
+    // Extra DAMAGE DICE (e.g. a custom "flaming"-style weapon property) -- separate from
+    // the flat damage bonus above, shown as its own dice term next to Normal/Critical
+    // Damage, same convention as Bane/Flaming/Holy: never multiplied on a crit or Vital
+    // Strike. "Normal" (no type entered) reads as plain extra damage; a type (Fire, Acid,
+    // Cold...) labels it as that specific damage type, same as how those weapon properties
+    // actually work RAW.
+    let dice=prompt('Extra damage DICE (e.g. 2d6) — added as its own dice term, never multiplied on a crit or Vital Strike. Leave blank if this effect has no dice, just the flat bonus above:','')||'';
+    let diceType = dice ? (prompt('Damage type for those dice — type a name like Fire/Acid/Cold/Electricity/Sonic, or leave blank for plain "Normal" damage with no special type:','')||'') : '';
     let note=prompt('Optional note:','')||'';
     let p=currentProfile();
-    p.custom.push({id:'custom-'+Date.now(), name, category:cat, subcat:'other', appliesTo:['attack','damage'], type, atk, dmg, note, on:true, custom:true});
+    p.custom.push({id:'custom-'+Date.now(), name, category:cat, subcat:'other', appliesTo:['attack','damage'], type, atk, dmg, dice, diceType, note, on:true, custom:true});
     saveStore(); renderCategories(); compute();
   });
 }
@@ -4580,11 +4588,13 @@ function collectContributions(ctx){
   }
   p.custom.forEach(c=>{
     let isOff=c.on===false;
+    let diceLabel = c.dice ? (c.dice+(c.diceType?' '+c.diceType:'')) : '';
     if(!isOff){
       if(c.atk) atkEntries.push({value:c.atk,type:c.type,source:c.name});
       if(c.dmg) dmgEntries.push({value:c.dmg,type:c.type,source:c.name});
+      if(c.dice) extraDiceList.push({normal:diceLabel});
     }
-    breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
+    breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(diceLabel?' plus '+diceLabel+' damage (dice, not multiplied on a crit or Vital Strike)':'')+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
   });
   return {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen,smiteEvilOn,smiteDmgVal,smiteDoubles};
 }
@@ -4631,6 +4641,7 @@ function collectSlotEntries(ctx, slot){
     }
     if(c.atk) atk.push({value:c.atk,type:c.type,source:c.name});
     if(c.dmg) dmg.push({value:c.dmg,type:c.type,source:c.name});
+    if(c.dice) extraDice.push({normal:c.dice+(c.diceType?' '+c.diceType:'')});
   });
   resolveAbilityComposites(ctx, atk, dmg, null, slot);
   return {atk,dmg,extraDice};
