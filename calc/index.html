@@ -830,29 +830,39 @@ function resolveAbilityComposites(ctx, atkArr, dmgArr, breakdownArr, slot){
     let netScoreBonus=stackTotal(byAbility[ability]);
     let delta=netScoreBonus/2;
     if(!delta) return;
-    let atkOn = ctx.atkStat===ability, dmgOn = ctx.dmgStat===ability;
-    if(!atkOn && !dmgOn) return;
     let baseMod = ctx[ability];
     let finalMod = baseMod + delta;
-    // COMPOSITE-BOW-001: the composite bow STR-rating cap needs the fully-resolved
-    // ("final") ability modifier -- after every active buff/penalty and PF1e stacking
-    // conflict is folded in -- so stash it here where it's already computed, rather
-    // than re-deriving it a second time in compute().
+    // COMPOSITE-BOW-001 / NATURAL-DMG-001: stash the fully-resolved modifier for EVERY
+    // ability touched by a buff/penalty, regardless of whether it's the single globally-
+    // selected atk/dmg ability -- Natural Attack mode lets each line pick its OWN ability
+    // independent of that global selector, and needs this to recompute its own per-line
+    // damage contribution correctly (see below). Moved above the atkStat/dmgStat check
+    // (which used to skip this entirely for a non-selected ability).
     ctx._finalAbilityMods = ctx._finalAbilityMods || {};
     ctx._finalAbilityMods[ability] = finalMod;
+    let atkOn = ctx.atkStat===ability, dmgOn = ctx.dmgStat===ability;
+    if(!atkOn && !dmgOn) return;
+    // NATURAL-DMG-001: Natural Attack mode rates each line's ability-derived damage at
+    // THAT line's own Str-multiplier (×1.5/×1/×0.5/custom, independent of ctx.style),
+    // recomputed from scratch per line in renderNaturalAttackResults using
+    // ctx._finalAbilityMods above. The shared delta computed here uses ctx.style's rate
+    // instead, so it must NOT also be added to every line's damage — that would rate it
+    // wrong (or double-count it) for lines whose multiplier differs from ctx.style's.
+    let dmgOnShared = dmgOn && ctx.weaponCategory!=='natural';
     // TWF-DMG-001: run base and final through the SAME rate function (which already
     // applies the off-hand's half-rate/Double-Slice rule via `slot`) and take ITS
     // delta -- never halve the base alone and add an unhalved buff delta afterward.
-    let dmgDelta = dmgOn ? (abilityDamageContribution(finalMod,ctx.style,slot,ctx.hasDoubleSlice) - abilityDamageContribution(baseMod,ctx.style,slot,ctx.hasDoubleSlice)) : null;
+    let dmgDelta = dmgOnShared ? (abilityDamageContribution(finalMod,ctx.style,slot,ctx.hasDoubleSlice) - abilityDamageContribution(baseMod,ctx.style,slot,ctx.hasDoubleSlice)) : null;
     if(atkOn) atkArr.push({value:delta,type:'untyped',source:'Ability Score Effects'});
-    if(dmgOn) dmgArr.push({value:dmgDelta,type:'untyped',source:'Ability Score Effects'});
+    if(dmgOnShared) dmgArr.push({value:dmgDelta,type:'untyped',source:'Ability Score Effects'});
     if(breakdownArr){
       let sources=[...new Set(byAbility[ability].map(e=>e.source))].join(', ');
       let noteParts=['Combined '+ABIL_LABEL[ability]+' effects from: '+sources+' → net '+signed(netScoreBonus)+' to the score ('+signed(baseMod)+' → '+signed(finalMod)+' modifier).'];
       if(atkOn) noteParts.push(signed(delta)+' to attack (never multiplied).');
-      if(dmgOn) noteParts.push(signed(dmgDelta)+' to damage'+(ctx.style==='twoHanded'?' (from the full modifier before/after, ×1.5 two-handed each time and rounded down — not the delta alone)':(slot==='off'?' (off-hand: from the full modifier before/after, '+(ctx.hasDoubleSlice?'Double Slice — full rate':'half rate rounded down')+' each time and — not the delta alone)':''))+'.');
+      if(dmgOnShared) noteParts.push(signed(dmgDelta)+' to damage'+(ctx.style==='twoHanded'?' (from the full modifier before/after, ×1.5 two-handed each time and rounded down — not the delta alone)':(slot==='off'?' (off-hand: from the full modifier before/after, '+(ctx.hasDoubleSlice?'Double Slice — full rate':'half rate rounded down')+' each time and — not the delta alone)':''))+'.');
+      else if(dmgOn) noteParts.push('Damage: recomputed per Natural Attack line below, at each line\'s own Str-multiplier, not added here.');
       breakdownArr.push({name:'Ability Score Effects ('+ABIL_LABEL[ability]+')',category:'other',type:'untyped',
-        atk:atkOn?delta:null, dmg:dmgOn?dmgDelta:null, note:noteParts.join(' '), suppressed:false, off:false});
+        atk:atkOn?delta:null, dmg:dmgOnShared?dmgDelta:null, note:noteParts.join(' '), suppressed:false, off:false});
     }
   });
 }
@@ -5261,9 +5271,20 @@ function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, s
     let babBonus = kind==='primary' ? babList[0] : (babList[0]+secondaryPenalty);
     let atkAbility=line.atkAbility||'str', dmgAbility=line.dmgAbility||'str';
     let atkAbilityMod = atkAbility==='none' ? 0 : (ctx[atkAbility]||0);
-    let dmgAbilityMod = dmgAbility==='none' ? 0 : (ctx[dmgAbility]||0);
+    // NATURAL-DMG-001: resolve the FINAL (post buff/debuff/condition) ability modifier
+    // first, THEN apply this line's own Str-multiplier to that whole value and round
+    // once -- never floor(base*mult) with the buff/penalty delta added on top afterward
+    // (those differ whenever floor(final*mult) != floor(base*mult)+delta, e.g. base +5,
+    // Fatigued -2 -> final +3, x1.5: correct is floor(3*1.5)=4, not floor(5*1.5)+(-1)=6).
+    // ctx._finalAbilityMods (populated by resolveAbilityComposites, which excludes
+    // Natural Attack mode from its own shared dmgFromMods contribution for this exact
+    // reason) already combines every active ability-score effect on this ability via
+    // real PF1e stacking -- this is not just Enlarge Person, it's the same mechanism
+    // Fatigued/Exhausted and every other Str/Dex buff or penalty go through.
+    let baseDmgMod = dmgAbility==='none' ? 0 : (ctx[dmgAbility]||0);
+    let finalDmgMod = (dmgAbility!=='none' && ctx._finalAbilityMods && ctx._finalAbilityMods[dmgAbility]!==undefined) ? ctx._finalAbilityMods[dmgAbility] : baseDmgMod;
     let mult = line.dmgAbilityMult!==undefined ? +line.dmgAbilityMult : 1;
-    let dmgAbilityContribution = Math.floor(dmgAbilityMod*mult);
+    let dmgAbilityContribution = Math.floor(finalDmgMod*mult);
     let paDmg = powerAttackOn ? roundFrac(paBaseTotal*mult) : 0;
     let atk = babBonus + atkAbilityMod + atkFromMods;
     let dmg = dmgAbilityContribution + dmgFromMods + paDmg;
