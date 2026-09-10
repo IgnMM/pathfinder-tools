@@ -862,7 +862,8 @@ function renderAttackLines(){
   });
 }
 function newAttackLine(){
-  return {name:'',qty:1,atkType:'natural',mode:'primary',die:'1d4',atkBonus:+$('bab').value||0,threat:'20',critMult:2,
+  let atkBonus=(+$('bab').value||0)+sizeAttackModifier(currentProfile().creatureSize||'Medium');
+  return {name:'',qty:1,atkType:'natural',mode:'primary',die:'1d4',atkBonus,threat:'20',critMult:2,
     hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,baseDamageBonus:0,damageType:'',enhancement:0,range:'',extra:'',extraDice:'',extraDamageType:'',extraDiceMultipliesOnCrit:false,manualHitAdj:0,manualDmgAdj:0,noDamage:false};
 }
 $('addAttackLine').onclick=()=>{
@@ -875,8 +876,10 @@ $('addAttackPreset').onclick=()=>{
   let preset=ATTACK_PRESETS[$('attackPreset').value]; if(!preset) return;
   let p=currentProfile(); if(!p.attackLines) p.attackLines=[];
   preset.lines.forEach(src=>{
+    // newAttackLine() already bakes BAB + the current creature's size modifier into
+    // atkBonus; a Secondary preset line just needs the usual -5 on top of that.
     let line=Object.assign(newAttackLine(),src);
-    if(src.mode==='secondary'&&src.atkBonus===undefined) line.atkBonus=(+$('bab').value||0)-5;
+    if(src.mode==='secondary'&&src.atkBonus===undefined) line.atkBonus-=5;
     p.attackLines.push(line);
   });
   saveStore(); renderAttackLines(); compute();
@@ -978,7 +981,13 @@ $('applySpeciesPreset').onclick=()=>{
   let bab=+$('bab').value||0, p=currentProfile();
   p.speciesPreset=species.id;
   p.attackLines=(attacks||[]).map(a=>attackLineFromSpecies(a,bab,size));
-  syncUIIntoProfile(); saveStore(); renderAttackLines(); compute();
+  syncUIIntoProfile();
+  // The creatureSize <select> only lists Small/Medium/Large/Huge (all Eidolon/Phantom
+  // ever produce) and stays hidden for this entity type, so syncUIIntoProfile() just
+  // clobbered p.creatureSize with that dropdown's stale value -- set the real one last,
+  // straight on the profile, so any attack line added later gets the right size modifier.
+  p.creatureSize=size;
+  saveStore(); renderAttackLines(); compute();
   $('speciesPresetNote').textContent=species.name+' applied at effective companion level '+eff+' ('+size+(advanced?', advanced package active':' starting package')+'). All fields remain editable.';
 };
 
@@ -1094,7 +1103,13 @@ function applyFamiliarPreset(){
   let fam=FAMILIAR_PRESETS.find(x=>x.key===$('speciesPreset').value); if(!fam){alert('Choose a familiar species first.');return;}
   ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=fam.abilities[k]); let level=Math.max(1,Math.min(20,+$('ownerLevel').value||1));
   let p=currentProfile(); p.attackLines=(fam.attacks||[]).map(a=>lineFromRuleAttack(a,+$('bab').value||0,fam.size)); p.speciesPreset=fam.key;
-  syncUIIntoProfile(); renderAttackLines(); compute();
+  syncUIIntoProfile();
+  // Familiars are commonly Tiny/Diminutive, sizes the creatureSize <select> doesn't even
+  // list (it only covers Eidolon/Phantom's Small-Huge range) -- set the real size straight
+  // on the profile after sync so it isn't lost, and so a later-added attack line gets the
+  // right size modifier.
+  p.creatureSize=fam.size;
+  saveStore(); renderAttackLines(); compute();
   $('speciesPresetNote').textContent=fam.name+' familiar applied. To-hit uses master BAB + better of its STR/DEX; damage is the normal creature\'s fixed damage and does not add that ability again.';
 }
 
