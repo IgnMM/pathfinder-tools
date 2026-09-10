@@ -81,7 +81,7 @@ Object.values(store.profiles).forEach(applyDefaultsToState);
   // archetype spell list (not just the base SPELLS), since prep is per-profile.
   let changed=false;
   Object.values(store.profiles).forEach(p=>{
-    let list=(ARCHETYPES[p.archetype]&&ARCHETYPES[p.archetype].spells)||SPELLS;
+    let list=(ARCHETYPES[p.archetype]&&ARCHETYPES[p.archetype].addedSpells)?SPELLS.concat(ARCHETYPES[p.archetype].addedSpells):SPELLS;
     let validKeys=new Set(list.map(s=>s.l+'|'+s.n));
     ['prep','fav','cast','forbidden'].forEach(field=>{
       Object.keys(p[field]).forEach(k=>{ if(!validKeys.has(k)){ delete p[field][k]; changed=true; } });
