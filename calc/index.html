@@ -3866,6 +3866,8 @@ let store=loadStore();
 if(!store.deletedProfiles) store.deletedProfiles={};
 // migrate profiles saved before the Fighting Style / Ability picker / Race / Alignment / Sources features existed
 store.profiles.forEach(p=>{
+  if(!p.active) p.active=[];
+  if(!p.custom) p.custom=[];
   if(!p.style) p.style = (p.hands===1) ? 'oneHanded' : 'twoHanded';
   if(!p.atkStat){
     // old single "atkAbility" dropdown (str / dexAtkOnly / dexBoth) -> two independent pickers
@@ -3916,6 +3918,14 @@ store.profiles.forEach(p=>{
   // match enh on migration so an old ranged profile's total is unaffected either way.
   if(p.ammoEnh===undefined) p.ammoEnh = (p.style==='ranged') ? (p.enh||0) : 0;
   if(p.active) p.active.forEach(a=>{ if(!a.weaponSlot) a.weaponSlot='both'; });
+  (p.custom||[]).forEach(c=>{
+    if(!c.valueMode) c.valueMode=c.dice?((c.atk||c.dmg)?'both':'dice'):'fixed';
+    if(!Array.isArray(c.appliesTo)) c.appliesTo=['attack','damage'];
+    if(c.dice===undefined) c.dice='';
+    if(c.diceType===undefined) c.diceType='';
+    if(c.fixedDamageType===undefined) c.fixedDamageType='';
+    if(c.diceMultipliesOnCrit===undefined) c.diceMultipliesOnCrit=false;
+  });
   if(p.characterLevel===undefined) p.characterLevel=10;
   if(p.casterLevel===undefined) p.casterLevel=p.characterLevel;
   // BAB used to be one scalar number that mechanically derived the whole "-5 per attack"
@@ -4396,20 +4406,28 @@ function renderCategories(){
   box.querySelectorAll('.addCustomBtn').forEach(btn=>btn.onclick=()=>{
     let cat=btn.dataset.cat;
     let name=prompt('Name of this custom '+cat+':'); if(!name) return;
-    let atk=Number(prompt('Attack roll bonus (number, can be negative, 0 if none):','0'))||0;
-    let dmg=Number(prompt('Damage bonus (number, can be negative, 0 if none):','0'))||0;
-    let type=prompt('Bonus type (untyped / dodge / morale / luck / sacred / profane / competence / insight / enhancement / circumstance / trait / other-named-type):','untyped')||'untyped';
+    let valueMode=(prompt('Value format: fixed / dice / both / info','fixed')||'fixed').trim().toLowerCase();
+    if(!['fixed','dice','both','info'].includes(valueMode)) valueMode='fixed';
+    let appliesChoice=valueMode==='dice'||valueMode==='info'?'damage':((prompt('Fixed bonus applies to: attack / damage / both','both')||'both').trim().toLowerCase());
+    if(!['attack','damage','both'].includes(appliesChoice)) appliesChoice='both';
+    let atk=(valueMode==='fixed'||valueMode==='both') && appliesChoice!=='damage' ? (Number(prompt('Attack roll bonus (can be negative):','0'))||0) : 0;
+    let dmg=(valueMode==='fixed'||valueMode==='both') && appliesChoice!=='attack' ? (Number(prompt('Flat damage bonus (can be negative):','0'))||0) : 0;
+    let type=(valueMode==='fixed'||valueMode==='both') ? ((prompt('Bonus type (untyped / morale / luck / sacred / profane / competence / insight / enhancement / circumstance / trait / other named type):','untyped')||'untyped').trim().toLowerCase()) : 'untyped';
+    let fixedDamageType=dmg?(prompt('Damage type for the flat damage (e.g. slashing or fire; blank means the weapon\'s normal type):','')||'').trim():'';
     // Extra DAMAGE DICE (e.g. a custom "flaming"-style weapon property) -- separate from
     // the flat damage bonus above, shown as its own dice term next to Normal/Critical
     // Damage, same convention as Bane/Flaming/Holy: never multiplied on a crit or Vital
     // Strike. "Normal" (no type entered) reads as plain extra damage; a type (Fire, Acid,
     // Cold...) labels it as that specific damage type, same as how those weapon properties
     // actually work RAW.
-    let dice=prompt('Extra damage DICE (e.g. 2d6) — added as its own dice term, never multiplied on a crit or Vital Strike. Leave blank if this effect has no dice, just the flat bonus above:','')||'';
+    let dice=(valueMode==='dice'||valueMode==='both') ? (prompt('Extra damage dice (e.g. 2d6):','1d6')||'') : '';
     let diceType = dice ? (prompt('Damage type for those dice — type a name like Fire/Acid/Cold/Electricity/Sonic, or leave blank for plain "Normal" damage with no special type:','')||'') : '';
+    let diceMultipliesOnCrit = dice ? confirm('Do these dice multiply on a critical hit? Choose Cancel for normal extra damage dice, which do not multiply.') : false;
     let note=prompt('Optional note:','')||'';
     let p=currentProfile();
-    p.custom.push({id:'custom-'+Date.now(), name, category:cat, subcat:'other', appliesTo:['attack','damage'], type, atk, dmg, dice, diceType, note, on:true, custom:true});
+    p.custom.push({id:'custom-'+Date.now(), name, category:cat, subcat:'other', valueMode,
+      appliesTo:appliesChoice==='both'?['attack','damage']:[appliesChoice], type, atk, dmg,
+      fixedDamageType, dice, diceType, diceMultipliesOnCrit, note, on:true, custom:true});
     saveStore(); renderCategories(); compute();
   });
 }
@@ -4437,7 +4455,25 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom, pStyle){
     let opts=slotOpts.map(o=>`<option value="${o.v}"${o.v===cur?' selected':''}>${o.l}</option>`).join('');
     slotHtml=`<div class="cfg"><label>Applies to<br><select class="slotSel">${opts}</select></label></div>`;
   }
-  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off between turns without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}></label><div><div class="name">${isCustom?defOrCustom.name:defOrCustom.name}</div><details class="descToggle"><summary>What does this do?</summary><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div></details></div><button class="rm">✕ remove</button></div>${cfgHtml}${slotHtml}`;
+  let customCfgHtml='';
+  if(isCustom){
+    let c=defOrCustom;
+    let mode=c.valueMode||((c.dice&&(c.atk||c.dmg))?'both':(c.dice?'dice':'fixed'));
+    let applies=(c.appliesTo||[]).includes('attack')&&(c.appliesTo||[]).includes('damage')?'both':((c.appliesTo||[])[0]||'both');
+    customCfgHtml=`<div class="cfg customCfg">
+      <label>Value format<br><select data-custom="valueMode"><option value="fixed"${mode==='fixed'?' selected':''}>Fixed</option><option value="dice"${mode==='dice'?' selected':''}>Damage dice</option><option value="both"${mode==='both'?' selected':''}>Fixed + dice</option><option value="info"${mode==='info'?' selected':''}>Information only</option></select></label>
+      <label>Fixed applies to<br><select data-custom="appliesChoice"><option value="both"${applies==='both'?' selected':''}>Attack &amp; Damage</option><option value="attack"${applies==='attack'?' selected':''}>Attack only</option><option value="damage"${applies==='damage'?' selected':''}>Damage only</option></select></label>
+      <label>Attack bonus<br><input type="number" data-custom="atk" value="${c.atk||0}"></label>
+      <label>Flat damage<br><input type="number" data-custom="dmg" value="${c.dmg||0}"></label>
+      <label>Bonus type<br><input data-custom="type" value="${(c.type||'untyped').replace(/"/g,'&quot;')}"></label>
+      <label>Flat damage type<br><input data-custom="fixedDamageType" placeholder="weapon / fire / slashing" value="${(c.fixedDamageType||'').replace(/"/g,'&quot;')}"></label>
+      <label>Damage dice<br><input data-custom="dice" placeholder="e.g. 2d6" value="${c.dice||''}"></label>
+      <label>Damage type<br><input data-custom="diceType" placeholder="e.g. fire or slashing" value="${c.diceType||''}"></label>
+      <label>Dice on critical<br><select data-custom="diceMultipliesOnCrit"><option value="false"${!c.diceMultipliesOnCrit?' selected':''}>Not multiplied</option><option value="true"${c.diceMultipliesOnCrit?' selected':''}>Multiply</option></select></label>
+      <label>Note<br><input data-custom="note" value="${(c.note||'').replace(/"/g,'&quot;')}"></label>
+    </div>`;
+  }
+  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off between turns without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}></label><div><div class="name">${isCustom?defOrCustom.name:defOrCustom.name}</div><details class="descToggle"><summary>What does this do?</summary><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div></details></div><button class="rm">✕ remove</button></div>${cfgHtml}${customCfgHtml}${slotHtml}`;
   div.querySelector('.rm').onclick=()=>{
     let p=currentProfile();
     if(isCustom) p.custom=p.custom.filter(c=>c.id!==defOrCustom.id);
@@ -4463,6 +4499,22 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom, pStyle){
     div.querySelectorAll('select[data-key]').forEach(sel=>{
       sel.addEventListener('change',()=>{ activeRec.cfg[sel.dataset.key]=sel.value; saveStore(); compute(); });
     });
+  }
+  if(isCustom){
+    div.querySelectorAll('[data-custom]').forEach(el=>el.addEventListener('change',()=>{
+      let k=el.dataset.custom;
+      if(k==='atk'||k==='dmg') defOrCustom[k]=Number(el.value)||0;
+      else if(k==='diceMultipliesOnCrit') defOrCustom[k]=el.value==='true';
+      else if(k==='appliesChoice') defOrCustom.appliesTo=el.value==='both'?['attack','damage']:[el.value];
+      else defOrCustom[k]=k==='type'?el.value.trim().toLowerCase():el.value;
+      saveStore(); compute();
+    }));
+    div.querySelectorAll('.customCfg input').forEach(el=>el.addEventListener('input',()=>{
+      let k=el.dataset.custom;
+      if(k==='atk'||k==='dmg') defOrCustom[k]=Number(el.value)||0;
+      else defOrCustom[k]=k==='type'?el.value.trim().toLowerCase():el.value;
+      saveStore(); compute();
+    }));
   }
   return div;
 }
@@ -4598,13 +4650,22 @@ function collectContributions(ctx){
   }
   p.custom.forEach(c=>{
     let isOff=c.on===false;
+    let mode=c.valueMode||((c.dice&&(c.atk||c.dmg))?'both':(c.dice?'dice':'fixed'));
+    let applies=c.appliesTo||['attack','damage'];
     let diceLabel = c.dice ? (c.dice+(c.diceType?' '+c.diceType:'')) : '';
     if(!isOff){
-      if(c.atk) atkEntries.push({value:c.atk,type:c.type,source:c.name});
-      if(c.dmg) dmgEntries.push({value:c.dmg,type:c.type,source:c.name});
-      if(c.dice) extraDiceList.push({normal:diceLabel});
+      if((mode==='fixed'||mode==='both') && applies.includes('attack') && c.atk) atkEntries.push({value:c.atk,type:c.type,source:c.name});
+      if((mode==='fixed'||mode==='both') && applies.includes('damage') && c.dmg) dmgEntries.push({value:c.dmg,type:c.type,source:c.name});
+      if((mode==='dice'||mode==='both') && c.dice){
+        let extra={normal:diceLabel};
+        if(c.diceMultipliesOnCrit && (ctx.critMult||2)>1) extra.crit=diceMultiply(c.dice,(ctx.critMult||2)-1)+(c.diceType?' '+c.diceType:'');
+        extraDiceList.push(extra);
+      }
     }
-    breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,atk:c.atk||null,dmg:c.dmg||null,note:(c.note||'')+(diceLabel?' plus '+diceLabel+' damage (dice, not multiplied on a crit or Vital Strike)':'')+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
+    breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type,
+      atk:(mode==='fixed'||mode==='both')&&applies.includes('attack')?(c.atk||null):null,
+      dmg:(mode==='fixed'||mode==='both')&&applies.includes('damage')?(c.dmg||null):null,
+      note:(c.note||'')+(c.fixedDamageType&&c.dmg?'; flat damage type: '+c.fixedDamageType:'')+(diceLabel?' plus '+diceLabel+' damage ('+(c.diceMultipliesOnCrit?'multiplied on a critical hit':'not multiplied on a critical hit or Vital Strike')+')':'')+(mode==='info'?' (information only)':'')+(isOff?' (not active this turn)':''),suppressed:false,off:isOff});
   });
   return {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen,smiteEvilOn,smiteDmgVal,smiteDoubles};
 }
@@ -4649,9 +4710,15 @@ function collectSlotEntries(ctx, slot){
       let ws=c.weaponSlot||'both';
       if(ws!=='both' && ws!==slot) return;
     }
-    if(c.atk) atk.push({value:c.atk,type:c.type,source:c.name});
-    if(c.dmg) dmg.push({value:c.dmg,type:c.type,source:c.name});
-    if(c.dice) extraDice.push({normal:c.dice+(c.diceType?' '+c.diceType:'')});
+    let mode=c.valueMode||((c.dice&&(c.atk||c.dmg))?'both':(c.dice?'dice':'fixed'));
+    let applies=c.appliesTo||['attack','damage'];
+    if((mode==='fixed'||mode==='both') && applies.includes('attack') && c.atk) atk.push({value:c.atk,type:c.type,source:c.name});
+    if((mode==='fixed'||mode==='both') && applies.includes('damage') && c.dmg) dmg.push({value:c.dmg,type:c.type,source:c.name});
+    if((mode==='dice'||mode==='both') && c.dice){
+      let e={normal:c.dice+(c.diceType?' '+c.diceType:'')};
+      if(c.diceMultipliesOnCrit && (ctx.critMult||2)>1) e.crit=diceMultiply(c.dice,(ctx.critMult||2)-1)+(c.diceType?' '+c.diceType:'');
+      extraDice.push(e);
+    }
   });
   resolveAbilityComposites(ctx, atk, dmg, null, slot);
   return {atk,dmg,extraDice};
@@ -5296,11 +5363,18 @@ function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, s
     else if(ctx.mythicPowerAttackOn && powerAttackOn && paDmg) critDmg += paDmg*critMult;
     lineComputed[idx] = {dmg, effDie, critMult, paDmg, atk};
     let critDice = diceMultiply(effDie, critMult);
+    let customDice=(p.custom||[]).filter(c=>c.on!==false&&(c.valueMode==='dice'||c.valueMode==='both'||(!c.valueMode&&c.dice))&&c.dice);
+    let normalDice=effDie;
+    customDice.forEach(c=>{
+      let label=c.dice+(c.diceType?' '+c.diceType:'');
+      normalDice+=' + '+label;
+      critDice+=' + '+(c.diceMultipliesOnCrit?diceMultiply(c.dice,critMult):c.dice)+(c.diceType?' '+c.diceType:'')+(c.diceMultipliesOnCrit?'':' (unmultiplied)');
+    });
     let qty=Math.max(1,+line.qty||1);
     let kindLabel = kind==='secondary'?'Secondary':kind==='conditional'?'Conditional':'Primary';
     let threat = line.threat||'20';
     let tr=document.createElement('tr');
-    tr.innerHTML=`<td>${(qty>1?qty+'× ':'')+esc(line.name||'Attack')} <span class="typeTag">${kindLabel}</span></td><td class="num">${signed(atk)}</td><td>${effDie} ${signed(dmg)}</td><td>${critDice} ${signed(critDmg)} (threat ${threat}/×${critMult})</td>`;
+    tr.innerHTML=`<td>${(qty>1?qty+'× ':'')+esc(line.name||'Attack')} <span class="typeTag">${kindLabel}</span></td><td class="num">${signed(atk)}</td><td>${normalDice} ${signed(dmg)}</td><td>${critDice} ${signed(critDmg)} (threat ${threat}/×${critMult})</td>`;
     tbody.appendChild(tr);
   });
   t.appendChild(tbody);
@@ -5331,6 +5405,11 @@ function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, s
     let dmgVSDice = diceMultiply(effDie, vsMult);
     let critDice = diceMultiply(effDie, critMult);
     let dmgVSCritDiceStr = critDice + (vsMult>1 ? ' + '+diceMultiply(effDie, vsMult-1)+' (Vital Strike, unmultiplied)' : '');
+    (p.custom||[]).filter(c=>c.on!==false&&(c.valueMode==='dice'||c.valueMode==='both'||(!c.valueMode&&c.dice))&&c.dice).forEach(c=>{
+      let label=c.dice+(c.diceType?' '+c.diceType:'');
+      dmgVSDice+=' + '+label;
+      dmgVSCritDiceStr+=' + '+(c.diceMultipliesOnCrit?diceMultiply(c.dice,critMult):c.dice)+(c.diceType?' '+c.diceType:'')+(c.diceMultipliesOnCrit?'':' (unmultiplied)');
+    });
     vsBox.style.display='block';
     vsBox.innerHTML=`<div class="small">Vital Strike — ${esc(line.name||'Attack')} <span style="font-weight:400">(single attack-action only; Full Attack above no longer applies this turn)</span></div>
       <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:4px">

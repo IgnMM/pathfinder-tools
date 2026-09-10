@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "system": "Pathfinder 1e",
+  "name": "Core Animal Companion Species Presets",
+  "scope": "Species-specific starting statistics and advancement packages from the Core Rulebook Animal Choices section. Combine with animal-companion-progression.json.",
+  "source": {
+    "book": "Pathfinder Roleplaying Game Core Rulebook",
+    "section": "Druid — Animal Companions — Animal Choices",
+    "url": "https://legacy.aonprd.com/coreRulebook/classes/druid.html#animal-choices"
+  },
+  "applicationOrder": [
+    "Load species starting statistics",
+    "Apply the cumulative row from animal-companion-progression.json for effective companion level",
+    "At the species milestone, apply either the listed species advancement package or the alternative +2 Dexterity/+2 Constitution package, never both",
+    "Apply the player's chosen +1 ability-score increases from universal progression",
+    "Apply feats, equipment, spells, conditions, and other active effects"
+  ],
+  "rules": {
+    "universalProgressionFile": "animal-companion-progression.json",
+    "advancementChoice": {
+      "listed": "Apply every field in the species advancement package, including any size, natural armor, attacks, ability adjustments, and new abilities.",
+      "alternative": {"dex": 2, "con": 2, "insteadOfListedAdvancement": true},
+      "default": "listed",
+      "requiresPlayerChoice": true
+    },
+    "naturalArmor": "startingNaturalArmor is the species' initial natural armor bonus. Species advancement naturalArmorAdjustment and universal progression naturalArmorAdjustment are both added when applicable.",
+    "abilityScores": "Starting scores are actual companion scores, not Wild Shape polymorph adjustments. Species advancement adjustments and universal Str/Dex adjustments are cumulative additions.",
+    "damageMultipliers": "An only natural weapon adds 1.5 times Strength to damage. Primary attacks in a multiattack routine add 1 times Strength; secondary attacks add 0.5 times Strength.",
+    "attackChoiceGroups": "Attacks sharing a non-null choiceGroup are alternatives and are not made together in one routine.",
+    "noWildShapeNumericReuse": true
+  },
+  "species": [
+    {
+      "id": "ape",
+      "name": "Ape",
+      "aliases": ["Gorilla"],
+      "starting": {"size":"Medium","startingNaturalArmor":1,"abilities":{"str":13,"dex":17,"con":10,"int":2,"wis":12,"cha":7},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Claw","count":2,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":"Large","naturalArmorAdjustment":2,"abilityAdjustments":{"str":8,"dex":-2,"con":4},"replaceNaturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Claw","count":2,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"addSpecialAttacks":[],"addSpecialQualities":[]}
+    },
+    {
+      "id": "badger_wolverine",
+      "name": "Badger / Wolverine",
+      "aliases": ["Badger","Wolverine"],
+      "starting": {"size":"Small","startingNaturalArmor":2,"abilities":{"str":10,"dex":17,"con":15,"int":2,"wis":12,"cha":10},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Claw","count":2,"classification":"primary","damage":"1d3","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"specialAttacks":["rage (as a barbarian for 6 rounds per day)"],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":"Medium","naturalArmorAdjustment":0,"abilityAdjustments":{"str":4,"dex":-2,"con":2},"replaceNaturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Claw","count":2,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"addSpecialAttacks":[],"addSpecialQualities":[]}
+    },
+    {
+      "id": "bear",
+      "name": "Bear",
+      "starting": {"size":"Small","startingNaturalArmor":2,"abilities":{"str":15,"dex":15,"con":13,"int":2,"wis":12,"cha":6},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Claw","count":2,"classification":"primary","damage":"1d3","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":"Medium","naturalArmorAdjustment":0,"abilityAdjustments":{"str":4,"dex":-2,"con":2},"replaceNaturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Claw","count":2,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"addSpecialAttacks":[],"addSpecialQualities":[]}
+    },
+    {
+      "id": "bird",
+      "name": "Bird (Eagle / Hawk / Owl)",
+      "aliases": ["Eagle","Hawk","Owl"],
+      "starting": {"size":"Small","startingNaturalArmor":1,"abilities":{"str":10,"dex":15,"con":12,"int":2,"wis":14,"cha":6},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Talon","count":2,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"specialQualities":["low-light vision"]},
+      "advancement":{"level":4,"size":null,"naturalArmorAdjustment":0,"abilityAdjustments":{"str":2,"dex":0,"con":2},"replaceNaturalAttacks":null,"addSpecialAttacks":[],"addSpecialQualities":[]}
+    },
+    {
+      "id": "boar",
+      "name": "Boar",
+      "starting": {"size":"Small","startingNaturalArmor":6,"abilities":{"str":13,"dex":12,"con":15,"int":2,"wis":13,"cha":4},"naturalAttacks":[
+        {"name":"Gore","count":1,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2}
+      ],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":"Medium","naturalArmorAdjustment":0,"abilityAdjustments":{"str":4,"dex":-2,"con":2},"replaceNaturalAttacks":[
+        {"name":"Gore","count":1,"classification":"primary","damage":"1d8","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2}
+      ],"addSpecialAttacks":["ferocity"],"addSpecialQualities":[]}
+    },
+    {
+      "id": "camel",
+      "name": "Camel",
+      "starting": {"size":"Large","startingNaturalArmor":1,"abilities":{"str":18,"dex":16,"con":14,"int":2,"wis":11,"cha":4},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2,"choiceGroup":"camel_attack"},
+        {"name":"Spit","count":1,"classification":"ranged_touch","damage":null,"damageAbility":"none","damageAbilityMultiplier":0,"criticalMultiplier":null,"choiceGroup":"camel_attack","effect":"Target sickened for 1d4 rounds","range":"10 ft."}
+      ],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":null,"naturalArmorAdjustment":0,"abilityAdjustments":{"str":2,"dex":0,"con":2},"replaceNaturalAttacks":null,"addSpecialAttacks":[],"addSpecialQualities":[]}
+    },
+    {
+      "id": "cat_big",
+      "name": "Cat, Big (Lion / Tiger)",
+      "aliases": ["Lion","Tiger","Big Cat"],
+      "starting": {"size":"Medium","startingNaturalArmor":1,"abilities":{"str":13,"dex":17,"con":13,"int":2,"wis":15,"cha":10},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Claw","count":2,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"conditionalAttacks":[{"name":"Rake","count":2,"classification":"conditional","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":7,"size":"Large","naturalArmorAdjustment":2,"abilityAdjustments":{"str":8,"dex":-2,"con":4},"replaceNaturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d8","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Claw","count":2,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"replaceConditionalAttacks":[{"name":"Rake","count":2,"classification":"conditional","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}],"addSpecialAttacks":["grab","pounce","rake"],"addSpecialQualities":[]}
+    },
+    {
+      "id": "cat_small",
+      "name": "Cat, Small (Cheetah / Leopard)",
+      "aliases": ["Cheetah","Leopard","Small Cat"],
+      "starting": {"size":"Small","startingNaturalArmor":1,"abilities":{"str":12,"dex":21,"con":13,"int":2,"wis":12,"cha":6},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2,"rider":"trip"},
+        {"name":"Claw","count":2,"classification":"primary","damage":"1d2","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":"Medium","naturalArmorAdjustment":0,"abilityAdjustments":{"str":4,"dex":-2,"con":2},"replaceNaturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2,"rider":"trip"},
+        {"name":"Claw","count":2,"classification":"primary","damage":"1d3","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"addSpecialAttacks":[],"addSpecialQualities":["sprint"]}
+    },
+    {
+      "id": "crocodile",
+      "name": "Crocodile / Alligator",
+      "aliases": ["Crocodile","Alligator"],
+      "starting": {"size":"Small","startingNaturalArmor":4,"abilities":{"str":15,"dex":14,"con":15,"int":1,"wis":12,"cha":2},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2}
+      ],"specialQualities":["hold breath","low-light vision"]},
+      "advancement":{"level":4,"size":"Medium","naturalArmorAdjustment":0,"abilityAdjustments":{"str":4,"dex":-2,"con":2},"replaceNaturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d8","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2,"choiceGroup":"crocodile_attack"},
+        {"name":"Tail Slap","count":1,"classification":"primary","damage":"1d12","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2,"choiceGroup":"crocodile_attack"}
+      ],"addSpecialAttacks":["death roll","grab","sprint"],"addSpecialQualities":[]}
+    },
+    {
+      "id": "dinosaur_deinonychus",
+      "name": "Dinosaur (Deinonychus / Velociraptor)",
+      "aliases": ["Deinonychus","Velociraptor"],
+      "starting": {"size":"Small","startingNaturalArmor":1,"abilities":{"str":11,"dex":17,"con":17,"int":2,"wis":12,"cha":14},"naturalAttacks":[
+        {"name":"Talon","count":2,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":7,"size":"Medium","naturalArmorAdjustment":2,"abilityAdjustments":{"str":4,"dex":-2,"con":2},"replaceNaturalAttacks":[
+        {"name":"Talon","count":2,"classification":"primary","damage":"1d8","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Claw","count":2,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"addSpecialAttacks":["pounce"],"addSpecialQualities":[]}
+    },
+    {
+      "id": "dog",
+      "name": "Dog",
+      "starting": {"size":"Small","startingNaturalArmor":2,"abilities":{"str":13,"dex":17,"con":15,"int":2,"wis":12,"cha":6},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2}
+      ],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":"Medium","naturalArmorAdjustment":0,"abilityAdjustments":{"str":4,"dex":-2,"con":2},"replaceNaturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2}
+      ],"addSpecialAttacks":[],"addSpecialQualities":[]}
+    },
+    {
+      "id": "horse",
+      "name": "Horse",
+      "starting": {"size":"Large","startingNaturalArmor":4,"abilities":{"str":16,"dex":13,"con":15,"int":2,"wis":12,"cha":6},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2},
+        {"name":"Hoof","count":2,"classification":"secondary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":0.5,"criticalMultiplier":2}
+      ],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":null,"naturalArmorAdjustment":0,"abilityAdjustments":{"str":2,"dex":0,"con":2},"replaceNaturalAttacks":null,"addSpecialAttacks":[],"addSpecialQualities":["combat trained"]}
+    },
+    {
+      "id": "pony",
+      "name": "Pony",
+      "starting": {"size":"Medium","startingNaturalArmor":2,"abilities":{"str":13,"dex":13,"con":12,"int":2,"wis":11,"cha":4},"naturalAttacks":[
+        {"name":"Hoof","count":2,"classification":"primary","damage":"1d3","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}
+      ],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":null,"naturalArmorAdjustment":0,"abilityAdjustments":{"str":2,"dex":0,"con":2},"replaceNaturalAttacks":null,"addSpecialAttacks":[],"addSpecialQualities":["combat trained"]}
+    },
+    {
+      "id": "shark",
+      "name": "Shark",
+      "starting": {"size":"Small","startingNaturalArmor":4,"abilities":{"str":13,"dex":15,"con":15,"int":1,"wis":12,"cha":2},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2}
+      ],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":"Medium","naturalArmorAdjustment":0,"abilityAdjustments":{"str":4,"dex":-2,"con":2},"replaceNaturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2}
+      ],"addSpecialAttacks":[],"addSpecialQualities":["blindsense"]}
+    },
+    {
+      "id": "snake_constrictor",
+      "name": "Snake, Constrictor",
+      "aliases": ["Constrictor Snake"],
+      "starting": {"size":"Medium","startingNaturalArmor":2,"abilities":{"str":15,"dex":17,"con":13,"int":1,"wis":12,"cha":2},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d3","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2}
+      ],"specialAttacks":["grab"],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":"Large","naturalArmorAdjustment":1,"abilityAdjustments":{"str":8,"dex":-2,"con":4},"replaceNaturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2}
+      ],"addConditionalAttacks":[{"name":"Constrict","count":1,"classification":"conditional","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1,"criticalMultiplier":2}],"addSpecialAttacks":["constrict"],"addSpecialQualities":[]}
+    },
+    {
+      "id": "snake_viper",
+      "name": "Snake, Viper",
+      "aliases": ["Viper Snake"],
+      "starting": {"size":"Small","startingNaturalArmor":2,"abilities":{"str":8,"dex":17,"con":11,"int":1,"wis":12,"cha":2},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d3","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2,"rider":"poison"}
+      ],"specialAttacks":["poison (frequency 1/round for 6 rounds; 1 Constitution damage; cure 1 save; Constitution-based DC)"],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":4,"size":"Medium","naturalArmorAdjustment":0,"abilityAdjustments":{"str":4,"dex":-2,"con":2},"replaceNaturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d4","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2,"rider":"poison"}
+      ],"addSpecialAttacks":[],"addSpecialQualities":[]}
+    },
+    {
+      "id": "wolf",
+      "name": "Wolf",
+      "starting": {"size":"Medium","startingNaturalArmor":2,"abilities":{"str":13,"dex":15,"con":15,"int":2,"wis":12,"cha":6},"naturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d6","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2,"rider":"trip"}
+      ],"specialQualities":["low-light vision","scent"]},
+      "advancement":{"level":7,"size":"Large","naturalArmorAdjustment":2,"abilityAdjustments":{"str":8,"dex":-2,"con":4},"replaceNaturalAttacks":[
+        {"name":"Bite","count":1,"classification":"primary","damage":"1d8","damageAbility":"str","damageAbilityMultiplier":1.5,"criticalMultiplier":2,"rider":"trip"}
+      ],"addSpecialAttacks":[],"addSpecialQualities":[]}
+    }
+  ]
+}
