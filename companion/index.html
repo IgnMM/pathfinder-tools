@@ -969,7 +969,6 @@ $('applySpeciesPreset').onclick=()=>{
   if(type==='familiar') return applyFamiliarPreset();
   let species=COMPANION_SPECIES.find(s=>s.id===$('speciesPreset').value);
   if(!species){alert('Choose a species preset first, or keep using the manual fields.');return;}
-  if(!confirm('Apply '+species.name+'? This replaces this profile\'s current ability scores and attack rows, but every resulting field remains editable.')) return;
   let eff=effectiveCompanionLevel($('sourceClass').value,+$('ownerLevel').value||0)||0;
   let advanced=species.advancement&&eff>=species.advancement.level;
   let base=species.starting.abilities, adj=advanced?(species.advancement.abilityAdjustments||{}):{};
