@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "system": "Pathfinder 1e",
+  "sources": {
+    "chained": "https://legacy.aonprd.com/advancedPlayersGuide/baseClasses/summoner.html#base-forms",
+    "unchained": "https://legacy.aonprd.com/unchained/classes/summoner.html#base-forms"
+  },
+  "notes": [
+    "The three standard forms have the same starting combat statistics in chained and unchained rules.",
+    "Chained forms list free evolutions explicitly. Unchained eidolons receive subtype base evolutions separately.",
+    "A Small form applies Str -4, Dex +2, Con -2, attack +1 and reduces every attack die one step; it can later be returned to Medium when evolution choices can be changed."
+  ],
+  "forms": [
+    {"key":"biped","name":"Biped","size":"Medium","speed":30,"naturalArmor":2,"goodSaves":["Fort","Will"],"poorSave":"Ref","abilities":{"str":16,"dex":12,"con":13,"int":7,"wis":10,"cha":11},"attacks":[{"name":"Claw","count":2,"damage":"1d4","type":["slashing"],"classification":"primary","ability":"str","strengthMultiplier":1}],"chainedFreeEvolutions":["claws","limbs-arms","limbs-legs"]},
+    {"key":"quadruped","name":"Quadruped","size":"Medium","speed":40,"naturalArmor":2,"goodSaves":["Fort","Ref"],"poorSave":"Will","abilities":{"str":14,"dex":14,"con":13,"int":7,"wis":10,"cha":11},"attacks":[{"name":"Bite","count":1,"damage":"1d6","type":["bludgeoning","piercing","slashing"],"classification":"primary","ability":"str","strengthMultiplier":1.5,"singleNaturalAttackRule":true}],"chainedFreeEvolutions":["bite","limbs-legs","limbs-legs"]},
+    {"key":"serpentine","name":"Serpentine","size":"Medium","speed":20,"climbSpeed":20,"naturalArmor":2,"goodSaves":["Ref","Will"],"poorSave":"Fort","abilities":{"str":12,"dex":16,"con":13,"int":7,"wis":10,"cha":11},"attacks":[{"name":"Bite","count":1,"damage":"1d6","type":["bludgeoning","piercing","slashing"],"classification":"primary","ability":"str","strengthMultiplier":1},{"name":"Tail Slap","count":1,"damage":"1d6","type":["bludgeoning"],"classification":"secondary","ability":"str","strengthMultiplier":0.5,"attackPenalty":-5}],"chainedFreeEvolutions":["bite","climb","reach-bite","tail","tail-slap"]}
+  ],
+  "smallTemplate":{"size":"Small","abilityAdjustments":{"str":-4,"dex":2,"con":-2},"attackSizeBonus":1,"damageDieSteps":-1}
+}

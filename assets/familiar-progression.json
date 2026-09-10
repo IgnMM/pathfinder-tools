@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "system": "Pathfinder 1e",
+  "source": "https://legacy.aonprd.com/coreRulebook/classes/wizard.html#familiars",
+  "calculatorRules": {
+    "babSource": "masterTotalBAB",
+    "naturalMeleeAttackAbility": "max(strModifier,dexModifier)",
+    "damageSource": "baseCreature",
+    "damageAbilityModifier": 0,
+    "hitPoints": "floor(masterTotalHitPoints/2)",
+    "effectiveHitDice": "max(masterCharacterLevel,baseCreatureHD)"
+  },
+  "progression": [
+    {"levels":[1,2],"naturalArmorAdjustment":1,"intelligence":6,"special":["alertness","improvedEvasion","shareSpells","empathicLink"]},
+    {"levels":[3,4],"naturalArmorAdjustment":2,"intelligence":7,"special":["deliverTouchSpells"]},
+    {"levels":[5,6],"naturalArmorAdjustment":3,"intelligence":8,"special":["speakWithMaster"]},
+    {"levels":[7,8],"naturalArmorAdjustment":4,"intelligence":9,"special":["speakWithAnimalsOfItsKind"]},
+    {"levels":[9,10],"naturalArmorAdjustment":5,"intelligence":10,"special":[]},
+    {"levels":[11,12],"naturalArmorAdjustment":6,"intelligence":11,"special":["spellResistance"]},
+    {"levels":[13,14],"naturalArmorAdjustment":7,"intelligence":12,"special":["scryOnFamiliar"]},
+    {"levels":[15,16],"naturalArmorAdjustment":8,"intelligence":13,"special":[]},
+    {"levels":[17,18],"naturalArmorAdjustment":9,"intelligence":14,"special":[]},
+    {"levels":[19,20],"naturalArmorAdjustment":10,"intelligence":15,"special":[]}
+  ],
+  "implementationNotes": [
+    "Do not add Strength or Dexterity to familiar damage merely because one of them is used for its melee attack roll.",
+    "Share Spells permits qualifying master spells despite the familiar being a magical beast.",
+    "Species presets must come from the base creature stat blocks, not from Animal Companion choices."
+  ]
+}

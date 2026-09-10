@@ -1,0 +1,1039 @@
+{
+  "schemaVersion": 1,
+  "system": "Pathfinder 1e",
+  "purpose": "Complete evolution index plus separate calculator adapters",
+  "sources": {
+    "chained": "https://legacy.aonprd.com/advancedPlayersGuide/baseClasses/summoner.html",
+    "unchained": "https://legacy.aonprd.com/unchained/classes/summoner.html"
+  },
+  "versions": {
+    "chained": [
+      {
+        "key": "bite",
+        "name": "Bite",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "claws",
+        "name": "Claws",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "climb",
+        "name": "Climb",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "gills",
+        "name": "Gills",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "improved-damage",
+        "name": "Improved Damage",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "improved-natural-armor",
+        "name": "Improved Natural Armor",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "magic-attacks",
+        "name": "Magic Attacks",
+        "type": "Su",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "mount",
+        "name": "Mount",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "pincers",
+        "name": "Pincers",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "pounce",
+        "name": "Pounce",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "pull",
+        "name": "Pull",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "push",
+        "name": "Push",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "reach",
+        "name": "Reach",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "resistance",
+        "name": "Resistance",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "scent",
+        "name": "Scent",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "skilled",
+        "name": "Skilled",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "slam",
+        "name": "Slam",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "sting",
+        "name": "Sting",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "swim",
+        "name": "Swim",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "tail",
+        "name": "Tail",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "tail-slap",
+        "name": "Tail Slap",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "tentacle",
+        "name": "Tentacle",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "wing-buffet",
+        "name": "Wing Buffet",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "ability-increase",
+        "name": "Ability Increase",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "constrict",
+        "name": "Constrict",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "energy-attacks",
+        "name": "Energy Attacks",
+        "type": "Su",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "gore",
+        "name": "Gore",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "grab",
+        "name": "Grab",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "immunity",
+        "name": "Immunity",
+        "type": "Su",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "limbs",
+        "name": "Limbs",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "poison",
+        "name": "Poison",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "rake",
+        "name": "Rake",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "rend",
+        "name": "Rend",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "trample",
+        "name": "Trample",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "tremorsense",
+        "name": "Tremorsense",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "trip",
+        "name": "Trip",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "weapon-training",
+        "name": "Weapon Training",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "blindsense",
+        "name": "Blindsense",
+        "type": "Ex",
+        "cost": 3,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "burrow",
+        "name": "Burrow",
+        "type": "Ex",
+        "cost": 3,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "damage-reduction",
+        "name": "Damage Reduction",
+        "type": "Su",
+        "cost": 3,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "frightful-presence",
+        "name": "Frightful Presence",
+        "type": "Ex",
+        "cost": 3,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "swallow-whole",
+        "name": "Swallow Whole",
+        "type": "Ex",
+        "cost": 3,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "web",
+        "name": "Web",
+        "type": "Ex",
+        "cost": 3,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "blindsight",
+        "name": "Blindsight",
+        "type": "Ex",
+        "cost": 4,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "breath-weapon",
+        "name": "Breath Weapon",
+        "type": "Su",
+        "cost": 4,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "fast-healing",
+        "name": "Fast Healing",
+        "type": "Su",
+        "cost": 4,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "large",
+        "name": "Large",
+        "type": "Ex",
+        "cost": 4,
+        "requirementsText": "",
+        "version": "chained"
+      },
+      {
+        "key": "spell-resistance",
+        "name": "Spell Resistance",
+        "type": "Ex",
+        "cost": 4,
+        "requirementsText": "",
+        "version": "chained"
+      }
+    ],
+    "unchained": [
+      {
+        "key": "bite",
+        "name": "Bite",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "Agathion, daemon, demon, devil, div, elemental, protean, or psychopomp subtype",
+        "version": "unchained"
+      },
+      {
+        "key": "claws",
+        "name": "Claws",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "Agathion, daemon, demon, devil, div, elemental, protean, or psychopomp subtype",
+        "version": "unchained"
+      },
+      {
+        "key": "climb",
+        "name": "Climb",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "gills",
+        "name": "Gills",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "improved-damage",
+        "name": "Improved Damage",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "improved-natural-armor",
+        "name": "Improved Natural Armor",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "magic-attacks",
+        "name": "Magic Attacks",
+        "type": "Su",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "mount",
+        "name": "Mount",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "Daemon, demon, devil, elemental, or protean subtype; quadruped or serpentine base form",
+        "version": "unchained"
+      },
+      {
+        "key": "pincers",
+        "name": "Pincers",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "Agathion, daemon, demon, devil, div, elemental, protean, or psychopomp subtype",
+        "version": "unchained"
+      },
+      {
+        "key": "pull",
+        "name": "Pull",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "Reach of 10 feet or more",
+        "version": "unchained"
+      },
+      {
+        "key": "push",
+        "name": "Push",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "reach",
+        "name": "Reach",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "resistance",
+        "name": "Resistance",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "scent",
+        "name": "Scent",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "skilled",
+        "name": "Skilled",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "slam",
+        "name": "Slam",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "sting",
+        "name": "Sting",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "Agathion, daemon, demon, devil, div, elemental, protean, or psychopomp subtype; tail evolution",
+        "version": "unchained"
+      },
+      {
+        "key": "swim",
+        "name": "Swim",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "tail",
+        "name": "Tail",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "Agathion, daemon, demon, devil, div, elemental, protean, or psychopomp subtype",
+        "version": "unchained"
+      },
+      {
+        "key": "tail-slap",
+        "name": "Tail Slap",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "Agathion, daemon, demon, devil, div, elemental, protean, or psychopomp subtype; tail evolution",
+        "version": "unchained"
+      },
+      {
+        "key": "tentacle",
+        "name": "Tentacle",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "Daemon, demon, or protean subtype",
+        "version": "unchained"
+      },
+      {
+        "key": "wing-buffet",
+        "name": "Wing Buffet",
+        "type": "Ex",
+        "cost": 1,
+        "requirementsText": "Flight (wings) evolution",
+        "version": "unchained"
+      },
+      {
+        "key": "ability-increase",
+        "name": "Ability Increase",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "constrict",
+        "name": "Constrict",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "Serpentine base form, grab evolution",
+        "version": "unchained"
+      },
+      {
+        "key": "energy-attacks",
+        "name": "Energy Attacks",
+        "type": "Su",
+        "cost": 2,
+        "requirementsText": "Summoner level 5th",
+        "version": "unchained"
+      },
+      {
+        "key": "gore",
+        "name": "Gore",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "Agathion, daemon, demon, devil, div, elemental, protean, or psychopomp subtype",
+        "version": "unchained"
+      },
+      {
+        "key": "grab",
+        "name": "Grab",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "immunity",
+        "name": "Immunity",
+        "type": "Su",
+        "cost": 2,
+        "requirementsText": "Summoner level 7th",
+        "version": "unchained"
+      },
+      {
+        "key": "limbs",
+        "name": "Limbs",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "poison",
+        "name": "Poison",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "rake",
+        "name": "Rake",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "Summoner level 4th, quadruped base form",
+        "version": "unchained"
+      },
+      {
+        "key": "rend",
+        "name": "Rend",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "Summoner level 6th, claws evolution",
+        "version": "unchained"
+      },
+      {
+        "key": "trample",
+        "name": "Trample",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "Biped or quadruped base form",
+        "version": "unchained"
+      },
+      {
+        "key": "tremorsense",
+        "name": "Tremorsense",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "Summoner level 7th",
+        "version": "unchained"
+      },
+      {
+        "key": "trip",
+        "name": "Trip",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "Daemon, demon, devil, elemental, or protean subtype; bite evolution",
+        "version": "unchained"
+      },
+      {
+        "key": "weapon-training",
+        "name": "Weapon Training",
+        "type": "Ex",
+        "cost": 2,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "blindsense",
+        "name": "Blindsense",
+        "type": "Ex",
+        "cost": 3,
+        "requirementsText": "Summoner level 9th",
+        "version": "unchained"
+      },
+      {
+        "key": "burrow",
+        "name": "Burrow",
+        "type": "Ex",
+        "cost": 3,
+        "requirementsText": "Summoner level 9th",
+        "version": "unchained"
+      },
+      {
+        "key": "damage-reduction",
+        "name": "Damage Reduction",
+        "type": "Su",
+        "cost": 3,
+        "requirementsText": "Summoner level 15th, damage reduction granted by the eidolon's subtype",
+        "version": "unchained"
+      },
+      {
+        "key": "frightful-presence",
+        "name": "Frightful Presence",
+        "type": "Ex",
+        "cost": 3,
+        "requirementsText": "Summoner level 11th",
+        "version": "unchained"
+      },
+      {
+        "key": "pounce",
+        "name": "Pounce",
+        "type": "Ex",
+        "cost": 3,
+        "requirementsText": "Summoner level 7th, quadruped base form",
+        "version": "unchained"
+      },
+      {
+        "key": "swallow-whole",
+        "name": "Swallow Whole",
+        "type": "Ex",
+        "cost": 3,
+        "requirementsText": "Summoner level 9th; agathion, daemon, demon, devil, div, elemental, protean, or psychopomp subtype; grab (bite) evolution",
+        "version": "unchained"
+      },
+      {
+        "key": "web",
+        "name": "Web",
+        "type": "Ex",
+        "cost": 3,
+        "requirementsText": "Summoner level 7th; daemon, demon, or protean subtype; climb evolution",
+        "version": "unchained"
+      },
+      {
+        "key": "blindsight",
+        "name": "Blindsight",
+        "type": "Ex",
+        "cost": 4,
+        "requirementsText": "Summoner level 11th, blindsense evolution",
+        "version": "unchained"
+      },
+      {
+        "key": "breath-weapon",
+        "name": "Breath Weapon",
+        "type": "Su",
+        "cost": 4,
+        "requirementsText": "Summoner level 9th",
+        "version": "unchained"
+      },
+      {
+        "key": "fast-healing",
+        "name": "Fast Healing",
+        "type": "Su",
+        "cost": 4,
+        "requirementsText": "Summoner level 11th",
+        "version": "unchained"
+      },
+      {
+        "key": "large",
+        "name": "Large",
+        "type": "Ex",
+        "cost": 4,
+        "requirementsText": "",
+        "version": "unchained"
+      },
+      {
+        "key": "spell-resistance",
+        "name": "Spell Resistance",
+        "type": "Ex",
+        "cost": 4,
+        "requirementsText": "Summoner level 9th",
+        "version": "unchained"
+      }
+    ]
+  },
+  "calculatorAdapters": {
+    "bite": {
+      "operation": "addOrUpgradeAttack",
+      "attack": {
+        "name": "Bite",
+        "count": 1,
+        "classification": "primary",
+        "damageBySize": {
+          "Medium": "1d6",
+          "Large": "1d8",
+          "Huge": "2d6"
+        },
+        "ability": "str",
+        "strengthMultiplier": 1
+      },
+      "existingAttackStrengthMultiplier": 1.5
+    },
+    "claws": {
+      "operation": "addAttack",
+      "attack": {
+        "name": "Claw",
+        "count": 2,
+        "classification": "primary",
+        "damageBySize": {
+          "Medium": "1d4",
+          "Large": "1d6",
+          "Huge": "1d8"
+        },
+        "ability": "str",
+        "strengthMultiplier": 1
+      }
+    },
+    "improved-damage": {
+      "operation": "increaseSelectedAttackDie",
+      "damageDieSteps": 1,
+      "stacking": "doesNotStackOnSameAttack"
+    },
+    "pincers": {
+      "operation": "addAttack",
+      "attack": {
+        "name": "Pincer",
+        "count": 2,
+        "classification": "secondary",
+        "damageBySize": {
+          "Medium": "1d6",
+          "Large": "1d8",
+          "Huge": "2d6"
+        },
+        "ability": "str",
+        "strengthMultiplier": 0.5
+      }
+    },
+    "slam": {
+      "operation": "addAttack",
+      "attack": {
+        "name": "Slam",
+        "count": 1,
+        "classification": "primary",
+        "damageBySize": {
+          "Medium": "1d8",
+          "Large": "2d6",
+          "Huge": "2d8"
+        },
+        "ability": "str",
+        "strengthMultiplier": 1
+      }
+    },
+    "sting": {
+      "operation": "addAttack",
+      "attack": {
+        "name": "Sting",
+        "count": 1,
+        "classification": "primary",
+        "damageBySize": {
+          "Medium": "1d4",
+          "Large": "1d6",
+          "Huge": "1d8"
+        },
+        "ability": "str",
+        "strengthMultiplier": 1
+      }
+    },
+    "tail-slap": {
+      "operation": "addAttack",
+      "attack": {
+        "name": "Tail Slap",
+        "count": 1,
+        "classification": "secondary",
+        "damageBySize": {
+          "Medium": "1d6",
+          "Large": "1d8",
+          "Huge": "2d6"
+        },
+        "ability": "str",
+        "strengthMultiplier": 0.5
+      }
+    },
+    "tentacle": {
+      "operation": "addAttack",
+      "attack": {
+        "name": "Tentacle",
+        "count": 1,
+        "classification": "secondary",
+        "damageBySize": {
+          "Medium": "1d4",
+          "Large": "1d6",
+          "Huge": "1d8"
+        },
+        "ability": "str",
+        "strengthMultiplier": 0.5
+      }
+    },
+    "wing-buffet": {
+      "operation": "addAttack",
+      "attack": {
+        "name": "Wing Buffet",
+        "count": 2,
+        "classification": "secondary",
+        "damageBySize": {
+          "Medium": "1d4",
+          "Large": "1d6",
+          "Huge": "1d8"
+        },
+        "ability": "str",
+        "strengthMultiplier": 0.5
+      }
+    },
+    "gore": {
+      "operation": "addAttack",
+      "attack": {
+        "name": "Gore",
+        "count": 1,
+        "classification": "primary",
+        "damageBySize": {
+          "Medium": "1d6",
+          "Large": "1d8",
+          "Huge": "2d6"
+        },
+        "ability": "str",
+        "strengthMultiplier": 1
+      }
+    },
+    "ability-increase": {
+      "operation": "addAbility",
+      "value": 2,
+      "choice": [
+        "str",
+        "dex",
+        "con",
+        "int",
+        "wis",
+        "cha"
+      ]
+    },
+    "energy-attacks": {
+      "operation": "addDamageToAllNaturalAttacks",
+      "dice": "1d6",
+      "damageTypeChoice": [
+        "acid",
+        "cold",
+        "electricity",
+        "fire"
+      ],
+      "multipliesOnCritical": false
+    },
+    "rake": {
+      "operation": "addConditionalAttack",
+      "condition": "grapple",
+      "attack": {
+        "name": "Rake",
+        "count": 2,
+        "classification": "primary",
+        "damageBySize": {
+          "Medium": "1d4",
+          "Large": "1d6",
+          "Huge": "1d8"
+        },
+        "ability": "str",
+        "strengthMultiplier": 1
+      },
+      "countsTowardNaturalAttackMaximum": 1
+    },
+    "rend": {
+      "operation": "addConditionalDamage",
+      "condition": "twoClawsHitSameTarget",
+      "damage": "oneSelectedClawDamage",
+      "additionalStrengthMultiplier": 1.5,
+      "multipliesOnCritical": false
+    },
+    "trample": {
+      "operation": "addSpecialAttack",
+      "attack": {
+        "name": "Trample",
+        "count": 1,
+        "classification": "special",
+        "damageBySize": {
+          "Medium": "1d6",
+          "Large": "1d8",
+          "Huge": "2d6"
+        },
+        "ability": "str",
+        "strengthMultiplier": 1.5
+      }
+    },
+    "large": {
+      "operation": "sizePackage",
+      "chained": {
+        "Large": {
+          "cost": 4,
+          "minLevel": 8,
+          "abilityAdjustments": {
+            "str": 8,
+            "dex": -2,
+            "con": 4
+          },
+          "attackSizeModifier": -1,
+          "damageDieSteps": 1
+        },
+        "Huge": {
+          "cost": 10,
+          "minLevel": 13,
+          "abilityAdjustments": {
+            "str": 16,
+            "dex": -4,
+            "con": 8
+          },
+          "attackSizeModifier": -2,
+          "damageDieSteps": 2
+        }
+      },
+      "unchained": {
+        "Large": {
+          "cost": 4,
+          "minLevel": 8,
+          "abilityAdjustments": {
+            "str": 4,
+            "dex": -2,
+            "con": 2
+          },
+          "attackSizeModifier": -1,
+          "damageDieSteps": 1
+        },
+        "Huge": {
+          "cost": 10,
+          "minLevel": 13,
+          "abilityAdjustments": {
+            "str": 8,
+            "dex": -4,
+            "con": 4
+          },
+          "attackSizeModifier": -2,
+          "damageDieSteps": 2
+        }
+      }
+    }
+  }
+}

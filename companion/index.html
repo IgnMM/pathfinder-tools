@@ -114,7 +114,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="wrap">
 <header>
   <h1>Companion &amp; Mount Hit&amp;Damage Calculator</h1>
-  <div class="subtitle">Pathfinder 1e — animal companions, mounts (Paladin's Divine Bond, Cavalier's order mount...), familiars and similar allies fighting with natural attacks. Hit &amp; damage bonuses only (no AC, saves, or non-combat effects). Every change saves automatically to this browser — use "Save As" to keep a copy under a different companion's name. Want your companions on another device too? Set a Sync code below (top right).</div>
+  <div class="subtitle">Pathfinder 1e — animal companions, mounts, familiars, chained/unchained eidolons and phantoms. Natural, manufactured and custom attacks are editable. Hit &amp; damage bonuses only (no AC or save calculator). Every change saves automatically to this browser.</div>
   <div class="profileBar" style="margin-top:10px">
     <label style="margin:0">Companion/Mount:</label>
     <select id="profileSelect"></select><span id="profileUpdated" style="font-size:.7rem;color:var(--muted);margin:0 4px"></span>
@@ -169,9 +169,19 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="row"><label>Caster Level (of whoever casts buffs on it)</label><input id="casterLevel" type="number" min="0" max="20" value="10"></div>
 <div class="row"><label>Base Attack Bonus</label><input id="bab" type="number" value="7"></div>
 <div class="emptyNote">Feeds Power Attack's BAB-based scaling only — each attack below has its own Base To-Hit field. For sources using animal-companion progression, BAB is pre-filled from the universal table; type over it for an exception.</div>
-<div class="row"><label>Species preset (optional)</label><select id="speciesPreset"><option value="">Manual / no preset</option></select></div>
-<div class="row"><label></label><button id="applySpeciesPreset" type="button">Apply species stats &amp; attacks</button></div>
+<div class="row"><label id="speciesPresetLabel">Species preset (optional)</label><select id="speciesPreset"><option value="">Manual / no preset</option></select></div>
+<div id="eidolonSubtypeRow" class="row" style="display:none"><label>Unchained subtype</label><select id="eidolonSubtype"><option value="">Choose subtype…</option></select></div>
+<div id="phantomFocusRow" class="row" style="display:none"><label>Emotional focus</label><select id="phantomFocus"><option value="">Choose focus…</option></select></div>
+<div id="creatureSizeRow" class="row" style="display:none"><label>Preset size</label><select id="creatureSize"><option>Small</option><option selected>Medium</option><option>Large</option><option>Huge</option></select></div>
+<div id="manifestationRow" class="row" style="display:none"><label>Manifestation</label><select id="manifestation"><option value="ectoplasmic">Ectoplasmic</option><option value="incorporeal">Incorporeal</option></select></div>
+<div class="row"><label></label><button id="applySpeciesPreset" type="button">Apply preset stats &amp; attacks</button></div>
 <div id="speciesPresetNote" class="emptyNote">A species preset fills the Core Rulebook starting scores and attacks, including its 4th/7th-level advancement when reached. Everything remains manually editable afterward.</div>
+<div id="eidolonEvolutionPanel" style="display:none">
+  <h3>Evolutions</h3>
+  <div class="addRow"><select id="eidolonEvolutionSelect"><option value="">Choose evolution…</option></select><button id="addEidolonEvolution" type="button">Add evolution</button></div>
+  <div id="eidolonEvolutionBudget" class="emptyNote"></div>
+  <div id="eidolonEvolutionList"></div>
+</div>
 <div class="row"><label>Only one natural attack this round?</label><input id="singleAttack" type="checkbox" style="width:auto;justify-self:start"></div>
 <div class="emptyNote">Check this only if the companion is making a single natural attack this turn (not a full attack with multiple attack types) — like a two-handed weapon, its Strength (and Power Attack) bonus to damage then becomes ×1.5 instead of ×1. Leave unchecked for the common case (e.g. bite + 2 claws together).</div>
 <h3>Ability Scores</h3>
@@ -218,7 +228,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div>
 <section class="card card-mod">
 <h2>Modifiers <span style="font-size:.7rem;color:var(--muted);font-weight:400">— pick from the catalog per category, or add a custom one</span></h2>
-<div class="emptyNote">Only Feats/Traits available to animal companions and spells commonly cast on one are catalogued (no manufactured-weapon effects, since companions fight with natural attacks). Hit/damage bonuses only — poison, AC, and other non-combat effects aren't modeled, add them as a note on your own sheet.</div>
+<div class="emptyNote">Uses the shared Character Calculator catalog, filtered by the selected entity. Entries with an automatic adapter calculate immediately; the rest remain editable informational/custom effects. Poison, AC and saving-throw effects are shown only as notes when relevant.</div>
 <div id="categories"></div>
 </section>
 </div>
@@ -226,7 +236,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 
 <section class="card card-active">
 <h2>Active Effects</h2>
-<div class="emptyNote">These totals are shared across every attack above (per RAW, Feats/Spells apply the same to all of a creature's attacks; only Strength and each attack's own Attack Bonus differ per line).</div>
+<div class="emptyNote">Shared effects apply to every eligible attack. Attack-specific evolutions and manually targeted effects remain attached to their individual attack rows.</div>
 <div id="breakdownTables"></div>
 </section>
 
@@ -256,6 +266,8 @@ const SIZE_UP_MEDIUM_TO_LARGE={'1':'1d2','1d2':'1d3','1d3':'1d4','1d4':'1d6','1d
 function diceSizeUp(dice){
   return SIZE_UP_MEDIUM_TO_LARGE[String(dice).trim()] || dice;
 }
+const SIZE_DOWN_ONE={'1d2':'1','1d3':'1d2','1d4':'1d3','1d6':'1d4','1d8':'1d6','1d10':'1d8','1d12':'1d10','2d6':'1d8','2d8':'1d10','3d6':'1d12','3d8':'2d8','4d6':'3d6','4d8':'3d8','6d8':'4d8'};
+function diceSizeDown(dice){return SIZE_DOWN_ONE[String(dice).trim()]||dice;}
 function applySizeSteps(dice, steps){
   let d=dice;
   for(let i=0;i<steps;i++) d=diceSizeUp(d);
@@ -481,6 +493,7 @@ function saveStore(){
 }
 function defaultProfile(name){
   return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:7, casterLevel:10, bab:7, singleAttack:false,
+    speciesPreset:'',eidolonSubtype:'',subtypeAbilityChoice:'',phantomFocus:'',creatureSize:'Medium',manifestation:'ectoplasmic',selectedEvolutions:[],
     str:18,dex:15,con:15,int:2,wis:12,cha:6, atkStat:'str', dmgStat:'str',
     attackLines:[
       {name:'Claw',qty:2,atkType:'natural',mode:'primary',die:'1d4',atkBonus:7,hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2,enhancement:0,range:'',extra:'',manualHitAdj:0,manualDmgAdj:0,noDamage:false},
@@ -516,6 +529,13 @@ store.profiles.forEach(p=>{
   delete p.mountedContext; delete p.riderName; delete p.mountAttackingToo;
   if(p.sourceClass===undefined) p.sourceClass='';
   if(p.ownerLevel===undefined) p.ownerLevel=p.characterLevel||7;
+  if(p.speciesPreset===undefined) p.speciesPreset='';
+  if(p.eidolonSubtype===undefined) p.eidolonSubtype='';
+  if(p.subtypeAbilityChoice===undefined) p.subtypeAbilityChoice='';
+  if(p.phantomFocus===undefined) p.phantomFocus='';
+  if(p.creatureSize===undefined) p.creatureSize='Medium';
+  if(p.manifestation===undefined) p.manifestation='ectoplasmic';
+  if(!Array.isArray(p.selectedEvolutions)) p.selectedEvolutions=[];
   // Migrate old attack lines (strMode full/half/none, no qty/type/per-line ability) to
   // the new manual-attack schema -- preserves the same hit/damage math as before.
   p.attackLines.forEach(line=>{
@@ -588,9 +608,14 @@ function applyEntityTypeUI(){
   let implemented=IMPLEMENTED_ENTITY_TYPES.includes(type);
   $('entityNotImplementedNote').style.display=implemented?'none':'block';
   $('mainCalcArea').style.display=implemented?'block':'none';
-  if(implemented && !['animal-companion','mount'].includes(type)){
-    $('effectiveLevelNote').textContent=ENTITY_TYPE_LABELS[type]+' uses manual HD, BAB, ability scores and attacks in this version; its species/evolution/focus progression is not auto-applied. Calculable fields and active effects still work normally.';
-  }
+  $('eidolonSubtypeRow').style.display=type==='eidolon-unchained'?'grid':'none';
+  $('phantomFocusRow').style.display=type==='phantom'?'grid':'none';
+  $('creatureSizeRow').style.display=['eidolon-chained','eidolon-unchained','phantom'].includes(type)?'grid':'none';
+  $('manifestationRow').style.display=type==='phantom'?'grid':'none';
+  $('eidolonEvolutionPanel').style.display=['eidolon-chained','eidolon-unchained'].includes(type)?'block':'none';
+  $('speciesPresetLabel').textContent=type==='familiar'?'Familiar species':(['eidolon-chained','eidolon-unchained'].includes(type)?'Base form':(type==='phantom'?'Phantom preset':'Species preset (optional)'));
+  populateEntityPresetOptions();
+  renderEidolonEvolutionPicker();
 }
 
 // Recomputes the effective companion level from Source class + Class level, and — for
@@ -602,8 +627,26 @@ function applyProgressionUI(autoFillBab){
   let cls=$('sourceClass').value, ownerLvl=+$('ownerLevel').value||0;
   let entityType=currentProfile().entityType||'animal-companion';
   if(!['animal-companion','mount'].includes(entityType)){
-    $('effectiveLevelNote').textContent=ENTITY_TYPE_LABELS[entityType]+' uses manual HD, BAB, ability scores and attacks in this version; no animal-companion progression is applied.';
-    $('strDexAdjNote').textContent=''; $('multiattackNote').textContent='';
+    let level=Math.max(1,Math.min(20,ownerLvl||1));
+    if(['eidolon-chained','eidolon-unchained'].includes(entityType)&&EIDOLON_PROGRESSION){
+      let version=entityType==='eidolon-chained'?'chained':'unchained', row=EIDOLON_PROGRESSION.progressions[version][level-1];
+      $('effectiveLevelNote').textContent=ENTITY_TYPE_LABELS[entityType]+' level '+level+': '+row.hd+' HD, BAB '+signed(row.bab)+', evolution pool '+row.evolutionPool+', maximum '+row.maxNaturalAttacks+' natural attacks.';
+      $('strDexAdjNote').textContent='Eidolon progression adds +'+row.strDexBonus+' to both STR and DEX; included automatically in the calculation.';
+      $('multiattackNote').textContent=level>=9?'Multiattack is automatic at level 9. Secondary natural attacks use -2 rather than -5.':'';
+      if(autoFillBab){$('hitDice').value=row.hd;$('bab').value=row.bab;}
+    } else if(entityType==='phantom'&&PHANTOM_PROGRESSION){
+      let row=PHANTOM_PROGRESSION.levels[level-1], focus=PHANTOM_FOCUSES.find(x=>x.key===$('phantomFocus').value);
+      $('effectiveLevelNote').textContent='Phantom level '+level+': '+row.hd+' HD, BAB '+signed(row.bab)+', slam '+row.slamMedium+' for Medium size.';
+      $('strDexAdjNote').textContent=focus&&focus.key==='anger'?'Anger replaces the progression DEX bonus with STR; CHA still receives +'+row.dexChaBonus+'.':'Phantom progression adds +'+row.dexChaBonus+' to DEX and CHA; included automatically.';
+      $('multiattackNote').textContent=$('manifestation').value==='incorporeal'?'Incorporeal: slam attacks can only affect incorporeal creatures (except specific focus exceptions).':'';
+      if(autoFillBab){$('hitDice').value=row.hd;$('bab').value=row.bab;}
+    } else if(entityType==='familiar'){
+      $('effectiveLevelNote').textContent='Familiar uses the master\'s total BAB. Enter that BAB above; its natural melee attack automatically uses the better of STR or DEX after applying buffs.';
+      $('strDexAdjNote').textContent='Familiar damage remains the base creature\'s listed damage; no ability modifier is added again.'; $('multiattackNote').textContent='';
+    } else {
+      $('effectiveLevelNote').textContent=ENTITY_TYPE_LABELS[entityType]+' rule data is still loading; manual values remain available.';
+      $('strDexAdjNote').textContent=''; $('multiattackNote').textContent='';
+    }
     return;
   }
   let eff=effectiveCompanionLevel(cls, ownerLvl);
@@ -632,6 +675,10 @@ function loadProfileIntoUI(){
   $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con; $('int').value=p.int; $('wis').value=p.wis; $('cha').value=p.cha;
   $('atkStat').value=p.atkStat; $('dmgStat').value=p.dmgStat;
   $('speciesPreset').value=p.speciesPreset||'';
+  $('eidolonSubtype').value=p.eidolonSubtype||'';
+  $('phantomFocus').value=p.phantomFocus||'';
+  $('creatureSize').value=p.creatureSize||'Medium';
+  $('manifestation').value=p.manifestation||'ectoplasmic';
   applyEntityTypeUI();
   applyProgressionUI(false);
   renderAttackLines();
@@ -649,6 +696,10 @@ function syncUIIntoProfile(){
   p.str=+$('str').value; p.dex=+$('dex').value; p.con=+$('con').value; p.int=+$('int').value; p.wis=+$('wis').value; p.cha=+$('cha').value;
   p.atkStat=$('atkStat').value; p.dmgStat=$('dmgStat').value;
   p.speciesPreset=$('speciesPreset').value;
+  p.eidolonSubtype=$('eidolonSubtype').value;
+  p.phantomFocus=$('phantomFocus').value;
+  p.creatureSize=$('creatureSize').value;
+  p.manifestation=$('manifestation').value;
   saveStore();
 }
 
@@ -658,6 +709,8 @@ populateEntityTypeSelect();
   $(id).addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); });
 });
 $('speciesPreset').addEventListener('change',syncUIIntoProfile);
+$('eidolonSubtype').addEventListener('change',()=>{currentProfile().subtypeAbilityChoice='';syncUIIntoProfile();applyProgressionUI(false);renderEidolonEvolutionPicker();compute();});
+['phantomFocus','creatureSize','manifestation'].forEach(id=>$(id).addEventListener('change',()=>{syncUIIntoProfile();applyProgressionUI(false);renderEidolonEvolutionPicker();compute();}));
 $('entityType').addEventListener('change', ()=>{ syncUIIntoProfile(); applyEntityTypeUI(); applyProgressionUI(false); renderSources(); renderCategories(); compute(); });
 ['sourceClass','ownerLevel'].forEach(id=>{
   $(id).addEventListener('input', ()=>{ applyProgressionUI(true); syncUIIntoProfile(); compute(); });
@@ -716,7 +769,7 @@ $('srcAll').onclick=()=>{ let p=currentProfile(); p.excludedSources={}; saveStor
 $('srcNone').onclick=()=>{ let p=currentProfile(); [...new Set(MODIFIERS.concat(SHARED_CATALOG).map(m=>m.source||'Unknown'))].forEach(src=>p.excludedSources[src]=true); saveStore(); renderSources(); renderCategories(); compute(); };
 
 // ---------- Attack Lines ----------
-const ABILITY_OPTS=[['str','STR'],['dex','DEX'],['con','CON'],['int','INT'],['wis','WIS'],['cha','CHA'],['none','None']];
+const ABILITY_OPTS=[['str','STR'],['dex','DEX'],['best-str-dex','Best STR/DEX'],['con','CON'],['int','INT'],['wis','WIS'],['cha','CHA'],['none','None']];
 const ATK_TYPE_OPTS=[['natural','Natural melee'],['manufactured','Manufactured melee'],['ranged-manufactured','Manufactured ranged'],['ranged-natural','Ranged natural / special'],['touch','Touch'],['ranged-touch','Ranged touch'],['other','Other']];
 const DMG_MULT_OPTS=[0,0.5,1,1.5];
 const ATTACK_PRESETS={
@@ -831,13 +884,68 @@ $('addAttackPreset').onclick=()=>{
 
 // Core Rulebook Animal Choices. These are optional convenience presets only: after
 // applying one, every score and attack row remains ordinary editable profile data.
-let COMPANION_SPECIES=[];
-fetch('../assets/animal-companion-species-core.json').then(r=>r.json()).then(data=>{
-  COMPANION_SPECIES=data.species||[];
-  let sel=$('speciesPreset');
-  COMPANION_SPECIES.forEach(s=>{let o=document.createElement('option');o.value=s.id;o.textContent=s.name;sel.appendChild(o);});
-  sel.value=currentProfile().speciesPreset||'';
-}).catch(()=>{$('speciesPresetNote').textContent='Species presets could not be loaded — manual attack and score entry remains fully available.';});
+let COMPANION_SPECIES=[], EIDOLON_PROGRESSION=null, EIDOLON_FORMS=[], EIDOLON_EVOLUTIONS=null, EIDOLON_SUBTYPES=[], PHANTOM_PROGRESSION=null, PHANTOM_FOCUSES=[], FAMILIAR_PRESETS=[];
+Promise.all([
+  fetch('../assets/animal-companion-species-core.json').then(r=>r.json()),
+  fetch('../assets/eidolon-progression.json').then(r=>r.json()),
+  fetch('../assets/eidolon-base-forms.json').then(r=>r.json()),
+  fetch('../assets/eidolon-evolutions.json').then(r=>r.json()),
+  fetch('../assets/eidolon-unchained-subtypes.json').then(r=>r.json()),
+  fetch('../assets/phantom-progression.json').then(r=>r.json()),
+  fetch('../assets/phantom-emotional-focuses.json').then(r=>r.json()),
+  fetch('../assets/familiar-presets-core.json').then(r=>r.json())
+]).then(([animals,eidProg,eidForms,eidEvolutions,eidSubtypes,phantomProg,phantomFocuses,familiars])=>{
+  COMPANION_SPECIES=animals.species||[]; EIDOLON_PROGRESSION=eidProg; EIDOLON_FORMS=eidForms.forms||[];
+  EIDOLON_EVOLUTIONS=eidEvolutions;
+  EIDOLON_SUBTYPES=eidSubtypes.subtypes||[]; PHANTOM_PROGRESSION=phantomProg; PHANTOM_FOCUSES=phantomFocuses.focuses||[];
+  FAMILIAR_PRESETS=familiars.familiars||[];
+  $('eidolonSubtype').innerHTML='<option value="">Choose subtype…</option>'+EIDOLON_SUBTYPES.map(x=>`<option value="${x.key}">${x.name}</option>`).join('');
+  $('phantomFocus').innerHTML='<option value="">Choose focus…</option>'+PHANTOM_FOCUSES.map(x=>`<option value="${x.key}">${x.name}</option>`).join('');
+  populateEntityPresetOptions(); renderEidolonEvolutionPicker(); loadProfileIntoUI();
+}).catch(()=>{$('speciesPresetNote').textContent='One or more rule catalogs could not be loaded — manual attack and score entry remains fully available.';});
+function populateEntityPresetOptions(){
+  let sel=$('speciesPreset'), p=currentProfile(), type=p.entityType||'animal-companion', entries=[];
+  if(['animal-companion','mount'].includes(type)) entries=COMPANION_SPECIES.map(x=>({value:x.id,label:x.name}));
+  else if(['eidolon-chained','eidolon-unchained'].includes(type)) entries=EIDOLON_FORMS.map(x=>({value:x.key,label:x.name}));
+  else if(type==='familiar') entries=FAMILIAR_PRESETS.map(x=>({value:x.key,label:x.name}));
+  else if(type==='phantom') entries=[{value:'phantom',label:'Standard Phantom'}];
+  sel.innerHTML='<option value="">Manual / no preset</option>'+entries.map(x=>`<option value="${x.value}">${x.label}</option>`).join('');
+  sel.value=p.speciesPreset||'';
+}
+function eidolonVersionKey(){return currentProfile().entityType==='eidolon-unchained'?'unchained':'chained';}
+function eidolonEvolutionPool(){
+  if(!EIDOLON_PROGRESSION) return 0;
+  let level=Math.max(1,Math.min(20,+$('ownerLevel').value||1)), version=eidolonVersionKey();
+  let pool=EIDOLON_PROGRESSION.progressions[version][level-1].evolutionPool;
+  if(version==='unchained'){
+    let subtype=EIDOLON_SUBTYPES.find(x=>x.key===$('eidolonSubtype').value);
+    (subtype?.milestones||[]).filter(x=>x.level<=level).forEach(x=>pool+=x.evolutionPoolBonus||0);
+  }
+  return pool;
+}
+function renderEidolonEvolutionPicker(){
+  let p=currentProfile(), isEidolon=['eidolon-chained','eidolon-unchained'].includes(p.entityType||'');
+  if(!isEidolon||!EIDOLON_EVOLUTIONS) return;
+  let version=eidolonVersionKey(), entries=EIDOLON_EVOLUTIONS.versions[version]||[], select=$('eidolonEvolutionSelect');
+  select.innerHTML='<option value="">Choose evolution…</option>'+entries.map(x=>`<option value="${x.key}">${x.name} (${x.cost} EP)${x.requirementsText?' — '+x.requirementsText:''}</option>`).join('');
+  let spent=(p.selectedEvolutions||[]).reduce((n,x)=>n+(entries.find(e=>e.key===x.key)?.cost||0),0), pool=eidolonEvolutionPool();
+  if(p.creatureSize==='Huge'&&(p.selectedEvolutions||[]).some(x=>x.key==='large')) spent+=6;
+  $('eidolonEvolutionBudget').textContent='Evolution points: '+spent+' spent / '+pool+' available'+(spent>pool?' — OVER BUDGET':'')+'. Requirements and maximum natural attacks still apply.';
+  let box=$('eidolonEvolutionList'); box.innerHTML='';
+  (p.selectedEvolutions||[]).forEach((chosen,i)=>{
+    let def=entries.find(x=>x.key===chosen.key), row=document.createElement('div'); row.className='activeItem';
+    row.innerHTML=`<div class="head"><div><div class="name">${def?.name||chosen.key} <span class="typeTag">${def?.cost||0} EP</span></div><div class="desc">${[chosen.target&&'Target: '+chosen.target,chosen.choice&&'Choice: '+chosen.choice].filter(Boolean).join(' — ')||def?.requirementsText||'Selected evolution'}</div></div><button class="rm">✕ remove</button></div>`;
+    row.querySelector('.rm').onclick=()=>{p.selectedEvolutions.splice(i,1);saveStore();renderEidolonEvolutionPicker();}; box.appendChild(row);
+  });
+}
+$('addEidolonEvolution').onclick=()=>{
+  let key=$('eidolonEvolutionSelect').value; if(!key||!EIDOLON_EVOLUTIONS)return;
+  let chosen={key}, targetNeeded=['improved-damage','reach','grab','pull','push','trip'].includes(key);
+  if(targetNeeded) chosen.target=prompt('Attack type affected by this evolution (e.g. Bite or Claw):','Bite')||'';
+  if(key==='ability-increase') chosen.choice=(prompt('Ability increased: STR / DEX / CON / INT / WIS / CHA','STR')||'STR').trim().toLowerCase();
+  if(key==='energy-attacks') chosen.choice=(prompt('Energy type: acid / cold / electricity / fire','fire')||'fire').trim().toLowerCase();
+  currentProfile().selectedEvolutions.push(chosen); saveStore(); renderEidolonEvolutionPicker();
+};
 function sizeAttackModifier(size){
   return ({Fine:8,Diminutive:4,Tiny:2,Small:1,Medium:0,Large:-1,Huge:-2,Gargantuan:-4,Colossal:-8})[size]||0;
 }
@@ -855,6 +963,10 @@ function attackLineFromSpecies(a,bab,size){
   });
 }
 $('applySpeciesPreset').onclick=()=>{
+  let type=currentProfile().entityType||'animal-companion';
+  if(['eidolon-chained','eidolon-unchained'].includes(type)) return applyEidolonPreset(type);
+  if(type==='phantom') return applyPhantomPreset();
+  if(type==='familiar') return applyFamiliarPreset();
   let species=COMPANION_SPECIES.find(s=>s.id===$('speciesPreset').value);
   if(!species){alert('Choose a species preset first, or keep using the manual fields.');return;}
   if(!confirm('Apply '+species.name+'? This replaces this profile\'s current ability scores and attack rows, but every resulting field remains editable.')) return;
@@ -870,6 +982,122 @@ $('applySpeciesPreset').onclick=()=>{
   syncUIIntoProfile(); saveStore(); renderAttackLines(); compute();
   $('speciesPresetNote').textContent=species.name+' applied at effective companion level '+eff+' ('+size+(advanced?', advanced package active':' starting package')+'). All fields remain editable.';
 };
+
+function lineFromRuleAttack(a,bab,size){
+  let hitAbility=a.hitAbility==='bestStrDex'?'best-str-dex':(a.hitAbility||a.ability||'str');
+  return Object.assign(newAttackLine(),{name:a.name,qty:a.count||1,atkType:'natural',mode:a.classification||'primary',die:a.damage||((a.damageBySize||{})[size])||'',
+    atkBonus:bab+sizeAttackModifier(size)+(a.classification==='secondary'?-5:0),hitAbility,dmgAbility:a.damageAbility||a.ability||'str',
+    dmgAbilityMult:a.damageAbility==='none'?0:(a.strengthMultiplier===undefined?1:a.strengthMultiplier),baseDamageBonus:a.baseDamageBonus||0,
+    damageType:(a.damageType||a.type||[]).join?a.damageType?.join('/')||a.type?.join('/')||'':(a.damageType||a.type||''),extra:a.effect||'',noDamage:!a.damage&&!a.damageBySize});
+}
+function applyEidolonPreset(type){
+  let form=EIDOLON_FORMS.find(x=>x.key===$('speciesPreset').value); if(!form){alert('Choose an eidolon base form first.');return;}
+  let subtype=type==='eidolon-unchained'?EIDOLON_SUBTYPES.find(x=>x.key===$('eidolonSubtype').value):null;
+  if(type==='eidolon-unchained'&&!subtype){alert('Choose an Unchained eidolon subtype first.');return;}
+  let permitted=subtype&&subtype.baseForms.find(x=>x.form===form.key); if(subtype&&!permitted){alert(subtype.name+' does not permit the '+form.name+' base form.');return;}
+  let level=Math.max(1,Math.min(20,+$('ownerLevel').value||1)), row=EIDOLON_PROGRESSION.progressions[type==='eidolon-chained'?'chained':'unchained'][level-1];
+  let profile=currentProfile(), size=$('creatureSize').value||'Medium', selected=profile.selectedEvolutions||[];
+  if(['Large','Huge'].includes(size)&&!selected.some(x=>x.key==='large')){alert('Large/Huge requires the Large evolution. Add it before applying this preset.');return;}
+  let small=size==='Small', ab=Object.assign({},form.abilities);
+  if(small) Object.entries({str:-4,dex:2,con:-2}).forEach(([k,v])=>ab[k]+=v);
+  if(['Large','Huge'].includes(size)){
+    let pack=EIDOLON_EVOLUTIONS.calculatorAdapters.large[type==='eidolon-chained'?'chained':'unchained'][size];
+    if(!pack||level<pack.minLevel){alert(size+' requires summoner level '+(pack?.minLevel||'—')+'.');return;}
+    Object.entries(pack.abilityAdjustments).forEach(([k,v])=>ab[k]+=v);
+  }
+  selected.filter(x=>x.key==='ability-increase'&&x.choice).forEach(x=>ab[x.choice]=(ab[x.choice]||0)+2);
+  if(subtype){
+    let freeAbility=(subtype.milestones||[]).find(x=>x.level<=level&&x.requiresAbilityChoice);
+    if(freeAbility){
+      if(!profile.subtypeAbilityChoice) profile.subtypeAbilityChoice=(prompt(subtype.name+' grants Ability Increase. Choose STR / DEX / CON / INT / WIS / CHA:','STR')||'STR').trim().toLowerCase();
+      if(['str','dex','con','int','wis','cha'].includes(profile.subtypeAbilityChoice))ab[profile.subtypeAbilityChoice]=(ab[profile.subtypeAbilityChoice]||0)+2;
+    }
+  }
+  ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=ab[k]);
+  $('hitDice').value=row.hd; $('bab').value=row.bab;
+  let attacks=form.attacks.map(a=>{
+    let damage=(a.damageBySize||{})[size]||a.damage;
+    if(!(a.damageBySize||{})[size]) damage=size==='Small'?diceSizeDown(damage):applySizeSteps(damage,size==='Large'?1:(size==='Huge'?2:0));
+    return Object.assign({},a,{damage});
+  });
+  if(permitted){
+    let keys=permitted.evolutions||[];
+    // Unchained subtype base forms replace the generic form's natural attacks.
+    // Limbs/tail alone do not grant an attack; only explicit attack evolutions do.
+    attacks=[];
+    let baseAttackDefs={
+      claws:{name:'Claw',count:2,damage:size==='Small'?'1d3':applySizeSteps('1d4',size==='Large'?1:(size==='Huge'?2:0)),classification:'primary',ability:'str',strengthMultiplier:1,damageType:['slashing']},
+      bite:{name:'Bite',count:1,damage:size==='Small'?'1d4':applySizeSteps('1d6',size==='Large'?1:(size==='Huge'?2:0)),classification:'primary',ability:'str',strengthMultiplier:1,damageType:['bludgeoning','piercing','slashing']},
+      slam:{name:'Slam',count:1,damage:size==='Small'?'1d6':applySizeSteps('1d8',size==='Large'?1:(size==='Huge'?2:0)),classification:'primary',ability:'str',strengthMultiplier:1,damageType:['bludgeoning']},
+      sting:{name:'Sting',count:1,damage:size==='Small'?'1d3':applySizeSteps('1d4',size==='Large'?1:(size==='Huge'?2:0)),classification:'primary',ability:'str',strengthMultiplier:1,damageType:['piercing']},
+      'tail-slap':{name:'Tail Slap',count:1,damage:size==='Small'?'1d4':applySizeSteps('1d6',size==='Large'?1:(size==='Huge'?2:0)),classification:'secondary',ability:'str',strengthMultiplier:.5,damageType:['bludgeoning']}
+    };
+    Object.entries(baseAttackDefs).forEach(([key,def])=>{if(keys.includes(key))attacks.push(def);});
+    if(attacks.length===1&&attacks[0].count===1)attacks[0].strengthMultiplier=1.5;
+    if(keys.includes('improved-damage-bite')) attacks=attacks.map(a=>a.name==='Bite'?Object.assign({},a,{damage:diceSizeUp(a.damage)}):a);
+  }
+  let attackAdapters=EIDOLON_EVOLUTIONS.calculatorAdapters;
+  let adapterDamage=a=>{
+    let by=a.damageBySize||{};
+    return by[size]||(size==='Small'&&by.Medium?diceSizeDown(by.Medium):by.Medium||a.damage||'');
+  };
+  selected.forEach(chosen=>{
+    let ad=attackAdapters[chosen.key]; if(!ad)return;
+    if(['addAttack','addConditionalAttack','addSpecialAttack'].includes(ad.operation)){
+      attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack)}));
+    } else if(ad.operation==='addOrUpgradeAttack'){
+      let existing=attacks.find(a=>a.name==='Bite');
+      if(existing) existing.strengthMultiplier=ad.existingAttackStrengthMultiplier;
+      else attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack)}));
+    } else if(ad.operation==='increaseSelectedAttackDie'){
+      let target=(chosen.target||'').toLowerCase(), found=attacks.find(a=>a.name.toLowerCase()===target); if(found) found.damage=diceSizeUp(found.damage);
+    }
+  });
+  let p=currentProfile(); p.attackLines=attacks.map(a=>lineFromRuleAttack(a,row.bab,size)); p.speciesPreset=form.key;
+  if(level>=9) p.attackLines.forEach(line=>{if(line.mode==='secondary')line.atkBonus=row.bab+sizeAttackModifier(size)-2;});
+  let energy=selected.find(x=>x.key==='energy-attacks');
+  if(energy)p.attackLines.forEach(line=>{line.extraDice='1d6';line.extraDamageType=energy.choice||'fire';line.extraDiceMultipliesOnCrit=false;});
+  syncUIIntoProfile(); renderAttackLines(); renderCategories(); compute();
+  let naturalCount=p.attackLines.reduce((n,x)=>n+(x.name==='Rake'?1:(+x.qty||1)),0);
+  $('speciesPresetNote').textContent=(subtype?subtype.name+' ':'')+form.name+' applied at level '+level+'. Maximum '+row.maxNaturalAttacks+' natural attacks; current routine counts '+naturalCount+(naturalCount>row.maxNaturalAttacks?' — OVER THE LIMIT':'')+'. Fields remain editable.';
+}
+function applyPhantomPreset(){
+  if($('speciesPreset').value!=='phantom'){alert('Choose Standard Phantom first.');return;}
+  let focus=PHANTOM_FOCUSES.find(x=>x.key===$('phantomFocus').value); if(!focus){alert('Choose an emotional focus first.');return;}
+  let level=Math.max(1,Math.min(20,+$('ownerLevel').value||1)), row=PHANTOM_PROGRESSION.levels[level-1], size=$('creatureSize').value||'Medium';
+  if(!['Small','Medium','Large'].includes(size)){alert('A standard phantom supports Small, Medium, or Large size here. Choose one of those sizes, or enter an exceptional archetype manually.');return;}
+  let ab=Object.assign({},PHANTOM_PROGRESSION.base.abilities); Object.entries(focus.baseAdjustments||{}).forEach(([k,v])=>ab[k]+=v);
+  ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=ab[k]); $('hitDice').value=row.hd; $('bab').value=row.bab;
+  let band=PHANTOM_PROGRESSION.slamByLevelAndSize.find(x=>level>=x.levels[0]&&level<=x.levels[1]); let die=band[size]||row.slamMedium;
+  if(focus.key==='anger') die=diceSizeUp(die);
+  let p=currentProfile(); p.attackLines=[lineFromRuleAttack({name:'Slam',count:2,damage:die,damageType:['bludgeoning'],classification:'primary',ability:'str',strengthMultiplier:1},row.bab,size)]; p.speciesPreset='phantom';
+  if(focus.key==='zeal'){p.attackLines[0].threat='19-20';p.attackLines[0].critMult=level>=11?3:2;}
+  // Rebuild only the generated focus entries. User-created custom effects survive.
+  p.custom=(p.custom||[]).filter(c=>!String(c.id||'').startsWith('phantom-focus-'));
+  (focus.calculatorFeatures||[]).filter(f=>level>=f.level&&!f.alwaysOn).forEach(f=>{
+    let c={id:'phantom-focus-'+f.key,name:focus.name+': '+f.key.replaceAll('-',' '),category:'other',source:'Phantom emotional focus',valueMode:'info',appliesTo:['attack','damage'],type:f.bonusType||'untyped',atk:0,dmg:0,dice:'',diceType:'',diceMultipliesOnCrit:false,on:false,custom:true,
+      note:[f.condition, f.manifestationRequired?'Requires '+f.manifestationRequired+' manifestation':''].filter(Boolean).join('; ')};
+    if(['typedAttackBonus','conditionalAttackDamage','conditionalAttackAndDie'].includes(f.operation)){
+      c.valueMode='fixed'; c.atk=f.value||f.attackBonus||0; c.dmg=f.damageBonus||0;
+      if(f.damageBonusFormula)c.dmg=Math.max(1,Math.floor(row.hd/2));
+    } else if(f.operation==='conditionalExtraDamage'){
+      c.valueMode='dice'; c.dice=level>=18&&f.atLevel18?f.atLevel18:f.dice; c.diceType=f.damageType||''; c.diceMultipliesOnCrit=!!f.multipliesOnCritical;
+    } else if(f.operation==='compoundActiveEffect'){
+      c.valueMode='fixed'; c.atk=f.attackSizeModifier||0; c.abilityAdjustments=f.abilityAdjustments||{}; c.damageDieSteps=f.sizeSteps||0;
+    }
+    if(f.damageSizeSteps)c.damageDieSteps=f.damageSizeSteps;
+    p.custom.push(c);
+  });
+  syncUIIntoProfile(); renderAttackLines(); renderCategories(); compute();
+  $('speciesPresetNote').textContent=focus.name+' phantom applied at level '+level+' ('+size+', '+$('manifestation').value+'). Incorporeal phantoms cannot slam corporeal targets; the result remains visible for attacks against incorporeal targets.';
+}
+function applyFamiliarPreset(){
+  let fam=FAMILIAR_PRESETS.find(x=>x.key===$('speciesPreset').value); if(!fam){alert('Choose a familiar species first.');return;}
+  ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=fam.abilities[k]); let level=Math.max(1,Math.min(20,+$('ownerLevel').value||1));
+  let p=currentProfile(); p.attackLines=(fam.attacks||[]).map(a=>lineFromRuleAttack(a,+$('bab').value||0,fam.size)); p.speciesPreset=fam.key;
+  syncUIIntoProfile(); renderAttackLines(); compute();
+  $('speciesPresetNote').textContent=fam.name+' familiar applied. To-hit uses master BAB + better of its STR/DEX; damage is the normal creature\'s fixed damage and does not add that ability again.';
+}
 
 // Rider-only effects that must never be offered here: they modify the RIDER's own
 // attack (or a maneuver the rider performs), not the mount's/companion's. This
@@ -1132,13 +1360,26 @@ function compute(){
   let p=currentProfile();
   // Str/Dex advancement (Animal Companion table) adds onto the BASE scores typed above
   // before taking the modifier -- Druid/Hunter/Ranger only, per applyProgressionUI().
-  let entityUsesAnimalProgression=['animal-companion','mount'].includes(p.entityType||'animal-companion');
+  let entityType=p.entityType||'animal-companion';
+  let entityUsesAnimalProgression=['animal-companion','mount'].includes(entityType);
   let eff=entityUsesAnimalProgression?effectiveCompanionLevel($('sourceClass').value, +$('ownerLevel').value||0):null;
   let strDexAdj = (eff && eff>=1 && eff<=20) ? ANIMAL_COMPANION_TABLE[eff].strDexAdj : 0;
+  let progressionAbilityAdj={str:strDexAdj,dex:strDexAdj,con:0,int:0,wis:0,cha:0};
+  let entityLevel=Math.max(1,Math.min(20,+$('ownerLevel').value||1));
+  if(['eidolon-chained','eidolon-unchained'].includes(entityType)&&EIDOLON_PROGRESSION){
+    let row=EIDOLON_PROGRESSION.progressions[entityType==='eidolon-chained'?'chained':'unchained'][entityLevel-1];
+    progressionAbilityAdj.str=row.strDexBonus; progressionAbilityAdj.dex=row.strDexBonus;
+  } else if(entityType==='phantom'&&PHANTOM_PROGRESSION){
+    let row=PHANTOM_PROGRESSION.levels[entityLevel-1], anger=p.phantomFocus==='anger';
+    progressionAbilityAdj[anger?'str':'dex']=row.dexChaBonus; progressionAbilityAdj.cha=row.dexChaBonus;
+  }
+  (p.custom||[]).filter(c=>c.on!==false&&c.abilityAdjustments).forEach(c=>{
+    Object.entries(c.abilityAdjustments).forEach(([ability,value])=>progressionAbilityAdj[ability]=(progressionAbilityAdj[ability]||0)+(+value||0));
+  });
   let ctx={
     bab:+$('bab').value,
-    str:mod(+$('str').value+strDexAdj), dex:mod(+$('dex').value+strDexAdj), con:mod($('con').value),
-    int:mod($('int').value), wis:mod($('wis').value), cha:mod($('cha').value),
+    str:mod(+$('str').value+progressionAbilityAdj.str), dex:mod(+$('dex').value+progressionAbilityAdj.dex), con:mod(+$('con').value+progressionAbilityAdj.con),
+    int:mod(+$('int').value+progressionAbilityAdj.int), wis:mod(+$('wis').value+progressionAbilityAdj.wis), cha:mod(+$('cha').value+progressionAbilityAdj.cha),
     style: $('singleAttack').checked ? 'twoHanded' : 'oneHanded',
     atkStat:$('atkStat').value, dmgStat:$('dmgStat').value
   };
@@ -1169,7 +1410,7 @@ function compute(){
     let firstPowerAttackIndex=p.attackLines.findIndex(l=>['natural','manufactured'].includes(l.atkType||'natural'));
     p.attackLines.forEach((line,i)=>{
       let hitAb=line.hitAbility||'str', dmgAb=line.dmgAbility||'str';
-      let hitAbilityMod = hitAb==='none' ? 0 : (finalMods[hitAb]||0);
+      let hitAbilityMod = hitAb==='none' ? 0 : (hitAb==='best-str-dex'?Math.max(finalMods.str,finalMods.dex):(finalMods[hitAb]||0));
       let dmgAbilityMod2 = dmgAb==='none' ? 0 : (finalMods[dmgAb]||0);
       let dmgMult = line.dmgAbilityMult!==undefined ? +line.dmgAbilityMult : 1;
       let strContribution = Math.floor(dmgAbilityMod2*dmgMult);
@@ -1196,7 +1437,8 @@ function compute(){
       // once give 1+2 = 3 total steps, not just Strong Jaw's 2.
       let actualSizeDieEligible=['natural','manufactured'].includes(line.atkType||'natural');
       let strongJawEligible=(line.atkType||'natural')==='natural';
-      let sizeSteps = (animalGrowthOn&&actualSizeDieEligible?1:0) + (strongJawOn&&strongJawEligible?2:0);
+      let customDieSteps=(p.custom||[]).filter(c=>c.on!==false&&c.damageDieSteps).reduce((n,c)=>n+(+c.damageDieSteps||0),0);
+      let sizeSteps = (animalGrowthOn&&actualSizeDieEligible?1:0) + (strongJawOn&&strongJawEligible?2:0) + (actualSizeDieEligible?customDieSteps:0);
       let effDie = applySizeSteps(die, sizeSteps);
       let critMult = +line.critMult||2;
       let critDmg = dmgBonus*critMult;

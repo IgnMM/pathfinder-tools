@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "system": "Pathfinder 1e",
+  "source": "https://legacy.aonprd.com/occultAdventures/classes/spiritualist.html#phantoms",
+  "base": {"size":"Medium","speed":30,"abilities":{"str":12,"dex":14,"con":13,"int":7,"wis":10,"cha":13},"attacks":[{"name":"Slam","count":2,"classification":"primary","ability":"str","strengthMultiplier":1,"damageType":["bludgeoning"]}]},
+  "rules": {"hitDie":"d10","babEqualsHitDice":true,"naturalAttacksDoNotGainIterativesFromBab":true,"incorporealCannotAttackCorporealCreatures":true},
+  "levels": [
+    {"level":1,"hd":1,"bab":1,"goodSave":2,"poorSave":0,"skillRanks":2,"feats":1,"armorBonus":0,"dexChaBonus":0,"slamMedium":"1d6","special":["darkvision","link","shareSpells"]},
+    {"level":2,"hd":2,"bab":2,"goodSave":3,"poorSave":0,"skillRanks":4,"feats":1,"armorBonus":2,"dexChaBonus":1,"slamMedium":"1d6","special":[]},
+    {"level":3,"hd":3,"bab":3,"goodSave":3,"poorSave":1,"skillRanks":6,"feats":2,"armorBonus":2,"dexChaBonus":1,"slamMedium":"1d6","special":["deliverTouchSpells30"]},
+    {"level":4,"hd":3,"bab":3,"goodSave":3,"poorSave":1,"skillRanks":6,"feats":2,"armorBonus":2,"dexChaBonus":1,"slamMedium":"1d6","special":["magicAttacks"]},
+    {"level":5,"hd":4,"bab":4,"goodSave":4,"poorSave":1,"skillRanks":8,"feats":2,"armorBonus":4,"dexChaBonus":2,"slamMedium":"1d8","special":["abilityScoreIncrease"]},
+    {"level":6,"hd":5,"bab":5,"goodSave":4,"poorSave":1,"skillRanks":10,"feats":3,"armorBonus":4,"dexChaBonus":2,"slamMedium":"1d8","special":["devotion"]},
+    {"level":7,"hd":6,"bab":6,"goodSave":5,"poorSave":2,"skillRanks":12,"feats":3,"armorBonus":6,"dexChaBonus":2,"slamMedium":"1d8","special":[]},
+    {"level":8,"hd":6,"bab":6,"goodSave":5,"poorSave":2,"skillRanks":12,"feats":3,"armorBonus":6,"dexChaBonus":3,"slamMedium":"1d8","special":[]},
+    {"level":9,"hd":7,"bab":7,"goodSave":5,"poorSave":2,"skillRanks":24,"feats":4,"armorBonus":6,"dexChaBonus":3,"slamMedium":"1d10","special":["incorporealFlight"],"sourceAnomaly":"The official PRD table prints 24 skill ranks here although the surrounding 2-per-HD progression would imply 14; retained verbatim and irrelevant to hit/damage."},
+    {"level":10,"hd":8,"bab":8,"goodSave":6,"poorSave":2,"skillRanks":16,"feats":4,"armorBonus":8,"dexChaBonus":4,"slamMedium":"1d10","special":["abilityScoreIncrease"]},
+    {"level":11,"hd":9,"bab":9,"goodSave":6,"poorSave":3,"skillRanks":18,"feats":5,"armorBonus":8,"dexChaBonus":4,"slamMedium":"1d10","special":[]},
+    {"level":12,"hd":9,"bab":9,"goodSave":6,"poorSave":3,"skillRanks":18,"feats":5,"armorBonus":10,"dexChaBonus":5,"slamMedium":"1d10","special":["deliverTouchSpells50"]},
+    {"level":13,"hd":10,"bab":10,"goodSave":7,"poorSave":3,"skillRanks":20,"feats":5,"armorBonus":10,"dexChaBonus":5,"slamMedium":"2d6","special":[]},
+    {"level":14,"hd":11,"bab":11,"goodSave":7,"poorSave":3,"skillRanks":22,"feats":6,"armorBonus":10,"dexChaBonus":5,"slamMedium":"2d6","special":[]},
+    {"level":15,"hd":12,"bab":12,"goodSave":8,"poorSave":4,"skillRanks":24,"feats":6,"armorBonus":12,"dexChaBonus":6,"slamMedium":"2d6","special":["abilityScoreIncrease"]},
+    {"level":16,"hd":12,"bab":12,"goodSave":8,"poorSave":4,"skillRanks":24,"feats":6,"armorBonus":12,"dexChaBonus":6,"slamMedium":"2d6","special":[]},
+    {"level":17,"hd":13,"bab":13,"goodSave":8,"poorSave":4,"skillRanks":26,"feats":7,"armorBonus":14,"dexChaBonus":7,"slamMedium":"2d8","special":[]},
+    {"level":18,"hd":14,"bab":14,"goodSave":9,"poorSave":4,"skillRanks":28,"feats":7,"armorBonus":14,"dexChaBonus":7,"slamMedium":"2d8","special":[]},
+    {"level":19,"hd":15,"bab":15,"goodSave":9,"poorSave":5,"skillRanks":30,"feats":8,"armorBonus":14,"dexChaBonus":7,"slamMedium":"2d8","special":[]},
+    {"level":20,"hd":15,"bab":15,"goodSave":9,"poorSave":5,"skillRanks":30,"feats":8,"armorBonus":16,"dexChaBonus":8,"slamMedium":"2d8","special":[]}
+  ],
+  "slamByLevelAndSize": [
+    {"levels":[1,4],"Small":"1d4","Medium":"1d6","Large":"1d8"},
+    {"levels":[5,8],"Small":"1d6","Medium":"1d8","Large":"2d6"},
+    {"levels":[9,12],"Small":"1d8","Medium":"1d10","Large":"2d8"},
+    {"levels":[13,16],"Small":"1d10","Medium":"2d6","Large":"3d6"},
+    {"levels":[17,20],"Small":"2d6","Medium":"2d8","Large":"3d8"}
+  ]
+}

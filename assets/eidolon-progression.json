@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "system": "Pathfinder 1e",
+  "purpose": "Hit/damage calculator progression for chained and unchained eidolons",
+  "rules": {
+    "hitDie": "d10",
+    "babEqualsHitDice": true,
+    "naturalAttacksDoNotGainIterativesFromBab": true,
+    "primaryAttackPenalty": 0,
+    "secondaryAttackPenalty": -5,
+    "primaryStrengthMultiplier": 1,
+    "secondaryPositiveStrengthMultiplier": 0.5,
+    "singleNaturalAttackStrengthMultiplier": 1.5,
+    "multiattackLevel": 9,
+    "multiattackSecondaryPenalty": -2
+  },
+  "sources": {
+    "chained": "https://legacy.aonprd.com/advancedPlayersGuide/baseClasses/summoner.html#eidolons",
+    "unchained": "https://legacy.aonprd.com/unchained/classes/summoner.html#eidolons"
+  },
+  "progressions": {
+    "chained": [
+      {"level":1,"hd":1,"bab":1,"goodSave":2,"poorSave":0,"skillRanks":4,"feats":1,"armorBonus":0,"strDexBonus":0,"evolutionPool":3,"maxNaturalAttacks":3,"special":["darkvision","link","shareSpells"]},
+      {"level":2,"hd":2,"bab":2,"goodSave":3,"poorSave":0,"skillRanks":8,"feats":1,"armorBonus":2,"strDexBonus":1,"evolutionPool":4,"maxNaturalAttacks":3,"special":["evasion"]},
+      {"level":3,"hd":3,"bab":3,"goodSave":3,"poorSave":1,"skillRanks":12,"feats":2,"armorBonus":2,"strDexBonus":1,"evolutionPool":5,"maxNaturalAttacks":3,"special":[]},
+      {"level":4,"hd":3,"bab":3,"goodSave":3,"poorSave":1,"skillRanks":12,"feats":2,"armorBonus":2,"strDexBonus":1,"evolutionPool":7,"maxNaturalAttacks":4,"special":[]},
+      {"level":5,"hd":4,"bab":4,"goodSave":4,"poorSave":1,"skillRanks":16,"feats":2,"armorBonus":4,"strDexBonus":2,"evolutionPool":8,"maxNaturalAttacks":4,"special":["abilityScoreIncrease"]},
+      {"level":6,"hd":5,"bab":5,"goodSave":4,"poorSave":1,"skillRanks":20,"feats":3,"armorBonus":4,"strDexBonus":2,"evolutionPool":9,"maxNaturalAttacks":4,"special":["devotion"]},
+      {"level":7,"hd":6,"bab":6,"goodSave":5,"poorSave":2,"skillRanks":24,"feats":3,"armorBonus":6,"strDexBonus":3,"evolutionPool":10,"maxNaturalAttacks":4,"special":[]},
+      {"level":8,"hd":6,"bab":6,"goodSave":5,"poorSave":2,"skillRanks":24,"feats":3,"armorBonus":6,"strDexBonus":3,"evolutionPool":11,"maxNaturalAttacks":4,"special":[]},
+      {"level":9,"hd":7,"bab":7,"goodSave":5,"poorSave":2,"skillRanks":28,"feats":4,"armorBonus":6,"strDexBonus":3,"evolutionPool":13,"maxNaturalAttacks":5,"special":["multiattack"]},
+      {"level":10,"hd":8,"bab":8,"goodSave":6,"poorSave":2,"skillRanks":32,"feats":4,"armorBonus":8,"strDexBonus":4,"evolutionPool":14,"maxNaturalAttacks":5,"special":["abilityScoreIncrease"]},
+      {"level":11,"hd":9,"bab":9,"goodSave":6,"poorSave":3,"skillRanks":36,"feats":5,"armorBonus":8,"strDexBonus":4,"evolutionPool":15,"maxNaturalAttacks":5,"special":[]},
+      {"level":12,"hd":9,"bab":9,"goodSave":6,"poorSave":3,"skillRanks":36,"feats":5,"armorBonus":10,"strDexBonus":5,"evolutionPool":16,"maxNaturalAttacks":5,"special":[]},
+      {"level":13,"hd":10,"bab":10,"goodSave":7,"poorSave":3,"skillRanks":40,"feats":5,"armorBonus":10,"strDexBonus":5,"evolutionPool":17,"maxNaturalAttacks":5,"special":[]},
+      {"level":14,"hd":11,"bab":11,"goodSave":7,"poorSave":3,"skillRanks":44,"feats":6,"armorBonus":10,"strDexBonus":5,"evolutionPool":19,"maxNaturalAttacks":6,"special":["improvedEvasion"]},
+      {"level":15,"hd":12,"bab":12,"goodSave":8,"poorSave":4,"skillRanks":48,"feats":6,"armorBonus":12,"strDexBonus":6,"evolutionPool":20,"maxNaturalAttacks":6,"special":["abilityScoreIncrease"]},
+      {"level":16,"hd":12,"bab":12,"goodSave":8,"poorSave":4,"skillRanks":48,"feats":6,"armorBonus":12,"strDexBonus":6,"evolutionPool":21,"maxNaturalAttacks":6,"special":[]},
+      {"level":17,"hd":13,"bab":13,"goodSave":8,"poorSave":4,"skillRanks":52,"feats":7,"armorBonus":14,"strDexBonus":7,"evolutionPool":22,"maxNaturalAttacks":6,"special":[]},
+      {"level":18,"hd":14,"bab":14,"goodSave":9,"poorSave":4,"skillRanks":56,"feats":7,"armorBonus":14,"strDexBonus":7,"evolutionPool":23,"maxNaturalAttacks":6,"special":[]},
+      {"level":19,"hd":15,"bab":15,"goodSave":9,"poorSave":5,"skillRanks":60,"feats":8,"armorBonus":14,"strDexBonus":7,"evolutionPool":25,"maxNaturalAttacks":7,"special":[]},
+      {"level":20,"hd":15,"bab":15,"goodSave":9,"poorSave":5,"skillRanks":60,"feats":8,"armorBonus":16,"strDexBonus":8,"evolutionPool":26,"maxNaturalAttacks":7,"special":[]}
+    ],
+    "unchained": [
+      {"level":1,"hd":1,"bab":1,"goodSave":2,"poorSave":0,"skillRanks":4,"feats":1,"armorBonus":0,"strDexBonus":0,"evolutionPool":1,"maxNaturalAttacks":3,"special":["darkvision","link","shareSpells"]},
+      {"level":2,"hd":2,"bab":2,"goodSave":3,"poorSave":0,"skillRanks":8,"feats":1,"armorBonus":2,"strDexBonus":1,"evolutionPool":2,"maxNaturalAttacks":3,"special":["evasion"]},
+      {"level":3,"hd":3,"bab":3,"goodSave":3,"poorSave":1,"skillRanks":12,"feats":2,"armorBonus":2,"strDexBonus":1,"evolutionPool":3,"maxNaturalAttacks":3,"special":[]},
+      {"level":4,"hd":3,"bab":3,"goodSave":3,"poorSave":1,"skillRanks":12,"feats":2,"armorBonus":2,"strDexBonus":1,"evolutionPool":3,"maxNaturalAttacks":4,"special":[]},
+      {"level":5,"hd":4,"bab":4,"goodSave":4,"poorSave":1,"skillRanks":16,"feats":2,"armorBonus":4,"strDexBonus":2,"evolutionPool":4,"maxNaturalAttacks":4,"special":["abilityScoreIncrease"]},
+      {"level":6,"hd":5,"bab":5,"goodSave":4,"poorSave":1,"skillRanks":20,"feats":3,"armorBonus":4,"strDexBonus":2,"evolutionPool":5,"maxNaturalAttacks":4,"special":["devotion"]},
+      {"level":7,"hd":6,"bab":6,"goodSave":5,"poorSave":2,"skillRanks":24,"feats":3,"armorBonus":6,"strDexBonus":3,"evolutionPool":6,"maxNaturalAttacks":4,"special":[]},
+      {"level":8,"hd":6,"bab":6,"goodSave":5,"poorSave":2,"skillRanks":24,"feats":3,"armorBonus":6,"strDexBonus":3,"evolutionPool":6,"maxNaturalAttacks":4,"special":[]},
+      {"level":9,"hd":7,"bab":7,"goodSave":5,"poorSave":2,"skillRanks":28,"feats":4,"armorBonus":6,"strDexBonus":3,"evolutionPool":7,"maxNaturalAttacks":5,"special":["multiattack"]},
+      {"level":10,"hd":8,"bab":8,"goodSave":6,"poorSave":2,"skillRanks":32,"feats":4,"armorBonus":8,"strDexBonus":4,"evolutionPool":8,"maxNaturalAttacks":5,"special":["abilityScoreIncrease"]},
+      {"level":11,"hd":9,"bab":9,"goodSave":6,"poorSave":3,"skillRanks":36,"feats":5,"armorBonus":8,"strDexBonus":4,"evolutionPool":9,"maxNaturalAttacks":5,"special":[]},
+      {"level":12,"hd":9,"bab":9,"goodSave":6,"poorSave":3,"skillRanks":36,"feats":5,"armorBonus":10,"strDexBonus":5,"evolutionPool":9,"maxNaturalAttacks":5,"special":[]},
+      {"level":13,"hd":10,"bab":10,"goodSave":7,"poorSave":3,"skillRanks":40,"feats":5,"armorBonus":10,"strDexBonus":5,"evolutionPool":10,"maxNaturalAttacks":5,"special":[]},
+      {"level":14,"hd":11,"bab":11,"goodSave":7,"poorSave":3,"skillRanks":44,"feats":6,"armorBonus":10,"strDexBonus":5,"evolutionPool":11,"maxNaturalAttacks":6,"special":["improvedEvasion"]},
+      {"level":15,"hd":12,"bab":12,"goodSave":8,"poorSave":4,"skillRanks":48,"feats":6,"armorBonus":12,"strDexBonus":6,"evolutionPool":12,"maxNaturalAttacks":6,"special":["abilityScoreIncrease"]},
+      {"level":16,"hd":12,"bab":12,"goodSave":8,"poorSave":4,"skillRanks":48,"feats":6,"armorBonus":12,"strDexBonus":6,"evolutionPool":12,"maxNaturalAttacks":6,"special":[]},
+      {"level":17,"hd":13,"bab":13,"goodSave":8,"poorSave":4,"skillRanks":52,"feats":7,"armorBonus":14,"strDexBonus":7,"evolutionPool":13,"maxNaturalAttacks":6,"special":[]},
+      {"level":18,"hd":14,"bab":14,"goodSave":9,"poorSave":4,"skillRanks":56,"feats":7,"armorBonus":14,"strDexBonus":7,"evolutionPool":14,"maxNaturalAttacks":6,"special":[]},
+      {"level":19,"hd":15,"bab":15,"goodSave":9,"poorSave":5,"skillRanks":60,"feats":8,"armorBonus":14,"strDexBonus":7,"evolutionPool":15,"maxNaturalAttacks":7,"special":[]},
+      {"level":20,"hd":15,"bab":15,"goodSave":9,"poorSave":5,"skillRanks":60,"feats":8,"armorBonus":16,"strDexBonus":8,"evolutionPool":15,"maxNaturalAttacks":7,"special":[]}
+    ]
+  }
+}
