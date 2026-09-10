@@ -1,0 +1,1373 @@
+{
+  "generatedAt": "2026-09-10T11:11:16.590Z",
+  "apply": true,
+  "files": [
+    {
+      "name": "summoner",
+      "archetypes": 22,
+      "migratedCount": 22,
+      "beforeBytes": 9280821,
+      "afterBytes": 441023,
+      "reductionBytes": 8839798,
+      "stats": [
+        {
+          "name": "Blood God Disciple",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Blood Summoner",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Broodmaster",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Counter-Summoner",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Evolutionist",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "First Worlder",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "God Caller",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Leshy Caller",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Master Summoner",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Morphic Savant",
+          "status": "migrated",
+          "before": 418,
+          "added": 4,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Naturalist",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Pyroclast",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Shadow Caller",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Shaitan Binder",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Spirit Summoner",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Storm Caller",
+          "status": "migrated",
+          "before": 416,
+          "added": 2,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Story Summoner",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Synthesist",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Twinned Summoner",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Unwavering Conduit",
+          "status": "migrated",
+          "before": 418,
+          "added": 4,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Wild Caller (ARG)",
+          "status": "migrated",
+          "before": 414,
+          "added": 6,
+          "removed": 6,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Wild Caller (HotW)",
+          "status": "migrated",
+          "before": 414,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "shaman",
+      "archetypes": 17,
+      "migratedCount": 17,
+      "beforeBytes": 11985163,
+      "afterBytes": 747401,
+      "reductionBytes": 11237762,
+      "stats": [
+        {
+          "name": "Animist",
+          "status": "migrated",
+          "before": 674,
+          "added": 7,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Benefactor",
+          "status": "migrated",
+          "before": 637,
+          "added": 0,
+          "removed": 30,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Crystal Tender",
+          "status": "migrated",
+          "before": 667,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Deep Shaman",
+          "status": "migrated",
+          "before": 667,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Draconic Shaman",
+          "status": "migrated",
+          "before": 667,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Grasping Vine",
+          "status": "migrated",
+          "before": 667,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Name-Keeper",
+          "status": "migrated",
+          "before": 670,
+          "added": 3,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Overseer",
+          "status": "migrated",
+          "before": 673,
+          "added": 6,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Possessed Shaman",
+          "status": "migrated",
+          "before": 667,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Primal Warden",
+          "status": "migrated",
+          "before": 667,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Serendipity Shaman",
+          "status": "migrated",
+          "before": 673,
+          "added": 6,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Speaker for the Past",
+          "status": "migrated",
+          "before": 681,
+          "added": 14,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Spirit Warden",
+          "status": "migrated",
+          "before": 674,
+          "added": 7,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "True Silvered Throne",
+          "status": "migrated",
+          "before": 667,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Unsworn Shaman",
+          "status": "migrated",
+          "before": 667,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        },
+        {
+          "name": "Visionary",
+          "status": "migrated",
+          "before": 672,
+          "added": 5,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Witch Doctor",
+          "status": "migrated",
+          "before": 667,
+          "added": 0,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": false
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "bard",
+      "archetypes": 11,
+      "migratedCount": 11,
+      "beforeBytes": 12652409,
+      "afterBytes": 2925419,
+      "reductionBytes": 9726990,
+      "stats": [
+        {
+          "name": "Animal Speaker",
+          "status": "migrated",
+          "before": 873,
+          "added": 6,
+          "removed": 0,
+          "staleSharedRecords": 867,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Arrowsong Minstrel",
+          "status": "migrated",
+          "before": 877,
+          "added": 10,
+          "removed": 0,
+          "staleSharedRecords": 867,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Cultivator",
+          "status": "migrated",
+          "before": 873,
+          "added": 6,
+          "removed": 0,
+          "staleSharedRecords": 867,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Detective",
+          "status": "migrated",
+          "before": 878,
+          "added": 11,
+          "removed": 0,
+          "staleSharedRecords": 867,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Disciple of the Forked Tongue",
+          "status": "migrated",
+          "before": 923,
+          "added": 56,
+          "removed": 0,
+          "staleSharedRecords": 867,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "First World Minstrel",
+          "status": "migrated",
+          "before": 867,
+          "added": 6,
+          "removed": 6,
+          "staleSharedRecords": 861,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Fortune-Teller",
+          "status": "migrated",
+          "before": 875,
+          "added": 8,
+          "removed": 0,
+          "staleSharedRecords": 867,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Magician",
+          "status": "migrated",
+          "before": 2027,
+          "added": 1160,
+          "removed": 0,
+          "staleSharedRecords": 867,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Stonesinger",
+          "status": "migrated",
+          "before": 873,
+          "added": 6,
+          "removed": 0,
+          "staleSharedRecords": 867,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Voice of the Wild",
+          "status": "migrated",
+          "before": 1552,
+          "added": 685,
+          "removed": 0,
+          "staleSharedRecords": 867,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Watersinger",
+          "status": "migrated",
+          "before": 879,
+          "added": 12,
+          "removed": 0,
+          "staleSharedRecords": 867,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "ranger",
+      "archetypes": 10,
+      "migratedCount": 10,
+      "beforeBytes": 5542190,
+      "afterBytes": 2122027,
+      "reductionBytes": 3420163,
+      "stats": [
+        {
+          "name": "Abendego Diver",
+          "status": "migrated",
+          "before": 399,
+          "added": 9,
+          "removed": 0,
+          "staleSharedRecords": 390,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Corpse Hunter",
+          "status": "migrated",
+          "before": 397,
+          "added": 7,
+          "removed": 0,
+          "staleSharedRecords": 390,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Dandy",
+          "status": "migrated",
+          "before": 729,
+          "added": 661,
+          "removed": 322,
+          "staleSharedRecords": 68,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Nirmathi Irregular",
+          "status": "migrated",
+          "before": 754,
+          "added": 364,
+          "removed": 0,
+          "staleSharedRecords": 390,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Raven Master",
+          "status": "migrated",
+          "before": 1026,
+          "added": 636,
+          "removed": 0,
+          "staleSharedRecords": 390,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Summit Sentinel",
+          "status": "migrated",
+          "before": 391,
+          "added": 1,
+          "removed": 0,
+          "staleSharedRecords": 390,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Tanglebriar Demonslayer",
+          "status": "migrated",
+          "before": 395,
+          "added": 5,
+          "removed": 0,
+          "staleSharedRecords": 390,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Toxic Herbalist",
+          "status": "migrated",
+          "before": 398,
+          "added": 8,
+          "removed": 0,
+          "staleSharedRecords": 390,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Witchguard",
+          "status": "migrated",
+          "before": 427,
+          "added": 37,
+          "removed": 0,
+          "staleSharedRecords": 390,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Lantern Lighter",
+          "status": "migrated",
+          "before": 391,
+          "added": 1,
+          "removed": 0,
+          "staleSharedRecords": 390,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "druid",
+      "archetypes": 8,
+      "migratedCount": 8,
+      "beforeBytes": 11489961,
+      "afterBytes": 5003722,
+      "reductionBytes": 6486239,
+      "stats": [
+        {
+          "name": "Death Druid",
+          "status": "migrated",
+          "before": 925,
+          "added": 133,
+          "removed": 0,
+          "staleSharedRecords": 792,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Feyspeaker",
+          "status": "migrated",
+          "before": 1271,
+          "added": 479,
+          "removed": 0,
+          "staleSharedRecords": 792,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Halcyon Druid",
+          "status": "migrated",
+          "before": 2406,
+          "added": 1614,
+          "removed": 0,
+          "staleSharedRecords": 792,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Naga Aspirant",
+          "status": "migrated",
+          "before": 938,
+          "added": 146,
+          "removed": 0,
+          "staleSharedRecords": 792,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Nature Priest",
+          "status": "migrated",
+          "before": 916,
+          "added": 124,
+          "removed": 0,
+          "staleSharedRecords": 792,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Supernaturalist",
+          "status": "migrated",
+          "before": 1857,
+          "added": 1065,
+          "removed": 0,
+          "staleSharedRecords": 792,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Toxicologist",
+          "status": "migrated",
+          "before": 917,
+          "added": 125,
+          "removed": 0,
+          "staleSharedRecords": 792,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Undine Adept",
+          "status": "migrated",
+          "before": 914,
+          "added": 122,
+          "removed": 0,
+          "staleSharedRecords": 792,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "magus",
+      "archetypes": 6,
+      "migratedCount": 6,
+      "beforeBytes": 6185086,
+      "afterBytes": 3059161,
+      "reductionBytes": 3125925,
+      "stats": [
+        {
+          "name": "Deep Marshal",
+          "status": "migrated",
+          "before": 499,
+          "added": 16,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Hexbreaker",
+          "status": "migrated",
+          "before": 485,
+          "added": 2,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Hexcrafter",
+          "status": "migrated",
+          "before": 554,
+          "added": 71,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Mindblade",
+          "status": "migrated",
+          "before": 1441,
+          "added": 958,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Nature-Bonded Magus",
+          "status": "migrated",
+          "before": 1177,
+          "added": 694,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Puppetmaster",
+          "status": "migrated",
+          "before": 1218,
+          "added": 735,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "paladin",
+      "archetypes": 6,
+      "migratedCount": 6,
+      "beforeBytes": 3153481,
+      "afterBytes": 1483454,
+      "reductionBytes": 1670027,
+      "stats": [
+        {
+          "name": "Forest Preserver",
+          "status": "migrated",
+          "before": 367,
+          "added": 22,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Mind Sword",
+          "status": "migrated",
+          "before": 362,
+          "added": 17,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Pearl Seeker",
+          "status": "migrated",
+          "before": 351,
+          "added": 6,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Silver Champion",
+          "status": "migrated",
+          "before": 62,
+          "added": 17,
+          "removed": 300,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Hunting Paladin",
+          "status": "migrated",
+          "before": 665,
+          "added": 320,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Wilderness Warden",
+          "status": "migrated",
+          "before": 1089,
+          "added": 744,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "alchemist",
+      "archetypes": 5,
+      "migratedCount": 5,
+      "beforeBytes": 3361904,
+      "afterBytes": 1179882,
+      "reductionBytes": 2182022,
+      "stats": [
+        {
+          "name": "Deep Bomber",
+          "status": "migrated",
+          "before": 410,
+          "added": 2,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Dimensional Excavator",
+          "status": "migrated",
+          "before": 412,
+          "added": 4,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Fire Bomber",
+          "status": "migrated",
+          "before": 411,
+          "added": 3,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Herbalist",
+          "status": "migrated",
+          "before": 1084,
+          "added": 676,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Preservationist",
+          "status": "migrated",
+          "before": 414,
+          "added": 6,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "arcanist",
+      "archetypes": 5,
+      "migratedCount": 5,
+      "beforeBytes": 12016256,
+      "afterBytes": 2997415,
+      "reductionBytes": 9018841,
+      "stats": [
+        {
+          "name": "Harrowed Society Student",
+          "status": "migrated",
+          "before": 1886,
+          "added": 1,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Occultist",
+          "status": "migrated",
+          "before": 1886,
+          "added": 1,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Unlettered Arcanist",
+          "status": "migrated",
+          "before": 1257,
+          "added": 416,
+          "removed": 1044,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "White Mage",
+          "status": "migrated",
+          "before": 1886,
+          "added": 1,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Magaambyan Initiate",
+          "status": "migrated",
+          "before": 2371,
+          "added": 486,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "bloodrager",
+      "archetypes": 5,
+      "migratedCount": 5,
+      "beforeBytes": 3261442,
+      "afterBytes": 1564060,
+      "reductionBytes": 1697382,
+      "stats": [
+        {
+          "name": "Ancestral Harbinger",
+          "status": "migrated",
+          "before": 344,
+          "added": 4,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Enlightened Bloodrager",
+          "status": "migrated",
+          "before": 784,
+          "added": 444,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Greenrager",
+          "status": "migrated",
+          "before": 344,
+          "added": 4,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Symbol Striker",
+          "status": "migrated",
+          "before": 344,
+          "added": 4,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Urban Bloodrager",
+          "status": "migrated",
+          "before": 1123,
+          "added": 783,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "inquisitor",
+      "archetypes": 4,
+      "migratedCount": 4,
+      "beforeBytes": 4049479,
+      "afterBytes": 1676012,
+      "reductionBytes": 2373467,
+      "stats": [
+        {
+          "name": "Green Faith Marshal",
+          "status": "migrated",
+          "before": 662,
+          "added": 6,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Hexenhammer",
+          "status": "migrated",
+          "before": 1613,
+          "added": 957,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Ravener Hunter",
+          "status": "migrated",
+          "before": 677,
+          "added": 21,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Keeper of the Current",
+          "status": "migrated",
+          "before": 703,
+          "added": 47,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "occultist",
+      "archetypes": 3,
+      "migratedCount": 3,
+      "beforeBytes": 3028989,
+      "afterBytes": 920037,
+      "reductionBytes": 2108952,
+      "stats": [
+        {
+          "name": "Necroccultist",
+          "status": "migrated",
+          "before": 861,
+          "added": 191,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Planar Harmonizer",
+          "status": "migrated",
+          "before": 671,
+          "added": 1,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Reliquarian",
+          "status": "migrated",
+          "before": 676,
+          "added": 6,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "psychic",
+      "archetypes": 3,
+      "migratedCount": 3,
+      "beforeBytes": 5308018,
+      "afterBytes": 1879210,
+      "reductionBytes": 3428808,
+      "stats": [
+        {
+          "name": "Formless Adept",
+          "status": "migrated",
+          "before": 1105,
+          "added": 1,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Esoteric Starseeker",
+          "status": "migrated",
+          "before": 1127,
+          "added": 23,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Magaambyan Telepath",
+          "status": "migrated",
+          "before": 1761,
+          "added": 657,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "skald",
+      "archetypes": 3,
+      "migratedCount": 3,
+      "beforeBytes": 4131916,
+      "afterBytes": 1585081,
+      "reductionBytes": 2546835,
+      "stats": [
+        {
+          "name": "Dragon Skald",
+          "status": "migrated",
+          "before": 853,
+          "added": 3,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Hunt Caller",
+          "status": "migrated",
+          "before": 1544,
+          "added": 694,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Red Tongue",
+          "status": "migrated",
+          "before": 853,
+          "added": 3,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "spiritualist",
+      "archetypes": 3,
+      "migratedCount": 3,
+      "beforeBytes": 2705491,
+      "afterBytes": 1419742,
+      "reductionBytes": 1285749,
+      "stats": [
+        {
+          "name": "Fated Guide",
+          "status": "migrated",
+          "before": 409,
+          "added": 1,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Onmyoji",
+          "status": "migrated",
+          "before": 1386,
+          "added": 978,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Shadow Caller",
+          "status": "migrated",
+          "before": 410,
+          "added": 2,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "witch",
+      "archetypes": 3,
+      "migratedCount": 3,
+      "beforeBytes": 5159928,
+      "afterBytes": 1605651,
+      "reductionBytes": 3554277,
+      "stats": [
+        {
+          "name": "Alley Witch",
+          "status": "migrated",
+          "before": 1260,
+          "added": 104,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Dimensional Occultist",
+          "status": "migrated",
+          "before": 1265,
+          "added": 109,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Winter Witch",
+          "status": "migrated",
+          "before": 1258,
+          "added": 102,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "wizard-sorcerer",
+      "archetypes": 3,
+      "migratedCount": 3,
+      "beforeBytes": 10593531,
+      "afterBytes": 3603825,
+      "reductionBytes": 6989706,
+      "stats": [
+        {
+          "name": "Worldseeker",
+          "status": "migrated",
+          "before": 1888,
+          "added": 3,
+          "removed": 0,
+          "staleSharedRecords": 1885,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Spell Sage",
+          "status": "migrated",
+          "before": 3063,
+          "added": 1178,
+          "removed": 0,
+          "staleSharedRecords": 1885,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Razmiran Priest",
+          "status": "migrated",
+          "before": 1964,
+          "added": 79,
+          "removed": 0,
+          "staleSharedRecords": 1885,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "investigator",
+      "archetypes": 2,
+      "migratedCount": 2,
+      "beforeBytes": 2777387,
+      "afterBytes": 2216355,
+      "reductionBytes": 561032,
+      "stats": [
+        {
+          "name": "Psychic Detective",
+          "status": "migrated",
+          "before": 1115,
+          "added": 970,
+          "removed": 257,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Questioner",
+          "status": "migrated",
+          "before": 1149,
+          "added": 747,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "mesmerist",
+      "archetypes": 2,
+      "migratedCount": 2,
+      "beforeBytes": 1734862,
+      "afterBytes": 592553,
+      "reductionBytes": 1142309,
+      "stats": [
+        {
+          "name": "Projectionist",
+          "status": "migrated",
+          "before": 557,
+          "added": 1,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Spirit Walker",
+          "status": "migrated",
+          "before": 560,
+          "added": 4,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "warpriest",
+      "archetypes": 2,
+      "migratedCount": 2,
+      "beforeBytes": 1946480,
+      "afterBytes": 676255,
+      "reductionBytes": 1270225,
+      "stats": [
+        {
+          "name": "Forgepriest",
+          "status": "migrated",
+          "before": 683,
+          "added": 11,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        },
+        {
+          "name": "Proselytizer",
+          "status": "migrated",
+          "before": 686,
+          "added": 14,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "hunter",
+      "archetypes": 1,
+      "migratedCount": 1,
+      "beforeBytes": 1802752,
+      "afterBytes": 986320,
+      "reductionBytes": 816432,
+      "stats": [
+        {
+          "name": "Divine Hunter",
+          "status": "migrated",
+          "before": 958,
+          "added": 141,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    },
+    {
+      "name": "medium",
+      "archetypes": 1,
+      "migratedCount": 1,
+      "beforeBytes": 811212,
+      "afterBytes": 416847,
+      "reductionBytes": 394365,
+      "stats": [
+        {
+          "name": "Storm Dreamer",
+          "status": "migrated",
+          "before": 383,
+          "added": 6,
+          "removed": 0,
+          "staleSharedRecords": 0,
+          "storageOrderChanged": true
+        }
+      ],
+      "siblingIssues": []
+    }
+  ]
+}
