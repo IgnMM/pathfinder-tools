@@ -105,6 +105,14 @@ function hasCalcProfile(name){
     return !!(store && store.profiles && store.profiles.some(p=>p.name===name));
   }catch(e){ return false; }
 }
+function hasClassProfile(cls, name){
+  try{
+    let raw=localStorage.getItem(cls+'UniversalSpellbookPF1V1');
+    if(!raw) return false;
+    let store=JSON.parse(raw);
+    return !!(store && store.profiles && Object.prototype.hasOwnProperty.call(store.profiles, name));
+  }catch(e){ return false; }
+}
 function updateClassAutoDetect(){
   let name=$('newName').value.trim();
   let matches=findClassesForName(name);
@@ -175,6 +183,23 @@ function renameProfileInClassStore(cls, oldName, newName){
   localStorage.setItem(key, JSON.stringify(store));
   return true;
 }
+// Compensating action for resolveUnifiedName's atomicity guarantee: undoes exactly what
+// renameProfileInCalcStore(oldName, newName) just did, including dropping the tombstone
+// it created for oldName (a real, un-deleted profile sitting behind a tombstone would be
+// wrong -- and this function only ever runs right after that same rename committed it).
+function rollbackCalcRename(newName, oldName){
+  const key='pf1_universal_damage_calc_profiles_v1';
+  let raw=localStorage.getItem(key); if(!raw) return;
+  let store; try{ store=JSON.parse(raw); }catch(e){ return; }
+  if(!store || !store.profiles) return;
+  let idx=store.profiles.findIndex(p=>p.name===newName);
+  if(idx===-1) return;
+  store.profiles[idx].name=oldName;
+  store.profiles[idx]._updatedAt=Date.now();
+  if(store.deletedProfiles) delete store.deletedProfiles[oldName];
+  if(store.active===newName) store.active=oldName;
+  localStorage.setItem(key, JSON.stringify(store));
+}
 // Real deletion (not just unlinking) -- removes the profile's actual data from its own
 // tool's store, tombstoned the same way Rename does so the deletion propagates to other
 // devices/the cloud on that tool's next sync instead of the old data quietly resurrecting.
@@ -226,10 +251,34 @@ function resolveUnifiedName(cls, name, dmg, spells){
   if(dmg===spells) return {dmg, spells};
   const unify=confirm('Your Damage profile is named "'+dmg+'" and your Spellbook profile is named "'+spells+'" — linking them with different names means each tab will show its own name, which is confusing.\n\nOK = rename both to "'+name+'", so this character has one name everywhere.\nCancel = keep the two different names (not recommended, but your choice).');
   if(!unify) return {dmg, spells};
+
+  // Atomic: check both stores for a colliding name FIRST, before touching either one.
+  // A side that's already named `name` needs no rename, so it's excluded from its own
+  // collision check (its "own" profile would otherwise always match itself).
+  if(dmg!==name && hasCalcProfile(name)){
+    alert('Could not rename — a Damage Calculator profile named "'+name+'" already exists. Pick a different character name, or rename/delete that profile first.');
+    return null;
+  }
+  if(spells!==name && hasClassProfile(cls, name)){
+    alert('Could not rename — a Spellbook profile named "'+name+'" already exists. Pick a different character name, or rename/delete that profile first.');
+    return null;
+  }
+
+  // Both checks passed, so both renames below are expected to succeed. If the second one
+  // fails anyway (store vanished, malformed JSON, some other unexpected condition -- the
+  // 'exists' case is already ruled out), roll back the first rename and its tombstone so
+  // nothing is left half-renamed.
   const dmgResult = (dmg===name) ? true : renameProfileInCalcStore(dmg, name);
+  if(dmgResult!==true){
+    alert('Could not rename the Damage Calculator profile — nothing was changed. Please try again.');
+    return null;
+  }
   const spellsResult = (spells===name) ? true : renameProfileInClassStore(cls, spells, name);
-  if(dmgResult==='exists'){ alert('Could not rename — a Damage Calculator profile named "'+name+'" already exists. Pick a different character name, or rename/delete that profile first.'); return null; }
-  if(spellsResult==='exists'){ alert('Could not rename — a Spellbook profile named "'+name+'" already exists. Pick a different character name, or rename/delete that profile first.'); return null; }
+  if(spellsResult!==true){
+    if(dmg!==name) rollbackCalcRename(name, dmg);
+    alert('Could not rename the Spellbook profile — the Damage Calculator rename was rolled back, so nothing changed. Please try again.');
+    return null;
+  }
   return {dmg: name, spells: name};
 }
 
