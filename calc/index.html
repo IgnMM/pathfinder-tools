@@ -643,6 +643,17 @@ const WEAPON_CAT_LABEL={"simple-light":"Simple, Light","simple-one-handed":"Simp
 // conditional attack whose source data flagged grantedByCoreWildShape:false (Crocodile's
 // Death Roll, Rhinoceros's Powerful Charge -- both separate extraordinary abilities not
 // in Beast Shape's granted-ability list) is omitted; everything else is included.
+// WS-SIZE-001: changing size under polymorph shifts the ATTACK ROLL (PF1e size rules),
+// never the flat damage bonus -- applied once per attack line via attackSizeModifier,
+// baked in when the preset is applied (see wildShapeAttackSizeModifier below).
+// WS-COND-001: `kind` is purely the attack-roll category (primary/secondary/special --
+// special = no attack roll, e.g. Trample). Whether an attack additionally needs a
+// special condition to use (Rake needs pounce/grapple, Trample needs a full-round
+// action) is a SEPARATE, orthogonal flag: conditional + conditionLabel. Conflating the
+// two used to make every conditional attack silently take the -5/-2 secondary penalty
+// even when its real category was primary.
+const WILD_SHAPE_SIZE_ATK_MOD={Fine:8,Diminutive:4,Tiny:2,Small:1,Medium:0,Large:-1,Huge:-2,Gargantuan:-4,Colossal:-8};
+function wildShapeAttackSizeModifier(size){ return WILD_SHAPE_SIZE_ATK_MOD[size]||0; }
 const WILD_SHAPE_FORMS=[
  {id:'eagle',name:'Eagle',size:'Small',tier:'Beast Shape I',lvl:4,str:0,dex:2,con:0,attacks:[
    {name:'Talon',qty:2,kind:'primary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
@@ -657,14 +668,14 @@ const WILD_SHAPE_FORMS=[
  {id:'leopard',name:'Leopard',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
    {name:'Bite',qty:1,kind:'primary',die:'1d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Claw',qty:2,kind:'primary',die:'1d3',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
-   {name:'Rake',qty:2,kind:'conditional',minTier:'BS III',die:'1d3',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+   {name:'Rake',qty:2,kind:'primary',conditional:true,conditionLabel:'Pounce or grapple; requires Beast Shape III',die:'1d3',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
  {id:'boar',name:'Boar',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
    {name:'Gore',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
  {id:'monitor-lizard',name:'Monitor Lizard',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
    {name:'Bite',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
  {id:'constrictor-snake',name:'Constrictor Snake',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
    {name:'Bite',qty:1,kind:'primary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2},
-   {name:'Constrict',qty:1,kind:'conditional',minTier:'BS III',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+   {name:'Constrict',qty:1,kind:'primary',conditional:true,conditionLabel:'Requires a successful grapple; requires Beast Shape III',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
  {id:'deinonychus',name:'Deinonychus',size:'Medium',tier:'Beast Shape I',lvl:4,str:2,dex:0,con:0,attacks:[
    {name:'Talon',qty:2,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Bite',qty:1,kind:'primary',die:'1d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
@@ -677,11 +688,11 @@ const WILD_SHAPE_FORMS=[
  {id:'lion',name:'Lion',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
    {name:'Bite',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Claw',qty:2,kind:'primary',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
-   {name:'Rake',qty:2,kind:'conditional',minTier:'BS III',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+   {name:'Rake',qty:2,kind:'primary',conditional:true,conditionLabel:'Pounce or grapple; requires Beast Shape III',die:'1d4',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
  {id:'tiger',name:'Tiger',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
    {name:'Claw',qty:2,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Bite',qty:1,kind:'primary',die:'2d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
-   {name:'Rake',qty:2,kind:'conditional',minTier:'BS III',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
+   {name:'Rake',qty:2,kind:'primary',conditional:true,conditionLabel:'Pounce or grapple; requires Beast Shape III',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2}]},
  {id:'crocodile',name:'Crocodile',size:'Large',tier:'Beast Shape II',lvl:6,str:4,dex:-2,con:0,attacks:[
    {name:'Bite',qty:1,kind:'primary',die:'1d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Tail Slap',qty:1,kind:'secondary',die:'1d12',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:0.5,threat:'20',critMult:2}]},
@@ -696,7 +707,7 @@ const WILD_SHAPE_FORMS=[
  {id:'elephant',name:'Elephant',size:'Huge',tier:'Beast Shape III',lvl:8,str:6,dex:-4,con:0,attacks:[
    {name:'Gore',qty:1,kind:'primary',die:'2d8',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
    {name:'Slam',qty:1,kind:'primary',die:'2d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2},
-   {name:'Trample',qty:1,kind:'conditional',minTier:'BS III',die:'2d8',atkAbility:'none',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
+   {name:'Trample',qty:1,kind:'special',conditional:true,conditionLabel:'Full-round action; requires Beast Shape III',saveNote:'Reflex DC 10 + 1/2 HD + Str modifier for half damage; no attack roll, cannot score a critical hit.',die:'2d8',atkAbility:'none',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]},
  {id:'ankylosaurus',name:'Ankylosaurus',size:'Huge',tier:'Beast Shape III',lvl:8,str:6,dex:-4,con:0,attacks:[
    {name:'Tail',qty:1,kind:'primary',die:'3d6',atkAbility:'str',dmgAbility:'str',dmgAbilityMult:1.5,threat:'20',critMult:2}]}
 ];
@@ -5335,7 +5346,14 @@ function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, s
   let tbody=document.createElement('tbody');
   lines.forEach((line,idx)=>{
     let kind=line.kind||'primary';
-    let babBonus = kind==='primary' ? babList[0] : (babList[0]+secondaryPenalty);
+    let isSpecial = kind==='special';
+    // WS-COND-001: kind is only ever primary/secondary/special now -- a merely
+    // conditional attack (line.conditional) keeps its real category and is never
+    // silently treated as secondary just because it needs pounce/grapple/etc to use.
+    let babBonus = kind==='secondary' ? (babList[0]+secondaryPenalty) : babList[0];
+    // WS-SIZE-001: the Wild Shape form's size-to-hit modifier, baked onto the line once
+    // when the preset was applied -- added to the attack roll only, never to damage.
+    let sizeAtk = +line.attackSizeModifier||0;
     let atkAbility=line.atkAbility||'str', dmgAbility=line.dmgAbility||'str';
     let atkAbilityMod = atkAbility==='none' ? 0 : (ctx[atkAbility]||0);
     // NATURAL-DMG-001: resolve the FINAL (post buff/debuff/condition) ability modifier
@@ -5353,7 +5371,7 @@ function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, s
     let mult = line.dmgAbilityMult!==undefined ? +line.dmgAbilityMult : 1;
     let dmgAbilityContribution = Math.floor(finalDmgMod*mult);
     let paDmg = powerAttackOn ? roundFrac(paBaseTotal*mult) : 0;
-    let atk = babBonus + atkAbilityMod + atkFromMods;
+    let atk = babBonus + atkAbilityMod + atkFromMods + sizeAtk;
     let dmg = dmgAbilityContribution + dmgFromMods + paDmg;
     let die=(line.die||'1d4').trim();
     let effDie = applySizeSteps(die, sizeSteps);
@@ -5371,10 +5389,18 @@ function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, s
       critDice+=' + '+(c.diceMultipliesOnCrit?diceMultiply(c.dice,critMult):c.dice)+(c.diceType?' '+c.diceType:'')+(c.diceMultipliesOnCrit?'':' (unmultiplied)');
     });
     let qty=Math.max(1,+line.qty||1);
-    let kindLabel = kind==='secondary'?'Secondary':kind==='conditional'?'Conditional':'Primary';
+    let kindLabel = kind==='secondary'?'Secondary':kind==='special'?'Special':'Primary';
+    let condTag = line.conditional ? `<span class="typeTag" title="${esc(line.conditionLabel||'Conditional')}">Conditional</span>` : '';
     let threat = line.threat||'20';
     let tr=document.createElement('tr');
-    tr.innerHTML=`<td>${(qty>1?qty+'× ':'')+esc(line.name||'Attack')} <span class="typeTag">${kindLabel}</span></td><td class="num">${signed(atk)}</td><td>${normalDice} ${signed(dmg)}</td><td>${critDice} ${signed(critDmg)} (threat ${threat}/×${critMult})</td>`;
+    // WS-COND-001: a special-kind line (Trample) never rolls to hit and can't crit --
+    // show its damage and save note only, with To-Hit/Critical Damage left blank.
+    if(isSpecial){
+      let noteRow = line.saveNote ? `<div class="small" style="color:var(--muted)">${esc(line.saveNote)}</div>` : '';
+      tr.innerHTML=`<td>${(qty>1?qty+'× ':'')+esc(line.name||'Attack')} <span class="typeTag">${kindLabel}</span>${condTag}${noteRow}</td><td class="num">—</td><td>${normalDice} ${signed(dmg)}</td><td>—</td>`;
+    } else {
+      tr.innerHTML=`<td>${(qty>1?qty+'× ':'')+esc(line.name||'Attack')} <span class="typeTag">${kindLabel}</span>${condTag}</td><td class="num">${signed(atk)}</td><td>${normalDice} ${signed(dmg)}</td><td>${critDice} ${signed(critDmg)} (threat ${threat}/×${critMult})</td>`;
+    }
     tbody.appendChild(tr);
   });
   t.appendChild(tbody);
@@ -5441,11 +5467,14 @@ function renderNaturalAttackLines(){
     div.innerHTML=`
       <input class="alName" placeholder="Name (e.g. Bite)" value="${esc(line.name||'')}" title="Free name — Bite, Claw, Gore, Tail Slap...">
       <input class="alQty" type="number" min="1" value="${line.qty||1}" style="width:44px" title="Quantity (e.g. 2 for a pair of claws)">
-      <select class="alKind" title="Primary/Secondary/Conditional">
+      <select class="alKind" title="Attack-roll category: Primary (full BAB), Secondary (BAB -5, or -2 with Multiattack), or Special (no attack roll, e.g. Trample)">
         <option value="primary"${(line.kind||'primary')==='primary'?' selected':''}>Primary</option>
         <option value="secondary"${line.kind==='secondary'?' selected':''}>Secondary</option>
-        <option value="conditional"${line.kind==='conditional'?' selected':''}>Conditional</option>
+        <option value="special"${line.kind==='special'?' selected':''}>Special (no attack roll)</option>
       </select>
+      <label style="font-size:.68rem;color:var(--muted)"><input class="alConditional" type="checkbox" ${line.conditional?'checked':''}> Conditional</label>
+      ${line.conditional?`<input class="alCondLabel" placeholder="Condition (e.g. Pounce or grapple; requires Beast Shape III)" value="${esc(line.conditionLabel||'')}" style="width:240px">`:''}
+      ${line.kind==='special'?`<input class="alSaveNote" placeholder="Save note (e.g. Reflex DC 10 + 1/2 HD + Str half)" value="${esc(line.saveNote||'')}" style="width:260px">`:''}
       <input class="alDie" placeholder="Die (1d4)" value="${line.die||''}" title="Base damage dice" style="width:70px">
       <input class="alThreat" placeholder="Threat" value="${line.threat||'20'}" title="Threat range, e.g. 20 or 19–20" style="width:60px">
       <select class="alCrit" title="Critical multiplier">
@@ -5464,7 +5493,14 @@ function renderNaturalAttackLines(){
     const upd=(field,parse)=>e=>{ line[field]=parse?parse(e.target.value):e.target.value; saveStore(); compute(); };
     div.querySelector('.alName').addEventListener('input',upd('name'));
     div.querySelector('.alQty').addEventListener('input',upd('qty',v=>Math.max(1,+v||1)));
-    div.querySelector('.alKind').addEventListener('change',upd('kind'));
+    div.querySelector('.alKind').addEventListener('change',e=>{ line.kind=e.target.value; saveStore(); renderNaturalAttackLines(); compute(); });
+    div.querySelector('.alConditional').addEventListener('change',e=>{
+      line.conditional=e.target.checked;
+      if(!line.conditional) delete line.conditionLabel;
+      saveStore(); renderNaturalAttackLines(); compute();
+    });
+    let condLabelEl=div.querySelector('.alCondLabel'); if(condLabelEl) condLabelEl.addEventListener('input',upd('conditionLabel'));
+    let saveNoteEl=div.querySelector('.alSaveNote'); if(saveNoteEl) saveNoteEl.addEventListener('input',upd('saveNote'));
     div.querySelector('.alDie').addEventListener('input',upd('die'));
     div.querySelector('.alThreat').addEventListener('input',upd('threat'));
     div.querySelector('.alCrit').addEventListener('change',upd('critMult',Number));
@@ -5552,10 +5588,13 @@ $('wildShapeForm').addEventListener('change',()=>{
     p.weaponCategory='natural';
     p.naturalOrigin='wildshape';
     // A conditional special ability (Rake/Constrict/Trample) always gets added along
-    // with the rest of the form's routine -- its minimum tier is shown right in the
-    // name as information, never as a block, per the same "inform and warn, allow
-    // manual correction" principle as the form picker itself.
-    p.naturalAttacks=f.attacks.map(a=>Object.assign({}, a, {name: a.minTier ? a.name+' — '+a.minTier : a.name}));
+    // with the rest of the form's routine -- its usage condition is shown as a
+    // "Conditional" tag (from a.conditionLabel) next to the attack, never as a block,
+    // per the same "inform and warn, allow manual correction" principle as the form
+    // picker itself. The form's size-to-hit modifier (see WS-SIZE-001 above) is baked
+    // into every attack line exactly once here, never touching the flat damage bonus.
+    let sizeAtk = wildShapeAttackSizeModifier(f.size);
+    p.naturalAttacks=f.attacks.map(a=>Object.assign({}, a, {attackSizeModifier: sizeAtk}));
   }
   saveStore(); loadProfileIntoUI();
 });
