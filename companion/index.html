@@ -596,6 +596,12 @@ store.profiles.forEach(p=>{
   if(p.creatureSize===undefined) p.creatureSize='Medium';
   if(p.manifestation===undefined) p.manifestation='ectoplasmic';
   if(!Array.isArray(p.selectedEvolutions)) p.selectedEvolutions=[];
+  // EVOL-INSTANCE-001: backfill instanceId once for evolutions saved before this field
+  // existed, so origin-key matching in applyEidolonPreset() has something stable to key
+  // on immediately -- assigned here (migration, runs once per load) and never inside
+  // applyEidolonPreset() itself, which would mint a fresh id on every reapply and break
+  // the very matching this is meant to fix.
+  p.selectedEvolutions.forEach(ev=>{ if(!ev.instanceId) ev.instanceId='evo-'+Date.now()+'-'+Math.random().toString(36).slice(2,8); });
   // Migrate old attack lines (strMode full/half/none, no qty/type/per-line ability) to
   // the new manual-attack schema -- preserves the same hit/damage math as before.
   p.attackLines.forEach(line=>{
@@ -1125,8 +1131,14 @@ function renderEidolonEvolutionPicker(){
     let def=entries.find(x=>x.key===chosen.key), row=document.createElement('div'); row.className='activeItem';
     row.innerHTML=`<div class="head"><div><div class="name">${def?.name||chosen.key} <span class="typeTag">${def?.cost||0} EP</span></div><div class="desc">${[chosen.target&&'Target: '+chosen.target,chosen.choice&&'Choice: '+chosen.choice].filter(Boolean).join(' — ')||def?.requirementsText||'Selected evolution'}</div></div><button class="rm">✕ remove</button></div>`;
     row.querySelector('.rm').onclick=()=>{
-      let removedKey=p.selectedEvolutions[i].key;
-      p.selectedEvolutions.splice(i,1);
+      // EVOL-INSTANCE-001: remove by instanceId, not the closure-captured index --
+      // two instances of the same evolution key sit at different array positions, and
+      // matching by id (rather than trusting `i` to still be correct) guarantees only
+      // THIS specific copy is removed even if the array were ever touched in between.
+      let idx=p.selectedEvolutions.findIndex(x=>x.instanceId===chosen.instanceId);
+      if(idx===-1) return;
+      let removedKey=p.selectedEvolutions[idx].key;
+      p.selectedEvolutions.splice(idx,1);
       // REMOVE-LARGE-001: applyEidolonPreset() flatly refuses to run while sized
       // Large/Huge without the Large evolution (it alerts and bails before touching
       // anything) -- so removing Large used to leave every Large/Huge-derived ability
@@ -1145,7 +1157,11 @@ function renderEidolonEvolutionPicker(){
 }
 $('addEidolonEvolution').onclick=()=>{
   let key=$('eidolonEvolutionSelect').value; if(!key||!EIDOLON_EVOLUTIONS)return;
-  let chosen={key};
+  // EVOL-INSTANCE-001: the same evolution can be taken more than once (e.g. two
+  // separate Claws purchases on a homebrew build) -- instanceId gives each pick its
+  // own identity so applyEidolonPreset()'s origin key (see EVOL-MERGE-001) can tell
+  // them apart instead of matching every copy to the same generated attack.
+  let chosen={key, instanceId:'evo-'+Date.now()+'-'+Math.random().toString(36).slice(2,8)};
   if(EVOLUTION_TARGET_NEEDED.includes(key)) chosen.target=$('eidolonEvolutionTarget').value||'';
   if(key==='ability-increase') chosen.choice=$('eidolonEvolutionAbility').value||'str';
   if(key==='energy-attacks') chosen.choice=$('eidolonEvolutionEnergy').value||'fire';
@@ -1256,12 +1272,16 @@ function applyEidolonPreset(type){
   };
   selected.forEach(chosen=>{
     let ad=attackAdapters[chosen.key]; if(!ad)return;
+    // EVOL-INSTANCE-001: chosen.instanceId (backfilled for old profiles during load --
+    // see the selectedEvolutions migration) distinguishes two separate picks of the
+    // SAME evolution key, so each gets its own origin key instead of colliding on one.
+    let originKey='evolution:'+chosen.key+':'+chosen.instanceId;
     if(['addAttack','addConditionalAttack','addSpecialAttack'].includes(ad.operation)){
-      attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:'evolution:'+chosen.key}));
+      attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:originKey}));
     } else if(ad.operation==='addOrUpgradeAttack'){
       let existing=attacks.find(a=>a.name==='Bite');
       if(existing) existing.strengthMultiplier=ad.existingAttackStrengthMultiplier;
-      else attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:'evolution:'+chosen.key}));
+      else attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:originKey}));
     } else if(ad.operation==='increaseSelectedAttackDie'){
       let target=(chosen.target||'').toLowerCase(), found=attacks.find(a=>a.name.toLowerCase()===target); if(found) found.damage=diceSizeUp(found.damage);
     }
