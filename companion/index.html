@@ -168,7 +168,9 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="row"><label>Hit Dice</label><input id="hitDice" type="number" min="1" max="30" value="7"></div>
 <div class="row"><label>Caster Level (of whoever casts buffs on it)</label><input id="casterLevel" type="number" min="0" max="20" value="10"></div>
 <div class="row"><label>Base Attack Bonus</label><input id="bab" type="number" value="7"></div>
-<div class="emptyNote">Feeds Power Attack's BAB-based scaling only — each attack below has its own Base To-Hit field. For sources using animal-companion progression, BAB is pre-filled from the universal table; type over it for an exception.</div>
+<div class="row"><label></label><button id="reapplyProgression" type="button">Reapply progression</button></div>
+<div id="hdBabAutoNote" class="emptyNote"></div>
+<div class="emptyNote">Feeds Power Attack's BAB-based scaling only — each attack below has its own Base To-Hit field. For sources with a known progression table, Hit Dice and BAB are pre-filled automatically; type over either to take manual control (use "Reapply progression" above to go back to auto-fill).</div>
 <div class="row"><label id="speciesPresetLabel">Species preset (optional)</label><select id="speciesPreset"><option value="">Manual / no preset</option></select></div>
 <div id="eidolonSubtypeRow" class="row" style="display:none"><label>Unchained subtype</label><select id="eidolonSubtype"><option value="">Choose subtype…</option></select></div>
 <div id="phantomFocusRow" class="row" style="display:none"><label>Emotional focus</label><select id="phantomFocus"><option value="">Choose focus…</option></select></div>
@@ -492,7 +494,7 @@ function saveStore(){
   }
 }
 function defaultProfile(name){
-  return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:7, casterLevel:10, bab:7, singleAttack:false,
+  return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:7, casterLevel:10, bab:7, hdBabOverride:false, singleAttack:false,
     speciesPreset:'',eidolonSubtype:'',subtypeAbilityChoice:'',phantomFocus:'',creatureSize:'Medium',manifestation:'ectoplasmic',selectedEvolutions:[],
     str:18,dex:15,con:15,int:2,wis:12,cha:6, atkStat:'str', dmgStat:'str',
     attackLines:[
@@ -510,6 +512,26 @@ const ENTITY_TYPE_LABELS={
   'eidolon-chained':'Eidolon (Chained)','eidolon-unchained':'Eidolon (Unchained)',
   'phantom':'Phantom','cohort':'Cohort / Independent Creature'
 };
+// The Source class a switch TO this entity type should default to -- these three types
+// only ever come from one class family, so forcing it removes a stale leftover (e.g.
+// "druid" surviving a switch from Animal Companion into Eidolon). Animal Companion and
+// Mount are intentionally absent: several classes legitimately grant either one, so
+// whatever compatible source class the user already had selected is left alone.
+const SOURCE_CLASS_BY_ENTITY_TYPE={
+  'eidolon-chained':'summoner','eidolon-unchained':'summoner',
+  'phantom':'spiritualist','familiar':'wizard'
+};
+// The generic placeholder shown in speciesPresetNote before any preset has been applied
+// (or right after switching entity type) -- replaced with the specific "X applied..."
+// message the moment the user actually applies one.
+const SPECIES_PRESET_GENERIC_NOTE={
+  'animal-companion':'A species preset fills the Core Rulebook starting scores and attacks, including its 4th/7th-level advancement when reached. Everything remains manually editable afterward.',
+  'mount':'A species preset fills the Core Rulebook starting scores and attacks, including its 4th/7th-level advancement when reached. Everything remains manually editable afterward.',
+  'eidolon-chained':'A base form fills the starting ability scores, natural armor, and free evolutions for this eidolon version. Everything remains manually editable afterward.',
+  'eidolon-unchained':'A base form fills the starting ability scores, natural armor, and free evolutions for this eidolon version, plus its Unchained subtype base evolutions. Everything remains manually editable afterward.',
+  'phantom':'A phantom preset fills the starting ability scores and slam attack for the chosen emotional focus and manifestation. Everything remains manually editable afterward.',
+  'familiar':'A familiar preset fills the base creature\'s ability scores and natural attack. To-hit uses the master\'s BAB plus the better of STR/DEX; damage stays the creature\'s own and doesn\'t add that ability again. Everything remains manually editable afterward.'
+};
 let store=loadStore();
 if(!store.deletedProfiles) store.deletedProfiles={};
 store.profiles.forEach(p=>{
@@ -519,6 +541,7 @@ store.profiles.forEach(p=>{
   if(p.characterLevel===undefined) p.characterLevel=7;
   if(p.casterLevel===undefined) p.casterLevel=p.characterLevel;
   if(p.bab===undefined) p.bab=p.characterLevel||7;
+  if(p.hdBabOverride===undefined) p.hdBabOverride=false;
   if(p.singleAttack===undefined) p.singleAttack=false;
   if(!p.atkStat) p.atkStat='str';
   if(!p.dmgStat) p.dmgStat='str';
@@ -614,18 +637,33 @@ function applyEntityTypeUI(){
   $('manifestationRow').style.display=type==='phantom'?'grid':'none';
   $('eidolonEvolutionPanel').style.display=['eidolon-chained','eidolon-unchained'].includes(type)?'block':'none';
   $('speciesPresetLabel').textContent=type==='familiar'?'Familiar species':(['eidolon-chained','eidolon-unchained'].includes(type)?'Base form':(type==='phantom'?'Phantom preset':'Species preset (optional)'));
+  $('speciesPresetNote').textContent=SPECIES_PRESET_GENERIC_NOTE[type]||'A preset fills this entity\'s starting scores and attacks. Everything remains manually editable afterward.';
   populateEntityPresetOptions();
   renderEidolonEvolutionPicker();
 }
 
-// Recomputes the effective companion level from Source class + Class level, and — for
-// Sources that explicitly use animal-companion progression — pre-fills BAB from the table and shows the
-// Str/Dex advancement that compute() adds on top of the base scores. Paladin/Cavalier
-// mounts and "Other" get no auto-fill: that table doesn't exist here yet, everything
-// stays exactly what you typed.
-function applyProgressionUI(autoFillBab){
+// Recomputes the effective companion level from Source class + Class level, and -- for
+// every entity type with a real progression table (Eidolon, Phantom, and Animal
+// Companion/Mount sources recognized by effectiveCompanionLevel) -- actually WRITES
+// Hit Dice and BAB into both the UI and the profile (never just the informational
+// text), then saves, before returning. HD/BAB writes are skipped only while
+// p.hdBabOverride is set (the player took manual control -- see the hitDice/bab input
+// listeners below, and "Reapply progression" to clear it). Familiar and unrecognized
+// Animal Companion/Mount sources ("Other / homebrew", Paladin/Cavalier mount) have no
+// table here yet, so HD/BAB always stay exactly what was typed.
+function applyProgressionUI(){
+  let p=currentProfile();
   let cls=$('sourceClass').value, ownerLvl=+$('ownerLevel').value||0;
-  let entityType=currentProfile().entityType||'animal-companion';
+  let entityType=p.entityType||'animal-companion';
+  let override=!!p.hdBabOverride;
+  let autoNote=$('hdBabAutoNote');
+  function writeHdBab(hd,bab){
+    if(override){ autoNote.textContent='Manually overridden — click "Reapply progression" above to resync Hit Dice/BAB from the table.'; return; }
+    $('hitDice').value=hd; $('bab').value=bab;
+    p.characterLevel=hd; p.bab=bab;
+    saveStore();
+    autoNote.textContent='Auto-filled from progression — editable.';
+  }
   if(!['animal-companion','mount'].includes(entityType)){
     let level=Math.max(1,Math.min(20,ownerLvl||1));
     if(['eidolon-chained','eidolon-unchained'].includes(entityType)&&EIDOLON_PROGRESSION){
@@ -633,19 +671,21 @@ function applyProgressionUI(autoFillBab){
       $('effectiveLevelNote').textContent=ENTITY_TYPE_LABELS[entityType]+' level '+level+': '+row.hd+' HD, BAB '+signed(row.bab)+', evolution pool '+row.evolutionPool+', maximum '+row.maxNaturalAttacks+' natural attacks.';
       $('strDexAdjNote').textContent='Eidolon progression adds +'+row.strDexBonus+' to both STR and DEX; included automatically in the calculation.';
       $('multiattackNote').textContent=level>=9?'Multiattack is automatic at level 9. Secondary natural attacks use -2 rather than -5.':'';
-      if(autoFillBab){$('hitDice').value=row.hd;$('bab').value=row.bab;}
+      writeHdBab(row.hd, row.bab);
     } else if(entityType==='phantom'&&PHANTOM_PROGRESSION){
       let row=PHANTOM_PROGRESSION.levels[level-1], focus=PHANTOM_FOCUSES.find(x=>x.key===$('phantomFocus').value);
       $('effectiveLevelNote').textContent='Phantom level '+level+': '+row.hd+' HD, BAB '+signed(row.bab)+', slam '+row.slamMedium+' for Medium size.';
       $('strDexAdjNote').textContent=focus&&focus.key==='anger'?'Anger replaces the progression DEX bonus with STR; CHA still receives +'+row.dexChaBonus+'.':'Phantom progression adds +'+row.dexChaBonus+' to DEX and CHA; included automatically.';
       $('multiattackNote').textContent=$('manifestation').value==='incorporeal'?'Incorporeal: slam attacks can only affect incorporeal creatures (except specific focus exceptions).':'';
-      if(autoFillBab){$('hitDice').value=row.hd;$('bab').value=row.bab;}
+      writeHdBab(row.hd, row.bab);
     } else if(entityType==='familiar'){
       $('effectiveLevelNote').textContent='Familiar uses the master\'s total BAB. Enter that BAB above; its natural melee attack automatically uses the better of STR or DEX after applying buffs.';
       $('strDexAdjNote').textContent='Familiar damage remains the base creature\'s listed damage; no ability modifier is added again.'; $('multiattackNote').textContent='';
+      autoNote.textContent=''; // no progression table for familiars -- BAB is always the master's own, entered by hand
     } else {
       $('effectiveLevelNote').textContent=ENTITY_TYPE_LABELS[entityType]+' rule data is still loading; manual values remain available.';
       $('strDexAdjNote').textContent=''; $('multiattackNote').textContent='';
+      autoNote.textContent='';
     }
     return;
   }
@@ -653,7 +693,7 @@ function applyProgressionUI(autoFillBab){
   let effNote=$('effectiveLevelNote'), adjNote=$('strDexAdjNote'), maNote=$('multiattackNote');
   if(!cls || eff===null || eff<=0){
     effNote.textContent = cls==='ranger' ? 'A ranger companion starts at 4th level (effective level = ranger level − 3) — not active yet at this level.' : '';
-    adjNote.textContent=''; maNote.textContent='';
+    adjNote.textContent=''; maNote.textContent=''; autoNote.textContent='';
     return;
   }
   let row=ANIMAL_COMPANION_TABLE[Math.max(1,Math.min(20,eff))];
@@ -664,7 +704,9 @@ function applyProgressionUI(autoFillBab){
   // of its existing natural weapons at -5 -- purely informational since which applies
   // depends on the companion's own attack list, which the player must judge themselves.
   maNote.textContent = eff>=9 ? 'Effective level 9+: qualifies for Multiattack if it already has 3+ natural attacks — add the Multiattack feat above (reduces Secondary attack penalties from -5 to -2). Otherwise it instead gains a second attack with one existing natural weapon at -5 — add that as a new attack line by hand.' : '';
-  if(autoFillBab) $('bab').value=row.bab;
+  // Hit Dice = the effective companion level itself in the Animal Companion Base
+  // Statistics table (its HD column and level column are the same number, 1-20).
+  writeHdBab(eff, row.bab);
 }
 
 function loadProfileIntoUI(){
@@ -680,7 +722,7 @@ function loadProfileIntoUI(){
   $('creatureSize').value=p.creatureSize||'Medium';
   $('manifestation').value=p.manifestation||'ectoplasmic';
   applyEntityTypeUI();
-  applyProgressionUI(false);
+  applyProgressionUI();
   renderAttackLines();
   renderSources();
   renderCategories();
@@ -705,15 +747,50 @@ function syncUIIntoProfile(){
 
 populateEntityTypeSelect();
 
-['hitDice','casterLevel','bab','singleAttack','str','dex','con','int','wis','cha','atkStat','dmgStat'].forEach(id=>{
+['casterLevel','singleAttack','str','dex','con','int','wis','cha','atkStat','dmgStat'].forEach(id=>{
   $(id).addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); });
 });
+// Typing directly into Hit Dice or BAB takes manual control: set the override flag so
+// applyProgressionUI() stops overwriting these two fields (on reload, on Source
+// class/Class level changes, etc.) until the player either changes entity type or
+// clicks "Reapply progression".
+['hitDice','bab'].forEach(id=>{
+  $(id).addEventListener('input', ()=>{
+    currentProfile().hdBabOverride=true;
+    syncUIIntoProfile();
+    applyProgressionUI(); // no values are rewritten (now overridden) -- just refreshes hdBabAutoNote's wording
+    compute();
+  });
+});
 $('speciesPreset').addEventListener('change',syncUIIntoProfile);
-$('eidolonSubtype').addEventListener('change',()=>{currentProfile().subtypeAbilityChoice='';syncUIIntoProfile();applyProgressionUI(false);renderEidolonEvolutionPicker();compute();});
-['phantomFocus','creatureSize','manifestation'].forEach(id=>$(id).addEventListener('change',()=>{syncUIIntoProfile();applyProgressionUI(false);renderEidolonEvolutionPicker();compute();}));
-$('entityType').addEventListener('change', ()=>{ syncUIIntoProfile(); applyEntityTypeUI(); applyProgressionUI(false); renderSources(); renderCategories(); compute(); });
+$('eidolonSubtype').addEventListener('change',()=>{currentProfile().subtypeAbilityChoice='';syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();compute();});
+['phantomFocus','creatureSize','manifestation'].forEach(id=>$(id).addEventListener('change',()=>{syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();compute();}));
+$('entityType').addEventListener('change', ()=>{
+  let p=currentProfile();
+  let oldType=p.entityType||'animal-companion', newType=$('entityType').value;
+  if(newType!==oldType){
+    // Coherent default Source class for types that only ever come from one class
+    // family (Eidolon/Phantom/Familiar); Animal Companion/Mount keep whatever
+    // compatible source the user already had picked, since several classes grant
+    // either of those. Switching type also always drops any HD/BAB override, so the
+    // new type's own progression (or the master's BAB, for Familiar) fills in fresh.
+    let coherentSource=SOURCE_CLASS_BY_ENTITY_TYPE[newType];
+    if(coherentSource) $('sourceClass').value=coherentSource;
+    p.hdBabOverride=false;
+  }
+  syncUIIntoProfile();
+  applyEntityTypeUI();
+  applyProgressionUI();
+  renderSources(); renderCategories(); compute();
+});
 ['sourceClass','ownerLevel'].forEach(id=>{
-  $(id).addEventListener('input', ()=>{ applyProgressionUI(true); syncUIIntoProfile(); compute(); });
+  $(id).addEventListener('input', ()=>{ applyProgressionUI(); syncUIIntoProfile(); compute(); });
+});
+$('reapplyProgression').addEventListener('click', ()=>{
+  currentProfile().hdBabOverride=false;
+  applyProgressionUI();
+  syncUIIntoProfile();
+  compute();
 });
 
 $('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; pinUrlToProfile(store.active); saveStore(); loadProfileIntoUI(); updateProfileDate(); updateSyncStatusForActive(); };
@@ -1022,7 +1099,7 @@ function applyEidolonPreset(type){
     }
   }
   ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=ab[k]);
-  $('hitDice').value=row.hd; $('bab').value=row.bab;
+  $('hitDice').value=row.hd; $('bab').value=row.bab; profile.hdBabOverride=false;
   let attacks=form.attacks.map(a=>{
     let damage=(a.damageBySize||{})[size]||a.damage;
     if(!(a.damageBySize||{})[size]) damage=size==='Small'?diceSizeDown(damage):applySizeSteps(damage,size==='Large'?1:(size==='Huge'?2:0));
@@ -1075,7 +1152,7 @@ function applyPhantomPreset(){
   let level=Math.max(1,Math.min(20,+$('ownerLevel').value||1)), row=PHANTOM_PROGRESSION.levels[level-1], size=$('creatureSize').value||'Medium';
   if(!['Small','Medium','Large'].includes(size)){alert('A standard phantom supports Small, Medium, or Large size here. Choose one of those sizes, or enter an exceptional archetype manually.');return;}
   let ab=Object.assign({},PHANTOM_PROGRESSION.base.abilities); Object.entries(focus.baseAdjustments||{}).forEach(([k,v])=>ab[k]+=v);
-  ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=ab[k]); $('hitDice').value=row.hd; $('bab').value=row.bab;
+  ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=ab[k]); $('hitDice').value=row.hd; $('bab').value=row.bab; currentProfile().hdBabOverride=false;
   let band=PHANTOM_PROGRESSION.slamByLevelAndSize.find(x=>level>=x.levels[0]&&level<=x.levels[1]); let die=band[size]||row.slamMedium;
   if(focus.key==='anger') die=diceSizeUp(die);
   let p=currentProfile(); p.attackLines=[lineFromRuleAttack({name:'Slam',count:2,damage:die,damageType:['bludgeoning'],classification:'primary',ability:'str',strengthMultiplier:1},row.bab,size)]; p.speciesPreset='phantom';
