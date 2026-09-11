@@ -180,7 +180,17 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div id="speciesPresetNote" class="emptyNote">A species preset fills the Core Rulebook starting scores and attacks, including its 4th/7th-level advancement when reached. Everything remains manually editable afterward.</div>
 <div id="eidolonEvolutionPanel" style="display:none">
   <h3>Evolutions</h3>
-  <div class="addRow"><select id="eidolonEvolutionSelect"><option value="">Choose evolution…</option></select><button id="addEidolonEvolution" type="button">Add evolution</button></div>
+  <div class="addRow"><select id="eidolonEvolutionSelect"><option value="">Choose evolution…</option></select>
+    <select id="eidolonEvolutionTarget" style="display:none" title="Which existing attack this evolution affects"></select>
+    <select id="eidolonEvolutionAbility" style="display:none" title="Ability score increased">
+      <option value="str">STR</option><option value="dex">DEX</option><option value="con">CON</option>
+      <option value="int">INT</option><option value="wis">WIS</option><option value="cha">CHA</option>
+    </select>
+    <select id="eidolonEvolutionEnergy" style="display:none" title="Energy type">
+      <option value="acid">Acid</option><option value="cold">Cold</option><option value="electricity">Electricity</option><option value="fire">Fire</option>
+    </select>
+    <button id="addEidolonEvolution" type="button">Add evolution</button>
+  </div>
   <div id="eidolonEvolutionBudget" class="emptyNote"></div>
   <div id="eidolonEvolutionList"></div>
 </div>
@@ -1010,11 +1020,30 @@ function eidolonEvolutionPool(){
   }
   return pool;
 }
+// EVOL-PICKER-001: some evolutions need one extra piece of information (which
+// existing attack they modify, which ability they boost, which energy type) --
+// previously gathered via a blocking prompt() (uncomfortable, especially on
+// mobile). These three inline selects live right in the "Add evolution" row and
+// are shown/hidden by updateEvolutionExtraFields() based on the chosen evolution.
+const EVOLUTION_TARGET_NEEDED=['improved-damage','reach','grab','pull','push','trip'];
+function updateEvolutionExtraFields(){
+  let key=$('eidolonEvolutionSelect').value;
+  let targetSel=$('eidolonEvolutionTarget'), abilitySel=$('eidolonEvolutionAbility'), energySel=$('eidolonEvolutionEnergy');
+  if(EVOLUTION_TARGET_NEEDED.includes(key)){
+    let names=[...new Set((currentProfile().attackLines||[]).map(a=>a.name).filter(Boolean))];
+    targetSel.innerHTML=(names.length?names:['Bite']).map(n=>`<option value="${n}">${n}</option>`).join('');
+    targetSel.style.display='';
+  } else targetSel.style.display='none';
+  abilitySel.style.display = key==='ability-increase' ? '' : 'none';
+  energySel.style.display = key==='energy-attacks' ? '' : 'none';
+}
+$('eidolonEvolutionSelect').addEventListener('change', updateEvolutionExtraFields);
 function renderEidolonEvolutionPicker(){
   let p=currentProfile(), isEidolon=['eidolon-chained','eidolon-unchained'].includes(p.entityType||'');
   if(!isEidolon||!EIDOLON_EVOLUTIONS) return;
   let version=eidolonVersionKey(), entries=EIDOLON_EVOLUTIONS.versions[version]||[], select=$('eidolonEvolutionSelect');
   select.innerHTML='<option value="">Choose evolution…</option>'+entries.map(x=>`<option value="${x.key}">${x.name} (${x.cost} EP)${x.requirementsText?' — '+x.requirementsText:''}</option>`).join('');
+  updateEvolutionExtraFields();
   let spent=(p.selectedEvolutions||[]).reduce((n,x)=>n+(entries.find(e=>e.key===x.key)?.cost||0),0), pool=eidolonEvolutionPool();
   if(p.creatureSize==='Huge'&&(p.selectedEvolutions||[]).some(x=>x.key==='large')) spent+=6;
   $('eidolonEvolutionBudget').textContent='Evolution points: '+spent+' spent / '+pool+' available'+(spent>pool?' — OVER BUDGET':'')+'. Requirements and maximum natural attacks still apply.';
@@ -1027,10 +1056,10 @@ function renderEidolonEvolutionPicker(){
 }
 $('addEidolonEvolution').onclick=()=>{
   let key=$('eidolonEvolutionSelect').value; if(!key||!EIDOLON_EVOLUTIONS)return;
-  let chosen={key}, targetNeeded=['improved-damage','reach','grab','pull','push','trip'].includes(key);
-  if(targetNeeded) chosen.target=prompt('Attack type affected by this evolution (e.g. Bite or Claw):','Bite')||'';
-  if(key==='ability-increase') chosen.choice=(prompt('Ability increased: STR / DEX / CON / INT / WIS / CHA','STR')||'STR').trim().toLowerCase();
-  if(key==='energy-attacks') chosen.choice=(prompt('Energy type: acid / cold / electricity / fire','fire')||'fire').trim().toLowerCase();
+  let chosen={key};
+  if(EVOLUTION_TARGET_NEEDED.includes(key)) chosen.target=$('eidolonEvolutionTarget').value||'';
+  if(key==='ability-increase') chosen.choice=$('eidolonEvolutionAbility').value||'str';
+  if(key==='energy-attacks') chosen.choice=$('eidolonEvolutionEnergy').value||'fire';
   currentProfile().selectedEvolutions.push(chosen); saveStore(); renderEidolonEvolutionPicker();
 };
 function sizeAttackModifier(size){
@@ -1461,6 +1490,14 @@ function compute(){
   let entityType=p.entityType||'animal-companion';
   let entityUsesAnimalProgression=['animal-companion','mount'].includes(entityType);
   let eff=entityUsesAnimalProgression?effectiveCompanionLevel($('sourceClass').value, +$('ownerLevel').value||0):null;
+  // COMPANION-ACTIVE-001: a ranger below 4th level (effective level <= 0) has no
+  // companion yet -- applyProgressionUI() already warns about this in effNote, but
+  // previously left whatever HD/BAB happened to be sitting in the fields untouched,
+  // so the results table below still rendered full attack numbers as if the
+  // companion existed. Suppress results instead (unless the player has explicitly
+  // taken manual control via hdBabOverride -- a homebrew earlier companion, say).
+  let recognizedCompanionSources=['druid','hunter','ranger','paladin','cavalier'];
+  let companionNotYetActive = entityUsesAnimalProgression && recognizedCompanionSources.includes($('sourceClass').value) && (eff===null||eff<=0) && !p.hdBabOverride;
   let strDexAdj = (eff && eff>=1 && eff<=20) ? ANIMAL_COMPANION_TABLE[eff].strDexAdj : 0;
   let progressionAbilityAdj={str:strDexAdj,dex:strDexAdj,con:0,int:0,wis:0,cha:0};
   let entityLevel=Math.max(1,Math.min(20,+$('ownerLevel').value||1));
@@ -1499,7 +1536,12 @@ function compute(){
   let vsMult = (ctx.style==='twoHanded' && vsActive.length) ? Math.max(...vsActive.map(a=>vsMultMap[a.id])) : 0;
 
   let box=$('attackResults'); box.innerHTML='';
-  if(!p.attackLines || !p.attackLines.length){
+  if(companionNotYetActive){
+    let msg = $('sourceClass').value==='ranger'
+      ? 'No animal companion yet at this level — a ranger companion starts at 4th level (effective level = ranger level − 3). Results are inactive until then; type over Hit Dice or BAB above to override manually.'
+      : 'No animal companion yet at this level. Results are inactive; type over Hit Dice or BAB above to override manually.';
+    box.innerHTML='<div class="emptyNote">'+msg+'</div>';
+  } else if(!p.attackLines || !p.attackLines.length){
     box.innerHTML='<div class="emptyNote">No attacks added yet — use "+ Add Attack" above.</div>';
   } else {
     let t=document.createElement('table'); t.className='breakTable';
