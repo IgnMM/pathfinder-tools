@@ -288,15 +288,21 @@ function abilityBuffBonus(ctx, ability, scoreBonus){
 // Str/Dex advancement bonus (added on top of the base creature's own Str/Dex, per "Add
 // this figure to the animal's Strength and Dexterity scores"). HD/Fort/Ref/Will/Natural
 // Armor/Skills/Feats/tricks aren't modeled -- this calculator is hit/damage only.
-// Source: https://legacy.aonprd.com/coreRulebook/classes/druid.html -- verify against
-// Nethys before relying on this in play; transcribing a dense table always carries risk.
+// Source: https://legacy.aonprd.com/coreRulebook/classes/druid.html, cross-checked
+// verbatim against the raw HTML table (Table: Animal Companion Base Statistics) --
+// its "Class Level" and "HD" columns are NOT the same number (e.g. level 1 = 2 HD,
+// level 9 = 8 HD, level 20 = 16 HD): HD must always come from this table's own hd
+// field, never be derived from the effective companion level itself. This is the
+// one universal table for every source that funnels through effectiveCompanionLevel
+// (Druid, Hunter, Ranger, and Paladin/Cavalier mounts alike) -- Mount uses it exactly
+// the same way Animal Companion does.
 const ANIMAL_COMPANION_TABLE=[
   null, // no level 0
-  {bab:1,strDexAdj:0}, {bab:2,strDexAdj:0}, {bab:2,strDexAdj:1}, {bab:3,strDexAdj:1},
-  {bab:3,strDexAdj:1}, {bab:4,strDexAdj:2}, {bab:4,strDexAdj:2}, {bab:5,strDexAdj:2},
-  {bab:6,strDexAdj:3}, {bab:6,strDexAdj:3}, {bab:6,strDexAdj:3}, {bab:7,strDexAdj:4},
-  {bab:8,strDexAdj:4}, {bab:9,strDexAdj:4}, {bab:9,strDexAdj:5}, {bab:9,strDexAdj:5},
-  {bab:10,strDexAdj:5}, {bab:11,strDexAdj:6}, {bab:11,strDexAdj:6}, {bab:12,strDexAdj:6}
+  {hd:2,bab:1,strDexAdj:0}, {hd:3,bab:2,strDexAdj:0}, {hd:3,bab:2,strDexAdj:1}, {hd:4,bab:3,strDexAdj:1},
+  {hd:5,bab:3,strDexAdj:1}, {hd:6,bab:4,strDexAdj:2}, {hd:6,bab:4,strDexAdj:2}, {hd:7,bab:5,strDexAdj:2},
+  {hd:8,bab:6,strDexAdj:3}, {hd:9,bab:6,strDexAdj:3}, {hd:9,bab:6,strDexAdj:3}, {hd:10,bab:7,strDexAdj:4},
+  {hd:11,bab:8,strDexAdj:4}, {hd:12,bab:9,strDexAdj:4}, {hd:12,bab:9,strDexAdj:5}, {hd:13,bab:9,strDexAdj:5},
+  {hd:14,bab:10,strDexAdj:5}, {hd:15,bab:11,strDexAdj:6}, {hd:15,bab:11,strDexAdj:6}, {hd:16,bab:12,strDexAdj:6}
 ];
 // Ranger gives up a combat style for a companion at 4th level; per the rules "the
 // ranger's effective druid level is equal to his ranger level – 3." Druid and Hunter
@@ -704,9 +710,10 @@ function applyProgressionUI(){
   // of its existing natural weapons at -5 -- purely informational since which applies
   // depends on the companion's own attack list, which the player must judge themselves.
   maNote.textContent = eff>=9 ? 'Effective level 9+: qualifies for Multiattack if it already has 3+ natural attacks — add the Multiattack feat above (reduces Secondary attack penalties from -5 to -2). Otherwise it instead gains a second attack with one existing natural weapon at -5 — add that as a new attack line by hand.' : '';
-  // Hit Dice = the effective companion level itself in the Animal Companion Base
-  // Statistics table (its HD column and level column are the same number, 1-20).
-  writeHdBab(eff, row.bab);
+  // HD comes from the table's own hd field -- the Animal Companion Base Statistics
+  // table's Class Level and HD columns are NOT the same number, so HD must never be
+  // derived from the effective companion level itself.
+  writeHdBab(row.hd, row.bab);
 }
 
 function loadProfileIntoUI(){
