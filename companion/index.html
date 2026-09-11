@@ -1276,12 +1276,17 @@ function applyEidolonPreset(type){
     // see the selectedEvolutions migration) distinguishes two separate picks of the
     // SAME evolution key, so each gets its own origin key instead of colliding on one.
     let originKey='evolution:'+chosen.key+':'+chosen.instanceId;
+    // LEGACY-EVOL-ORIGIN-001: before instanceId existed, every copy of this evolution
+    // shared the plain 'evolution:'+chosen.key origin -- carried alongside the new
+    // instance-specific key so the merge below can still find an old line saved under
+    // that shape (see byLegacyOriginKey).
+    let legacyOriginKey='evolution:'+chosen.key;
     if(['addAttack','addConditionalAttack','addSpecialAttack'].includes(ad.operation)){
-      attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:originKey}));
+      attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:originKey,_legacyOriginKey:legacyOriginKey}));
     } else if(ad.operation==='addOrUpgradeAttack'){
       let existing=attacks.find(a=>a.name==='Bite');
       if(existing) existing.strengthMultiplier=ad.existingAttackStrengthMultiplier;
-      else attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:originKey}));
+      else attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:originKey,_legacyOriginKey:legacyOriginKey}));
     } else if(ad.operation==='increaseSelectedAttackDie'){
       let target=(chosen.target||'').toLowerCase(), found=attacks.find(a=>a.name.toLowerCase()===target); if(found) found.damage=diceSizeUp(found.damage);
     }
@@ -1299,19 +1304,38 @@ function applyEidolonPreset(type){
   // Old profiles whose lines predate this feature (no `origin` at all) fall back to a
   // one-time name match so the first reapply after this update doesn't duplicate every
   // attack; the freshly assigned origin key takes over on every reapply after that.
+  // LEGACY-EVOL-ORIGIN-001: a profile saved between the original origin-key feature and
+  // instanceId (above) can have evolution attacks tagged with the old, instance-less
+  // 'evolution:<key>' shape. Those never match a._originKey directly anymore, so they'd
+  // silently fall through to name-matching (or nothing) and lose their manual edits on
+  // the very first reapply. byLegacyOriginKey queues old lines by that plain key --
+  // FIFO, in the order they were stored -- and each fresh instance of that same
+  // evolution consumes exactly one entry from the front, so two old copies pair up
+  // deterministically with two new instances instead of both matching the same line (or
+  // an unrelated same-named attack via the name fallback).
   const EIDOLON_PRESERVED_FIELDS=['threat','critMult','enhancement','range','extra','manualHitAdj','manualDmgAdj','noDamage','damageType'];
   let p=currentProfile();
   let oldLines=p.attackLines||[];
   let manualLines=oldLines.filter(l=>l.origin==='manual');
-  let byOriginKey={}, byNameFallback={};
+  let byOriginKey={}, byLegacyOriginKey={}, byNameFallback={};
   oldLines.forEach(l=>{
     if(l.origin==='manual') return;
-    if(l.origin) byOriginKey[l.origin]=l;
-    else if(!byNameFallback[l.name]) byNameFallback[l.name]=l;
+    if(l.origin && l.origin.startsWith('evolution:') && l.origin.split(':').length===2){
+      (byLegacyOriginKey[l.origin]=byLegacyOriginKey[l.origin]||[]).push(l);
+    } else if(l.origin){
+      byOriginKey[l.origin]=l;
+    } else if(!byNameFallback[l.name]){
+      byNameFallback[l.name]=l;
+    }
   });
   let generatedLines=attacks.map(a=>{
     let line=lineFromRuleAttack(a,row.bab,size);
-    let existing=byOriginKey[a._originKey]||byNameFallback[line.name];
+    let existing=byOriginKey[a._originKey];
+    if(!existing && a._legacyOriginKey){
+      let queue=byLegacyOriginKey[a._legacyOriginKey];
+      if(queue && queue.length) existing=queue.shift(); // consume once, in stored order -- never reused
+    }
+    if(!existing) existing=byNameFallback[line.name];
     if(existing){
       EIDOLON_PRESERVED_FIELDS.forEach(f=>{ if(existing[f]!==undefined) line[f]=existing[f]; });
       if(existing.name) line.name=existing.name; // a rename survives too -- matched by origin key, not name
