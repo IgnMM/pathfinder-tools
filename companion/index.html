@@ -1088,6 +1088,24 @@ function updateEvolutionExtraFields(){
   energySel.style.display = key==='energy-attacks' ? '' : 'none';
 }
 $('eidolonEvolutionSelect').addEventListener('change', updateEvolutionExtraFields);
+// EVOL-REAPPLY-001: most evolutions (Bite, Claws, Improved Damage, Energy Attacks,
+// Ability Increase, ...) only take effect inside applyEidolonPreset() -- adding or
+// removing one to/from p.selectedEvolutions changes nothing on its own, it's the
+// "Apply preset stats & attacks" click that reads selectedEvolutions and rebuilds
+// abilities/attacks from it. So the add/remove handlers below call this to reapply
+// the CURRENT base form (and Unchained subtype) automatically -- but only once one is
+// actually chosen; otherwise applyEidolonPreset()'s own guards would alert the player
+// to pick a base form/subtype every time they merely add or remove an evolution.
+// applyEidolonPreset() always rebuilds p.attackLines and ability scores from scratch
+// (form.attacks / form.abilities), so calling it again is idempotent -- no duplicate
+// attacks, no double-counted Ability Increase or Energy Attacks dice.
+function reapplyEidolonPresetIfActive(){
+  let p=currentProfile(), type=p.entityType;
+  if(!['eidolon-chained','eidolon-unchained'].includes(type)) return;
+  if(!$('speciesPreset').value) return;
+  if(type==='eidolon-unchained' && !$('eidolonSubtype').value) return;
+  applyEidolonPreset(type);
+}
 function renderEidolonEvolutionPicker(){
   let p=currentProfile(), isEidolon=['eidolon-chained','eidolon-unchained'].includes(p.entityType||'');
   if(!isEidolon||!EIDOLON_EVOLUTIONS) return;
@@ -1101,7 +1119,7 @@ function renderEidolonEvolutionPicker(){
   (p.selectedEvolutions||[]).forEach((chosen,i)=>{
     let def=entries.find(x=>x.key===chosen.key), row=document.createElement('div'); row.className='activeItem';
     row.innerHTML=`<div class="head"><div><div class="name">${def?.name||chosen.key} <span class="typeTag">${def?.cost||0} EP</span></div><div class="desc">${[chosen.target&&'Target: '+chosen.target,chosen.choice&&'Choice: '+chosen.choice].filter(Boolean).join(' — ')||def?.requirementsText||'Selected evolution'}</div></div><button class="rm">✕ remove</button></div>`;
-    row.querySelector('.rm').onclick=()=>{p.selectedEvolutions.splice(i,1);saveStore();renderEidolonEvolutionPicker();compute();}; box.appendChild(row);
+    row.querySelector('.rm').onclick=()=>{p.selectedEvolutions.splice(i,1);saveStore();renderEidolonEvolutionPicker();reapplyEidolonPresetIfActive();compute();}; box.appendChild(row);
   });
 }
 $('addEidolonEvolution').onclick=()=>{
@@ -1110,7 +1128,7 @@ $('addEidolonEvolution').onclick=()=>{
   if(EVOLUTION_TARGET_NEEDED.includes(key)) chosen.target=$('eidolonEvolutionTarget').value||'';
   if(key==='ability-increase') chosen.choice=$('eidolonEvolutionAbility').value||'str';
   if(key==='energy-attacks') chosen.choice=$('eidolonEvolutionEnergy').value||'fire';
-  currentProfile().selectedEvolutions.push(chosen); saveStore(); renderEidolonEvolutionPicker(); compute();
+  currentProfile().selectedEvolutions.push(chosen); saveStore(); renderEidolonEvolutionPicker(); reapplyEidolonPresetIfActive(); compute();
 };
 function sizeAttackModifier(size){
   return ({Fine:8,Diminutive:4,Tiny:2,Small:1,Medium:0,Large:-1,Huge:-2,Gargantuan:-4,Colossal:-8})[size]||0;
