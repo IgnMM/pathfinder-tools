@@ -1007,8 +1007,13 @@ function renderAttackLines(){
 }
 function newAttackLine(){
   let atkBonus=(+$('bab').value||0)+sizeAttackModifier(currentProfile().creatureSize||'Medium');
+  // origin:'manual' marks a line the player typed in by hand (via "+ Add Attack" or an
+  // attack preset) -- applyEidolonPreset()'s merge (see EVOL-MERGE-001) never matches,
+  // regenerates, or removes a manual line. A preset/evolution-generated line overwrites
+  // this with its own origin key right after being built from newAttackLine()'s
+  // defaults, same as every other field here.
   return {name:'',qty:1,atkType:'natural',mode:'primary',die:'1d4',atkBonus,threat:'20',critMult:2,
-    hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,baseDamageBonus:0,damageType:'',enhancement:0,range:'',extra:'',extraDice:'',extraDamageType:'',extraDiceMultipliesOnCrit:false,manualHitAdj:0,manualDmgAdj:0,noDamage:false};
+    hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,baseDamageBonus:0,damageType:'',enhancement:0,range:'',extra:'',extraDice:'',extraDamageType:'',extraDiceMultipliesOnCrit:false,manualHitAdj:0,manualDmgAdj:0,noDamage:false,origin:'manual'};
 }
 $('addAttackLine').onclick=()=>{
   let p=currentProfile();
@@ -1226,7 +1231,7 @@ function applyEidolonPreset(type){
   let attacks=form.attacks.map(a=>{
     let damage=(a.damageBySize||{})[size]||a.damage;
     if(!(a.damageBySize||{})[size]) damage=size==='Small'?diceSizeDown(damage):applySizeSteps(damage,size==='Large'?1:(size==='Huge'?2:0));
-    return Object.assign({},a,{damage});
+    return Object.assign({},a,{damage,_originKey:'preset:form:'+a.name});
   });
   if(permitted){
     let keys=permitted.evolutions||[];
@@ -1240,7 +1245,7 @@ function applyEidolonPreset(type){
       sting:{name:'Sting',count:1,damage:size==='Small'?'1d3':applySizeSteps('1d4',size==='Large'?1:(size==='Huge'?2:0)),classification:'primary',ability:'str',strengthMultiplier:1,damageType:['piercing']},
       'tail-slap':{name:'Tail Slap',count:1,damage:size==='Small'?'1d4':applySizeSteps('1d6',size==='Large'?1:(size==='Huge'?2:0)),classification:'secondary',ability:'str',strengthMultiplier:.5,damageType:['bludgeoning']}
     };
-    Object.entries(baseAttackDefs).forEach(([key,def])=>{if(keys.includes(key))attacks.push(def);});
+    Object.entries(baseAttackDefs).forEach(([key,def])=>{if(keys.includes(key))attacks.push(Object.assign({},def,{_originKey:'preset:subtype:'+key}));});
     if(attacks.length===1&&attacks[0].count===1)attacks[0].strengthMultiplier=1.5;
     if(keys.includes('improved-damage-bite')) attacks=attacks.map(a=>a.name==='Bite'?Object.assign({},a,{damage:diceSizeUp(a.damage)}):a);
   }
@@ -1252,19 +1257,53 @@ function applyEidolonPreset(type){
   selected.forEach(chosen=>{
     let ad=attackAdapters[chosen.key]; if(!ad)return;
     if(['addAttack','addConditionalAttack','addSpecialAttack'].includes(ad.operation)){
-      attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack)}));
+      attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:'evolution:'+chosen.key}));
     } else if(ad.operation==='addOrUpgradeAttack'){
       let existing=attacks.find(a=>a.name==='Bite');
       if(existing) existing.strengthMultiplier=ad.existingAttackStrengthMultiplier;
-      else attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack)}));
+      else attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:'evolution:'+chosen.key}));
     } else if(ad.operation==='increaseSelectedAttackDie'){
       let target=(chosen.target||'').toLowerCase(), found=attacks.find(a=>a.name.toLowerCase()===target); if(found) found.damage=diceSizeUp(found.damage);
     }
   });
-  let p=currentProfile(); p.attackLines=attacks.map(a=>lineFromRuleAttack(a,row.bab,size)); p.speciesPreset=form.key;
-  if(level>=9) p.attackLines.forEach(line=>{if(line.mode==='secondary')line.atkBonus=row.bab+sizeAttackModifier(size)-2;});
+  // EVOL-MERGE-001: every entry in `attacks` above now carries a stable _originKey
+  // ('preset:form:<name>' / 'preset:subtype:<key>' for the base form/subtype's own
+  // free attacks, 'evolution:<key>' for one an evolution added) that survives a rename
+  // and doesn't depend on array position. A rebuild here only ever touches STRUCTURAL
+  // fields it actually controls (dice, size-derived to-hit, ability/multiplier, Energy
+  // Attacks' extra dice) on the line matching that key -- EIDOLON_PRESERVED_FIELDS
+  // (things a player edits by hand: enhancement, threat range, damage type, notes,
+  // manual to-hit/damage adjustments, the does-not-deal-damage flag) survive from the
+  // old line untouched. A line with origin:'manual' (added via "+ Add Attack" or an
+  // attack preset) is never matched, regenerated, or removed -- just carried over as-is.
+  // Old profiles whose lines predate this feature (no `origin` at all) fall back to a
+  // one-time name match so the first reapply after this update doesn't duplicate every
+  // attack; the freshly assigned origin key takes over on every reapply after that.
+  const EIDOLON_PRESERVED_FIELDS=['threat','critMult','enhancement','range','extra','manualHitAdj','manualDmgAdj','noDamage','damageType'];
+  let p=currentProfile();
+  let oldLines=p.attackLines||[];
+  let manualLines=oldLines.filter(l=>l.origin==='manual');
+  let byOriginKey={}, byNameFallback={};
+  oldLines.forEach(l=>{
+    if(l.origin==='manual') return;
+    if(l.origin) byOriginKey[l.origin]=l;
+    else if(!byNameFallback[l.name]) byNameFallback[l.name]=l;
+  });
+  let generatedLines=attacks.map(a=>{
+    let line=lineFromRuleAttack(a,row.bab,size);
+    let existing=byOriginKey[a._originKey]||byNameFallback[line.name];
+    if(existing){
+      EIDOLON_PRESERVED_FIELDS.forEach(f=>{ if(existing[f]!==undefined) line[f]=existing[f]; });
+      if(existing.name) line.name=existing.name; // a rename survives too -- matched by origin key, not name
+    }
+    line.origin=a._originKey;
+    return line;
+  });
+  if(level>=9) generatedLines.forEach(line=>{if(line.mode==='secondary')line.atkBonus=row.bab+sizeAttackModifier(size)-2;});
   let energy=selected.find(x=>x.key==='energy-attacks');
-  if(energy)p.attackLines.forEach(line=>{line.extraDice='1d6';line.extraDamageType=energy.choice||'fire';line.extraDiceMultipliesOnCrit=false;});
+  if(energy) generatedLines.forEach(line=>{line.extraDice='1d6';line.extraDamageType=energy.choice||'fire';line.extraDiceMultipliesOnCrit=false;});
+  p.attackLines=generatedLines.concat(manualLines);
+  p.speciesPreset=form.key;
   syncUIIntoProfile(); renderAttackLines(); renderCategories(); compute();
   let naturalCount=p.attackLines.reduce((n,x)=>n+(x.name==='Rake'?1:(+x.qty||1)),0);
   $('speciesPresetNote').textContent=(subtype?subtype.name+' ':'')+form.name+' applied at level '+level+'. Maximum '+row.maxNaturalAttacks+' natural attacks; current routine counts '+naturalCount+(naturalCount>row.maxNaturalAttacks?' — OVER THE LIMIT':'')+'. Fields remain editable.';
