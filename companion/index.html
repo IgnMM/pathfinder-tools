@@ -173,6 +173,10 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="emptyNote">Feeds Power Attack's BAB-based scaling only — each attack below has its own Base To-Hit field. For sources with a known progression table, Hit Dice and BAB are pre-filled automatically; type over either to take manual control (use "Reapply progression" above to go back to auto-fill).</div>
 <div class="row"><label id="speciesPresetLabel">Species preset (optional)</label><select id="speciesPreset"><option value="">Manual / no preset</option></select></div>
 <div id="eidolonSubtypeRow" class="row" style="display:none"><label>Unchained subtype</label><select id="eidolonSubtype"><option value="">Choose subtype…</option></select></div>
+<div id="subtypeAbilityChoiceRow" class="row" style="display:none"><label>Subtype's free Ability Increase</label><select id="subtypeAbilityChoiceSelect">
+  <option value="str">STR</option><option value="dex">DEX</option><option value="con">CON</option>
+  <option value="int">INT</option><option value="wis">WIS</option><option value="cha">CHA</option>
+</select></div>
 <div id="phantomFocusRow" class="row" style="display:none"><label>Emotional focus</label><select id="phantomFocus"><option value="">Choose focus…</option></select></div>
 <div id="creatureSizeRow" class="row" style="display:none"><label>Preset size</label><select id="creatureSize"><option>Small</option><option selected>Medium</option><option>Large</option><option>Huge</option></select></div>
 <div id="manifestationRow" class="row" style="display:none"><label>Manifestation</label><select id="manifestation"><option value="ectoplasmic">Ectoplasmic</option><option value="incorporeal">Incorporeal</option></select></div>
@@ -255,6 +259,12 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <section class="card card-results">
 <h2>Results</h2>
 <div id="attackResults"></div>
+<div id="rendResultBox" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border,#2a3140)">
+  <div class="small" style="color:var(--muted);font-size:.85rem">Rend (conditional, no attack roll)</div>
+  <div class="row rowNarrow" style="margin-top:6px"><label>Claw supplying Rend's damage</label><select id="rendClawSelect"></select></div>
+  <label style="display:flex;align-items:center;gap:6px;font-size:.85rem;margin:6px 0"><input type="checkbox" id="rendConditionMet"> Both claws hit the same target this round?</label>
+  <div id="rendResultText" class="emptyNote"></div>
+</div>
 <div style="margin-top:10px"><div class="small" style="color:var(--muted);font-size:.85rem">Notes</div><div id="notes" style="margin-top:6px;line-height:1.5;font-size:.85rem"></div></div>
 </section>
 
@@ -512,6 +522,7 @@ function saveStore(){
 function defaultProfile(name){
   return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:7, casterLevel:10, bab:7, hdBabOverride:false, singleAttack:false,
     speciesPreset:'',eidolonSubtype:'',subtypeAbilityChoice:'',phantomFocus:'',creatureSize:'Medium',manifestation:'ectoplasmic',selectedEvolutions:[],
+    rendConditionMet:false,rendClawName:'',
     str:18,dex:15,con:15,int:2,wis:12,cha:6, atkStat:'str', dmgStat:'str',
     attackLines:[
       {name:'Claw',qty:2,atkType:'natural',mode:'primary',die:'1d4',atkBonus:7,hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2,enhancement:0,range:'',extra:'',manualHitAdj:0,manualDmgAdj:0,noDamage:false},
@@ -571,6 +582,8 @@ store.profiles.forEach(p=>{
   if(p.speciesPreset===undefined) p.speciesPreset='';
   if(p.eidolonSubtype===undefined) p.eidolonSubtype='';
   if(p.subtypeAbilityChoice===undefined) p.subtypeAbilityChoice='';
+  if(p.rendConditionMet===undefined) p.rendConditionMet=false;
+  if(p.rendClawName===undefined) p.rendClawName='';
   if(p.phantomFocus===undefined) p.phantomFocus='';
   if(p.creatureSize===undefined) p.creatureSize='Medium';
   if(p.manifestation===undefined) p.manifestation='ectoplasmic';
@@ -656,7 +669,34 @@ function applyEntityTypeUI(){
   $('speciesPresetNote').textContent=SPECIES_PRESET_GENERIC_NOTE[type]||'A preset fills this entity\'s starting scores and attacks. Everything remains manually editable afterward.';
   populateEntityPresetOptions();
   renderEidolonEvolutionPicker();
+  updateSubtypeAbilityChoiceUI();
 }
+
+// PROMPT-SUBTYPE-001: an Unchained subtype's free Ability Increase milestone (Archon 8,
+// Demon 12, Azata 16, Psychopomp 16) used to ask which ability via a blocking prompt()
+// inside applyEidolonPreset(). This inline row shows/hides itself as soon as the
+// current subtype+level combo actually grants that milestone, persists the choice to
+// the profile immediately on change, and applyEidolonPreset() just reads it -- no
+// dialog, and the choice survives being revisited later just like any other field.
+function subtypeFreeAbilityMilestone(subtype, level){
+  return subtype ? (subtype.milestones||[]).find(x=>x.level<=level&&x.requiresAbilityChoice) : undefined;
+}
+function updateSubtypeAbilityChoiceUI(){
+  let p=currentProfile();
+  let subtype = p.entityType==='eidolon-unchained' ? EIDOLON_SUBTYPES.find(x=>x.key===$('eidolonSubtype').value) : null;
+  let level=Math.max(1,Math.min(20,+$('ownerLevel').value||1));
+  let row=$('subtypeAbilityChoiceRow');
+  if(subtypeFreeAbilityMilestone(subtype, level)){
+    row.style.display='grid';
+    $('subtypeAbilityChoiceSelect').value = ['str','dex','con','int','wis','cha'].includes(p.subtypeAbilityChoice) ? p.subtypeAbilityChoice : 'str';
+  } else {
+    row.style.display='none';
+  }
+}
+$('subtypeAbilityChoiceSelect').addEventListener('change', ()=>{
+  currentProfile().subtypeAbilityChoice=$('subtypeAbilityChoiceSelect').value;
+  saveStore();
+});
 
 // Recomputes the effective companion level from Source class + Class level, and -- for
 // every entity type with a real progression table (Eidolon, Phantom, and Animal
@@ -780,7 +820,7 @@ populateEntityTypeSelect();
   });
 });
 $('speciesPreset').addEventListener('change',syncUIIntoProfile);
-$('eidolonSubtype').addEventListener('change',()=>{currentProfile().subtypeAbilityChoice='';syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();compute();});
+$('eidolonSubtype').addEventListener('change',()=>{currentProfile().subtypeAbilityChoice='';syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();updateSubtypeAbilityChoiceUI();compute();});
 ['phantomFocus','creatureSize','manifestation'].forEach(id=>$(id).addEventListener('change',()=>{syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();compute();}));
 $('entityType').addEventListener('change', ()=>{
   let p=currentProfile();
@@ -801,7 +841,7 @@ $('entityType').addEventListener('change', ()=>{
   renderSources(); renderCategories(); compute();
 });
 ['sourceClass','ownerLevel'].forEach(id=>{
-  $(id).addEventListener('input', ()=>{ applyProgressionUI(); syncUIIntoProfile(); compute(); });
+  $(id).addEventListener('input', ()=>{ applyProgressionUI(); syncUIIntoProfile(); updateSubtypeAbilityChoiceUI(); compute(); });
 });
 $('reapplyProgression').addEventListener('click', ()=>{
   currentProfile().hdBabOverride=false;
@@ -809,6 +849,8 @@ $('reapplyProgression').addEventListener('click', ()=>{
   syncUIIntoProfile();
   compute();
 });
+$('rendClawSelect').addEventListener('change', ()=>{ currentProfile().rendClawName=$('rendClawSelect').value; saveStore(); compute(); });
+$('rendConditionMet').addEventListener('change', ()=>{ currentProfile().rendConditionMet=$('rendConditionMet').checked; saveStore(); compute(); });
 
 $('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; pinUrlToProfile(store.active); saveStore(); loadProfileIntoUI(); updateProfileDate(); updateSyncStatusForActive(); };
 $('newProfile').onclick=()=>{
@@ -1128,9 +1170,12 @@ function applyEidolonPreset(type){
   }
   selected.filter(x=>x.key==='ability-increase'&&x.choice).forEach(x=>ab[x.choice]=(ab[x.choice]||0)+2);
   if(subtype){
-    let freeAbility=(subtype.milestones||[]).find(x=>x.level<=level&&x.requiresAbilityChoice);
+    let freeAbility=subtypeFreeAbilityMilestone(subtype, level);
     if(freeAbility){
-      if(!profile.subtypeAbilityChoice) profile.subtypeAbilityChoice=(prompt(subtype.name+' grants Ability Increase. Choose STR / DEX / CON / INT / WIS / CHA:','STR')||'STR').trim().toLowerCase();
+      // Read from the persistent inline selector (see updateSubtypeAbilityChoiceUI) --
+      // it's already kept in sync with the profile on every change, so there's nothing
+      // left to ask; default to STR only for the (rare) case the row was never shown.
+      if(!profile.subtypeAbilityChoice) profile.subtypeAbilityChoice='str';
       if(['str','dex','con','int','wis','cha'].includes(profile.subtypeAbilityChoice))ab[profile.subtypeAbilityChoice]=(ab[profile.subtypeAbilityChoice]||0)+2;
     }
   }
@@ -1196,7 +1241,11 @@ function applyPhantomPreset(){
   // Rebuild only the generated focus entries. User-created custom effects survive.
   p.custom=(p.custom||[]).filter(c=>!String(c.id||'').startsWith('phantom-focus-'));
   (focus.calculatorFeatures||[]).filter(f=>level>=f.level&&!f.alwaysOn).forEach(f=>{
+    // PHANTOM-SCOPE-001: carry the source data's own attackScope/attackNames onto the
+    // generated custom entry unchanged -- Aura of Fury's "melee" here is what keeps it
+    // off a manually-added Bite or ranged attack line once compute() filters by it.
     let c={id:'phantom-focus-'+f.key,name:focus.name+': '+f.key.replaceAll('-',' '),category:'other',source:'Phantom emotional focus',valueMode:'info',appliesTo:['attack','damage'],type:f.bonusType||'untyped',atk:0,dmg:0,dice:'',diceType:'',diceMultipliesOnCrit:false,on:false,custom:true,
+      attackScope:f.attackScope, attackNames:f.attackNames,
       note:[f.condition, f.manifestationRequired?'Requires '+f.manifestationRequired+' manifestation':''].filter(Boolean).join('; ')};
     if(['typedAttackBonus','conditionalAttackDamage','conditionalAttackAndDie'].includes(f.operation)){
       c.valueMode='fixed'; c.atk=f.value||f.attackBonus||0; c.dmg=f.damageBonus||0;
@@ -1374,6 +1423,22 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
   return div;
 }
 
+// PHANTOM-SCOPE-001: some powers (e.g. Anger's Aura of Fury, +2 on MELEE attacks only)
+// are scoped to a category of attack or to specific attack names, never to every line
+// on the sheet -- a manually-added Bite, weapon, or ranged attack must not silently
+// pick up a melee-only or Slam-only bonus. attackScope ('melee'/'ranged'/'all'/absent)
+// and attackNames (an explicit name whitelist) travel on the contribution entry itself
+// and are checked per line in compute(), never folded into the old shared/global total.
+function lineAttackCategory(atkType){
+  if(['natural','manufactured','touch'].includes(atkType||'natural')) return 'melee';
+  if(['ranged-manufactured','ranged-natural','ranged-touch'].includes(atkType)) return 'ranged';
+  return null; // 'other' -- deliberately matches neither melee- nor ranged-scoped entries
+}
+function entryAppliesToLine(e, line){
+  if(e.attackScope && e.attackScope!=='all' && e.attackScope!==lineAttackCategory(line.atkType)) return false;
+  if(e.attackNames && e.attackNames.length && !e.attackNames.includes(line.name)) return false;
+  return true;
+}
 // ---------- Stacking engine ----------
 function stackTotal(entries){
   let dodgeAndUntyped=0, penalties=0;
@@ -1422,13 +1487,18 @@ function collectContributions(ctx){
     let mode=c.valueMode||(c.dice?((c.atk||c.dmg)?'both':'dice'):'fixed');
     let applies=Array.isArray(c.appliesTo)?c.appliesTo:['attack','damage'];
     let useFixed=mode==='fixed'||mode==='both', useDice=mode==='dice'||mode==='both';
+    // PHANTOM-SCOPE-001: attackScope/attackNames ride along on the entry itself so
+    // compute() can filter this contribution per attack line instead of folding it
+    // into the shared total that every line used to receive equally.
     if(!isOff){
-      if(useFixed&&applies.includes('attack')&&c.atk) atkEntries.push({value:c.atk,type:c.type||'untyped',source:c.name});
-      if(useFixed&&applies.includes('damage')&&c.dmg) dmgEntries.push({value:c.dmg,type:c.type||'untyped',source:c.name});
-      if(useDice&&c.dice) extraDice.push({dice:c.dice,type:c.diceType||'',multiplies:!!c.diceMultipliesOnCrit,source:c.name});
+      if(useFixed&&applies.includes('attack')&&c.atk) atkEntries.push({value:c.atk,type:c.type||'untyped',source:c.name,attackScope:c.attackScope,attackNames:c.attackNames});
+      if(useFixed&&applies.includes('damage')&&c.dmg) dmgEntries.push({value:c.dmg,type:c.type||'untyped',source:c.name,attackScope:c.attackScope,attackNames:c.attackNames});
+      if(useDice&&c.dice) extraDice.push({dice:c.dice,type:c.diceType||'',multiplies:!!c.diceMultipliesOnCrit,source:c.name,attackScope:c.attackScope,attackNames:c.attackNames});
     }
     let diceLabel=useDice&&c.dice?c.dice+(c.diceType?' '+c.diceType:''):'';
-    breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type||'untyped',atk:useFixed&&applies.includes('attack')?(c.atk||0):null,dmg:useFixed&&applies.includes('damage')?(c.dmg||0):null,note:(c.note||'')+(c.fixedDamageType&&c.dmg?'; flat damage type: '+c.fixedDamageType:'')+(diceLabel?' plus '+diceLabel+' damage ('+(c.diceMultipliesOnCrit?'multiplied on critical hits':'not multiplied')+')':'')+(mode==='info'?' (information only)':'')+(isOff?' (not active right now)':''),suppressed:false,off:isOff});
+    let scopeNote = (c.attackScope&&c.attackScope!=='all') ? (c.attackScope==='melee'?'Melee attacks only':'Ranged attacks only') : (c.attackNames&&c.attackNames.length?'Only: '+c.attackNames.join(', '):'');
+    let noteParts=[c.note, c.fixedDamageType&&c.dmg?'flat damage type: '+c.fixedDamageType:'', diceLabel?'plus '+diceLabel+' damage ('+(c.diceMultipliesOnCrit?'multiplied on critical hits':'not multiplied')+')':'', mode==='info'?'information only':'', scopeNote, isOff?'not active right now':''].filter(Boolean);
+    breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type||'untyped',atk:useFixed&&applies.includes('attack')?(c.atk||0):null,dmg:useFixed&&applies.includes('damage')?(c.dmg||0):null,note:noteParts.join('; '),suppressed:false,off:isOff});
   });
   return {atkEntries,dmgEntries,extraDice,breakdown,powerAttackOn,powerAttackDmgVal,powerAttackAtkVal};
 }
@@ -1536,6 +1606,7 @@ function compute(){
   let vsMult = (ctx.style==='twoHanded' && vsActive.length) ? Math.max(...vsActive.map(a=>vsMultMap[a.id])) : 0;
 
   let box=$('attackResults'); box.innerHTML='';
+  let lineComputed=[]; // stashed per line, keyed by name -- Rend's block below reads a claw's own normal damage from here
   if(companionNotYetActive){
     let msg = $('sourceClass').value==='ranger'
       ? 'No animal companion yet at this level — a ranger companion starts at 4th level (effective level = ranger level − 3). Results are inactive until then; type over Hit Dice or BAB above to override manually.'
@@ -1555,10 +1626,16 @@ function compute(){
       let dmgMult = line.dmgAbilityMult!==undefined ? +line.dmgAbilityMult : 1;
       let strContribution = Math.floor(dmgAbilityMod2*dmgMult);
       let enh=+line.enhancement||0, manHit=+line.manualHitAdj||0, manDmg=+line.manualDmgAdj||0;
+      // PHANTOM-SCOPE-001: filter to only the atk/dmg/dice contributions that actually
+      // apply to THIS line (see entryAppliesToLine) before folding them into its total --
+      // a melee-only or Slam-only power must never reach a manually-added Bite/weapon/
+      // ranged line just because it shares the sheet with the line it was meant for.
+      let lineAtkEntries=atkEntries.filter(e=>entryAppliesToLine(e,line));
+      let lineDmgEntries=dmgEntries.filter(e=>entryAppliesToLine(e,line));
       // The line's own enhancement competes in the same typed pool as Magic Fang and
       // similar effects; it is never blindly added on top of another enhancement bonus.
-      let lineAtkFromMods=stackTotal(atkEntries.concat(enh?[{value:enh,type:'enhancement',source:'Attack enhancement'}]:[]));
-      let lineDmgFromMods=stackTotal(dmgEntries.concat(enh?[{value:enh,type:'enhancement',source:'Attack enhancement'}]:[]));
+      let lineAtkFromMods=stackTotal(lineAtkEntries.concat(enh?[{value:enh,type:'enhancement',source:'Attack enhancement'}]:[]));
+      let lineDmgFromMods=stackTotal(lineDmgEntries.concat(enh?[{value:enh,type:'enhancement',source:'Attack enhancement'}]:[]));
       let powerAttackEligible=['natural','manufactured'].includes(line.atkType||'natural');
       if(powerAttackOn&&!powerAttackEligible) lineAtkFromMods-=powerAttackAtkVal;
       else if(furiousFocusOn&&powerAttackOn&&i===firstPowerAttackIndex) lineAtkFromMods-=powerAttackAtkVal;
@@ -1591,7 +1668,7 @@ function compute(){
       }
       let lineExtra=[];
       if(line.extraDice) lineExtra.push({dice:line.extraDice,type:line.extraDamageType||'',multiplies:!!line.extraDiceMultipliesOnCrit});
-      lineExtra.push(...extraDice);
+      lineExtra.push(...extraDice.filter(e=>entryAppliesToLine(e,line)));
       lineExtra.forEach(e=>{
         let label=e.dice+(e.type?' '+e.type:'');
         normalDiceStr += ' + '+label;
@@ -1604,6 +1681,7 @@ function compute(){
       let damageTypeLabel=line.damageType?' ['+line.damageType+']':'';
       let dmgCell = line.noDamage ? '—' : (normalDiceStr+' '+signed(dmgBonus)+damageTypeLabel);
       let critCell = line.noDamage ? '—' : (critDice+' '+signed(critDmg)+damageTypeLabel+' (threat '+(line.threat||'20')+'/×'+critMult+')');
+      lineComputed.push({name:line.name, dmgBonus, normalDiceStr, damageTypeLabel});
       let tr=document.createElement('tr');
       tr.innerHTML=`<td>${nameCell}</td><td class="num">${signed(atk)}</td><td>${dmgCell}</td><td>${critCell}</td>`;
       tbody.appendChild(tr);
@@ -1611,8 +1689,39 @@ function compute(){
     t.appendChild(tbody); box.appendChild(t);
   }
 
+  // REND-001: Rend is a separate conditional result, not a normal attack line -- no
+  // attack roll of its own, and it never multiplies on a critical hit. It only exists
+  // once the player confirms both claws actually hit the same target this round; until
+  // then it stays visibly inactive rather than silently adding damage every attack.
+  let rendSelected=(p.selectedEvolutions||[]).some(x=>x.key==='rend');
+  let rendBox=$('rendResultBox');
+  if(rendSelected && !companionNotYetActive){
+    rendBox.style.display='block';
+    let clawSel=$('rendClawSelect');
+    let names=[...new Set((p.attackLines||[]).map(l=>l.name).filter(Boolean))];
+    clawSel.innerHTML = names.length ? names.map(n=>`<option value="${n}">${n}</option>`).join('') : '<option value="">No attacks yet</option>';
+    let wantClaw = names.includes(p.rendClawName) ? p.rendClawName : names[0]||'';
+    clawSel.value=wantClaw;
+    $('rendConditionMet').checked=!!p.rendConditionMet;
+    let rendText=$('rendResultText');
+    if(!p.rendConditionMet){
+      rendText.innerHTML='<span style="color:var(--muted)">Inactive — check the box above once both claws hit the same target this round.</span>';
+    } else {
+      let claw=lineComputed.find(l=>l.name===wantClaw);
+      if(!claw){
+        rendText.textContent='Choose a claw attack above to compute Rend damage.';
+      } else {
+        let strBonus=Math.floor(1.5*finalMods.str);
+        let total=claw.dmgBonus+strBonus;
+        rendText.innerHTML='Rend damage (no attack roll; not multiplied on a critical hit): <b>'+claw.normalDiceStr+' '+signed(total)+claw.damageTypeLabel+'</b> = '+signed(claw.dmgBonus)+' ('+wantClaw+'\'s own damage) '+signed(strBonus)+' (floor(1.5× Str mod))';
+      }
+    }
+  } else {
+    rendBox.style.display='none';
+  }
+
   let notes=[];
-  notes.push('Shared modifiers this turn: '+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg (from active Feats/Spells/Other Effects above) — applied to every attack line.');
+  notes.push('Shared modifiers this turn: '+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg (from active Feats/Spells/Other Effects above) — applied to every attack line that matches their scope (see each effect\'s note above for melee-only/ranged-only/named-attack-only restrictions).');
   notes.push('"Primary (full Str)" lines use '+(ctx.style==='twoHanded'?'×1.5 Str (only one natural attack this round)':'×1 Str')+'; "Secondary (half Str)" lines use half (rounded down — a penalty is not halved).');
   if(strongJawOn) notes.push('Strong Jaw increases only Natural melee attack dice by two effective size steps; it is ignored on manufactured, touch and ranged-special rows.');
   if(animalGrowthOn) notes.push('Animal Growth increases Natural and Manufactured melee attack dice by one actual size step. It still changes abilities and attack size penalty for ranged rows, but does not enlarge ammunition/projectiles after they leave the creature.');
