@@ -63,6 +63,10 @@ const SPELLS=[{"n":"Acid Splash","l":0,"school":"conjuration (creation) [acid]",
 // repeatedly without being used up (same as Wizard's own orisons in this app).
 // Derived from Archives of Nethys (legacy AONPRD).
 const BASE={"1":[4,2,0,0,0,0,0,0,0,0],"2":[5,3,0,0,0,0,0,0,0,0],"3":[5,4,0,0,0,0,0,0,0,0],"4":[6,4,2,0,0,0,0,0,0,0],"5":[6,4,3,0,0,0,0,0,0,0],"6":[7,4,4,2,0,0,0,0,0,0],"7":[7,4,4,3,0,0,0,0,0,0],"8":[8,4,4,4,2,0,0,0,0,0],"9":[8,4,4,4,3,0,0,0,0,0],"10":[9,4,4,4,4,2,0,0,0,0],"11":[9,4,4,4,4,3,0,0,0,0],"12":[9,4,4,4,4,4,2,0,0,0],"13":[9,4,4,4,4,4,3,0,0,0],"14":[9,4,4,4,4,4,4,2,0,0],"15":[9,4,4,4,4,4,4,3,0,0],"16":[9,4,4,4,4,4,4,4,2,0],"17":[9,4,4,4,4,4,4,4,3,0],"18":[9,4,4,4,4,4,4,4,4,2],"19":[9,4,4,4,4,4,4,4,4,3],"20":[9,4,4,4,4,4,4,4,4,4]};
+// Official "Spells Prepared" table -- the cap on how many DISTINCT spells can be
+// readied at each level, independent of BASE (which is "Spells per Day", the shared
+// daily casting pool). Intelligence bonus spells widen BASE/normalSlots only.
+const PREPARED={"1":[4,2,0,0,0,0,0,0,0,0],"2":[5,2,0,0,0,0,0,0,0,0],"3":[5,3,0,0,0,0,0,0,0,0],"4":[6,3,1,0,0,0,0,0,0,0],"5":[6,4,2,0,0,0,0,0,0,0],"6":[7,4,2,1,0,0,0,0,0,0],"7":[7,5,3,2,0,0,0,0,0,0],"8":[8,5,3,2,1,0,0,0,0,0],"9":[8,5,4,3,2,0,0,0,0,0],"10":[9,5,4,3,2,1,0,0,0,0],"11":[9,5,5,4,3,2,0,0,0,0],"12":[9,5,5,4,3,2,1,0,0,0],"13":[9,5,5,4,4,3,2,0,0,0],"14":[9,5,5,4,4,3,2,1,0,0],"15":[9,5,5,4,4,4,3,2,0,0],"16":[9,5,5,4,4,4,3,2,1,0],"17":[9,5,5,4,4,4,3,3,2,0],"18":[9,5,5,4,4,4,3,3,2,1],"19":[9,5,5,4,4,4,3,3,3,2],"20":[9,5,5,4,4,4,3,3,3,3]};
 // Minimum ARCANIST LEVEL required to prepare each spell level (0-9).
 const MIN_LEVEL={"0":1,"1":1,"2":4,"3":6,"4":8,"5":10,"6":12,"7":14,"8":16,"9":18};
 const STORE_KEY='arcanistUniversalSpellbookPF1V1';
@@ -230,21 +234,24 @@ populateProfileSelect();
 function mod(){return Math.floor((state.int-10)/2)}
 function bonus(l){if(l===0)return 0;let m=mod();if(m<l)return 0;return 1+Math.floor((m-l)/4)}
 function baseSlots(l){return (BASE[state.level]||[0,0,0,0,0,0,0,0,0,0])[l]||0}
+function preparedBase(l){return (PREPARED[state.level]||[0,0,0,0,0,0,0,0,0,0])[l]||0}
 function casterLevel(){return state.level}
-function canCast(l){return state.level>=MIN_LEVEL[l]&&state.int>=10+l&&(baseSlots(l)>0||bonus(l)>0)}
+function canCast(l){return state.level>=MIN_LEVEL[l]&&state.int>=10+l&&(l===0?preparedBase(l)>0:(baseSlots(l)>0||bonus(l)>0))}
 function normalSlots(l){return canCast(l)?baseSlots(l)+bonus(l):0}
 // ARCANIST-001: an arcanist prepares a LIMITED NUMBER OF DISTINCT SPELLS (like a wizard
 // choosing which spells to ready), but does NOT commit each preparation to one specific
 // cast the way a wizard does -- any prepared spell can then be cast repeatedly from a
 // SHARED daily pool while slots remain, like a sorcerer's known spells. So there are two
-// independent caps: how many distinct spells can be prepared (preparedDistinctCap, the
-// Spells per Day table's BASE value only -- Intelligence bonus spells widen the casting
-// pool, not the prep list) and how many times any of them can be cast that day
-// (normalSlots, base + Int bonus). prep[key] is therefore boolean (prepared or not), not
-// a count of "copies" the way currentSpells()'s wizard-style prep used to work.
+// independent caps, from two separate official tables: how many distinct spells can be
+// prepared (preparedDistinctCap, the "Spells Prepared" table -- PREPARED) and how many
+// times any of them can be cast that day (normalSlots, the "Spells per Day" table --
+// BASE -- plus Intelligence bonus spells, which widen only the daily casting pool, never
+// the prepared-distinct cap). prep[key] is therefore boolean (prepared or not), not
+// a count of "copies" the way currentSpells()'s wizard-style prep used to work. Cantrips
+// (level 0) are at-will once prepared: they never consume state.used[0].
 function prepCount(l){return Object.keys(state.prep).filter(k=>state.prep[k]&&+k.split('|')[0]===l).length}
-function preparedDistinctCap(l){return baseSlots(l)}
-function totalDaily(){let n=0;for(let l=0;l<=9;l++)n+=normalSlots(l);return n}
+function preparedDistinctCap(l){return preparedBase(l)}
+function totalDaily(){let n=0;for(let l=1;l<=9;l++)n+=normalSlots(l);return n}
 function normName(n){return (n||'').replace(/\s*\([^)]*\)\s*$/,'').trim().toLowerCase()}
 
 
@@ -268,9 +275,14 @@ function renderSlots(){
   let b=$('slots');b.innerHTML='';
   for(let l=0;l<=9;l++){
     let d=document.createElement('div');d.className='slot'+(canCast(l)?'':' disabled');
-    let n=normalSlots(l),used=Math.min(state.used[l]||0,n);state.used[l]=used;
-    d.innerHTML=`<b>${l===0?'Ori':'L'+l}</b> ${n-used}/${n} remaining<br><small>${n} normal${l===0?' (not expended)':''}</small>`;
-    d.onclick=()=>{if(!canCast(l))return;state.used[l]=(used+1)%(n+1);save();renderSlots()};
+    if(l===0){
+      state.used[0]=0;
+      d.innerHTML=`<b>Ori</b> At will<br><small>${preparedDistinctCap(0)} cantrips preparable</small>`;
+    }else{
+      let n=normalSlots(l),used=Math.min(state.used[l]||0,n);state.used[l]=used;
+      d.innerHTML=`<b>L${l}</b> ${n-used}/${n} remaining<br><small>${n} normal</small>`;
+      d.onclick=()=>{if(!canCast(l))return;state.used[l]=(used+1)%(n+1);save();renderSlots()};
+    }
     b.appendChild(d)
   }
 }
@@ -350,7 +362,7 @@ function render(){
   $('cl').textContent=casterLevel();
   $('daily').textContent=totalDaily();
   $('prepared').textContent=Object.values(state.prep).reduce((a,v)=>a+(+v||0),0);
-  $('ruleNote').textContent='Arcanists prepare a limited number of DISTINCT spells each day from their spellbook (the Spells per Day table\'s base value only — Intelligence bonus spells widen the casting pool below, not this list), but — unlike a wizard — don\'t commit each preparation to one specific cast: any spell you\'ve marked "Prepared" can then be cast repeatedly from the shared per-level slot pool while it has room, the same way a sorcerer casts from known spells. Mark a spell "Book" once it\'s been scribed in (no artificial limit — track your own gold/time cost), then "Prepare" it for the day. Instead of an Arcane School, arcanists draw on an Arcane Reservoir to fuel exploits and boost individual spells (not modeled here). Cantrips (0-level) still use the "Prepare" limit but, once prepared, can be cast at will — they never expend a slot. Bonus spells and DCs use INTELLIGENCE.';
+  $('ruleNote').textContent='Arcanists prepare a limited number of DISTINCT spells each day from their spellbook (the "Spells Prepared" table — separate from and smaller than the "Spells per Day" table below; Intelligence bonus spells widen the daily casting pool only, never this prepared-distinct list), but — unlike a wizard — don\'t commit each preparation to one specific cast: any spell you\'ve marked "Prepared" can then be cast repeatedly from the shared per-level slot pool while it has room, the same way a sorcerer casts from known spells. Mark a spell "Book" once it\'s been scribed in (no artificial limit — track your own gold/time cost), then "Prepare" it for the day. Instead of an Arcane School, arcanists draw on an Arcane Reservoir to fuel exploits and boost individual spells (not modeled here). Cantrips (0-level) still use the "Prepare" limit but, once prepared, are cast at will — they never expend a slot and aren\'t counted in Total spell slots/day. Bonus spells and DCs use INTELLIGENCE.';
   document.querySelector('.rulenote summary').title=$('ruleNote').textContent;
   renderButtons();renderCtButtons();renderSlots();renderSources();renderList()
 }
