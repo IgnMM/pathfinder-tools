@@ -445,12 +445,20 @@ const MODIFIERS = [
  desc:'+1 on attack rolls (untyped). Also grants an extra attack at full base attack bonus on a full attack — not modeled per-line here, just roll an extra copy of whichever attack line you\'d normally repeat.',
  compute:()=>({attack:1,damage:0,note:'+1 atk, plus one extra attack at full bonus — repeat one attack line by hand'})},
 {id:'magic-fang',name:'Magic Fang',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'enhancement',
- desc:'+1 enhancement bonus on attack and damage rolls with one natural weapon. Applied here to every attack line for simplicity — if only cast on ONE of the companion\'s attack types, only count it on that line by hand.',
- compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement)'})},
+ desc:'+1 enhancement bonus on attack and damage rolls with ONE natural weapon you choose below — never manufactured weapons, and never every attack line at once (that\'s Greater Magic Fang).',
+ attackScope:'natural',
+ configFields:[{key:'targetAttack',label:'Natural attack affected',type:'attackSelect',default:''}],
+ compute:(ctx,cfg)=>{
+   let has=!!cfg.targetAttack;
+   return {attack:has?1:0,damage:has?1:0,
+     note:has?('+1 atk / +1 dmg (enhancement) on '+cfg.targetAttack+' only'):'Choose a natural attack above to activate (+1 atk / +1 dmg, that one attack only)',
+     attackNames:has?[cfg.targetAttack]:undefined};
+ }},
 {id:'greater-magic-fang',name:'Magic Fang, Greater',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
- desc:'+1 enhancement bonus per 4 caster levels (max +5) on attack and damage rolls — can affect all of the target\'s natural weapons at once, unlike regular Magic Fang. The caster level field below defaults to the sheet\'s own Caster Level (the "owner"), but is a normal editable number — change it after adding if a different caster is the one casting this.',
+ desc:'+1 enhancement bonus per 4 caster levels (max +5) on attack and damage rolls — affects all of the target\'s natural weapons at once (never manufactured weapons), unlike regular Magic Fang which affects only one chosen attack. The caster level field below defaults to the sheet\'s own Caster Level (the "owner"), but is a normal editable number — change it after adding if a different caster is the one casting this.',
+ attackScope:'natural',
  configFields:[{key:'cl',label:'Caster level (defaults to sheet\'s Caster Level, editable)',type:'number',default:8,linkLevel:'cl'}],
- compute:(ctx,cfg)=>{let b=Math.min(5,Math.floor((cfg.cl||1)/4));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement)'}}},
+ compute:(ctx,cfg)=>{let b=Math.min(5,Math.floor((cfg.cl||1)/4));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement, natural weapons only)'}}},
 {id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
  desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls. Affects every ally who can hear it, including a companion.',
  configFields:[{key:'bardLvl',label:'Bard level',type:'number',default:5,linkLevel:true}],
@@ -1370,6 +1378,13 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
   let cfgHtml='';
   if(!isCustom && defOrCustom.configFields){
     cfgHtml='<div class="cfg">'+defOrCustom.configFields.map(f=>{
+      if(f.type==='attackSelect'){
+        // Magic Fang targets exactly one NATURAL attack -- offering manufactured/ranged
+        // lines here would let the player point a natural-weapon-only spell at a sword.
+        let names=[...new Set((currentProfile().attackLines||[]).filter(l=>['natural','ranged-natural'].includes(l.atkType||'natural')).map(l=>l.name).filter(Boolean))];
+        let opts='<option value="">— choose a natural attack —</option>'+names.map(n=>`<option value="${n}"${activeRec.cfg[f.key]===n?' selected':''}>${n}</option>`).join('');
+        return `<label>${f.label}<br><select data-key="${f.key}" data-keytype="text">${opts}</select></label>`;
+      }
       return `<label>${f.label}<br><input type="number" data-key="${f.key}" value="${activeRec.cfg[f.key]}"></label>`;
     }).join('')+'</div>';
   }
@@ -1403,8 +1418,12 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
     saveStore(); compute();
   });
   if(!isCustom && defOrCustom.configFields){
-    div.querySelectorAll('input[data-key]').forEach(inp=>{
-      inp.addEventListener('input',()=>{ activeRec.cfg[inp.dataset.key]=Number(inp.value); saveStore(); compute(); });
+    div.querySelectorAll('[data-key]').forEach(inp=>{
+      let isText=inp.dataset.keytype==='text';
+      inp.addEventListener(inp.tagName==='SELECT'?'change':'input',()=>{
+        activeRec.cfg[inp.dataset.key]=isText?inp.value:Number(inp.value);
+        saveStore(); compute();
+      });
     });
   }
   if(isCustom){
@@ -1429,13 +1448,22 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
 // pick up a melee-only or Slam-only bonus. attackScope ('melee'/'ranged'/'all'/absent)
 // and attackNames (an explicit name whitelist) travel on the contribution entry itself
 // and are checked per line in compute(), never folded into the old shared/global total.
-function lineAttackCategory(atkType){
-  if(['natural','manufactured','touch'].includes(atkType||'natural')) return 'melee';
-  if(['ranged-manufactured','ranged-natural','ranged-touch'].includes(atkType)) return 'ranged';
-  return null; // 'other' -- deliberately matches neither melee- nor ranged-scoped entries
+// A line can be scoped along two independent axes at once (e.g. "natural" AND
+// "melee"), so attackScope is checked against a TAG SET per line, not a single
+// category -- 'melee'/'ranged' (range) and 'natural'/'manufactured' (weapon type)
+// both apply simultaneously. 'other' and 'touch'/'ranged-touch' carry no
+// natural/manufactured tag (ambiguous/ability-derived), so a natural-scoped entry
+// like Magic Fang never reaches them.
+function lineAttackTags(atkType){
+  let t=atkType||'natural', tags=[];
+  if(['natural','manufactured','touch'].includes(t)) tags.push('melee');
+  if(['ranged-manufactured','ranged-natural','ranged-touch'].includes(t)) tags.push('ranged');
+  if(['natural','ranged-natural'].includes(t)) tags.push('natural');
+  if(['manufactured','ranged-manufactured'].includes(t)) tags.push('manufactured');
+  return tags;
 }
 function entryAppliesToLine(e, line){
-  if(e.attackScope && e.attackScope!=='all' && e.attackScope!==lineAttackCategory(line.atkType)) return false;
+  if(e.attackScope && e.attackScope!=='all' && !lineAttackTags(line.atkType).includes(e.attackScope)) return false;
   if(e.attackNames && e.attackNames.length && !e.attackNames.includes(line.name)) return false;
   return true;
 }
@@ -1474,8 +1502,13 @@ function collectContributions(ctx){
       if(perLineAbility){
         if(m.id==='animal-growth') atkEntries.push({value:-1,type:'size',source:m.name});
       } else {
-        if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name});
-        if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name});
+        // MAGIC-FANG-SCOPE-001: attackScope lives on the modifier definition (static,
+        // e.g. Magic Fang/Greater Magic Fang are always 'natural'); attackNames can come
+        // back from compute() itself per-instance (Magic Fang's own configured target
+        // attack), since that varies per active copy of the same modifier.
+        let scope=m.attackScope, names=r.attackNames;
+        if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name,attackScope:scope,attackNames:names});
+        if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name,attackScope:scope,attackNames:names});
       }
     }
     let noteText = perLineAbility ? 'Ability adjustment applied separately to each attack line that uses this ability'+(m.id==='animal-growth'?'; includes the shared -1 size attack penalty':'') : r.note;
@@ -1698,8 +1731,11 @@ function compute(){
   if(rendSelected && !companionNotYetActive){
     rendBox.style.display='block';
     let clawSel=$('rendClawSelect');
-    let names=[...new Set((p.attackLines||[]).map(l=>l.name).filter(Boolean))];
-    clawSel.innerHTML = names.length ? names.map(n=>`<option value="${n}">${n}</option>`).join('') : '<option value="">No attacks yet</option>';
+    // Rend only ever triggers off two CLAW attacks hitting the same target -- offering
+    // Bite/Slam/etc. here would let the player attach Rend's bonus to damage it was
+    // never meant to ride on.
+    let names=[...new Set((p.attackLines||[]).filter(l=>(l.name||'').trim().toLowerCase()==='claw').map(l=>l.name))];
+    clawSel.innerHTML = names.length ? names.map(n=>`<option value="${n}">${n}</option>`).join('') : '<option value="">No Claw attack line yet</option>';
     let wantClaw = names.includes(p.rendClawName) ? p.rendClawName : names[0]||'';
     clawSel.value=wantClaw;
     $('rendConditionMet').checked=!!p.rendConditionMet;
