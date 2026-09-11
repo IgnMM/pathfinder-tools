@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover">
 <title>The Sanctum — Pathfinder Tools</title>
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0a0906">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sanctum">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;600&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
@@ -329,6 +334,9 @@
   }
   if(!localStorage.getItem(SYNC_CODE_KEY)) showGate();
 })();
+</script>
+<script>
+  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(console.error));
 </script>
 </body>
 </html>
