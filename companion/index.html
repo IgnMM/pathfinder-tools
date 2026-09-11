@@ -1101,7 +1101,7 @@ function renderEidolonEvolutionPicker(){
   (p.selectedEvolutions||[]).forEach((chosen,i)=>{
     let def=entries.find(x=>x.key===chosen.key), row=document.createElement('div'); row.className='activeItem';
     row.innerHTML=`<div class="head"><div><div class="name">${def?.name||chosen.key} <span class="typeTag">${def?.cost||0} EP</span></div><div class="desc">${[chosen.target&&'Target: '+chosen.target,chosen.choice&&'Choice: '+chosen.choice].filter(Boolean).join(' — ')||def?.requirementsText||'Selected evolution'}</div></div><button class="rm">✕ remove</button></div>`;
-    row.querySelector('.rm').onclick=()=>{p.selectedEvolutions.splice(i,1);saveStore();renderEidolonEvolutionPicker();}; box.appendChild(row);
+    row.querySelector('.rm').onclick=()=>{p.selectedEvolutions.splice(i,1);saveStore();renderEidolonEvolutionPicker();compute();}; box.appendChild(row);
   });
 }
 $('addEidolonEvolution').onclick=()=>{
@@ -1110,7 +1110,7 @@ $('addEidolonEvolution').onclick=()=>{
   if(EVOLUTION_TARGET_NEEDED.includes(key)) chosen.target=$('eidolonEvolutionTarget').value||'';
   if(key==='ability-increase') chosen.choice=$('eidolonEvolutionAbility').value||'str';
   if(key==='energy-attacks') chosen.choice=$('eidolonEvolutionEnergy').value||'fire';
-  currentProfile().selectedEvolutions.push(chosen); saveStore(); renderEidolonEvolutionPicker();
+  currentProfile().selectedEvolutions.push(chosen); saveStore(); renderEidolonEvolutionPicker(); compute();
 };
 function sizeAttackModifier(size){
   return ({Fine:8,Diminutive:4,Tiny:2,Small:1,Medium:0,Large:-1,Huge:-2,Gargantuan:-4,Colossal:-8})[size]||0;
