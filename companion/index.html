@@ -1119,7 +1119,23 @@ function renderEidolonEvolutionPicker(){
   (p.selectedEvolutions||[]).forEach((chosen,i)=>{
     let def=entries.find(x=>x.key===chosen.key), row=document.createElement('div'); row.className='activeItem';
     row.innerHTML=`<div class="head"><div><div class="name">${def?.name||chosen.key} <span class="typeTag">${def?.cost||0} EP</span></div><div class="desc">${[chosen.target&&'Target: '+chosen.target,chosen.choice&&'Choice: '+chosen.choice].filter(Boolean).join(' — ')||def?.requirementsText||'Selected evolution'}</div></div><button class="rm">✕ remove</button></div>`;
-    row.querySelector('.rm').onclick=()=>{p.selectedEvolutions.splice(i,1);saveStore();renderEidolonEvolutionPicker();reapplyEidolonPresetIfActive();compute();}; box.appendChild(row);
+    row.querySelector('.rm').onclick=()=>{
+      let removedKey=p.selectedEvolutions[i].key;
+      p.selectedEvolutions.splice(i,1);
+      // REMOVE-LARGE-001: applyEidolonPreset() flatly refuses to run while sized
+      // Large/Huge without the Large evolution (it alerts and bails before touching
+      // anything) -- so removing Large used to leave every Large/Huge-derived ability
+      // score, attack die, and size-to-hit modifier stuck in place forever, since the
+      // reapply below would just hit that same guard and do nothing. Drop back to
+      // Medium FIRST, in both the visible selector and the profile, so the reapply
+      // that follows actually goes through and rebuilds everything from a clean
+      // Medium base instead of bailing out.
+      if(removedKey==='large' && ['Large','Huge'].includes($('creatureSize').value)){
+        $('creatureSize').value='Medium';
+        p.creatureSize='Medium';
+      }
+      saveStore();renderEidolonEvolutionPicker();reapplyEidolonPresetIfActive();compute();
+    }; box.appendChild(row);
   });
 }
 $('addEidolonEvolution').onclick=()=>{
