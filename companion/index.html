@@ -280,31 +280,17 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 
 </div>
 </div>
+<script src="../assets/calc-engine.js"></script>
 <script>
+// SHARED-ENGINE-001: mod/signed/diceMultiply/SIZE_UP_MEDIUM_TO_LARGE/diceSizeUp/
+// applySizeSteps/stackTotal/markSuppressed now live in ../assets/calc-engine.js
+// (Stage 1 of the shared-engine extraction), loaded above -- they were byte-identical
+// with calc/index.html's own copies before this change. SIZE_DOWN_ONE/diceSizeDown stay
+// here: companion-only (used for a Small familiar's damage-by-size lookup), calc has no
+// equivalent.
 function $(id){return document.getElementById(id)}
-function mod(score){return Math.floor((Number(score)-10)/2)}
-function signed(n){return (n>=0?'+':'')+n}
-function diceMultiply(dice,mult){
-  const m=String(dice).match(/^(\d+)d(\d+)$/i);
-  if(!m) return dice+' ×'+mult;
-  return (Number(m[1])*mult)+'d'+m[2];
-}
-// Official Core Rulebook "Weapon Damage Size Conversion" table (one size category
-// larger). Applied twice for Strong Jaw ("as if two sizes larger").
-// Single per-die-value chain (see the identical table in calc/index.html) -- correct
-// however many times it's applied in a row, including Strong Jaw's own two-step effect
-// stacked with Animal Growth's one-step actual increase (three total steps).
-const SIZE_UP_MEDIUM_TO_LARGE={'1':'1d2','1d2':'1d3','1d3':'1d4','1d4':'1d6','1d6':'1d8','1d8':'2d6','1d10':'2d8','1d12':'3d6','2d4':'2d6','2d6':'3d6','2d8':'3d8','2d10':'4d8','3d6':'4d6','3d8':'4d8','4d8':'6d8'};
-function diceSizeUp(dice){
-  return SIZE_UP_MEDIUM_TO_LARGE[String(dice).trim()] || dice;
-}
 const SIZE_DOWN_ONE={'1d2':'1','1d3':'1d2','1d4':'1d3','1d6':'1d4','1d8':'1d6','1d10':'1d8','1d12':'1d10','2d6':'1d8','2d8':'1d10','3d6':'1d12','3d8':'2d8','4d6':'3d6','4d8':'3d8','6d8':'4d8'};
 function diceSizeDown(dice){return SIZE_DOWN_ONE[String(dice).trim()]||dice;}
-function applySizeSteps(dice, steps){
-  let d=dice;
-  for(let i=0;i<steps;i++) d=diceSizeUp(d);
-  return d;
-}
 // SINGLE-ATTACK-SPLIT-001: this used to scale by ctx.style==='twoHanded' (driven by the
 // old "Only one natural attack this round?" checkbox), assuming that flag meant "this
 // creature's sole natural attack, so x1.5 Str applies" -- that assumption was wrong
@@ -2176,18 +2162,7 @@ function customEffectMeetsRuntimeRequirements(effect, profile){
   return !required || required===profile.manifestation;
 }
 // ---------- Stacking engine ----------
-function stackTotal(entries){
-  let dodgeAndUntyped=0, penalties=0;
-  let byType={};
-  entries.forEach(e=>{
-    if(e.value<0){ penalties+=e.value; return; }
-    if(e.type==='untyped'||e.type==='dodge'||e.type==='circumstance'||e.type==='special'){ dodgeAndUntyped+=e.value; return; }
-    byType[e.type]=Math.max(byType[e.type]||0, e.value);
-  });
-  let typedSum=Object.values(byType).reduce((a,b)=>a+b,0);
-  return dodgeAndUntyped+typedSum+penalties;
-}
-
+// stackTotal() now lives in ../assets/calc-engine.js (SHARED-ENGINE-001).
 function collectContributions(ctx){
   let p=currentProfile();
   let atkEntries=[], dmgEntries=[], extraDice=[], breakdown=[];
@@ -2291,22 +2266,7 @@ function finalAbilityMods(ctx){
   return out;
 }
 
-function markSuppressed(entries,breakdown){
-  let byType={};
-  entries.forEach(e=>{ if(e.value>0 && e.type!=='untyped'&&e.type!=='dodge'&&e.type!=='circumstance'&&e.type!=='special'){ (byType[e.type]=byType[e.type]||[]).push(e); } });
-  let suppressedSources=new Set();
-  Object.values(byType).forEach(list=>{
-    if(list.length<2) return;
-    let max=Math.max(...list.map(x=>x.value));
-    let keptOne=false;
-    list.forEach(x=>{
-      if(x.value===max && !keptOne){ keptOne=true; return; }
-      suppressedSources.add(x.source);
-    });
-  });
-  breakdown.forEach(b=>{ if(suppressedSources.has(b.name)||suppressedSources.has(b.name.replace(' (custom)',''))) b.suppressed=true; });
-}
-
+// markSuppressed() now lives in ../assets/calc-engine.js (SHARED-ENGINE-001).
 function renderBreakdown(breakdown){
   let box=$('breakdownTables'); box.innerHTML='';
   if(!breakdown.length){ box.innerHTML='<div class="emptyNote">No modifiers active yet — add some from the categories above.</div>'; return; }

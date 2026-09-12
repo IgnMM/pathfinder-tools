@@ -464,6 +464,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 </section>
 
 </div>
+<script src="../assets/calc-engine.js"></script>
 <script src="../assets/conditions.js"></script>
 <script>
 // Full Simple/Martial/Exotic weapon catalog (Core Rulebook, Ultimate Combat, Ultimate
@@ -3810,13 +3811,12 @@ const MAGIC_ITEM_SLOTS=[
 const MAGIC_ITEM_BONUS_TYPES=['enhancement','untyped','morale','luck','sacred','profane','competence','insight','circumstance','deflection','resistance','trait','other-named-type'];
 
 const $=id=>document.getElementById(id);
-function mod(score){return Math.floor((Number(score)-10)/2)}
+// mod()/signed() now live in ../assets/calc-engine.js (SHARED-ENGINE-001).
 const ROUND_FRAC_KEY='pf1_calc_round_frac_up_v1';
 // Only the handful of spots that halve or x1.5 a number (two-handed/off-hand Strength
 // bonus, Power Attack/Deadly Aim two-handed damage) -- ability modifiers themselves
 // always round down per the rules, regardless of this setting.
 function roundFrac(n){ let el=document.getElementById('roundFracUp'); return (el&&el.checked) ? Math.ceil(n) : Math.floor(n); }
-function signed(n){return (n>=0?'+':'')+n}
 
 // ---------- Profiles ----------
 const STORE_KEY='pf1_universal_damage_calc_profiles_v1';
@@ -4534,18 +4534,7 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom, pStyle){
 }
 
 // ---------- Stacking engine ----------
-function stackTotal(entries){
-  // entries: [{value, type, source}]
-  let dodgeAndUntyped=0, penalties=0;
-  let byType={};
-  entries.forEach(e=>{
-    if(e.value<0){ penalties+=e.value; return; }
-    if(e.type==='untyped'||e.type==='dodge'||e.type==='circumstance'||e.type==='special'){ dodgeAndUntyped+=e.value; return; }
-    byType[e.type]=Math.max(byType[e.type]||0, e.value);
-  });
-  let typedSum=Object.values(byType).reduce((a,b)=>a+b,0);
-  return dodgeAndUntyped+typedSum+penalties;
-}
+// stackTotal() now lives in ../assets/calc-engine.js (SHARED-ENGINE-001).
 
 function collectContributions(ctx){
   let p=currentProfile();
@@ -4738,25 +4727,7 @@ function collectSlotEntries(ctx, slot){
   return {atk,dmg,extraDice};
 }
 
-function markSuppressed(entries,breakdown){
-  // Mark, per type group, which named-type entries don't actually count toward the
-  // total (informational only for the table) — including ties: only the FIRST
-  // entry that reaches the group's max is "active", every other one (whether
-  // lower or tied) is redundant per the same-type stacking rule.
-  let byType={};
-  entries.forEach(e=>{ if(e.value>0 && e.type!=='untyped'&&e.type!=='dodge'&&e.type!=='circumstance'&&e.type!=='special'){ (byType[e.type]=byType[e.type]||[]).push(e); } });
-  let suppressedSources=new Set();
-  Object.values(byType).forEach(list=>{
-    if(list.length<2) return;
-    let max=Math.max(...list.map(x=>x.value));
-    let keptOne=false;
-    list.forEach(x=>{
-      if(x.value===max && !keptOne){ keptOne=true; return; }
-      suppressedSources.add(x.source);
-    });
-  });
-  breakdown.forEach(b=>{ if(suppressedSources.has(b.name)||suppressedSources.has(b.name.replace(' (custom)',''))) b.suppressed=true; });
-}
+// markSuppressed() now lives in ../assets/calc-engine.js (SHARED-ENGINE-001).
 
 function renderUnmodeledEffects(breakdown){
   // Only type:'special' entries are STRUCTURALLY unable to add a number -- their compute()
@@ -4800,29 +4771,9 @@ function renderBreakdown(breakdown){
   t.appendChild(tbody); box.appendChild(t);
 }
 
-function diceMultiply(dice,mult){
-  const m=String(dice).match(/^(\d+)d(\d+)$/i);
-  if(!m) return dice+' ×'+mult;
-  return (Number(m[1])*mult)+'d'+m[2];
-}
-// Official Core Rulebook "Weapon Damage Size Conversion" table, Medium column -> Large column
-// (one size category larger — used by Lead Blades and any other "as if one size larger" effect
-// for a Medium wielder, which covers virtually every PC). Not the generic FAQ dice-step chart —
-// this is the dedicated size-conversion table, so no ambiguity about how many steps to take.
-// A single per-die-value chain (each die value belongs to exactly one row of the Core
-// Rulebook's Weapon Damage Size Conversion table), so this same table is correct however
-// many times it's applied in a row -- '3d6'/'3d8'/'4d8' are here so a second application
-// (e.g. Lead Blades + Enlarge Person both active) correctly reaches Huge-tier dice instead
-// of silently no-op'ing on the second step.
-const SIZE_UP_MEDIUM_TO_LARGE={'1':'1d2','1d2':'1d3','1d3':'1d4','1d4':'1d6','1d6':'1d8','1d8':'2d6','1d10':'2d8','1d12':'3d6','2d4':'2d6','2d6':'3d6','2d8':'3d8','2d10':'4d8','3d6':'4d6','3d8':'4d8','4d8':'6d8'};
-function diceSizeUp(dice){
-  return SIZE_UP_MEDIUM_TO_LARGE[String(dice).trim()] || dice;
-}
-function applySizeSteps(dice, steps){
-  let d=dice;
-  for(let i=0;i<steps;i++) d=diceSizeUp(d);
-  return d;
-}
+// diceMultiply()/SIZE_UP_MEDIUM_TO_LARGE/diceSizeUp()/applySizeSteps() now live in
+// ../assets/calc-engine.js (SHARED-ENGINE-001) -- used here for Lead Blades/Gravity
+// Bow/Enlarge Person and any other "as if one size larger" effect.
 function maxDiceValue(dice){
   const m=String(dice).match(/^(\d+)d(\d+)$/i);
   if(!m) return dice;
