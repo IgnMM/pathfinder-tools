@@ -839,10 +839,13 @@ populateEntityTypeSelect();
     currentProfile().hdBabOverride=true;
     syncUIIntoProfile();
     applyProgressionUI(); // no values are rewritten (now overridden) -- just refreshes hdBabAutoNote's wording
-    // FAMILIAR-REAPPLY-001: a familiar's attack to-hit is master BAB + its own fixed
+    // FAMILIAR-BAB-SYNC-001: a familiar's attack to-hit is master BAB + its own fixed
     // size modifier -- only the bab field feeds that, so only bab (not hitDice, which
-    // familiars don't use) triggers a resync.
-    if(id==='bab') reapplyFamiliarPresetIfActive();
+    // familiars don't use) triggers a resync. Uses the narrow atkBonus-only sync, not
+    // reapplyFamiliarPresetIfActive()/applyFamiliarPreset(), since that also resets
+    // ability scores -- appropriate for the explicit "Apply preset" button, not an
+    // incidental BAB edit.
+    if(id==='bab') syncFamiliarAtkBonusForBab();
     compute();
   });
 });
@@ -1505,6 +1508,13 @@ function applyFamiliarPreset(){
   let manualLines=oldLines.filter(l=>l.origin==='manual');
   let byOrigin={};
   oldLines.forEach(l=>{ if(l.origin && l.origin.startsWith('preset:familiar:')) byOrigin[l.origin]=l; });
+  // FAMILIAR-MERGE-002: the legacy name-match fallback below consumes at most one
+  // originless line per generated attack -- any OTHER originless line (unrelated old
+  // data with no origin tag, predating this scheme, that doesn't happen to name-match
+  // a currently-generated attack) used to simply vanish from the concat below. Track
+  // which originless lines actually get consumed as a legacy match so every other one
+  // can be carried forward untouched instead of assumed to be safely discardable.
+  let consumedLegacy=new Set();
   const FAMILIAR_PRESERVED_FIELDS=['manualHitAdj','manualDmgAdj','enhancement','extraDice','extraDamageType','extraDiceMultipliesOnCrit','extra','range','threat','critMult','damageType','noDamage'];
   let generatedLines=(fam.attacks||[]).map(a=>{
     let line=lineFromRuleAttack(a,bab,fam.size);
@@ -1512,15 +1522,17 @@ function applyFamiliarPreset(){
     // Legacy fallback: a familiar attack line saved before this origin scheme has no
     // origin at all -- matched once by name so the first reapply after this update
     // doesn't duplicate every attack; the new origin key takes over from then on.
-    let existing=byOrigin[originKey] || oldLines.find(l=>!l.origin && l.name===line.name);
+    let existing=byOrigin[originKey] || oldLines.find(l=>!l.origin && !consumedLegacy.has(l) && l.name===line.name);
     if(existing){
       FAMILIAR_PRESERVED_FIELDS.forEach(f=>{ if(existing[f]!==undefined) line[f]=existing[f]; });
       if(existing.name) line.name=existing.name;
+      if(!existing.origin) consumedLegacy.add(existing);
     }
     line.origin=originKey;
     return line;
   });
-  p.attackLines=generatedLines.concat(manualLines);
+  let preservedOriginless=oldLines.filter(l=>!l.origin && !consumedLegacy.has(l));
+  p.attackLines=generatedLines.concat(manualLines).concat(preservedOriginless);
   p.speciesPreset=fam.key;
   syncUIIntoProfile();
   // Familiars are commonly Tiny/Diminutive, sizes the creatureSize <select> doesn't even
@@ -1531,18 +1543,29 @@ function applyFamiliarPreset(){
   saveStore(); renderAttackLines(); compute();
   $('speciesPresetNote').textContent=fam.name+' familiar applied. To-hit uses master BAB + better of its STR/DEX; damage is the normal creature\'s fixed damage and does not add that ability again.';
 }
-// FAMILIAR-REAPPLY-001: mirrors reapplyEidolonPresetIfActive()/reapplyPhantomPresetIfActive()
-// -- a familiar's attack lines only pick up the master's current BAB inside
-// applyFamiliarPreset() itself, so a BAB change on its own used to change nothing
-// until the preset was manually reapplied. Guarded the same way: only fires once an
-// actual familiar species preset is selected, never the destructive full rebuild
-// blindly -- applyFamiliarPreset() itself is safe to call repeatedly now (see
-// FAMILIAR-MERGE-001), so this is just what decides WHEN to call it.
-function reapplyFamiliarPresetIfActive(){
+// FAMILIAR-BAB-SYNC-001: applyFamiliarPreset() is the explicit "Apply preset stats &
+// attacks" action -- besides regenerating attacks it also resets all six ability
+// scores to the familiar's base values (that's correct for a deliberate re-apply, but
+// it silently discarded a manually-edited STR/DEX/etc. every time the master's BAB
+// changed, since bab's own listener used to call reapplyFamiliarPresetIfActive() ->
+// applyFamiliarPreset() on every edit). BAB only feeds the structural atkBonus of the
+// familiar's own generated attacks, so an incidental BAB edit only needs to refresh
+// that one field on those lines -- never ability scores, never any other editable
+// attack field (name/die/damageType/manual adjustments/mode/etc).
+function syncFamiliarAtkBonusForBab(){
   const p=currentProfile();
   if(p.entityType!=='familiar') return;
-  if(!FAMILIAR_PRESETS.some(f=>f.key===$('speciesPreset').value)) return;
-  applyFamiliarPreset();
+  let fam=FAMILIAR_PRESETS.find(f=>f.key===$('speciesPreset').value);
+  if(!fam) return;
+  let bab=+$('bab').value||0;
+  let changed=false;
+  (p.attackLines||[]).forEach(line=>{
+    if(!line.origin || !line.origin.startsWith('preset:familiar:')) return;
+    line.atkBonus=bab+sizeAttackModifier(fam.size)+(line.mode==='secondary'?-5:0);
+    changed=true;
+  });
+  if(!changed) return;
+  saveStore(); renderAttackLines(); compute();
 }
 
 // Rider-only effects that must never be offered here: they modify the RIDER's own
