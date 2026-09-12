@@ -503,8 +503,18 @@ const MODIFIERS = [
 // Mythic Adventures' Marshal and Hunter path ability text (d20pfsrd Marshal page; Mythic
 // Bond, 3rd tier Hunter path ability).
 {id:'deadly-guidance',name:'Deadly Guidance (granted by owner)',category:'other',source:"Mythic Adventures (Marshal path ability, 1st tier)",appliesTo:['damage'],type:'untyped',
- desc:'Owner-granted (Marshal mythic path ability, 1st tier): "All allies within 30 feet of that opponent gain the sneak attack ability when attacking it, and can thus deal +1d6 points of damage when flanking that opponent or when the opponent is otherwise denied its Dexterity bonus to AC." Two independent trigger conditions (either one qualifies) — NOT melee-only by its own text; a ranged attack can also trigger it, but ranged sneak attack additionally requires the target be within 30 feet (this calculator doesn\'t track range, so confirm that separately). Selectable up to 4 times for +1d6 more each time, lasting half the Marshal\'s tier (minimum 1) rounds. Toggle this on only while one of the two trigger conditions is actually true (it no longer auto-derives from the Flanking entry above, since "denied Dex to AC" can be true without Flanking being toggled). Precision damage — not multiplied on a critical hit.',
- compute:()=>({attack:0,damage:0,extraDice:{dice:'1d6',type:'',multiplies:false},note:'+1d6 precision damage (granted by owner, not multiplied on a crit) — only while flanking the target OR the target is denied its Dex bonus to AC; if ranged, also confirm the target is within 30 feet'})},
+ desc:'Owner-granted (Marshal mythic path ability, 1st tier): "All allies within 30 feet of that opponent gain the sneak attack ability when attacking it, and can thus deal +1d6 points of damage when flanking that opponent or when the opponent is otherwise denied its Dexterity bonus to AC." Two independent trigger conditions (either one qualifies) — NOT melee-only by its own text; a ranged attack can also trigger it, but ranged sneak attack additionally requires the target be within 30 feet. Selectable up to 4 times for +1d6 more each time (set the rank below), lasting half the Marshal\'s tier (minimum 1) rounds. Toggle this on only while one of the two trigger conditions is actually true (it no longer auto-derives from the Flanking entry above, since "denied Dex to AC" can be true without Flanking being toggled). This calculator can\'t verify range or precision-damage immunity (constructs, oozes, undead, plants, etc. are typically immune to sneak attack) — the dice below stay at 0 until you explicitly confirm both below, rather than silently showing damage that may not apply. Precision damage — not multiplied on a critical hit.',
+ configFields:[
+   {key:'rank',label:'Selected rank (1–4; +1d6 precision damage each)',type:'number',default:1},
+   {key:'confirmed',label:'Confirm: target isn\'t immune to precision damage, and — if this is a ranged attack — is within 30 feet',type:'select',options:[['no','No — keep dice at 0 for now'],['yes','Yes, confirmed']],default:'no'}
+ ],
+ compute:(ctx,cfg)=>{
+   let rank=Math.min(4,Math.max(1,Math.round(Number(cfg.rank!==undefined?cfg.rank:1))||1));
+   let dice=rank+'d6';
+   let confirmed=cfg.confirmed==='yes';
+   if(!confirmed) return {attack:0,damage:0,note:'0 dice shown at rank '+rank+' (would be +'+dice+') — check "Confirm" below once you\'ve verified the target isn\'t immune to precision damage and, if this is a ranged attack, is within 30 feet'};
+   return {attack:0,damage:0,extraDice:{dice:dice,type:'',multiplies:false},note:'+'+dice+' precision damage (rank '+rank+' of 4, granted by owner, not multiplied on a crit) — only while flanking the target OR the target is denied its Dex bonus to AC (this entry\'s own on/off represents that); confirmed not immune to precision damage and, if ranged, within 30 feet'};
+ }},
 {id:'mythic-bond',name:'Mythic Bond (granted by owner)',category:'other',source:'Mythic Adventures (Marshal path ability, 3rd tier)',appliesTo:['attack','damage'],type:'untyped',allowMultiple:false,
  configFields:[{key:'value',label:'Half the owner\'s favored enemy bonus (enter by hand)',type:'number',default:1}],
  desc:'Owner-granted (Marshal mythic path ability, 3rd tier — modifies the owner\'s hunter\'s bond class feature, but the mythic ability itself belongs to the Marshal path): "If your bond is with an animal, that animal gains half your favored enemy bonuses." (A separate "Companion Bond" variant, for a bond with allies rather than an animal, instead lets the owner activate it as a swift action to grant the FULL favored enemy bonus — not modeled here since this entry is for the animal-bond case.) Only applies against the owner\'s actual favored enemy — this calculator doesn\'t track favored enemy types, so enter half the owner\'s current favored-enemy bonus below and toggle this off when the current target isn\'t one.',
@@ -521,8 +531,16 @@ const MODIFIERS = [
  desc:'Owner-granted (Marshal mythic path ability, 1st tier): each time the owner uses their surge ability, allies within 30 feet (including this creature) gain +1 on attack and damage rolls for their NEXT weapon attack only. A one-off, consumed-by-the-next-attack bonus — add +1 by hand to whichever single attack line it applies to that round, not modeled as a permanent bonus here.',
  compute:()=>({attack:0,damage:0,note:'special — +1 atk/dmg on the next single attack only, per use; add it by hand to one attack that round'})},
 {id:'inspire-minions',name:'Inspire Minions (granted by owner)',category:'other',source:'Mythic Adventures (Marshal path ability, 1st tier)',appliesTo:[],type:'special',
- desc:'Owner-granted (Marshal mythic path ability, 1st tier): when the owner grants a morale or competence bonus (spell, bardic performance, class feature) to a creature with at least 4 fewer HD than them, that bonus increases by 2. Conditional on relative Hit Dice and on which OTHER effect is active. Most of the morale/competence spells above (Bless, Mythic Bless, Heroism, Mythic Heroism) have no editable bonus field to raise by hand — only Inspire Courage (via bard level) and value-configurable entries like Aid Another/Mythic Bond have one. For an entry with no editable field, add a separate "+2 morale" (or competence, matching the granting effect\'s type) custom effect in Other Effects instead of trying to edit that entry\'s own number.',
- compute:()=>({attack:0,damage:0,note:'special — increases another active morale/competence effect\'s value by 2, when the HD condition is met; if that effect has no editable value field, add a separate +2 custom effect of the same type instead'})},
+ desc:'Owner-granted (Marshal mythic path ability, 1st tier): when the owner grants a morale or competence bonus (spell, bardic performance, class feature) to a creature with at least 4 fewer HD than them, that bonus increases by 2. Toggle this on only while that HD condition is actually true, then pick which currently-active morale/competence effect it boosts below — the +2 is added directly to THAT effect\'s own attack/damage contribution before same-type stacking is resolved (stacking keeps only the highest value per type, so adding a separate same-type custom effect instead would be silently discarded, not summed). Only the chosen effect is boosted; every other active morale/competence effect is untouched.',
+ configFields:[
+   {key:'targetId',label:'Which active granting effect does this boost?',type:'select',options:()=>{
+     let p=currentProfile();
+     let activeIds=new Set((p.active||[]).filter(a=>a.on!==false).map(a=>a.id));
+     let eligible=MODIFIERS.filter(m=>(m.type==='morale'||m.type==='competence') && (m.appliesTo.includes('attack')||m.appliesTo.includes('damage')) && activeIds.has(m.id));
+     return [['','— choose an active morale/competence effect —']].concat(eligible.map(m=>[m.id,m.name]));
+   },default:''}
+ ],
+ compute:()=>({attack:0,damage:0,note:'special — see below once a target effect is chosen'})},
 {id:'clarion-call',name:'Clarion Call (granted by owner)',category:'other',source:'Mythic Adventures (Marshal path ability, 1st tier)',appliesTo:[],type:'special',
  desc:'Owner-granted (Marshal mythic path ability, 1st tier): as a swift action (spending mythic power), the owner grants allies within 30 feet the benefit of their own active smite or challenge ability. The granted bonus depends entirely on the owner\'s specific smite/challenge, which varies by class and isn\'t tracked here — informational only.',
  compute:()=>({attack:0,damage:0,note:'special — grants the owner\'s own active smite/challenge benefit, which varies by class; not modeled here'})},
@@ -2234,7 +2252,13 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
         return `<label>${f.label}<br><select data-key="${f.key}" data-keytype="text">${opts}</select></label>`;
       }
       if(f.type==='select'){
-        let opts=f.options.map(([v,l])=>`<option value="${v}"${activeRec.cfg[f.key]===v?' selected':''}>${l}</option>`).join('');
+        // MYTHIC-SCOPE-004: f.options may be a function(cfg) returning [[value,label],...]
+        // instead of a static array, so a field like Inspire Minions' target picker can
+        // list only the currently-active eligible effects (re-evaluated on every
+        // renderCategories() call, which already runs after any other effect's own
+        // on/off toggle -- see the onChk handler above).
+        let optList=typeof f.options==='function'?f.options(activeRec.cfg):f.options;
+        let opts=optList.map(([v,l])=>`<option value="${v}"${activeRec.cfg[f.key]===v?' selected':''}>${l}</option>`).join('');
         return `<label>${f.label}<br><select data-key="${f.key}" data-keytype="text">${opts}</select></label>`;
       }
       if(f.type==='attackMultiSelect'){
@@ -2456,8 +2480,43 @@ function collectContributions(ctx){
     }
     let noteText = perLineAbility ? 'Ability adjustment applied separately to each attack line that uses this ability'+(m.id==='animal-growth'?'; includes the shared -1 size attack penalty':'') : r.note;
     if(isOff) noteText=(noteText||'')+' (not active right now)';
-    breakdown.push({name:m.name,category:m.category,type:effType,atk:perLineAbility?null:(m.appliesTo.includes('attack')?r.attack:null),dmg:perLineAbility?null:(m.appliesTo.includes('damage')?r.damage:null),note:noteText,suppressed:false,off:isOff});
+    breakdown.push({name:m.name,category:m.category,type:effType,atk:perLineAbility?null:(m.appliesTo.includes('attack')?r.attack:null),dmg:perLineAbility?null:(m.appliesTo.includes('damage')?r.damage:null),note:noteText,suppressed:false,off:isOff,_activeRec:a});
   });
+  // MYTHIC-SCOPE-004: Inspire Minions must raise the CHOSEN effect's own atk/dmg value
+  // by 2 before stackTotal() ever runs, not add a same-type entry of its own --
+  // stackTotal() keeps only the highest value per type (never sums same-type entries),
+  // so a separate "+2 morale" entry alongside Bless's +1 would be silently discarded
+  // (stackTotal picks max(1,2)=2), never producing the required Bless+2=+3. Mutating the
+  // target's own entry object in atkEntries/dmgEntries in place means both the shared
+  // "Shared modifiers this turn" total AND every per-line filtered total (which read the
+  // SAME entry objects, just filtered by scope) see the boosted value consistently.
+  // Runs as a second pass (after every entry above already exists) so it can find its
+  // target regardless of array order, and only ever touches the ONE chosen entry -- an
+  // unrelated active morale/competence effect is never affected.
+  p.active.forEach(a=>{
+    if(a.id!=='inspire-minions' || a.on===false) return;
+    let bd=breakdown.find(b=>b._activeRec===a);
+    let targetId=a.cfg&&a.cfg.targetId;
+    if(!targetId){ if(bd) bd.note='special — choose which active morale/competence effect this boosts, in its own settings above'; return; }
+    let targetMod=MODIFIERS.find(x=>x.id===targetId);
+    let targetActive=p.active.some(x=>x.id===targetId && x.on!==false);
+    if(!targetMod || !targetActive){ if(bd) bd.note='special — the chosen target effect isn\'t currently active; toggle it on first (or pick a different one) for this to apply'; return; }
+    let boostedParts=[];
+    let targetBd=breakdown.find(b=>b.name===targetMod.name);
+    if(targetMod.appliesTo.includes('attack')){
+      let e=atkEntries.find(x=>x.source===targetMod.name);
+      if(e){ e.value+=2; boostedParts.push('atk now '+signed(e.value)); if(targetBd&&targetBd.atk!==null) targetBd.atk=e.value; }
+    }
+    if(targetMod.appliesTo.includes('damage')){
+      let e=dmgEntries.find(x=>x.source===targetMod.name);
+      if(e){ e.value+=2; boostedParts.push('dmg now '+signed(e.value)); if(targetBd&&targetBd.dmg!==null) targetBd.dmg=e.value; }
+    }
+    if(targetBd) targetBd.note=(targetBd.note||'')+' — boosted +2 by Inspire Minions below';
+    if(bd) bd.note = boostedParts.length
+      ? ('special — +2 applied directly to '+targetMod.name+'\'s own bonus above, before stacking ('+boostedParts.join(', ')+'); only while the HD condition is met')
+      : ('special — couldn\'t find '+targetMod.name+'\'s own contribution to boost (it may not apply to attack or damage rolls)');
+  });
+  breakdown.forEach(b=>{ delete b._activeRec; });
   p.custom.filter(c=>customEffectAppliesToCurrentEntity(c,p)).forEach(c=>{
     // MANIFEST-REQ-001: a runtime-requirement failure (wrong manifestation) is treated
     // exactly like the player having switched the effect off -- it still shows up here
