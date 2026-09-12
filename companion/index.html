@@ -327,14 +327,22 @@ const ANIMAL_COMPANION_TABLE=[
 // Ranger gives up a combat style for a companion at 4th level; per the rules "the
 // ranger's effective druid level is equal to his ranger level – 3." Druid and Hunter
 // both use their own class level as-is (Hunter has full animal companion progression
-// from 1st level, like a druid). Paladin/Cavalier mounts use a DIFFERENT table entirely
-// -- not the Animal Companion one -- so they're intentionally left unmodeled here rather
-// than guessed; set BAB/scores by hand for those until that table is added.
+// from 1st level, like a druid).
+// PALADIN-MOUNT-TABLE-001: Paladin's Divine Bond (mount) and Cavalier's Mount both
+// progress on the Core Rulebook's separate "Paladin's Mount" table (Cavalier using his
+// own class level as his effective paladin level for it) -- NOT this Animal Companion
+// Base Statistics table, and its HD/BAB/Str-Dex numbers are different from this one at
+// the same level. That table isn't modeled in this calculator yet, so returning a level
+// here for paladin/cavalier (as a previous version of this function did) fed the WRONG
+// table's HD/BAB straight into the UI -- e.g. a level-10 paladin mount silently got the
+// Animal Companion table's level-10 numbers instead of its own. Until the real Paladin's
+// Mount table is added, paladin/cavalier stay fully manual, exactly like "Other /
+// homebrew" -- set BAB/HD/scores by hand.
 function effectiveCompanionLevel(sourceClass, ownerLevel){
   let lvl=Math.max(0, +ownerLevel||0);
-  if(sourceClass==='druid' || sourceClass==='hunter' || sourceClass==='paladin' || sourceClass==='cavalier') return Math.min(20, lvl);
+  if(sourceClass==='druid' || sourceClass==='hunter') return Math.min(20, lvl);
   if(sourceClass==='ranger') return Math.min(20, Math.max(0, lvl-3));
-  return null; // no recognized source class -- fully manual
+  return null; // no recognized progression table -- fully manual (includes paladin/cavalier mounts)
 }
 
 // ---------------- MODIFIERS CATALOG ----------------
@@ -577,6 +585,12 @@ store.profiles.forEach(p=>{
   if(p.casterLevel===undefined) p.casterLevel=p.characterLevel;
   if(p.bab===undefined) p.bab=p.characterLevel||7;
   if(p.hdBabOverride===undefined) p.hdBabOverride=false;
+  // ANIMAL-APPLY-DISTINCT-001: absent on every profile saved before this field existed --
+  // correctly means "no species has actually been applied yet" for those (see
+  // reapplyAnimalCompanionPresetIfActive), never guessed from p.speciesPreset, which only
+  // ever mirrored the dropdown's last selection, not what was really applied.
+  if(p.animalSpeciesApplied===undefined) p.animalSpeciesApplied='';
+  if(!p.removedSpeciesAttackOrigins) p.removedSpeciesAttackOrigins=[];
   if(p.singleAttack===undefined) p.singleAttack=false;
   if(!p.atkStat) p.atkStat='str';
   if(!p.dmgStat) p.dmgStat='str';
@@ -762,7 +776,9 @@ function applyProgressionUI(){
   let eff=effectiveCompanionLevel(cls, ownerLvl);
   let effNote=$('effectiveLevelNote'), adjNote=$('strDexAdjNote'), maNote=$('multiattackNote');
   if(!cls || eff===null || eff<=0){
-    effNote.textContent = cls==='ranger' ? 'A ranger companion starts at 4th level (effective level = ranger level − 3) — not active yet at this level.' : '';
+    effNote.textContent = cls==='ranger' ? 'A ranger companion starts at 4th level (effective level = ranger level − 3) — not active yet at this level.'
+      : (cls==='paladin'||cls==='cavalier') ? 'Paladin/Cavalier mount progression uses the separate Paladin\'s Mount table, not modeled here — enter Hit Dice, BAB and ability scores manually.'
+      : '';
     adjNote.textContent=''; maNote.textContent=''; autoNote.textContent='';
     return;
   }
@@ -845,7 +861,7 @@ populateEntityTypeSelect();
     // reapplyFamiliarPresetIfActive()/applyFamiliarPreset(), since that also resets
     // ability scores -- appropriate for the explicit "Apply preset" button, not an
     // incidental BAB edit.
-    if(id==='bab') syncFamiliarAtkBonusForBab();
+    if(id==='bab'){ syncFamiliarAtkBonusForBab(); reapplyAnimalCompanionPresetIfActive(); }
     compute();
   });
 });
@@ -880,12 +896,13 @@ $('entityType').addEventListener('change', ()=>{
   renderSources(); renderCategories(); compute();
 });
 ['sourceClass','ownerLevel'].forEach(id=>{
-  $(id).addEventListener('input', ()=>{ applyProgressionUI(); syncUIIntoProfile(); updateSubtypeAbilityChoiceUI(); reapplyPhantomPresetIfActive(); compute(); });
+  $(id).addEventListener('input', ()=>{ applyProgressionUI(); syncUIIntoProfile(); updateSubtypeAbilityChoiceUI(); reapplyPhantomPresetIfActive(); reapplyAnimalCompanionPresetIfActive(); compute(); });
 });
 $('reapplyProgression').addEventListener('click', ()=>{
   currentProfile().hdBabOverride=false;
   applyProgressionUI();
   syncUIIntoProfile();
+  reapplyAnimalCompanionPresetIfActive();
   compute();
 });
 $('rendClawSelect').addEventListener('change', ()=>{ currentProfile().rendClawName=$('rendClawSelect').value; saveStore(); compute(); });
@@ -1032,7 +1049,22 @@ function renderAttackLines(){
     div.querySelector('.alManHit').addEventListener('input',upd('manualHitAdj',v=>+v||0));
     div.querySelector('.alManDmg').addEventListener('input',upd('manualDmgAdj',v=>+v||0));
     div.querySelector('.alNoDmg').addEventListener('change',e=>{ line.noDamage=e.target.checked; saveStore(); compute(); });
-    div.querySelector('.rm').addEventListener('click',()=>{ p.attackLines.splice(i,1); saveStore(); renderAttackLines(); compute(); });
+    div.querySelector('.rm').addEventListener('click',()=>{
+      // ANIMAL-TOMBSTONE-001: without this, removing a species-generated attack line
+      // (e.g. deleting Wolf's Bite because the player wants to model it differently)
+      // would just get regenerated on the next automatic BAB/level/source-class sync,
+      // since applyAnimalCompanionPresetCore() always rebuilds every rule attack it
+      // doesn't find an existing origin/legacy match for. Record the origin as removed
+      // so a future sync skips regenerating it; cleared only by an explicit "Apply
+      // preset" re-click (see applyAnimalCompanionPresetCore), which may deliberately
+      // restart fresh from the species' full attack list.
+      let removed=line;
+      if(['animal-companion','mount'].includes(p.entityType) && removed.origin && removed.origin.startsWith('preset:species:')){
+        p.removedSpeciesAttackOrigins=p.removedSpeciesAttackOrigins||[];
+        if(!p.removedSpeciesAttackOrigins.includes(removed.origin)) p.removedSpeciesAttackOrigins.push(removed.origin);
+      }
+      p.attackLines.splice(i,1); saveStore(); renderAttackLines(); compute();
+    });
     box.appendChild(div);
   });
 }
@@ -1208,22 +1240,100 @@ function attackLineFromSpecies(a,bab,size){
     noDamage:!a.damage
   });
 }
-$('applySpeciesPreset').onclick=()=>{
-  let type=currentProfile().entityType||'animal-companion';
-  if(['eidolon-chained','eidolon-unchained'].includes(type)) return applyEidolonPreset(type);
-  if(type==='phantom') return applyPhantomPreset();
-  if(type==='familiar') return applyFamiliarPreset();
-  let species=COMPANION_SPECIES.find(s=>s.id===$('speciesPreset').value);
-  if(!species){alert('Choose a species preset first, or keep using the manual fields.');return;}
+function speciesOriginPrefix(speciesId){ return 'preset:species:'+speciesId+':'; }
+function speciesAdvancedAt(species, eff){ return !!(species.advancement && eff>=species.advancement.level); }
+function speciesAbilityBaselineFor(species, advanced){
+  let base=species.starting.abilities||{}, adj=(advanced&&species.advancement.abilityAdjustments)||{};
+  let out={};
+  ['str','dex','con','int','wis','cha'].forEach(k=>out[k]=(base[k]||0)+(adj[k]||0));
+  return out;
+}
+function speciesSizeFor(species, advanced){ return advanced&&species.advancement.size?species.advancement.size:species.starting.size; }
+function speciesAttackRulesFor(species, advanced){ return advanced&&species.advancement.replaceNaturalAttacks?species.advancement.replaceNaturalAttacks:species.starting.naturalAttacks; }
+// ANIMAL-MERGE-001: mirrors FAMILIAR-MERGE-001/EVOL-MERGE-001/PHANTOM-MERGE-001, applied
+// to Animal Companion/Mount species presets, which previously had none of that safety at
+// all -- the old applySpeciesPreset() handler unconditionally overwrote all six ability
+// scores AND fully replaced p.attackLines on every click, and nothing ever resynced it
+// again afterward (no reapply on BAB/level/source-class changes, unlike every sibling
+// entity type), so a level-up crossing a species' advancement.level left size/attacks/
+// BAB silently stale until the player manually reapplied and re-lost every edit.
+//
+// `explicit` distinguishes the two calling contexts this ticket asked to separate:
+//  - true  (the "Apply preset stats & attacks" button): may reset ability scores to the
+//    species' own defaults and resurrect a previously user-removed generated attack --
+//    an intentional "start fresh from this species" action.
+//  - false (BAB/level/source-class edits, "Reapply progression"): must never reset
+//    unrelated user edits. Ability scores only shift by the CHANGE in the species' own
+//    contribution (this species' starting/advancement numbers, tracked in
+//    p.speciesAbilityBaseline from the last apply/sync) -- a manual edit on top survives
+//    an advancement-level crossing in either direction. A deliberately-removed generated
+//    attack (tracked in p.removedSpeciesAttackOrigins, set by the remove-attack-line
+//    button) is never resurrected.
+// Attack lines get a stable origin ('preset:species:<speciesId>:<attackName>', lowercased)
+// so a rebuild MERGES instead of replacing: SPECIES_ATTACK_PRESERVED_FIELDS survive from
+// the old line (manual edits like enhancement/notes/manual adjustments/critical settings),
+// only atkBonus/die/etc reflect the CURRENT bab/size. A line with origin:'manual', or any
+// originless line that isn't a one-time legacy name-match for a newly generated attack, is
+// never touched or dropped. Switching species drops only the PREVIOUSLY-applied species'
+// own generated lines (p.animalSpeciesApplied), never a manual or unrelated line.
+const SPECIES_ATTACK_PRESERVED_FIELDS=['manualHitAdj','manualDmgAdj','enhancement','extraDice','extraDamageType','extraDiceMultipliesOnCrit','extra','range','threat','critMult','damageType','noDamage'];
+function applyAnimalCompanionPresetCore(speciesId, explicit){
+  let species=COMPANION_SPECIES.find(s=>s.id===speciesId);
+  if(!species) return false;
+  let p=currentProfile();
   let eff=effectiveCompanionLevel($('sourceClass').value,+$('ownerLevel').value||0)||0;
-  let advanced=species.advancement&&eff>=species.advancement.level;
-  let base=species.starting.abilities, adj=advanced?(species.advancement.abilityAdjustments||{}):{};
-  ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=(base[k]||0)+(adj[k]||0));
-  let size=advanced&&species.advancement.size?species.advancement.size:species.starting.size;
-  let attacks=advanced&&species.advancement.replaceNaturalAttacks?species.advancement.replaceNaturalAttacks:species.starting.naturalAttacks;
-  let bab=+$('bab').value||0, p=currentProfile();
+  let advanced=speciesAdvancedAt(species,eff);
+  let baseline=speciesAbilityBaselineFor(species,advanced);
+  if(explicit){
+    ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=baseline[k]);
+  } else {
+    let prevBaseline=(p.animalSpeciesApplied===species.id && p.speciesAbilityBaseline) ? p.speciesAbilityBaseline : null;
+    if(prevBaseline){
+      ['str','dex','con','int','wis','cha'].forEach(k=>{
+        let delta=(baseline[k]||0)-(prevBaseline[k]||0);
+        if(delta) $(k).value=(+$(k).value||0)+delta;
+      });
+    }
+    // No previous baseline to diff against (first automatic sync for this species, or a
+    // legacy profile) -- nothing safe to apply, so ability scores are left exactly as
+    // they are; the player's next explicit "Apply preset" click establishes one.
+  }
+  let size=speciesSizeFor(species,advanced);
+  let attackRules=speciesAttackRulesFor(species,advanced);
+  let bab=+$('bab').value||0;
+  let oldLines=p.attackLines||[];
+  let previousSpeciesId=p.animalSpeciesApplied;
+  let droppedPrefix=(previousSpeciesId && previousSpeciesId!==species.id)?speciesOriginPrefix(previousSpeciesId):null;
+  let survivingOldLines=droppedPrefix?oldLines.filter(l=>!(l.origin&&l.origin.startsWith(droppedPrefix))):oldLines.slice();
+  if(explicit) p.removedSpeciesAttackOrigins=[]; // explicit re-apply may resurrect a previously-removed generated attack, same as resetting ability scores
+  let tombstones=new Set(p.removedSpeciesAttackOrigins||[]);
+  let manualLines=survivingOldLines.filter(l=>l.origin==='manual');
+  let ownPrefix=speciesOriginPrefix(species.id);
+  let byOrigin={};
+  survivingOldLines.forEach(l=>{ if(l.origin && l.origin.startsWith(ownPrefix)) byOrigin[l.origin]=l; });
+  let consumedLegacy=new Set();
+  let generatedLines=(attackRules||[]).map(a=>{
+    let originKey=ownPrefix+(a.name||'').toLowerCase();
+    if(tombstones.has(originKey)) return null; // deliberately removed by the player -- do not resurrect
+    let line=attackLineFromSpecies(a,bab,size);
+    // Legacy fallback (unrestricted, same as FAMILIAR-MERGE-001/EVOL-MERGE-001): a
+    // generated attack saved before this origin scheme has no origin at all -- matched
+    // once by name so the first apply after this update migrates it instead of leaving
+    // a duplicate, regardless of whether this is a first-ever apply or a species switch.
+    let existing=byOrigin[originKey] || survivingOldLines.find(l=>!l.origin && !consumedLegacy.has(l) && l.name===line.name);
+    if(existing){
+      SPECIES_ATTACK_PRESERVED_FIELDS.forEach(f=>{ if(existing[f]!==undefined) line[f]=existing[f]; });
+      if(existing.name) line.name=existing.name;
+      if(!existing.origin) consumedLegacy.add(existing);
+    }
+    line.origin=originKey;
+    return line;
+  }).filter(Boolean);
+  let preservedOriginless=survivingOldLines.filter(l=>!l.origin && !consumedLegacy.has(l));
+  p.attackLines=generatedLines.concat(manualLines).concat(preservedOriginless);
   p.speciesPreset=species.id;
-  p.attackLines=(attacks||[]).map(a=>attackLineFromSpecies(a,bab,size));
+  p.animalSpeciesApplied=species.id;
+  p.speciesAbilityBaseline=baseline;
   syncUIIntoProfile();
   // The creatureSize <select> only lists Small/Medium/Large/Huge (all Eidolon/Phantom
   // ever produce) and stays hidden for this entity type, so syncUIIntoProfile() just
@@ -1232,6 +1342,29 @@ $('applySpeciesPreset').onclick=()=>{
   p.creatureSize=size;
   saveStore(); renderAttackLines(); compute();
   $('speciesPresetNote').textContent=species.name+' applied at effective companion level '+eff+' ('+size+(advanced?', advanced package active':' starting package')+'). All fields remain editable.';
+  return true;
+}
+// ANIMAL-APPLY-DISTINCT-001: p.speciesPreset just mirrors the <select> (syncUIIntoProfile
+// writes it on nearly every field edit, for every entity type), so it can't tell "the
+// player picked this species in the dropdown" apart from "this species' stats/attacks are
+// actually on the profile" -- p.animalSpeciesApplied is set ONLY by
+// applyAnimalCompanionPresetCore, so a level/BAB/source-class edit after merely selecting
+// a new species (without clicking Apply) keeps syncing whatever was PREVIOUSLY applied
+// instead of silently populating the new, un-applied selection.
+function reapplyAnimalCompanionPresetIfActive(){
+  let p=currentProfile();
+  if(!['animal-companion','mount'].includes(p.entityType||'')) return;
+  if(!p.animalSpeciesApplied) return;
+  applyAnimalCompanionPresetCore(p.animalSpeciesApplied, false);
+}
+$('applySpeciesPreset').onclick=()=>{
+  let type=currentProfile().entityType||'animal-companion';
+  if(['eidolon-chained','eidolon-unchained'].includes(type)) return applyEidolonPreset(type);
+  if(type==='phantom') return applyPhantomPreset();
+  if(type==='familiar') return applyFamiliarPreset();
+  let speciesId=$('speciesPreset').value;
+  if(!speciesId || !COMPANION_SPECIES.some(s=>s.id===speciesId)){alert('Choose a species preset first, or keep using the manual fields.');return;}
+  applyAnimalCompanionPresetCore(speciesId, true);
 };
 
 function lineFromRuleAttack(a,bab,size){
@@ -1961,7 +2094,11 @@ function compute(){
   // so the results table below still rendered full attack numbers as if the
   // companion existed. Suppress results instead (unless the player has explicitly
   // taken manual control via hdBabOverride -- a homebrew earlier companion, say).
-  let recognizedCompanionSources=['druid','hunter','ranger','paladin','cavalier'];
+  // Paladin/cavalier are deliberately excluded here (see PALADIN-MOUNT-TABLE-001):
+  // effectiveCompanionLevel() never returns a level for them, so treating them as
+  // "recognized" would suppress results at every level -- they're fully manual, same
+  // as "Other / homebrew", and should never be suppressed.
+  let recognizedCompanionSources=['druid','hunter','ranger'];
   let companionNotYetActive = entityUsesAnimalProgression && recognizedCompanionSources.includes($('sourceClass').value) && (eff===null||eff<=0) && !p.hdBabOverride;
   let strDexAdj = (eff && eff>=1 && eff<=20) ? ANIMAL_COMPANION_TABLE[eff].strDexAdj : 0;
   let progressionAbilityAdj={str:strDexAdj,dex:strDexAdj,con:0,int:0,wis:0,cha:0};
