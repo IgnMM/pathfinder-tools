@@ -1378,7 +1378,12 @@ function applyPhantomPreset(){
     // PHANTOM-SCOPE-001: carry the source data's own attackScope/attackNames onto the
     // generated custom entry unchanged -- Aura of Fury's "melee" here is what keeps it
     // off a manually-added Bite or ranged attack line once compute() filters by it.
-    let c={id:'phantom-focus-'+f.key,name:focus.name+': '+f.key.replaceAll('-',' '),category:'other',source:'Phantom emotional focus',valueMode:'info',appliesTo:['attack','damage'],type:f.bonusType||'untyped',atk:0,dmg:0,dice:'',diceType:'',diceMultipliesOnCrit:false,on:false,custom:true,
+    // ENTITY-SCOPE-001: entityScope:'phantom' marks this as generated-for-Phantom-only,
+    // so customEffectAppliesToCurrentEntity() can hide/disable it (without deleting it)
+    // the moment entityType switches away, and bring it back unchanged if it switches
+    // back. The id prefix alone already implied this, but the explicit field is cheap
+    // and makes intent obvious to anything reading the profile later.
+    let c={id:'phantom-focus-'+f.key,name:focus.name+': '+f.key.replaceAll('-',' '),category:'other',source:'Phantom emotional focus',valueMode:'info',appliesTo:['attack','damage'],type:f.bonusType||'untyped',atk:0,dmg:0,dice:'',diceType:'',diceMultipliesOnCrit:false,on:false,custom:true,entityScope:'phantom',
       attackScope:f.attackScope, attackNames:f.attackNames,
       note:[f.condition, f.manifestationRequired?'Requires '+f.manifestationRequired+' manifestation':''].filter(Boolean).join('; ')};
     if(['typedAttackBonus','conditionalAttackDamage','conditionalAttackAndDie'].includes(f.operation)){
@@ -1425,7 +1430,7 @@ function renderCategories(){
   CATS.forEach(cat=>{
     let block=document.createElement('div'); block.className='catBlock';
     let activeInCat=p.active.filter(a=>{ let m=MODIFIERS.find(x=>x.id===a.id); return m && m.category===cat.k; });
-    let customInCat=p.custom.filter(c=>c.category===cat.k);
+    let customInCat=p.custom.filter(c=>c.category===cat.k && customEffectAppliesToCurrentEntity(c,p));
     block.innerHTML=`<h3>${cat.label} <span class="count">${activeInCat.length+customInCat.length} active</span></h3>`;
     let addRow=document.createElement('div'); addRow.className='addRow';
     let listId='dl_'+cat.k;
@@ -1593,6 +1598,16 @@ function entryAppliesToLine(e, line){
   if(e.attackNames && e.attackNames.length && !e.attackNames.includes(line.name)) return false;
   return true;
 }
+// ENTITY-SCOPE-001: a generated custom effect (currently only Phantom emotional-focus
+// entries, id-prefixed 'phantom-focus-') stays in p.custom across an entityType switch
+// so it comes back unchanged if the player switches back -- but it must never remain
+// visible or contribute while a DIFFERENT entity is active. The id-prefix fallback
+// covers effects saved before entityScope existed; ordinary user-created custom
+// effects have neither an entityScope nor that id prefix, so they're never gated here.
+function customEffectAppliesToCurrentEntity(effect, profile){
+  const scope = effect.entityScope || (String(effect.id||'').startsWith('phantom-focus-') ? 'phantom' : null);
+  return !scope || scope===profile.entityType;
+}
 // ---------- Stacking engine ----------
 function stackTotal(entries){
   let dodgeAndUntyped=0, penalties=0;
@@ -1641,7 +1656,7 @@ function collectContributions(ctx){
     if(isOff) noteText=(noteText||'')+' (not active right now)';
     breakdown.push({name:m.name,category:m.category,type:effType,atk:perLineAbility?null:(m.appliesTo.includes('attack')?r.attack:null),dmg:perLineAbility?null:(m.appliesTo.includes('damage')?r.damage:null),note:noteText,suppressed:false,off:isOff});
   });
-  p.custom.forEach(c=>{
+  p.custom.filter(c=>customEffectAppliesToCurrentEntity(c,p)).forEach(c=>{
     let isOff=c.on===false;
     let mode=c.valueMode||(c.dice?((c.atk||c.dmg)?'both':'dice'):'fixed');
     let applies=Array.isArray(c.appliesTo)?c.appliesTo:['attack','damage'];
@@ -1759,7 +1774,7 @@ function compute(){
     let row=PHANTOM_PROGRESSION.levels[entityLevel-1], anger=p.phantomFocus==='anger';
     progressionAbilityAdj[anger?'str':'dex']=row.dexChaBonus; progressionAbilityAdj.cha=row.dexChaBonus;
   }
-  (p.custom||[]).filter(c=>c.on!==false&&c.abilityAdjustments).forEach(c=>{
+  (p.custom||[]).filter(c=>c.on!==false&&c.abilityAdjustments&&customEffectAppliesToCurrentEntity(c,p)).forEach(c=>{
     Object.entries(c.abilityAdjustments).forEach(([ability,value])=>progressionAbilityAdj[ability]=(progressionAbilityAdj[ability]||0)+(+value||0));
   });
   let ctx={
@@ -1835,7 +1850,7 @@ function compute(){
       // once give 1+2 = 3 total steps, not just Strong Jaw's 2.
       let actualSizeDieEligible=['natural','manufactured'].includes(line.atkType||'natural');
       let strongJawEligible=(line.atkType||'natural')==='natural';
-      let customDieSteps=(p.custom||[]).filter(c=>c.on!==false&&c.damageDieSteps).reduce((n,c)=>n+(+c.damageDieSteps||0),0);
+      let customDieSteps=(p.custom||[]).filter(c=>c.on!==false&&c.damageDieSteps&&customEffectAppliesToCurrentEntity(c,p)).reduce((n,c)=>n+(+c.damageDieSteps||0),0);
       let sizeSteps = (animalGrowthOn&&actualSizeDieEligible?1:0) + (strongJawOn&&strongJawEligible?2:0) + (actualSizeDieEligible?customDieSteps:0);
       let effDie = applySizeSteps(die, sizeSteps);
       let critMult = +line.critMult||2;
