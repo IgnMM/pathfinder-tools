@@ -1637,21 +1637,13 @@ function sizeAttackModifier(size){
 //  - Animal Companion Base Statistics table: "An animal companion gains Multiattack as a
 //    bonus feat if it has three or more natural attacks and does not already have that
 //    feat. If it does not have the requisite three or more natural attacks, the animal
-//    companion instead gains a second attack with ITS PRIMARY NATURAL WEAPON, albeit at
-//    a -5 penalty." RE-VERIFIED (not just assumed) after a follow-up report claimed this
-//    should read "one of its natural weapons" like the Eidolon table below: d20pfsrd's
-//    Animal Companions page gave "its primary natural weapon" on four independent
-//    fetches across two sessions; the one fetch that returned "one of its natural
-//    weapons" (from the Druid class page on legacy.aonprd.com) did not reproduce that
-//    clause at all on a stricter, quote-only re-fetch of the same page, and is the more
-//    likely case of the fetch tool conflating this table with the Eidolon table's own
-//    (genuinely different) wording just below -- kept as PRIMARY-only pending a directly
-//    quotable primary source that says otherwise.
+//    companion instead gains a second attack with ONE OF ITS NATURAL WEAPONS, albeit at
+//    a -5 penalty." Confirmed in both the Core Rulebook Druid chapter and the PF1e
+//    Archives of Nethys Companion class page; neither restricts the choice to primary.
 //  - Eidolon Base Statistics table: "...the eidolon instead gains a second attack with
 //    ONE OF ITS NATURAL WEAPONS, albeit at a -5 penalty. If the eidolon later gains 3 or
 //    more natural attacks, it loses this additional attack and instead gains
-//    Multiattack." -- an Eidolon may choose ANY qualifying natural weapon (primary or
-//    secondary); an Animal Companion only a PRIMARY one (pickPrimaryOnly below).
+//    Multiattack." Both creatures may choose a primary or secondary natural weapon.
 // A "qualifying natural attack" for the 3-attack threshold is an ordinary melee natural
 // weapon (atkType 'natural', mode 'primary' or 'secondary') that is neither the granted
 // extra attack itself (multiattackGranted -- excluded so it never re-triggers its own
@@ -1688,9 +1680,7 @@ const MULTIATTACK_EXTRA_PRESERVED_FIELDS=['lineId','extra','manualHitAdj','manua
 // merged attackLines list -- generated + manual + preserved) and returns the corrected
 // array. Never mutates the input array's own identity; DOES mutate individual qualifying
 // secondary lines' atkBonus in place (same as the single-line adjustment this replaces).
-// `pickPrimaryOnly`: true for Animal Companion/Mount (RAW: "its primary natural
-// weapon"), false for Eidolon (RAW: "one of its natural weapons").
-function applyMultiattackRule(p, lines, level, bab, size, pickPrimaryOnly){
+function applyMultiattackRule(p, lines, level, bab, size){
   let withoutGranted=(lines||[]).filter(l=>!l.multiattackGranted);
   let existingGranted=(lines||[]).find(l=>l.multiattackGranted);
   let resetSecondaries=()=>withoutGranted.forEach(l=>{ if(isAutoAdjustableSecondaryLine(l)) l.atkBonus=bab+sizeAttackModifier(size)-5; });
@@ -1704,7 +1694,7 @@ function applyMultiattackRule(p, lines, level, bab, size, pickPrimaryOnly){
     return withoutGranted;
   }
   resetSecondaries();
-  let candidates=withoutGranted.filter(l=>isQualifyingNaturalAttackLine(l) && (!pickPrimaryOnly || l.mode==='primary'));
+  let candidates=withoutGranted.filter(isQualifyingNaturalAttackLine);
   if(!candidates.length) return withoutGranted; // no natural weapon exists to grant the extra attack on -- left off, see the picker note
   let sourceId=p.multiattackExtraSourceLineId;
   let source=sourceId?candidates.find(c=>c.lineId===sourceId):null;
@@ -1717,12 +1707,10 @@ function applyMultiattackRule(p, lines, level, bab, size, pickPrimaryOnly){
     die:source.die, hitAbility:source.hitAbility, dmgAbility:source.dmgAbility, dmgAbilityMult:source.dmgAbilityMult,
     damageType:source.damageType, threat:source.threat||'20', critMult:source.critMult||2, enhancement:source.enhancement||0,
     baseDamageBonus:source.baseDamageBonus||0,
-    // The -5 here is the Multiattack table's own ADDITIONAL-ATTACK penalty, always -5
-    // regardless of the source weapon's own mode -- never the -2 a qualifying Multiattack
-    // creature's SECONDARY natural attacks get, and never 0 even when the source is a
-    // primary weapon. Distinguishing this line from an ordinary secondary natural weapon
-    // is the whole point of the rule this models.
-    atkBonus:bab+sizeAttackModifier(size)-5
+    // The additional attack is five points below the chosen weapon's normal attack.
+    // A secondary weapon already has its own -5 penalty; this does not grant the
+    // Multiattack feat or erase that penalty.
+    atkBonus:(+source.atkBonus||0)-5
   });
   let sourceChanged=!existingGranted || existingGranted._extraAttackSourceLineId!==source.lineId;
   if(existingGranted){
@@ -1759,18 +1747,16 @@ function recomputeMultiattack(){
     if(hadGranted) renderAttackLines();
     return;
   }
-  let level, pickPrimaryOnly, size;
+  let level, size;
   if(isEidolon){
     level=Math.max(1,Math.min(20,+$('ownerLevel').value||p.ownerLevel||1));
-    pickPrimaryOnly=false;
     size=$('creatureSize').value||p.creatureSize||'Medium';
   } else {
     level=effectiveCompanionLevel($('sourceClass').value||p.sourceClass, +$('ownerLevel').value||p.ownerLevel||0)||0;
-    pickPrimaryOnly=true;
     size=p.creatureSize||'Medium';
   }
-  p.attackLines=applyMultiattackRule(p, p.attackLines||[], level, bab, size, pickPrimaryOnly);
-  renderMultiattackPicker({level,pickPrimaryOnly});
+  p.attackLines=applyMultiattackRule(p, p.attackLines||[], level, bab, size);
+  renderMultiattackPicker({level});
   renderAttackLines();
 }
 // Renders the persistent extra-attack-source picker (and a short explanatory note) into
@@ -1788,14 +1774,14 @@ function renderMultiattackPicker(ctx){
     box.innerHTML='<div class="emptyNote">Level '+ctx.level+', '+count+' natural attack'+plural+': qualifies for Multiattack. Every generated secondary natural attack line above now uses -2 instead of -5 automatically. A manually-added secondary natural attack line is not adjusted automatically -- reduce its own Base To-Hit by hand if Multiattack applies to it.</div>';
     return;
   }
-  let candidates=lines.filter(l=>isQualifyingNaturalAttackLine(l) && (!ctx.pickPrimaryOnly || l.mode==='primary'));
-  let ruleName=ctx.pickPrimaryOnly?'its primary natural weapon':'one of its natural weapons';
+  let candidates=lines.filter(isQualifyingNaturalAttackLine);
+  let ruleName='one of its natural weapons';
   if(!candidates.length){
     box.innerHTML='<div class="emptyNote">Level '+ctx.level+', '+count+' natural attack'+plural+' (fewer than 3): would gain an extra attack with '+ruleName+' at -5, but there\'s no qualifying natural weapon line to grant it on -- left off. Add a natural melee attack line first if this creature should have one.</div>';
     return;
   }
   let granted=lines.find(l=>l.multiattackGranted);
-  let baseNote='Level '+ctx.level+', '+count+' natural attack'+plural+' (fewer than 3): gains an extra attack with '+ruleName+' at -5'+(granted?' (added below as "'+granted.name+'")':'')+' -- distinguishable from an ordinary secondary natural weapon: this -5 is the additional-attack penalty, not a reduced Multiattack secondary penalty. Its damage dice and ability multiplier follow whichever weapon is chosen below.';
+  let baseNote='Level '+ctx.level+', '+count+' natural attack'+plural+' (fewer than 3): gains an extra attack with '+ruleName+' at -5 relative to that weapon\'s normal attack'+(granted?' (added below as "'+granted.name+'")':'')+' -- a secondary weapon retains its own secondary penalty as well. Its damage dice and ability multiplier follow whichever weapon is chosen below.';
   if(candidates.length===1){
     box.innerHTML='<div class="emptyNote">'+baseNote+'</div>';
     return;
