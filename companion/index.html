@@ -1622,6 +1622,7 @@ function applyEidolonPreset(type){
     let by=a.damageBySize||{};
     return by[size]||(size==='Small'&&by.Medium?diceSizeDown(by.Medium):by.Medium||a.damage||'');
   };
+  let improvedDamageAppliedTargets=new Set();
   selected.forEach(chosen=>{
     let ad=attackAdapters[chosen.key]; if(!ad)return;
     // EVOL-INSTANCE-001: chosen.instanceId (backfilled for old profiles during load --
@@ -1640,7 +1641,14 @@ function applyEidolonPreset(type){
       if(existing) existing.strengthMultiplier=ad.existingAttackStrengthMultiplier;
       else attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:originKey,_legacyOriginKey:legacyOriginKey}));
     } else if(ad.operation==='increaseSelectedAttackDie'){
-      let target=(chosen.target||'').toLowerCase(), found=attacks.find(a=>a.name.toLowerCase()===target); if(found) found.damage=diceSizeUp(found.damage);
+      // SIZE-STEP-CLASSIFY-001: Improved Damage's own rule data says
+      // "stacking":"doesNotStackOnSameAttack" -- picking it twice (two separate
+      // instanceIds) targeting the SAME attack must still only up-size that attack's
+      // die ONCE, not twice. _improvedDamageAppliedTargets tracks which attack names
+      // have already been up-sized THIS rebuild pass (a plain local Set, reset every
+      // call to this function -- never persisted on the line/profile itself).
+      let target=(chosen.target||'').toLowerCase(), found=attacks.find(a=>a.name.toLowerCase()===target);
+      if(found && !improvedDamageAppliedTargets.has(target)){ found.damage=diceSizeUp(found.damage); improvedDamageAppliedTargets.add(target); }
     }
   });
   // EVOL-MERGE-001: every entry in `attacks` above now carries a stable _originKey
@@ -1793,8 +1801,20 @@ function applyPhantomPreset(){
       c.valueMode='dice'; c.dice=level>=18&&f.atLevel18?f.atLevel18:f.dice; c.diceType=f.damageType||''; c.diceMultipliesOnCrit=!!f.multipliesOnCritical;
     } else if(f.operation==='compoundActiveEffect'){
       c.valueMode='fixed'; c.atk=f.attackSizeModifier||0; c.abilityAdjustments=f.abilityAdjustments||{}; c.damageDieSteps=f.sizeSteps||0;
+      // SIZE-STEP-CLASSIFY-001: bundles ability-score adjustments AND its own attack-
+      // size penalty alongside the die step (e.g. Ferocious Mien: Str/Dex/Con
+      // adjustments + a -1 size attack penalty + sizeSteps) -- the same signature as a
+      // genuine ACTUAL size-category increase (compare Animal Growth's own -1 size
+      // attack penalty + Str boost), not a pure "as if larger" damage-only trick.
+      if(c.damageDieSteps) c.dieStepKind='actual';
     }
-    if(f.damageSizeSteps)c.damageDieSteps=f.damageSizeSteps;
+    if(f.damageSizeSteps){
+      c.damageDieSteps=f.damageSizeSteps;
+      // A bare "as if size increased for damage" die bump with no accompanying ability-
+      // score or attack-size change (e.g. Dutiful Strike) -- the same shape as Strong
+      // Jaw/Improved Natural Attack's own effect, so classified 'effective'.
+      c.dieStepKind='effective';
+    }
     let existing=ownFocusOldByFeature[f.key];
     if(existing) c.on=existing.on;
     p.custom.push(c);
@@ -2467,21 +2487,49 @@ function compute(){
       let linePowerAttack=powerAttackOn&&powerAttackEligible?Math.floor((2*(1+Math.floor(Math.max(1,ctx.bab)/4)))*paFactor):0;
       let dmgBonus = (+line.baseDamageBonus||0) + strContribution + (lineDmgFromMods-(powerAttackOn?powerAttackDmgVal:0)) + linePowerAttack + manDmg;
       let die = (line.die||'1d4').trim();
-      // Animal Growth is an ACTUAL size increase (1 step); Strong Jaw is an EFFECTIVE
-      // size increase (2 steps, per its own text: "as if it were two size categories
-      // larger" -- without actually changing size). Per the PF1e FAQ ("Size increases
-      // and effective size increases"), one of each category stacks -- so both active at
-      // once give 1+2 = 3 total steps, not just Strong Jaw's 2.
+      // SIZE-STEP-CLASSIFY-001: Animal Growth is an ACTUAL size increase (1 step);
+      // Strong Jaw and Improved Natural Attack are both EFFECTIVE size increases (2 and
+      // 1 steps respectively -- Strong Jaw's own text: "as if it were two size
+      // categories larger"; Improved Natural Attack's: "as if the creature's size had
+      // increased by one category for that attack"; neither actually changes size,
+      // ability scores, or grants reach). Per the PF1e FAQ ("Size increases and
+      // effective size increases", https://paizo.com/paizo/faq/v5748nruor1fm#v5748eaic9t5u):
+      // multiple EFFECTIVE increases never stack, only the largest applies -- one ACTUAL
+      // increase can still combine with one effective increase, since they're different
+      // categories. So: Strong Jaw alone = 2; INA alone = 1; both together on the SAME
+      // line = max(2,1) = 2, never 2+1=3; Animal Growth + either = 1 + that effective
+      // value; all three = 1 + max(2,1) = 3, never 4.
       let actualSizeDieEligible=['natural','manufactured'].includes(line.atkType||'natural');
       let strongJawEligible=(line.atkType||'natural')==='natural';
-      let customDieSteps=(p.custom||[]).filter(c=>c.on!==false&&c.damageDieSteps&&customEffectAppliesToCurrentEntity(c,p)&&customEffectMeetsRuntimeRequirements(c,p)).reduce((n,c)=>n+(+c.damageDieSteps||0),0);
+      // A Phantom-generated custom effect's damageDieSteps is classified where it's
+      // created (applyPhantomPreset(): compoundActiveEffect entries, which bundle their
+      // own ability-score adjustments and attack-size penalty alongside the die step --
+      // the same signature as a genuine ACTUAL increase -- get dieStepKind:'actual';
+      // a bare damageSizeSteps field with no accompanying size-wide changes gets
+      // 'effective', matching Strong Jaw/INA's own shape). An OLDER or otherwise
+      // unclassified entry (dieStepKind absent) is never silently assumed to be either
+      // -- assuming 'effective' could shrink a value the player explicitly relied on
+      // applying in full (folded into a max() with something larger), and assuming
+      // 'actual' could wrongly cap it against Animal Growth. It's kept as its own
+      // always-additive third bucket instead, the most conservative reading available.
+      // Each pool is also scoped to this specific line the same way a normal custom atk/
+      // dmg contribution already is (entryAppliesToLine) -- the previous version applied
+      // every custom die-step source to every eligible line uniformly, regardless of the
+      // effect's own attackScope/attackNames (e.g. a per-line-conditional Phantom
+      // ability like Dutiful Strike).
+      let customStepEntries=(p.custom||[]).filter(c=>c.on!==false&&c.damageDieSteps&&customEffectAppliesToCurrentEntity(c,p)&&customEffectMeetsRuntimeRequirements(c,p)&&entryAppliesToLine(c,line));
+      let actualCustomSteps=customStepEntries.filter(c=>c.dieStepKind==='actual').reduce((n,c)=>n+(+c.damageDieSteps||0),0);
+      let effectiveCustomSteps=customStepEntries.filter(c=>c.dieStepKind==='effective').reduce((n,c)=>Math.max(n,+c.damageDieSteps||0),0);
+      let unclassifiedCustomSteps=customStepEntries.filter(c=>!c.dieStepKind).reduce((n,c)=>n+(+c.damageDieSteps||0),0);
       // TARGETED-NATURAL-001: Improved Natural Attack's step, scoped to exactly the one
       // targeted line by lineId -- computed fresh every render (never baked into
       // line.die), so a preset/level update that rebuilds this line never stacks a
       // second step on top, and switching the target or removing the feat instantly
       // reflects on the correct line, never a stale one.
       let inaSteps = (inaTargetLineId && line.lineId===inaTargetLineId && strongJawEligible) ? 1 : 0;
-      let sizeSteps = (animalGrowthOn&&actualSizeDieEligible?1:0) + (strongJawOn&&strongJawEligible?2:0) + (actualSizeDieEligible?customDieSteps:0) + inaSteps;
+      let actualSteps = (animalGrowthOn&&actualSizeDieEligible?1:0) + (actualSizeDieEligible?actualCustomSteps:0);
+      let effectiveSteps = Math.max(strongJawOn&&strongJawEligible?2:0, inaSteps, actualSizeDieEligible?effectiveCustomSteps:0);
+      let sizeSteps = actualSteps + effectiveSteps + (actualSizeDieEligible?unclassifiedCustomSteps:0);
       let effDie = applySizeSteps(die, sizeSteps);
       let critMult = +line.critMult||2;
       let critDmg = dmgBonus*critMult;
@@ -2584,7 +2632,16 @@ function compute(){
   notes.push('Each attack line\'s own Dmg mult sets its Strength multiplier: ×1.5 only if that line is truly the creature\'s single natural attack (or a two-handed weapon), ×1 for a Primary line among several, ×0.5 for Secondary — set per line in Attacks, never by a turn-by-turn checkbox.');
   if(strongJawOn) notes.push('Strong Jaw increases only Natural melee attack dice by two effective size steps; it is ignored on manufactured, touch and ranged-special rows.');
   if(animalGrowthOn) notes.push('Animal Growth increases Natural and Manufactured melee attack dice by one actual size step. It still changes abilities and attack size penalty for ranged rows, but does not enlarge ammunition/projectiles after they leave the creature.');
-  if(animalGrowthOn && strongJawOn) notes.push('On an eligible Natural melee attack, Animal Growth and Strong Jaw stack as one actual plus one effective increase: 3 damage-die steps total.');
+  if(inaActive && inaTargetLineId) notes.push('Improved Natural Attack increases only its one targeted attack\'s die by one EFFECTIVE size step — like Strong Jaw, it never actually changes size or ability scores.');
+  if((strongJawOn?1:0)+(inaActive&&inaTargetLineId?1:0)>=2) notes.push('Per the PF1e FAQ, multiple EFFECTIVE size increases on the same attack never add — only the largest applies (so Strong Jaw + Improved Natural Attack on the same attack is 2 steps, not 3).');
+  if(animalGrowthOn && ((strongJawOn?1:0)+(inaActive&&inaTargetLineId?1:0)>=1)) notes.push('On an eligible Natural attack affected by both, Animal Growth\'s actual step and the largest applicable effective step (Strong Jaw and/or Improved Natural Attack) combine: 1 + that step count — e.g. all three together is 3 total steps, not 4.');
+  // SIZE-STEP-CLASSIFY-001: a custom die-step effect this calculator can't confidently
+  // classify as actual or effective (see compute()) is applied as its own always-additive
+  // bucket rather than guessed into either pool -- surfaced here so the player knows to
+  // check it isn't double-counting against Strong Jaw/Improved Natural Attack/Animal
+  // Growth by hand.
+  let hasUnclassifiedCustomSteps=(p.custom||[]).some(c=>c.on!==false&&c.damageDieSteps&&!c.dieStepKind&&customEffectAppliesToCurrentEntity(c,p)&&customEffectMeetsRuntimeRequirements(c,p));
+  if(hasUnclassifiedCustomSteps) notes.push('One active custom effect increases a damage die by a step in a way this calculator can\'t confidently classify as an actual or effective size increase — it\'s added on top of everything else rather than combined with Strong Jaw/Improved Natural Attack/Animal Growth via the "largest effective + one actual" rule, so double-check by hand that it should really stack in full.');
   if(powerAttackOn) notes.push('Power Attack is rated per attack line from that line\'s own Mode/Dmg mult: ×1.5 for a two-handed weapon or a primary natural weapon whose Dmg mult is already ×1.5, ×0.5 on a Secondary line, ×1 otherwise.');
   if(furiousFocusOn && !powerAttackOn) notes.push('Furious Focus is active but Power Attack isn\'t — Furious Focus has no effect without it.');
   if(furiousFocusOn && powerAttackOn && furiousFocusEligibleIndex===-1) notes.push('Furious Focus is active but no two-handed weapon attack line was found (a Manufactured, non-Secondary line with Dmg mult ×1.5) — it never applies to a natural attack and has no effect until you add one.');
