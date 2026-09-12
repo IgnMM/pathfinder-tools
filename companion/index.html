@@ -445,20 +445,51 @@ const MODIFIERS = [
 {id:'furious-focus',name:'Furious Focus',category:'feat',source:"Advanced Player's Guide",appliesTo:['attack'],type:'special',
  desc:'Requires Power Attack, Str 13, BAB +1. Only while wielding a two-handed weapon (or a one-handed weapon in two hands): no Power Attack attack-roll penalty on the first attack of the turn made with it — applied automatically to that attack line only once you confirm it really is the first attack this round (see Results below); every natural attack, and any additional attack that turn, still takes the full penalty.',
  special:'furious-focus', compute:()=>({attack:0,damage:0,note:'waives Power Attack\'s attack penalty only on the two-handed weapon attack line, once confirmed as the first attack of the round (see Results below) — never on a natural attack'})},
-{id:'outflank',name:'Outflank',category:'feat',source:"Advanced Player's Guide",appliesTo:['attack'],type:'special',
- desc:'When flanking the same target as an ally who also has this feat, the flanking bonus on attack rolls increases from +2 to +4 (replaces the Flanking modifier below, don\'t stack both). Requires BAB +4.',
- compute:()=>({attack:0,damage:0,note:'special — if Flanking is also active below, use +4 instead of its +2 (don\'t add both)'})},
-{id:'precise-strike',name:'Precise Strike',category:'feat',source:"Advanced Player's Guide",appliesTo:['damage'],type:'special',
- desc:'While flanking the same target as an ally who also has this feat, deal an extra 1d6 precision damage on melee hits. Teamwork feat, requires Dex 13, BAB +1.',
- compute:()=>({attack:0,damage:0,note:'special — deals an extra 1d6 precision damage while flanking with a partner who also has this feat, not added to the totals above'})},
-{id:'paired-opportunists',name:'Paired Opportunists',category:'feat',source:"Advanced Player's Guide",appliesTo:['attack'],type:'circumstance',
- configFields:[{key:'value',label:'Bonus value',type:'number',default:4}],
- desc:'Teamwork feat: +4 circumstance bonus on attacks of opportunity against a creature threatened by both the companion and an adjacent ally who also has this feat.',
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:4);return {attack:v,damage:0,note:signed(v)+' atk (circumstance, attacks of opportunity only)'}}},
+// SITUATIONAL-COMBAT-001: Outflank, Precise Strike, Paired Opportunists and Aid Another
+// reviewed together with Charge/Flanking/Haste below (see those for the rest of this
+// pass). Outflank REPLACES Flanking's +2 with +4 (RAW: "your flanking bonus... increases
+// to +4") -- it must never simply ADD its own flat number on top (that would double count
+// to +6 relative to Flanking's own +2). Reads ctx.flankingOn (set once per compute() pass,
+// see collectContributions() below, the same pattern Character Calculator already uses for
+// its own Outflank) so its OWN contribution is exactly the +2 delta that brings the total
+// to +4 -- and nothing at all if Flanking isn't also active, since Outflank has no bonus of
+// its own to grant on its own. Flanking's bonus is melee-only (attacking from a flank), so
+// Outflank is scoped the same way.
+{id:'outflank',name:'Outflank',category:'feat',source:"Advanced Player's Guide",appliesTo:['attack'],type:'untyped',
+ attackScope:'melee',
+ desc:'When flanking the same target as an ally who also has this feat, the flanking bonus on melee attack rolls increases from +2 to +4. Requires the Flanking entry above to also be active — contributes the +2 that takes Flanking\'s own +2 up to a net +4; on its own (Flanking not active) it grants nothing. Requires BAB +4.',
+ compute:(ctx)=>ctx.flankingOn
+   ? {attack:2,damage:0,note:'+2 additional (Flanking\'s own +2 becomes +4 total) — melee only'}
+   : {attack:0,damage:0,note:'no effect — requires Flanking to also be active'}},
+// Precise Strike's extra 1d6 precision damage on a melee hit is modeled as a real extra
+// damage die (the same extraDice mechanism a custom effect's own dice field already uses),
+// scoped melee-only per its own text -- previously it was purely informational (never
+// added to the shown Normal/Critical Damage at all). Precision damage doesn't apply against
+// oozes, elementals, swarms, incorporeal creatures, constructs or (usually) undead --
+// neither calculator here tracks a specific current target's type, so that exemption stays
+// a manual judgment call, flagged in the note rather than silently assumed away.
+{id:'precise-strike',name:'Precise Strike',category:'feat',source:"Advanced Player's Guide",appliesTo:['damage'],type:'untyped',
+ attackScope:'melee',
+ desc:'While flanking the same target as an ally who also has this feat, deal an extra 1d6 precision damage on melee hits. Teamwork feat, requires Dex 13, BAB +1. Precision damage doesn\'t apply against oozes, elementals, swarms, incorporeal creatures, constructs, or most undead — judge that by hand, it isn\'t tracked here.',
+ compute:()=>({attack:0,damage:0,extraDice:{dice:'1d6',type:'',multiplies:false},note:'+1d6 precision damage (melee only, not multiplied on a crit) — doesn\'t apply against precision-immune creatures (oozes, elementals, swarms, incorporeal, constructs, most undead); judge that by hand'})},
+// Paired Opportunists' +4 only applies on an attack of opportunity -- but every row in
+// Results represents a normal attack (there is no "this is an AoO" mode anywhere in this
+// calculator), so there is no line its condition is ever actually true for. Previously this
+// added +4 to every ordinary attack unconditionally, which is never correct for what's
+// actually shown. Purely informational now, same as Multiattack above -- add its bonus by
+// hand only when you're actually resolving an attack of opportunity.
+{id:'paired-opportunists',name:'Paired Opportunists',category:'feat',source:"Advanced Player's Guide",appliesTo:[],type:'special',
+ desc:'Teamwork feat: +4 circumstance bonus on attacks of opportunity against a creature threatened by both the companion and an adjacent ally who also has this feat. Never applies to a normal attack — every row in Results represents a normal attack, not an attack of opportunity — so this is informational only; add +4 by hand when you\'re actually resolving an AoO.',
+ compute:()=>({attack:0,damage:0,note:'special — attacks of opportunity only; none of the Results rows are an AoO, so no automatic bonus is added — apply +4 by hand when resolving one'})},
+// Aid Another's granted bonus is explicitly framed "in melee combat" (Core Rulebook) --
+// scoped melee-only. Multiple simultaneous grants (allowMultiple, one per aiding ally) are
+// correctly summed already: RAW says "similar bonuses stack," and circumstance bonuses are
+// in stackTotal()'s always-sum bucket regardless.
 {id:'aid-another',name:'Aid Another',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'circumstance',allowMultiple:true,
+ attackScope:'melee',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:'An adjacent ally spends a standard action and succeeds at an attack roll (DC 10 vs the target\'s AC) to grant a +2 bonus on the companion\'s next attack roll against that same target. Add once per ally who successfully aids.',
- compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' atk (circumstance, next attack roll only)'}}},
+ desc:'An adjacent ally spends a standard action and succeeds at a melee attack roll (DC 10 vs the target\'s AC) to grant a +2 bonus on the companion\'s next melee attack roll against that same target. Add once per ally who successfully aids — multiple simultaneous grants stack.',
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' atk (circumstance, next melee attack roll only)'}}},
 {id:'bless',name:'Bless',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack'],type:'morale',
  desc:'+1 morale bonus on attack rolls (also vs. fear saves, not modeled here). Affects every ally in the area, including a companion.',
  compute:()=>({attack:1,damage:0,note:'+1 atk (morale)'})},
@@ -512,6 +543,11 @@ const MODIFIERS = [
 {id:'prayer',name:'Prayer',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'luck',
  desc:'+1 luck bonus on attack and weapon damage rolls (does not stack with Divine Favor — both are luck).',
  compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (luck)'})},
+// SITUATIONAL-COMBAT-001: reviewed alongside Charge/Flanking/Outflank/Precise Strike/
+// Paired Opportunists/Aid Another above -- Haste's +1 is unrestricted by RAW (applies to
+// melee AND ranged attack rolls alike), so no attackScope is needed here; already correct.
+// The extra full-BAB attack stays informational -- an entire extra Results row, not a
+// per-line number, so it's out of scope for a bonus-scoping fix.
 {id:'haste',name:'Haste',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'untyped',
  desc:'+1 on attack rolls (untyped). Also grants an extra attack at full base attack bonus on a full attack — not modeled per-line here, just roll an extra copy of whichever attack line you\'d normally repeat.',
  compute:()=>({attack:1,damage:0,note:'+1 atk, plus one extra attack at full bonus — repeat one attack line by hand'})},
@@ -554,12 +590,22 @@ const MODIFIERS = [
  desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls. Affects every ally who can hear it, including a companion.',
  configFields:[{key:'bardLvl',label:'Bard level',type:'number',default:5,linkLevel:true}],
  compute:(ctx,cfg)=>{let l=cfg.bardLvl||1,b=l>=17?4:l>=11?3:l>=5?2:1;return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (competence)'}}},
+// SITUATIONAL-COMBAT-001: Charge requires "a single melee attack" (RAW) -- ranged
+// attacks can't be made as part of a charge, so this must never reach a ranged line.
+// Applied to every eligible melee line rather than one selected line: unlike Vital
+// Strike (which replaces a WHOLE ROUND with one attack, so showing it on every line
+// would wrongly imply getting it on all of them simultaneously), each Results row
+// already stands alone as "if this were the attack I make" -- Charge's own condition
+// (charging instead of a normal move+attack) is compatible with any single one of them
+// being that attack, so showing +2 on every melee row is consistent, not double-counted.
 {id:'charge',name:'Charge',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'untyped',
- desc:'+2 on the attack roll (and -2 AC, not modeled here). One attack only, full-round action.',
- compute:()=>({attack:2,damage:0,note:'+2 atk'})},
+ attackScope:'melee',
+ desc:'+2 on the attack roll (and -2 AC, not modeled here). Requires a single melee attack as part of the charge — never a ranged attack.',
+ compute:()=>({attack:2,damage:0,note:'+2 atk (melee only)'})},
 {id:'flanking',name:'Flanking',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'untyped',
- desc:'+2 on melee attack rolls when the companion and an ally threaten opposite sides of the target.',
- compute:()=>({attack:2,damage:0,note:'+2 atk'})},
+ attackScope:'melee',
+ desc:'+2 on melee attack rolls when the companion and an ally threaten opposite sides of the target. Never applies to a ranged attack.',
+ compute:()=>({attack:2,damage:0,note:'+2 atk (melee only)'})},
 {id:'hr-pa-no-crit',name:'Power Attack damage not multiplied on critical hits',category:'houserule',source:'House Rule',appliesTo:[],type:'special',
  desc:'Standard PF1e RAW: Power Attack\'s damage bonus IS multiplied by the crit multiplier. Some tables house-rule this to NOT be multiplied — add this entry if that\'s how your table plays it.',
  compute:()=>({attack:0,damage:0,note:'Power Attack damage excluded from the crit multiplier — see Critical Damage per line'})},
@@ -2167,6 +2213,10 @@ function collectContributions(ctx){
   let p=currentProfile();
   let atkEntries=[], dmgEntries=[], extraDice=[], breakdown=[];
   let powerAttackOn=false, powerAttackDmgVal=0, powerAttackAtkVal=0;
+  // SITUATIONAL-COMBAT-001: Outflank's own compute() needs to know whether Flanking is
+  // ALSO active, regardless of which order the two happen to sit in p.active -- resolved
+  // once up front (same pattern Character Calculator already uses for its own Outflank).
+  ctx.flankingOn = p.active.some(a=>a.id==='flanking' && a.on!==false);
   p.active.forEach(a=>{
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
     // Re-validate here, not just at selection time: an old saved profile (or a manually
@@ -2192,6 +2242,11 @@ function collectContributions(ctx){
         let scope=m.attackScope, names=r.attackNames, lineIds=r.attackLineIds;
         if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name,attackScope:scope,attackNames:names,attackLineIds:lineIds});
         if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name,attackScope:scope,attackNames:names,attackLineIds:lineIds});
+        // SITUATIONAL-COMBAT-001: a MODIFIERS entry can now also contribute an extra
+        // damage die (e.g. Precise Strike's 1d6), the same extraDice mechanism a custom
+        // effect's own dice field already feeds -- scoped by the SAME attackScope/
+        // attackNames/attackLineIds as its flat atk/dmg contribution above.
+        if(r.extraDice) extraDice.push({dice:r.extraDice.dice,type:r.extraDice.type||'',multiplies:!!r.extraDice.multiplies,source:m.name,attackScope:scope,attackNames:names,attackLineIds:lineIds});
       }
     }
     let noteText = perLineAbility ? 'Ability adjustment applied separately to each attack line that uses this ability'+(m.id==='animal-growth'?'; includes the shared -1 size attack penalty':'') : r.note;
