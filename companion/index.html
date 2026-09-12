@@ -259,10 +259,15 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <section class="card card-results">
 <h2>Results</h2>
 <div id="attackResults"></div>
+<div id="furiousFocusFirstAttackBox" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border,#2a3140)">
+  <div class="small" style="color:var(--muted);font-size:.85rem">Furious Focus (two-handed weapon only)</div>
+  <label style="display:flex;align-items:center;gap:6px;font-size:.85rem;margin:6px 0"><input type="checkbox" id="furiousFocusFirstAttack"> The two-handed weapon attack really is the FIRST attack made this round?</label>
+  <div class="emptyNote">Furious Focus only waives Power Attack's penalty on the very first attack of the turn, made with the two-handed weapon — never a natural attack, and never if a different attack (natural or otherwise) came before it. This calculator doesn't track attack order, so confirm it here rather than have it assumed from display order.</div>
+</div>
 <div id="vitalStrikeBox" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border,#2a3140)">
-  <div class="small" style="color:var(--muted);font-size:.85rem">Vital Strike (single attack action only — never combine with a full attack or with Rend)</div>
+  <div class="small" style="color:var(--muted);font-size:.85rem">Vital Strike (single attack action only)</div>
   <div class="row rowNarrow" style="margin-top:6px"><label>Attack receiving Vital Strike</label><select id="vitalStrikeAttackSelect"></select></div>
-  <div class="emptyNote">Applies only to the one attack line selected here; every other line's Normal/Critical Damage above stays unaffected.</div>
+  <div class="emptyNote">Applies only to the one attack line selected here; every other line's Normal/Critical Damage above stays unaffected. A normal single attack action provides only one attack this round — see the Rend result below if Rend's condition is also checked.</div>
 </div>
 <div id="rendResultBox" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border,#2a3140)">
   <div class="small" style="color:var(--muted);font-size:.85rem">Rend (conditional, no attack roll)</div>
@@ -421,15 +426,18 @@ const MODIFIERS = [
  compute:()=>({attack:0,damage:0,note:'requires "Taking the attack action this turn?" checked above — quadruples the chosen attack\'s Damage Die (pick it in the Vital Strike box under Results)'})},
 // FURIOUS-FOCUS-SCOPE-001: RAW requires "wielding a two-handed weapon or a one-handed
 // weapon with two hands" -- it can NEVER waive Power Attack's penalty on a natural
-// attack (bite/claw/etc), regardless of attack order. It only ever applies to whichever
-// attack line is structurally that two-handed weapon (Manufactured, non-Secondary, Dmg
-// mult x1.5 — the same fact that already drives that line's own x1.5 Power Attack
-// scaling, see POWER-ATTACK-SCALE-001), never simply "the first row." If no such line
-// exists, Furious Focus has no effect at all this turn, however many natural attacks
-// are listed first.
+// attack (bite/claw/etc). It only ever applies to whichever attack line is structurally
+// that two-handed weapon (Manufactured, non-Secondary, Dmg mult x1.5 — the same fact
+// that already drives that line's own x1.5 Power Attack scaling, see POWER-ATTACK-
+// SCALE-001). FURIOUS-FOCUS-FIRST-ATTACK-001: RAW also restricts it to "the first
+// attack you make each turn" -- since this calculator has no concept of attack order
+// (attack lines are a set, not a timeline), finding a qualifying line is not evidence
+// it's actually first; the player confirms that explicitly in the Results panel
+// (furiousFocusFirstAttackConfirmed). If no qualifying line exists, or it isn't
+// confirmed as the first attack, Furious Focus has no effect at all this turn.
 {id:'furious-focus',name:'Furious Focus',category:'feat',source:"Advanced Player's Guide",appliesTo:['attack'],type:'special',
- desc:'Requires Power Attack, Str 13, BAB +1. Only while wielding a two-handed weapon (or a one-handed weapon in two hands): no Power Attack attack-roll penalty on the first attack of the turn made with it — applied automatically to that attack line only (see Results below); every natural attack, and any additional attack that turn, still takes the full penalty.',
- special:'furious-focus', compute:()=>({attack:0,damage:0,note:'waives Power Attack\'s attack penalty only on the two-handed weapon attack line, if one exists (see Results below) — never on a natural attack'})},
+ desc:'Requires Power Attack, Str 13, BAB +1. Only while wielding a two-handed weapon (or a one-handed weapon in two hands): no Power Attack attack-roll penalty on the first attack of the turn made with it — applied automatically to that attack line only once you confirm it really is the first attack this round (see Results below); every natural attack, and any additional attack that turn, still takes the full penalty.',
+ special:'furious-focus', compute:()=>({attack:0,damage:0,note:'waives Power Attack\'s attack penalty only on the two-handed weapon attack line, once confirmed as the first attack of the round (see Results below) — never on a natural attack'})},
 {id:'outflank',name:'Outflank',category:'feat',source:"Advanced Player's Guide",appliesTo:['attack'],type:'special',
  desc:'When flanking the same target as an ally who also has this feat, the flanking bonus on attack rolls increases from +2 to +4 (replaces the Flanking modifier below, don\'t stack both). Requires BAB +4.',
  compute:()=>({attack:0,damage:0,note:'special — if Flanking is also active below, use +4 instead of its +2 (don\'t add both)'})},
@@ -584,13 +592,20 @@ function saveStore(){
   }
 }
 function defaultProfile(name){
-  return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:7, casterLevel:10, bab:7, hdBabOverride:false, singleAttack:false, vitalStrikeAttackName:'',
+  // ATTACK-LINE-ID-001: a freshly-created profile is pushed straight into store.profiles
+  // by $('newProfile').onclick etc, WITHOUT passing through the store.profiles.forEach
+  // migration loop below (that only runs once, over whatever loadStore() returned at
+  // page load) -- so lineId/vitalStrikeLineId/rendClawLineId/
+  // furiousFocusFirstAttackConfirmed are all set directly here too, not left to that
+  // migration alone, or a brand-new profile's own default attack lines would have no
+  // lineId to select by until the next full reload.
+  return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:7, casterLevel:10, bab:7, hdBabOverride:false, singleAttack:false, vitalStrikeLineId:'', vitalStrikeAttackName:'',
     speciesPreset:'',eidolonSubtype:'',subtypeAbilityChoice:'',phantomFocus:'',creatureSize:'Medium',manifestation:'ectoplasmic',selectedEvolutions:[],
-    rendConditionMet:false,rendClawName:'',
+    rendConditionMet:false,rendClawLineId:'',rendClawName:'',furiousFocusFirstAttackConfirmed:false,
     str:18,dex:15,con:15,int:2,wis:12,cha:6, atkStat:'str', dmgStat:'str',
     attackLines:[
-      {name:'Claw',qty:2,atkType:'natural',mode:'primary',die:'1d4',atkBonus:7,hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2,enhancement:0,range:'',extra:'',manualHitAdj:0,manualDmgAdj:0,noDamage:false},
-      {name:'Bite',qty:1,atkType:'natural',mode:'secondary',die:'1d6',atkBonus:2,hitAbility:'str',dmgAbility:'str',dmgAbilityMult:0.5,threat:'20',critMult:2,enhancement:0,range:'',extra:'',manualHitAdj:0,manualDmgAdj:0,noDamage:false}
+      {lineId:newLineId(),name:'Claw',qty:2,atkType:'natural',mode:'primary',die:'1d4',atkBonus:7,hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2,enhancement:0,range:'',extra:'',manualHitAdj:0,manualDmgAdj:0,noDamage:false},
+      {lineId:newLineId(),name:'Bite',qty:1,atkType:'natural',mode:'secondary',die:'1d6',atkBonus:2,hitAbility:'str',dmgAbility:'str',dmgAbilityMult:0.5,threat:'20',critMult:2,enhancement:0,range:'',extra:'',manualHitAdj:0,manualDmgAdj:0,noDamage:false}
     ],
     active:[], custom:[], excludedSources:{}};
 }
@@ -640,13 +655,24 @@ store.profiles.forEach(p=>{
   if(p.animalSpeciesApplied===undefined) p.animalSpeciesApplied='';
   if(!p.removedSpeciesAttackOrigins) p.removedSpeciesAttackOrigins=[];
   if(p.singleAttack===undefined) p.singleAttack=false;
-  // VITAL-STRIKE-SELECT-001: which one attack line Vital Strike applies to this turn --
-  // absent on every profile saved before this existed, correctly meaning "none chosen
-  // yet" (compute() falls back to the first attack line automatically).
-  if(p.vitalStrikeAttackName===undefined) p.vitalStrikeAttackName='';
   if(!p.atkStat) p.atkStat='str';
   if(!p.dmgStat) p.dmgStat='str';
   if(!p.attackLines) p.attackLines=[];
+  // ATTACK-LINE-ID-001: backfill a stable lineId for every attack line saved before it
+  // existed -- runs once per load (migration), never inside an apply*Preset function
+  // itself, which would mint a fresh id on every reapply and defeat the whole point.
+  p.attackLines.forEach(l=>{ if(!l.lineId) l.lineId=newLineId(); });
+  // VITAL-STRIKE-SELECT-001 / ATTACK-LINE-ID-001: which ONE attack line Vital Strike
+  // applies to this turn, by its stable lineId -- never by name (two lines can share
+  // one) or array position. vitalStrikeAttackName is the old, name-only field from this
+  // feature's first version; kept only as a one-time best-effort migration source below
+  // (resolves to the first same-named line, same ambiguity the old field always had --
+  // never worse than before) for any profile saved in that field's short window before
+  // lineId existed.
+  if(p.vitalStrikeLineId===undefined){
+    let migratedFrom = p.vitalStrikeAttackName ? p.attackLines.find(l=>l.name===p.vitalStrikeAttackName) : null;
+    p.vitalStrikeLineId = migratedFrom ? migratedFrom.lineId : '';
+  }
   if(!p.entityType) p.entityType='animal-companion'; // every sheet made before the entity selector was an animal companion in all but name
   // "Mounted" by itself changes nothing about hit/damage -- a rider ability that DOES
   // change something is added as an Active Effect instead, so these fields were dropped.
@@ -657,7 +683,13 @@ store.profiles.forEach(p=>{
   if(p.eidolonSubtype===undefined) p.eidolonSubtype='';
   if(p.subtypeAbilityChoice===undefined) p.subtypeAbilityChoice='';
   if(p.rendConditionMet===undefined) p.rendConditionMet=false;
-  if(p.rendClawName===undefined) p.rendClawName='';
+  // RENDCLAW-ID-001: same lineId-based fix as Vital Strike above -- rendClawName is the
+  // old, name-only field, kept only as a one-time migration source.
+  if(p.rendClawLineId===undefined){
+    let migratedClaw = p.rendClawName ? p.attackLines.find(l=>l.name===p.rendClawName) : null;
+    p.rendClawLineId = migratedClaw ? migratedClaw.lineId : '';
+  }
+  if(p.furiousFocusFirstAttackConfirmed===undefined) p.furiousFocusFirstAttackConfirmed=false;
   if(p.phantomFocus===undefined) p.phantomFocus='';
   if(p.creatureSize===undefined) p.creatureSize='Medium';
   if(p.manifestation===undefined) p.manifestation='ectoplasmic';
@@ -957,11 +989,15 @@ $('reapplyProgression').addEventListener('click', ()=>{
   reapplyAnimalCompanionPresetIfActive();
   compute();
 });
-$('rendClawSelect').addEventListener('change', ()=>{ currentProfile().rendClawName=$('rendClawSelect').value; saveStore(); compute(); });
+$('rendClawSelect').addEventListener('change', ()=>{ currentProfile().rendClawLineId=$('rendClawSelect').value; saveStore(); compute(); });
 $('rendConditionMet').addEventListener('change', ()=>{ currentProfile().rendConditionMet=$('rendConditionMet').checked; saveStore(); compute(); });
 $('vitalStrikeAttackSelect').addEventListener('change', ()=>{
-  let p=currentProfile(), idx=+$('vitalStrikeAttackSelect').value;
-  p.vitalStrikeAttackName=(p.attackLines[idx]||{}).name||'';
+  let p=currentProfile();
+  p.vitalStrikeLineId=$('vitalStrikeAttackSelect').value;
+  saveStore(); compute();
+});
+$('furiousFocusFirstAttack').addEventListener('change', ()=>{
+  currentProfile().furiousFocusFirstAttackConfirmed=$('furiousFocusFirstAttack').checked;
   saveStore(); compute();
 });
 
@@ -1125,6 +1161,15 @@ function renderAttackLines(){
     box.appendChild(div);
   });
 }
+// ATTACK-LINE-ID-001: a stable identity for one attack line, independent of its array
+// position (which can shift) and its display name (two lines can legitimately share a
+// name, e.g. two separately-tracked "Claw" attacks) -- selectors that reference a
+// specific line (Vital Strike's target, Rend's claw) resolve by this id, never by name
+// or index. Generated exactly once per line: a brand-new line gets a fresh one here;
+// a regenerated preset/evolution line has it copied forward from its old self by every
+// apply*Preset merge (lineId is in every *_PRESERVED_FIELDS list) so it survives a
+// BAB/level resync untouched, same as any other manual edit.
+function newLineId(){ return 'line-'+Date.now()+'-'+Math.random().toString(36).slice(2,8); }
 function newAttackLine(){
   let atkBonus=(+$('bab').value||0)+sizeAttackModifier(currentProfile().creatureSize||'Medium');
   // origin:'manual' marks a line the player typed in by hand (via "+ Add Attack" or an
@@ -1132,7 +1177,7 @@ function newAttackLine(){
   // regenerates, or removes a manual line. A preset/evolution-generated line overwrites
   // this with its own origin key right after being built from newAttackLine()'s
   // defaults, same as every other field here.
-  return {name:'',qty:1,atkType:'natural',mode:'primary',die:'1d4',atkBonus,threat:'20',critMult:2,
+  return {lineId:newLineId(),name:'',qty:1,atkType:'natural',mode:'primary',die:'1d4',atkBonus,threat:'20',critMult:2,
     hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,baseDamageBonus:0,damageType:'',enhancement:0,range:'',extra:'',extraDice:'',extraDamageType:'',extraDiceMultipliesOnCrit:false,manualHitAdj:0,manualDmgAdj:0,noDamage:false,origin:'manual'};
 }
 $('addAttackLine').onclick=()=>{
@@ -1284,6 +1329,21 @@ $('addEidolonEvolution').onclick=()=>{
 function sizeAttackModifier(size){
   return ({Fine:8,Diminutive:4,Tiny:2,Small:1,Medium:0,Large:-1,Huge:-2,Gargantuan:-4,Colossal:-8})[size]||0;
 }
+// ATTACK-LINE-ID-001: display-only labels for a line-selecting <select> (Vital Strike's
+// target, Rend's claw) -- identity is always the line's lineId, never this label, so
+// this is purely cosmetic disambiguation between same-named lines ("Claw #1"/"Claw #2"),
+// stable within one render pass but not a persisted identity of its own.
+function disambiguatedAttackLabels(lines){
+  let counts={};
+  (lines||[]).forEach(l=>{ let n=l.name||'Attack'; counts[n]=(counts[n]||0)+1; });
+  let seenSoFar={};
+  return (lines||[]).map(l=>{
+    let n=l.name||'Attack';
+    if(counts[n]<=1) return n;
+    seenSoFar[n]=(seenSoFar[n]||0)+1;
+    return n+' #'+seenSoFar[n];
+  });
+}
 function attackLineFromSpecies(a,bab,size){
   let ranged=a.classification==='ranged_touch';
   return Object.assign(newAttackLine(),{
@@ -1333,7 +1393,12 @@ function speciesAttackRulesFor(species, advanced){ return advanced&&species.adva
 // originless line that isn't a one-time legacy name-match for a newly generated attack, is
 // never touched or dropped. Switching species drops only the PREVIOUSLY-applied species'
 // own generated lines (p.animalSpeciesApplied), never a manual or unrelated line.
-const SPECIES_ATTACK_PRESERVED_FIELDS=['manualHitAdj','manualDmgAdj','enhancement','extraDice','extraDamageType','extraDiceMultipliesOnCrit','extra','range','threat','critMult','damageType','noDamage'];
+// ATTACK-LINE-ID-001: lineId is included in every one of this codebase's four PRESERVED_
+// FIELDS lists so a generated line's STABLE identity (see newLineId()) survives a
+// regeneration exactly like its other manual edits -- selectors that reference a
+// specific line (Vital Strike's target, Rend's claw) must never go stale just because
+// BAB/level changed and the merge rebuilt this line from scratch.
+const SPECIES_ATTACK_PRESERVED_FIELDS=['lineId','manualHitAdj','manualDmgAdj','enhancement','extraDice','extraDamageType','extraDiceMultipliesOnCrit','extra','range','threat','critMult','damageType','noDamage'];
 function applyAnimalCompanionPresetCore(speciesId, explicit){
   let species=COMPANION_SPECIES.find(s=>s.id===speciesId);
   if(!species) return false;
@@ -1543,7 +1608,7 @@ function applyEidolonPreset(type){
   // contribution instead (see collectContributions()), these three fields are nothing
   // but the player's own manually-typed extra damage dice and must survive a reapply
   // like any other manual field.
-  const EIDOLON_PRESERVED_FIELDS=['threat','critMult','enhancement','range','extra','manualHitAdj','manualDmgAdj','noDamage','damageType','extraDice','extraDamageType','extraDiceMultipliesOnCrit'];
+  const EIDOLON_PRESERVED_FIELDS=['lineId','threat','critMult','enhancement','range','extra','manualHitAdj','manualDmgAdj','noDamage','damageType','extraDice','extraDamageType','extraDiceMultipliesOnCrit'];
   let p=currentProfile();
   let oldLines=p.attackLines||[];
   let manualLines=oldLines.filter(l=>l.origin==='manual');
@@ -1613,7 +1678,7 @@ function applyPhantomPreset(){
   slamLine.origin='preset:phantom:slam';
   if(focus.key==='zeal'){slamLine.threat='19-20';slamLine.critMult=level>=11?3:2;}
   if(oldSlam){
-    const PHANTOM_PRESERVED_FIELDS=['enhancement','extra','damageType','extraDice','extraDamageType','extraDiceMultipliesOnCrit','range','manualHitAdj','manualDmgAdj','noDamage'].concat(focus.key!=='zeal'?['threat','critMult']:[]);
+    const PHANTOM_PRESERVED_FIELDS=['lineId','enhancement','extra','damageType','extraDice','extraDamageType','extraDiceMultipliesOnCrit','range','manualHitAdj','manualDmgAdj','noDamage'].concat(focus.key!=='zeal'?['threat','critMult']:[]);
     PHANTOM_PRESERVED_FIELDS.forEach(f=>{ if(oldSlam[f]!==undefined) slamLine[f]=oldSlam[f]; });
     if(oldSlam.name) slamLine.name=oldSlam.name; // a rename survives too -- matched by origin, not name
   }
@@ -1714,7 +1779,7 @@ function applyFamiliarPreset(){
   // which originless lines actually get consumed as a legacy match so every other one
   // can be carried forward untouched instead of assumed to be safely discardable.
   let consumedLegacy=new Set();
-  const FAMILIAR_PRESERVED_FIELDS=['manualHitAdj','manualDmgAdj','enhancement','extraDice','extraDamageType','extraDiceMultipliesOnCrit','extra','range','threat','critMult','damageType','noDamage'];
+  const FAMILIAR_PRESERVED_FIELDS=['lineId','manualHitAdj','manualDmgAdj','enhancement','extraDice','extraDamageType','extraDiceMultipliesOnCrit','extra','range','threat','critMult','damageType','noDamage'];
   let generatedLines=(fam.attacks||[]).map(a=>{
     let line=lineFromRuleAttack(a,bab,fam.size);
     let originKey='preset:familiar:'+fam.key+':'+(a.name||'').toLowerCase();
@@ -2212,23 +2277,25 @@ function compute(){
   let vsActive=p.active.filter(a=>a.on!==false && vsMultMap[a.id]);
   let vsMult = (singleAttackAction && vsActive.length) ? Math.max(...vsActive.map(a=>vsMultMap[a.id])) : 0;
   // Which ONE attack line Vital Strike's extra dice apply to this turn -- never every
-  // line, and resolved by name (p.vitalStrikeAttackName), falling back to the first
-  // line if unset/stale. Populated into its own box under Results, mirroring Rend's
-  // own claw-selector below.
+  // line. Populated into its own box under Results, mirroring Rend's own claw-selector
+  // below. ATTACK-LINE-ID-001: resolves by lineId (p.vitalStrikeLineId), never by name
+  // (two lines can legitimately share one, e.g. two separately-tracked "Claw" lines) or
+  // array position, falling back to the first line if unset/stale.
   let vsBox=$('vitalStrikeBox'), vsTargetIndex=-1;
   if(vsMult && p.attackLines && p.attackLines.length && !companionNotYetActive){
     vsBox.style.display='block';
     let vsSel=$('vitalStrikeAttackSelect');
-    vsSel.innerHTML=p.attackLines.map((l,idx)=>`<option value="${idx}">${l.name||'Attack'}</option>`).join('');
-    vsTargetIndex=p.attackLines.findIndex(l=>l.name===p.vitalStrikeAttackName);
+    let vsLabels=disambiguatedAttackLabels(p.attackLines);
+    vsSel.innerHTML=p.attackLines.map((l,idx)=>`<option value="${l.lineId}">${vsLabels[idx]}</option>`).join('');
+    vsTargetIndex=p.attackLines.findIndex(l=>l.lineId===p.vitalStrikeLineId);
     if(vsTargetIndex===-1) vsTargetIndex=0;
-    vsSel.value=String(vsTargetIndex);
+    vsSel.value=p.attackLines[vsTargetIndex].lineId;
   } else {
     vsBox.style.display='none';
   }
 
   let box=$('attackResults'); box.innerHTML='';
-  let lineComputed=[]; // stashed per line, keyed by name -- Rend's block below reads a claw's own normal damage from here, deliberately NEVER including Vital Strike's turn-specific overlay (see below): Rend requires a full attack, Vital Strike requires the opposite, so the two can never legitimately land on the same claw the same turn.
+  let lineComputed=[]; // stashed per line, keyed by lineId -- Rend's block below reads a claw's own normal damage from here, deliberately NEVER including Vital Strike's turn-specific overlay (see below): a normal single attack action alone cannot supply Rend's required two claw hits, so the two should not be shown as if they automatically happened together the same turn.
   // FURIOUS-FOCUS-SCOPE-001: the ONLY attack line Furious Focus can ever waive Power
   // Attack's penalty on -- a Manufactured, non-Secondary line whose own Dmg mult is
   // already x1.5 (a two-handed weapon, or a one-handed weapon the player has set to
@@ -2240,6 +2307,25 @@ function compute(){
     let dm=l.dmgAbilityMult!==undefined?+l.dmgAbilityMult:1;
     return (l.atkType||'natural')==='manufactured' && l.mode!=='secondary' && dm===1.5;
   });
+  // FURIOUS-FOCUS-FIRST-ATTACK-001: Furious Focus only waives the penalty on "the first
+  // attack you make each turn" made WITH the two-handed weapon -- this calculator has no
+  // concept of attack order (attack lines are just a set of possible attacks, not a
+  // timeline), so finding a qualifying two-handed-weapon LINE is not by itself evidence
+  // it's actually the first attack made this round; a natural attack could easily have
+  // gone first instead, in which case Furious Focus grants nothing at all this turn (it
+  // never applies to a later attack, and never to a natural attack in any position). Since
+  // attack order can't be inferred, it's surfaced explicitly instead of guessed: the
+  // player confirms it themselves (furiousFocusFirstAttackBox below, gating
+  // p.furiousFocusFirstAttackConfirmed) -- defaults to unconfirmed, so no waiver is ever
+  // silently granted.
+  let furiousFocusApplies = furiousFocusOn && powerAttackOn && furiousFocusEligibleIndex!==-1 && !!p.furiousFocusFirstAttackConfirmed;
+  let ffBox=$('furiousFocusFirstAttackBox');
+  if(furiousFocusOn && powerAttackOn && furiousFocusEligibleIndex!==-1 && !companionNotYetActive){
+    ffBox.style.display='block';
+    $('furiousFocusFirstAttack').checked=!!p.furiousFocusFirstAttackConfirmed;
+  } else {
+    ffBox.style.display='none';
+  }
   if(companionNotYetActive){
     let msg = $('sourceClass').value==='ranger'
       ? 'No animal companion yet at this level — a ranger companion starts at 4th level (effective level = ranger level − 3). Results are inactive until then; type over Hit Dice or BAB above to override manually.'
@@ -2270,7 +2356,7 @@ function compute(){
       let lineDmgFromMods=stackTotal(lineDmgEntries.concat(enh?[{value:enh,type:'enhancement',source:'Attack enhancement'}]:[]));
       let powerAttackEligible=['natural','manufactured'].includes(line.atkType||'natural');
       if(powerAttackOn&&!powerAttackEligible) lineAtkFromMods-=powerAttackAtkVal;
-      else if(furiousFocusOn&&powerAttackOn&&furiousFocusEligibleIndex!==-1&&i===furiousFocusEligibleIndex) lineAtkFromMods-=powerAttackAtkVal;
+      else if(furiousFocusApplies&&i===furiousFocusEligibleIndex) lineAtkFromMods-=powerAttackAtkVal;
       let atk = (+line.atkBonus||0) + hitAbilityMod + lineAtkFromMods + manHit;
       // POWER-ATTACK-SCALE-001: Power Attack's shared adapter provides only a rough
       // always-x1 placeholder (see the MODIFIERS entry above); re-rate it correctly for
@@ -2312,7 +2398,7 @@ function compute(){
       // Strike's turn-specific overlay excluded) -- Rend, or anything else that reuses a
       // line's own damage, must never inherit an action-economy assumption that may not
       // hold this round (see the vsBox comment above).
-      lineComputed.push({name:line.name, dmgBonus, normalDiceStr, damageTypeLabel});
+      lineComputed.push({lineId:line.lineId, name:line.name, dmgBonus, normalDiceStr, damageTypeLabel});
       let displayNormalDiceStr=normalDiceStr, displayCritDice=critDice;
       if(vsMult && i===vsTargetIndex){
         displayNormalDiceStr = diceMultiply(effDie, vsMult);
@@ -2327,7 +2413,7 @@ function compute(){
       let qty=Math.max(1,+line.qty||1);
       let nameLabel=(qty>1?qty+'× ':'')+(line.name||'Attack');
       let subLabel=[line.range,line.extra].filter(Boolean).join(' — ');
-      let ffTag = (furiousFocusOn && powerAttackOn && furiousFocusEligibleIndex!==-1 && i===furiousFocusEligibleIndex) ? ' <span class="typeTag" title="Furious Focus waives Power Attack\'s attack penalty here">Furious Focus</span>' : '';
+      let ffTag = (furiousFocusApplies && i===furiousFocusEligibleIndex) ? ' <span class="typeTag" title="Furious Focus waives Power Attack\'s attack penalty here">Furious Focus</span>' : '';
       let vsTag = (vsMult && i===vsTargetIndex) ? ' <span class="typeTag" title="Vital Strike doubles/triples/quadruples this attack\'s Damage Die">Vital Strike</span>' : '';
       let nameCell=`${nameLabel}${ffTag}${vsTag}${subLabel?`<div class="desc" style="font-size:.68rem;color:var(--muted);margin-top:2px">${subLabel}</div>`:''}`;
       let dmgCell = line.noDamage ? '—' : (displayNormalDiceStr+' '+signed(dmgBonus)+damageTypeLabel);
@@ -2353,25 +2439,37 @@ function compute(){
   if(rendSelected && !companionNotYetActive){
     rendBox.style.display='block';
     let clawSel=$('rendClawSelect');
-    // Rend only ever triggers off two CLAW attacks hitting the same target -- offering
-    // Bite/Slam/etc. here would let the player attach Rend's bonus to damage it was
-    // never meant to ride on.
-    let names=[...new Set((p.attackLines||[]).filter(l=>(l.name||'').trim().toLowerCase()==='claw').map(l=>l.name))];
-    clawSel.innerHTML = names.length ? names.map(n=>`<option value="${n}">${n}</option>`).join('') : '<option value="">No Claw attack line yet</option>';
-    let wantClaw = names.includes(p.rendClawName) ? p.rendClawName : names[0]||'';
-    clawSel.value=wantClaw;
+    // ATTACK-LINE-ID-001: every Claw-named line offered individually by its own lineId,
+    // never deduplicated by name -- two separately-tracked "Claw" lines (different die,
+    // different enhancement, etc) must be independently selectable, not collapsed into
+    // one option that always resolves back to whichever one happened to be first.
+    let clawLines=(p.attackLines||[]).filter(l=>(l.name||'').trim().toLowerCase()==='claw');
+    let clawLabels=disambiguatedAttackLabels(clawLines);
+    clawSel.innerHTML = clawLines.length ? clawLines.map((l,idx)=>`<option value="${l.lineId}">${clawLabels[idx]}</option>`).join('') : '<option value="">No Claw attack line yet</option>';
+    let wantClawId = clawLines.some(l=>l.lineId===p.rendClawLineId) ? p.rendClawLineId : (clawLines[0]?clawLines[0].lineId:'');
+    clawSel.value=wantClawId;
     $('rendConditionMet').checked=!!p.rendConditionMet;
     let rendText=$('rendResultText');
     if(!p.rendConditionMet){
       rendText.innerHTML='<span style="color:var(--muted)">Inactive — check the box above once both claws hit the same target this round.</span>';
     } else {
-      let claw=lineComputed.find(l=>l.name===wantClaw);
+      let claw=lineComputed.find(l=>l.lineId===wantClawId);
       if(!claw){
         rendText.textContent='Choose a claw attack above to compute Rend damage.';
       } else {
         let strBonus=Math.floor(1.5*finalMods.str);
         let total=claw.dmgBonus+strBonus;
-        rendText.innerHTML='Rend damage (no attack roll; not multiplied on a critical hit): <b>'+claw.normalDiceStr+' '+signed(total)+claw.damageTypeLabel+'</b> = '+signed(claw.dmgBonus)+' ('+wantClaw+'\'s own damage) '+signed(strBonus)+' (floor(1.5× Str mod))';
+        let rendHtml='Rend damage (no attack roll; not multiplied on a critical hit): <b>'+claw.normalDiceStr+' '+signed(total)+claw.damageTypeLabel+'</b> = '+signed(claw.dmgBonus)+' ('+(claw.name||'claw')+'\'s own damage) '+signed(strBonus)+' (floor(1.5× Str mod))';
+        // REND-VS-001: shown directly on Rend's own result, not just buried in the notes
+        // list below, whenever Vital Strike is set up to fire this turn -- Rend (Table:
+        // Eidolon Evolutions) needs two successful claw attacks against the same target
+        // in the round; a normal single attack action (what Vital Strike requires) by
+        // itself only provides ONE attack, so it alone can't supply the second claw hit.
+        // Phrased as "cannot, by itself" rather than a blanket "requires a full attack,"
+        // since an unusual extra-attack source (Haste, etc.) active at the same time
+        // could legitimately still provide it -- not something this calculator tracks.
+        if(vsMult) rendHtml += '<div style="color:var(--warn,#c94);margin-top:4px">⚠ Vital Strike is also set up this turn (see the Vital Strike box above): its single attack action by itself provides only ONE attack, which alone cannot supply the second claw hit Rend needs. Don\'t read this Rend result and Vital Strike\'s row above as both having happened on the same, ordinary single attack action.</div>';
+        rendText.innerHTML=rendHtml;
       }
     }
   } else {
@@ -2387,10 +2485,11 @@ function compute(){
   if(powerAttackOn) notes.push('Power Attack is rated per attack line from that line\'s own Mode/Dmg mult: ×1.5 for a two-handed weapon or a primary natural weapon whose Dmg mult is already ×1.5, ×0.5 on a Secondary line, ×1 otherwise.');
   if(furiousFocusOn && !powerAttackOn) notes.push('Furious Focus is active but Power Attack isn\'t — Furious Focus has no effect without it.');
   if(furiousFocusOn && powerAttackOn && furiousFocusEligibleIndex===-1) notes.push('Furious Focus is active but no two-handed weapon attack line was found (a Manufactured, non-Secondary line with Dmg mult ×1.5) — it never applies to a natural attack and has no effect until you add one.');
+  else if(furiousFocusOn && powerAttackOn && furiousFocusEligibleIndex!==-1 && !p.furiousFocusFirstAttackConfirmed) notes.push('Furious Focus needs the two-handed weapon attack to actually be the FIRST attack you make this round — confirm that above (Results) once you\'ve decided your attack order; until confirmed, the normal Power Attack penalty applies to every attack, including that one.');
   if(vsMult){
     let vsLine=vsTargetIndex>=0 && p.attackLines[vsTargetIndex] ? (p.attackLines[vsTargetIndex].name||'Attack') : 'none';
     notes.push('Vital Strike is active on "'+vsLine+'" only (choose a different attack in the Vital Strike box under Results) — every other line\'s Normal/Critical Damage is unaffected. This only applies to a single attack action, never a full attack.');
-    if(rendSelected && p.rendConditionMet) notes.push('Rend requires a full attack with both claws hitting, which cannot happen the same turn as Vital Strike\'s single attack action — treat these as two separate hypothetical turns, not one.');
+    if(rendSelected && p.rendConditionMet) notes.push('Rend needs two successful claw attacks against the same target in the round — a normal single attack action (what Vital Strike requires) only provides ONE attack, so it alone cannot supply the second claw hit. See the warning on the Rend result itself below.');
   }
   $('notes').innerHTML=notes.map(n=>'• '+n).join('<br>');
 }
