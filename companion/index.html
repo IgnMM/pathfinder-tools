@@ -835,7 +835,12 @@ populateEntityTypeSelect();
 });
 $('speciesPreset').addEventListener('change',syncUIIntoProfile);
 $('eidolonSubtype').addEventListener('change',()=>{currentProfile().subtypeAbilityChoice='';syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();updateSubtypeAbilityChoiceUI();compute();});
-['phantomFocus','creatureSize','manifestation'].forEach(id=>$(id).addEventListener('change',()=>{syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();compute();}));
+// PHANTOM-REAPPLY-001: phantomFocus/creatureSize both feed applyPhantomPreset()'s own
+// output (Slam dice/size-to-hit, which focus abilities exist) and so trigger a reapply;
+// manifestation only affects the informational note text below, never a computed
+// value, so it stays out of the reapply call.
+['phantomFocus','creatureSize'].forEach(id=>$(id).addEventListener('change',()=>{syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();reapplyPhantomPresetIfActive();compute();}));
+$('manifestation').addEventListener('change',()=>{syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();compute();});
 $('entityType').addEventListener('change', ()=>{
   let p=currentProfile();
   let oldType=p.entityType||'animal-companion', newType=$('entityType').value;
@@ -855,7 +860,7 @@ $('entityType').addEventListener('change', ()=>{
   renderSources(); renderCategories(); compute();
 });
 ['sourceClass','ownerLevel'].forEach(id=>{
-  $(id).addEventListener('input', ()=>{ applyProgressionUI(); syncUIIntoProfile(); updateSubtypeAbilityChoiceUI(); compute(); });
+  $(id).addEventListener('input', ()=>{ applyProgressionUI(); syncUIIntoProfile(); updateSubtypeAbilityChoiceUI(); reapplyPhantomPresetIfActive(); compute(); });
 });
 $('reapplyProgression').addEventListener('click', ()=>{
   currentProfile().hdBabOverride=false;
@@ -1370,10 +1375,54 @@ function applyPhantomPreset(){
   ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=ab[k]); $('hitDice').value=row.hd; $('bab').value=row.bab; currentProfile().hdBabOverride=false;
   let band=PHANTOM_PROGRESSION.slamByLevelAndSize.find(x=>level>=x.levels[0]&&level<=x.levels[1]); let die=band[size]||row.slamMedium;
   if(focus.key==='anger') die=diceSizeUp(die);
-  let p=currentProfile(); p.attackLines=[lineFromRuleAttack({name:'Slam',count:2,damage:die,damageType:['bludgeoning'],classification:'primary',ability:'str',strengthMultiplier:1},row.bab,size)]; p.speciesPreset='phantom';
-  if(focus.key==='zeal'){p.attackLines[0].threat='19-20';p.attackLines[0].critMult=level>=11?3:2;}
-  // Rebuild only the generated focus entries. User-created custom effects survive.
-  p.custom=(p.custom||[]).filter(c=>!String(c.id||'').startsWith('phantom-focus-'));
+  let p=currentProfile();
+  // PHANTOM-MERGE-001: mirrors EVOL-MERGE-001 for the Eidolon evolutions -- a level/
+  // size/focus change (now auto-reapplied, see reapplyPhantomPresetIfActive) used to
+  // throw away p.attackLines entirely, silently discarding any manual edit on the
+  // generated Slam (enhancement, threat/crit unless Zeal owns them, notes, damage
+  // type, extra dice, range, manual adjustments) and any fully custom attack line the
+  // player added by hand. The Slam now carries a stable origin ('preset:phantom:slam')
+  // and a rebuild only ever touches STRUCTURAL fields it actually controls (dice,
+  // BAB/size to-hit, quantity, Str multiplier, and -- only for Zeal -- threat/crit);
+  // everything else survives from the old Slam untouched. A line with origin:'manual'
+  // (added via "+ Add Attack" or an attack preset) is never matched or removed.
+  let oldLines=p.attackLines||[];
+  let manualLines=oldLines.filter(l=>l.origin==='manual');
+  let oldSlam=oldLines.find(l=>l.origin==='preset:phantom:slam')
+    || oldLines.find(l=>!l.origin && l.name==='Slam'); // legacy fallback: no origin at all yet
+  let slamLine=lineFromRuleAttack({name:'Slam',count:2,damage:die,damageType:['bludgeoning'],classification:'primary',ability:'str',strengthMultiplier:1},row.bab,size);
+  slamLine.origin='preset:phantom:slam';
+  if(focus.key==='zeal'){slamLine.threat='19-20';slamLine.critMult=level>=11?3:2;}
+  if(oldSlam){
+    const PHANTOM_PRESERVED_FIELDS=['enhancement','extra','damageType','extraDice','extraDamageType','extraDiceMultipliesOnCrit','range','manualHitAdj','manualDmgAdj','noDamage'].concat(focus.key!=='zeal'?['threat','critMult']:[]);
+    PHANTOM_PRESERVED_FIELDS.forEach(f=>{ if(oldSlam[f]!==undefined) slamLine[f]=oldSlam[f]; });
+    if(oldSlam.name) slamLine.name=oldSlam.name; // a rename survives too -- matched by origin, not name
+  }
+  p.attackLines=[slamLine, ...manualLines];
+  p.speciesPreset='phantom';
+  // PHANTOM-FOCUS-ID-001: id is now 'phantom-focus:<focusKey>:<featureKey>' so two
+  // features from DIFFERENT focuses never collide by feature key alone. An entry
+  // belonging to a focus other than the one being applied is dropped outright (its
+  // on/off state is never carried to an unrelated focus's feature); an entry belonging
+  // to the SAME focus survives a level/size reapply with its on/off state intact via
+  // featureKey. Legacy entries (id 'phantom-focus-<featureKey>', no focusKey field --
+  // from before this scheme existed) carry no focus segment at all; since a rebuild
+  // only ever regenerates the CURRENTLY selected focus's features, they can only have
+  // belonged to it, so they're matched once by bare feature key and migrated to the
+  // new id/fields from here on -- no duplication.
+  let oldCustom=p.custom||[];
+  let ownFocusOldByFeature={};
+  oldCustom.forEach(c=>{
+    if(!c.custom) return;
+    let id=String(c.id||'');
+    if(c.focusKey!==undefined){ if(c.focusKey===focus.key) ownFocusOldByFeature[c.featureKey]=c; }
+    else if(id.startsWith('phantom-focus-')) ownFocusOldByFeature[id.slice('phantom-focus-'.length)]=c;
+  });
+  p.custom=oldCustom.filter(c=>{
+    if(!c.custom) return true; // not a generated phantom entry -- untouched, e.g. user-created customs
+    let id=String(c.id||'');
+    return !(c.focusKey!==undefined || id.startsWith('phantom-focus-')); // every phantom-focus entry is about to be rebuilt fresh below
+  });
   (focus.calculatorFeatures||[]).filter(f=>level>=f.level&&!f.alwaysOn).forEach(f=>{
     // PHANTOM-SCOPE-001: carry the source data's own attackScope/attackNames onto the
     // generated custom entry unchanged -- Aura of Fury's "melee" here is what keeps it
@@ -1383,7 +1432,7 @@ function applyPhantomPreset(){
     // the moment entityType switches away, and bring it back unchanged if it switches
     // back. The id prefix alone already implied this, but the explicit field is cheap
     // and makes intent obvious to anything reading the profile later.
-    let c={id:'phantom-focus-'+f.key,name:focus.name+': '+f.key.replaceAll('-',' '),category:'other',source:'Phantom emotional focus',valueMode:'info',appliesTo:['attack','damage'],type:f.bonusType||'untyped',atk:0,dmg:0,dice:'',diceType:'',diceMultipliesOnCrit:false,on:false,custom:true,entityScope:'phantom',
+    let c={id:'phantom-focus:'+focus.key+':'+f.key,focusKey:focus.key,featureKey:f.key,name:focus.name+': '+f.key.replaceAll('-',' '),category:'other',source:'Phantom emotional focus',valueMode:'info',appliesTo:['attack','damage'],type:f.bonusType||'untyped',atk:0,dmg:0,dice:'',diceType:'',diceMultipliesOnCrit:false,on:false,custom:true,entityScope:'phantom',
       attackScope:f.attackScope, attackNames:f.attackNames,
       note:[f.condition, f.manifestationRequired?'Requires '+f.manifestationRequired+' manifestation':''].filter(Boolean).join('; ')};
     if(['typedAttackBonus','conditionalAttackDamage','conditionalAttackAndDie'].includes(f.operation)){
@@ -1395,10 +1444,27 @@ function applyPhantomPreset(){
       c.valueMode='fixed'; c.atk=f.attackSizeModifier||0; c.abilityAdjustments=f.abilityAdjustments||{}; c.damageDieSteps=f.sizeSteps||0;
     }
     if(f.damageSizeSteps)c.damageDieSteps=f.damageSizeSteps;
+    let existing=ownFocusOldByFeature[f.key];
+    if(existing) c.on=existing.on;
     p.custom.push(c);
   });
   syncUIIntoProfile(); renderAttackLines(); renderCategories(); compute();
   $('speciesPresetNote').textContent=focus.name+' phantom applied at level '+level+' ('+size+', '+$('manifestation').value+'). Incorporeal phantoms cannot slam corporeal targets; the result remains visible for attacks against incorporeal targets.';
+}
+// PHANTOM-REAPPLY-001: mirrors reapplyEidolonPresetIfActive() -- most of a Phantom's
+// own numbers (Slam dice, BAB/size to-hit, focus abilities) only take effect inside
+// applyPhantomPreset() itself, so a level/focus/size change on its own used to change
+// nothing until the player manually re-clicked "Apply preset stats & attacks",
+// producing mixed states from whatever level/focus was active at the last click.
+// Guarded exactly like the preset button's own validation (a base preset AND a focus
+// must already be chosen) so this never fires the "choose a focus first" alert just
+// because the player is still mid-setup.
+function reapplyPhantomPresetIfActive(){
+  const p=currentProfile();
+  if(p.entityType!=='phantom') return;
+  if($('speciesPreset').value!=='phantom') return;
+  if(!$('phantomFocus').value) return;
+  applyPhantomPreset();
 }
 function applyFamiliarPreset(){
   let fam=FAMILIAR_PRESETS.find(x=>x.key===$('speciesPreset').value); if(!fam){alert('Choose a familiar species first.');return;}
