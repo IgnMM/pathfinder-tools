@@ -170,6 +170,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="row"><label>Base Attack Bonus</label><input id="bab" type="number" value="7"></div>
 <div class="row"><label></label><button id="reapplyProgression" type="button">Reapply progression</button></div>
 <div id="hdBabAutoNote" class="emptyNote"></div>
+<div id="progressionAbilityChoices" style="display:none"></div>
 <div class="emptyNote">Feeds Power Attack's BAB-based scaling only — each attack below has its own Base To-Hit field. For sources with a known progression table, Hit Dice and BAB are pre-filled automatically; type over either to take manual control (use "Reapply progression" above to go back to auto-fill).</div>
 <div class="row"><label id="speciesPresetLabel">Species preset (optional)</label><select id="speciesPreset"><option value="">Manual / no preset</option></select></div>
 <div id="animalAdvancementChoiceRow" class="row" style="display:none"><label id="animalAdvancementChoiceLabel">Species advancement</label><select id="animalAdvancementChoice"><option value="listed">Listed species advancement</option><option value="alternative">Instead, +2 DEX / +2 CON</option></select></div>
@@ -614,6 +615,7 @@ const MODIFIERS = [
  desc:'Touch spell. Every natural attack the target makes deals damage as if it were two size categories larger (an EFFECTIVE size increase — does not change anything else about the creature). Per the PF1e FAQ ("Size increases and effective size increases"), this stacks with an actual size increase like Animal Growth (one of each category) — not with another effective increase, or another casting of itself. Not a flat number here — while active, every attack line\'s Damage Die above is automatically shown upsized two steps (three if Animal Growth is also active).',
  compute:()=>({attack:0,damage:0,note:'special — every attack line\'s Damage Die above already shows the two-step size-up'})},
 {id:'animal-growth',name:'Animal Growth',category:'spell',source:'Core Rulebook (Druid 5th / Ranger 4th)',appliesTo:['attack','damage'],type:'size',
+ entityScopes:['animal-companion','mount'],
  configFields:[{key:'value',label:'Str size bonus',type:'number',default:8}],
  desc:'Touch spell — the target animal grows one size category (an ACTUAL size increase): +8 size bonus to Strength (below), -1 size penalty on attack rolls from growing (applied automatically, always — not tied to which ability is selected above), +4 size bonus to Constitution and -2 size penalty to Dexterity (not modeled here, ability-score-only effect), +2 natural armor (not modeled here). Assumes growing exactly ONE size category (the common case) — adjust by hand for a different starting size. Does NOT stack with another casting of itself (same actual-size-increase effect), but per the PF1e FAQ ("Size increases and effective size increases") it DOES stack with an effective size increase like Strong Jaw (one of each category). While active, every attack line\'s Damage Die above is shown one size step larger (three if Strong Jaw is also active).',
  compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'str',cfg.value!==undefined?cfg.value:8);let atk=r.attack-1;return {attack:atk,damage:r.damage,note:signed(atk)+' atk ('+(r.attack?('+'+r.attack+' size from Strength, -1 size penalty from growing'):'-1 size penalty from growing, no Strength effect since Strength isn\'t the selected attack ability above')+') / '+signed(r.damage)+' dmg'}}},
@@ -792,8 +794,11 @@ function sharedEntryAllowed(e){
   let rule=e.companionCompatibility&&e.companionCompatibility.entities&&e.companionCompatibility.entities[compatibilityEntityKey()];
   return !!rule && !['normally-unavailable','exclude-from-companion-calculator'].includes(rule.status);
 }
+function modifierAppliesToCurrentEntity(m,profile){
+  return !m.entityScopes || m.entityScopes.includes((profile||currentProfile()).entityType);
+}
 function availableCatalog(cat){
-  let auto=MODIFIERS.filter(m=>m.category===cat&&!RIDER_ONLY_IDS.has(m.id));
+  let auto=MODIFIERS.filter(m=>m.category===cat&&!RIDER_ONLY_IDS.has(m.id)&&modifierAppliesToCurrentEntity(m));
   let ids=new Set(auto.map(m=>m.id));
   let shared=SHARED_CATALOG.filter(e=>e.category===cat&&!ids.has(e.id)&&!RIDER_ONLY_IDS.has(e.id)&&sharedEntryAllowed(e));
   return auto.concat(shared);
@@ -836,7 +841,7 @@ function defaultProfile(name){
   // rows alongside its real attacks, and any manual line the player adds will pick up
   // this profile's current BAB. Saved profiles are never changed by this initializer.
   return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:6, casterLevel:10, bab:4, hdBabOverride:false, singleAttack:false, vitalStrikeLineId:'', vitalStrikeAttackName:'',
-    speciesPreset:'',animalAdvancementChoice:'listed',eidolonSubtype:'',subtypeAbilityChoice:'',phantomFocus:'',creatureSize:'Medium',manifestation:'ectoplasmic',selectedEvolutions:[],
+    speciesPreset:'',animalAdvancementChoice:'listed',progressionAbilityChoicesByEntity:{},eidolonSubtype:'',subtypeAbilityChoice:'',phantomFocus:'',creatureSize:'Medium',manifestation:'ectoplasmic',selectedEvolutions:[],
     rendConditionMet:false,rendClawLineId:'',rendClawName:'',furiousFocusFirstAttackConfirmed:false,
     str:18,dex:15,con:15,int:2,wis:12,cha:6, atkStat:'str', dmgStat:'str',
     attackLines:[],
@@ -952,6 +957,7 @@ store.profiles.forEach(p=>{
   if(p.ownerLevel===undefined) p.ownerLevel=p.characterLevel||7;
   if(p.speciesPreset===undefined) p.speciesPreset='';
   if(p.animalAdvancementChoice===undefined) p.animalAdvancementChoice='listed';
+  if(!p.progressionAbilityChoicesByEntity || Array.isArray(p.progressionAbilityChoicesByEntity)) p.progressionAbilityChoicesByEntity={};
   if(p.eidolonSubtype===undefined) p.eidolonSubtype='';
   if(p.subtypeAbilityChoice===undefined) p.subtypeAbilityChoice='';
   if(p.rendConditionMet===undefined) p.rendConditionMet=false;
@@ -1078,6 +1084,38 @@ function updateSubtypeAbilityChoiceUI(){
     row.style.display='none';
   }
 }
+
+// The progression tables grant +1 to one chosen ability at fixed milestones. These
+// are separate from the automatic Str/Dex column and from the Eidolon's +2 Ability
+// Increase evolution. Keep one persisted choice per earned milestone; choices beyond
+// the current level are retained but ignored, so temporarily lowering the level never
+// destroys a build decision.
+function progressionAbilityIncreaseCount(entityType, effectiveLevel, entityLevel){
+  let level=['animal-companion','mount'].includes(entityType) ? effectiveLevel : entityLevel;
+  let thresholds=['animal-companion','mount'].includes(entityType) ? [4,9,14,20]
+    : (['eidolon-chained','eidolon-unchained','phantom'].includes(entityType) ? [5,10,15] : []);
+  return thresholds.filter(n=>(+level||0)>=n).length;
+}
+function renderProgressionAbilityChoices(){
+  let p=currentProfile(), type=p.entityType||'animal-companion';
+  let eff=['animal-companion','mount'].includes(type)
+    ? effectiveCompanionLevel($('sourceClass').value,+$('ownerLevel').value||0) : null;
+  let count=progressionAbilityIncreaseCount(type,eff,+$('ownerLevel').value||0);
+  let box=$('progressionAbilityChoices');
+  if(!count){ box.style.display='none'; box.innerHTML=''; return; }
+  let choices=Array.isArray(p.progressionAbilityChoicesByEntity[type])?p.progressionAbilityChoicesByEntity[type]:[];
+  let opts=[['','Choose ability…'],['str','STR'],['dex','DEX'],['con','CON'],['int','INT'],['wis','WIS'],['cha','CHA']];
+  box.style.display='block';
+  box.innerHTML='<div class="emptyNote">Progression ability increases: '+count+' × +1 (choose one ability for each).</div>'+
+    Array.from({length:count},(_,i)=>'<div class="row"><label>Ability increase #'+(i+1)+'</label><select data-progression-ability="'+i+'">'+opts.map(([v,l])=>'<option value="'+v+'"'+((choices[i]||'')===v?' selected':'')+'>'+l+'</option>').join('')+'</select></div>').join('');
+  box.querySelectorAll('[data-progression-ability]').forEach(sel=>sel.addEventListener('change',()=>{
+    let idx=+sel.dataset.progressionAbility;
+    if(!Array.isArray(p.progressionAbilityChoicesByEntity[type])) p.progressionAbilityChoicesByEntity[type]=[];
+    while(p.progressionAbilityChoicesByEntity[type].length<=idx) p.progressionAbilityChoicesByEntity[type].push('');
+    p.progressionAbilityChoicesByEntity[type][idx]=sel.value;
+    saveStore(); compute();
+  }));
+}
 $('subtypeAbilityChoiceSelect').addEventListener('change', ()=>{
   currentProfile().subtypeAbilityChoice=$('subtypeAbilityChoiceSelect').value;
   saveStore();
@@ -1090,8 +1128,8 @@ $('subtypeAbilityChoiceSelect').addEventListener('change', ()=>{
 // text), then saves, before returning. HD/BAB writes are skipped only while
 // p.hdBabOverride is set (the player took manual control -- see the hitDice/bab input
 // listeners below, and "Reapply progression" to clear it). Familiar and unrecognized
-// Animal Companion/Mount sources ("Other / homebrew", Paladin/Cavalier mount) have no
-// table here yet, so HD/BAB always stay exactly what was typed.
+// Animal Companion/Mount sources marked "Other / homebrew" have no table, so HD/BAB
+// stay exactly what was typed. Paladin and Cavalier mounts use this same table.
 function applyProgressionUI(){
   let p=currentProfile();
   let cls=$('sourceClass').value, ownerLvl=+$('ownerLevel').value||0;
@@ -1131,6 +1169,7 @@ function applyProgressionUI(){
       autoNote.textContent='';
       recomputeMultiattack();
     }
+    renderProgressionAbilityChoices();
     return;
   }
   let eff=effectiveCompanionLevel(cls, ownerLvl);
@@ -1141,6 +1180,7 @@ function applyProgressionUI(){
       : '';
     adjNote.textContent=''; maNote.textContent=''; autoNote.textContent='';
     recomputeMultiattack(); // effective level 0/inactive -- clears any stale grant from a higher level this profile previously had
+    renderProgressionAbilityChoices();
     return;
   }
   let row=ANIMAL_COMPANION_TABLE[Math.max(1,Math.min(20,eff))];
@@ -1152,6 +1192,7 @@ function applyProgressionUI(){
   // derived from the effective companion level itself.
   writeHdBab(row.hd, row.bab);
   recomputeMultiattack(); // At effective level 9+, actually applies Multiattack or the extra-attack grant -- see the note above the attack list
+  renderProgressionAbilityChoices();
 }
 
 function loadProfileIntoUI(){
@@ -1844,6 +1885,7 @@ function disambiguatedAttackLabels(lines){
 }
 function attackLineFromSpecies(a,bab,size){
   let ranged=a.classification==='ranged_touch';
+  let conditional=a.classification==='conditional'||!!a._conditional;
   return Object.assign(newAttackLine(),{
     name:a.name, qty:a.count||1, atkType:ranged?'ranged-touch':'natural',
     mode:a.classification==='secondary'?'secondary':(ranged?'other':'primary'),
@@ -1852,7 +1894,8 @@ function attackLineFromSpecies(a,bab,size){
     dmgAbilityMult:a.damageAbilityMultiplier===undefined?1:a.damageAbilityMultiplier,
     critMult:a.criticalMultiplier||2, range:a.range||'',
     choiceGroup:a.choiceGroup||'',
-    extra:[a.effect,a.rider,a.choiceGroup?'Alternative attack — choose one, not both':''].filter(Boolean).join('; '),
+    multiattackConditional:conditional,
+    extra:[conditional?'Conditional attack — only when its trigger is met':'',a.effect,a.rider,a.choiceGroup?'Alternative attack — choose one, not both':''].filter(Boolean).join('; '),
     noDamage:!a.damage
   });
 }
@@ -1866,7 +1909,16 @@ function speciesAbilityBaselineFor(species, listedAdvance, alternativeAdvance){
   return out;
 }
 function speciesSizeFor(species, advanced){ return advanced&&species.advancement.size?species.advancement.size:species.starting.size; }
-function speciesAttackRulesFor(species, advanced){ return advanced&&species.advancement.replaceNaturalAttacks?species.advancement.replaceNaturalAttacks:species.starting.naturalAttacks; }
+function speciesAttackRulesFor(species, advanced){
+  let natural=advanced&&species.advancement.replaceNaturalAttacks
+    ? species.advancement.replaceNaturalAttacks : (species.starting.naturalAttacks||[]);
+  // Rake and similar attacks are real damage options, but only under their own trigger
+  // (typically a grapple or pounce). Keep them visible and explicitly conditional;
+  // naturalAttackQty() excludes them from the ordinary full-attack Multiattack count.
+  let conditional=advanced&&species.advancement.replaceConditionalAttacks
+    ? species.advancement.replaceConditionalAttacks : (species.starting.conditionalAttacks||[]);
+  return natural.concat(conditional.map(a=>Object.assign({},a,{_conditional:true})));
+}
 // ANIMAL-MERGE-001: mirrors FAMILIAR-MERGE-001/EVOL-MERGE-001/PHANTOM-MERGE-001, applied
 // to Animal Companion/Mount species presets, which previously had none of that safety at
 // all -- the old applySpeciesPreset() handler unconditionally overwrote all six ability
@@ -2015,7 +2067,12 @@ function lineFromRuleAttack(a,bab,size){
   return Object.assign(newAttackLine(),{name:a.name,qty:a.count||1,atkType:'natural',mode:a.classification||'primary',die:a.damage||((a.damageBySize||{})[size])||'',
     atkBonus:bab+sizeAttackModifier(size)+(a.classification==='secondary'?-5:0),hitAbility,dmgAbility:a.damageAbility||a.ability||'str',
     dmgAbilityMult:a.damageAbility==='none'?0:(a.strengthMultiplier===undefined?1:a.strengthMultiplier),baseDamageBonus:a.baseDamageBonus||0,
-    damageType:(a.damageType||a.type||[]).join?a.damageType?.join('/')||a.type?.join('/')||'':(a.damageType||a.type||''),extra:a.effect||'',noDamage:!a.damage&&!a.damageBySize});
+    damageType:(a.damageType||a.type||[]).join?a.damageType?.join('/')||a.type?.join('/')||'':(a.damageType||a.type||''),extra:a.effect||'',noDamage:!a.damage&&!a.damageBySize,
+    naturalAttackMaximumCount:a._naturalAttackMaximumCount});
+}
+function eidolonNaturalAttackCount(lines){
+  return (lines||[]).filter(x=>(x.atkType||'natural')==='natural'&&!x.multiattackGranted)
+    .reduce((n,x)=>n+(x.naturalAttackMaximumCount!==undefined?+x.naturalAttackMaximumCount:(+x.qty||1)),0);
 }
 function applyEidolonPreset(type, explicit){
   if(explicit===undefined) explicit=true; // see EIDOLON-REAPPLY-001 on reapplyEidolonPresetIfActive
@@ -2120,7 +2177,7 @@ function applyEidolonPreset(type, explicit){
       // natural weapon, but not one available on an ordinary full attack. This is
       // separate from Rake's own "countsTowardNaturalAttackMaximum" flag in the JSON,
       // which is about the evolution pool's cap on granted attacks, a different rule.
-      attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:originKey,_legacyOriginKey:legacyOriginKey,_conditional:ad.operation==='addConditionalAttack'}));
+      attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:originKey,_legacyOriginKey:legacyOriginKey,_conditional:ad.operation==='addConditionalAttack',_naturalAttackMaximumCount:ad.countsTowardNaturalAttackMaximum}));
     } else if(ad.operation==='addOrUpgradeAttack'){
       let existing=attacks.find(a=>a.name==='Bite');
       if(existing) existing.strengthMultiplier=ad.existingAttackStrengthMultiplier;
@@ -2218,7 +2275,7 @@ function applyEidolonPreset(type, explicit){
   // different rule from Multiattack's 3-attack THRESHOLD above -- never count the
   // level-9 granted extra attack toward it, since that attack doesn't come from the
   // evolution pool at all.
-  let naturalCount=p.attackLines.filter(x=>!x.multiattackGranted).reduce((n,x)=>n+(x.name==='Rake'?1:(+x.qty||1)),0);
+  let naturalCount=eidolonNaturalAttackCount(p.attackLines);
   $('speciesPresetNote').textContent=(subtype?subtype.name+' ':'')+form.name+' applied at level '+level+'. Maximum '+row.maxNaturalAttacks+' natural attacks; current routine counts '+naturalCount+(naturalCount>row.maxNaturalAttacks?' — OVER THE LIMIT':'')+'. Fields remain editable.';
 }
 function applyPhantomPreset(explicit){
@@ -2624,8 +2681,9 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
   // as manifestBlocked above, for a custom entry saved under the old "Mythic" category
   // before this fix removed it -- visibly inert here, never deleted or migrated.
   let mythicBlocked = isCustom && defOrCustom.category==='mythic';
-  let anyBlocked = manifestBlocked || mythicBlocked;
-  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}${anyBlocked?' disabled':''}></label><div><div class="name">${defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div>${manifestBlocked?`<div style="font-size:.72rem;color:var(--gold);margin-top:3px">Inactive — requires ${requiredManifestation} manifestation</div>`:''}${mythicBlocked?`<div style="font-size:.72rem;color:var(--gold);margin-top:3px">Inactive — animal companions/mounts/familiars/eidolons/phantoms/cohorts don't have mythic tiers of their own; kept but excluded from every calculation</div>`:''}</div><button class="rm">✕ remove</button></div>${cfgHtml}`;
+  let entityBlocked = !isCustom && !modifierAppliesToCurrentEntity(defOrCustom,currentProfile());
+  let anyBlocked = manifestBlocked || mythicBlocked || entityBlocked;
+  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}${anyBlocked?' disabled':''}></label><div><div class="name">${defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div>${manifestBlocked?`<div style="font-size:.72rem;color:var(--gold);margin-top:3px">Inactive — requires ${requiredManifestation} manifestation</div>`:''}${mythicBlocked?`<div style="font-size:.72rem;color:var(--gold);margin-top:3px">Inactive — animal companions/mounts/familiars/eidolons/phantoms/cohorts don't have mythic tiers of their own; kept but excluded from every calculation</div>`:''}${entityBlocked?`<div style="font-size:.72rem;color:var(--gold);margin-top:3px">Inactive — this effect cannot target the current creature type</div>`:''}</div><button class="rm">✕ remove</button></div>${cfgHtml}`;
   div.querySelector('.rm').onclick=()=>{
     let p=currentProfile();
     if(isCustom) p.custom=p.custom.filter(c=>c.id!==defOrCustom.id);
@@ -2769,7 +2827,8 @@ function collectContributions(ctx){
     // edited one) could carry a rider-only id that the add-list above no longer offers.
     // Never let it contribute to this entity's own numbers.
     if(RIDER_ONLY_IDS.has(m.id)) return;
-    let isOff=a.on===false;
+    let entityBlocked=!modifierAppliesToCurrentEntity(m,p);
+    let isOff=a.on===false||entityBlocked;
     let r=m.compute(ctx,a.cfg||{});
     let effType=r.type||m.type;
     let perLineAbility=['bulls-strength','cats-grace','bears-endurance','owls-wisdom','eagles-splendor','foxs-cunning','animal-growth'].includes(m.id);
@@ -2796,7 +2855,8 @@ function collectContributions(ctx){
       }
     }
     let noteText = perLineAbility ? 'Ability adjustment applied separately to each attack line that uses this ability'+(m.id==='animal-growth'?'; includes the shared -1 size attack penalty':'') : r.note;
-    if(isOff) noteText=(noteText||'')+' (not active right now)';
+    if(entityBlocked) noteText=(noteText||'')+' (inactive — cannot target the current creature type)';
+    else if(isOff) noteText=(noteText||'')+' (not active right now)';
     breakdown.push({name:m.name,category:m.category,type:effType,atk:perLineAbility?null:(m.appliesTo.includes('attack')?r.attack:null),dmg:perLineAbility?null:(m.appliesTo.includes('damage')?r.damage:null),note:noteText,suppressed:false,off:isOff,_activeRec:a});
   });
   // MYTHIC-SCOPE-004: Inspire Minions must raise the CHOSEN effect's own atk/dmg value
@@ -2957,6 +3017,11 @@ function compute(){
     let row=PHANTOM_PROGRESSION.levels[entityLevel-1], anger=p.phantomFocus==='anger';
     progressionAbilityAdj[anger?'str':'dex']=row.dexChaBonus; progressionAbilityAdj.cha=row.dexChaBonus;
   }
+  let earnedAbilityIncreases=progressionAbilityIncreaseCount(entityType,eff,entityLevel);
+  let progressionChoices=(p.progressionAbilityChoicesByEntity&&p.progressionAbilityChoicesByEntity[entityType])||[];
+  progressionChoices.slice(0,earnedAbilityIncreases).forEach(ability=>{
+    if(progressionAbilityAdj[ability]!==undefined) progressionAbilityAdj[ability]+=1;
+  });
   (p.custom||[]).filter(c=>c.on!==false&&c.abilityAdjustments&&customEffectAppliesToCurrentEntity(c,p)&&customEffectMeetsRuntimeRequirements(c,p)).forEach(c=>{
     Object.entries(c.abilityAdjustments).forEach(([ability,value])=>progressionAbilityAdj[ability]=(progressionAbilityAdj[ability]||0)+(+value||0));
   });

@@ -56,3 +56,16 @@ test('mutually exclusive natural weapons count as one, not two', () => {
   const profile={multiattackExtraSourceLineId:'tail'};
   assert.equal(apply(profile,[bite,tail],9).filter(l=>l.multiattackGranted).length,1);
 });
+
+test('eidolon natural-attack maximum ignores weapons and counts Rake as one',()=>{
+  const start=html.indexOf('function eidolonNaturalAttackCount(');
+  const end=html.indexOf('function applyEidolonPreset(',start);
+  vm.runInContext(html.slice(start,end),context);
+  const lines=[
+    {...primary(),qty:2},
+    {...primary(),name:'Rake renamed',qty:2,multiattackConditional:true,naturalAttackMaximumCount:1},
+    {...primary(),atkType:'manufactured',qty:3},
+    {...primary(),multiattackGranted:true}
+  ];
+  assert.equal(context.eidolonNaturalAttackCount(lines),3);
+});

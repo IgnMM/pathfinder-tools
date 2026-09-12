@@ -60,3 +60,28 @@ test('listed vs alternative species advancement affects stats, size and attacks 
   $('ownerLevel').value='4';apply(false);
   assert.equal(Number($('dex').value),19);assert.equal(Number($('str').value),16);
 });
+
+test('species conditional attacks are displayed but excluded from Multiattack qualification',()=>{
+  const context={};
+  vm.createContext(context);
+  vm.runInContext(segment('function speciesAttackRulesFor(', '// ANIMAL-MERGE-001'),context);
+  const cat=catalog.species.find(s=>s.id==='cat_big');
+  const start=context.speciesAttackRulesFor(cat,false);
+  const advanced=context.speciesAttackRulesFor(cat,true);
+  assert.equal(start.find(a=>a.name==='Rake')._conditional,true);
+  assert.equal(start.find(a=>a.name==='Rake').damage,'1d4');
+  assert.equal(advanced.find(a=>a.name==='Rake').damage,'1d6');
+});
+
+test('progression ability increases unlock at each entity table milestone',()=>{
+  const context={};
+  vm.createContext(context);
+  vm.runInContext(segment('function progressionAbilityIncreaseCount(', 'function renderProgressionAbilityChoices'),context);
+  assert.equal(context.progressionAbilityIncreaseCount('animal-companion',3,20),0);
+  assert.equal(context.progressionAbilityIncreaseCount('animal-companion',4,20),1);
+  assert.equal(context.progressionAbilityIncreaseCount('mount',20,1),4);
+  assert.equal(context.progressionAbilityIncreaseCount('eidolon-chained',null,4),0);
+  assert.equal(context.progressionAbilityIncreaseCount('eidolon-chained',null,15),3);
+  assert.equal(context.progressionAbilityIncreaseCount('phantom',null,20),3);
+  assert.equal(context.progressionAbilityIncreaseCount('familiar',null,20),0);
+});
