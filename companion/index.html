@@ -1638,7 +1638,15 @@ function sizeAttackModifier(size){
 //    bonus feat if it has three or more natural attacks and does not already have that
 //    feat. If it does not have the requisite three or more natural attacks, the animal
 //    companion instead gains a second attack with ITS PRIMARY NATURAL WEAPON, albeit at
-//    a -5 penalty."
+//    a -5 penalty." RE-VERIFIED (not just assumed) after a follow-up report claimed this
+//    should read "one of its natural weapons" like the Eidolon table below: d20pfsrd's
+//    Animal Companions page gave "its primary natural weapon" on four independent
+//    fetches across two sessions; the one fetch that returned "one of its natural
+//    weapons" (from the Druid class page on legacy.aonprd.com) did not reproduce that
+//    clause at all on a stricter, quote-only re-fetch of the same page, and is the more
+//    likely case of the fetch tool conflating this table with the Eidolon table's own
+//    (genuinely different) wording just below -- kept as PRIMARY-only pending a directly
+//    quotable primary source that says otherwise.
 //  - Eidolon Base Statistics table: "...the eidolon instead gains a second attack with
 //    ONE OF ITS NATURAL WEAPONS, albeit at a -5 penalty. If the eidolon later gains 3 or
 //    more natural attacks, it loses this additional attack and instead gains
@@ -1905,7 +1913,12 @@ function applyAnimalCompanionPresetCore(speciesId, explicit){
   let survivingOldLines=droppedPrefix?oldLines.filter(l=>!(l.origin&&l.origin.startsWith(droppedPrefix))):oldLines.slice();
   if(explicit) p.removedSpeciesAttackOrigins=[]; // explicit re-apply may resurrect a previously-removed generated attack, same as resetting ability scores
   let tombstones=new Set(p.removedSpeciesAttackOrigins||[]);
-  let manualLines=survivingOldLines.filter(l=>l.origin==='manual');
+  // MULTIATTACK-002: see the matching comment in applyEidolonPreset -- a previously-
+  // granted extra-attack line is never one of this species' own attack rules, so it must
+  // be carried through untouched (like a manual line) or it silently vanishes before
+  // recomputeMultiattack() below can find and correctly refresh/remove it, losing its
+  // lineId and any player-typed adjustment.
+  let manualLines=survivingOldLines.filter(l=>l.origin==='manual'||l.multiattackGranted);
   let ownPrefix=speciesOriginPrefix(species.id);
   let byOrigin={};
   survivingOldLines.forEach(l=>{ if(l.origin && l.origin.startsWith(ownPrefix)) byOrigin[l.origin]=l; });
@@ -2132,10 +2145,20 @@ function applyEidolonPreset(type, explicit){
   const EIDOLON_PRESERVED_FIELDS=['lineId','threat','critMult','enhancement','range','extra','manualHitAdj','manualDmgAdj','noDamage','damageType','extraDice','extraDamageType','extraDiceMultipliesOnCrit'];
   let p=currentProfile();
   let oldLines=p.attackLines||[];
-  let manualLines=oldLines.filter(l=>l.origin==='manual');
+  // MULTIATTACK-002: a previously-granted extra-attack line (origin 'multiattack-extra',
+  // multiattackGranted true) is never one of this form/evolution's own attacks -- it's
+  // synthesized separately by applyMultiattackRule (see recomputeMultiattack below) -- so
+  // it would otherwise match neither manualLines nor generatedLines below and be silently
+  // DROPPED from p.attackLines before recomputeMultiattack() ever runs, losing its
+  // lineId and any player-typed adjustment (manualHitAdj, extra note, extraDice, etc.)
+  // even when the exact same extra attack is still applicable after this reapply. Carried
+  // through here exactly like a manual line -- untouched -- so applyMultiattackRule's own
+  // existingGranted lookup can find and correctly refresh (or, if no longer applicable,
+  // cleanly remove) it.
+  let manualLines=oldLines.filter(l=>l.origin==='manual'||l.multiattackGranted);
   let byOriginKey={}, byLegacyOriginKey={}, byNameFallback={};
   oldLines.forEach(l=>{
-    if(l.origin==='manual') return;
+    if(l.origin==='manual'||l.multiattackGranted) return;
     if(l.origin && l.origin.startsWith('evolution:') && l.origin.split(':').length===2){
       (byLegacyOriginKey[l.origin]=byLegacyOriginKey[l.origin]||[]).push(l);
     } else if(l.origin){
