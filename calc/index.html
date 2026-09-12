@@ -5012,7 +5012,17 @@ function compute(){
 
   let atkFirst = atk;
   let notes=[];
-  if(furiousFocusOn && powerAttackOn && mythicFuriousFocusOn){
+  // FURIOUS-FOCUS-SCOPE-001 (ported from companion/index.html, 2026-09-12): RAW requires
+  // "wielding a two-handed weapon or a one-handed weapon with two hands" -- the feat
+  // toggle being active isn't enough on its own (previously applied unconditionally
+  // whenever furiousFocusOn && powerAttackOn, including a one-handed grip, TWF or a
+  // ranged weapon, none of which qualify). `style` already drives the exact same x1.5
+  // two-handed Str/Power-Attack damage scaling a few lines above (strDmgMod) -- reuse
+  // that same structural fact here instead of ignoring it.
+  let furiousFocusEligible = style==='twoHanded';
+  if(furiousFocusOn && powerAttackOn && !furiousFocusEligible){
+    notes.push('Furious Focus is active but you\'re not wielding a two-handed weapon (or a one-handed weapon in two hands) — it has no effect this turn.');
+  } else if(furiousFocusOn && powerAttackOn && mythicFuriousFocusOn){
     // Mythic Furious Focus: spend mythic power to waive Power Attack's penalty on
     // every melee attack this round, not just the first.
     atk = atk - powerAttackAtkVal;
@@ -5280,8 +5290,11 @@ function compute(){
     if(hasMythicTWF) notes.push('Mythic Two-Weapon Fighting: two-weapon attack penalties fully waived (spending mythic power) instead of just reduced.');
     iteratives = babList.map(b => b + (mainAtk-bab));
     if(!iteratives.length) iteratives=[mainAtk];
-    if(furiousFocusOn && powerAttackOn && mythicFuriousFocusOn) iteratives=iteratives.map(v=>v-powerAttackAtkVal);
-    else if(furiousFocusOn && powerAttackOn) iteratives[0]=mainAtk-powerAttackAtkVal;
+    // FURIOUS-FOCUS-SCOPE-001: same two-handed-weapon gate as the single-attack block
+    // above -- never waives the iterative penalty while one-handing, TWF-ing or firing
+    // a ranged weapon.
+    if(furiousFocusOn && powerAttackOn && furiousFocusEligible && mythicFuriousFocusOn) iteratives=iteratives.map(v=>v-powerAttackAtkVal);
+    else if(furiousFocusOn && powerAttackOn && furiousFocusEligible) iteratives[0]=mainAtk-powerAttackAtkVal;
     if(mythicPrecisionOn && iteratives.length>1){
       for(let i=1;i<iteratives.length;i++) iteratives[i]=Math.min(iteratives[i]+5, iteratives[0]);
     }
