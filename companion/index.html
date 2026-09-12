@@ -198,8 +198,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div id="eidolonEvolutionBudget" class="emptyNote"></div>
   <div id="eidolonEvolutionList"></div>
 </div>
-<div class="row"><label>Only one natural attack this round?</label><input id="singleAttack" type="checkbox" style="width:auto;justify-self:start"></div>
-<div class="emptyNote">Check this only if the companion is making a single natural attack this turn (not a full attack with multiple attack types) — like a two-handed weapon, its Strength (and Power Attack) bonus to damage then becomes ×1.5 instead of ×1. Leave unchecked for the common case (e.g. bite + 2 claws together).</div>
+<div class="row"><label>Taking the attack action this turn?</label><input id="singleAttack" type="checkbox" style="width:auto;justify-self:start"></div>
+<div class="emptyNote">Check this only when making a single attack action this turn (not a full attack) — this is what makes Vital Strike (and its Improved/Greater versions) usable, on the one attack line you choose below in Results. It does NOT by itself change any attack's Strength multiplier or Power Attack scaling — those come from each attack line's own Mode (Primary/Secondary) and Dmg mult (×1.5 only when that line is truly the creature's only natural attack, or a two-handed weapon), set per line below in Attacks.</div>
 <h3>Ability Scores</h3>
 <div class="statsGrid">
 <div><label>STR (base)</label><input id="str" type="number" value="18"></div>
@@ -259,6 +259,11 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <section class="card card-results">
 <h2>Results</h2>
 <div id="attackResults"></div>
+<div id="vitalStrikeBox" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border,#2a3140)">
+  <div class="small" style="color:var(--muted);font-size:.85rem">Vital Strike (single attack action only — never combine with a full attack or with Rend)</div>
+  <div class="row rowNarrow" style="margin-top:6px"><label>Attack receiving Vital Strike</label><select id="vitalStrikeAttackSelect"></select></div>
+  <div class="emptyNote">Applies only to the one attack line selected here; every other line's Normal/Critical Damage above stays unaffected.</div>
+</div>
 <div id="rendResultBox" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border,#2a3140)">
   <div class="small" style="color:var(--muted);font-size:.85rem">Rend (conditional, no attack roll)</div>
   <div class="row rowNarrow" style="margin-top:6px"><label>Claw supplying Rend's damage</label><select id="rendClawSelect"></select></div>
@@ -295,10 +300,20 @@ function applySizeSteps(dice, steps){
   for(let i=0;i<steps;i++) d=diceSizeUp(d);
   return d;
 }
+// SINGLE-ATTACK-SPLIT-001: this used to scale by ctx.style==='twoHanded' (driven by the
+// old "Only one natural attack this round?" checkbox), assuming that flag meant "this
+// creature's sole natural attack, so x1.5 Str applies" -- that assumption was wrong
+// (see the same-named comment on the Power Attack MODIFIERS entry below) and, on top of
+// that, this bonus is a single number shared across every eligible attack line
+// (collectContributions' flat pool, not aware of any one line's own Mode/Dmg mult), so
+// there is no single line to safely apply a x1.5/x0.5 read to even if the flag meant the
+// right thing. Always returns the plain (x1) modifier bonus now; if a buffed ability
+// score should give x1.5 Str on the creature's one true natural attack, add that
+// difference by hand via that line's own "Dmg adj" field below.
 function abilityBuffBonus(ctx, ability, scoreBonus){
   let modBonus = scoreBonus/2;
   let attack = (ctx.atkStat===ability) ? modBonus : 0;
-  let damage = (ctx.dmgStat===ability) ? ((ctx.style==='twoHanded' && modBonus>0) ? Math.floor(modBonus*1.5) : modBonus) : 0;
+  let damage = (ctx.dmgStat===ability) ? modBonus : 0;
   return {attack, damage, modBonus};
 }
 
@@ -365,9 +380,20 @@ function effectiveCompanionLevel(sourceClass, ownerLevel){
 // filtering (see character_catalog_companion_compatibility.json / companion-calculator-
 // implementation-spec.md section 5). Keep it in sync manually until that refactor lands.
 const MODIFIERS = [
+// POWER-ATTACK-SCALE-001: RAW scales the +2/step damage bonus by x1.5 with "a two-handed
+// weapon, a one-handed weapon using two hands, or a primary natural weapon that adds
+// 1-1/2 times your Strength modifier on damage rolls," by x0.5 with "an off-hand weapon
+// or secondary natural weapon," and full otherwise -- a per-ATTACK-LINE structural fact
+// (that line's own Mode and Dmg mult, see attack lines below), never "only one attack
+// this round" (an unrelated action-economy condition that only matters for Vital
+// Strike). This shared MODIFIERS entry can't see any one line's Mode/Dmg mult (see the
+// MODIFIERS TODO above), so its own `d` here is only a rough always-x1 placeholder --
+// compute()'s per-line loop subtracts this exact value back out and substitutes each
+// line's own correctly-scaled figure (see linePowerAttack there), so this placeholder
+// never actually reaches the displayed numbers.
 {id:'power-attack',name:'Power Attack',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
- desc:'-1 atk / +2 dmg per step (1 step at BAB 1-3, +1 more step every 4 BAB thereafter); the +2 becomes +3 if "Only one natural attack this round?" is checked above. Requires Str 13. RAW: this damage bonus IS multiplied on a critical hit — add the House Rule below if your table plays it differently.',
- compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);let perStep=2;let dPerStep=ctx.style==='twoHanded'?Math.floor(perStep*1.5):perStep;let d=dPerStep*step;return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg — shared across every attack line at this full rate for simplicity (a Secondary/half-Str line\'s real Power Attack bonus is normally half this)'}}},
+ desc:'-1 atk / +2 dmg per step (1 step at BAB 1-3, +1 more step every 4 BAB thereafter). Below, each attack line is scaled automatically from its own Mode/Dmg mult: x1.5 for a two-handed weapon or a primary natural weapon whose Dmg mult is already x1.5 (i.e. the creature\'s only natural attack), x0.5 for a Secondary line, x1 otherwise. Requires Str 13. RAW: this damage bonus IS multiplied on a critical hit — add the House Rule below if your table plays it differently.',
+ compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);let d=2*step;return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg — shared placeholder at the base x1 rate; see each attack line below for its own correctly-scaled Power Attack bonus'}}},
 {id:'weapon-focus-natural',name:'Weapon Focus (Natural Weapon)',category:'feat',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
  desc:'+1 on attack rolls with one chosen natural weapon (e.g. Weapon Focus (bite)). Applied here to every attack line for simplicity — if the companion only has this for ONE of its attack types, only count it on that line by hand.',
  compute:()=>({attack:1,damage:0,note:'+1 atk'})},
@@ -377,18 +403,33 @@ const MODIFIERS = [
 {id:'improved-natural-attack',name:'Improved Natural Attack',category:'feat',source:'Bestiary (Monster feat)',appliesTo:[],type:'special',
  desc:'Requires natural weapon, base attack bonus +4. Choose one of the creature\'s natural attacks — its damage die increases by one step, as if the creature\'s size had increased by one category for that attack only. Not a flat number here — bump that attack line\'s Damage Die by hand (e.g. 1d6 → 1d8, per the Core Rulebook size-conversion table).',
  compute:()=>({attack:0,damage:0,note:'special — increases one chosen attack\'s damage die by one size step; adjust that line\'s Damage Die by hand'})},
+// VITAL-STRIKE-SELECT-001: requires taking the attack action (a single attack, not a
+// full attack) -- check "Taking the attack action this turn?" above -- and applies to
+// exactly ONE attack you choose in the "Vital Strike" box under Results, never every
+// displayed line and never Rend (which requires the opposite: a full attack). A
+// creature with several natural weapons can still choose any one of them; this alone
+// never changes how many natural attacks it has, so it never touches any line's own
+// Strength multiplier (Dmg mult) either.
 {id:'vital-strike',name:'Vital Strike',category:'feat',source:'Core Rulebook',appliesTo:['damage'],type:'untyped',
- desc:'Make a single attack-action strike that rolls that attack\'s base damage dice twice. Only usable when taking the attack action (a single attack, not a full attack) — check "Only one natural attack this round?" above, since that\'s the same condition. Works with natural weapons. Non-dice bonuses (Str, enhancement, etc.) are added only once, not doubled, and this isn\'t multiplied on a crit.',
- compute:()=>({attack:0,damage:0,note:'requires "Only one natural attack this round?" checked above — doubles that attack line\'s Damage Die (shown automatically), everything else added once, not multiplied on a crit'})},
+ desc:'Make a single attack-action strike that rolls that attack\'s base damage dice twice. Only usable when taking the attack action (a single attack, not a full attack) — check "Taking the attack action this turn?" above, then choose the attack it applies to in the Vital Strike box under Results. Works with natural weapons. Non-dice bonuses (Str, enhancement, etc.) are added only once, not doubled, and this isn\'t multiplied on a crit.',
+ compute:()=>({attack:0,damage:0,note:'requires "Taking the attack action this turn?" checked above — doubles the chosen attack\'s Damage Die (pick it in the Vital Strike box under Results), everything else added once, not multiplied on a crit'})},
 {id:'vital-strike-improved',name:'Vital Strike, Improved',category:'feat',source:'Core Rulebook',appliesTo:['damage'],type:'untyped',
  desc:'Upgrade to Vital Strike: rolls the attack\'s base damage dice three times instead of twice. Requires Vital Strike, BAB +11.',
- compute:()=>({attack:0,damage:0,note:'requires "Only one natural attack this round?" checked above — triples that attack line\'s Damage Die (shown automatically)'})},
+ compute:()=>({attack:0,damage:0,note:'requires "Taking the attack action this turn?" checked above — triples the chosen attack\'s Damage Die (pick it in the Vital Strike box under Results)'})},
 {id:'vital-strike-greater',name:'Vital Strike, Greater',category:'feat',source:'Core Rulebook',appliesTo:['damage'],type:'untyped',
  desc:'Upgrade to Improved Vital Strike: rolls the attack\'s base damage dice four times instead of three. Requires Improved Vital Strike, BAB +16.',
- compute:()=>({attack:0,damage:0,note:'requires "Only one natural attack this round?" checked above — quadruples that attack line\'s Damage Die (shown automatically)'})},
+ compute:()=>({attack:0,damage:0,note:'requires "Taking the attack action this turn?" checked above — quadruples the chosen attack\'s Damage Die (pick it in the Vital Strike box under Results)'})},
+// FURIOUS-FOCUS-SCOPE-001: RAW requires "wielding a two-handed weapon or a one-handed
+// weapon with two hands" -- it can NEVER waive Power Attack's penalty on a natural
+// attack (bite/claw/etc), regardless of attack order. It only ever applies to whichever
+// attack line is structurally that two-handed weapon (Manufactured, non-Secondary, Dmg
+// mult x1.5 — the same fact that already drives that line's own x1.5 Power Attack
+// scaling, see POWER-ATTACK-SCALE-001), never simply "the first row." If no such line
+// exists, Furious Focus has no effect at all this turn, however many natural attacks
+// are listed first.
 {id:'furious-focus',name:'Furious Focus',category:'feat',source:"Advanced Player's Guide",appliesTo:['attack'],type:'special',
- desc:'Requires Power Attack. No Power Attack attack-roll penalty on the FIRST attack of the turn only — applied automatically to the first row of your Attacks list (the rest still take the full penalty).',
- special:'furious-focus', compute:()=>({attack:0,damage:0,note:'waives Power Attack\'s attack penalty on the first attack line only (see Results below)'})},
+ desc:'Requires Power Attack, Str 13, BAB +1. Only while wielding a two-handed weapon (or a one-handed weapon in two hands): no Power Attack attack-roll penalty on the first attack of the turn made with it — applied automatically to that attack line only (see Results below); every natural attack, and any additional attack that turn, still takes the full penalty.',
+ special:'furious-focus', compute:()=>({attack:0,damage:0,note:'waives Power Attack\'s attack penalty only on the two-handed weapon attack line, if one exists (see Results below) — never on a natural attack'})},
 {id:'outflank',name:'Outflank',category:'feat',source:"Advanced Player's Guide",appliesTo:['attack'],type:'special',
  desc:'When flanking the same target as an ally who also has this feat, the flanking bonus on attack rolls increases from +2 to +4 (replaces the Flanking modifier below, don\'t stack both). Requires BAB +4.',
  compute:()=>({attack:0,damage:0,note:'special — if Flanking is also active below, use +4 instead of its +2 (don\'t add both)'})},
@@ -543,7 +584,7 @@ function saveStore(){
   }
 }
 function defaultProfile(name){
-  return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:7, casterLevel:10, bab:7, hdBabOverride:false, singleAttack:false,
+  return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:7, casterLevel:10, bab:7, hdBabOverride:false, singleAttack:false, vitalStrikeAttackName:'',
     speciesPreset:'',eidolonSubtype:'',subtypeAbilityChoice:'',phantomFocus:'',creatureSize:'Medium',manifestation:'ectoplasmic',selectedEvolutions:[],
     rendConditionMet:false,rendClawName:'',
     str:18,dex:15,con:15,int:2,wis:12,cha:6, atkStat:'str', dmgStat:'str',
@@ -599,6 +640,10 @@ store.profiles.forEach(p=>{
   if(p.animalSpeciesApplied===undefined) p.animalSpeciesApplied='';
   if(!p.removedSpeciesAttackOrigins) p.removedSpeciesAttackOrigins=[];
   if(p.singleAttack===undefined) p.singleAttack=false;
+  // VITAL-STRIKE-SELECT-001: which one attack line Vital Strike applies to this turn --
+  // absent on every profile saved before this existed, correctly meaning "none chosen
+  // yet" (compute() falls back to the first attack line automatically).
+  if(p.vitalStrikeAttackName===undefined) p.vitalStrikeAttackName='';
   if(!p.atkStat) p.atkStat='str';
   if(!p.dmgStat) p.dmgStat='str';
   if(!p.attackLines) p.attackLines=[];
@@ -914,6 +959,11 @@ $('reapplyProgression').addEventListener('click', ()=>{
 });
 $('rendClawSelect').addEventListener('change', ()=>{ currentProfile().rendClawName=$('rendClawSelect').value; saveStore(); compute(); });
 $('rendConditionMet').addEventListener('change', ()=>{ currentProfile().rendConditionMet=$('rendConditionMet').checked; saveStore(); compute(); });
+$('vitalStrikeAttackSelect').addEventListener('change', ()=>{
+  let p=currentProfile(), idx=+$('vitalStrikeAttackSelect').value;
+  p.vitalStrikeAttackName=(p.attackLines[idx]||{}).name||'';
+  saveStore(); compute();
+});
 
 $('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; pinUrlToProfile(store.active); saveStore(); loadProfileIntoUI(); updateProfileDate(); updateSyncStatusForActive(); };
 $('newProfile').onclick=()=>{
@@ -2129,11 +2179,15 @@ function compute(){
   (p.custom||[]).filter(c=>c.on!==false&&c.abilityAdjustments&&customEffectAppliesToCurrentEntity(c,p)&&customEffectMeetsRuntimeRequirements(c,p)).forEach(c=>{
     Object.entries(c.abilityAdjustments).forEach(([ability,value])=>progressionAbilityAdj[ability]=(progressionAbilityAdj[ability]||0)+(+value||0));
   });
+  // SINGLE-ATTACK-SPLIT-001: ctx no longer carries a "style" derived from the single-
+  // attack-action checkbox -- that checkbox now means exactly one thing (see below,
+  // singleAttackAction): whether Vital Strike is usable this turn. It never again feeds
+  // a Strength multiplier or Power Attack scaling; those are read per attack line from
+  // that line's own Mode/Dmg mult further down.
   let ctx={
     bab:+$('bab').value,
     str:mod(+$('str').value+progressionAbilityAdj.str), dex:mod(+$('dex').value+progressionAbilityAdj.dex), con:mod(+$('con').value+progressionAbilityAdj.con),
     int:mod(+$('int').value+progressionAbilityAdj.int), wis:mod(+$('wis').value+progressionAbilityAdj.wis), cha:mod(+$('cha').value+progressionAbilityAdj.cha),
-    style: $('singleAttack').checked ? 'twoHanded' : 'oneHanded',
     atkStat:$('atkStat').value, dmgStat:$('dmgStat').value
   };
   let {atkEntries,dmgEntries,extraDice,breakdown,powerAttackOn,powerAttackDmgVal,powerAttackAtkVal}=collectContributions(ctx);
@@ -2149,12 +2203,43 @@ function compute(){
   let animalGrowthOn = p.active.some(a=>a.id==='animal-growth' && a.on!==false);
   let paNoCritMult = p.active.some(a=>a.id==='hr-pa-no-crit' && a.on!==false);
   let furiousFocusOn = p.active.some(a=>a.id==='furious-focus' && a.on!==false);
+  // VITAL-STRIKE-SELECT-001: singleAttackAction is the ONLY thing this checkbox drives
+  // now -- whether the creature is taking the attack action (a single attack) instead
+  // of a full attack, which is what Vital Strike/Improved/Greater require. It never
+  // again implies anything about Strength multipliers or Power Attack scaling.
+  let singleAttackAction = $('singleAttack').checked;
   let vsMultMap={'vital-strike':2,'vital-strike-improved':3,'vital-strike-greater':4};
   let vsActive=p.active.filter(a=>a.on!==false && vsMultMap[a.id]);
-  let vsMult = (ctx.style==='twoHanded' && vsActive.length) ? Math.max(...vsActive.map(a=>vsMultMap[a.id])) : 0;
+  let vsMult = (singleAttackAction && vsActive.length) ? Math.max(...vsActive.map(a=>vsMultMap[a.id])) : 0;
+  // Which ONE attack line Vital Strike's extra dice apply to this turn -- never every
+  // line, and resolved by name (p.vitalStrikeAttackName), falling back to the first
+  // line if unset/stale. Populated into its own box under Results, mirroring Rend's
+  // own claw-selector below.
+  let vsBox=$('vitalStrikeBox'), vsTargetIndex=-1;
+  if(vsMult && p.attackLines && p.attackLines.length && !companionNotYetActive){
+    vsBox.style.display='block';
+    let vsSel=$('vitalStrikeAttackSelect');
+    vsSel.innerHTML=p.attackLines.map((l,idx)=>`<option value="${idx}">${l.name||'Attack'}</option>`).join('');
+    vsTargetIndex=p.attackLines.findIndex(l=>l.name===p.vitalStrikeAttackName);
+    if(vsTargetIndex===-1) vsTargetIndex=0;
+    vsSel.value=String(vsTargetIndex);
+  } else {
+    vsBox.style.display='none';
+  }
 
   let box=$('attackResults'); box.innerHTML='';
-  let lineComputed=[]; // stashed per line, keyed by name -- Rend's block below reads a claw's own normal damage from here
+  let lineComputed=[]; // stashed per line, keyed by name -- Rend's block below reads a claw's own normal damage from here, deliberately NEVER including Vital Strike's turn-specific overlay (see below): Rend requires a full attack, Vital Strike requires the opposite, so the two can never legitimately land on the same claw the same turn.
+  // FURIOUS-FOCUS-SCOPE-001: the ONLY attack line Furious Focus can ever waive Power
+  // Attack's penalty on -- a Manufactured, non-Secondary line whose own Dmg mult is
+  // already x1.5 (a two-handed weapon, or a one-handed weapon the player has set to
+  // x1.5 to model wielding it in two hands). -1 if the creature isn't wielding one at
+  // all this turn (an all-natural-attack profile, say) -- then Furious Focus has no
+  // effect, however many natural attacks are listed first. Computed here (outside the
+  // table-building branch below) so the notes section further down can also reference it.
+  let furiousFocusEligibleIndex=(p.attackLines||[]).findIndex(l=>{
+    let dm=l.dmgAbilityMult!==undefined?+l.dmgAbilityMult:1;
+    return (l.atkType||'natural')==='manufactured' && l.mode!=='secondary' && dm===1.5;
+  });
   if(companionNotYetActive){
     let msg = $('sourceClass').value==='ranger'
       ? 'No animal companion yet at this level — a ranger companion starts at 4th level (effective level = ranger level − 3). Results are inactive until then; type over Hit Dice or BAB above to override manually.'
@@ -2166,7 +2251,6 @@ function compute(){
     let t=document.createElement('table'); t.className='breakTable';
     t.innerHTML='<thead><tr><th>Attack</th><th class="num">To-Hit</th><th>Normal Damage</th><th>Critical Damage</th></tr></thead>';
     let tbody=document.createElement('tbody');
-    let firstPowerAttackIndex=p.attackLines.findIndex(l=>['natural','manufactured'].includes(l.atkType||'natural'));
     p.attackLines.forEach((line,i)=>{
       let hitAb=line.hitAbility||'str', dmgAb=line.dmgAbility||'str';
       let hitAbilityMod = hitAb==='none' ? 0 : (hitAb==='best-str-dex'?Math.max(finalMods.str,finalMods.dex):(finalMods[hitAb]||0));
@@ -2186,12 +2270,17 @@ function compute(){
       let lineDmgFromMods=stackTotal(lineDmgEntries.concat(enh?[{value:enh,type:'enhancement',source:'Attack enhancement'}]:[]));
       let powerAttackEligible=['natural','manufactured'].includes(line.atkType||'natural');
       if(powerAttackOn&&!powerAttackEligible) lineAtkFromMods-=powerAttackAtkVal;
-      else if(furiousFocusOn&&powerAttackOn&&i===firstPowerAttackIndex) lineAtkFromMods-=powerAttackAtkVal;
+      else if(furiousFocusOn&&powerAttackOn&&furiousFocusEligibleIndex!==-1&&i===furiousFocusEligibleIndex) lineAtkFromMods-=powerAttackAtkVal;
       let atk = (+line.atkBonus||0) + hitAbilityMod + lineAtkFromMods + manHit;
-      // Power Attack's shared adapter provides the full primary value. Re-rate that
-      // one contribution for this natural attack: full for primary, half for secondary,
-      // or x1.5 when this is the creature's sole natural attack this round.
-      let paFactor=$('singleAttack').checked?1.5:(line.mode==='secondary'?0.5:1);
+      // POWER-ATTACK-SCALE-001: Power Attack's shared adapter provides only a rough
+      // always-x1 placeholder (see the MODIFIERS entry above); re-rate it correctly for
+      // THIS line from its own Mode/Dmg mult -- x0.5 for a Secondary line (off-hand
+      // weapon or secondary natural weapon), x1.5 for a two-handed weapon or a primary
+      // natural weapon whose Dmg mult is already x1.5 (i.e. the creature's only natural
+      // attack -- reusing dmgMult, already computed above for strContribution), x1
+      // otherwise. Never derived from "taking the attack action this turn" -- that is
+      // an unrelated action-economy condition that only matters for Vital Strike.
+      let paFactor = line.mode==='secondary' ? 0.5 : (dmgMult===1.5 ? 1.5 : 1);
       let linePowerAttack=powerAttackOn&&powerAttackEligible?Math.floor((2*(1+Math.floor(Math.max(1,ctx.bab)/4)))*paFactor):0;
       let dmgBonus = (+line.baseDamageBonus||0) + strContribution + (lineDmgFromMods-(powerAttackOn?powerAttackDmgVal:0)) + linePowerAttack + manDmg;
       let die = (line.die||'1d4').trim();
@@ -2210,10 +2299,7 @@ function compute(){
       if(paNoCritMult && powerAttackOn && linePowerAttack) critDmg = (dmgBonus-linePowerAttack)*critMult + linePowerAttack;
       let critDice = diceMultiply(effDie, critMult);
       let normalDiceStr = effDie;
-      if(vsMult){
-        normalDiceStr = diceMultiply(effDie, vsMult);
-        if(vsMult>1) critDice += ' + '+diceMultiply(effDie, vsMult-1)+' (Vital Strike, unmultiplied)';
-      }
+      let damageTypeLabel=line.damageType?' ['+line.damageType+']':'';
       let lineExtra=[];
       if(line.extraDice) lineExtra.push({dice:line.extraDice,type:line.extraDamageType||'',multiplies:!!line.extraDiceMultipliesOnCrit});
       lineExtra.push(...extraDice.filter(e=>entryAppliesToLine(e,line)));
@@ -2222,14 +2308,30 @@ function compute(){
         normalDiceStr += ' + '+label;
         critDice += ' + '+(e.multiplies?diceMultiply(e.dice,critMult):e.dice)+(e.type?' '+e.type:'')+(e.multiplies?'':' (unmultiplied)');
       });
+      // lineComputed stores this BASE dice string (persistent extra dice included, Vital
+      // Strike's turn-specific overlay excluded) -- Rend, or anything else that reuses a
+      // line's own damage, must never inherit an action-economy assumption that may not
+      // hold this round (see the vsBox comment above).
+      lineComputed.push({name:line.name, dmgBonus, normalDiceStr, damageTypeLabel});
+      let displayNormalDiceStr=normalDiceStr, displayCritDice=critDice;
+      if(vsMult && i===vsTargetIndex){
+        displayNormalDiceStr = diceMultiply(effDie, vsMult);
+        displayCritDice = diceMultiply(effDie, critMult);
+        if(vsMult>1) displayCritDice += ' + '+diceMultiply(effDie, vsMult-1)+' (Vital Strike, unmultiplied)';
+        lineExtra.forEach(e=>{
+          let label=e.dice+(e.type?' '+e.type:'');
+          displayNormalDiceStr += ' + '+label;
+          displayCritDice += ' + '+(e.multiplies?diceMultiply(e.dice,critMult):e.dice)+(e.type?' '+e.type:'')+(e.multiplies?'':' (unmultiplied)');
+        });
+      }
       let qty=Math.max(1,+line.qty||1);
       let nameLabel=(qty>1?qty+'× ':'')+(line.name||'Attack');
       let subLabel=[line.range,line.extra].filter(Boolean).join(' — ');
-      let nameCell=`${nameLabel}${(furiousFocusOn && powerAttackOn && i===firstPowerAttackIndex)?' <span class="typeTag" title="Furious Focus waives Power Attack\'s attack penalty here">Furious Focus</span>':''}${subLabel?`<div class="desc" style="font-size:.68rem;color:var(--muted);margin-top:2px">${subLabel}</div>`:''}`;
-      let damageTypeLabel=line.damageType?' ['+line.damageType+']':'';
-      let dmgCell = line.noDamage ? '—' : (normalDiceStr+' '+signed(dmgBonus)+damageTypeLabel);
-      let critCell = line.noDamage ? '—' : (critDice+' '+signed(critDmg)+damageTypeLabel+' (threat '+(line.threat||'20')+'/×'+critMult+')');
-      lineComputed.push({name:line.name, dmgBonus, normalDiceStr, damageTypeLabel});
+      let ffTag = (furiousFocusOn && powerAttackOn && furiousFocusEligibleIndex!==-1 && i===furiousFocusEligibleIndex) ? ' <span class="typeTag" title="Furious Focus waives Power Attack\'s attack penalty here">Furious Focus</span>' : '';
+      let vsTag = (vsMult && i===vsTargetIndex) ? ' <span class="typeTag" title="Vital Strike doubles/triples/quadruples this attack\'s Damage Die">Vital Strike</span>' : '';
+      let nameCell=`${nameLabel}${ffTag}${vsTag}${subLabel?`<div class="desc" style="font-size:.68rem;color:var(--muted);margin-top:2px">${subLabel}</div>`:''}`;
+      let dmgCell = line.noDamage ? '—' : (displayNormalDiceStr+' '+signed(dmgBonus)+damageTypeLabel);
+      let critCell = line.noDamage ? '—' : (displayCritDice+' '+signed(critDmg)+damageTypeLabel+' (threat '+(line.threat||'20')+'/×'+critMult+')');
       let tr=document.createElement('tr');
       tr.innerHTML=`<td>${nameCell}</td><td class="num">${signed(atk)}</td><td>${dmgCell}</td><td>${critCell}</td>`;
       tbody.appendChild(tr);
@@ -2278,13 +2380,18 @@ function compute(){
 
   let notes=[];
   notes.push('Shared modifiers this turn: '+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg (from active Feats/Spells/Other Effects above) — applied to every attack line that matches their scope (see each effect\'s note above for melee-only/ranged-only/named-attack-only restrictions).');
-  notes.push('"Primary (full Str)" lines use '+(ctx.style==='twoHanded'?'×1.5 Str (only one natural attack this round)':'×1 Str')+'; "Secondary (half Str)" lines use half (rounded down — a penalty is not halved).');
+  notes.push('Each attack line\'s own Dmg mult sets its Strength multiplier: ×1.5 only if that line is truly the creature\'s single natural attack (or a two-handed weapon), ×1 for a Primary line among several, ×0.5 for Secondary — set per line in Attacks, never by a turn-by-turn checkbox.');
   if(strongJawOn) notes.push('Strong Jaw increases only Natural melee attack dice by two effective size steps; it is ignored on manufactured, touch and ranged-special rows.');
   if(animalGrowthOn) notes.push('Animal Growth increases Natural and Manufactured melee attack dice by one actual size step. It still changes abilities and attack size penalty for ranged rows, but does not enlarge ammunition/projectiles after they leave the creature.');
   if(animalGrowthOn && strongJawOn) notes.push('On an eligible Natural melee attack, Animal Growth and Strong Jaw stack as one actual plus one effective increase: 3 damage-die steps total.');
-  if(powerAttackOn) notes.push('Power Attack is rated per attack line: full on Primary attacks, half (rounded down) on Secondary attacks, or ×1.5 when "Only one natural attack this round?" is checked.');
-  if(vsMult) notes.push('Vital Strike is active: Normal/Critical Damage above already include the extra dice for every line — remember this only applies to a single attack action (you should really only be using one attack line this round, matching "Only one natural attack this round?" above).');
+  if(powerAttackOn) notes.push('Power Attack is rated per attack line from that line\'s own Mode/Dmg mult: ×1.5 for a two-handed weapon or a primary natural weapon whose Dmg mult is already ×1.5, ×0.5 on a Secondary line, ×1 otherwise.');
   if(furiousFocusOn && !powerAttackOn) notes.push('Furious Focus is active but Power Attack isn\'t — Furious Focus has no effect without it.');
+  if(furiousFocusOn && powerAttackOn && furiousFocusEligibleIndex===-1) notes.push('Furious Focus is active but no two-handed weapon attack line was found (a Manufactured, non-Secondary line with Dmg mult ×1.5) — it never applies to a natural attack and has no effect until you add one.');
+  if(vsMult){
+    let vsLine=vsTargetIndex>=0 && p.attackLines[vsTargetIndex] ? (p.attackLines[vsTargetIndex].name||'Attack') : 'none';
+    notes.push('Vital Strike is active on "'+vsLine+'" only (choose a different attack in the Vital Strike box under Results) — every other line\'s Normal/Critical Damage is unaffected. This only applies to a single attack action, never a full attack.');
+    if(rendSelected && p.rendConditionMet) notes.push('Rend requires a full attack with both claws hitting, which cannot happen the same turn as Vital Strike\'s single attack action — treat these as two separate hypothetical turns, not one.');
+  }
   $('notes').innerHTML=notes.map(n=>'• '+n).join('<br>');
 }
 
