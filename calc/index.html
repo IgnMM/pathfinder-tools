@@ -5611,6 +5611,15 @@ $('wildShapeForm').addEventListener('change',()=>{
     // into every attack line exactly once here, never touching the flat damage bonus.
     let sizeAtk = wildShapeAttackSizeModifier(f.size);
     p.naturalAttacks=f.attacks.map(a=>Object.assign({}, a, {attackSizeModifier: sizeAtk}));
+    // NATURAL-VS-STALE-001 (ported concept from companion/index.html's
+    // ATTACK-LINE-ID-001, 2026-09-12): naturalVSLineIndex is a plain array position into
+    // naturalAttacks -- fully replacing that array here (a new Wild Shape form) leaves a
+    // previously-chosen index pointing at an unrelated line in the new form's routine
+    // (or, if the new form has fewer lines, silently clamped to whichever line happens
+    // to sit last). Reset it to the same safe default renderNaturalVSSelect() already
+    // falls back to when nothing valid is selected, rather than let it resolve to the
+    // wrong attack from the OLD form.
+    p.naturalVSLineIndex=0;
   }
   saveStore(); loadProfileIntoUI();
 });
