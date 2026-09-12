@@ -840,7 +840,11 @@ $('eidolonSubtype').addEventListener('change',()=>{currentProfile().subtypeAbili
 // manifestation only affects the informational note text below, never a computed
 // value, so it stays out of the reapply call.
 ['phantomFocus','creatureSize'].forEach(id=>$(id).addEventListener('change',()=>{syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();reapplyPhantomPresetIfActive();compute();}));
-$('manifestation').addEventListener('change',()=>{syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();compute();});
+// MANIFEST-REQ-001: manifestation gates whether a generated effect like Ferocious Mien
+// can currently take effect, so switching it must refresh the Active Effects list too
+// (renderCategories, to show/hide the disabled-checkbox "Inactive — requires ..." state)
+// -- compute() alone only updates the results table, not that list.
+$('manifestation').addEventListener('change',()=>{syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();renderCategories();compute();});
 $('entityType').addEventListener('change', ()=>{
   let p=currentProfile();
   let oldType=p.entityType||'animal-companion', newType=$('entityType').value;
@@ -1432,8 +1436,12 @@ function applyPhantomPreset(){
     // the moment entityType switches away, and bring it back unchanged if it switches
     // back. The id prefix alone already implied this, but the explicit field is cheap
     // and makes intent obvious to anything reading the profile later.
+    // MANIFEST-REQ-001: manifestationRequired used to live only inside the note string,
+    // so an effect like Ferocious Mien kept applying its ability adjustments/attack mod/
+    // damage-die step even while incorporeal. Stored as real data now (null when there's
+    // no requirement) so customEffectMeetsRuntimeRequirements() can actually gate it.
     let c={id:'phantom-focus:'+focus.key+':'+f.key,focusKey:focus.key,featureKey:f.key,name:focus.name+': '+f.key.replaceAll('-',' '),category:'other',source:'Phantom emotional focus',valueMode:'info',appliesTo:['attack','damage'],type:f.bonusType||'untyped',atk:0,dmg:0,dice:'',diceType:'',diceMultipliesOnCrit:false,on:false,custom:true,entityScope:'phantom',
-      attackScope:f.attackScope, attackNames:f.attackNames,
+      attackScope:f.attackScope, attackNames:f.attackNames, manifestationRequired:f.manifestationRequired||null,
       note:[f.condition, f.manifestationRequired?'Requires '+f.manifestationRequired+' manifestation':''].filter(Boolean).join('; ')};
     if(['typedAttackBonus','conditionalAttackDamage','conditionalAttackAndDie'].includes(f.operation)){
       c.valueMode='fixed'; c.atk=f.value||f.attackBonus||0; c.dmg=f.damageBonus||0;
@@ -1602,7 +1610,14 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
       <label>Note<br><input data-custom="note" value="${(c.note||'').replace(/"/g,'&quot;')}"></label>
     </div>`;
   }
-  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}></label><div><div class="name">${defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div></div><button class="rm">✕ remove</button></div>${cfgHtml}`;
+  // MANIFEST-REQ-001: a runtime-requirement failure (currently just Phantom
+  // manifestation) disables the checkbox so the player can't even try to toggle it
+  // while it can't take effect, but NEVER touches the stored `on` value -- it comes
+  // back active on its own the moment the requirement is met again, exactly as
+  // requirement #4 asks ("prefer disabling ... rather than silently unchecking it").
+  let manifestBlocked = isCustom && !customEffectMeetsRuntimeRequirements(defOrCustom, currentProfile());
+  let requiredManifestation = manifestBlocked ? phantomManifestationRequirementFor(defOrCustom) : null;
+  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}${manifestBlocked?' disabled':''}></label><div><div class="name">${defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div>${manifestBlocked?`<div style="font-size:.72rem;color:var(--gold);margin-top:3px">Inactive — requires ${requiredManifestation} manifestation</div>`:''}</div><button class="rm">✕ remove</button></div>${cfgHtml}`;
   div.querySelector('.rm').onclick=()=>{
     let p=currentProfile();
     if(isCustom) p.custom=p.custom.filter(c=>c.id!==defOrCustom.id);
@@ -1674,6 +1689,38 @@ function customEffectAppliesToCurrentEntity(effect, profile){
   const scope = effect.entityScope || (String(effect.id||'').startsWith('phantom-focus-') ? 'phantom' : null);
   return !scope || scope===profile.entityType;
 }
+// MANIFEST-REQ-001: which manifestation (if any) a generated Phantom effect requires.
+// New entries carry manifestationRequired explicitly (null = no requirement); legacy
+// entries saved before that field existed have manifestationRequired===undefined, so
+// the real requirement is recovered from the current PHANTOM_FOCUSES feature
+// definition via focusKey/featureKey (or, for even older bare-id entries with neither
+// field, a featureKey parsed out of the id string). Returns null when there's no
+// requirement or none could be determined.
+function phantomManifestationRequirementFor(effect){
+  if(effect.manifestationRequired!==undefined) return effect.manifestationRequired||null;
+  let featureKey=effect.featureKey;
+  if(!featureKey){
+    let id=String(effect.id||'');
+    if(id.startsWith('phantom-focus:')) featureKey=id.split(':')[2];
+    else if(id.startsWith('phantom-focus-')) featureKey=id.slice('phantom-focus-'.length);
+  }
+  if(!featureKey) return null;
+  let focusesToSearch = effect.focusKey ? PHANTOM_FOCUSES.filter(x=>x.key===effect.focusKey) : PHANTOM_FOCUSES;
+  for(const focus of focusesToSearch){
+    let feat=(focus.calculatorFeatures||[]).find(f=>f.key===featureKey);
+    if(feat) return feat.manifestationRequired||null;
+  }
+  return null;
+}
+// A DELIBERATELY SEPARATE helper from customEffectAppliesToCurrentEntity -- entity
+// scope (which entity type this effect belongs to at all) and runtime requirements
+// (whether it can currently take effect given the entity's own configuration, e.g.
+// manifestation) are different questions, and conflating them would make an
+// entity-hidden effect indistinguishable from one that's merely temporarily inactive.
+function customEffectMeetsRuntimeRequirements(effect, profile){
+  const required=phantomManifestationRequirementFor(effect);
+  return !required || required===profile.manifestation;
+}
 // ---------- Stacking engine ----------
 function stackTotal(entries){
   let dodgeAndUntyped=0, penalties=0;
@@ -1723,7 +1770,12 @@ function collectContributions(ctx){
     breakdown.push({name:m.name,category:m.category,type:effType,atk:perLineAbility?null:(m.appliesTo.includes('attack')?r.attack:null),dmg:perLineAbility?null:(m.appliesTo.includes('damage')?r.damage:null),note:noteText,suppressed:false,off:isOff});
   });
   p.custom.filter(c=>customEffectAppliesToCurrentEntity(c,p)).forEach(c=>{
-    let isOff=c.on===false;
+    // MANIFEST-REQ-001: a runtime-requirement failure (wrong manifestation) is treated
+    // exactly like the player having switched the effect off -- it still shows up here
+    // (see requirement #4: visible but marked unavailable), it just contributes
+    // nothing, same as isOff. Kept as its own flag so the note below can say WHY.
+    let manifestBlocked=!customEffectMeetsRuntimeRequirements(c,p);
+    let isOff=c.on===false || manifestBlocked;
     let mode=c.valueMode||(c.dice?((c.atk||c.dmg)?'both':'dice'):'fixed');
     let applies=Array.isArray(c.appliesTo)?c.appliesTo:['attack','damage'];
     let useFixed=mode==='fixed'||mode==='both', useDice=mode==='dice'||mode==='both';
@@ -1737,7 +1789,8 @@ function collectContributions(ctx){
     }
     let diceLabel=useDice&&c.dice?c.dice+(c.diceType?' '+c.diceType:''):'';
     let scopeNote = (c.attackScope&&c.attackScope!=='all') ? (c.attackScope==='melee'?'Melee attacks only':'Ranged attacks only') : (c.attackNames&&c.attackNames.length?'Only: '+c.attackNames.join(', '):'');
-    let noteParts=[c.note, c.fixedDamageType&&c.dmg?'flat damage type: '+c.fixedDamageType:'', diceLabel?'plus '+diceLabel+' damage ('+(c.diceMultipliesOnCrit?'multiplied on critical hits':'not multiplied')+')':'', mode==='info'?'information only':'', scopeNote, isOff?'not active right now':''].filter(Boolean);
+    let inactiveNote = manifestBlocked ? ('Inactive — requires '+phantomManifestationRequirementFor(c)+' manifestation') : (isOff?'not active right now':'');
+    let noteParts=[c.note, c.fixedDamageType&&c.dmg?'flat damage type: '+c.fixedDamageType:'', diceLabel?'plus '+diceLabel+' damage ('+(c.diceMultipliesOnCrit?'multiplied on critical hits':'not multiplied')+')':'', mode==='info'?'information only':'', scopeNote, inactiveNote].filter(Boolean);
     breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type||'untyped',atk:useFixed&&applies.includes('attack')?(c.atk||0):null,dmg:useFixed&&applies.includes('damage')?(c.dmg||0):null,note:noteParts.join('; '),suppressed:false,off:isOff});
   });
   // EIDOLON-ENTITY-GATE-001: selectedEvolutions is deliberately kept in the profile
@@ -1840,7 +1893,7 @@ function compute(){
     let row=PHANTOM_PROGRESSION.levels[entityLevel-1], anger=p.phantomFocus==='anger';
     progressionAbilityAdj[anger?'str':'dex']=row.dexChaBonus; progressionAbilityAdj.cha=row.dexChaBonus;
   }
-  (p.custom||[]).filter(c=>c.on!==false&&c.abilityAdjustments&&customEffectAppliesToCurrentEntity(c,p)).forEach(c=>{
+  (p.custom||[]).filter(c=>c.on!==false&&c.abilityAdjustments&&customEffectAppliesToCurrentEntity(c,p)&&customEffectMeetsRuntimeRequirements(c,p)).forEach(c=>{
     Object.entries(c.abilityAdjustments).forEach(([ability,value])=>progressionAbilityAdj[ability]=(progressionAbilityAdj[ability]||0)+(+value||0));
   });
   let ctx={
@@ -1916,7 +1969,7 @@ function compute(){
       // once give 1+2 = 3 total steps, not just Strong Jaw's 2.
       let actualSizeDieEligible=['natural','manufactured'].includes(line.atkType||'natural');
       let strongJawEligible=(line.atkType||'natural')==='natural';
-      let customDieSteps=(p.custom||[]).filter(c=>c.on!==false&&c.damageDieSteps&&customEffectAppliesToCurrentEntity(c,p)).reduce((n,c)=>n+(+c.damageDieSteps||0),0);
+      let customDieSteps=(p.custom||[]).filter(c=>c.on!==false&&c.damageDieSteps&&customEffectAppliesToCurrentEntity(c,p)&&customEffectMeetsRuntimeRequirements(c,p)).reduce((n,c)=>n+(+c.damageDieSteps||0),0);
       let sizeSteps = (animalGrowthOn&&actualSizeDieEligible?1:0) + (strongJawOn&&strongJawEligible?2:0) + (actualSizeDieEligible?customDieSteps:0);
       let effDie = applySizeSteps(die, sizeSteps);
       let critMult = +line.critMult||2;
