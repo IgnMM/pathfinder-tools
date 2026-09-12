@@ -399,15 +399,36 @@ const MODIFIERS = [
 {id:'power-attack',name:'Power Attack',category:'feat',source:'Core Rulebook',appliesTo:['attack','damage'],type:'untyped',
  desc:'-1 atk / +2 dmg per step (1 step at BAB 1-3, +1 more step every 4 BAB thereafter). Below, each attack line is scaled automatically from its own Mode/Dmg mult: x1.5 for a two-handed weapon or a primary natural weapon whose Dmg mult is already x1.5 (i.e. the creature\'s only natural attack), x0.5 for a Secondary line, x1 otherwise. Requires Str 13. RAW: this damage bonus IS multiplied on a critical hit — add the House Rule below if your table plays it differently.',
  compute:(ctx)=>{let step=1+Math.floor(Math.max(1,ctx.bab)/4);let d=2*step;return {attack:-step,damage:d,note:'-'+step+' atk / +'+d+' dmg — shared placeholder at the base x1 rate; see each attack line below for its own correctly-scaled Power Attack bonus'}}},
+// TARGETED-NATURAL-001: Weapon Focus applies to exactly ONE chosen weapon (RAW: "with a
+// single weapon"), and per its own name is a natural-weapon pick here -- it used to
+// apply +1 to literally every displayed line (manufactured, touch, ranged included) and
+// leave the correction to the player. Now scoped by lineId (ATTACK-LINE-ID-001) to the
+// one selected natural attack, same targeting mechanism as Magic Fang below.
 {id:'weapon-focus-natural',name:'Weapon Focus (Natural Weapon)',category:'feat',source:'Core Rulebook',appliesTo:['attack'],type:'untyped',
- desc:'+1 on attack rolls with one chosen natural weapon (e.g. Weapon Focus (bite)). Applied here to every attack line for simplicity — if the companion only has this for ONE of its attack types, only count it on that line by hand.',
- compute:()=>({attack:1,damage:0,note:'+1 atk'})},
+ desc:'+1 on attack rolls with ONE chosen natural weapon (e.g. Weapon Focus (bite)) — select it below. Never applies to manufactured, touch or ranged (non-natural) attack lines.',
+ attackScope:'natural',
+ configFields:[{key:'targetLineId',label:'Natural attack affected',type:'attackSelect',default:''}],
+ compute:(ctx,cfg)=>{
+   let has=!!cfg.targetLineId;
+   return {attack:has?1:0,damage:0,
+     note:has?'+1 atk on the selected natural weapon only':'Choose a natural attack above to activate (+1 atk, that one attack only)',
+     attackLineIds:has?[cfg.targetLineId]:undefined};
+ }},
 {id:'multiattack',name:'Multiattack',category:'feat',source:'Bestiary (Monster feat)',appliesTo:[],type:'special',
  desc:'Requires three or more natural attacks. Benefit: "The creature\'s secondary attacks with natural weapons take only a –2 penalty" (instead of the usual -5). Not a flat number here — set each Secondary attack line\'s Attack Bonus 3 higher than you would without this feat (i.e. -2 instead of -5 relative to a Primary attack of the same base bonus).',
  compute:()=>({attack:0,damage:0,note:'special — secondary attacks take only -2 instead of -5; adjust each Secondary line\'s Attack Bonus by hand'})},
+// TARGETED-NATURAL-001: Improved Natural Attack's one-step damage-die increase is now
+// computed LIVE each render, the same non-destructive mechanism already used for Strong
+// Jaw/Animal Growth's own size-step increases (see inaSizeSteps in compute()) -- it
+// never writes into the target line's own Damage Die field, so it can never permanently
+// overwrite the base die or silently stack an extra step after a preset/level update
+// regenerates that line. Scoped to exactly the one selected line by lineId, same as
+// Weapon Focus/Magic Fang.
 {id:'improved-natural-attack',name:'Improved Natural Attack',category:'feat',source:'Bestiary (Monster feat)',appliesTo:[],type:'special',
- desc:'Requires natural weapon, base attack bonus +4. Choose one of the creature\'s natural attacks — its damage die increases by one step, as if the creature\'s size had increased by one category for that attack only. Not a flat number here — bump that attack line\'s Damage Die by hand (e.g. 1d6 → 1d8, per the Core Rulebook size-conversion table).',
- compute:()=>({attack:0,damage:0,note:'special — increases one chosen attack\'s damage die by one size step; adjust that line\'s Damage Die by hand'})},
+ attackScope:'natural',
+ configFields:[{key:'targetLineId',label:'Natural attack affected',type:'attackSelect',default:''}],
+ desc:'Requires natural weapon, base attack bonus +4. Choose one of the creature\'s natural attacks below — its damage die increases by one step, as if the creature\'s size had increased by one category for that attack only (computed live each time; the line\'s own Damage Die field is never overwritten, and a preset/level update never stacks a further step).',
+ compute:(ctx,cfg)=>({attack:0,damage:0,note:cfg.targetLineId?'increases the selected attack\'s Damage Die by one size step (see Results below)':'Choose a natural attack above to activate (one size step to that attack\'s damage die)'})},
 // VITAL-STRIKE-SELECT-001: requires taking the attack action (a single attack, not a
 // full attack) -- check "Taking the attack action this turn?" above -- and applies to
 // exactly ONE attack you choose in the "Vital Strike" box under Results, never every
@@ -508,21 +529,41 @@ const MODIFIERS = [
 {id:'haste',name:'Haste',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'untyped',
  desc:'+1 on attack rolls (untyped). Also grants an extra attack at full base attack bonus on a full attack — not modeled per-line here, just roll an extra copy of whichever attack line you\'d normally repeat.',
  compute:()=>({attack:1,damage:0,note:'+1 atk, plus one extra attack at full bonus — repeat one attack line by hand'})},
+// TARGETED-NATURAL-001: ATTACK-LINE-ID-001's lineId now identifies the target
+// (cfg.targetLineId, renamed from the old cfg.targetAttack name-string -- see the
+// one-time load migration below) instead of a display name, so two distinct lines
+// sharing a name (two separately-tracked "Claw" attacks) can be targeted independently
+// and a rename never silently retargets or drops the spell.
 {id:'magic-fang',name:'Magic Fang',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'enhancement',
- desc:'+1 enhancement bonus on attack and damage rolls with ONE natural weapon you choose below — never manufactured weapons, and never every attack line at once (that\'s Greater Magic Fang).',
+ desc:'+1 enhancement bonus on attack and damage rolls with ONE natural weapon or unarmed strike you choose below — never manufactured weapons, and never every attack line at once (that\'s Greater Magic Fang). Source: https://www.aonprd.com/SpellDisplay.aspx?ItemName=Magic+Fang',
  attackScope:'natural',
- configFields:[{key:'targetAttack',label:'Natural attack affected',type:'attackSelect',default:''}],
+ configFields:[{key:'targetLineId',label:'Natural attack affected',type:'attackSelect',default:''}],
  compute:(ctx,cfg)=>{
-   let has=!!cfg.targetAttack;
+   let has=!!cfg.targetLineId;
+   let line=has?(currentProfile().attackLines||[]).find(l=>l.lineId===cfg.targetLineId):null;
+   let qtyWarn = (line&&line.qty>1)?(' Note: this line represents '+line.qty+'× '+(line.name||'attacks')+' combined into one row — Magic Fang only enhances ONE actual weapon, but this calculator can\'t split a combined row, so the bonus is shown on the whole row. To model just one enhanced claw precisely, split this into two separate attack lines (qty 1 each) via "+ Add Attack" and target only the enhanced one.'):'';
    return {attack:has?1:0,damage:has?1:0,
-     note:has?('+1 atk / +1 dmg (enhancement) on '+cfg.targetAttack+' only'):'Choose a natural attack above to activate (+1 atk / +1 dmg, that one attack only)',
-     attackNames:has?[cfg.targetAttack]:undefined};
+     note:(has?('+1 atk / +1 dmg (enhancement) on '+(line?line.name:'the selected attack')+' only'):'Choose a natural attack above to activate (+1 atk / +1 dmg, that one attack only)')+qtyWarn,
+     attackLineIds:has?[cfg.targetLineId]:undefined};
  }},
 {id:'greater-magic-fang',name:'Magic Fang, Greater',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
- desc:'+1 enhancement bonus per 4 caster levels (max +5) on attack and damage rolls — affects all of the target\'s natural weapons at once (never manufactured weapons), unlike regular Magic Fang which affects only one chosen attack. The caster level field below defaults to the sheet\'s own Caster Level (the "owner"), but is a normal editable number — change it after adding if a different caster is the one casting this.',
+ desc:'Two alternative modes per casting (RAW, never both at once): a scaling enhancement bonus of +1 per 4 caster levels (max +5) on ONE chosen natural weapon, exactly like regular Magic Fang but scaling — OR a flat +1 enhancement bonus on ALL of the creature\'s natural weapons at once, regardless of caster level. At caster level 12 that\'s +3 to one weapon, or +1 to all — never +3 to all. Source: https://www.aonprd.com/SpellDisplay.aspx?ItemName=Magic+Fang',
  attackScope:'natural',
- configFields:[{key:'cl',label:'Caster level (defaults to sheet\'s Caster Level, editable)',type:'number',default:8,linkLevel:'cl'}],
- compute:(ctx,cfg)=>{let b=Math.min(5,Math.floor((cfg.cl||1)/4));return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (enhancement, natural weapons only)'}}},
+ configFields:[
+   {key:'mode',label:'Mode',type:'select',options:[['single','Scaling bonus on one natural weapon'],['all','+1 flat to all natural weapons']],default:'single'},
+   {key:'targetLineId',label:'Natural attack affected (single-weapon mode)',type:'attackSelect',default:'',showIf:cfg=>cfg.mode!=='all'},
+   {key:'cl',label:'Caster level (single-weapon mode; defaults to sheet\'s Caster Level, editable)',type:'number',default:8,linkLevel:'cl',showIf:cfg=>cfg.mode!=='all'}
+ ],
+ compute:(ctx,cfg)=>{
+   if(cfg.mode==='all') return {attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement) on ALL natural weapons — always +1 in this mode, regardless of caster level'};
+   let has=!!cfg.targetLineId;
+   let b=Math.min(5,Math.floor((cfg.cl||1)/4));
+   let line=has?(currentProfile().attackLines||[]).find(l=>l.lineId===cfg.targetLineId):null;
+   let qtyWarn = (line&&line.qty>1)?(' Note: this line represents '+line.qty+'× '+(line.name||'attacks')+' combined into one row — a single-weapon casting only enhances ONE actual weapon; split this into separate qty-1 lines to model just the enhanced one precisely.'):'';
+   return {attack:has?b:0,damage:has?b:0,
+     note:(has?('+'+b+' atk / +'+b+' dmg (enhancement) on '+(line?line.name:'the selected attack')+' only, scaling mode'):'Choose a natural attack above to activate (single-weapon scaling mode)')+qtyWarn,
+     attackLineIds:has?[cfg.targetLineId]:undefined};
+ }},
 {id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
  desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls. Affects every ally who can hear it, including a companion.',
  configFields:[{key:'bardLvl',label:'Bard level',type:'number',default:5,linkLevel:true}],
@@ -662,6 +703,28 @@ store.profiles.forEach(p=>{
   // existed -- runs once per load (migration), never inside an apply*Preset function
   // itself, which would mint a fresh id on every reapply and defeat the whole point.
   p.attackLines.forEach(l=>{ if(!l.lineId) l.lineId=newLineId(); });
+  // TARGETED-NATURAL-001: Magic Fang's cfg.targetAttack (the old, name-only field) ->
+  // cfg.targetLineId, same one-time best-effort migration pattern as vitalStrikeLineId/
+  // rendClawLineId below -- resolves to the first same-named line. Never worse than the
+  // old field's own pre-existing name-collision ambiguity, and never touches the
+  // attack lines themselves.
+  (p.active||[]).forEach(a=>{
+    if(a.id==='magic-fang' && a.cfg && a.cfg.targetLineId===undefined){
+      let migrated = a.cfg.targetAttack ? p.attackLines.find(l=>l.name===a.cfg.targetAttack) : null;
+      a.cfg.targetLineId = migrated ? migrated.lineId : '';
+    }
+    // A Greater Magic Fang saved before the mode selector existed always applied the
+    // scaling bonus to every natural line at once -- a combination RAW never actually
+    // allows (scaling only ever applies to ONE weapon; every-weapon mode is always flat
+    // +1). Rather than silently keep the old, rules-incorrect blanket bonus OR silently
+    // switch it to all-weapons mode (changing the actual number the player sees without
+    // asking), default to single-weapon mode with no target chosen -- inert (0/0) until
+    // the player explicitly re-picks a mode and, if single, a target.
+    if(a.id==='greater-magic-fang' && a.cfg && a.cfg.mode===undefined){
+      a.cfg.mode='single';
+      if(a.cfg.targetLineId===undefined) a.cfg.targetLineId='';
+    }
+  });
   // VITAL-STRIKE-SELECT-001 / ATTACK-LINE-ID-001: which ONE attack line Vital Strike
   // applies to this turn, by its stable lineId -- never by name (two lines can share
   // one) or array position. vitalStrikeAttackName is the old, name-only field from this
@@ -1926,12 +1989,27 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
   let div=document.createElement('div'); div.className='activeItem'+(activeRec.on===false?' off':'');
   let cfgHtml='';
   if(!isCustom && defOrCustom.configFields){
-    cfgHtml='<div class="cfg">'+defOrCustom.configFields.map(f=>{
+    // TARGETED-NATURAL-001: configFields entries may declare showIf(cfg) to hide a
+    // field conditionally (e.g. Greater Magic Fang's target/caster-level fields are
+    // irrelevant, and hidden, in its all-weapons mode).
+    cfgHtml='<div class="cfg">'+defOrCustom.configFields.filter(f=>!f.showIf || f.showIf(activeRec.cfg)).map(f=>{
       if(f.type==='attackSelect'){
-        // Magic Fang targets exactly one NATURAL attack -- offering manufactured/ranged
-        // lines here would let the player point a natural-weapon-only spell at a sword.
-        let names=[...new Set((currentProfile().attackLines||[]).filter(l=>['natural','ranged-natural'].includes(l.atkType||'natural')).map(l=>l.name).filter(Boolean))];
-        let opts='<option value="">— choose a natural attack —</option>'+names.map(n=>`<option value="${n}"${activeRec.cfg[f.key]===n?' selected':''}>${n}</option>`).join('');
+        // Magic Fang/Greater Magic Fang/Weapon Focus/Improved Natural Attack each
+        // target exactly one NATURAL attack LINE -- offering manufactured/ranged lines
+        // here would let the player point a natural-weapon-only effect at a sword.
+        // ATTACK-LINE-ID-001: the option VALUE is the line's stable lineId, never its
+        // name (two lines can share one) or array position -- the DISPLAY label is
+        // disambiguated ("Claw #1"/"Claw #2") for readability only, never used as
+        // identity. A line with qty>1 is flagged in its label, since a single-weapon
+        // effect like this can't cleanly represent enhancing only one of several
+        // identical weapons combined into that one row.
+        let lines=(currentProfile().attackLines||[]).filter(l=>['natural','ranged-natural'].includes(l.atkType||'natural'));
+        let labels=disambiguatedAttackLabels(lines);
+        let opts='<option value="">— choose a natural attack —</option>'+lines.map((l,idx)=>`<option value="${l.lineId}"${activeRec.cfg[f.key]===l.lineId?' selected':''}>${labels[idx]}${l.qty>1?' (qty '+l.qty+' combined — see note)':''}</option>`).join('');
+        return `<label>${f.label}<br><select data-key="${f.key}" data-keytype="text">${opts}</select></label>`;
+      }
+      if(f.type==='select'){
+        let opts=f.options.map(([v,l])=>`<option value="${v}"${activeRec.cfg[f.key]===v?' selected':''}>${l}</option>`).join('');
         return `<label>${f.label}<br><select data-key="${f.key}" data-keytype="text">${opts}</select></label>`;
       }
       return `<label>${f.label}<br><input type="number" data-key="${f.key}" value="${activeRec.cfg[f.key]}"></label>`;
@@ -1978,7 +2056,11 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
       let isText=inp.dataset.keytype==='text';
       inp.addEventListener(inp.tagName==='SELECT'?'change':'input',()=>{
         activeRec.cfg[inp.dataset.key]=isText?inp.value:Number(inp.value);
-        saveStore(); compute();
+        saveStore();
+        // TARGETED-NATURAL-001: re-render, not just compute() -- a showIf-gated field
+        // (e.g. Greater Magic Fang's target/caster-level, hidden in all-weapons mode)
+        // must show/hide immediately when the field driving it (mode) changes.
+        renderCategories(); compute();
       });
     });
   }
@@ -2021,6 +2103,14 @@ function lineAttackTags(atkType){
 function entryAppliesToLine(e, line){
   if(e.attackScope && e.attackScope!=='all' && !lineAttackTags(line.atkType).includes(e.attackScope)) return false;
   if(e.attackNames && e.attackNames.length && !e.attackNames.includes(line.name)) return false;
+  // ATTACK-LINE-ID-001 (targeted-effects round): attackLineIds is a SEPARATE mechanism
+  // from attackNames, used only by effects that target one specific attack LINE the
+  // player picked from a dropdown (Magic Fang, Greater Magic Fang single-weapon mode,
+  // Weapon Focus (Natural Weapon)) -- lineId survives a rename/reorder/preset reapply
+  // that would silently retarget (or wrongly duplicate onto) a same-named line under
+  // attackNames. Phantom's rule-driven scoping and free-text custom effects still use
+  // attackNames, since they have no specific line object to reference by id.
+  if(e.attackLineIds && e.attackLineIds.length && !e.attackLineIds.includes(line.lineId)) return false;
   return true;
 }
 // ENTITY-SCOPE-001: a generated custom effect (currently only Phantom emotional-focus
@@ -2104,9 +2194,9 @@ function collectContributions(ctx){
         // e.g. Magic Fang/Greater Magic Fang are always 'natural'); attackNames can come
         // back from compute() itself per-instance (Magic Fang's own configured target
         // attack), since that varies per active copy of the same modifier.
-        let scope=m.attackScope, names=r.attackNames;
-        if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name,attackScope:scope,attackNames:names});
-        if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name,attackScope:scope,attackNames:names});
+        let scope=m.attackScope, names=r.attackNames, lineIds=r.attackLineIds;
+        if(m.appliesTo.includes('attack')) atkEntries.push({value:r.attack,type:effType,source:m.name,attackScope:scope,attackNames:names,attackLineIds:lineIds});
+        if(m.appliesTo.includes('damage')) dmgEntries.push({value:r.damage,type:effType,source:m.name,attackScope:scope,attackNames:names,attackLineIds:lineIds});
       }
     }
     let noteText = perLineAbility ? 'Ability adjustment applied separately to each attack line that uses this ability'+(m.id==='animal-growth'?'; includes the shared -1 size attack penalty':'') : r.note;
@@ -2266,6 +2356,13 @@ function compute(){
   let dmgAbilityMod = ctx.dmgStat==='none'?0:ctx[ctx.dmgStat];
   let strongJawOn = p.active.some(a=>a.id==='strong-jaw' && a.on!==false);
   let animalGrowthOn = p.active.some(a=>a.id==='animal-growth' && a.on!==false);
+  // TARGETED-NATURAL-001: Improved Natural Attack's one-step die increase, read directly
+  // (same pattern as strongJawOn/animalGrowthOn above) rather than through the flat atk/
+  // dmg pipeline -- its real effect is a per-line die-size step, computed live below
+  // (inaSizeSteps) exactly like Strong Jaw/Animal Growth's own steps, never written into
+  // the target line's own Damage Die field.
+  let inaActive = p.active.find(a=>a.id==='improved-natural-attack' && a.on!==false);
+  let inaTargetLineId = inaActive && inaActive.cfg ? inaActive.cfg.targetLineId : null;
   let paNoCritMult = p.active.some(a=>a.id==='hr-pa-no-crit' && a.on!==false);
   let furiousFocusOn = p.active.some(a=>a.id==='furious-focus' && a.on!==false);
   // VITAL-STRIKE-SELECT-001: singleAttackAction is the ONLY thing this checkbox drives
@@ -2378,7 +2475,13 @@ function compute(){
       let actualSizeDieEligible=['natural','manufactured'].includes(line.atkType||'natural');
       let strongJawEligible=(line.atkType||'natural')==='natural';
       let customDieSteps=(p.custom||[]).filter(c=>c.on!==false&&c.damageDieSteps&&customEffectAppliesToCurrentEntity(c,p)&&customEffectMeetsRuntimeRequirements(c,p)).reduce((n,c)=>n+(+c.damageDieSteps||0),0);
-      let sizeSteps = (animalGrowthOn&&actualSizeDieEligible?1:0) + (strongJawOn&&strongJawEligible?2:0) + (actualSizeDieEligible?customDieSteps:0);
+      // TARGETED-NATURAL-001: Improved Natural Attack's step, scoped to exactly the one
+      // targeted line by lineId -- computed fresh every render (never baked into
+      // line.die), so a preset/level update that rebuilds this line never stacks a
+      // second step on top, and switching the target or removing the feat instantly
+      // reflects on the correct line, never a stale one.
+      let inaSteps = (inaTargetLineId && line.lineId===inaTargetLineId && strongJawEligible) ? 1 : 0;
+      let sizeSteps = (animalGrowthOn&&actualSizeDieEligible?1:0) + (strongJawOn&&strongJawEligible?2:0) + (actualSizeDieEligible?customDieSteps:0) + inaSteps;
       let effDie = applySizeSteps(die, sizeSteps);
       let critMult = +line.critMult||2;
       let critDmg = dmgBonus*critMult;
