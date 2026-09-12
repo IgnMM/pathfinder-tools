@@ -617,7 +617,15 @@ const MODIFIERS = [
  compute:()=>({attack:0,damage:0,note:'Power Attack damage excluded from the crit multiplier — see Critical Damage per line'})},
 ];
 
-const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'weapon',label:'Weapon / Attack Effects'},{k:'mythic',label:'Mythic'},{k:'condition',label:'Conditions'},{k:'other',label:'Other Effects'},{k:'houserule',label:'House Rules'}];
+// MYTHIC-SCOPE-001: no 'mythic' category here (Character Calculator keeps its own,
+// unchanged) -- an animal companion, mount, familiar, eidolon, phantom or cohort does
+// not gain mythic tiers or mythic feats just because its owner is mythic (mythic
+// progression belongs to the PC, not automatically to a bonded creature). This removes
+// the whole "Mythic" tab/search/add-button from the UI; see sharedEntryAllowed() below
+// for the matching defensive filter on the shared catalog itself, and
+// collectContributions() for how an already-saved mythic-tagged custom entry (from
+// before this fix) is excluded from calculations without being deleted.
+const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'weapon',label:'Weapon / Attack Effects'},{k:'condition',label:'Conditions'},{k:'other',label:'Other Effects'},{k:'houserule',label:'House Rules'}];
 
 // Same catalog inventory and companion-eligibility metadata used by Character. The
 // compact hand-coded MODIFIERS above are the entries with automatic math adapters in
@@ -631,6 +639,14 @@ function compatibilityEntityKey(){
   return t;
 }
 function sharedEntryAllowed(e){
+  // MYTHIC-SCOPE-001: defensive, on top of CATS no longer listing 'mythic' at all --
+  // even if something else ever queries the shared catalog directly (bypassing the
+  // category tabs), a mythic entry is never offered here. The shared
+  // character-catalog-companion-compatibility.json file itself is untouched (Character
+  // Calculator still uses its own 'selectable-if-prerequisites' rules for these same
+  // entries unmodified) -- this is purely a companion-side filter, not a correction to
+  // that shared data.
+  if(e.category==='mythic') return false;
   let rule=e.companionCompatibility&&e.companionCompatibility.entities&&e.companionCompatibility.entities[compatibilityEntityKey()];
   return !!rule && !['normally-unavailable','exclude-from-companion-calculator'].includes(rule.status);
 }
@@ -1998,6 +2014,19 @@ function renderCategories(){
     });
     box.appendChild(block);
   });
+  // MYTHIC-SCOPE-001: CATS no longer has a 'mythic' key, so the loop above never builds
+  // a section for a custom entry saved under that category before this fix -- without
+  // this, such an entry would be completely invisible instead of "kept but visibly
+  // explained as excluded" (collectContributions() already excludes its numbers; this
+  // is purely the render-side counterpart). No add-row here on purpose: this block only
+  // ever shows what's already saved, never a way to add a new one.
+  let legacyMythic=p.custom.filter(c=>c.category==='mythic' && customEffectAppliesToCurrentEntity(c,p));
+  if(legacyMythic.length){
+    let block=document.createElement('div'); block.className='catBlock';
+    block.innerHTML=`<h3>Legacy Mythic (inactive) <span class="count">${legacyMythic.length}</span></h3><div class="emptyNote">Saved before this calculator stopped offering Mythic entries — animal companions, mounts, familiars, eidolons, phantoms and cohorts don't have mythic tiers of their own. Kept exactly as saved, but excluded from every calculation below. Remove a card here if you no longer want it, or represent an owner-granted power with a regular custom effect in one of the categories above instead.</div>`;
+    legacyMythic.forEach(c=>{ block.appendChild(buildActiveItem(c,c,'mythic',true)); });
+    box.appendChild(block);
+  }
   box.querySelectorAll('.addBtn').forEach(btn=>btn.onclick=()=>{
     let cat=btn.dataset.cat, inputEl=$('add_'+cat), name=inputEl.value.trim();
     let m=availableCatalog(cat).find(x=>x.name===name);
@@ -2097,7 +2126,12 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
   // requirement #4 asks ("prefer disabling ... rather than silently unchecking it").
   let manifestBlocked = isCustom && !customEffectMeetsRuntimeRequirements(defOrCustom, currentProfile());
   let requiredManifestation = manifestBlocked ? phantomManifestationRequirementFor(defOrCustom) : null;
-  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}${manifestBlocked?' disabled':''}></label><div><div class="name">${defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div>${manifestBlocked?`<div style="font-size:.72rem;color:var(--gold);margin-top:3px">Inactive — requires ${requiredManifestation} manifestation</div>`:''}</div><button class="rm">✕ remove</button></div>${cfgHtml}`;
+  // MYTHIC-SCOPE-001: same "disable the checkbox, never touch the stored value" treatment
+  // as manifestBlocked above, for a custom entry saved under the old "Mythic" category
+  // before this fix removed it -- visibly inert here, never deleted or migrated.
+  let mythicBlocked = isCustom && defOrCustom.category==='mythic';
+  let anyBlocked = manifestBlocked || mythicBlocked;
+  div.innerHTML=`<div class="head"><label class="onToggle" title="Include this in the calculation right now — turn it off without deleting it"><input type="checkbox" class="onChk" ${activeRec.on!==false?'checked':''}${anyBlocked?' disabled':''}></label><div><div class="name">${defOrCustom.name}</div><div class="desc">${isCustom?(defOrCustom.note||'Custom modifier'):defOrCustom.desc}</div>${manifestBlocked?`<div style="font-size:.72rem;color:var(--gold);margin-top:3px">Inactive — requires ${requiredManifestation} manifestation</div>`:''}${mythicBlocked?`<div style="font-size:.72rem;color:var(--gold);margin-top:3px">Inactive — animal companions/mounts/familiars/eidolons/phantoms/cohorts don't have mythic tiers of their own; kept but excluded from every calculation</div>`:''}</div><button class="rm">✕ remove</button></div>${cfgHtml}`;
   div.querySelector('.rm').onclick=()=>{
     let p=currentProfile();
     if(isCustom) p.custom=p.custom.filter(c=>c.id!==defOrCustom.id);
@@ -2265,7 +2299,16 @@ function collectContributions(ctx){
     // (see requirement #4: visible but marked unavailable), it just contributes
     // nothing, same as isOff. Kept as its own flag so the note below can say WHY.
     let manifestBlocked=!customEffectMeetsRuntimeRequirements(c,p);
-    let isOff=c.on===false || manifestBlocked;
+    // MYTHIC-SCOPE-001: a custom entry saved before this fix (from the catalog's old
+    // "Mythic" tab, or hand-authored under it) is preserved exactly as stored -- never
+    // deleted, never migrated, never renamed -- but is excluded from every calculation
+    // here, the same "visible but inert" treatment manifestBlocked already gives a
+    // Phantom effect whose manifestation requirement isn't met. Animal companions/
+    // mounts/familiars/eidolons/phantoms/cohorts don't have mythic tiers of their own;
+    // a mythic-owner-granted power the player still wants represented belongs in a
+    // regular (non-mythic-categorized) custom effect instead.
+    let mythicBlocked=c.category==='mythic';
+    let isOff=c.on===false || manifestBlocked || mythicBlocked;
     let mode=c.valueMode||(c.dice?((c.atk||c.dmg)?'both':'dice'):'fixed');
     let applies=Array.isArray(c.appliesTo)?c.appliesTo:['attack','damage'];
     let useFixed=mode==='fixed'||mode==='both', useDice=mode==='dice'||mode==='both';
@@ -2279,7 +2322,8 @@ function collectContributions(ctx){
     }
     let diceLabel=useDice&&c.dice?c.dice+(c.diceType?' '+c.diceType:''):'';
     let scopeNote = (c.attackScope&&c.attackScope!=='all') ? (c.attackScope==='melee'?'Melee attacks only':'Ranged attacks only') : (c.attackNames&&c.attackNames.length?'Only: '+c.attackNames.join(', '):'');
-    let inactiveNote = manifestBlocked ? ('Inactive — requires '+phantomManifestationRequirementFor(c)+' manifestation') : (isOff?'not active right now':'');
+    let inactiveNote = mythicBlocked ? 'Inactive — animal companions, mounts, familiars, eidolons, phantoms and cohorts don\'t have mythic tiers of their own; this legacy selection is kept but excluded from every calculation. Represent an owner-granted power with a regular custom effect instead.'
+      : manifestBlocked ? ('Inactive — requires '+phantomManifestationRequirementFor(c)+' manifestation') : (isOff?'not active right now':'');
     let noteParts=[c.note, c.fixedDamageType&&c.dmg?'flat damage type: '+c.fixedDamageType:'', diceLabel?'plus '+diceLabel+' damage ('+(c.diceMultipliesOnCrit?'multiplied on critical hits':'not multiplied')+')':'', mode==='info'?'information only':'', scopeNote, inactiveNote].filter(Boolean);
     breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type||'untyped',atk:useFixed&&applies.includes('attack')?(c.atk||0):null,dmg:useFixed&&applies.includes('damage')?(c.dmg||0):null,note:noteParts.join('; '),suppressed:false,off:isOff});
   });
