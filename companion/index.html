@@ -468,10 +468,16 @@ const MODIFIERS = [
 // oozes, elementals, swarms, incorporeal creatures, constructs or (usually) undead --
 // neither calculator here tracks a specific current target's type, so that exemption stays
 // a manual judgment call, flagged in the note rather than silently assumed away.
+// PRECISE-STRIKE-FLANKING-001: like Outflank above, Precise Strike's own condition is
+// "while flanking the same target as an ally who also has this feat" -- it must never
+// add its die while Flanking itself is off, the same ctx.flankingOn pre-scan Outflank
+// already reads (set once per compute() pass in collectContributions()).
 {id:'precise-strike',name:'Precise Strike',category:'feat',source:"Advanced Player's Guide",appliesTo:['damage'],type:'untyped',
  attackScope:'melee',
- desc:'While flanking the same target as an ally who also has this feat, deal an extra 1d6 precision damage on melee hits. Teamwork feat, requires Dex 13, BAB +1. Precision damage doesn\'t apply against oozes, elementals, swarms, incorporeal creatures, constructs, or most undead — judge that by hand, it isn\'t tracked here.',
- compute:()=>({attack:0,damage:0,extraDice:{dice:'1d6',type:'',multiplies:false},note:'+1d6 precision damage (melee only, not multiplied on a crit) — doesn\'t apply against precision-immune creatures (oozes, elementals, swarms, incorporeal, constructs, most undead); judge that by hand'})},
+ desc:'While flanking the same target as an ally who also has this feat, deal an extra 1d6 precision damage on melee hits. Teamwork feat, requires Dex 13, BAB +1. Requires the Flanking entry above to also be active. Precision damage doesn\'t apply against oozes, elementals, swarms, incorporeal creatures, constructs, or most undead — judge that by hand, it isn\'t tracked here.',
+ compute:(ctx)=>ctx.flankingOn
+   ? {attack:0,damage:0,extraDice:{dice:'1d6',type:'',multiplies:false},note:'+1d6 precision damage (melee only, not multiplied on a crit) — doesn\'t apply against precision-immune creatures (oozes, elementals, swarms, incorporeal, constructs, most undead); judge that by hand'}
+   : {attack:0,damage:0,note:'no effect — requires Flanking to also be active (Precise Strike only triggers while flanking the same target as an ally who also has this feat)'}},
 // Paired Opportunists' +4 only applies on an attack of opportunity -- but every row in
 // Results represents a normal attack (there is no "this is an AoO" mode anywhere in this
 // calculator), so there is no line its condition is ever actually true for. Previously this
