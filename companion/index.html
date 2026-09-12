@@ -1313,7 +1313,13 @@ function applyEidolonPreset(type){
   // evolution consumes exactly one entry from the front, so two old copies pair up
   // deterministically with two new instances instead of both matching the same line (or
   // an unrelated same-named attack via the name fallback).
-  const EIDOLON_PRESERVED_FIELDS=['threat','critMult','enhancement','range','extra','manualHitAdj','manualDmgAdj','noDamage','damageType'];
+  // EIDOLON-ENERGY-001: extraDice/extraDamageType/extraDiceMultipliesOnCrit used to be
+  // structural (Energy Attacks wrote '1d6' straight into them), so they were
+  // deliberately left OUT of this list. Now that Energy Attacks is a computed
+  // contribution instead (see collectContributions()), these three fields are nothing
+  // but the player's own manually-typed extra damage dice and must survive a reapply
+  // like any other manual field.
+  const EIDOLON_PRESERVED_FIELDS=['threat','critMult','enhancement','range','extra','manualHitAdj','manualDmgAdj','noDamage','damageType','extraDice','extraDamageType','extraDiceMultipliesOnCrit'];
   let p=currentProfile();
   let oldLines=p.attackLines||[];
   let manualLines=oldLines.filter(l=>l.origin==='manual');
@@ -1344,8 +1350,11 @@ function applyEidolonPreset(type){
     return line;
   });
   if(level>=9) generatedLines.forEach(line=>{if(line.mode==='secondary')line.atkBonus=row.bab+sizeAttackModifier(size)-2;});
-  let energy=selected.find(x=>x.key==='energy-attacks');
-  if(energy) generatedLines.forEach(line=>{line.extraDice='1d6';line.extraDamageType=energy.choice||'fire';line.extraDiceMultipliesOnCrit=false;});
+  // EIDOLON-ENERGY-001: Energy Attacks is no longer baked into every line's own
+  // extraDice fields here -- that both ignored every instance but the first and
+  // clobbered whatever extra dice the player had typed in by hand, with no way to
+  // restore it on removal. It's now a per-line-filtered contribution computed live in
+  // collectContributions()/compute() instead, alongside Magic Fang's natural-only scope.
   p.attackLines=generatedLines.concat(manualLines);
   p.speciesPreset=form.key;
   syncUIIntoProfile(); renderAttackLines(); renderCategories(); compute();
@@ -1649,6 +1658,20 @@ function collectContributions(ctx){
     let scopeNote = (c.attackScope&&c.attackScope!=='all') ? (c.attackScope==='melee'?'Melee attacks only':'Ranged attacks only') : (c.attackNames&&c.attackNames.length?'Only: '+c.attackNames.join(', '):'');
     let noteParts=[c.note, c.fixedDamageType&&c.dmg?'flat damage type: '+c.fixedDamageType:'', diceLabel?'plus '+diceLabel+' damage ('+(c.diceMultipliesOnCrit?'multiplied on critical hits':'not multiplied')+')':'', mode==='info'?'information only':'', scopeNote, isOff?'not active right now':''].filter(Boolean);
     breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type||'untyped',atk:useFixed&&applies.includes('attack')?(c.atk||0):null,dmg:useFixed&&applies.includes('damage')?(c.dmg||0):null,note:noteParts.join('; '),suppressed:false,off:isOff});
+  });
+  // EIDOLON-ENERGY-001: every selected Energy Attacks instance is its own extra-damage
+  // contribution -- scoped to natural attacks only (never manufactured/touch/other),
+  // never written into a line's own extraDice fields, and never colliding with
+  // whatever extra dice the player typed in by hand there. Two instances of the SAME
+  // energy type don't stack (matches the real ability -- picking fire twice doesn't
+  // grant 2d6 fire), so duplicates by type are skipped after the first.
+  let seenEnergyTypes=new Set();
+  (p.selectedEvolutions||[]).filter(x=>x.key==='energy-attacks').forEach(chosen=>{
+    let etype=chosen.choice||'fire';
+    if(seenEnergyTypes.has(etype)) return;
+    seenEnergyTypes.add(etype);
+    extraDice.push({dice:'1d6',type:etype,multiplies:false,source:'Energy Attacks',attackScope:'natural'});
+    breakdown.push({name:'Energy Attacks ('+etype+')',category:'other',type:'extra-damage',atk:null,dmg:null,note:'+1d6 '+etype+' damage on natural attacks only; not multiplied on a critical hit',suppressed:false,off:false});
   });
   return {atkEntries,dmgEntries,extraDice,breakdown,powerAttackOn,powerAttackDmgVal,powerAttackAtkVal};
 }
