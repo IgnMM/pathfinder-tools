@@ -811,7 +811,16 @@ function syncUIIntoProfile(){
   p.speciesPreset=$('speciesPreset').value;
   p.eidolonSubtype=$('eidolonSubtype').value;
   p.phantomFocus=$('phantomFocus').value;
-  p.creatureSize=$('creatureSize').value;
+  // FAMILIAR-SIZE-001: the creatureSize <select> only ever lists Small-Huge (Eidolon/
+  // Phantom's range) and stays HIDDEN for every other entity type -- its DOM value is
+  // just whatever Eidolon/Phantom size was last shown, never a real size for those
+  // other types (a familiar is commonly Tiny/Diminutive, values this select doesn't
+  // even offer). Copying it in unconditionally on every field edit silently overwrote
+  // an Animal Companion/Mount/Familiar's real size (set directly on the profile by its
+  // own species-preset apply function) the moment the player touched any other field.
+  if(['eidolon-chained','eidolon-unchained','phantom'].includes(p.entityType)){
+    p.creatureSize=$('creatureSize').value;
+  }
   p.manifestation=$('manifestation').value;
   saveStore();
 }
@@ -830,6 +839,10 @@ populateEntityTypeSelect();
     currentProfile().hdBabOverride=true;
     syncUIIntoProfile();
     applyProgressionUI(); // no values are rewritten (now overridden) -- just refreshes hdBabAutoNote's wording
+    // FAMILIAR-REAPPLY-001: a familiar's attack to-hit is master BAB + its own fixed
+    // size modifier -- only the bab field feeds that, so only bab (not hitDice, which
+    // familiars don't use) triggers a resync.
+    if(id==='bab') reapplyFamiliarPresetIfActive();
     compute();
   });
 });
@@ -1477,7 +1490,38 @@ function reapplyPhantomPresetIfActive(){
 function applyFamiliarPreset(){
   let fam=FAMILIAR_PRESETS.find(x=>x.key===$('speciesPreset').value); if(!fam){alert('Choose a familiar species first.');return;}
   ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=fam.abilities[k]); let level=Math.max(1,Math.min(20,+$('ownerLevel').value||1));
-  let p=currentProfile(); p.attackLines=(fam.attacks||[]).map(a=>lineFromRuleAttack(a,+$('bab').value||0,fam.size)); p.speciesPreset=fam.key;
+  let p=currentProfile();
+  let bab=+$('bab').value||0;
+  // FAMILIAR-MERGE-001: mirrors EVOL-MERGE-001/PHANTOM-MERGE-001 -- lineFromRuleAttack
+  // bakes the master's CURRENT bab (plus this familiar's fixed size modifier) into
+  // atkBonus, so a rebuild used to permanently freeze whatever bab was set at the
+  // moment "Apply preset" was clicked; editing bab afterward changed nothing until the
+  // preset was manually reapplied, and any reapply threw away manual edits/lines too.
+  // Each generated attack now gets a stable origin ('preset:familiar:<famKey>:
+  // <attackName>'); a rebuild merges instead of replacing -- FAMILIAR_PRESERVED_FIELDS
+  // survive from the old line, only atkBonus is structural and always reflects the
+  // CURRENT bab. A line with origin:'manual' is never touched.
+  let oldLines=p.attackLines||[];
+  let manualLines=oldLines.filter(l=>l.origin==='manual');
+  let byOrigin={};
+  oldLines.forEach(l=>{ if(l.origin && l.origin.startsWith('preset:familiar:')) byOrigin[l.origin]=l; });
+  const FAMILIAR_PRESERVED_FIELDS=['manualHitAdj','manualDmgAdj','enhancement','extraDice','extraDamageType','extraDiceMultipliesOnCrit','extra','range','threat','critMult','damageType','noDamage'];
+  let generatedLines=(fam.attacks||[]).map(a=>{
+    let line=lineFromRuleAttack(a,bab,fam.size);
+    let originKey='preset:familiar:'+fam.key+':'+(a.name||'').toLowerCase();
+    // Legacy fallback: a familiar attack line saved before this origin scheme has no
+    // origin at all -- matched once by name so the first reapply after this update
+    // doesn't duplicate every attack; the new origin key takes over from then on.
+    let existing=byOrigin[originKey] || oldLines.find(l=>!l.origin && l.name===line.name);
+    if(existing){
+      FAMILIAR_PRESERVED_FIELDS.forEach(f=>{ if(existing[f]!==undefined) line[f]=existing[f]; });
+      if(existing.name) line.name=existing.name;
+    }
+    line.origin=originKey;
+    return line;
+  });
+  p.attackLines=generatedLines.concat(manualLines);
+  p.speciesPreset=fam.key;
   syncUIIntoProfile();
   // Familiars are commonly Tiny/Diminutive, sizes the creatureSize <select> doesn't even
   // list (it only covers Eidolon/Phantom's Small-Huge range) -- set the real size straight
@@ -1486,6 +1530,19 @@ function applyFamiliarPreset(){
   p.creatureSize=fam.size;
   saveStore(); renderAttackLines(); compute();
   $('speciesPresetNote').textContent=fam.name+' familiar applied. To-hit uses master BAB + better of its STR/DEX; damage is the normal creature\'s fixed damage and does not add that ability again.';
+}
+// FAMILIAR-REAPPLY-001: mirrors reapplyEidolonPresetIfActive()/reapplyPhantomPresetIfActive()
+// -- a familiar's attack lines only pick up the master's current BAB inside
+// applyFamiliarPreset() itself, so a BAB change on its own used to change nothing
+// until the preset was manually reapplied. Guarded the same way: only fires once an
+// actual familiar species preset is selected, never the destructive full rebuild
+// blindly -- applyFamiliarPreset() itself is safe to call repeatedly now (see
+// FAMILIAR-MERGE-001), so this is just what decides WHEN to call it.
+function reapplyFamiliarPresetIfActive(){
+  const p=currentProfile();
+  if(p.entityType!=='familiar') return;
+  if(!FAMILIAR_PRESETS.some(f=>f.key===$('speciesPreset').value)) return;
+  applyFamiliarPreset();
 }
 
 // Rider-only effects that must never be offered here: they modify the RIDER's own
