@@ -237,7 +237,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div class="addRow"><select id="attackPreset"><option value="">Basic attack preset...</option></select><button id="addAttackPreset" type="button">Add preset</button></div>
 <div id="attackLinesBox" class="atkLinesBox"></div>
 <button id="addAttackLine" type="button">+ Add Attack</button>
-<div class="emptyNote">Presets only fill editable attack rows; they never lock the creature to a species. Base To-Hit is the attack's BAB/size/other built-in value before its selected ability and active effects. Base Damage is a fixed amount before its selected ability and effects. Damage dice and damage type are also editable. A creature with 3+ natural attacks and Multiattack takes only -2 on secondary attacks instead of -5; enter that difference in Base To-Hit when needed.</div>
+<div id="multiattackPicker"></div>
+<div class="emptyNote">Presets only fill editable attack rows; they never lock the creature to a species. Base To-Hit is the attack's BAB/size/other built-in value before its selected ability and active effects. Base Damage is a fixed amount before its selected ability and effects. Damage dice and damage type are also editable. For an Eidolon or Animal Companion/Mount at level 9+, the 3-or-more-natural-attacks Multiattack rule (see above) is applied automatically to every generated natural attack line — do not also add the "Multiattack" feat below and hand-adjust the same lines, or the -2 gets applied twice. Only a manually-added secondary natural attack line needs its own Base To-Hit adjusted by hand.</div>
 </section>
 </div>
 
@@ -401,8 +402,8 @@ const MODIFIERS = [
      attackLineIds:has?[cfg.targetLineId]:undefined};
  }},
 {id:'multiattack',name:'Multiattack',category:'feat',source:'Bestiary (Monster feat)',appliesTo:[],type:'special',
- desc:'Requires three or more natural attacks. Benefit: "The creature\'s secondary attacks with natural weapons take only a –2 penalty" (instead of the usual -5). Not a flat number here — set each Secondary attack line\'s Attack Bonus 3 higher than you would without this feat (i.e. -2 instead of -5 relative to a Primary attack of the same base bonus).',
- compute:()=>({attack:0,damage:0,note:'special — secondary attacks take only -2 instead of -5; adjust each Secondary line\'s Attack Bonus by hand'})},
+ desc:'Requires three or more natural attacks. Benefit: "The creature\'s secondary attacks with natural weapons take only a –2 penalty" (instead of the usual -5). For an Eidolon or Animal Companion/Mount using the progression table, this is already applied automatically at level 9+ (see the note above the attack list) — do NOT also add this entry and hand-adjust the same generated lines, or the -2 is applied twice. Use this entry only for a source this calculator doesn\'t auto-detect: a base creature/familiar whose stat block already has Multiattack, or a fully manual attack list outside the Eidolon/Animal Companion progression. Not a flat number here — set each such Secondary attack line\'s Attack Bonus to -2 instead of -5 by hand.',
+ compute:()=>({attack:0,damage:0,note:'special — secondary attacks take only -2 instead of -5; adjust each Secondary line\'s Attack Bonus by hand (skip this if the Eidolon/Animal Companion level-9 automation above already did it — check the note above the attack list first)'})},
 // TARGETED-NATURAL-001: Improved Natural Attack's one-step damage-die increase is now
 // computed LIVE each render, the same non-destructive mechanism already used for Strong
 // Jaw/Animal Growth's own size-step increases (see inaSizeSteps in compute()) -- it
@@ -1111,22 +1112,25 @@ function applyProgressionUI(){
       let version=entityType==='eidolon-chained'?'chained':'unchained', row=EIDOLON_PROGRESSION.progressions[version][level-1];
       $('effectiveLevelNote').textContent=ENTITY_TYPE_LABELS[entityType]+' level '+level+': '+row.hd+' HD, BAB '+signed(row.bab)+', evolution pool '+row.evolutionPool+', maximum '+row.maxNaturalAttacks+' natural attacks.';
       $('strDexAdjNote').textContent='Eidolon progression adds +'+row.strDexBonus+' to both STR and DEX; included automatically in the calculation.';
-      $('multiattackNote').textContent=level>=9?'Multiattack is automatic at level 9. Secondary natural attacks use -2 rather than -5.':'';
       writeHdBab(row.hd, row.bab);
+      recomputeMultiattack(); // see the note above the attack list for the actual Multiattack/extra-attack outcome
     } else if(entityType==='phantom'&&PHANTOM_PROGRESSION){
       let row=PHANTOM_PROGRESSION.levels[level-1], focus=PHANTOM_FOCUSES.find(x=>x.key===$('phantomFocus').value);
       $('effectiveLevelNote').textContent='Phantom level '+level+': '+row.hd+' HD, BAB '+signed(row.bab)+', slam '+row.slamMedium+' for Medium size.';
       $('strDexAdjNote').textContent=focus&&focus.key==='anger'?'Anger replaces the progression DEX bonus with STR; CHA still receives +'+row.dexChaBonus+'.':'Phantom progression adds +'+row.dexChaBonus+' to DEX and CHA; included automatically.';
       $('multiattackNote').textContent=$('manifestation').value==='incorporeal'?'Incorporeal: slam attacks can only affect incorporeal creatures (except specific focus exceptions).':'';
       writeHdBab(row.hd, row.bab);
+      recomputeMultiattack(); // Phantoms have no Multiattack table entry -- clears any stale grant left from a prior entity type
     } else if(entityType==='familiar'){
       $('effectiveLevelNote').textContent='Familiar uses the master\'s total BAB. Enter that BAB above; its natural melee attack automatically uses the better of STR or DEX after applying buffs.';
       $('strDexAdjNote').textContent='Familiar damage remains the base creature\'s listed damage; no ability modifier is added again.'; $('multiattackNote').textContent='';
       autoNote.textContent=''; // no progression table for familiars -- BAB is always the master's own, entered by hand
+      recomputeMultiattack();
     } else {
       $('effectiveLevelNote').textContent=ENTITY_TYPE_LABELS[entityType]+' rule data is still loading; manual values remain available.';
       $('strDexAdjNote').textContent=''; $('multiattackNote').textContent='';
       autoNote.textContent='';
+      recomputeMultiattack();
     }
     return;
   }
@@ -1137,20 +1141,18 @@ function applyProgressionUI(){
       : cls==='paladin' ? 'A paladin\'s Divine Bond mount is obtained at 5th level (functions as a druid\'s animal companion, using paladin level as effective druid level) — not active yet at this level.'
       : '';
     adjNote.textContent=''; maNote.textContent=''; autoNote.textContent='';
+    recomputeMultiattack(); // effective level 0/inactive -- clears any stale grant from a higher level this profile previously had
     return;
   }
   let row=ANIMAL_COMPANION_TABLE[Math.max(1,Math.min(20,eff))];
   effNote.textContent='Effective companion level '+eff+' (Animal Companion Base Statistics, Core Rulebook).';
   adjNote.textContent = row.strDexAdj ? ('Str/Dex advancement at this level: +'+row.strDexAdj+' — already added to the base scores above for the actual attack/damage math.') : 'No Str/Dex advancement yet at this level.';
-  // At effective companion level 9, the Animal Companion table grants Multiattack if the
-  // companion already has 3+ natural attacks, or (if it doesn't) a second attack with one
-  // of its existing natural weapons at -5 -- purely informational since which applies
-  // depends on the companion's own attack list, which the player must judge themselves.
-  maNote.textContent = eff>=9 ? 'Effective level 9+: qualifies for Multiattack if it already has 3+ natural attacks — add the Multiattack feat above (reduces Secondary attack penalties from -5 to -2). Otherwise it instead gains a second attack with one existing natural weapon at -5 — add that as a new attack line by hand.' : '';
+  maNote.textContent='';
   // HD comes from the table's own hd field -- the Animal Companion Base Statistics
   // table's Class Level and HD columns are NOT the same number, so HD must never be
   // derived from the effective companion level itself.
   writeHdBab(row.hd, row.bab);
+  recomputeMultiattack(); // At effective level 9+, actually applies Multiattack or the extra-attack grant -- see the note above the attack list
 }
 
 function loadProfileIntoUI(){
@@ -1253,12 +1255,25 @@ $('entityType').addEventListener('change', ()=>{
   renderSources(); renderCategories(); compute();
 });
 ['sourceClass','ownerLevel'].forEach(id=>{
-  $(id).addEventListener('input', ()=>{ applyProgressionUI(); syncUIIntoProfile(); updateSubtypeAbilityChoiceUI(); reapplyPhantomPresetIfActive(); reapplyAnimalCompanionPresetIfActive(); compute(); });
+  // EIDOLON-REAPPLY-001/PHANTOM-REAPPLY-002: an owner-level/source-class edit is
+  // INCIDENTAL -- pass explicit=false so only level-dependent values (HD, BAB,
+  // evolution/focus-driven attack atkBonus/dice) refresh, never a silent ability-score
+  // reset or HD/BAB-override clear (reapplyAnimalCompanionPresetIfActive() already had
+  // this distinction built in; Eidolon/Phantom did not until now).
+  $(id).addEventListener('input', ()=>{ applyProgressionUI(); syncUIIntoProfile(); updateSubtypeAbilityChoiceUI(); reapplyPhantomPresetIfActive(false); reapplyEidolonPresetIfActive(false); reapplyAnimalCompanionPresetIfActive(); compute(); });
 });
 $('reapplyProgression').addEventListener('click', ()=>{
+  // The button's own job is narrowly "resync HD/BAB from the table" (it clears the
+  // override itself, right here) -- not a full preset reset, so Eidolon/Phantom are also
+  // reapplied incidentally (explicit=false): HD/BAB now resync (override was just
+  // cleared, so the guard inside each apply function lets the fresh table value through)
+  // while ability scores and manual attack-line edits are left alone, same as any other
+  // incidental reapply.
   currentProfile().hdBabOverride=false;
   applyProgressionUI();
   syncUIIntoProfile();
+  reapplyPhantomPresetIfActive(false);
+  reapplyEidolonPresetIfActive(false);
   reapplyAnimalCompanionPresetIfActive();
   compute();
 });
@@ -1389,9 +1404,15 @@ function renderAttackLines(){
       <button class="rm" type="button" title="Remove">✕</button>`;
     const upd=(field,parse)=>e=>{ line[field]=parse?parse(e.target.value):e.target.value; saveStore(); compute(); };
     div.querySelector('.alName').addEventListener('input',upd('name'));
+    // MULTIATTACK-001: qty/atkType/mode each feed the natural-attack qualification count
+    // -- qty uses 'change' (not 'input', like every other field here) for its recompute
+    // so a full attackLinesBox re-render doesn't steal keyboard focus mid-keystroke while
+    // typing a new quantity; the ordinary 'input' listener above still keeps compute()
+    // live on every keystroke as before.
     div.querySelector('.alQty').addEventListener('input',upd('qty',v=>Math.max(1,+v||1)));
-    div.querySelector('.alType').addEventListener('change',upd('atkType'));
-    div.querySelector('.alMode').addEventListener('change',upd('mode'));
+    div.querySelector('.alQty').addEventListener('change',()=>{ recomputeMultiattack(); compute(); });
+    div.querySelector('.alType').addEventListener('change',e=>{ line.atkType=e.target.value; saveStore(); recomputeMultiattack(); compute(); });
+    div.querySelector('.alMode').addEventListener('change',e=>{ line.mode=e.target.value; saveStore(); recomputeMultiattack(); compute(); });
     div.querySelector('.alDie').addEventListener('input',upd('die'));
     div.querySelector('.alThreat').addEventListener('input',upd('threat'));
     div.querySelector('.alCrit').addEventListener('change',upd('critMult',Number));
@@ -1429,7 +1450,7 @@ function renderAttackLines(){
         p.removedSpeciesAttackOrigins=p.removedSpeciesAttackOrigins||[];
         if(!p.removedSpeciesAttackOrigins.includes(removed.origin)) p.removedSpeciesAttackOrigins.push(removed.origin);
       }
-      p.attackLines.splice(i,1); saveStore(); renderAttackLines(); compute();
+      p.attackLines.splice(i,1); saveStore(); recomputeMultiattack(); renderAttackLines(); compute();
     });
     box.appendChild(div);
   });
@@ -1457,7 +1478,7 @@ $('addAttackLine').onclick=()=>{
   let p=currentProfile();
   if(!p.attackLines) p.attackLines=[];
   p.attackLines.push(newAttackLine());
-  saveStore(); renderAttackLines(); compute();
+  saveStore(); recomputeMultiattack(); renderAttackLines(); compute();
 };
 $('addAttackPreset').onclick=()=>{
   let preset=ATTACK_PRESETS[$('attackPreset').value]; if(!preset) return;
@@ -1469,7 +1490,7 @@ $('addAttackPreset').onclick=()=>{
     if(src.mode==='secondary'&&src.atkBonus===undefined) line.atkBonus-=5;
     p.attackLines.push(line);
   });
-  saveStore(); renderAttackLines(); compute();
+  saveStore(); recomputeMultiattack(); renderAttackLines(); compute();
 };
 
 // Core Rulebook Animal Choices. These are optional convenience presets only: after
@@ -1542,12 +1563,20 @@ $('eidolonEvolutionSelect').addEventListener('change', updateEvolutionExtraField
 // applyEidolonPreset() always rebuilds p.attackLines and ability scores from scratch
 // (form.attacks / form.abilities), so calling it again is idempotent -- no duplicate
 // attacks, no double-counted Ability Increase or Energy Attacks dice.
-function reapplyEidolonPresetIfActive(){
+// EIDOLON-REAPPLY-001: `explicit` mirrors applyAnimalCompanionPresetCore's own explicit/
+// incidental distinction (ANIMAL-MERGE-001) -- omitted (undefined) defaults to explicit,
+// so every EXISTING caller (the "Apply preset stats & attacks" button, evolution add/
+// remove) keeps its current deliberate-reset behavior unchanged. Passing false is for an
+// INCIDENTAL reapply (an owner-level/source-class change) that must refresh only level-
+// dependent values (HD, BAB, evolution-driven attack atkBonus/dice) while leaving
+// manually-changed ability scores and an active HD/BAB override alone -- see
+// applyEidolonPreset's own explicit/incidental branches.
+function reapplyEidolonPresetIfActive(explicit){
   let p=currentProfile(), type=p.entityType;
   if(!['eidolon-chained','eidolon-unchained'].includes(type)) return;
   if(!$('speciesPreset').value) return;
   if(type==='eidolon-unchained' && !$('eidolonSubtype').value) return;
-  applyEidolonPreset(type);
+  applyEidolonPreset(type, explicit);
 }
 function renderEidolonEvolutionPicker(){
   let p=currentProfile(), isEidolon=['eidolon-chained','eidolon-unchained'].includes(p.entityType||'');
@@ -1601,6 +1630,180 @@ $('addEidolonEvolution').onclick=()=>{
 };
 function sizeAttackModifier(size){
   return ({Fine:8,Diminutive:4,Tiny:2,Small:1,Medium:0,Large:-1,Huge:-2,Gargantuan:-4,Colossal:-8})[size]||0;
+}
+// MULTIATTACK-001: level-9 Multiattack / extra-attack rule, shared by Eidolon (chained
+// and unchained) and Animal Companion/Mount progressions. Verified rule text (AoN/
+// d20pfsrd, 2026-09):
+//  - Animal Companion Base Statistics table: "An animal companion gains Multiattack as a
+//    bonus feat if it has three or more natural attacks and does not already have that
+//    feat. If it does not have the requisite three or more natural attacks, the animal
+//    companion instead gains a second attack with ITS PRIMARY NATURAL WEAPON, albeit at
+//    a -5 penalty."
+//  - Eidolon Base Statistics table: "...the eidolon instead gains a second attack with
+//    ONE OF ITS NATURAL WEAPONS, albeit at a -5 penalty. If the eidolon later gains 3 or
+//    more natural attacks, it loses this additional attack and instead gains
+//    Multiattack." -- an Eidolon may choose ANY qualifying natural weapon (primary or
+//    secondary); an Animal Companion only a PRIMARY one (pickPrimaryOnly below).
+// A "qualifying natural attack" for the 3-attack threshold is an ordinary melee natural
+// weapon (atkType 'natural', mode 'primary' or 'secondary') that is neither the granted
+// extra attack itself (multiattackGranted -- excluded so it never re-triggers its own
+// removal) nor flagged multiattackConditional (an eidolon's Rake evolution, usable only
+// while grappling -- not one of the "three or more natural attacks" available on an
+// ordinary full attack, even though Rake separately counts toward the evolution pool's
+// own natural-attack MAXIMUM, a different rule -- see applyEidolonPreset). Ranged natural
+// attacks (e.g. a Web/Spit line), manufactured/touch/other-type lines, and 'special'/
+// 'other' mode lines (e.g. Trample) never qualify either.
+function isQualifyingNaturalAttackLine(l){
+  return !!l && (l.atkType||'natural')==='natural' && (l.mode==='primary'||l.mode==='secondary') && !l.multiattackConditional && !l.multiattackGranted;
+}
+function naturalAttackQty(lines){
+  return (lines||[]).filter(isQualifyingNaturalAttackLine).reduce((sum,l)=>sum+(+l.qty||1),0);
+}
+// Only a GENERATED (preset/evolution-origin) secondary natural line has its Base To-Hit
+// automatically rewritten between -5 and -2 -- a manual line (origin 'manual' or none at
+// all) is never silently touched, matching every other apply*Preset merge in this file.
+// The player adjusts a manual secondary natural line's own Base To-Hit by hand if
+// Multiattack applies to it (see the note above the attack list).
+function isAutoAdjustableSecondaryLine(l){
+  return !!l && (l.atkType||'natural')==='natural' && l.mode==='secondary' && !l.multiattackConditional && !l.multiattackGranted && !!l.origin && l.origin!=='manual';
+}
+const MULTIATTACK_EXTRA_ORIGIN='multiattack-extra';
+// Fields a player may type onto the granted extra-attack line that survive every
+// recompute regardless of which source weapon is currently chosen. Everything else about
+// the line (name, die, abilities, multiplier, threat, critMult, damage type,
+// enhancement, atkBonus) always freshly follows the CURRENTLY chosen source weapon, per
+// the requirement that its "damage dice and ability multiplier should follow the chosen
+// weapon" -- switching the picker immediately updates all of those, never leaving a
+// stale copy of a previously-chosen weapon's stats.
+const MULTIATTACK_EXTRA_PRESERVED_FIELDS=['lineId','extra','manualHitAdj','manualDmgAdj','noDamage','extraDice','extraDamageType','extraDiceMultipliesOnCrit'];
+// Rebuilds the level-9 Multiattack/extra-attack state for `lines` (the full, already-
+// merged attackLines list -- generated + manual + preserved) and returns the corrected
+// array. Never mutates the input array's own identity; DOES mutate individual qualifying
+// secondary lines' atkBonus in place (same as the single-line adjustment this replaces).
+// `pickPrimaryOnly`: true for Animal Companion/Mount (RAW: "its primary natural
+// weapon"), false for Eidolon (RAW: "one of its natural weapons").
+function applyMultiattackRule(p, lines, level, bab, size, pickPrimaryOnly){
+  let withoutGranted=(lines||[]).filter(l=>!l.multiattackGranted);
+  let existingGranted=(lines||[]).find(l=>l.multiattackGranted);
+  let resetSecondaries=()=>withoutGranted.forEach(l=>{ if(isAutoAdjustableSecondaryLine(l)) l.atkBonus=bab+sizeAttackModifier(size)-5; });
+  if(!(level>=9)){
+    resetSecondaries();
+    return withoutGranted;
+  }
+  let count=naturalAttackQty(withoutGranted);
+  if(count>=3){
+    withoutGranted.forEach(l=>{ if(isAutoAdjustableSecondaryLine(l)) l.atkBonus=bab+sizeAttackModifier(size)-2; });
+    return withoutGranted;
+  }
+  resetSecondaries();
+  let candidates=withoutGranted.filter(l=>isQualifyingNaturalAttackLine(l) && (!pickPrimaryOnly || l.mode==='primary'));
+  if(!candidates.length) return withoutGranted; // no natural weapon exists to grant the extra attack on -- left off, see the picker note
+  let sourceId=p.multiattackExtraSourceLineId;
+  let source=sourceId?candidates.find(c=>c.lineId===sourceId):null;
+  if(!source){
+    if(candidates.length===1){ source=candidates[0]; p.multiattackExtraSourceLineId=source.lineId; }
+    else return withoutGranted; // more than one eligible weapon, no persisted choice yet -- do not guess (see renderMultiattackPicker)
+  }
+  let line=Object.assign(newAttackLine(),{
+    name:source.name+' (extra attack)', qty:1, atkType:'natural', mode:source.mode,
+    die:source.die, hitAbility:source.hitAbility, dmgAbility:source.dmgAbility, dmgAbilityMult:source.dmgAbilityMult,
+    damageType:source.damageType, threat:source.threat||'20', critMult:source.critMult||2, enhancement:source.enhancement||0,
+    baseDamageBonus:source.baseDamageBonus||0,
+    // The -5 here is the Multiattack table's own ADDITIONAL-ATTACK penalty, always -5
+    // regardless of the source weapon's own mode -- never the -2 a qualifying Multiattack
+    // creature's SECONDARY natural attacks get, and never 0 even when the source is a
+    // primary weapon. Distinguishing this line from an ordinary secondary natural weapon
+    // is the whole point of the rule this models.
+    atkBonus:bab+sizeAttackModifier(size)-5
+  });
+  let sourceChanged=!existingGranted || existingGranted._extraAttackSourceLineId!==source.lineId;
+  if(existingGranted){
+    MULTIATTACK_EXTRA_PRESERVED_FIELDS.forEach(f=>{ if(existingGranted[f]!==undefined) line[f]=existingGranted[f]; });
+    if(!sourceChanged && existingGranted.name) line.name=existingGranted.name;
+  }
+  line.origin=MULTIATTACK_EXTRA_ORIGIN;
+  line.multiattackGranted=true;
+  line._extraAttackSourceLineId=source.lineId;
+  return withoutGranted.concat([line]);
+}
+// Single choke point that (re)applies the rule above and refreshes its UI -- called after
+// every event that could change the qualifying natural-attack count or level: entity type
+// switch, level/source-class/HD-BAB change, Eidolon/Animal Companion preset (re)
+// application (which itself covers evolution add/remove), and a manual attack-row add/
+// remove/qty/atkType/mode edit. Idempotent -- safe to call repeatedly with nothing
+// actually different.
+function recomputeMultiattack(){
+  let p=currentProfile();
+  let entityType=p.entityType||'animal-companion';
+  let bab=+$('bab').value||+p.bab||0;
+  let isEidolon=['eidolon-chained','eidolon-unchained'].includes(entityType);
+  let isAnimalCompanion=['animal-companion','mount'].includes(entityType);
+  if(!isEidolon && !isAnimalCompanion){
+    // Familiar/Phantom/Cohort have no "3+ natural attacks -> Multiattack" table entry of
+    // their own -- strip any stale granted line/-2 left over from switching away from
+    // Eidolon/Animal Companion, the same "never leave a stale generated line" guarantee
+    // every other entity-type switch already has.
+    let hadGranted=(p.attackLines||[]).some(l=>l.multiattackGranted);
+    let size=p.creatureSize||'Medium';
+    p.attackLines=(p.attackLines||[]).filter(l=>!l.multiattackGranted);
+    (p.attackLines||[]).forEach(l=>{ if(isAutoAdjustableSecondaryLine(l)) l.atkBonus=bab+sizeAttackModifier(size)-5; });
+    renderMultiattackPicker(null);
+    if(hadGranted) renderAttackLines();
+    return;
+  }
+  let level, pickPrimaryOnly, size;
+  if(isEidolon){
+    level=Math.max(1,Math.min(20,+$('ownerLevel').value||p.ownerLevel||1));
+    pickPrimaryOnly=false;
+    size=$('creatureSize').value||p.creatureSize||'Medium';
+  } else {
+    level=effectiveCompanionLevel($('sourceClass').value||p.sourceClass, +$('ownerLevel').value||p.ownerLevel||0)||0;
+    pickPrimaryOnly=true;
+    size=p.creatureSize||'Medium';
+  }
+  p.attackLines=applyMultiattackRule(p, p.attackLines||[], level, bab, size, pickPrimaryOnly);
+  renderMultiattackPicker({level,pickPrimaryOnly});
+  renderAttackLines();
+}
+// Renders the persistent extra-attack-source picker (and a short explanatory note) into
+// the dedicated #multiattackPicker div -- kept separate from #multiattackNote (which
+// Phantom/Familiar/other branches use for their own, unrelated informational text) so the
+// two features never clobber each other's content.
+function renderMultiattackPicker(ctx){
+  let box=$('multiattackPicker'); if(!box) return;
+  let p=currentProfile();
+  if(!ctx || !(ctx.level>=9)){ box.innerHTML=''; return; }
+  let lines=p.attackLines||[];
+  let count=naturalAttackQty(lines);
+  let plural=count===1?'':'s';
+  if(count>=3){
+    box.innerHTML='<div class="emptyNote">Level '+ctx.level+', '+count+' natural attack'+plural+': qualifies for Multiattack. Every generated secondary natural attack line above now uses -2 instead of -5 automatically. A manually-added secondary natural attack line is not adjusted automatically -- reduce its own Base To-Hit by hand if Multiattack applies to it.</div>';
+    return;
+  }
+  let candidates=lines.filter(l=>isQualifyingNaturalAttackLine(l) && (!ctx.pickPrimaryOnly || l.mode==='primary'));
+  let ruleName=ctx.pickPrimaryOnly?'its primary natural weapon':'one of its natural weapons';
+  if(!candidates.length){
+    box.innerHTML='<div class="emptyNote">Level '+ctx.level+', '+count+' natural attack'+plural+' (fewer than 3): would gain an extra attack with '+ruleName+' at -5, but there\'s no qualifying natural weapon line to grant it on -- left off. Add a natural melee attack line first if this creature should have one.</div>';
+    return;
+  }
+  let granted=lines.find(l=>l.multiattackGranted);
+  let baseNote='Level '+ctx.level+', '+count+' natural attack'+plural+' (fewer than 3): gains an extra attack with '+ruleName+' at -5'+(granted?' (added below as "'+granted.name+'")':'')+' -- distinguishable from an ordinary secondary natural weapon: this -5 is the additional-attack penalty, not a reduced Multiattack secondary penalty. Its damage dice and ability multiplier follow whichever weapon is chosen below.';
+  if(candidates.length===1){
+    box.innerHTML='<div class="emptyNote">'+baseNote+'</div>';
+    return;
+  }
+  // More than one qualifying weapon: per the rule text, the player must choose which one
+  // gets the extra attack -- a persistent select tied to p.multiattackExtraSourceLineId
+  // so the choice survives reload/reapply/level changes until deliberately changed, and
+  // never a silently-guessed array-order default.
+  let labels=disambiguatedAttackLabels(candidates);
+  let opts='<option value="">— choose which weapon —</option>'+candidates.map((l,idx)=>`<option value="${l.lineId}"${p.multiattackExtraSourceLineId===l.lineId?' selected':''}>${labels[idx]}</option>`).join('');
+  box.innerHTML='<div class="emptyNote">'+baseNote+(granted?'':' Choose which weapon below:')+'</div><select id="multiattackSourceSelect">'+opts+'</select>';
+  $('multiattackSourceSelect').addEventListener('change',()=>{
+    p.multiattackExtraSourceLineId=$('multiattackSourceSelect').value||undefined;
+    saveStore();
+    recomputeMultiattack();
+  });
 }
 // ATTACK-LINE-ID-001: display-only labels for a line-selecting <select> (Vital Strike's
 // target, Rend's claw) -- identity is always the line's lineId, never this label, so
@@ -1744,6 +1947,7 @@ function applyAnimalCompanionPresetCore(speciesId, explicit){
   // clobbered p.creatureSize with that dropdown's stale value -- set the real one last,
   // straight on the profile, so any attack line added later gets the right size modifier.
   p.creatureSize=size;
+  recomputeMultiattack(); // MULTIATTACK-001: applies the level-9 Multiattack/extra-attack rule to the fresh attack list
   saveStore(); renderAttackLines(); compute();
   $('speciesPresetNote').textContent=species.name+' applied at effective companion level '+eff+' ('+size+(advanced?', advanced package active':' starting package')+'). All fields remain editable.';
   return true;
@@ -1778,7 +1982,8 @@ function lineFromRuleAttack(a,bab,size){
     dmgAbilityMult:a.damageAbility==='none'?0:(a.strengthMultiplier===undefined?1:a.strengthMultiplier),baseDamageBonus:a.baseDamageBonus||0,
     damageType:(a.damageType||a.type||[]).join?a.damageType?.join('/')||a.type?.join('/')||'':(a.damageType||a.type||''),extra:a.effect||'',noDamage:!a.damage&&!a.damageBySize});
 }
-function applyEidolonPreset(type){
+function applyEidolonPreset(type, explicit){
+  if(explicit===undefined) explicit=true; // see EIDOLON-REAPPLY-001 on reapplyEidolonPresetIfActive
   let form=EIDOLON_FORMS.find(x=>x.key===$('speciesPreset').value); if(!form){alert('Choose an eidolon base form first.');return;}
   let subtype=type==='eidolon-unchained'?EIDOLON_SUBTYPES.find(x=>x.key===$('eidolonSubtype').value):null;
   if(type==='eidolon-unchained'&&!subtype){alert('Choose an Unchained eidolon subtype first.');return;}
@@ -1804,8 +2009,36 @@ function applyEidolonPreset(type){
       if(['str','dex','con','int','wis','cha'].includes(profile.subtypeAbilityChoice))ab[profile.subtypeAbilityChoice]=(ab[profile.subtypeAbilityChoice]||0)+2;
     }
   }
-  ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=ab[k]);
-  $('hitDice').value=row.hd; $('bab').value=row.bab; profile.hdBabOverride=false;
+  // EIDOLON-REAPPLY-001: mirrors ANIMAL-MERGE-001's explicit/incidental split -- an
+  // EXPLICIT apply (the button) deliberately re-baselines every ability score outright,
+  // same as before. An INCIDENTAL reapply (an owner-level/source-class edit, which can
+  // legitimately change `ab` via the level-gated subtype free-ability milestone or a
+  // Large/Huge package's minLevel-gated adjustment) instead diffs the freshly computed
+  // `ab` against the LAST baseline this function itself recorded and adds only that
+  // delta on top of whatever the player currently has typed -- so a manual ability-score
+  // edit survives an incidental level change exactly like it already does for Animal
+  // Companion. profile.eidolonAbilityBaseline is the persisted anchor for that diff,
+  // refreshed on every apply (explicit or not).
+  if(explicit){
+    ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=ab[k]);
+  } else {
+    let prevBaseline=profile.eidolonAbilityBaseline;
+    if(prevBaseline){
+      ['str','dex','con','int','wis','cha'].forEach(k=>{
+        let delta=(ab[k]||0)-(prevBaseline[k]||0);
+        if(delta) $(k).value=(+$(k).value||0)+delta;
+      });
+    }
+    // No previous baseline yet (first-ever incidental reapply before any explicit apply)
+    // -- nothing safe to diff against, so ability scores are left exactly as they are.
+  }
+  profile.eidolonAbilityBaseline=Object.assign({},ab);
+  // Same override guard applyProgressionUI's own writeHdBab() already uses: an incidental
+  // reapply must never silently overwrite a manually-typed HD/BAB, and must never clear
+  // the override flag the player set by typing into those fields directly -- only an
+  // EXPLICIT apply (a deliberate re-baseline) does both.
+  if(explicit || !profile.hdBabOverride){ $('hitDice').value=row.hd; $('bab').value=row.bab; }
+  if(explicit) profile.hdBabOverride=false;
   let attacks=form.attacks.map(a=>{
     let damage=(a.damageBySize||{})[size]||a.damage;
     if(!(a.damageBySize||{})[size]) damage=size==='Small'?diceSizeDown(damage):applySizeSteps(damage,size==='Large'?1:(size==='Huge'?2:0));
@@ -1845,7 +2078,14 @@ function applyEidolonPreset(type){
     // that shape (see byLegacyOriginKey).
     let legacyOriginKey='evolution:'+chosen.key;
     if(['addAttack','addConditionalAttack','addSpecialAttack'].includes(ad.operation)){
-      attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:originKey,_legacyOriginKey:legacyOriginKey}));
+      // MULTIATTACK-001: an addConditionalAttack evolution (Rake -- usable only while
+      // grappling) is marked _conditional so the generated line below carries
+      // multiattackConditional, excluding it from the level-9 "3+ natural attacks"
+      // qualification count and from the extra-attack source picker -- it's a real
+      // natural weapon, but not one available on an ordinary full attack. This is
+      // separate from Rake's own "countsTowardNaturalAttackMaximum" flag in the JSON,
+      // which is about the evolution pool's cap on granted attacks, a different rule.
+      attacks.push(Object.assign({},ad.attack,{damage:adapterDamage(ad.attack),_originKey:originKey,_legacyOriginKey:legacyOriginKey,_conditional:ad.operation==='addConditionalAttack'}));
     } else if(ad.operation==='addOrUpgradeAttack'){
       let existing=attacks.find(a=>a.name==='Bite');
       if(existing) existing.strengthMultiplier=ad.existingAttackStrengthMultiplier;
@@ -1917,9 +2157,9 @@ function applyEidolonPreset(type){
       if(existing.name) line.name=existing.name; // a rename survives too -- matched by origin key, not name
     }
     line.origin=a._originKey;
+    if(a._conditional) line.multiattackConditional=true;
     return line;
   });
-  if(level>=9) generatedLines.forEach(line=>{if(line.mode==='secondary')line.atkBonus=row.bab+sizeAttackModifier(size)-2;});
   // EIDOLON-ENERGY-001: Energy Attacks is no longer baked into every line's own
   // extraDice fields here -- that both ignored every instance but the first and
   // clobbered whatever extra dice the player had typed in by hand, with no way to
@@ -1927,20 +2167,48 @@ function applyEidolonPreset(type){
   // collectContributions()/compute() instead, alongside Magic Fang's natural-only scope.
   p.attackLines=generatedLines.concat(manualLines);
   p.speciesPreset=form.key;
+  recomputeMultiattack(); // MULTIATTACK-001: applies the level-9 Multiattack/extra-attack rule to the fresh attack list
   syncUIIntoProfile(); renderAttackLines(); renderCategories(); compute();
-  let naturalCount=p.attackLines.reduce((n,x)=>n+(x.name==='Rake'?1:(+x.qty||1)),0);
+  // The evolution pool's own natural-attack MAXIMUM (row.maxNaturalAttacks) is a
+  // different rule from Multiattack's 3-attack THRESHOLD above -- never count the
+  // level-9 granted extra attack toward it, since that attack doesn't come from the
+  // evolution pool at all.
+  let naturalCount=p.attackLines.filter(x=>!x.multiattackGranted).reduce((n,x)=>n+(x.name==='Rake'?1:(+x.qty||1)),0);
   $('speciesPresetNote').textContent=(subtype?subtype.name+' ':'')+form.name+' applied at level '+level+'. Maximum '+row.maxNaturalAttacks+' natural attacks; current routine counts '+naturalCount+(naturalCount>row.maxNaturalAttacks?' — OVER THE LIMIT':'')+'. Fields remain editable.';
 }
-function applyPhantomPreset(){
+function applyPhantomPreset(explicit){
+  if(explicit===undefined) explicit=true; // see PHANTOM-REAPPLY-002 on reapplyPhantomPresetIfActive
   if($('speciesPreset').value!=='phantom'){alert('Choose Standard Phantom first.');return;}
   let focus=PHANTOM_FOCUSES.find(x=>x.key===$('phantomFocus').value); if(!focus){alert('Choose an emotional focus first.');return;}
   let level=Math.max(1,Math.min(20,+$('ownerLevel').value||1)), row=PHANTOM_PROGRESSION.levels[level-1], size=$('creatureSize').value||'Medium';
   if(!['Small','Medium','Large'].includes(size)){alert('A standard phantom supports Small, Medium, or Large size here. Choose one of those sizes, or enter an exceptional archetype manually.');return;}
   let ab=Object.assign({},PHANTOM_PROGRESSION.base.abilities); Object.entries(focus.baseAdjustments||{}).forEach(([k,v])=>ab[k]+=v);
-  ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=ab[k]); $('hitDice').value=row.hd; $('bab').value=row.bab; currentProfile().hdBabOverride=false;
+  let p=currentProfile();
+  // PHANTOM-REAPPLY-002: mirrors EIDOLON-REAPPLY-001/ANIMAL-MERGE-001 -- an EXPLICIT
+  // apply (the button) deliberately re-baselines every ability score and clears the HD/
+  // BAB override outright, same as before. An INCIDENTAL reapply (an owner-level/
+  // source-class edit) instead diffs the freshly computed `ab` against the last baseline
+  // recorded here and adds only that delta on top of whatever the player currently has
+  // typed, and never touches HD/BAB while an override is active -- so a manually-edited
+  // ability score or a manual HD/BAB override survives an incidental level change
+  // instead of being silently wiped just by nudging the owner's level.
+  if(explicit){
+    ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=ab[k]);
+  } else {
+    let prevBaseline=p.phantomAbilityBaseline;
+    if(prevBaseline){
+      ['str','dex','con','int','wis','cha'].forEach(k=>{
+        let delta=(ab[k]||0)-(prevBaseline[k]||0);
+        if(delta) $(k).value=(+$(k).value||0)+delta;
+      });
+    }
+    // No previous baseline yet -- nothing safe to diff against, ability scores untouched.
+  }
+  p.phantomAbilityBaseline=Object.assign({},ab);
+  if(explicit || !p.hdBabOverride){ $('hitDice').value=row.hd; $('bab').value=row.bab; }
+  if(explicit) p.hdBabOverride=false;
   let band=PHANTOM_PROGRESSION.slamByLevelAndSize.find(x=>level>=x.levels[0]&&level<=x.levels[1]); let die=band[size]||row.slamMedium;
   if(focus.key==='anger') die=diceSizeUp(die);
-  let p=currentProfile();
   // PHANTOM-MERGE-001: mirrors EVOL-MERGE-001 for the Eidolon evolutions -- a level/
   // size/focus change (now auto-reapplied, see reapplyPhantomPresetIfActive) used to
   // throw away p.attackLines entirely, silently discarding any manual edit on the
@@ -2040,12 +2308,16 @@ function applyPhantomPreset(){
 // Guarded exactly like the preset button's own validation (a base preset AND a focus
 // must already be chosen) so this never fires the "choose a focus first" alert just
 // because the player is still mid-setup.
-function reapplyPhantomPresetIfActive(){
+// `explicit` mirrors applyPhantomPreset's own explicit/incidental split (PHANTOM-REAPPLY-
+// 002) -- omitted defaults to explicit, so the existing phantomFocus/creatureSize change
+// listener (which legitimately re-baselines the build) keeps working unchanged; the
+// ownerLevel/sourceClass listener passes false for an incidental level-only refresh.
+function reapplyPhantomPresetIfActive(explicit){
   const p=currentProfile();
   if(p.entityType!=='phantom') return;
   if($('speciesPreset').value!=='phantom') return;
   if(!$('phantomFocus').value) return;
-  applyPhantomPreset();
+  applyPhantomPreset(explicit);
 }
 function applyFamiliarPreset(){
   let fam=FAMILIAR_PRESETS.find(x=>x.key===$('speciesPreset').value); if(!fam){alert('Choose a familiar species first.');return;}
