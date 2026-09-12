@@ -302,7 +302,7 @@ function abilityBuffBonus(ctx, ability, scoreBonus){
   return {attack, damage, modBonus};
 }
 
-// ---------------- Animal Companion progression (Druid/Hunter/Ranger only) ----------------
+// ---------------- Animal Companion progression (Druid/Hunter/Ranger/Paladin/Cavalier) ----------------
 // Core Rulebook "Animal Companion Base Statistics" table, indexed by effective companion
 // level 1-20. Only the two columns that actually change hit/damage here: BAB and the
 // Str/Dex advancement bonus (added on top of the base creature's own Str/Dex, per "Add
@@ -328,21 +328,28 @@ const ANIMAL_COMPANION_TABLE=[
 // ranger's effective druid level is equal to his ranger level – 3." Druid and Hunter
 // both use their own class level as-is (Hunter has full animal companion progression
 // from 1st level, like a druid).
-// PALADIN-MOUNT-TABLE-001: Paladin's Divine Bond (mount) and Cavalier's Mount both
-// progress on the Core Rulebook's separate "Paladin's Mount" table (Cavalier using his
-// own class level as his effective paladin level for it) -- NOT this Animal Companion
-// Base Statistics table, and its HD/BAB/Str-Dex numbers are different from this one at
-// the same level. That table isn't modeled in this calculator yet, so returning a level
-// here for paladin/cavalier (as a previous version of this function did) fed the WRONG
-// table's HD/BAB straight into the UI -- e.g. a level-10 paladin mount silently got the
-// Animal Companion table's level-10 numbers instead of its own. Until the real Paladin's
-// Mount table is added, paladin/cavalier stay fully manual, exactly like "Other /
-// homebrew" -- set BAB/HD/scores by hand.
+// PALADIN-MOUNT-TABLE-001 (corrected): a previous version of this function assumed
+// Paladin/Cavalier mounts progress on some separate, unmodeled "Paladin's Mount" table
+// and left them fully manual -- that assumption was wrong. Per the actual Core
+// Rulebook/APG text, both explicitly reuse THIS SAME Animal Companion Base Statistics
+// table, at the rider's own level with no offset:
+//  - Paladin (Divine Bond, mount option): "This mount functions as a druid's animal
+//    companion, using the paladin's level as her effective druid level." Obtained at
+//    5th level -- https://legacy.aonprd.com/corerulebook/classes/paladin.html
+//  - Cavalier (Mount): "This mount functions as a druid's animal companion, using the
+//    cavalier's level as his effective druid level." Obtained at 1st level --
+//    https://legacy.aonprd.com/advancedPlayersGuide/baseClasses/cavalier.html
+// So both return a level here exactly like Druid/Hunter (own class level as-is), gated
+// only by their own availability threshold -- 0 (not yet active, but never null; see
+// applyProgressionUI()'s companionNotYetActive handling) below the level the bond/mount
+// is actually obtained. The HD/BAB this produces is the MOUNT's own, from the table --
+// never the paladin/cavalier's own (higher) personal class BAB.
 function effectiveCompanionLevel(sourceClass, ownerLevel){
   let lvl=Math.max(0, +ownerLevel||0);
-  if(sourceClass==='druid' || sourceClass==='hunter') return Math.min(20, lvl);
+  if(sourceClass==='druid' || sourceClass==='hunter' || sourceClass==='cavalier') return Math.min(20, lvl);
   if(sourceClass==='ranger') return Math.min(20, Math.max(0, lvl-3));
-  return null; // no recognized progression table -- fully manual (includes paladin/cavalier mounts)
+  if(sourceClass==='paladin') return lvl>=5 ? Math.min(20, lvl) : 0;
+  return null; // no recognized progression table -- fully manual
 }
 
 // ---------------- MODIFIERS CATALOG ----------------
@@ -777,7 +784,7 @@ function applyProgressionUI(){
   let effNote=$('effectiveLevelNote'), adjNote=$('strDexAdjNote'), maNote=$('multiattackNote');
   if(!cls || eff===null || eff<=0){
     effNote.textContent = cls==='ranger' ? 'A ranger companion starts at 4th level (effective level = ranger level − 3) — not active yet at this level.'
-      : (cls==='paladin'||cls==='cavalier') ? 'Paladin/Cavalier mount progression uses the separate Paladin\'s Mount table, not modeled here — enter Hit Dice, BAB and ability scores manually.'
+      : cls==='paladin' ? 'A paladin\'s Divine Bond mount is obtained at 5th level (functions as a druid\'s animal companion, using paladin level as effective druid level) — not active yet at this level.'
       : '';
     adjNote.textContent=''; maNote.textContent=''; autoNote.textContent='';
     return;
@@ -1316,11 +1323,20 @@ function applyAnimalCompanionPresetCore(speciesId, explicit){
     let originKey=ownPrefix+(a.name||'').toLowerCase();
     if(tombstones.has(originKey)) return null; // deliberately removed by the player -- do not resurrect
     let line=attackLineFromSpecies(a,bab,size);
-    // Legacy fallback (unrestricted, same as FAMILIAR-MERGE-001/EVOL-MERGE-001): a
-    // generated attack saved before this origin scheme has no origin at all -- matched
-    // once by name so the first apply after this update migrates it instead of leaving
-    // a duplicate, regardless of whether this is a first-ever apply or a species switch.
-    let existing=byOrigin[originKey] || survivingOldLines.find(l=>!l.origin && !consumedLegacy.has(l) && l.name===line.name);
+    // ANIMAL-LEGACY-MATCH-001: unlike FAMILIAR-MERGE-001/EVOL-MERGE-001's unrestricted
+    // by-name fallback, this one is deliberately gated on previousSpeciesId===species.id
+    // -- i.e. p.animalSpeciesApplied (set ONLY by this function itself, never guessed
+    // from p.speciesPreset, which merely mirrors the dropdown and can already equal the
+    // NEW species by the time this runs) must already equal the species being applied
+    // now. That is the only "reliable evidence" available that an originless line came
+    // from THIS species: a same-species re-apply/re-sync where the origin scheme simply
+    // didn't exist yet on an earlier save. On a first-ever apply (no prior recorded
+    // species) or a switch to a different species, an originless same-named line is
+    // just as likely to be the player's own unrelated manual attack (e.g. a hand-typed
+    // "Bite") -- there is no way to tell the two apart, so it is left alone rather than
+    // silently absorbed, even at the cost of a visible duplicate on an ambiguous old
+    // profile the player can clean up by hand.
+    let existing=byOrigin[originKey] || (previousSpeciesId===species.id ? survivingOldLines.find(l=>!l.origin && !consumedLegacy.has(l) && l.name===line.name) : null);
     if(existing){
       SPECIES_ATTACK_PRESERVED_FIELDS.forEach(f=>{ if(existing[f]!==undefined) line[f]=existing[f]; });
       if(existing.name) line.name=existing.name;
@@ -2094,11 +2110,11 @@ function compute(){
   // so the results table below still rendered full attack numbers as if the
   // companion existed. Suppress results instead (unless the player has explicitly
   // taken manual control via hdBabOverride -- a homebrew earlier companion, say).
-  // Paladin/cavalier are deliberately excluded here (see PALADIN-MOUNT-TABLE-001):
-  // effectiveCompanionLevel() never returns a level for them, so treating them as
-  // "recognized" would suppress results at every level -- they're fully manual, same
-  // as "Other / homebrew", and should never be suppressed.
-  let recognizedCompanionSources=['druid','hunter','ranger'];
+  // Paladin/cavalier ARE recognized here (see PALADIN-MOUNT-TABLE-001) -- both use this
+  // same Animal Companion table (Paladin gated to 5th level, Cavalier active from 1st),
+  // so a paladin below 5th level correctly suppresses results the same way a ranger
+  // below 4th level does, rather than rendering a nonexistent mount's attack numbers.
+  let recognizedCompanionSources=['druid','hunter','ranger','paladin','cavalier'];
   let companionNotYetActive = entityUsesAnimalProgression && recognizedCompanionSources.includes($('sourceClass').value) && (eff===null||eff<=0) && !p.hdBabOverride;
   let strDexAdj = (eff && eff>=1 && eff<=20) ? ANIMAL_COMPANION_TABLE[eff].strDexAdj : 0;
   let progressionAbilityAdj={str:strDexAdj,dex:strDexAdj,con:0,int:0,wis:0,cha:0};
