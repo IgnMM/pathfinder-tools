@@ -69,3 +69,11 @@ test('eidolon natural-attack maximum ignores weapons and counts Rake as one',()=
   ];
   assert.equal(context.eidolonNaturalAttackCount(lines),3);
 });
+
+test('Rend keeps recognizing a generated claw after the player renames it',()=>{
+  const start=html.indexOf('function isEidolonClawLine(');
+  const end=html.indexOf('function attackLineFromSpecies(',start);
+  vm.runInContext(html.slice(start,end),context);
+  assert.equal(context.isEidolonClawLine({name:'Talons',origin:'evolution:claws:evo-1'}),true);
+  assert.equal(context.isEidolonClawLine({name:'Handaxe',origin:'manual'}),false);
+});

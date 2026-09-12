@@ -795,7 +795,7 @@ function sharedEntryAllowed(e){
   return !!rule && !['normally-unavailable','exclude-from-companion-calculator'].includes(rule.status);
 }
 function modifierAppliesToCurrentEntity(m,profile){
-  return !m.entityScopes || m.entityScopes.includes((profile||currentProfile()).entityType);
+  return !!m && (!m.entityScopes || m.entityScopes.includes((profile||currentProfile()).entityType));
 }
 function availableCatalog(cat){
   let auto=MODIFIERS.filter(m=>m.category===cat&&!RIDER_ONLY_IDS.has(m.id)&&modifierAppliesToCurrentEntity(m));
@@ -823,8 +823,9 @@ function pinUrlToProfile(name){
   history.replaceState(null, '', url.pathname+url.search+url.hash);
 }
 let saveIndicatorTimer=null;
-function saveStore(){
-  let _p=currentProfile(); if(_p) _p._updatedAt=Date.now();
+let suppressProfileTouch=false;
+function saveStore(touchProfile=true){
+  let _p=currentProfile(); if(_p && touchProfile && !suppressProfileTouch) _p._updatedAt=Date.now();
   localStorage.setItem(STORE_KEY, JSON.stringify(store));
   let el=document.getElementById('saveIndicator');
   if(el){
@@ -832,6 +833,11 @@ function saveStore(){
     clearTimeout(saveIndicatorTimer);
     saveIndicatorTimer=setTimeout(()=>el.classList.remove('show'),1200);
   }
+}
+function withoutProfileTouch(fn){
+  let previous=suppressProfileTouch;
+  suppressProfileTouch=true;
+  try{return fn();}finally{suppressProfileTouch=previous;}
 }
 function defaultProfile(name){
   // New profiles bypass the migration loop (which runs only for profiles in storage),
@@ -1329,7 +1335,7 @@ $('furiousFocusFirstAttack').addEventListener('change', ()=>{
   saveStore(); compute();
 });
 
-$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; pinUrlToProfile(store.active); saveStore(); loadProfileIntoUI(); updateProfileDate(); updateSyncStatusForActive(); };
+$('profileSelect').onchange=()=>{ store.active=$('profileSelect').value; pinUrlToProfile(store.active); saveStore(false); withoutProfileTouch(loadProfileIntoUI); updateProfileDate(); updateSyncStatusForActive(); };
 $('newProfile').onclick=()=>{
   let name=prompt('Name for the new companion sheet:','New Companion');
   if(!name) return;
@@ -1882,6 +1888,14 @@ function disambiguatedAttackLabels(lines){
     seenSoFar[n]=(seenSoFar[n]||0)+1;
     return n+' #'+seenSoFar[n];
   });
+}
+function isEidolonClawLine(line){
+  let origin=String((line&&line.origin)||'');
+  return !!line && ((line.name||'').trim().toLowerCase()==='claw'
+    || origin.startsWith('evolution:claws:')
+    || origin==='evolution:claws'
+    || origin==='preset:form:Claw'
+    || origin==='preset:subtype:claws');
 }
 function attackLineFromSpecies(a,bab,size){
   let ranged=a.classification==='ranged_touch';
@@ -2965,7 +2979,8 @@ function finalAbilityMods(ctx){
     out[ability]+=Math.floor(((rec.cfg&&rec.cfg.value)!==undefined?rec.cfg.value:def)/2);
   });
   let growth=p.active.find(a=>a.id==='animal-growth'&&a.on!==false);
-  if(growth){
+  let growthDef=MODIFIERS.find(m=>m.id==='animal-growth');
+  if(growth && modifierAppliesToCurrentEntity(growthDef,p)){
     out.str+=Math.floor(((growth.cfg&&growth.cfg.value)!==undefined?growth.cfg.value:8)/2);
     out.dex-=1; out.con+=2;
   }
@@ -3046,7 +3061,8 @@ function compute(){
   let atkAbilityMod = ctx.atkStat==='none'?0:ctx[ctx.atkStat];
   let dmgAbilityMod = ctx.dmgStat==='none'?0:ctx[ctx.dmgStat];
   let strongJawOn = p.active.some(a=>a.id==='strong-jaw' && a.on!==false);
-  let animalGrowthOn = p.active.some(a=>a.id==='animal-growth' && a.on!==false);
+  let animalGrowthDef=MODIFIERS.find(m=>m.id==='animal-growth');
+  let animalGrowthOn = p.active.some(a=>a.id==='animal-growth' && a.on!==false) && modifierAppliesToCurrentEntity(animalGrowthDef,p);
   // TARGETED-NATURAL-001: Improved Natural Attack's one-step die increase, read directly
   // (same pattern as strongJawOn/animalGrowthOn above) rather than through the flat atk/
   // dmg pipeline -- its real effect is a per-line die-size step, computed live below
@@ -3265,7 +3281,7 @@ function compute(){
     // never deduplicated by name -- two separately-tracked "Claw" lines (different die,
     // different enhancement, etc) must be independently selectable, not collapsed into
     // one option that always resolves back to whichever one happened to be first.
-    let clawLines=(p.attackLines||[]).filter(l=>(l.name||'').trim().toLowerCase()==='claw');
+    let clawLines=(p.attackLines||[]).filter(isEidolonClawLine);
     let clawLabels=disambiguatedAttackLabels(clawLines);
     clawSel.innerHTML = clawLines.length ? clawLines.map((l,idx)=>`<option value="${l.lineId}">${clawLabels[idx]}</option>`).join('') : '<option value="">No Claw attack line yet</option>';
     let wantClawId = clawLines.some(l=>l.lineId===p.rendClawLineId) ? p.rendClawLineId : (clawLines[0]?clawLines[0].lineId:'');
@@ -3347,13 +3363,14 @@ function compute(){
     return;
   }
   window.__pinnedProfile=wantProfile;
-  if(!store.profiles.some(p=>p.name===wantProfile)) store.profiles.push(defaultProfile(wantProfile));
+  let createdProfile=!store.profiles.some(p=>p.name===wantProfile);
+  if(createdProfile) store.profiles.push(defaultProfile(wantProfile));
   store.active=wantProfile;
-  saveStore();
+  saveStore(createdProfile);
 })();
 
 populateProfileSelect();
-loadProfileIntoUI();
+withoutProfileTouch(loadProfileIntoUI);
 
 if("serviceWorker" in navigator){
   window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
@@ -3405,9 +3422,11 @@ if("serviceWorker" in navigator){
   function applyStoreLocally(newStore){
     store=newStore;
     if(window.__pinnedProfile && store.profiles.some(p=>p.name===window.__pinnedProfile)) store.active=window.__pinnedProfile;
-    saveStore();
-    populateProfileSelect();
-    loadProfileIntoUI();
+    withoutProfileTouch(()=>{
+      saveStore(false);
+      populateProfileSelect();
+      loadProfileIntoUI();
+    });
   }
 
   async function ensureDocRef(code){
