@@ -494,11 +494,75 @@ const MODIFIERS = [
 {id:'aid-another',name:'Aid Another',category:'other',source:'Core combat rule',appliesTo:['attack'],type:'circumstance',allowMultiple:true,
  attackScope:'melee',
  configFields:[{key:'value',label:'Bonus value',type:'number',default:2}],
- desc:'An adjacent ally spends a standard action and succeeds at a melee attack roll (DC 10 vs the target\'s AC) to grant a +2 bonus on the companion\'s next melee attack roll against that same target. Add once per ally who successfully aids — multiple simultaneous grants stack.',
+ desc:'An adjacent ally spends a standard action and succeeds at a melee attack roll (DC 10 vs the target\'s AC) to grant a +2 bonus on the companion\'s next melee attack roll against that same target. Add once per ally who successfully aids — multiple simultaneous grants stack. Owner-granted (Marshal mythic path ability) Perfect Aid adds the owner\'s mythic tier to this bonus — if that applies, just raise the Bonus value below accordingly rather than adding a separate entry.',
  compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:2);return {attack:v,damage:0,note:signed(v)+' atk (circumstance, next melee attack roll only)'}}},
+// MYTHIC-SCOPE-003: owner-granted mythic path abilities that can genuinely change this
+// creature's attack/damage. Never categorized 'feat' (the creature doesn't own these --
+// its owner does) and each explicitly labelled "(granted by owner)" in its own name/desc
+// so it's never mistaken for something the creature has independently. Verified against
+// Mythic Adventures' Marshal and Hunter path ability text (d20pfsrd Marshal page; Mythic
+// Bond, 3rd tier Hunter path ability).
+{id:'deadly-guidance',name:'Deadly Guidance (granted by owner)',category:'other',source:"Mythic Adventures (Marshal path ability)",appliesTo:['damage'],type:'untyped',
+ attackScope:'melee',
+ desc:'Owner-granted (Marshal mythic path ability, 1st tier): "All allies within 30 feet of that opponent gain the sneak attack ability when attacking it, and can thus deal +1d6 points of damage when flanking that opponent." Requires the Flanking entry above to also be active (the same condition Precise Strike uses) — melee only, not multiplied on a critical hit (precision damage).',
+ compute:(ctx)=>ctx.flankingOn
+   ? {attack:0,damage:0,extraDice:{dice:'1d6',type:'',multiplies:false},note:'+1d6 precision damage (granted by owner, melee only, not multiplied on a crit) — requires Flanking above to also be active'}
+   : {attack:0,damage:0,note:'no effect — requires Flanking to also be active (this only applies while flanking the target, same as the Marshal\'s own ability text)'}},
+{id:'mythic-bond',name:'Mythic Bond (granted by owner)',category:'other',source:'Mythic Adventures (Hunter path ability)',appliesTo:['attack','damage'],type:'untyped',allowMultiple:false,
+ configFields:[{key:'value',label:'Half the owner\'s favored enemy bonus (enter by hand)',type:'number',default:1}],
+ desc:'Owner-granted (Hunter mythic path ability, 3rd tier): "If your bond is with an animal, that animal gains half your favored enemy bonuses." Only applies against the owner\'s actual favored enemy — this calculator doesn\'t track favored enemy types, so enter half the owner\'s current favored-enemy bonus below and toggle this off when the current target isn\'t one.',
+ compute:(ctx,cfg)=>{let v=(cfg.value!==undefined?cfg.value:1);return {attack:v,damage:v,note:signed(v)+' atk / '+signed(v)+' dmg (granted by owner, only vs the owner\'s favored enemy — toggle off otherwise)'}}},
+// MYTHIC-SCOPE-003: the remaining named owner-granted abilities either grant a one-off/
+// surge-based bonus (consumed by the next single attack, not a permanent per-row
+// number), modify another specific ability's value conditionally, or change something
+// this calculator doesn't track (AC, action economy, a specific ally's smite/challenge)
+// -- none can be represented as an automatic per-line to-hit/damage number without
+// either overclaiming a permanent bonus or requiring tracking this tool doesn't have.
+// Kept informational and searchable here (never 'feat' -- the creature doesn't own
+// these) rather than omitted, so they're at least discoverable and clearly explained.
+{id:'inspiring-surge',name:'Inspiring Surge (granted by owner)',category:'other',source:'Mythic Adventures (Marshal path ability)',appliesTo:[],type:'special',
+ desc:'Owner-granted (Marshal mythic path ability, 1st tier): each time the owner uses their surge ability, allies within 30 feet (including this creature) gain +1 on attack and damage rolls for their NEXT weapon attack only. A one-off, consumed-by-the-next-attack bonus — add +1 by hand to whichever single attack line it applies to that round, not modeled as a permanent bonus here.',
+ compute:()=>({attack:0,damage:0,note:'special — +1 atk/dmg on the next single attack only, per use; add it by hand to one attack that round'})},
+{id:'inspire-minions',name:'Inspire Minions (granted by owner)',category:'other',source:'Mythic Adventures (Marshal path ability)',appliesTo:[],type:'special',
+ desc:'Owner-granted (Marshal mythic path ability, 1st tier): when the owner grants a morale or competence bonus (spell, bardic performance, class feature) to a creature with at least 4 fewer HD than them, that bonus increases by 2. Conditional on relative Hit Dice and on which OTHER effect is active — if it applies, raise that other effect\'s own bonus value by 2 by hand rather than adding a separate entry here.',
+ compute:()=>({attack:0,damage:0,note:'special — increases another active morale/competence effect\'s own value by 2, when the HD condition is met; adjust that other effect\'s value by hand'})},
+{id:'clarion-call',name:'Clarion Call (granted by owner)',category:'other',source:'Mythic Adventures (Marshal path ability)',appliesTo:[],type:'special',
+ desc:'Owner-granted (Marshal mythic path ability, 1st tier): as a swift action (spending mythic power), the owner grants allies within 30 feet the benefit of their own active smite or challenge ability. The granted bonus depends entirely on the owner\'s specific smite/challenge, which varies by class and isn\'t tracked here — informational only.',
+ compute:()=>({attack:0,damage:0,note:'special — grants the owner\'s own active smite/challenge benefit, which varies by class; not modeled here'})},
+{id:'mounted-marshal',name:'Mounted Marshal (granted by owner)',category:'other',source:'Mythic Adventures (Marshal path ability)',appliesTo:[],type:'special',
+ desc:'Owner-granted (Marshal mythic path ability, 1st tier): while the owner rides this creature, both are treated as flanking any opponent they both threaten. This does not add its own numeric bonus — when it applies, toggle the Flanking entry above yourself. Charge damage from a Mounted Marshal\'s own charge feats/abilities applies to the RIDER\'s own attack, never automatically to this creature\'s damage.',
+ compute:()=>({attack:0,damage:0,note:'special — grants Flanking\'s condition, not its own separate bonus; toggle the Flanking entry above when it applies. Any charge-damage benefit belongs to the rider\'s own attack, never this creature\'s'})},
+{id:'distracting-assailant',name:'Distracting Assailant (granted by owner)',category:'other',source:'Mythic Adventures (Marshal path ability)',appliesTo:[],type:'special',
+ desc:'Owner-granted (Marshal mythic path ability, 1st tier): for 1 round, an opponent loses its Dexterity bonus to AC against everyone but the owner. This changes the TARGET\'s AC, which this calculator doesn\'t track (it only computes this creature\'s own to-hit/damage) — informational only.',
+ compute:()=>({attack:0,damage:0,note:'special — denies the target\'s Dex bonus to AC against this creature\'s attacks for 1 round; not modeled, since target AC isn\'t tracked here'})},
+{id:'decisive-strike',name:'Decisive Strike (granted by owner)',category:'other',source:'Mythic Adventures (owner path ability)',appliesTo:[],type:'special',
+ desc:'Owner-granted mythic path ability granting a single especially powerful strike under specific conditions (exact trigger and bonus vary by source — confirm against the owner\'s own path ability text). A one-off effect, not a permanent per-row bonus — apply it by hand to the one attack it affects.',
+ compute:()=>({attack:0,damage:0,note:'special — a one-off bonus to a single attack under specific conditions; apply by hand, not modeled as a permanent bonus'})},
+{id:'mythic-companion-surge',name:'Mythic Companion / Rise Up (granted by owner)',category:'other',source:'Mythic Adventures (Guardian path ability)',appliesTo:[],type:'special',
+ desc:'Owner-granted (Guardian mythic path ability, 1st tier, "Companion"): this creature gains its own uses of the surge ability (a number of times per day equal to the owner\'s tier), usable to add a bonus die to one of its own d20 rolls or damage rolls after the fact. A one-off, per-use boost to a single roll — not a permanent bonus, so not modeled as one here.',
+ compute:()=>({attack:0,damage:0,note:'special — grants this creature its own limited-use surge (a bonus die on one roll, spent per use); apply it by hand when used, not modeled as a permanent bonus'})},
+{id:'beasts-fury',name:'Beast\'s Fury (granted by owner)',category:'other',source:'Mythic Adventures (owner path ability)',appliesTo:[],type:'special',
+ desc:'Owner-granted mythic path ability that temporarily empowers an animal companion or similar bonded creature under specific conditions (exact trigger and bonus vary by source — confirm against the owner\'s own path ability text). Conditional/temporary, not modeled as a permanent bonus here.',
+ compute:()=>({attack:0,damage:0,note:'special — a conditional, temporary empowerment; confirm the exact trigger/bonus against the owner\'s own path ability text and apply by hand'})},
 {id:'bless',name:'Bless',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack'],type:'morale',
  desc:'+1 morale bonus on attack rolls (also vs. fear saves, not modeled here). Affects every ally in the area, including a companion.',
  compute:()=>({attack:1,damage:0,note:'+1 atk (morale)'})},
+// MYTHIC-SCOPE-002: mythic-empowered versions of an existing spell get their OWN entry
+// (same category, same bonus TYPE as the base spell) rather than a toggle on the base
+// one, since the base and mythic versions have genuinely different effects (Mythic
+// Bless also affects damage, which ordinary Bless never does) -- but sharing the same
+// bonus type means stackTotal() (same-type-keeps-max, never sums) already prevents
+// double-counting if a player mistakenly leaves both active: the result is identical to
+// just the mythic one alone, never their sum. Verified against Mythic Adventures
+// (https://www.aonprd.com/SpellDisplay.aspx?ItemName=Bless): "The +1 morale bonus
+// applies on attack rolls, weapon damage rolls, and all saving throws. Once during the
+// spell's duration, an affected creature can roll an attack roll or saving throw twice
+// and take the higher result" -- the bonus itself stays +1 (unlike Mythic Heroism
+// below, which also raises the number), only WHERE it applies expands to include
+// damage; the one-time reroll is a player choice, not modeled as a number.
+{id:'mythic-bless',name:'Bless (Mythic)',category:'spell',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'morale',
+ desc:'Mythic version of Bless: the same +1 morale bonus, but it now also applies to weapon damage rolls (ordinary Bless only affects attack rolls and fear saves). Once during the duration, an affected creature can reroll one attack or save and take the better result — a one-time player choice, not modeled as a number here. Never active at the same time as ordinary Bless as a separate stacking bonus — same spell, same morale type, so only the higher applies either way.',
+ compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (morale) — plus a one-time reroll of one attack or save, your choice, not shown here'})},
 {id:'good-hope',name:'Good Hope',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'morale',
  desc:'+2 morale bonus on attack rolls and weapon damage rolls (also on saves, ability checks, and skill checks, not modeled here). Affects every ally in the area, including a companion.',
  compute:()=>({attack:2,damage:2,note:'+2 atk / +2 dmg (morale)'})},
@@ -536,6 +600,15 @@ const MODIFIERS = [
 {id:'heroism',name:'Heroism',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'morale',
  desc:'+2 morale bonus on attack rolls (also on saves and skill checks, not modeled here).',
  compute:()=>({attack:2,damage:0,note:'+2 atk (morale)'})},
+// MYTHIC-SCOPE-002: same "own entry, same bonus type as the base spell" pattern as
+// Mythic Bless above. Verified against Mythic Adventures
+// (https://www.aonprd.com/SpellDisplay.aspx?ItemName=Heroism): "The morale bonus
+// increases to +4 and applies on all checks, attack rolls, saves, and weapon damage
+// rolls" -- both the VALUE (+2 -> +4) and the SCOPE (now also damage) change, unlike
+// Mythic Bless where only the scope changes.
+{id:'mythic-heroism',name:'Heroism (Mythic)',category:'spell',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'morale',
+ desc:'Mythic version of Heroism: the morale bonus increases from +2 to +4 and now also applies to weapon damage rolls (ordinary Heroism only affects attack rolls, saves and skill checks). Never active at the same time as ordinary Heroism as a separate stacking bonus — same spell, same morale type, so only the higher (this one) applies either way.',
+ compute:()=>({attack:4,damage:4,note:'+4 atk / +4 dmg (morale)'})},
 {id:'heroism-greater',name:'Heroism, Greater',category:'spell',source:'Core Rulebook (6th)',appliesTo:['attack'],type:'morale',
  desc:'+4 morale bonus on attack rolls (also on saves and skill checks, fear immunity, and temporary hit points, not modeled here).',
  compute:()=>({attack:4,damage:0,note:'+4 atk (morale)'})},
@@ -549,6 +622,17 @@ const MODIFIERS = [
 {id:'prayer',name:'Prayer',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'luck',
  desc:'+1 luck bonus on attack and weapon damage rolls (does not stack with Divine Favor — both are luck).',
  compute:()=>({attack:1,damage:1,note:'+1 atk / +1 dmg (luck)'})},
+// MYTHIC-SCOPE-002: same "own entry, same bonus type" pattern as Mythic Bless/Heroism
+// above. Verified against Mythic Adventures
+// (https://www.aonprd.com/SpellDisplay.aspx?ItemName=Prayer): "The spell's luck bonus
+// increases to +2, and the penalty for enemies changes to –2. When you cast the spell,
+// your affected allies heal... and affected enemies take... damage." The healing/damage
+// burst happens once, at the moment of casting -- a one-time event, not a per-round
+// to-hit/damage number, so it's noted but not added to the totals. The enemy attack/
+// save penalty isn't modeled either way (this calculator has no enemy-facing numbers).
+{id:'mythic-prayer',name:'Prayer (Mythic)',category:'spell',source:'Mythic Adventures',appliesTo:['attack','damage'],type:'luck',
+ desc:'Mythic version of Prayer: the luck bonus increases from +1 to +2 on attack and weapon damage rolls. On casting, allies also heal (and enemies take) damage equal to double your tier — a one-time effect at the moment of casting, not shown here. Never active at the same time as ordinary Prayer as a separate stacking bonus — same spell, same luck type, so only the higher (this one) applies either way.',
+ compute:()=>({attack:2,damage:2,note:'+2 atk / +2 dmg (luck) — plus a one-time heal/damage burst on casting, not shown here'})},
 // SITUATIONAL-COMBAT-001: reviewed alongside Charge/Flanking/Outflank/Precise Strike/
 // Paired Opportunists/Aid Another above -- Haste's +1 is unrestricted by RAW (applies to
 // melee AND ranged attack rolls alike), so no attackScope is needed here; already correct.
@@ -557,40 +641,78 @@ const MODIFIERS = [
 {id:'haste',name:'Haste',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'untyped',
  desc:'+1 on attack rolls (untyped). Also grants an extra attack at full base attack bonus on a full attack — not modeled per-line here, just roll an extra copy of whichever attack line you\'d normally repeat.',
  compute:()=>({attack:1,damage:0,note:'+1 atk, plus one extra attack at full bonus — repeat one attack line by hand'})},
+// MYTHIC-SCOPE-002: Mythic Haste does NOT increase the +1 attack bonus at all -- its
+// actual mythic benefit is action-economy (the extra attack becomes usable on a
+// standard, not just full, attack action, and stops provoking an attack of opportunity),
+// neither of which is a to-hit/damage number this calculator tracks. Because Haste's
+// bonus is 'untyped' (stackTotal always SUMS untyped, never caps by type like morale/
+// luck above), simply adding a second +1 'untyped' entry here would wrongly double it to
+// +2 if the player left both Haste and Mythic Haste active -- so this reads ctx.hasteOn
+// (set once per compute() pass below, the same pre-scan pattern as ctx.flankingOn) and
+// contributes nothing extra when ordinary Haste is already active; if only Mythic Haste
+// is toggled (Haste itself not separately added), it supplies the same +1 on its own so
+// the total is never short either.
+{id:'mythic-haste',name:'Haste (Mythic)',category:'spell',source:'Mythic Adventures',appliesTo:['attack'],type:'untyped',
+ desc:'Mythic version of Haste: the +1 attack bonus is unchanged from ordinary Haste. The mythic benefit is action economy only (the extra attack becomes usable on a standard attack action and no longer provokes an attack of opportunity) — not a to-hit or damage number, so not added here. Never stacks an extra +1 on top of ordinary Haste; add only one of the two.',
+ compute:(ctx)=>ctx.hasteOn
+   ? {attack:0,damage:0,note:'no additional atk — ordinary Haste above already supplies the +1; Mythic Haste only changes action economy (not modeled)'}
+   : {attack:1,damage:0,note:'+1 atk (untyped, same as ordinary Haste) — the mythic benefit is action economy only, not modeled as a number'}},
 // TARGETED-NATURAL-001: ATTACK-LINE-ID-001's lineId now identifies the target
 // (cfg.targetLineId, renamed from the old cfg.targetAttack name-string -- see the
 // one-time load migration below) instead of a display name, so two distinct lines
 // sharing a name (two separately-tracked "Claw" attacks) can be targeted independently
 // and a rename never silently retargets or drops the spell.
+// MYTHIC-SCOPE-002: Magic Fang and Greater Magic Fang now carry an optional Mythic Tier
+// field (default 0 = ordinary, non-mythic casting, unchanged behavior). Verified against
+// Mythic Adventures (https://www.aonprd.com/SpellDisplay.aspx?ItemName=Magic+Fang):
+// mythic Magic Fang "affects an additional number of the target's natural weapons equal
+// to your tier" -- the bonus itself never scales with tier, only the COUNT of attacks it
+// can be placed on (1 + tier). This is the SAME spell entry as before, mythically
+// empowered by raising tier above 0 -- never a separate "Mythic Magic Fang" copy that
+// could be cast/toggled alongside this one and double the effect.
 {id:'magic-fang',name:'Magic Fang',category:'spell',source:'Core Rulebook (1st)',appliesTo:['attack','damage'],type:'enhancement',
- desc:'+1 enhancement bonus on attack and damage rolls with ONE natural weapon or unarmed strike you choose below — never manufactured weapons, and never every attack line at once (that\'s Greater Magic Fang). Source: https://www.aonprd.com/SpellDisplay.aspx?ItemName=Magic+Fang',
- attackScope:'natural',
- configFields:[{key:'targetLineId',label:'Natural attack affected',type:'attackSelect',default:''}],
- compute:(ctx,cfg)=>{
-   let has=!!cfg.targetLineId;
-   let line=has?(currentProfile().attackLines||[]).find(l=>l.lineId===cfg.targetLineId):null;
-   let qtyWarn = (line&&line.qty>1)?(' Note: this line represents '+line.qty+'× '+(line.name||'attacks')+' combined into one row — Magic Fang only enhances ONE actual weapon, but this calculator can\'t split a combined row, so the bonus is shown on the whole row. To model just one enhanced claw precisely, split this into two separate attack lines (qty 1 each) via "+ Add Attack" and target only the enhanced one.'):'';
-   return {attack:has?1:0,damage:has?1:0,
-     note:(has?('+1 atk / +1 dmg (enhancement) on '+(line?line.name:'the selected attack')+' only'):'Choose a natural attack above to activate (+1 atk / +1 dmg, that one attack only)')+qtyWarn,
-     attackLineIds:has?[cfg.targetLineId]:undefined};
- }},
-{id:'greater-magic-fang',name:'Magic Fang, Greater',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
- desc:'Two alternative modes per casting (RAW, never both at once): a scaling enhancement bonus of +1 per 4 caster levels (max +5) on ONE chosen natural weapon, exactly like regular Magic Fang but scaling — OR a flat +1 enhancement bonus on ALL of the creature\'s natural weapons at once, regardless of caster level. At caster level 12 that\'s +3 to one weapon, or +1 to all — never +3 to all. Source: https://www.aonprd.com/SpellDisplay.aspx?ItemName=Magic+Fang',
+ desc:'+1 enhancement bonus on attack and damage rolls with natural weapons or unarmed strikes you choose below — never manufactured weapons. Ordinarily affects only ONE attack (Mythic Tier 0); a mythic casting (Mythic Adventures) affects up to (1 + tier) chosen attacks at once, still only +1 each — the bonus itself never scales with tier. Source: https://www.aonprd.com/SpellDisplay.aspx?ItemName=Magic+Fang',
  attackScope:'natural',
  configFields:[
-   {key:'mode',label:'Mode',type:'select',options:[['single','Scaling bonus on one natural weapon'],['all','+1 flat to all natural weapons']],default:'single'},
-   {key:'targetLineId',label:'Natural attack affected (single-weapon mode)',type:'attackSelect',default:'',showIf:cfg=>cfg.mode!=='all'},
-   {key:'cl',label:'Caster level (single-weapon mode; defaults to sheet\'s Caster Level, editable)',type:'number',default:8,linkLevel:'cl',showIf:cfg=>cfg.mode!=='all'}
+   {key:'tier',label:'Mythic tier (0 = ordinary, non-mythic Magic Fang)',type:'number',default:0},
+   {key:'targetLineIds',label:'Natural attacks affected',type:'attackMultiSelect',default:[],maxCount:cfg=>1+(+cfg.tier||0)}
+ ],
+ compute:(ctx,cfg)=>{
+   let max=1+(+cfg.tier||0);
+   let allIds=Array.isArray(cfg.targetLineIds)?cfg.targetLineIds:[];
+   let usedIds=allIds.slice(0,max);
+   let lines=usedIds.map(id=>(currentProfile().attackLines||[]).find(l=>l.lineId===id)).filter(Boolean);
+   let has=lines.length>0;
+   let overflowWarn = allIds.length>max ? (' Note: more attacks are checked than this tier allows ('+max+') — only the first '+max+' checked count; uncheck the extras.') : '';
+   let qtyWarn = lines.some(l=>l.qty>1) ? ' Note: a checked line with qty>1 represents multiple combined weapons in one row — Magic Fang enhances one actual weapon per slot it\'s cast on; split it into qty-1 lines to model precisely.' : '';
+   return {attack:has?1:0,damage:has?1:0,
+     note:(has?('+1 atk / +1 dmg (enhancement) on '+lines.map(l=>l.name||'Attack').join(', ')):('Choose up to '+max+' natural attack(s) above to activate (+1 atk / +1 dmg each)'))+overflowWarn+qtyWarn,
+     attackLineIds:has?usedIds:undefined};
+ }},
+{id:'greater-magic-fang',name:'Magic Fang, Greater',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack','damage'],type:'enhancement',
+ desc:'Two alternative modes per casting (RAW, never both at once): a scaling enhancement bonus of +1 per 4 caster levels (max +5) on chosen natural weapons (ordinarily just ONE; a mythic casting affects up to 1+tier of them, exactly like Magic Fang above) — OR a flat +1 enhancement bonus on ALL of the creature\'s natural weapons at once, regardless of caster level. At caster level 12 that\'s +3 to the chosen weapon(s), or +1 to all — never +3 to all. Mythic Adventures also lets a mythic casting add one weapon special ability (flaming/frost/keen/merciful/shock/thundering) to the affected attacks — informational only below, not added to the numbers, since modeling a chosen elemental damage die per attack is out of scope here. Source: https://www.aonprd.com/SpellDisplay.aspx?ItemName=Magic+Fang',
+ attackScope:'natural',
+ configFields:[
+   {key:'mode',label:'Mode',type:'select',options:[['single','Scaling bonus on chosen natural weapon(s)'],['all','+1 flat to all natural weapons']],default:'single'},
+   {key:'tier',label:'Mythic tier (0 = ordinary, non-mythic; single-weapon mode)',type:'number',default:0,showIf:cfg=>cfg.mode!=='all'},
+   {key:'targetLineIds',label:'Natural attacks affected (single-weapon mode)',type:'attackMultiSelect',default:[],maxCount:cfg=>1+(+cfg.tier||0),showIf:cfg=>cfg.mode!=='all'},
+   {key:'cl',label:'Caster level (single-weapon mode; defaults to sheet\'s Caster Level, editable)',type:'number',default:8,linkLevel:'cl',showIf:cfg=>cfg.mode!=='all'},
+   {key:'property',label:'Mythic weapon property (informational only, single-weapon mode)',type:'select',options:[['','None'],['flaming','Flaming'],['frost','Frost'],['keen','Keen'],['merciful','Merciful'],['shock','Shock'],['thundering','Thundering']],default:'',showIf:cfg=>cfg.mode!=='all'}
  ],
  compute:(ctx,cfg)=>{
    if(cfg.mode==='all') return {attack:1,damage:1,note:'+1 atk / +1 dmg (enhancement) on ALL natural weapons — always +1 in this mode, regardless of caster level'};
-   let has=!!cfg.targetLineId;
+   let max=1+(+cfg.tier||0);
+   let allIds=Array.isArray(cfg.targetLineIds)?cfg.targetLineIds:[];
+   let usedIds=allIds.slice(0,max);
+   let lines=usedIds.map(id=>(currentProfile().attackLines||[]).find(l=>l.lineId===id)).filter(Boolean);
+   let has=lines.length>0;
    let b=Math.min(5,Math.floor((cfg.cl||1)/4));
-   let line=has?(currentProfile().attackLines||[]).find(l=>l.lineId===cfg.targetLineId):null;
-   let qtyWarn = (line&&line.qty>1)?(' Note: this line represents '+line.qty+'× '+(line.name||'attacks')+' combined into one row — a single-weapon casting only enhances ONE actual weapon; split this into separate qty-1 lines to model just the enhanced one precisely.'):'';
+   let overflowWarn = allIds.length>max ? (' Note: more attacks are checked than this tier allows ('+max+') — only the first '+max+' checked count; uncheck the extras.') : '';
+   let qtyWarn = lines.some(l=>l.qty>1) ? ' Note: a checked line with qty>1 represents multiple combined weapons in one row — split it into qty-1 lines to model precisely.' : '';
+   let propWarn = cfg.property ? (' Mythic property chosen ('+cfg.property+') — informational only, not added to the numbers above.') : '';
    return {attack:has?b:0,damage:has?b:0,
-     note:(has?('+'+b+' atk / +'+b+' dmg (enhancement) on '+(line?line.name:'the selected attack')+' only, scaling mode'):'Choose a natural attack above to activate (single-weapon scaling mode)')+qtyWarn,
-     attackLineIds:has?[cfg.targetLineId]:undefined};
+     note:(has?('+'+b+' atk / +'+b+' dmg (enhancement) on '+lines.map(l=>l.name||'Attack').join(', ')+', scaling mode'):('Choose up to '+max+' natural attack(s) above to activate (scaling mode)'))+overflowWarn+qtyWarn+propWarn,
+     attackLineIds:has?usedIds:undefined};
  }},
 {id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
  desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls. Affects every ally who can hear it, including a companion.',
@@ -777,6 +899,15 @@ store.profiles.forEach(p=>{
     if(a.id==='greater-magic-fang' && a.cfg && a.cfg.mode===undefined){
       a.cfg.mode='single';
       if(a.cfg.targetLineId===undefined) a.cfg.targetLineId='';
+    }
+    // MYTHIC-SCOPE-002: both entries' targeting moved from a single cfg.targetLineId
+    // (string) to cfg.targetLineIds (array), to allow more than one chosen attack at a
+    // nonzero mythic tier -- a profile saved under the immediately-prior single-target
+    // version migrates its one existing selection into a one-element array, preserving
+    // it exactly rather than losing it. tier defaults to 0 automatically wherever it's
+    // read (no migration needed for a field that was never smaller than "absent").
+    if((a.id==='magic-fang'||a.id==='greater-magic-fang') && a.cfg && a.cfg.targetLineIds===undefined){
+      a.cfg.targetLineIds = a.cfg.targetLineId ? [a.cfg.targetLineId] : [];
     }
   });
   // VITAL-STRIKE-SELECT-001 / ATTACK-LINE-ID-001: which ONE attack line Vital Strike
@@ -2099,6 +2230,21 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
         let opts=f.options.map(([v,l])=>`<option value="${v}"${activeRec.cfg[f.key]===v?' selected':''}>${l}</option>`).join('');
         return `<label>${f.label}<br><select data-key="${f.key}" data-keytype="text">${opts}</select></label>`;
       }
+      if(f.type==='attackMultiSelect'){
+        // MYTHIC-SCOPE-002: Mythic Magic Fang/Greater Magic Fang affect UP TO (1 + tier)
+        // chosen natural weapons at once, never a fixed single one once mythic -- a
+        // checkbox per eligible line (same lineId-based identity as attackSelect above,
+        // never name/position), storing cfg[f.key] as an ARRAY. f.maxCount(cfg), if
+        // given, is shown as a live count and any extra checked boxes beyond it are
+        // flagged (not hard-blocked) in the effect's own note -- trust the player, but
+        // never silently apply more attacks than the tier actually grants.
+        let lines=(currentProfile().attackLines||[]).filter(l=>['natural','ranged-natural'].includes(l.atkType||'natural'));
+        let labels=disambiguatedAttackLabels(lines);
+        let selected=Array.isArray(activeRec.cfg[f.key])?activeRec.cfg[f.key]:[];
+        let max=f.maxCount?f.maxCount(activeRec.cfg):lines.length;
+        let boxes=lines.map((l,idx)=>`<label style="display:block;font-weight:normal;font-size:.85rem"><input type="checkbox" data-multikey="${f.key}" data-multivalue="${l.lineId}"${selected.includes(l.lineId)?' checked':''}> ${labels[idx]}${l.qty>1?' (qty '+l.qty+')':''}</label>`).join('');
+        return `<div><label>${f.label} — up to ${max} chosen</label>${boxes||'<div class="emptyNote">No natural attack lines yet — add one first.</div>'}</div>`;
+      }
       return `<label>${f.label}<br><input type="number" data-key="${f.key}" value="${activeRec.cfg[f.key]}"></label>`;
     }).join('')+'</div>';
   }
@@ -2153,6 +2299,15 @@ function buildActiveItem(defOrCustom, activeRec, catKey, isCustom){
         // (e.g. Greater Magic Fang's target/caster-level, hidden in all-weapons mode)
         // must show/hide immediately when the field driving it (mode) changes.
         renderCategories(); compute();
+      });
+    });
+    div.querySelectorAll('[data-multikey]').forEach(cb=>{
+      cb.addEventListener('change',()=>{
+        let key=cb.dataset.multikey, val=cb.dataset.multivalue;
+        let arr=Array.isArray(activeRec.cfg[key])?activeRec.cfg[key].slice():[];
+        if(cb.checked){ if(!arr.includes(val)) arr.push(val); } else { arr=arr.filter(x=>x!==val); }
+        activeRec.cfg[key]=arr;
+        saveStore(); renderCategories(); compute();
       });
     });
   }
@@ -2257,6 +2412,9 @@ function collectContributions(ctx){
   // ALSO active, regardless of which order the two happen to sit in p.active -- resolved
   // once up front (same pattern Character Calculator already uses for its own Outflank).
   ctx.flankingOn = p.active.some(a=>a.id==='flanking' && a.on!==false);
+  // MYTHIC-SCOPE-002: Mythic Haste's compute() needs to know whether ordinary Haste is
+  // ALSO active, regardless of array order -- same pre-scan pattern as flankingOn above.
+  ctx.hasteOn = p.active.some(a=>a.id==='haste' && a.on!==false);
   p.active.forEach(a=>{
     let m=MODIFIERS.find(x=>x.id===a.id); if(!m) return;
     // Re-validate here, not just at selection time: an old saved profile (or a manually
