@@ -1659,20 +1659,28 @@ function collectContributions(ctx){
     let noteParts=[c.note, c.fixedDamageType&&c.dmg?'flat damage type: '+c.fixedDamageType:'', diceLabel?'plus '+diceLabel+' damage ('+(c.diceMultipliesOnCrit?'multiplied on critical hits':'not multiplied')+')':'', mode==='info'?'information only':'', scopeNote, isOff?'not active right now':''].filter(Boolean);
     breakdown.push({name:c.name+' (custom)',category:c.category,type:c.type||'untyped',atk:useFixed&&applies.includes('attack')?(c.atk||0):null,dmg:useFixed&&applies.includes('damage')?(c.dmg||0):null,note:noteParts.join('; '),suppressed:false,off:isOff});
   });
+  // EIDOLON-ENTITY-GATE-001: selectedEvolutions is deliberately kept in the profile
+  // when entityType switches away from Eidolon (so it comes back if the player
+  // switches back), but that means it must never be READ as if still active for any
+  // other entity type -- an Eidolon-only ability must not follow the sheet onto a
+  // Phantom, Familiar, Animal Companion, or Mount just because the array is still there.
+  const isCurrentEntityEidolon=['eidolon-chained','eidolon-unchained'].includes(p.entityType);
   // EIDOLON-ENERGY-001: every selected Energy Attacks instance is its own extra-damage
   // contribution -- scoped to natural attacks only (never manufactured/touch/other),
   // never written into a line's own extraDice fields, and never colliding with
   // whatever extra dice the player typed in by hand there. Two instances of the SAME
   // energy type don't stack (matches the real ability -- picking fire twice doesn't
   // grant 2d6 fire), so duplicates by type are skipped after the first.
-  let seenEnergyTypes=new Set();
-  (p.selectedEvolutions||[]).filter(x=>x.key==='energy-attacks').forEach(chosen=>{
-    let etype=chosen.choice||'fire';
-    if(seenEnergyTypes.has(etype)) return;
-    seenEnergyTypes.add(etype);
-    extraDice.push({dice:'1d6',type:etype,multiplies:false,source:'Energy Attacks',attackScope:'natural'});
-    breakdown.push({name:'Energy Attacks ('+etype+')',category:'other',type:'extra-damage',atk:null,dmg:null,note:'+1d6 '+etype+' damage on natural attacks only; not multiplied on a critical hit',suppressed:false,off:false});
-  });
+  if(isCurrentEntityEidolon){
+    let seenEnergyTypes=new Set();
+    (p.selectedEvolutions||[]).filter(x=>x.key==='energy-attacks').forEach(chosen=>{
+      let etype=chosen.choice||'fire';
+      if(seenEnergyTypes.has(etype)) return;
+      seenEnergyTypes.add(etype);
+      extraDice.push({dice:'1d6',type:etype,multiplies:false,source:'Energy Attacks',attackScope:'natural'});
+      breakdown.push({name:'Energy Attacks ('+etype+')',category:'other',type:'extra-damage',atk:null,dmg:null,note:'+1d6 '+etype+' damage on natural attacks only; not multiplied on a critical hit',suppressed:false,off:false});
+    });
+  }
   return {atkEntries,dmgEntries,extraDice,breakdown,powerAttackOn,powerAttackDmgVal,powerAttackAtkVal};
 }
 
@@ -1866,7 +1874,12 @@ function compute(){
   // attack roll of its own, and it never multiplies on a critical hit. It only exists
   // once the player confirms both claws actually hit the same target this round; until
   // then it stays visibly inactive rather than silently adding damage every attack.
-  let rendSelected=(p.selectedEvolutions||[]).some(x=>x.key==='rend');
+  // EIDOLON-ENTITY-GATE-001: selectedEvolutions stays in the profile when entityType
+  // switches away from Eidolon (so it's restored if the player switches back), so Rend
+  // must only be considered "selected" while the CURRENT entity actually is one --
+  // otherwise it would keep showing on a Phantom/Familiar/Companion/Mount that merely
+  // used to be an Eidolon.
+  let rendSelected=['eidolon-chained','eidolon-unchained'].includes(entityType) && (p.selectedEvolutions||[]).some(x=>x.key==='rend');
   let rendBox=$('rendResultBox');
   if(rendSelected && !companionNotYetActive){
     rendBox.style.display='block';
