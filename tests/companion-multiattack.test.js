@@ -47,3 +47,12 @@ test('three natural attacks grant Multiattack, not the extra attack; qty counts'
   apply({}, lines, 8);
   assert.equal(tail.atkBonus, 1); // BAB 6 - 5
 });
+
+test('mutually exclusive natural weapons count as one, not two', () => {
+  const bite = {...primary(), choiceGroup:'crocodile_attack'};
+  const tail = {...secondary(), choiceGroup:'crocodile_attack'};
+  assert.equal(context.naturalAttackQty([bite,tail]), 1);
+  assert.equal(context.naturalAttackQty([bite,tail,primary()]), 2);
+  const profile={multiattackExtraSourceLineId:'tail'};
+  assert.equal(apply(profile,[bite,tail],9).filter(l=>l.multiattackGranted).length,1);
+});

@@ -172,6 +172,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <div id="hdBabAutoNote" class="emptyNote"></div>
 <div class="emptyNote">Feeds Power Attack's BAB-based scaling only — each attack below has its own Base To-Hit field. For sources with a known progression table, Hit Dice and BAB are pre-filled automatically; type over either to take manual control (use "Reapply progression" above to go back to auto-fill).</div>
 <div class="row"><label id="speciesPresetLabel">Species preset (optional)</label><select id="speciesPreset"><option value="">Manual / no preset</option></select></div>
+<div id="animalAdvancementChoiceRow" class="row" style="display:none"><label id="animalAdvancementChoiceLabel">Species advancement</label><select id="animalAdvancementChoice"><option value="listed">Listed species advancement</option><option value="alternative">Instead, +2 DEX / +2 CON</option></select></div>
 <div id="eidolonSubtypeRow" class="row" style="display:none"><label>Unchained subtype</label><select id="eidolonSubtype"><option value="">Choose subtype…</option></select></div>
 <div id="subtypeAbilityChoiceRow" class="row" style="display:none"><label>Subtype's free Ability Increase</label><select id="subtypeAbilityChoiceSelect">
   <option value="str">STR</option><option value="dex">DEX</option><option value="con">CON</option>
@@ -828,21 +829,17 @@ function saveStore(){
   }
 }
 function defaultProfile(name){
-  // ATTACK-LINE-ID-001: a freshly-created profile is pushed straight into store.profiles
-  // by $('newProfile').onclick etc, WITHOUT passing through the store.profiles.forEach
-  // migration loop below (that only runs once, over whatever loadStore() returned at
-  // page load) -- so lineId/vitalStrikeLineId/rendClawLineId/
-  // furiousFocusFirstAttackConfirmed are all set directly here too, not left to that
-  // migration alone, or a brand-new profile's own default attack lines would have no
-  // lineId to select by until the next full reload.
-  return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:7, casterLevel:10, bab:7, hdBabOverride:false, singleAttack:false, vitalStrikeLineId:'', vitalStrikeAttackName:'',
-    speciesPreset:'',eidolonSubtype:'',subtypeAbilityChoice:'',phantomFocus:'',creatureSize:'Medium',manifestation:'ectoplasmic',selectedEvolutions:[],
+  // New profiles bypass the migration loop (which runs only for profiles in storage),
+  // so their line-targeting and confirmation fields must be initialized here.
+  // A new druid companion at owner level 7 has 6 HD and BAB +4. Do not inject
+  // example attack lines: an unapplied species preset must not retain fake Claw/Bite
+  // rows alongside its real attacks, and any manual line the player adds will pick up
+  // this profile's current BAB. Saved profiles are never changed by this initializer.
+  return {name, entityType:'animal-companion', sourceClass:'druid', ownerLevel:7, characterLevel:6, casterLevel:10, bab:4, hdBabOverride:false, singleAttack:false, vitalStrikeLineId:'', vitalStrikeAttackName:'',
+    speciesPreset:'',animalAdvancementChoice:'listed',eidolonSubtype:'',subtypeAbilityChoice:'',phantomFocus:'',creatureSize:'Medium',manifestation:'ectoplasmic',selectedEvolutions:[],
     rendConditionMet:false,rendClawLineId:'',rendClawName:'',furiousFocusFirstAttackConfirmed:false,
     str:18,dex:15,con:15,int:2,wis:12,cha:6, atkStat:'str', dmgStat:'str',
-    attackLines:[
-      {lineId:newLineId(),name:'Claw',qty:2,atkType:'natural',mode:'primary',die:'1d4',atkBonus:7,hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,threat:'20',critMult:2,enhancement:0,range:'',extra:'',manualHitAdj:0,manualDmgAdj:0,noDamage:false},
-      {lineId:newLineId(),name:'Bite',qty:1,atkType:'natural',mode:'secondary',die:'1d6',atkBonus:2,hitAbility:'str',dmgAbility:'str',dmgAbilityMult:0.5,threat:'20',critMult:2,enhancement:0,range:'',extra:'',manualHitAdj:0,manualDmgAdj:0,noDamage:false}
-    ],
+    attackLines:[],
     active:[], custom:[], excludedSources:{}};
 }
 // Entity types this calculator can actually compute today vs. ones the selector shows
@@ -954,6 +951,7 @@ store.profiles.forEach(p=>{
   if(p.sourceClass===undefined) p.sourceClass='';
   if(p.ownerLevel===undefined) p.ownerLevel=p.characterLevel||7;
   if(p.speciesPreset===undefined) p.speciesPreset='';
+  if(p.animalAdvancementChoice===undefined) p.animalAdvancementChoice='listed';
   if(p.eidolonSubtype===undefined) p.eidolonSubtype='';
   if(p.subtypeAbilityChoice===undefined) p.subtypeAbilityChoice='';
   if(p.rendConditionMet===undefined) p.rendConditionMet=false;
@@ -1054,6 +1052,7 @@ function applyEntityTypeUI(){
   $('speciesPresetLabel').textContent=type==='familiar'?'Familiar species':(['eidolon-chained','eidolon-unchained'].includes(type)?'Base form':(type==='phantom'?'Phantom preset':'Species preset (optional)'));
   $('speciesPresetNote').textContent=SPECIES_PRESET_GENERIC_NOTE[type]||'A preset fills this entity\'s starting scores and attacks. Everything remains manually editable afterward.';
   populateEntityPresetOptions();
+  renderAnimalAdvancementChoice();
   renderEidolonEvolutionPicker();
   updateSubtypeAbilityChoiceUI();
 }
@@ -1224,7 +1223,7 @@ populateEntityTypeSelect();
     compute();
   });
 });
-$('speciesPreset').addEventListener('change',syncUIIntoProfile);
+$('speciesPreset').addEventListener('change',()=>{ syncUIIntoProfile(); renderAnimalAdvancementChoice(); });
 $('eidolonSubtype').addEventListener('change',()=>{currentProfile().subtypeAbilityChoice='';syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();updateSubtypeAbilityChoiceUI();compute();});
 // PHANTOM-REAPPLY-001: phantomFocus/creatureSize both feed applyPhantomPreset()'s own
 // output (Slam dice/size-to-hit, which focus abilities exist) and so trigger a reapply;
@@ -1523,6 +1522,26 @@ function populateEntityPresetOptions(){
   sel.innerHTML='<option value="">Manual / no preset</option>'+entries.map(x=>`<option value="${x.value}">${x.label}</option>`).join('');
   sel.value=p.speciesPreset||'';
 }
+function renderAnimalAdvancementChoice(){
+  let p=currentProfile();
+  let isAnimal=['animal-companion','mount'].includes(p.entityType);
+  // A mere dropdown selection does not apply a species; only expose this choice
+  // after the selected species has actually been applied to the current profile.
+  let species=isAnimal && p.animalSpeciesApplied===$('speciesPreset').value
+    ? COMPANION_SPECIES.find(s=>s.id===p.animalSpeciesApplied) : null;
+  $('animalAdvancementChoiceRow').style.display=species&&species.advancement?'grid':'none';
+  if(species&&species.advancement){
+    $('animalAdvancementChoiceLabel').textContent='At effective level '+species.advancement.level;
+    $('animalAdvancementChoice').value=p.animalAdvancementChoice==='alternative'?'alternative':'listed';
+  }
+}
+$('animalAdvancementChoice').addEventListener('change',()=>{
+  let p=currentProfile();
+  if(!p.animalSpeciesApplied || p.animalSpeciesApplied!==$('speciesPreset').value) return;
+  p.animalAdvancementChoice=$('animalAdvancementChoice').value;
+  saveStore();
+  applyAnimalCompanionPresetCore(p.animalSpeciesApplied,false);
+});
 function eidolonVersionKey(){return currentProfile().entityType==='eidolon-unchained'?'unchained':'chained';}
 function eidolonEvolutionPool(){
   if(!EIDOLON_PROGRESSION) return 0;
@@ -1657,7 +1676,16 @@ function isQualifyingNaturalAttackLine(l){
   return !!l && (l.atkType||'natural')==='natural' && (l.mode==='primary'||l.mode==='secondary') && !l.multiattackConditional && !l.multiattackGranted;
 }
 function naturalAttackQty(lines){
-  return (lines||[]).filter(isQualifyingNaturalAttackLine).reduce((sum,l)=>sum+(+l.qty||1),0);
+  // Species data can list mutually exclusive attacks (camel bite OR spit,
+  // crocodile bite OR tail slap). A choice group contributes only its largest
+  // available quantity to the number of natural attacks in ONE full attack.
+  let groupMax=new Map(), independent=0;
+  (lines||[]).filter(isQualifyingNaturalAttackLine).forEach(l=>{
+    let qty=Math.max(1,+l.qty||1);
+    if(l.choiceGroup) groupMax.set(l.choiceGroup,Math.max(groupMax.get(l.choiceGroup)||0,qty));
+    else independent+=qty;
+  });
+  return independent+[...groupMax.values()].reduce((sum,n)=>sum+n,0);
 }
 // Only a GENERATED (preset/evolution-origin) secondary natural line has its Base To-Hit
 // automatically rewritten between -5 and -2 -- a manual line (origin 'manual' or none at
@@ -1823,14 +1851,16 @@ function attackLineFromSpecies(a,bab,size){
     hitAbility:ranged?'dex':'str', dmgAbility:a.damageAbility||'str',
     dmgAbilityMult:a.damageAbilityMultiplier===undefined?1:a.damageAbilityMultiplier,
     critMult:a.criticalMultiplier||2, range:a.range||'',
-    extra:[a.effect,a.rider,a.choiceGroup?'Choose one attack from this group':''].filter(Boolean).join('; '),
+    choiceGroup:a.choiceGroup||'',
+    extra:[a.effect,a.rider,a.choiceGroup?'Alternative attack — choose one, not both':''].filter(Boolean).join('; '),
     noDamage:!a.damage
   });
 }
 function speciesOriginPrefix(speciesId){ return 'preset:species:'+speciesId+':'; }
 function speciesAdvancedAt(species, eff){ return !!(species.advancement && eff>=species.advancement.level); }
-function speciesAbilityBaselineFor(species, advanced){
-  let base=species.starting.abilities||{}, adj=(advanced&&species.advancement.abilityAdjustments)||{};
+function speciesAbilityBaselineFor(species, listedAdvance, alternativeAdvance){
+  let base=species.starting.abilities||{};
+  let adj=listedAdvance ? (species.advancement.abilityAdjustments||{}) : (alternativeAdvance?{dex:2,con:2}:{});
   let out={};
   ['str','dex','con','int','wis','cha'].forEach(k=>out[k]=(base[k]||0)+(adj[k]||0));
   return out;
@@ -1873,9 +1903,14 @@ function applyAnimalCompanionPresetCore(speciesId, explicit){
   let species=COMPANION_SPECIES.find(s=>s.id===speciesId);
   if(!species) return false;
   let p=currentProfile();
+  // Switching species starts from its own listed package; same-species reapplication
+  // and incidental level/BAB changes retain the player's existing choice.
+  if(explicit && p.animalSpeciesApplied!==species.id) p.animalAdvancementChoice='listed';
   let eff=effectiveCompanionLevel($('sourceClass').value,+$('ownerLevel').value||0)||0;
-  let advanced=speciesAdvancedAt(species,eff);
-  let baseline=speciesAbilityBaselineFor(species,advanced);
+  let reached=speciesAdvancedAt(species,eff);
+  let alternative=reached && p.animalAdvancementChoice==='alternative';
+  let advanced=reached && !alternative;
+  let baseline=speciesAbilityBaselineFor(species,advanced,alternative);
   if(explicit){
     ['str','dex','con','int','wis','cha'].forEach(k=>$(k).value=baseline[k]);
   } else {
@@ -1948,7 +1983,8 @@ function applyAnimalCompanionPresetCore(speciesId, explicit){
   p.creatureSize=size;
   recomputeMultiattack(); // MULTIATTACK-001: applies the level-9 Multiattack/extra-attack rule to the fresh attack list
   saveStore(); renderAttackLines(); compute();
-  $('speciesPresetNote').textContent=species.name+' applied at effective companion level '+eff+' ('+size+(advanced?', advanced package active':' starting package')+'). All fields remain editable.';
+  renderAnimalAdvancementChoice();
+  $('speciesPresetNote').textContent=species.name+' applied at effective companion level '+eff+' ('+size+(alternative?', alternative +2 DEX / +2 CON active':advanced?', listed advancement active':' starting package')+'). All fields remain editable.';
   return true;
 }
 // ANIMAL-APPLY-DISTINCT-001: p.speciesPreset just mirrors the <select> (syncUIIntoProfile
@@ -3132,7 +3168,7 @@ function compute(){
         });
       }
       let qty=Math.max(1,+line.qty||1);
-      let nameLabel=(qty>1?qty+'× ':'')+(line.name||'Attack');
+      let nameLabel=(qty>1?qty+'× ':'')+(line.name||'Attack')+(line.choiceGroup?' (alternative)':'');
       let subLabel=[line.range,line.extra].filter(Boolean).join(' — ');
       let ffTag = (furiousFocusApplies && i===furiousFocusEligibleIndex) ? ' <span class="typeTag" title="Furious Focus waives Power Attack\'s attack penalty here">Furious Focus</span>' : '';
       let vsTag = (vsMult && i===vsTargetIndex) ? ' <span class="typeTag" title="Vital Strike doubles/triples/quadruples this attack\'s Damage Die">Vital Strike</span>' : '';
@@ -3198,6 +3234,16 @@ function compute(){
   }
 
   let notes=[];
+  let alternativeGroups=new Map();
+  (p.attackLines||[]).forEach(l=>{
+    if(l.choiceGroup){
+      if(!alternativeGroups.has(l.choiceGroup)) alternativeGroups.set(l.choiceGroup,[]);
+      alternativeGroups.get(l.choiceGroup).push(l.name||'Attack');
+    }
+  });
+  alternativeGroups.forEach(names=>{
+    if(names.length>1) notes.push('Alternative attacks: '+names.join(' OR ')+' — choose one; the displayed rows are options, not simultaneous attacks.');
+  });
   notes.push('Shared modifiers this turn: '+signed(atkFromMods)+' atk / '+signed(dmgFromMods)+' dmg (from active Feats/Spells/Other Effects above) — applied to every attack line that matches their scope (see each effect\'s note above for melee-only/ranged-only/named-attack-only restrictions).');
   notes.push('Each attack line\'s own Dmg mult sets its Strength multiplier: ×1.5 only if that line is truly the creature\'s single natural attack (or a two-handed weapon), ×1 for a Primary line among several, ×0.5 for Secondary — set per line in Attacks, never by a turn-by-turn checkbox.');
   if(strongJawOn) notes.push('Strong Jaw increases only Natural melee attack dice by two effective size steps; it is ignored on manufactured, touch and ranged-special rows.');
