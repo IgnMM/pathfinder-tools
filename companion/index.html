@@ -2513,7 +2513,7 @@ function applyFamiliarPreset(){
   // right size modifier.
   p.creatureSize=fam.size;
   saveStore(); renderAttackLines(); compute();
-  $('speciesPresetNote').textContent=fam.name+' familiar applied. To-hit uses master BAB + better of its STR/DEX; damage is the normal creature\'s fixed damage and does not add that ability again.';
+  $('speciesPresetNote').textContent=fam.name+' familiar applied. To-hit uses master BAB + the better of its STR/DEX; damage uses its Strength modifier dynamically, so temporary Strength changes update it correctly.';
 }
 // FAMILIAR-BAB-SYNC-001: applyFamiliarPreset() is the explicit "Apply preset stats &
 // attacks" action -- besides regenerating attacks it also resets all six ability
