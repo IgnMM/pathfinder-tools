@@ -104,6 +104,35 @@
     return out;
   }
 
+  // Shared UI baseline for every generated tool that consumes this catalog.
+  function applyGlobalUiBaseline() {
+    const gateUser = document.getElementById('gateUser');
+    const gatePin = document.getElementById('gatePin');
+    if (gateUser) {
+      gateUser.setAttribute('aria-label', 'Username');
+      gateUser.setAttribute('spellcheck', 'false');
+      gateUser.setAttribute('autocorrect', 'off');
+    }
+    if (gatePin) {
+      gatePin.setAttribute('aria-label', 'PIN');
+      gatePin.setAttribute('spellcheck', 'false');
+      gatePin.setAttribute('autocorrect', 'off');
+    }
+    document.querySelectorAll('#syncStatus').forEach(el => el.setAttribute('role', 'status'));
+
+    const legacySidePadding = [...document.querySelectorAll('style')].some(style =>
+      /@media\(max-width:900px\)\{header,main\{padding-left:(?:60|110)px !important\}\}/.test(style.textContent)
+    );
+    if (legacySidePadding) {
+      const style = document.createElement('style');
+      style.textContent = '@media(max-width:900px){header{padding-top:60px!important}header,main{padding-left:7px!important}}';
+      document.head.appendChild(style);
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyGlobalUiBaseline, {once:true});
+  else applyGlobalUiBaseline();
+
   global.PFSources = {
     GLOBAL_KEY,
     ALL_BOOKS,

@@ -30,6 +30,16 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 .moreMenu[open] summary{border-color:var(--gold)}
 .morePanel{position:absolute;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:6px;z-index:20;display:flex;flex-direction:column;gap:4px;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
 .morePanel button{width:100%;text-align:left}
+@media(max-width:560px){
+  header,main{padding-right:10px}
+  .card{padding:12px}
+  .charCard{align-items:flex-start}
+  .charCard .actions{width:100%;flex-wrap:wrap}
+  .charCard .actions>.actionLink,.charCard .actions>button{flex:1 1 135px}
+  .newForm>div,.advBox>div,.editBox>div{width:100%}
+  .newForm input,.newForm select,.advBox input,.editBox input{width:100%!important}
+  .moreMenu{margin-left:auto}
+}
 </style>
 </head>
 <body>
@@ -41,8 +51,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
     <h2 style="font-family:'Cinzel Decorative',serif;margin:0 0 6px;color:#e9c874;font-size:1.15rem;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.7)">Welcome, Traveler</h2>
     <p style="color:#d8cdb9;font-size:.78rem;margin:0 0 12px;line-height:1.4;font-family:'Cinzel',Georgia,serif">Speak a name and PIN — the same words on any device bring your characters with you.</p>
     <div style="display:flex;gap:8px">
-      <input id="gateUser" type="text" placeholder="USERNAME" style="flex:1;min-width:0;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
-      <input id="gatePin" type="text" placeholder="PIN" style="width:78px;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+      <input id="gateUser" type="text" aria-label="Username" spellcheck="false" autocorrect="off" placeholder="USERNAME" style="flex:1;min-width:0;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+      <input id="gatePin" type="text" aria-label="PIN" spellcheck="false" autocorrect="off" placeholder="PIN" style="width:78px;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
     </div>
     <div style="display:flex;gap:8px;margin-top:10px">
       <button id="gateNew" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.4);background:rgba(233,200,116,.08);color:#e9c874;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">New User</button>
@@ -61,19 +71,19 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 <div class="newForm" style="margin-top:10px">
   <div><label for="newName">Character name</label><input id="newName" type="text" placeholder="e.g. Thorgar" style="width:180px"></div>
   <div><label id="newClassLabel" for="newClass">Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option><option value="alchemist">Alchemist</option><option value="bard">Bard</option><option value="sorcerer">Sorcerer</option><option value="wizard">Wizard</option><option value="ranger">Ranger</option><option value="antipaladin">Antipaladin</option><option value="arcanist">Arcanist</option><option value="bloodrager">Bloodrager</option><option value="hunter">Hunter</option><option value="inquisitor">Inquisitor</option><option value="investigator">Investigator</option><option value="magus">Magus</option><option value="medium">Medium</option><option value="mesmerist">Mesmerist</option><option value="occultist">Occultist</option><option value="oracle">Oracle</option><option value="psychic">Psychic</option><option value="shaman">Shaman</option><option value="skald">Skald</option><option value="spiritualist">Spiritualist</option><option value="summoner">Summoner</option><option value="warpriest">Warpriest</option><option value="witch">Witch</option></select></div>
-  <button type="button" class="primary" id="createBtn">Create new Spellcaster</button>
-  <button type="button" id="createSpellbookOnlyBtn" title="Just a Spellbook profile, no Damage Calculator profile — useful for an NPC or a caster you don't track weapon damage for">Spellbook only</button>
+  <button class="primary" id="createBtn">Create new Spellcaster</button>
+  <button id="createSpellbookOnlyBtn" title="Just a Spellbook profile, no Damage Calculator profile — useful for an NPC or a caster you don't track weapon damage for">Spellbook only</button>
 </div>
 <div id="nameFoundStatus" style="font-size:.78rem;color:var(--muted);margin-top:6px;min-height:1.1em"></div>
-<button class="advToggle" id="advToggle" type="button">Already have separate Damage / Spellbook profiles to link? ▾</button>
+<button class="advToggle" id="advToggle" type="button" aria-controls="advBox" aria-expanded="false">Already have separate Damage / Spellbook profiles to link? ▾</button>
 <div class="advBox" id="advBox">
   <div><label for="newDmgProfile">Damage profile name (exact)</label><input id="newDmgProfile" type="text" placeholder="defaults to character name" style="width:200px"></div>
   <div><label for="newSpellsProfile">Spellbook profile name (exact)</label><input id="newSpellsProfile" type="text" placeholder="defaults to character name" style="width:200px"></div>
 </div>
 <div class="sub" style="margin:8px 0 0">By default, creates (or reuses, if the name already exists) a Damage Calculator profile and a Spellbook profile under the character name, and links them together. Use the fields above if your existing profiles have different names — the link points at those exact profiles instead of creating new blank ones.</div>
 </details>
-<div style="display:flex;gap:8px;margin-top:10px"><button type="button" id="cloudSave" class="primary">Save to cloud</button><button type="button" id="cloudLoad">Load from cloud</button></div>
-<div class="syncStatus" id="syncStatus"></div>
+<div style="display:flex;gap:8px;margin-top:10px"><button id="cloudSave" class="primary">Save to cloud</button><button id="cloudLoad">Load from cloud</button></div>
+<div class="syncStatus" id="syncStatus" role="status"></div>
 </main>
 <script src="../assets/valid-sources.js"></script>
 <script>
@@ -360,15 +370,15 @@ function renderAllChars(){
         <div class="actions">
           <a class="actionLink" href="${escapeHtml(openUrl(c.name,c.cls,dmg,spells))}">Open Character</a>
           <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel">
-            <button type="button" data-edit>Edit link</button>
-            <button type="button" class="danger" data-unlink>Remove from My Characters</button>
-            <button type="button" class="danger" data-delete>Delete character</button>
+            <button data-edit>Edit link</button>
+            <button class="danger" data-unlink>Remove from My Characters</button>
+            <button class="danger" data-delete>Delete character</button>
           </div></details>
         </div>
         <div class="editBox" id="editBox${i}">
           <div><label for="editDmg${i}">Damage profile name (exact)</label><input id="editDmg${i}" type="text" value="${escapeHtml(dmg)}" style="width:200px"></div>
           <div><label for="editSpells${i}">Spellbook profile name (exact)</label><input id="editSpells${i}" type="text" value="${escapeHtml(spells)}" style="width:200px"></div>
-          <button type="button" class="primary" data-save>Save link</button>
+          <button class="primary" data-save>Save link</button>
         </div>`;
       card.querySelector('[data-delete]').onclick=()=>{
         if(!confirm('Delete "'+c.name+'" completely? This removes the actual Damage Calculator and Spellbook data, not just the link — it cannot be undone.')) return;
@@ -397,8 +407,8 @@ function renderAllChars(){
       let clsNote=entry.spellClasses.length>1 ? entry.spellClasses.map(c=>CLASS_LABELS[c]||c).join('/') : (CLASS_LABELS[cls]||cls);
       card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${escapeHtml(entry.name)}</div><div class="cls">${escapeHtml(clsNote)} spellcaster</div></div>
         <div class="actions">
-          <button type="button" class="primary" data-merge>Open Character</button>
-          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button type="button" class="danger" data-delete>Delete character</button></div></details>
+          <button class="primary" data-merge>Open Character</button>
+          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button class="danger" data-delete>Delete character</button></div></details>
         </div>`;
       card.querySelector('[data-merge]').onclick=()=>{
         let linked=linkCharacter(entry.name, cls, entry.name, entry.name);
@@ -413,7 +423,7 @@ function renderAllChars(){
       card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${escapeHtml(entry.name)}</div><div class="cls">Damage Calculator only</div></div>
         <div class="actions">
           <a class="actionLink" href="../calc/index.html?profile=${encodeURIComponent(entry.name)}">Open in Calculator</a>
-          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button type="button" class="danger" data-delete>Delete character</button></div></details>
+          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button class="danger" data-delete>Delete character</button></div></details>
         </div>`;
       card.querySelector('[data-delete]').onclick=()=>{
         if(!confirm('Delete "'+entry.name+'" completely? This removes the actual Damage Calculator data — it cannot be undone.')) return;
@@ -424,7 +434,7 @@ function renderAllChars(){
       let links=entry.spellClasses.map(cls=>`<a class="actionLink" href="../${cls}/index.html?profile=${encodeURIComponent(entry.name)}">Open in ${escapeHtml(CLASS_LABELS[cls]||cls)}</a>`).join(' ');
       card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${escapeHtml(entry.name)}</div><div class="cls">${escapeHtml(clsNote)} Spellbook only</div></div>
         <div class="actions">${links}
-          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button type="button" class="danger" data-delete>Delete character</button></div></details>
+          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button class="danger" data-delete>Delete character</button></div></details>
         </div>`;
       card.querySelector('[data-delete]').onclick=()=>{
         if(!confirm('Delete "'+entry.name+'" completely? This removes the actual '+clsNote+' Spellbook data — it cannot be undone.')) return;
@@ -435,137 +445,8 @@ function renderAllChars(){
   });
 }
 
-$('advToggle').onclick=()=>{ $('advBox').classList.toggle('show'); };
+$('advToggle').onclick=()=>{ const expanded=$('advBox').classList.toggle('show'); $('advToggle').setAttribute('aria-expanded',String(expanded)); };
 
 $('createBtn').onclick=()=>{
   let name=$('newName').value.trim();
-  let cls=$('newClass').value;
-  let dmgProfile=$('newDmgProfile').value.trim();
-  let spellsProfile=$('newSpellsProfile').value.trim();
-  if(!name){ $('newName').focus(); return; }
-  let linked=linkCharacter(name, cls, dmgProfile, spellsProfile);
-  if(!linked) return; // name collision on rename -- let the user fix the form instead of creating a broken link
-  location.href=openUrl(name, cls, linked.dmg, linked.spells);
-};
-$('createSpellbookOnlyBtn').onclick=()=>{
-  // No Damage Calculator profile at all, no My Characters link -- just the Spellbook
-  // profile itself. Its own tool's ?profile= deep link creates the blank profile on
-  // arrival (same as the "Open in X" links below already rely on).
-  let name=$('newName').value.trim();
-  let cls=$('newClass').value;
-  if(!name){ $('newName').focus(); return; }
-  location.href='../'+cls+'/index.html?profile='+encodeURIComponent(name);
-};
-
-// ---------- Cross-device sync (Firebase Firestore) ----------
-// Manual only: Save pushes local → cloud (merging in whatever's remote first, never
-// blindly overwriting it), Load pulls cloud → local (merging into local, never
-// pushing). Connecting only ever loads — it can never push and so can never clobber
-// the cloud, even from a blank/stale device.
-(function(){
-  const SYNC_CODE_KEY='pf1_sync_code_v1';
-  const SYNC_USER_KEY='pf1_sync_user_v1';
-  const SYNC_PIN_KEY='pf1_sync_pin_v1';
-  const APP_FIELD='mergedCharacters';
-  const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
-  let db=null, docRef=null, fsApi=null, busy=false;
-
-  function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
-
-  function mergeLists(local, remote){
-    if(!remote || !remote.length) return local;
-    if(!local || !local.length) return remote;
-    let merged2=remote.slice();
-    local.forEach(c=>{ if(!merged2.some(r=>r.name===c.name && r.cls===c.cls)) merged2.push(c); });
-    return merged2;
-  }
-
-  function applyLocal(list){
-    merged=list||[];
-    saveMergedLocal();
-    renderAllChars();
-  }
-
-  async function ensureDocRef(code){
-    const norm=(code||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80);
-    if(!norm) return null;
-    if(!fsApi){
-      const [{initializeApp}, fs] = await Promise.all([
-        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
-        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
-      ]);
-      fsApi=fs;
-      const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
-      db=fsApi.getFirestore(app);
-    }
-    docRef=fsApi.doc(db,'pf_sync',norm);
-    localStorage.setItem(SYNC_CODE_KEY, norm);
-    return docRef;
-  }
-
-  async function connect(code, silent){
-    if(busy) return; busy=true;
-    if(!silent) setStatus('Loading…');
-    try{
-      const ref=await ensureDocRef(code);
-      if(!ref){ busy=false; return; }
-      const snap=await fsApi.getDoc(ref);
-      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
-      applyLocal(mergeLists(merged, remote));
-      setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
-    }catch(e){ setStatus('Load error: '+e.message); }
-    busy=false;
-  }
-
-  async function manualSave(){
-    if(busy) return; busy=true;
-    setStatus('Saving…');
-    try{
-      if(!docRef){ setStatus('Connect first'); busy=false; return; }
-      const snap=await fsApi.getDoc(docRef);
-      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
-      const mergedList=mergeLists(merged, remote);
-      applyLocal(mergedList);
-      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(mergedList)), updatedAt: Date.now(), writerId: WRITER_ID}, {mergeFields:[APP_FIELD,'updatedAt','writerId']});
-      setStatus('Saved ✓');
-    }catch(e){ setStatus('Save error: '+e.message); }
-    busy=false;
-  }
-  window.persist=saveMergedLocal; // local-only; cloud sync is manual via the Save/Load buttons below
-  if($('cloudSave')) $('cloudSave').onclick=manualSave;
-  if($('cloudLoad')) $('cloudLoad').onclick=()=>connect(localStorage.getItem(SYNC_USER_KEY)+'-'+localStorage.getItem(SYNC_PIN_KEY), false);
-
-  function showGate(){
-    const gate=$('syncGate');
-    gate.style.display='flex';
-    $('gateNew').onclick=submitGate;
-    $('gateLogin').onclick=submitGate;
-    $('gateUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('gatePin').focus(); });
-    $('gatePin').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
-    $('gateUser').focus();
-  }
-  function submitGate(){
-    const user=$('gateUser').value.trim(), pin=$('gatePin').value.trim();
-    if(!user){ $('gateUser').focus(); return; }
-    $('syncGate').style.display='none';
-    localStorage.setItem(SYNC_USER_KEY, user);
-    localStorage.setItem(SYNC_PIN_KEY, pin);
-    connect(user+'-'+pin);
-  }
-
-  const savedCode=localStorage.getItem(SYNC_CODE_KEY);
-  const savedUser=localStorage.getItem(SYNC_USER_KEY);
-  const savedPin=localStorage.getItem(SYNC_PIN_KEY);
-  if(savedCode){
-    if(savedUser!==null && savedPin!==null){ connect(savedUser+'-'+savedPin); }
-    else{ connect(savedCode); }
-  } else { showGate(); }
-})();
-
-renderAllChars();
-if("serviceWorker" in navigator){
-  window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
-}
-</script>
-</body>
-</html>
+  let c
