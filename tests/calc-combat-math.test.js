@@ -7,6 +7,12 @@ const path=require('node:path');
 
 const html=fs.readFileSync(path.join(__dirname,'../calc/index.html'),'utf8');
 
+test('Multiweapon Fighting is distinct from Multiweapon Specialist and drives displayed TWF penalties',()=>{
+  assert.match(html,/id:"multiweapon-fighting",name:"Multiweapon Fighting"/);
+  assert.match(html,/a\.id==='two-weapon-fighting' \|\| a\.id==='multiweapon-fighting'/);
+  assert.match(html,/resolve every additional off hand manually/);
+});
+
 function extractFunction(name,nextName){
   const start=html.indexOf('function '+name+'(');
   const end=html.indexOf('function '+nextName+'(',start);

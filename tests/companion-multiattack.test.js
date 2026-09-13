@@ -7,6 +7,11 @@ const path = require('node:path');
 
 // Exercise the actual browser rule functions without requiring a browser or packages.
 const html = fs.readFileSync(path.join(__dirname, '../companion/index.html'), 'utf8');
+
+test('Multiweapon Fighting is offered separately from natural-weapon Multiattack', () => {
+  assert.match(html, /id:'multiweapon-fighting',name:'Multiweapon Fighting'/);
+  assert.match(html, /This is not Multiattack: it never changes penalties for natural weapons/);
+});
 const start = html.indexOf('function sizeAttackModifier(size){');
 const end = html.indexOf('// ATTACK-LINE-ID-001', start);
 assert.ok(start >= 0 && end > start, 'Multiattack rule block exists');
