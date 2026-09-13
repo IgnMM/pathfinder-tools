@@ -449,4 +449,133 @@ $('advToggle').onclick=()=>{ const expanded=$('advBox').classList.toggle('show')
 
 $('createBtn').onclick=()=>{
   let name=$('newName').value.trim();
-  let c
+  let cls=$('newClass').value;
+  let dmgProfile=$('newDmgProfile').value.trim();
+  let spellsProfile=$('newSpellsProfile').value.trim();
+  if(!name){ $('newName').focus(); return; }
+  let linked=linkCharacter(name, cls, dmgProfile, spellsProfile);
+  if(!linked) return; // name collision on rename -- let the user fix the form instead of creating a broken link
+  location.href=openUrl(name, cls, linked.dmg, linked.spells);
+};
+$('createSpellbookOnlyBtn').onclick=()=>{
+  // No Damage Calculator profile at all, no My Characters link -- just the Spellbook
+  // profile itself. Its own tool's ?profile= deep link creates the blank profile on
+  // arrival (same as the "Open in X" links below already rely on).
+  let name=$('newName').value.trim();
+  let cls=$('newClass').value;
+  if(!name){ $('newName').focus(); return; }
+  location.href='../'+cls+'/index.html?profile='+encodeURIComponent(name);
+};
+
+// ---------- Cross-device sync (Firebase Firestore) ----------
+// Manual only: Save pushes local → cloud (merging in whatever's remote first, never
+// blindly overwriting it), Load pulls cloud → local (merging into local, never
+// pushing). Connecting only ever loads — it can never push and so can never clobber
+// the cloud, even from a blank/stale device.
+(function(){
+  const SYNC_CODE_KEY='pf1_sync_code_v1';
+  const SYNC_USER_KEY='pf1_sync_user_v1';
+  const SYNC_PIN_KEY='pf1_sync_pin_v1';
+  const APP_FIELD='mergedCharacters';
+  const WRITER_ID=Math.random().toString(36).slice(2)+Date.now().toString(36);
+  let db=null, docRef=null, fsApi=null, busy=false;
+
+  function setStatus(msg){ let el=$('syncStatus'); if(el) el.textContent=msg; }
+
+  function mergeLists(local, remote){
+    if(!remote || !remote.length) return local;
+    if(!local || !local.length) return remote;
+    let merged2=remote.slice();
+    local.forEach(c=>{ if(!merged2.some(r=>r.name===c.name && r.cls===c.cls)) merged2.push(c); });
+    return merged2;
+  }
+
+  function applyLocal(list){
+    merged=list||[];
+    saveMergedLocal();
+    renderAllChars();
+  }
+
+  async function ensureDocRef(code){
+    const norm=(code||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'-').slice(0,80);
+    if(!norm) return null;
+    if(!fsApi){
+      const [{initializeApp}, fs] = await Promise.all([
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js')
+      ]);
+      fsApi=fs;
+      const app=initializeApp({apiKey:"AIzaSyAXFW6BqSTVbaJhczikLnQDKBNeroc78jI",authDomain:"pathfinder-webapp-486d1.firebaseapp.com",projectId:"pathfinder-webapp-486d1",storageBucket:"pathfinder-webapp-486d1.firebasestorage.app",messagingSenderId:"337645222032",appId:"1:337645222032:web:eda9b7c8ff7646e4524015"});
+      db=fsApi.getFirestore(app);
+    }
+    docRef=fsApi.doc(db,'pf_sync',norm);
+    localStorage.setItem(SYNC_CODE_KEY, norm);
+    return docRef;
+  }
+
+  async function connect(code, silent){
+    if(busy) return; busy=true;
+    if(!silent) setStatus('Loading…');
+    try{
+      const ref=await ensureDocRef(code);
+      if(!ref){ busy=false; return; }
+      const snap=await fsApi.getDoc(ref);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      applyLocal(mergeLists(merged, remote));
+      setStatus(remote ? 'Loaded ✓' : 'Nothing saved in the cloud yet');
+    }catch(e){ setStatus('Load error: '+e.message); }
+    busy=false;
+  }
+
+  async function manualSave(){
+    if(busy) return; busy=true;
+    setStatus('Saving…');
+    try{
+      if(!docRef){ setStatus('Connect first'); busy=false; return; }
+      const snap=await fsApi.getDoc(docRef);
+      const remote=snap.exists() ? snap.data()[APP_FIELD] : null;
+      const mergedList=mergeLists(merged, remote);
+      applyLocal(mergedList);
+      await fsApi.setDoc(docRef, {[APP_FIELD]: JSON.parse(JSON.stringify(mergedList)), updatedAt: Date.now(), writerId: WRITER_ID}, {mergeFields:[APP_FIELD,'updatedAt','writerId']});
+      setStatus('Saved ✓');
+    }catch(e){ setStatus('Save error: '+e.message); }
+    busy=false;
+  }
+  window.persist=saveMergedLocal; // local-only; cloud sync is manual via the Save/Load buttons below
+  if($('cloudSave')) $('cloudSave').onclick=manualSave;
+  if($('cloudLoad')) $('cloudLoad').onclick=()=>connect(localStorage.getItem(SYNC_USER_KEY)+'-'+localStorage.getItem(SYNC_PIN_KEY), false);
+
+  function showGate(){
+    const gate=$('syncGate');
+    gate.style.display='flex';
+    $('gateNew').onclick=submitGate;
+    $('gateLogin').onclick=submitGate;
+    $('gateUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('gatePin').focus(); });
+    $('gatePin').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
+    $('gateUser').focus();
+  }
+  function submitGate(){
+    const user=$('gateUser').value.trim(), pin=$('gatePin').value.trim();
+    if(!user){ $('gateUser').focus(); return; }
+    $('syncGate').style.display='none';
+    localStorage.setItem(SYNC_USER_KEY, user);
+    localStorage.setItem(SYNC_PIN_KEY, pin);
+    connect(user+'-'+pin);
+  }
+
+  const savedCode=localStorage.getItem(SYNC_CODE_KEY);
+  const savedUser=localStorage.getItem(SYNC_USER_KEY);
+  const savedPin=localStorage.getItem(SYNC_PIN_KEY);
+  if(savedCode){
+    if(savedUser!==null && savedPin!==null){ connect(savedUser+'-'+savedPin); }
+    else{ connect(savedCode); }
+  } else { showGate(); }
+})();
+
+renderAllChars();
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("../service-worker.js").catch(console.error));
+}
+</script>
+</body>
+</html>
