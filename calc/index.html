@@ -4848,9 +4848,13 @@ function compute(){
            : offWeaponCategory==='natural' ? {dice:$('offNaturalDice').value||'1d4', threat:$('offNaturalThreat').value||'20', ranged:false}
            : (offWeaponKey==='custom' ? {dice:$('offCustomDice').value||'1d6', threat:$('offCustomThreat').value||'20'} : (WEAPONS[offWeaponKey]||w));
   let offCritMultVal = +$('offCritMult').value || critMult;
-  let ctxOff = Object.assign({}, ctx, {weaponDice:wOff.dice, critMult:offCritMultVal, weaponThreatLow:parseThreatLow(wOff.threat), weaponCategory:offWeaponCategory, weaponRanged: offWeaponCategory==='manufactured' && !!(wOff && wOff.ranged), weaponIsCrossbow: offWeaponCategory==='manufactured' && !!(wOff && wOff.ranged && wOff.ammo==='bolts')});
 
   let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen,smiteEvilOn,smiteDmgVal,smiteDoubles}=collectContributions(ctx);
+  // Build the off-hand context only AFTER collectContributions has populated ctx's
+  // derived switches (Mythic Power Attack/Deadly Aim, luck dependencies, effective
+  // Charisma, etc.). Cloning it earlier left the off hand using the non-mythic/default
+  // formulas while the main hand correctly used the active derived state.
+  let ctxOff = Object.assign({}, ctx, {weaponDice:wOff.dice, critMult:offCritMultVal, weaponThreatLow:parseThreatLow(wOff.threat), weaponCategory:offWeaponCategory, weaponRanged: offWeaponCategory==='manufactured' && !!(wOff && wOff.ranged), weaponIsCrossbow: offWeaponCategory==='manufactured' && !!(wOff && wOff.ranged && wOff.ammo==='bolts')});
 
   // COMPOSITE-BOW-001: a composite bow's STR rating caps how much of the wielder's
   // fully-resolved STR modifier (after every active buff/penalty and PF1e stacking

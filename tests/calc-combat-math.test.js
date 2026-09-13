@@ -39,3 +39,9 @@ test('the off-hand critical path handles both Mythic Power Attack and the no-mul
   assert.match(html,/if\(paNoCritMult && offPowerAttackDmg\)/);
   assert.match(html,/else if\(ctx\.mythicPowerAttackOn && offPowerAttackDmg\)/);
 });
+
+test('the off-hand context inherits derived mythic state from the completed main pass',()=>{
+  const collectAt=html.indexOf('=collectContributions(ctx);');
+  const offContextAt=html.indexOf('let ctxOff = Object.assign({}, ctx',collectAt);
+  assert.ok(collectAt>=0&&offContextAt>collectAt);
+});
