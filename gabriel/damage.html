@@ -50,7 +50,7 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
 </style>
 </head>
 <body>
-<div id="syncGate" style="display:none;position:fixed;inset:0;z-index:9999;
+<div id="syncGate" role="dialog" aria-modal="true" aria-label="Account access" style="display:none;position:fixed;inset:0;z-index:9999;
   background-image:linear-gradient(to bottom, rgba(6,4,3,.1) 0%, rgba(6,4,3,.15) 50%, rgba(6,4,3,.94) 100%), url('../assets/gate-bg.jpg');
   background-size:cover;background-position:center;
   align-items:flex-end;justify-content:center;padding:0 16px 26px">
@@ -58,12 +58,12 @@ button{background:var(--gold);color:#151515;border:0;border-radius:10px;padding:
     <h2 style="font-family:'Cinzel Decorative',serif;margin:0 0 6px;color:#e9c874;font-size:1.15rem;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.7)">Welcome, Traveler</h2>
     <p style="color:#d8cdb9;font-size:.78rem;margin:0 0 12px;line-height:1.4;font-family:'Cinzel',Georgia,serif">Speak a name and PIN — the same words on any device bring your characters with you.</p>
     <div style="display:flex;gap:8px">
-      <input id="gateUser" type="text" placeholder="USERNAME" style="flex:1;min-width:0;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
-      <input id="gatePin" type="text" placeholder="PIN" style="width:78px;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+      <input id="gateUser" type="text" aria-label="Username" autocomplete="username" placeholder="USERNAME" style="flex:1;min-width:0;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
+      <input id="gatePin" type="password" aria-label="PIN" autocomplete="current-password" placeholder="PIN" style="width:78px;text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.35);background:#0c0906;color:#e9c874;font-size:.95rem;text-align:center;box-sizing:border-box;font-family:'Cinzel',Georgia,serif;letter-spacing:.06em">
     </div>
     <div style="display:flex;gap:8px;margin-top:10px">
-      <button id="gateNew" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.4);background:rgba(233,200,116,.08);color:#e9c874;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">New User</button>
-      <button id="gateLogin" style="flex:1;padding:10px;border-radius:8px;border:1px solid #f1d78b;background:linear-gradient(180deg,#e9c874,#b0863c);color:#241708;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">Log In</button>
+      <button id="gateNew" type="button" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(233,200,116,.4);background:rgba(233,200,116,.08);color:#e9c874;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">New User</button>
+      <button id="gateLogin" type="button" style="flex:1;padding:10px;border-radius:8px;border:1px solid #f1d78b;background:linear-gradient(180deg,#e9c874,#b0863c);color:#241708;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.03em">Log In</button>
     </div>
   </div>
 </div>
