@@ -43,3 +43,17 @@ test('Inspire Courage never derives the performer level from companion Hit Dice'
   assert.match(entry, /default:1/);
   assert.doesNotMatch(entry, /linkLevel/);
 });
+
+test('sheet-wide ability selectors update attack rows and manual-attack defaults', () => {
+  assert.match(html, /<label>Set all attack rolls to<\/label>/);
+  assert.match(html, /<label>Set all damage rolls to<\/label>/);
+  assert.match(html, /\(p\.attackLines\|\|\[\]\)\.forEach\(line=>line\[field\]=ability\)/);
+  assert.match(html, /hitAbility:\$\('atkStat'\)\.value\|\|'str'/);
+  assert.match(html, /dmgAbility:\$\('dmgStat'\)\.value\|\|'str'/);
+});
+
+test('ability-buff descriptions explain their per-attack-line behavior', () => {
+  assert.doesNotMatch(html, /Only actually changes attack\/damage here if/);
+  assert.match(html, /Automatically changes each attack line that uses Strength/);
+  assert.match(html, /Automatically changes each attack line that uses Dexterity/);
+});

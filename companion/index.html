@@ -227,7 +227,7 @@ button.danger{background:#3a1d21;border-color:#8c474f;color:#ffb4bc}
 </div>
 <div id="strDexAdjNote" class="emptyNote"></div>
 <div id="multiattackNote" class="emptyNote"></div>
-<div class="row" style="margin-top:10px"><label>Ability → Attack rolls</label>
+<div class="row" style="margin-top:10px"><label>Set all attack rolls to</label>
 <select id="atkStat">
   <option value="str" selected>Strength</option>
   <option value="dex">Dexterity</option>
@@ -237,7 +237,7 @@ button.danger{background:#3a1d21;border-color:#8c474f;color:#ffb4bc}
   <option value="cha">Charisma</option>
   <option value="none">— none —</option>
 </select></div>
-<div class="row"><label>Ability → Damage rolls</label>
+<div class="row"><label>Set all damage rolls to</label>
 <select id="dmgStat">
   <option value="str" selected>Strength</option>
   <option value="dex">Dexterity</option>
@@ -247,7 +247,7 @@ button.danger{background:#3a1d21;border-color:#8c474f;color:#ffb4bc}
   <option value="cha">Charisma</option>
   <option value="none">— none —</option>
 </select></div>
-<div class="emptyNote">Almost every companion uses Strength for both. Only change this for an unusual build (e.g. Dex-to-damage via a feat/feature that specifically grants it to natural attacks).</div>
+<div class="emptyNote">These selectors update every existing attack line and set the default for attacks you add manually afterward. You can still choose a different ability on an individual attack row. Almost every companion uses Strength for both; change this only for a rule that specifically grants another ability to those attacks.</div>
 <h3>Attacks</h3>
 <datalist id="natAttackNames"><option value="Bite"><option value="Claw"><option value="Gore"><option value="Hoof"><option value="Peck"><option value="Pincers"><option value="Rake"><option value="Rend"><option value="Slam"><option value="Sting"><option value="Tail Slap"><option value="Talon"><option value="Tentacle"><option value="Trample"><option value="Trip"><option value="Wing"></datalist>
 <div class="addRow"><select id="attackPreset"><option value="">Basic attack preset...</option></select><button id="addAttackPreset" type="button">Add preset</button></div>
@@ -602,27 +602,27 @@ const MODIFIERS = [
  desc:'+2 morale bonus on attack rolls and weapon damage rolls (also on saves, ability checks, and skill checks, not modeled here). Affects every ally in the area, including a companion.',
  compute:()=>({attack:2,damage:2,note:'+2 atk / +2 dmg (morale)'})},
 {id:'bulls-strength',name:"Bull's Strength",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-str',
- desc:"+4 enhancement bonus to Strength. Only actually changes attack/damage here if Strength is the ability selected for \"Attack rolls\" / \"Damage rolls\" above. Druid/Ranger can cast this directly on their companion.",
+ desc:"+4 enhancement bonus to Strength. Automatically changes each attack line that uses Strength for its attack or damage roll.",
  configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
  compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'str',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Strength isn\'t the selected attack/damage ability above'}}},
 {id:'cats-grace',name:"Cat's Grace",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-dex',
- desc:"+4 enhancement bonus to Dexterity. Only actually changes attack/damage here if Dexterity is the ability selected for \"Attack rolls\" / \"Damage rolls\" above. Druid/Ranger can cast this directly on their companion.",
+ desc:"+4 enhancement bonus to Dexterity. Automatically changes each attack line that uses Dexterity for its attack or damage roll.",
  configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
  compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'dex',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Dexterity isn\'t the selected attack/damage ability above'}}},
 {id:'bears-endurance',name:"Bear's Endurance",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-con',
- desc:"+4 enhancement bonus to Constitution. Only actually changes attack/damage here if Constitution is the selected ability above (rare). Druid/Ranger can cast this directly on their companion.",
+ desc:"+4 enhancement bonus to Constitution. Automatically changes an unusual attack line that uses Constitution for its attack or damage roll.",
  configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
  compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'con',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Constitution isn\'t the selected attack/damage ability above'}}},
 {id:'owls-wisdom',name:"Owl's Wisdom",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-wis',
- desc:"+4 enhancement bonus to Wisdom. Only actually changes attack/damage here if Wisdom is the selected ability above. Druid/Ranger can cast this directly on their companion.",
+ desc:"+4 enhancement bonus to Wisdom. Automatically changes each attack line that uses Wisdom for its attack or damage roll.",
  configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
  compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'wis',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Wisdom isn\'t the selected attack/damage ability above'}}},
 {id:'eagles-splendor',name:"Eagle's Splendor",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-cha',
- desc:"+4 enhancement bonus to Charisma. Only actually changes attack/damage here if Charisma is the selected ability above. Druid/Ranger can cast this directly on their companion.",
+ desc:"+4 enhancement bonus to Charisma. Automatically changes each attack line that uses Charisma for its attack or damage roll.",
  configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
  compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'cha',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Charisma isn\'t the selected attack/damage ability above'}}},
 {id:'foxs-cunning',name:"Fox's Cunning",category:'spell',source:'Core Rulebook (2nd)',appliesTo:['attack','damage'],type:'enhancement-int',
- desc:"+4 enhancement bonus to Intelligence. Only actually changes attack/damage here if Intelligence is the selected ability above (rare). Druid/Ranger can cast this directly on their companion.",
+ desc:"+4 enhancement bonus to Intelligence. Automatically changes an unusual attack line that uses Intelligence for its attack or damage roll.",
  configFields:[{key:'value',label:'Score bonus',type:'number',default:4}],
  compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'int',cfg.value!==undefined?cfg.value:4);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):'no effect — Intelligence isn\'t the selected attack/damage ability above'}}},
 {id:'strong-jaw',name:'Strong Jaw',category:'spell',source:'Advanced Class Guide (Druid 4th / Ranger 3rd)',appliesTo:[],type:'special',
@@ -1262,8 +1262,20 @@ function syncUIIntoProfile(){
 
 populateEntityTypeSelect();
 
-['casterLevel','singleAttack','str','dex','con','int','wis','cha','atkStat','dmgStat'].forEach(id=>{
+['casterLevel','singleAttack','str','dex','con','int','wis','cha'].forEach(id=>{
   $(id).addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); });
+});
+// The sheet-wide ability selectors are deliberate bulk actions, not an invisible
+// second calculation path. Every result row reads its own hitAbility/dmgAbility, so a
+// change here must update those rows as well as the defaults saved on the profile.
+[['atkStat','hitAbility'],['dmgStat','dmgAbility']].forEach(([id,field])=>{
+  $(id).addEventListener('change',()=>{
+    let p=currentProfile(), ability=$(id).value;
+    (p.attackLines||[]).forEach(line=>line[field]=ability);
+    syncUIIntoProfile();
+    renderAttackLines();
+    compute();
+  });
 });
 // Typing directly into Hit Dice or BAB takes manual control: set the override flag so
 // applyProgressionUI() stops overwriting these two fields (on reload, on Source
@@ -1533,7 +1545,7 @@ function newAttackLine(){
   // this with its own origin key right after being built from newAttackLine()'s
   // defaults, same as every other field here.
   return {lineId:newLineId(),name:'',qty:1,atkType:'natural',mode:'primary',die:'1d4',atkBonus,threat:'20',critMult:2,
-    hitAbility:'str',dmgAbility:'str',dmgAbilityMult:1,baseDamageBonus:0,damageType:'',enhancement:0,range:'',extra:'',extraDice:'',extraDamageType:'',extraDiceMultipliesOnCrit:false,manualHitAdj:0,manualDmgAdj:0,noDamage:false,origin:'manual'};
+    hitAbility:$('atkStat').value||'str',dmgAbility:$('dmgStat').value||'str',dmgAbilityMult:1,baseDamageBonus:0,damageType:'',enhancement:0,range:'',extra:'',extraDice:'',extraDamageType:'',extraDiceMultipliesOnCrit:false,manualHitAdj:0,manualDmgAdj:0,noDamage:false,origin:'manual'};
 }
 $('addAttackLine').onclick=()=>{
   let p=currentProfile();
