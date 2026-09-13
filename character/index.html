@@ -7,6 +7,8 @@ select,input{background:#121721;color:var(--text);border:1px solid var(--border)
 button{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 12px;cursor:pointer;font-size:.85rem}
 button.primary{background:#5a4318;border-color:#816427;color:#fff1c2}
 button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
+.actionLink{display:inline-flex;align-items:center;justify-content:center;background:#5a4318;border:1px solid #816427;color:#fff1c2;border-radius:8px;padding:8px 12px;text-decoration:none;font-size:.85rem;line-height:normal;text-align:center}
+.actionLink:hover,.actionLink:focus-visible{border-color:var(--gold2);outline:none;box-shadow:0 0 0 2px rgba(241,215,139,.18)}
 .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:10px 0}
 .charCard{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .charCard .name{font-weight:750;font-size:1.05rem}
@@ -57,25 +59,30 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a0a0}
 <details class="card" id="newCharDetails">
 <summary style="cursor:pointer;font-weight:700;color:var(--gold2)">Or create a brand-new character from scratch ▾</summary>
 <div class="newForm" style="margin-top:10px">
-  <div><label>Character name</label><input id="newName" type="text" placeholder="e.g. Thorgar" style="width:180px"></div>
-  <div><label id="newClassLabel">Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option><option value="alchemist">Alchemist</option><option value="bard">Bard</option><option value="sorcerer">Sorcerer</option><option value="wizard">Wizard</option><option value="ranger">Ranger</option><option value="antipaladin">Antipaladin</option><option value="arcanist">Arcanist</option><option value="bloodrager">Bloodrager</option><option value="hunter">Hunter</option><option value="inquisitor">Inquisitor</option><option value="investigator">Investigator</option><option value="magus">Magus</option><option value="medium">Medium</option><option value="mesmerist">Mesmerist</option><option value="occultist">Occultist</option><option value="oracle">Oracle</option><option value="psychic">Psychic</option><option value="shaman">Shaman</option><option value="skald">Skald</option><option value="spiritualist">Spiritualist</option><option value="summoner">Summoner</option><option value="warpriest">Warpriest</option><option value="witch">Witch</option></select></div>
-  <button class="primary" id="createBtn">Create new Spellcaster</button>
-  <button id="createSpellbookOnlyBtn" title="Just a Spellbook profile, no Damage Calculator profile — useful for an NPC or a caster you don't track weapon damage for">Spellbook only</button>
+  <div><label for="newName">Character name</label><input id="newName" type="text" placeholder="e.g. Thorgar" style="width:180px"></div>
+  <div><label id="newClassLabel" for="newClass">Spellcasting class</label><select id="newClass"><option value="cleric">Cleric</option><option value="paladin">Paladin</option><option value="druid">Druid</option><option value="alchemist">Alchemist</option><option value="bard">Bard</option><option value="sorcerer">Sorcerer</option><option value="wizard">Wizard</option><option value="ranger">Ranger</option><option value="antipaladin">Antipaladin</option><option value="arcanist">Arcanist</option><option value="bloodrager">Bloodrager</option><option value="hunter">Hunter</option><option value="inquisitor">Inquisitor</option><option value="investigator">Investigator</option><option value="magus">Magus</option><option value="medium">Medium</option><option value="mesmerist">Mesmerist</option><option value="occultist">Occultist</option><option value="oracle">Oracle</option><option value="psychic">Psychic</option><option value="shaman">Shaman</option><option value="skald">Skald</option><option value="spiritualist">Spiritualist</option><option value="summoner">Summoner</option><option value="warpriest">Warpriest</option><option value="witch">Witch</option></select></div>
+  <button type="button" class="primary" id="createBtn">Create new Spellcaster</button>
+  <button type="button" id="createSpellbookOnlyBtn" title="Just a Spellbook profile, no Damage Calculator profile — useful for an NPC or a caster you don't track weapon damage for">Spellbook only</button>
 </div>
 <div id="nameFoundStatus" style="font-size:.78rem;color:var(--muted);margin-top:6px;min-height:1.1em"></div>
 <button class="advToggle" id="advToggle" type="button">Already have separate Damage / Spellbook profiles to link? ▾</button>
 <div class="advBox" id="advBox">
-  <div><label>Damage profile name (exact)</label><input id="newDmgProfile" type="text" placeholder="defaults to character name" style="width:200px"></div>
-  <div><label>Spellbook profile name (exact)</label><input id="newSpellsProfile" type="text" placeholder="defaults to character name" style="width:200px"></div>
+  <div><label for="newDmgProfile">Damage profile name (exact)</label><input id="newDmgProfile" type="text" placeholder="defaults to character name" style="width:200px"></div>
+  <div><label for="newSpellsProfile">Spellbook profile name (exact)</label><input id="newSpellsProfile" type="text" placeholder="defaults to character name" style="width:200px"></div>
 </div>
 <div class="sub" style="margin:8px 0 0">By default, creates (or reuses, if the name already exists) a Damage Calculator profile and a Spellbook profile under the character name, and links them together. Use the fields above if your existing profiles have different names — the link points at those exact profiles instead of creating new blank ones.</div>
 </details>
-<div style="display:flex;gap:8px;margin-top:10px"><button id="cloudSave" class="primary">Save to cloud</button><button id="cloudLoad">Load from cloud</button></div>
+<div style="display:flex;gap:8px;margin-top:10px"><button type="button" id="cloudSave" class="primary">Save to cloud</button><button type="button" id="cloudLoad">Load from cloud</button></div>
 <div class="syncStatus" id="syncStatus"></div>
 </main>
 <script src="../assets/valid-sources.js"></script>
 <script>
 const $=id=>document.getElementById(id);
+// Profile names are user-controlled and cloud-synchronised. Keep them as text whenever
+// they are rendered into card markup; a name must never become HTML on another device.
+function escapeHtml(value){
+  return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
 const MERGED_KEY='pf1_merged_characters_v1';
 const CLASS_LABELS={cleric:'Cleric',paladin:'Paladin',druid:'Druid',alchemist:'Alchemist',bard:'Bard',sorcerer:'Sorcerer',wizard:'Wizard',ranger:'Ranger',antipaladin:'Antipaladin',arcanist:'Arcanist',bloodrager:'Bloodrager',hunter:'Hunter',inquisitor:'Inquisitor',investigator:'Investigator',magus:'Magus',medium:'Medium',mesmerist:'Mesmerist',occultist:'Occultist',oracle:'Oracle',psychic:'Psychic',shaman:'Shaman',skald:'Skald',spiritualist:'Spiritualist',summoner:'Summoner',warpriest:'Warpriest',witch:'Witch'};
 const ALL_CLASSES=Object.keys(CLASS_LABELS);
@@ -348,20 +355,20 @@ function renderAllChars(){
       let c=entry.mergedEntry, dmg=dmgOf(c), spells=spellsOf(c);
       let i=merged.indexOf(c);
       let linkNote=(dmg!==c.name || spells!==c.name)
-        ? `<div class="link">Damage: <b>${dmg}</b> · Spells: <b>${spells}</b></div>` : '';
-      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${c.name}</div><div class="cls">${CLASS_LABELS[c.cls]||c.cls} spellcaster</div>${linkNote}</div>
+        ? `<div class="link">Damage: <b>${escapeHtml(dmg)}</b> · Spells: <b>${escapeHtml(spells)}</b></div>` : '';
+      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${escapeHtml(c.name)}</div><div class="cls">${escapeHtml(CLASS_LABELS[c.cls]||c.cls)} spellcaster</div>${linkNote}</div>
         <div class="actions">
-          <a href="${openUrl(c.name,c.cls,dmg,spells)}"><button class="primary">Open Character</button></a>
+          <a class="actionLink" href="${escapeHtml(openUrl(c.name,c.cls,dmg,spells))}">Open Character</a>
           <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel">
-            <button data-edit>Edit link</button>
-            <button class="danger" data-unlink>Remove from My Characters</button>
-            <button class="danger" data-delete>Delete character</button>
+            <button type="button" data-edit>Edit link</button>
+            <button type="button" class="danger" data-unlink>Remove from My Characters</button>
+            <button type="button" class="danger" data-delete>Delete character</button>
           </div></details>
         </div>
         <div class="editBox" id="editBox${i}">
-          <div><label>Damage profile name (exact)</label><input id="editDmg${i}" type="text" value="${dmg}" style="width:200px"></div>
-          <div><label>Spellbook profile name (exact)</label><input id="editSpells${i}" type="text" value="${spells}" style="width:200px"></div>
-          <button class="primary" data-save>Save link</button>
+          <div><label for="editDmg${i}">Damage profile name (exact)</label><input id="editDmg${i}" type="text" value="${escapeHtml(dmg)}" style="width:200px"></div>
+          <div><label for="editSpells${i}">Spellbook profile name (exact)</label><input id="editSpells${i}" type="text" value="${escapeHtml(spells)}" style="width:200px"></div>
+          <button type="button" class="primary" data-save>Save link</button>
         </div>`;
       card.querySelector('[data-delete]').onclick=()=>{
         if(!confirm('Delete "'+c.name+'" completely? This removes the actual Damage Calculator and Spellbook data, not just the link — it cannot be undone.')) return;
@@ -388,10 +395,10 @@ function renderAllChars(){
       // combined sheet in one action, same label as an already-linked character above.
       let cls=entry.spellClasses[0];
       let clsNote=entry.spellClasses.length>1 ? entry.spellClasses.map(c=>CLASS_LABELS[c]||c).join('/') : (CLASS_LABELS[cls]||cls);
-      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${entry.name}</div><div class="cls">${clsNote} spellcaster</div></div>
+      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${escapeHtml(entry.name)}</div><div class="cls">${escapeHtml(clsNote)} spellcaster</div></div>
         <div class="actions">
-          <button class="primary" data-merge>Open Character</button>
-          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button class="danger" data-delete>Delete character</button></div></details>
+          <button type="button" class="primary" data-merge>Open Character</button>
+          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button type="button" class="danger" data-delete>Delete character</button></div></details>
         </div>`;
       card.querySelector('[data-merge]').onclick=()=>{
         let linked=linkCharacter(entry.name, cls, entry.name, entry.name);
@@ -403,10 +410,10 @@ function renderAllChars(){
         deleteCharacterEverywhere(entry); renderAllChars();
       };
     } else if(entry.calc){
-      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${entry.name}</div><div class="cls">Damage Calculator only</div></div>
+      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${escapeHtml(entry.name)}</div><div class="cls">Damage Calculator only</div></div>
         <div class="actions">
-          <a href="../calc/index.html?profile=${encodeURIComponent(entry.name)}"><button class="primary">Open in Calculator</button></a>
-          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button class="danger" data-delete>Delete character</button></div></details>
+          <a class="actionLink" href="../calc/index.html?profile=${encodeURIComponent(entry.name)}">Open in Calculator</a>
+          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button type="button" class="danger" data-delete>Delete character</button></div></details>
         </div>`;
       card.querySelector('[data-delete]').onclick=()=>{
         if(!confirm('Delete "'+entry.name+'" completely? This removes the actual Damage Calculator data — it cannot be undone.')) return;
@@ -414,10 +421,10 @@ function renderAllChars(){
       };
     } else {
       let clsNote=entry.spellClasses.map(c=>CLASS_LABELS[c]||c).join(' / ');
-      let links=entry.spellClasses.map(cls=>`<a href="../${cls}/index.html?profile=${encodeURIComponent(entry.name)}"><button class="primary">Open in ${CLASS_LABELS[cls]||cls}</button></a>`).join(' ');
-      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${entry.name}</div><div class="cls">${clsNote} Spellbook only</div></div>
+      let links=entry.spellClasses.map(cls=>`<a class="actionLink" href="../${cls}/index.html?profile=${encodeURIComponent(entry.name)}">Open in ${escapeHtml(CLASS_LABELS[cls]||cls)}</a>`).join(' ');
+      card.innerHTML=`<div style="flex:1;min-width:0"><div class="name">${escapeHtml(entry.name)}</div><div class="cls">${escapeHtml(clsNote)} Spellbook only</div></div>
         <div class="actions">${links}
-          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button class="danger" data-delete>Delete character</button></div></details>
+          <details class="moreMenu"><summary title="More options">⋯</summary><div class="morePanel"><button type="button" class="danger" data-delete>Delete character</button></div></details>
         </div>`;
       card.querySelector('[data-delete]').onclick=()=>{
         if(!confirm('Delete "'+entry.name+'" completely? This removes the actual '+clsNote+' Spellbook data — it cannot be undone.')) return;
