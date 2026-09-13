@@ -3041,6 +3041,16 @@ function finalAbilityMods(ctx){
   return out;
 }
 
+// ABILITY-PER-LINE-001: ability-score effects change the score/modifier itself, then
+// every attack row resolves its own selected ability from that final map. The global
+// atkStat/dmgStat selectors are bulk-edit defaults only; they must never decide whether
+// Cat's Grace, Bull's Strength, etc. affect an independently configured attack line.
+function abilityModForAttackLine(finalMods, ability){
+  if(ability==='none') return 0;
+  if(ability==='best-str-dex') return Math.max(finalMods.str,finalMods.dex);
+  return finalMods[ability]||0;
+}
+
 // markSuppressed() now lives in ../assets/calc-engine.js (SHARED-ENGINE-001).
 function renderBreakdown(breakdown){
   let box=$('breakdownTables'); box.innerHTML='';
@@ -3197,8 +3207,8 @@ function compute(){
     let tbody=document.createElement('tbody');
     p.attackLines.forEach((line,i)=>{
       let hitAb=line.hitAbility||'str', dmgAb=line.dmgAbility||'str';
-      let hitAbilityMod = hitAb==='none' ? 0 : (hitAb==='best-str-dex'?Math.max(finalMods.str,finalMods.dex):(finalMods[hitAb]||0));
-      let dmgAbilityMod2 = dmgAb==='none' ? 0 : (finalMods[dmgAb]||0);
+      let hitAbilityMod = abilityModForAttackLine(finalMods,hitAb);
+      let dmgAbilityMod2 = abilityModForAttackLine(finalMods,dmgAb);
       let dmgMult = line.dmgAbilityMult!==undefined ? +line.dmgAbilityMult : 1;
       let strContribution = Math.floor(dmgAbilityMod2*dmgMult);
       let enh=+line.enhancement||0, manHit=+line.manualHitAdj||0, manDmg=+line.manualDmgAdj||0;
