@@ -45,3 +45,22 @@ test('the off-hand context inherits derived mythic state from the completed main
   const offContextAt=html.indexOf('let ctxOff = Object.assign({}, ctx',collectAt);
   assert.ok(collectAt>=0&&offContextAt>collectAt);
 });
+
+test('Flurry counts enhancement once and receives magical full-BAB extra attacks afterward',()=>{
+  assert.match(html,/let nonBabPart = atkAbilityMod \+ atkFromMods;/);
+  assert.doesNotMatch(html,/let nonBabPart = atkAbilityMod \+ enh \+ atkFromMods;/);
+  const flurryAt=html.indexOf('if(flurryOfBlowsOn){');
+  const extraAt=html.indexOf('if(hasExtraAttack){',flurryAt);
+  assert.ok(flurryAt>=0&&extraAt>flurryAt);
+  assert.match(html.slice(extraAt,extraAt+120),/iteratives\.push\(iteratives\[0\]\)/);
+});
+
+test('Rapid Shot extra attacks are not inserted into a Flurry sequence',()=>{
+  assert.match(html,/if\(!flurryOfBlowsOn\)\{\s*for\(let i=0;i<rapidShotExtraCount;i\+\+\)/);
+});
+
+test('natural attack lines resolve their own final attack and damage abilities',()=>{
+  assert.match(html,/let atkOnShared = atkOn && ctx\.weaponCategory!==\'natural\'/);
+  assert.match(html,/ctx\._finalAbilityMods\[atkAbility\].*baseAtkAbilityMod/);
+  assert.match(html,/ctx\._finalAbilityMods\[dmgAbility\].*baseDmgMod/);
+});
