@@ -1297,7 +1297,16 @@ populateEntityTypeSelect();
   });
 });
 $('speciesPreset').addEventListener('change',()=>{ syncUIIntoProfile(); renderAnimalAdvancementChoice(); });
-$('eidolonSubtype').addEventListener('change',()=>{currentProfile().subtypeAbilityChoice='';syncUIIntoProfile();applyProgressionUI();renderEidolonEvolutionPicker();updateSubtypeAbilityChoiceUI();compute();});
+$('eidolonSubtype').addEventListener('change',()=>{
+  let p=currentProfile();
+  p.subtypeAbilityChoice='';
+  syncUIIntoProfile();
+  // An Unchained subtype permits only its own listed base forms. Rebuild the form
+  // selector immediately instead of offering invalid combinations that fail later.
+  populateEntityPresetOptions();
+  if(!$('speciesPreset').value && p.speciesPreset){ p.speciesPreset=''; saveStore(); }
+  applyProgressionUI();renderEidolonEvolutionPicker();updateSubtypeAbilityChoiceUI();compute();
+});
 // PHANTOM-REAPPLY-001: phantomFocus/creatureSize both feed applyPhantomPreset()'s own
 // output (Slam dice/size-to-hit, which focus abilities exist) and so trigger a reapply;
 // manifestation only affects the informational note text below, never a computed
@@ -1590,7 +1599,18 @@ Promise.all([
 function populateEntityPresetOptions(){
   let sel=$('speciesPreset'), p=currentProfile(), type=p.entityType||'animal-companion', entries=[];
   if(['animal-companion','mount'].includes(type)) entries=COMPANION_SPECIES.map(x=>({value:x.id,label:x.name}));
-  else if(['eidolon-chained','eidolon-unchained'].includes(type)) entries=EIDOLON_FORMS.map(x=>({value:x.key,label:x.name}));
+  else if(['eidolon-chained','eidolon-unchained'].includes(type)){
+    let forms=EIDOLON_FORMS;
+    if(type==='eidolon-unchained'){
+      let subtypeKey=$('eidolonSubtype').value||p.eidolonSubtype;
+      let subtype=EIDOLON_SUBTYPES.find(x=>x.key===subtypeKey);
+      if(subtype){
+        let permitted=new Set((subtype.baseForms||[]).map(x=>x.form));
+        forms=forms.filter(x=>permitted.has(x.key));
+      }
+    }
+    entries=forms.map(x=>({value:x.key,label:x.name}));
+  }
   else if(type==='familiar') entries=FAMILIAR_PRESETS.map(x=>({value:x.key,label:x.name}));
   else if(type==='phantom') entries=[{value:'phantom',label:'Standard Phantom'}];
   sel.innerHTML='<option value="">Manual / no preset</option>'+entries.map(x=>`<option value="${x.value}">${x.label}</option>`).join('');

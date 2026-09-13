@@ -57,3 +57,13 @@ test('ability-buff descriptions explain their per-attack-line behavior', () => {
   assert.match(html, /Automatically changes each attack line that uses Strength/);
   assert.match(html, /Automatically changes each attack line that uses Dexterity/);
 });
+
+test('Unchained subtype selection filters out forbidden base forms', () => {
+  assert.match(html, /new Set\(\(subtype\.baseForms\|\|\[\]\)\.map\(x=>x\.form\)\)/);
+  assert.match(html, /forms=forms\.filter\(x=>permitted\.has\(x\.key\)\)/);
+  const listener = html.slice(
+    html.indexOf("$('eidolonSubtype').addEventListener"),
+    html.indexOf("// PHANTOM-REAPPLY-001")
+  );
+  assert.match(listener, /populateEntityPresetOptions\(\)/);
+});
