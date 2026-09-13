@@ -832,6 +832,7 @@ function loadStore(){ let s=JSON.parse(localStorage.getItem(STORE_KEY)||'null');
 // tab re-pins its own URL; a tab that never had ?profile= claims its current one on
 // first load so it stays independent from here on.
 function pinUrlToProfile(name){
+  window.__pinnedProfile=name;
   const url=new URL(location.href);
   url.searchParams.set('profile', name);
   history.replaceState(null, '', url.pathname+url.search+url.hash);
