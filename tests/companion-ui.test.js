@@ -33,3 +33,13 @@ test('category badges distinguish active effects from saved inactive effects', (
   assert.match(html, /activeCount/);
   assert.match(html, /' active'\+\(savedCount!==activeCount\?' \/ '\+savedCount\+' saved'/);
 });
+
+test('Inspire Courage never derives the performer level from companion Hit Dice', () => {
+  const start = html.indexOf("{id:'inspire-courage'");
+  const end = html.indexOf("{id:'charge'", start);
+  assert.ok(start >= 0 && end > start);
+  const entry = html.slice(start, end);
+  assert.match(entry, /label:"Performing bard's level"/);
+  assert.match(entry, /default:1/);
+  assert.doesNotMatch(entry, /linkLevel/);
+});

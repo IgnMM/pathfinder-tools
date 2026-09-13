@@ -751,8 +751,8 @@ const MODIFIERS = [
      attackLineIds:has?usedIds:undefined};
  }},
 {id:'inspire-courage',name:'Inspire Courage (Bardic Performance)',category:'other',source:'Bard class feature',appliesTo:['attack','damage'],type:'competence',
- desc:'+1 competence bonus per 4 bard levels above 1st (min +1) on attack and weapon damage rolls. Affects every ally who can hear it, including a companion.',
- configFields:[{key:'bardLvl',label:'Bard level',type:'number',default:5,linkLevel:true}],
+ desc:'+1 competence bonus at bard level 1, +2 at 5th, +3 at 11th and +4 at 17th on attack and weapon damage rolls. Affects every ally who can hear it, including a companion. Enter the performing bard\'s level below; it is independent of this creature\'s Hit Dice and owner/class level.',
+ configFields:[{key:'bardLvl',label:"Performing bard's level",type:'number',default:1}],
  compute:(ctx,cfg)=>{let l=cfg.bardLvl||1,b=l>=17?4:l>=11?3:l>=5?2:1;return {attack:b,damage:b,note:'+'+b+' atk / +'+b+' dmg (competence)'}}},
 // SITUATIONAL-COMBAT-001: Charge requires "a single melee attack" (RAW) -- ranged
 // attacks can't be made as part of a charge, so this must never reach a ranged line.
