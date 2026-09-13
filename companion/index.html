@@ -41,12 +41,27 @@ label{color:var(--muted);font-size:.85rem}
 input,select{width:100%;background:#0f161f;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px;font-size:.9rem}
 button{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:8px 12px;cursor:pointer;font-size:.85rem}
 button.primary{background:var(--gold);color:#151515;border:0;font-weight:700}
-button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
+button.danger{background:#3a1d21;border-color:#8c474f;color:#ffb4bc}
 .statsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}
 .profileBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .profileBar select{width:auto;min-width:160px}
 .mainGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:900px){.mainGrid{grid-template-columns:1fr}}
+@media(max-width:600px){
+  .wrap{padding:10px 8px 10px 54px}
+  header,.card{padding:12px;border-radius:12px}
+  h1{font-size:20px}
+  .profileBar{align-items:stretch}
+  .profileBar>label{width:100%}
+  .profileBar select{min-width:0;flex:1}
+  .profileBar button{padding:8px 9px}
+  .row{grid-template-columns:minmax(0,1fr) minmax(105px,42%)}
+  .addRow{flex-wrap:wrap}
+  .addRow>input,.addRow>select:first-child{min-width:180px;flex:1}
+  .atkLine{align-items:flex-end}
+  .atkLine .alName{flex-basis:calc(100% - 58px)}
+  .sourcesPanel{position:fixed;left:56px;right:8px;top:70px;min-width:0}
+}
 .catBlock{border:1px solid var(--border);border-radius:12px;padding:10px;margin-bottom:10px}
 .catBlock h3{margin:0 0 8px;display:flex;justify-content:space-between;align-items:center}
 .catBlock h3 span.count{font-size:.7rem;color:var(--muted);font-weight:400}
@@ -139,9 +154,8 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 </header>
 
 <div id="entityNotImplementedNote" class="card" style="display:none;border-top-color:var(--red)">
-  <h2 style="color:var(--red)">Not implemented yet</h2>
-  <p style="font-size:.85rem;line-height:1.5">This entity type's own rules (progression, feats, and spell eligibility) aren't built into this calculator yet — it's on the roadmap for the next phase. For now:</p>
-  <p style="font-size:.85rem;line-height:1.5">— A <b>Character</b> or <b>Cohort / Independent Creature</b> uses the normal character rules: <a href="../calc/" style="color:var(--gold2)">open it in the Character Hit&amp;Damage Calculator</a> instead.<br>— <b>Familiar</b>, <b>Eidolon</b> and <b>Phantom</b> are coming in a following update.</p>
+  <h2 style="color:var(--red)">Use the Character Calculator for this creature</h2>
+  <p style="font-size:.85rem;line-height:1.5">A <b>Cohort / Independent Creature</b> uses the normal character rules: <a href="../calc/" style="color:var(--gold2)">open it in the Character Hit&amp;Damage Calculator</a> instead.</p>
 </div>
 
 
@@ -617,7 +631,7 @@ const MODIFIERS = [
 {id:'animal-growth',name:'Animal Growth',category:'spell',source:'Core Rulebook (Druid 5th / Ranger 4th)',appliesTo:['attack','damage'],type:'size',
  entityScopes:['animal-companion','mount'],
  configFields:[{key:'value',label:'Str size bonus',type:'number',default:8}],
- desc:'Touch spell — the target animal grows one size category (an ACTUAL size increase): +8 size bonus to Strength (below), -1 size penalty on attack rolls from growing (applied automatically, always — not tied to which ability is selected above), +4 size bonus to Constitution and -2 size penalty to Dexterity (not modeled here, ability-score-only effect), +2 natural armor (not modeled here). Assumes growing exactly ONE size category (the common case) — adjust by hand for a different starting size. Does NOT stack with another casting of itself (same actual-size-increase effect), but per the PF1e FAQ ("Size increases and effective size increases") it DOES stack with an effective size increase like Strong Jaw (one of each category). While active, every attack line\'s Damage Die above is shown one size step larger (three if Strong Jaw is also active).',
+ desc:'Touch spell — the target animal grows one size category (an ACTUAL size increase): +8 size bonus to Strength, +4 size bonus to Constitution and -2 size penalty to Dexterity (all applied automatically to ability-based attack/damage math), plus a -1 size penalty on attack rolls (also automatic and independent of the selected attack ability). The +2 natural armor is outside this calculator. Assumes growing exactly ONE size category (the common case) — adjust by hand for a different starting size. Does NOT stack with another casting of itself (same actual-size-increase effect), but per the PF1e FAQ ("Size increases and effective size increases") it DOES stack with an effective size increase like Strong Jaw (one of each category). While active, eligible melee attack Damage Dice are shown one size step larger (three if Strong Jaw is also active on a natural attack).',
  compute:(ctx,cfg)=>{let r=abilityBuffBonus(ctx,'str',cfg.value!==undefined?cfg.value:8);let atk=r.attack-1;return {attack:atk,damage:r.damage,note:signed(atk)+' atk ('+(r.attack?('+'+r.attack+' size from Strength, -1 size penalty from growing'):'-1 size penalty from growing, no Strength effect since Strength isn\'t the selected attack ability above')+') / '+signed(r.damage)+' dmg'}}},
 {id:'heroism',name:'Heroism',category:'spell',source:'Core Rulebook (3rd)',appliesTo:['attack'],type:'morale',
  desc:'+2 morale bonus on attack rolls (also on saves and skill checks, not modeled here).',
@@ -1403,7 +1417,8 @@ const ATTACK_PRESETS={
 };
 Object.entries(ATTACK_PRESETS).forEach(([key,preset])=>{let o=document.createElement('option');o.value=key;o.textContent=preset.label;$('attackPreset').appendChild(o);});
 function abilitySelectHtml(cls,current){
-  return `<select class="${cls}">`+ABILITY_OPTS.map(([v,l])=>`<option value="${v}"${current===v?' selected':''}>${l}</option>`).join('')+'</select>';
+  let label=cls==='alHitAbility'?'Ability used for attack roll':'Ability used for damage roll';
+  return `<select class="${cls}" aria-label="${label}">`+ABILITY_OPTS.map(([v,l])=>`<option value="${v}"${current===v?' selected':''}>${l}</option>`).join('')+'</select>';
 }
 function renderAttackLines(){
   let p=currentProfile();
@@ -1413,36 +1428,36 @@ function renderAttackLines(){
     let div=document.createElement('div'); div.className='atkLine';
     let multIsPreset=DMG_MULT_OPTS.includes(+line.dmgAbilityMult);
     div.innerHTML=`
-      <input class="alName" list="natAttackNames" placeholder="Name (e.g. Claw)" value="${(line.name||'').replace(/"/g,'&quot;')}" title="Free name — Bite, Claw, Tail Slap, Web, Spit...">
-      <input class="alQty" type="number" min="1" value="${line.qty||1}" style="width:44px" title="Quantity (e.g. 2 for a pair of claws) — shown as one line, but ×N in the results">
-      <select class="alType" title="Attack type">${ATK_TYPE_OPTS.map(([v,l])=>`<option value="${v}"${line.atkType===v?' selected':''}>${l}</option>`).join('')}</select>
-      <select class="alMode" title="Primary/Secondary">
+      <input class="alName" list="natAttackNames" placeholder="Name (e.g. Claw)" value="${(line.name||'').replace(/"/g,'&quot;')}" title="Free name — Bite, Claw, Tail Slap, Web, Spit..." aria-label="Attack name">
+      <input class="alQty" type="number" min="1" value="${line.qty||1}" style="width:44px" title="Quantity (e.g. 2 for a pair of claws) — shown as one line, but ×N in the results" aria-label="Attack quantity">
+      <select class="alType" title="Attack type" aria-label="Attack type">${ATK_TYPE_OPTS.map(([v,l])=>`<option value="${v}"${line.atkType===v?' selected':''}>${l}</option>`).join('')}</select>
+      <select class="alMode" title="Primary/Secondary" aria-label="Primary or secondary attack">
         <option value="primary"${(line.mode||'primary')==='primary'?' selected':''}>Primary</option>
         <option value="secondary"${line.mode==='secondary'?' selected':''}>Secondary</option>
         <option value="other"${line.mode==='other'?' selected':''}>Other</option>
       </select>
-      <input class="alDie" placeholder="Die (1d4)" value="${line.die||''}" title="Base damage dice">
-      <input class="alThreat" placeholder="Threat" value="${line.threat||'20'}" title="Threat range, e.g. 20 or 19–20">
-      <select class="alCrit" title="Critical multiplier">
+      <input class="alDie" placeholder="Die (1d4)" value="${line.die||''}" title="Base damage dice" aria-label="Base damage dice">
+      <input class="alThreat" placeholder="Threat" value="${line.threat||'20'}" title="Threat range, e.g. 20 or 19–20" aria-label="Critical threat range">
+      <select class="alCrit" title="Critical multiplier" aria-label="Critical multiplier">
         <option value="2"${(line.critMult||2)==2?' selected':''}>×2</option>
         <option value="3"${line.critMult==3?' selected':''}>×3</option>
         <option value="4"${line.critMult==4?' selected':''}>×4</option>
       </select>
-      <input class="alAtk" type="number" placeholder="Base hit" value="${line.atkBonus||0}" title="Base To-Hit before ability mod and active effects" style="width:64px">
+      <input class="alAtk" type="number" placeholder="Base hit" value="${line.atkBonus||0}" title="Base To-Hit before ability mod and active effects" aria-label="Base to-hit" style="width:64px">
       <label style="font-size:.68rem;color:var(--muted)">Hit:${abilitySelectHtml('alHitAbility',line.hitAbility||'str')}</label>
       <label style="font-size:.68rem;color:var(--muted)">Dmg:${abilitySelectHtml('alDmgAbility',line.dmgAbility||'str')}</label>
-      <select class="alDmgMult" title="Ability-to-damage multiplier">
+      <select class="alDmgMult" title="Ability-to-damage multiplier" aria-label="Ability-to-damage multiplier">
         ${DMG_MULT_OPTS.map(v=>`<option value="${v}"${multIsPreset&&+line.dmgAbilityMult===v?' selected':''}>×${v}</option>`).join('')}
         <option value="custom"${!multIsPreset?' selected':''}>Custom</option>
       </select>
       ${!multIsPreset?`<input class="alDmgMultCustom" type="number" step="0.1" value="${line.dmgAbilityMult!==undefined?line.dmgAbilityMult:1}" style="width:52px" title="Custom ability-to-damage multiplier">`:''}
-      <input class="alBaseDmg" type="number" value="${line.baseDamageBonus||0}" style="width:64px" title="Base fixed damage before ability, enhancement and active effects" placeholder="Base dmg">
-      <input class="alDmgType" value="${(line.damageType||'').replace(/"/g,'&quot;')}" style="width:110px" title="Base damage type, e.g. slashing, piercing, fire" placeholder="Damage type">
-      <input class="alEnh" type="number" value="${line.enhancement||0}" style="width:48px" title="Enhancement bonus (attack &amp; damage)">
-      <input class="alRange" placeholder="Range" value="${(line.range||'').replace(/"/g,'&quot;')}" style="width:70px" title="Range, if applicable (e.g. 50 ft.)">
-      <input class="alExtra" placeholder="Special note" value="${(line.extra||'').replace(/"/g,'&quot;')}" style="width:150px" title="Free text — e.g. entangled, poison DC 15">
-      <input class="alExtraDice" placeholder="Extra dice" value="${(line.extraDice||'').replace(/"/g,'&quot;')}" style="width:72px" title="Structured extra damage dice, e.g. 1d6">
-      <input class="alExtraDmgType" placeholder="Extra type" value="${(line.extraDamageType||'').replace(/"/g,'&quot;')}" style="width:90px" title="Type for the extra dice, e.g. fire">
+      <input class="alBaseDmg" type="number" value="${line.baseDamageBonus||0}" style="width:64px" title="Base fixed damage before ability, enhancement and active effects" placeholder="Base dmg" aria-label="Base fixed damage">
+      <input class="alDmgType" value="${(line.damageType||'').replace(/"/g,'&quot;')}" style="width:110px" title="Base damage type, e.g. slashing, piercing, fire" placeholder="Damage type" aria-label="Base damage type">
+      <input class="alEnh" type="number" value="${line.enhancement||0}" style="width:48px" title="Enhancement bonus (attack &amp; damage)" aria-label="Enhancement bonus">
+      <input class="alRange" placeholder="Range" value="${(line.range||'').replace(/"/g,'&quot;')}" style="width:70px" title="Range, if applicable (e.g. 50 ft.)" aria-label="Attack range">
+      <input class="alExtra" placeholder="Special note" value="${(line.extra||'').replace(/"/g,'&quot;')}" style="width:150px" title="Free text — e.g. entangled, poison DC 15" aria-label="Special attack note">
+      <input class="alExtraDice" placeholder="Extra dice" value="${(line.extraDice||'').replace(/"/g,'&quot;')}" style="width:72px" title="Structured extra damage dice, e.g. 1d6" aria-label="Extra damage dice">
+      <input class="alExtraDmgType" placeholder="Extra type" value="${(line.extraDamageType||'').replace(/"/g,'&quot;')}" style="width:90px" title="Type for the extra dice, e.g. fire" aria-label="Extra damage type">
       <label style="font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:3px"><input class="alExtraCrit" type="checkbox" style="width:auto"${line.extraDiceMultipliesOnCrit?' checked':''}> Extra dice multiply on crit</label>
       <label style="font-size:.68rem;color:var(--muted)">Hit adj<input class="alManHit" type="number" value="${line.manualHitAdj||0}" style="width:44px"></label>
       <label style="font-size:.68rem;color:var(--muted)">Dmg adj<input class="alManDmg" type="number" value="${line.manualDmgAdj||0}" style="width:44px"></label>
@@ -2530,7 +2545,13 @@ function renderCategories(){
     let block=document.createElement('div'); block.className='catBlock';
     let activeInCat=p.active.filter(a=>{ let m=MODIFIERS.find(x=>x.id===a.id); return m && m.category===cat.k; });
     let customInCat=p.custom.filter(c=>c.category===cat.k && customEffectAppliesToCurrentEntity(c,p));
-    block.innerHTML=`<h3>${cat.label} <span class="count">${activeInCat.length+customInCat.length} active</span></h3>`;
+    let activeCount=activeInCat.filter(a=>{
+      let m=MODIFIERS.find(x=>x.id===a.id);
+      return a.on!==false && modifierAppliesToCurrentEntity(m,p);
+    }).length + customInCat.filter(c=>c.on!==false && c.category!=='mythic' && customEffectMeetsRuntimeRequirements(c,p)).length;
+    let savedCount=activeInCat.length+customInCat.length;
+    let countText=activeCount+' active'+(savedCount!==activeCount?' / '+savedCount+' saved':'');
+    block.innerHTML=`<h3>${cat.label} <span class="count">${countText}</span></h3>`;
     let addRow=document.createElement('div'); addRow.className='addRow';
     let listId='dl_'+cat.k;
     addRow.innerHTML=`<input list="${listId}" placeholder="Search ${cat.label.toLowerCase()} to add..." id="add_${cat.k}"><datalist id="${listId}"></datalist><button data-cat="${cat.k}" class="addBtn">Add</button><button data-cat="${cat.k}" class="addCustomBtn">+ Custom</button>`;
