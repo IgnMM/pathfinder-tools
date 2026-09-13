@@ -842,6 +842,13 @@ function powerAttackDamage(ctx, slot='main'){
   let multiplier=ctx.style==='twoHanded' ? 1.5 : (ctx.style==='twf' && slot==='off' ? 0.5 : 1);
   return roundFrac(perStep*step*multiplier);
 }
+// A flat bonus that normally multiplies on a critical is also multiplied by Mythic
+// Vital Strike. If both multipliers apply, PF1e combines them additively: x2 and x2
+// become x3, not x4.
+function vitalStrikeFlatMultiplier(vsMult,critMult,mythicVitalStrikeOn,isCritical){
+  let vsFlatMult=(vsMult && mythicVitalStrikeOn) ? vsMult : 1;
+  return isCritical ? vsFlatMult+critMult-1 : vsFlatMult;
+}
 function resolveAbilityComposites(ctx, atkArr, dmgArr, breakdownArr, slot){
   let entries = ctx._abilitySink;
   if(!entries || !entries.length) return;
@@ -5132,7 +5139,13 @@ function compute(){
       critDmgVS = (dmgVS-powerAttackDmgValVS)*critMult + powerAttackDmgValVS;
     }
   } else if(ctx.mythicPowerAttackOn && powerAttackOn && powerAttackDmgVal){
-    critDmgVS += powerAttackDmgValVS*critMult;
+    // Mythic Power Attack's exceptional critical-only copy is based on the original
+    // Power Attack bonus, then multiplied by the weapon critical multiplier. The
+    // ordinary copy already present in critDmgVS has received the additive Mythic
+    // Vital Strike + critical multiplier. Scaling this extra copy by vsMult again
+    // would count Mythic Vital Strike twice (x2 VS + x2 crit became seven copies of
+    // PA instead of the correct five).
+    critDmgVS += powerAttackDmgVal*critMult;
   }
   if(shiningBeaconOn) critDmgVS += critMult;
 
@@ -5145,8 +5158,12 @@ function compute(){
   // Same combo, but for a Vital Strike attack instead of a normal one -- built from
   // dmgVS/critDmgVS (the Vital Strike figures) the same way the pair above is built
   // from dmg/critDmg.
-  let vsSmiteFirstDmg = (smiteEvilOn && smiteDoubles && vsMult) ? dmgVS + smiteDmgVal : null;
-  let vsSmiteFirstCritDmg = (smiteEvilOn && smiteDoubles && vsMult) ? critDmgVS + smiteDmgVal*critMult : null;
+  let vsSmiteFirstDmg = (smiteEvilOn && smiteDoubles && vsMult)
+    ? dmgVS + smiteDmgVal*vitalStrikeFlatMultiplier(vsMult,critMult,mythicVitalStrikeOn,false)
+    : null;
+  let vsSmiteFirstCritDmg = (smiteEvilOn && smiteDoubles && vsMult)
+    ? critDmgVS + smiteDmgVal*vitalStrikeFlatMultiplier(vsMult,critMult,mythicVitalStrikeOn,true)
+    : null;
 
   // dmgNormalDice/dmgCritDiceStr stay the plain, non-Vital-Strike dice string; the
   // Vital-Strike-multiplied version is computed separately as dmgVSDice/dmgVSCritDiceStr
@@ -5254,6 +5271,11 @@ function compute(){
   $('offAtkBox').style.display='none'; $('offDmgBox').style.display='none'; $('offCritBox').style.display='none';
   if(style==='twf' && flurryOfBlowsOn){
     notes.push('Flurry of Blows and Two-Weapon Fighting style are both active — Flurry\'s own progression (above) takes precedence and the Two-Weapon Fighting off-hand math is skipped, since Flurry already grants its own extra attacks. Pick one style for a monk build (Flurry doesn\'t need an off-hand weapon).');
+  } else if(style==='twf' && vsMult){
+    // Vital Strike uses the attack action for one attack. It never grants the off-hand
+    // attack that belongs to a two-weapon full attack, so leave all three off-hand
+    // result boxes hidden just like the main Full Attack row above.
+    notes.push('Vital Strike uses a single attack action — Two-Weapon Fighting off-hand attacks are not available on that action, so the off-hand result rows are hidden.');
   } else if(style==='twf'){
     let offEnh=+$('offEnh').value, offLight=$('offLight').checked;
     let hasTWF = p.active.some(a=>(a.id==='two-weapon-fighting' || a.id==='multiweapon-fighting') && a.on!==false);
@@ -5326,11 +5348,11 @@ function compute(){
   $('singleAtkResults').style.display = weaponCategory==='natural' ? 'none' : 'contents';
   $('naturalAttacksResultBox').style.display = weaponCategory==='natural' ? 'block' : 'none';
   if(weaponCategory==='natural'){
-    renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, totalSizeStepsMain, paNoCritMult, powerAttackOn, vsMult, mythicVitalStrikeOn);
+    renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, extraDiceMain, babList, totalSizeStepsMain, paNoCritMult, powerAttackOn, vsMult, mythicVitalStrikeOn);
   }
 }
 
-function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, sizeSteps, paNoCritMult, powerAttackOn, vsMult, mythicVitalStrikeOn){
+function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, extraDice, babList, sizeSteps, paNoCritMult, powerAttackOn, vsMult, mythicVitalStrikeOn){
   let box=$('naturalAttackResults');
   let lines = p.naturalAttacks||[];
   if(!lines.length){
@@ -5394,13 +5416,15 @@ function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, s
     else if(ctx.mythicPowerAttackOn && powerAttackOn && paDmg) critDmg += paDmg*critMult;
     lineComputed[idx] = {dmg, effDie, critMult, paDmg, atk};
     let critDice = diceMultiply(effDie, critMult);
-    let customDice=(p.custom||[]).filter(c=>c.on!==false&&(c.valueMode==='dice'||c.valueMode==='both'||(!c.valueMode&&c.dice))&&c.dice);
-    let normalDice=effDie;
-    customDice.forEach(c=>{
-      let label=c.dice+(c.diceType?' '+c.diceType:'');
-      normalDice+=' + '+label;
-      critDice+=' + '+(c.diceMultipliesOnCrit?diceMultiply(c.dice,critMult):c.dice)+(c.diceType?' '+c.diceType:'')+(c.diceMultipliesOnCrit?'':' (unmultiplied)');
-    });
+    // Use the same collected dice pipeline as manufactured weapons. This includes
+    // catalog entries (Sneak Attack, Flaming, Bane, Holy, burst properties...) and
+    // custom dice exactly once; the old natural renderer rebuilt only p.custom and
+    // silently dropped every catalog-supplied die.
+    let extraNormal=(extraDice||[]).filter(e=>e.normal).map(e=>e.normal);
+    let extraCritOnly=(extraDice||[]).filter(e=>e.crit).map(e=>e.crit);
+    let normalDice=effDie+(extraNormal.length?' + '+extraNormal.join(' + '):'');
+    let critTerms=extraNormal.concat(extraCritOnly);
+    if(critTerms.length) critDice+=' + '+critTerms.join(' + ');
     let qty=Math.max(1,+line.qty||1);
     let kindLabel = kind==='secondary'?'Secondary':kind==='special'?'Special':'Primary';
     let condTag = line.conditional ? `<span class="typeTag" title="${esc(line.conditionLabel||'Conditional')}">Conditional</span>` : '';
@@ -5439,16 +5463,18 @@ function renderNaturalAttackResults(p, ctx, atkFromMods, dmgFromMods, babList, s
         critDmgVS = (dmgVS-paDmgVS)*critMult + paDmgVS;
       }
     } else if(ctx.mythicPowerAttackOn && powerAttackOn && paDmg){
-      critDmgVS += paDmgVS*critMult;
+      // Same manufactured-weapon rule above: this is Mythic Power Attack's extra
+      // critical-only copy, not another Mythic Vital Strike-scaled copy.
+      critDmgVS += paDmg*critMult;
     }
     let dmgVSDice = diceMultiply(effDie, vsMult);
     let critDice = diceMultiply(effDie, critMult);
     let dmgVSCritDiceStr = critDice + (vsMult>1 ? ' + '+diceMultiply(effDie, vsMult-1)+' (Vital Strike, unmultiplied)' : '');
-    (p.custom||[]).filter(c=>c.on!==false&&(c.valueMode==='dice'||c.valueMode==='both'||(!c.valueMode&&c.dice))&&c.dice).forEach(c=>{
-      let label=c.dice+(c.diceType?' '+c.diceType:'');
-      dmgVSDice+=' + '+label;
-      dmgVSCritDiceStr+=' + '+(c.diceMultipliesOnCrit?diceMultiply(c.dice,critMult):c.dice)+(c.diceType?' '+c.diceType:'')+(c.diceMultipliesOnCrit?'':' (unmultiplied)');
-    });
+    let extraNormal=(extraDice||[]).filter(e=>e.normal).map(e=>e.normal);
+    let extraCritOnly=(extraDice||[]).filter(e=>e.crit).map(e=>e.crit);
+    if(extraNormal.length) dmgVSDice+=' + '+extraNormal.join(' + ');
+    let critTerms=extraNormal.concat(extraCritOnly);
+    if(critTerms.length) dmgVSCritDiceStr+=' + '+critTerms.join(' + ');
     vsBox.style.display='block';
     vsBox.innerHTML=`<div class="small">Vital Strike — ${esc(line.name||'Attack')} <span style="font-weight:400">(single attack-action only; Full Attack above no longer applies this turn)</span></div>
       <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:4px">

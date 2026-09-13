@@ -70,3 +70,47 @@ test('natural attack lines resolve their own final attack and damage abilities',
   assert.match(html,/ctx\._finalAbilityMods\[atkAbility\].*baseAtkAbilityMod/);
   assert.match(html,/ctx\._finalAbilityMods\[dmgAbility\].*baseDmgMod/);
 });
+
+test('Mythic Vital Strike scales the doubled first-hit Smite bonus',()=>{
+  const context={};
+  vm.createContext(context);
+  vm.runInContext(extractFunction('vitalStrikeFlatMultiplier','resolveAbilityComposites'),context);
+  assert.equal(context.vitalStrikeFlatMultiplier(2,2,true,false),2);
+  assert.equal(context.vitalStrikeFlatMultiplier(2,2,true,true),3);
+  assert.equal(context.vitalStrikeFlatMultiplier(3,3,true,true),5);
+  assert.equal(context.vitalStrikeFlatMultiplier(2,3,false,true),3);
+  assert.match(html,/smiteDmgVal\*vitalStrikeFlatMultiplier\(vsMult,critMult,mythicVitalStrikeOn,false\)/);
+  assert.match(html,/smiteDmgVal\*vitalStrikeFlatMultiplier\(vsMult,critMult,mythicVitalStrikeOn,true\)/);
+});
+
+test('Mythic Power Attack critical extra is not scaled by Mythic Vital Strike twice',()=>{
+  assert.match(html,/critDmgVS \+= powerAttackDmgVal\*critMult;/);
+  assert.doesNotMatch(html,/critDmgVS \+= powerAttackDmgValVS\*critMult;/);
+  assert.match(html,/critDmgVS \+= paDmg\*critMult;/);
+  assert.doesNotMatch(html,/critDmgVS \+= paDmgVS\*critMult;/);
+
+  // PA 9 with Mythic VS x2 and a x2 critical: ordinary combined multiplier x3,
+  // plus Mythic Power Attack's exceptional critical copy x2 = five copies, not seven.
+  const powerAttack=9;
+  const combinedVitalAndCrit=2+2-1;
+  assert.equal(powerAttack*combinedVitalAndCrit + powerAttack*2,45);
+});
+
+test('natural attacks render catalog and custom extra dice through the shared pipeline',()=>{
+  assert.match(html,/renderNaturalAttackResults\(p, ctx, atkFromMods, dmgFromMods, extraDiceMain,/);
+  const start=html.indexOf('function renderNaturalAttackResults(');
+  const end=html.indexOf('function esc(',start);
+  const naturalRenderer=html.slice(start,end);
+  assert.match(naturalRenderer,/\(extraDice\|\|\[\]\)\.filter\(e=>e\.normal\)/);
+  assert.match(naturalRenderer,/\(extraDice\|\|\[\]\)\.filter\(e=>e\.crit\)/);
+  assert.doesNotMatch(naturalRenderer,/let customDice=/);
+});
+
+test('Vital Strike suppresses Two-Weapon Fighting off-hand results',()=>{
+  assert.match(html,/else if\(style==='twf' && vsMult\)/);
+  assert.match(html,/Vital Strike uses a single attack action/);
+  const hideAt=html.indexOf("$('offAtkBox').style.display='none'");
+  const vsGuardAt=html.indexOf("else if(style==='twf' && vsMult)",hideAt);
+  const showAt=html.indexOf("$('offAtkBox').style.display='block'",vsGuardAt);
+  assert.ok(hideAt>=0 && vsGuardAt>hideAt && showAt>vsGuardAt);
+});
