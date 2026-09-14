@@ -1834,10 +1834,9 @@ function applyMultiattackRule(p, lines, level, bab, size){
     die:source.die, hitAbility:source.hitAbility, dmgAbility:source.dmgAbility, dmgAbilityMult:source.dmgAbilityMult,
     damageType:source.damageType, threat:source.threat||'20', critMult:source.critMult||2, enhancement:source.enhancement||0,
     baseDamageBonus:source.baseDamageBonus||0,
-    // The additional attack is five points below the chosen weapon's normal attack.
-    // A secondary weapon already has its own -5 penalty; this does not grant the
-    // Multiattack feat or erase that penalty.
-    atkBonus:(+source.atkBonus||0)-5
+    // AoN's table gives this additional attack a -5 penalty. That is the attack's
+    // total table penalty, not another -5 layered over a secondary weapon's -5.
+    atkBonus:bab+sizeAttackModifier(size)-5
   });
   let sourceChanged=!existingGranted || existingGranted._extraAttackSourceLineId!==source.lineId;
   if(existingGranted){
@@ -1904,11 +1903,11 @@ function renderMultiattackPicker(ctx){
   let candidates=lines.filter(isQualifyingNaturalAttackLine);
   let ruleName='one of its natural weapons';
   if(!candidates.length){
-    box.innerHTML='<div class="emptyNote">Level '+ctx.level+', '+count+' natural attack'+plural+' (fewer than 3): would gain an extra attack with '+ruleName+' at -5, but there\'s no qualifying natural weapon line to grant it on -- left off. Add a natural melee attack line first if this creature should have one.</div>';
+    box.innerHTML='<div class="emptyNote">Level '+ctx.level+', '+count+' natural attack'+plural+' (fewer than 3): would gain an extra attack with '+ruleName+' at a total -5 penalty, but there\'s no qualifying natural weapon line to grant it on -- left off. Add a natural melee attack line first if this creature should have one.</div>';
     return;
   }
   let granted=lines.find(l=>l.multiattackGranted);
-  let baseNote='Level '+ctx.level+', '+count+' natural attack'+plural+' (fewer than 3): gains an extra attack with '+ruleName+' at -5 relative to that weapon\'s normal attack'+(granted?' (added below as "'+granted.name+'")':'')+' -- a secondary weapon retains its own secondary penalty as well. Its damage dice and ability multiplier follow whichever weapon is chosen below.';
+  let baseNote='Level '+ctx.level+', '+count+' natural attack'+plural+' (fewer than 3): gains an extra attack with '+ruleName+' at a total -5 penalty'+(granted?' (added below as "'+granted.name+'")':'')+' -- the full penalty on this attack is -5, whether the chosen weapon is normally primary or secondary. Its damage dice and ability multiplier follow whichever weapon is chosen below.';
   if(candidates.length===1){
     box.innerHTML='<div class="emptyNote">'+baseNote+'</div>';
     return;
@@ -3649,5 +3648,6 @@ if("serviceWorker" in navigator){
   } else { showGate(); }
 })();
 </script>
+<script src="../assets/valid-sources.js"></script>
 </body>
 </html>

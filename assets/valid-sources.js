@@ -120,6 +120,23 @@
     }
     document.querySelectorAll('#syncStatus').forEach(el => el.setAttribute('role', 'status'));
 
+    // iOS Safari zooms the viewport when a focused form control renders below
+    // 16px. Preserve compact desktop styling, but use a readable native size on
+    // touch phones and keep fixed UI clear of device safe areas.
+    const mobileStyle = document.createElement('style');
+    mobileStyle.textContent = [
+      '@media(max-width:900px){',
+      '.wrap{padding-left:7px!important;padding-right:7px!important}',
+      'a[title="The Sanctum"],button[title="Back"],#sanctumLogout{top:max(10px,env(safe-area-inset-top))!important}',
+      '#syncGate{padding-bottom:calc(26px + env(safe-area-inset-bottom))!important}',
+      'body{padding-bottom:env(safe-area-inset-bottom)}',
+      '}',
+      '@media(max-width:900px) and (hover:none) and (pointer:coarse){',
+      'input,select,textarea{font-size:16px!important}',
+      '}',
+    ].join('');
+    document.head.appendChild(mobileStyle);
+
     const legacySidePadding = [...document.querySelectorAll('style')].some(style =>
       /@media\(max-width:900px\)\{header,main\{padding-left:(?:60|110)px !important\}\}/.test(style.textContent)
     );

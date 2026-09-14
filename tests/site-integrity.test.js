@@ -60,6 +60,9 @@ test('shared UI baseline covers generated account screens and mobile navigation'
   assert.match(sharedUi, /gatePin\.setAttribute\('aria-label', 'PIN'\)/);
   assert.match(sharedUi, /querySelectorAll\('#syncStatus'\)/);
   assert.match(sharedUi, /header\{padding-top:60px!important\}header,main\{padding-left:7px!important\}/);
+  assert.match(sharedUi, /input,select,textarea\{font-size:16px!important\}/);
+  assert.match(sharedUi, /env\(safe-area-inset-top\)/);
+  assert.match(sharedUi, /env\(safe-area-inset-bottom\)/);
   for (const file of htmlFiles) {
     const html = fs.readFileSync(file, 'utf8');
     if (html.includes('id="gateUser"') || html.includes('id="syncStatus"')) {
@@ -67,5 +70,19 @@ test('shared UI baseline covers generated account screens and mobile navigation'
         (!html.includes('id="syncStatus"') || /id="syncStatus"[^>]*role="status"|role="status"[^>]*id="syncStatus"/.test(html));
       assert.ok(inlineBaseline || /assets\/valid-sources\.js/.test(html), file);
     }
+  }
+});
+
+test('primary application screens load the shared iPhone UI baseline', () => {
+  for (const relative of [
+    'index.html',
+    'hub.html',
+    'character/index.html',
+    'character/view.html',
+    'calc/index.html',
+    'companion/index.html'
+  ]) {
+    const html = fs.readFileSync(path.join(root, relative), 'utf8');
+    assert.match(html, /assets\/valid-sources\.js/, relative);
   }
 });

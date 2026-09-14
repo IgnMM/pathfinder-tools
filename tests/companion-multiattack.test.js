@@ -30,7 +30,7 @@ test('level-9 animal companion may select a secondary natural weapon', () => {
   assert.equal(lines.length, 3);
   assert.equal(lines[2].die, '1d4');
   assert.equal(lines[2].mode, 'secondary');
-  assert.equal(lines[2].atkBonus, -4); // ordinary +1 secondary, then -5 for the extra attack
+  assert.equal(lines[2].atkBonus, 1); // BAB +6, then the table's total -5 penalty
 });
 
 test('the extra attack keeps its identity and adjustments across recomputations', () => {
