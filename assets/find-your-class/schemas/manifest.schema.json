@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "find-your-class/manifest.schema.json",
+  "title": "Find Your Class manifest",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schemaVersion", "catalogueId", "catalogueVersion", "status", "entities", "classFiles", "archetypeFiles", "optionFiles", "supportedClassIds"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "system": { "type": "string" },
+    "catalogueId": { "type": "string", "minLength": 1 },
+    "catalogueVersion": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["draft", "needs-review", "reviewed", "disputed", "deprecated"] },
+    "notes": { "type": "array", "items": { "type": "string" } },
+    "entities": {
+      "type": "object",
+      "required": ["criteria", "vocabularies", "questionTemplates", "explanationTemplates"],
+      "properties": {
+        "criteria": { "type": "string" },
+        "vocabularies": { "type": "string" },
+        "questionTemplates": { "type": "string" },
+        "explanationTemplates": { "type": "string" }
+      }
+    },
+    "classFiles": { "type": "array", "items": { "type": "string" } },
+    "archetypeFiles": { "type": "array", "items": { "type": "string" } },
+    "optionFiles": { "type": "array", "items": { "type": "string" } },
+    "evidenceFiles": { "type": "array", "items": { "type": "string" } },
+    "fixtureFiles": { "type": "array", "items": { "type": "string" } },
+    "pilotClassIds": { "type": "array", "items": { "type": "string" } },
+    "supportedClassIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "schemas": { "type": "object" }
+  }
+}

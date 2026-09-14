@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "find-your-class/explanations.schema.json",
+  "title": "Find Your Class explanation fragments and evidence records",
+  "type": "object",
+  "required": ["schemaVersion"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "status": { "type": "string" },
+    "notes": { "type": "array", "items": { "type": "string" } },
+    "fragments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "text", "reviewStatus"],
+        "properties": {
+          "id": { "type": "string" },
+          "kind": { "type": "string", "enum": ["identity", "strength", "tradeoff", "experience", "compare-cue"] },
+          "text": { "type": "string", "minLength": 1 },
+          "applicabilityConditions": { "type": "array", "items": { "type": "string" } },
+          "evidenceRefs": { "type": "array", "items": { "type": "string" } },
+          "reviewStatus": { "type": "string", "enum": ["draft", "needs-review", "reviewed", "disputed", "deprecated"] }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "claim", "sourceRefs", "reviewStatus"],
+        "properties": {
+          "id": { "type": "string" },
+          "claim": { "type": "string", "minLength": 1 },
+          "sourceRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "reviewStatus": { "type": "string", "enum": ["draft", "needs-review", "reviewed", "disputed", "deprecated"] },
+          "reviewedAt": { "type": ["string", "null"] },
+          "reviewNotes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

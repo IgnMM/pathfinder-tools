@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "system": "Pathfinder 1e",
+  "catalogueId": "find-your-class-pilot",
+  "catalogueVersion": "0.0.1-draft",
+  "status": "draft",
+  "notes": [
+    "Scaffold phase (implementation order step 1: data schemas and manifest loader). No class, archetype or option records are loaded yet -- classFiles/archetypeFiles/optionFiles are intentionally empty until the small fixture catalogue phase (one base class plus two archetypes).",
+    "supportedClassIds is deliberately NOT frozen to current Spellbook/Library folder prefixes (Find_Your_Class_Product_Architecture_v1.md section 17): it is the pilot's own class list, versioned with this manifest, extended by later catalogue versions rather than a schema migration.",
+    "See finder/Find_Your_Class_Pilot_Blueprint_v1.md and finder/Find_Your_Class_Product_Architecture_v1.md for the full product/data specification this scaffold implements."
+  ],
+  "entities": {
+    "criteria": "criteria.json",
+    "vocabularies": "vocabularies.json",
+    "questionTemplates": "question-templates.json",
+    "explanationTemplates": "explanation-templates.json"
+  },
+  "classFiles": [],
+  "archetypeFiles": [],
+  "optionFiles": [],
+  "evidenceFiles": [],
+  "fixtureFiles": [],
+  "pilotClassIds": ["fighter", "rogue", "sorcerer", "druid", "magus"],
+  "supportedClassIds": ["fighter", "rogue", "sorcerer", "druid", "magus"],
+  "schemas": {
+    "manifest": "schemas/manifest.schema.json",
+    "criteria": "schemas/criteria.schema.json",
+    "catalogue": "schemas/catalogue.schema.json",
+    "questions": "schemas/questions.schema.json",
+    "explanations": "schemas/explanations.schema.json"
+  }
+}

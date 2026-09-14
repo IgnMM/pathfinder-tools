@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "status": "draft",
+  "notes": [
+    "Prompts and answer choices are transcribed verbatim from Find_Your_Class_Pilot_Blueprint_v1.md section 8 (Q1-Q12). criteriaClarified and each answer's mutation direction are a first structural mapping onto assets/find-your-class/criteria.json -- the blueprint specifies player-facing wording and intent, not exact numeric mutation payloads, so mutations here are qualitative (criterionId + direction/desiredPosition) pending Codex's numeric calibration. Section 9's discriminator list (Fighter vs Magus, Sorcerer vs Druid, etc.) is separate adaptive-selection logic, not part of this static template file.",
+    "allowNotRelevant is true for every question per the blueprint's own answer lists, which each include a literal 'Not relevant' option except Q10 (campaign levels, which has no Not relevant option in the blueprint)."
+  ],
+  "questions": [
+    {
+      "id": "q-martial-magic-centre",
+      "prompt": "What should make your character feel powerful?",
+      "criteriaClarified": ["martial-magic"],
+      "allowNotRelevant": true,
+      "estimatedCognitiveCost": 1,
+      "priority": 10,
+      "answers": [
+        { "label": "Mastering weapons and physical technique.", "mutations": [{ "criterionId": "martial-magic", "desiredPosition": 1 }] },
+        { "label": "Combining weapons and magic.", "mutations": [{ "criterionId": "martial-magic", "desiredPosition": 5.5 }] },
+        { "label": "Having magic for almost every problem.", "mutations": [{ "criterionId": "martial-magic", "desiredPosition": 10 }] },
+        { "label": "I am open to any of these.", "mutations": [] },
+        { "label": "Not relevant.", "mutations": [{ "criterionId": "martial-magic", "notRelevant": true }] }
+      ]
+    },
+    {
+      "id": "q-melee-ranged",
+      "prompt": "Where do you want to spend most fights?",
+      "criteriaClarified": ["melee-ranged"],
+      "allowNotRelevant": true,
+      "estimatedCognitiveCost": 1,
+      "priority": 10,
+      "answers": [
+        { "label": "In the middle of melee.", "mutations": [{ "criterionId": "melee-ranged", "desiredPosition": 1 }] },
+        { "label": "Moving between close and medium range.", "mutations": [{ "criterionId": "melee-ranged", "desiredPosition": 5.5 }] },
+        { "label": "Safely at range.", "mutations": [{ "criterionId": "melee-ranged", "desiredPosition": 10 }] },
+        { "label": "I want to switch depending on the encounter.", "mutations": [] },
+        { "label": "Not relevant.", "mutations": [{ "criterionId": "melee-ranged", "notRelevant": true }] }
+      ]
+    },
+    {
+      "id": "q-preparation",
+      "prompt": "How do you feel about choosing spells or abilities before the adventuring day begins?",
+      "criteriaClarified": ["no-heavy-preparation"],
+      "allowNotRelevant": true,
+      "estimatedCognitiveCost": 1,
+      "priority": 8,
+      "answers": [
+        { "label": "I would rather avoid it.", "mutations": [{ "criterionId": "no-heavy-preparation", "desiredPosition": 1 }] },
+        { "label": "A little preparation is fine.", "mutations": [{ "criterionId": "no-heavy-preparation", "desiredPosition": 5.5 }] },
+        { "label": "I enjoy preparing the right tools.", "mutations": [{ "criterionId": "no-heavy-preparation", "desiredPosition": 10 }] },
+        { "label": "Not relevant.", "mutations": [{ "criterionId": "no-heavy-preparation", "notRelevant": true }] }
+      ]
+    },
+    {
+      "id": "q-turn-complexity",
+      "prompt": "What kind of combat turns sound enjoyable?",
+      "criteriaClarified": ["routine-tactical", "turn-complexity"],
+      "allowNotRelevant": true,
+      "estimatedCognitiveCost": 1,
+      "priority": 8,
+      "answers": [
+        { "label": "A reliable plan I can execute quickly.", "mutations": [{ "criterionId": "routine-tactical", "desiredPosition": 1 }, { "criterionId": "turn-complexity", "desiredPosition": 1 }] },
+        { "label": "A few strong choices without too much bookkeeping.", "mutations": [{ "criterionId": "routine-tactical", "desiredPosition": 5.5 }, { "criterionId": "turn-complexity", "desiredPosition": 5.5 }] },
+        { "label": "Many tactical choices and interacting abilities.", "mutations": [{ "criterionId": "routine-tactical", "desiredPosition": 10 }, { "criterionId": "turn-complexity", "desiredPosition": 10 }] },
+        { "label": "Not relevant.", "mutations": [{ "criterionId": "routine-tactical", "notRelevant": true }, { "criterionId": "turn-complexity", "notRelevant": true }] }
+      ]
+    },
+    {
+      "id": "q-companion-burden",
+      "prompt": "Would you enjoy controlling another creature?",
+      "criteriaClarified": ["none-central-companion", "extra-entity-burden"],
+      "allowNotRelevant": true,
+      "estimatedCognitiveCost": 1,
+      "priority": 9,
+      "answers": [
+        { "label": "No; I want to manage only my own character.", "mutations": [{ "criterionId": "none-central-companion", "desiredPosition": 1 }] },
+        { "label": "A simple familiar or occasional summon is fine.", "mutations": [{ "criterionId": "none-central-companion", "desiredPosition": 4 }] },
+        { "label": "I want a meaningful animal companion or similar partner.", "mutations": [{ "criterionId": "none-central-companion", "desiredPosition": 8 }] },
+        { "label": "Managing several creatures sounds fun.", "mutations": [{ "criterionId": "none-central-companion", "desiredPosition": 10 }, { "criterionId": "extra-entity-burden", "desiredPosition": 10 }] },
+        { "label": "Not relevant.", "mutations": [{ "criterionId": "none-central-companion", "notRelevant": true }] }
+      ]
+    },
+    {
+      "id": "q-outside-combat",
+      "prompt": "What would you most like to contribute outside combat?",
+      "criteriaClarified": ["stealth-infiltration", "social-influence", "knowledge-investigation", "wilderness"],
+      "allowNotRelevant": true,
+      "estimatedCognitiveCost": 2,
+      "priority": 7,
+      "multiSelect": true,
+      "answers": [
+        { "label": "Stealth, traps and infiltration.", "mutations": [{ "criterionId": "stealth-infiltration", "importanceHint": "high" }] },
+        { "label": "Conversation, deception or intimidation.", "mutations": [{ "criterionId": "social-influence", "importanceHint": "high" }] },
+        { "label": "Knowledge, investigation and magical answers.", "mutations": [{ "criterionId": "knowledge-investigation", "importanceHint": "high" }] },
+        { "label": "Wilderness and exploration.", "mutations": [{ "criterionId": "wilderness", "importanceHint": "high" }] },
+        { "label": "Combat is my main priority.", "mutations": [] },
+        { "label": "Choose several.", "mutations": [] },
+        { "label": "Not relevant.", "mutations": [] }
+      ]
+    },
+    {
+      "id": "q-battlefield-impact",
+      "prompt": "When combat starts, what sounds most satisfying?",
+      "criteriaClarified": ["single-target-damage", "area-damage", "crowd-control", "ally-buffing"],
+      "allowNotRelevant": true,
+      "estimatedCognitiveCost": 1,
+      "priority": 8,
+      "answers": [
+        { "label": "Bringing down one dangerous enemy.", "mutations": [{ "criterionId": "single-target-damage", "importanceHint": "high" }] },
+        { "label": "Damaging several enemies at once.", "mutations": [{ "criterionId": "area-damage", "importanceHint": "high" }] },
+        { "label": "Controlling where enemies can move or act.", "mutations": [{ "criterionId": "crowd-control", "importanceHint": "high" }] },
+        { "label": "Making allies stronger or safer.", "mutations": [{ "criterionId": "ally-buffing", "importanceHint": "high" }] },
+        { "label": "Adapting to whatever the fight needs.", "mutations": [{ "criterionId": "specialist-versatile", "desiredPosition": 10 }] },
+        { "label": "Not relevant.", "mutations": [] }
+      ]
+    },
+    {
+      "id": "q-durability",
+      "prompt": "How much danger do you want your character to withstand directly?",
+      "criteriaClarified": ["personal-durability", "protect-allies"],
+      "allowNotRelevant": true,
+      "estimatedCognitiveCost": 1,
+      "priority": 7,
+      "answers": [
+        { "label": "I am comfortable relying on positioning and avoiding attacks.", "mutations": [{ "criterionId": "personal-durability", "desiredPosition": 1 }] },
+        { "label": "I want reasonable protection if enemies reach me.", "mutations": [{ "criterionId": "personal-durability", "desiredPosition": 5.5 }] },
+        { "label": "I want to be difficult to bring down.", "mutations": [{ "criterionId": "personal-durability", "desiredPosition": 9 }] },
+        { "label": "I want to stand between enemies and my allies.", "mutations": [{ "criterionId": "protect-allies", "importanceHint": "high" }] },
+        { "label": "Not relevant.", "mutations": [{ "criterionId": "personal-durability", "notRelevant": true }] }
+      ]
+    },
+    {
+      "id": "q-specialisation",
+      "prompt": "Would you rather perfect one plan or keep many answers available?",
+      "criteriaClarified": ["specialist-versatile"],
+      "allowNotRelevant": true,
+      "estimatedCognitiveCost": 1,
+      "priority": 6,
+      "answers": [
+        { "label": "Perfect one distinctive style.", "mutations": [{ "criterionId": "specialist-versatile", "desiredPosition": 1 }] },
+        { "label": "Have a main plan plus alternatives.", "mutations": [{ "criterionId": "specialist-versatile", "desiredPosition": 5.5 }] },
+        { "label": "Keep the broadest possible toolkit.", "mutations": [{ "criterionId": "specialist-versatile", "desiredPosition": 10 }] },
+        { "label": "Not relevant.", "mutations": [{ "criterionId": "specialist-versatile", "notRelevant": true }] }
+      ]
+    },
+    {
+      "id": "q-campaign-levels",
+      "prompt": "When does this character need to feel complete?",
+      "criteriaClarified": [],
+      "allowNotRelevant": false,
+      "estimatedCognitiveCost": 1,
+      "priority": 5,
+      "notes": ["Writes campaignContext.startingLevel/expectedEndLevel, not a scored criterion -- see Find_Your_Class_Product_Architecture_v1.md section 10.6."],
+      "answers": [
+        { "label": "From level 1.", "mutations": [{ "campaignContext": { "startingLevel": 1 } }] },
+        { "label": "Early game, around levels 3-5.", "mutations": [{ "campaignContext": { "startingLevel": 4 } }] },
+        { "label": "I am comfortable waiting until levels 6-10.", "mutations": [{ "campaignContext": { "startingLevel": 8 } }] },
+        { "label": "This is a high-level campaign.", "mutations": [{ "campaignContext": { "startingLevel": 12 } }] },
+        { "label": "I do not know.", "mutations": [] }
+      ]
+    },
+    {
+      "id": "q-resource-rhythm",
+      "prompt": "How do you like to spend limited power?",
+      "criteriaClarified": ["steady-burst", "resource-endurance"],
+      "allowNotRelevant": true,
+      "estimatedCognitiveCost": 1,
+      "priority": 6,
+      "answers": [
+        { "label": "I prefer abilities I can rely on all day.", "mutations": [{ "criterionId": "steady-burst", "desiredPosition": 1 }, { "criterionId": "resource-endurance", "importanceHint": "high" }] },
+        { "label": "I like a steady baseline with a few stronger moments.", "mutations": [{ "criterionId": "steady-burst", "desiredPosition": 5.5 }] },
+        { "label": "I enjoy deciding when to unleash powerful limited resources.", "mutations": [{ "criterionId": "steady-burst", "desiredPosition": 10 }] },
+        { "label": "Not relevant.", "mutations": [{ "criterionId": "steady-burst", "notRelevant": true }] }
+      ]
+    },
+    {
+      "id": "q-character-identity",
+      "prompt": "Which fantasy is closest, even if none is exact?",
+      "criteriaClarified": [],
+      "allowNotRelevant": true,
+      "estimatedCognitiveCost": 2,
+      "priority": 4,
+      "notes": [
+        "Blueprint 8/Q12: present only 4-6 fantasy cards selected from the concept and current shortlist, plus the three fixed options below. Card population is dynamic (drawn from vocabularies.json fantasyTags filtered by the current shortlist), not a fixed answer list -- only the trailing fixed options are static."
+      ],
+      "answers": [
+        { "label": "Show me different ideas.", "mutations": [] },
+        { "label": "None of these.", "mutations": [] },
+        { "label": "Not relevant.", "mutations": [] }
+      ]
+    }
+  ]
+}

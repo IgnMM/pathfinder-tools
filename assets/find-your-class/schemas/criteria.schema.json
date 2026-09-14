@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "find-your-class/criteria.schema.json",
+  "title": "Find Your Class criterion definitions",
+  "type": "object",
+  "required": ["schemaVersion", "criteria"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "status": { "type": "string" },
+    "notes": { "type": "array", "items": { "type": "string" } },
+    "criteria": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/criterion" }
+    }
+  },
+  "$defs": {
+    "anchorPoint": {
+      "type": "object",
+      "required": ["value", "label"],
+      "properties": {
+        "value": { "type": "number" },
+        "label": { "type": ["string", "null"] }
+      }
+    },
+    "criterion": {
+      "type": "object",
+      "required": ["id", "kind", "schemaVersion"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "categoryId": { "type": ["string", "null"] },
+        "kind": { "type": "string", "enum": ["capability", "directional", "categorical", "boolean", "contextual"] },
+        "playerLabel": { "type": ["string", "null"] },
+        "shortLabel": { "type": ["string", "null"] },
+        "helpText": { "type": ["string", "null"] },
+        "lowAnchor": { "$ref": "#/$defs/anchorPoint" },
+        "midAnchor": { "$ref": "#/$defs/anchorPoint" },
+        "highAnchor": { "$ref": "#/$defs/anchorPoint" },
+        "anchors": {
+          "type": ["array", "null"],
+          "items": { "$ref": "#/$defs/anchorPoint" }
+        },
+        "values": { "type": "array", "items": { "type": "string" } },
+        "allowNotRelevant": { "type": "boolean" },
+        "allowHardConstraint": { "type": "boolean" },
+        "searchTerms": { "type": "array", "items": { "type": "string" } },
+        "questionTemplateIds": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string", "enum": ["draft", "needs-anchors", "needs-values", "reviewed-example", "needs-review", "reviewed", "disputed", "deprecated"] },
+        "notes": { "type": "array", "items": { "type": "string" } },
+        "schemaVersion": { "type": "integer", "minimum": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "categorical" } } },
+          "then": { "required": ["values"] }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "directional" } } },
+          "then": { "required": ["lowAnchor", "highAnchor"] }
+        }
+      ]
+    }
+  }
+}

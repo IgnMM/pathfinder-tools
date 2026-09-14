@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "status": "draft",
+  "notes": [
+    "Closed vocabularies referenced by the schemas and loader. reviewStatuses, criterionKinds and preferenceOrigins are transcribed directly from Find_Your_Class_Product_Architecture_v1.md (sections 19, 10.1 and 10.6). operationVocabulary and restrictionTypes are a first proposal implementing section 10.3/10.5's requirement for a closed, validated vocabulary (the docs give examples, not a final enumerated list) -- pending confirmation before any archetype/option delta uses an operation not listed here.",
+    "fantasyTags is transcribed from section 7.1's initial vocabulary; it is explicitly non-exhaustive there and may grow."
+  ],
+  "reviewStatuses": ["draft", "needs-review", "reviewed", "disputed", "deprecated"],
+  "criterionKinds": ["capability", "directional", "categorical", "boolean", "contextual"],
+  "preferenceOrigins": ["explicit", "inferred-unconfirmed", "inferred-confirmed", "adaptive-answer", "default"],
+  "resultRoles": ["best-overall", "different-approach", "more-approachable", "unexpected-fit"],
+  "fitBands": ["excellent", "strong", "worth-considering", "specialised-alternative"],
+  "confidenceStatuses": ["high", "medium", "low"],
+  "restrictionTypes": [
+    "alignment",
+    "deity",
+    "race",
+    "ability-score-minimum",
+    "class-prerequisite",
+    "source-policy"
+  ],
+  "dependencySeverities": ["mild", "moderate", "strong"],
+  "operationVocabulary": [
+    "set-capability",
+    "adjust-capability",
+    "set-directional-position",
+    "add-fantasy-tag",
+    "remove-fantasy-tag",
+    "add-category-value",
+    "remove-category-value",
+    "set-category-values",
+    "add-strength-fragment",
+    "add-tradeoff-fragment",
+    "remove-strength-fragment",
+    "remove-tradeoff-fragment",
+    "add-rules-restriction",
+    "remove-rules-restriction",
+    "add-dependency",
+    "remove-dependency",
+    "set-progression-band",
+    "add-concept-online-entry"
+  ],
+  "entityTypes": ["class", "archetype", "optionFamily", "option"],
+  "fantasyTags": [
+    "holy-champion", "dark-champion", "arcane-scholar", "innate-magical-prodigy",
+    "nature-guardian", "shapeshifter", "cursed-or-forbidden-caster", "monster-hunter",
+    "tactical-commander", "agile-duelist", "armoured-protector", "brutal-front-line-warrior",
+    "magical-warrior", "trickster", "infiltrator", "investigator", "social-manipulator",
+    "inspiring-performer", "healer", "spirit-medium", "summoner", "creature-master",
+    "gunslinger", "alchemical-combatant", "psychic-manipulator", "relic-or-implement-wielder"
+  ]
+}

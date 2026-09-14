@@ -1,0 +1,1026 @@
+{
+  "schemaVersion": 1,
+  "status": "draft",
+  "notes": [
+    "Transcribed from Find_Your_Class_Pilot_Blueprint_v1.md sections 5.1-5.4 (criterion set) and section 6 (anchor examples for crowd-control, personal-durability, social-influence, resource-endurance).",
+    "status:\"needs-anchors\" / \"needs-values\" criteria are transcribed labels only -- their 1/3/5/7/10 anchors or closed value lists are Codex's editorial work per Find_Your_Class_Product_Architecture_v1.md section 18, not yet authored. Do not use these criteria for scoring until anchors/values are reviewed."
+  ],
+  "criteria": [
+    {
+      "id": "melee-ranged",
+      "categoryId": "pilot-directional",
+      "kind": "directional",
+      "playerLabel": "Where do you want to fight?",
+      "shortLabel": "Where do you want to fight?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "In the thick of melee"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Fighting from range"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "martial-magic",
+      "categoryId": "pilot-directional",
+      "kind": "directional",
+      "playerLabel": "What should drive the character?",
+      "shortLabel": "What should drive the character?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Weapon/physical mastery"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Magic is the main answer"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "specialist-versatile",
+      "categoryId": "pilot-directional",
+      "kind": "directional",
+      "playerLabel": "Would you rather specialise or keep many options open?",
+      "shortLabel": "Would you rather specialise or keep many options open?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Focused specialist"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Broad problem solver"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "routine-tactical",
+      "categoryId": "pilot-directional",
+      "kind": "directional",
+      "playerLabel": "What kind of turns do you enjoy?",
+      "shortLabel": "What kind of turns do you enjoy?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Reliable, repeatable routine"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Many situational choices"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "independent-teamwork",
+      "categoryId": "pilot-directional",
+      "kind": "directional",
+      "playerLabel": "How should the character succeed?",
+      "shortLabel": "How should the character succeed?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Self-contained"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Built around ally coordination"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "none-central-companion",
+      "categoryId": "pilot-directional",
+      "kind": "directional",
+      "playerLabel": "How involved should a companion be?",
+      "shortLabel": "How involved should a companion be?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "No companion"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Companion is central"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "no-heavy-preparation",
+      "categoryId": "pilot-directional",
+      "kind": "directional",
+      "playerLabel": "How much preparation do you enjoy?",
+      "shortLabel": "How much preparation do you enjoy?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Little or no daily preparation"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Detailed daily preparation"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "steady-burst",
+      "categoryId": "pilot-directional",
+      "kind": "directional",
+      "playerLabel": "How should power feel?",
+      "shortLabel": "How should power feel?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Steady across the day"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Strong limited bursts"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "safe-risky",
+      "categoryId": "pilot-directional",
+      "kind": "directional",
+      "playerLabel": "How much tactical risk do you enjoy?",
+      "shortLabel": "How much tactical risk do you enjoy?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Forgiving and safe"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "High-risk/high-reward"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "subtle-overt",
+      "categoryId": "pilot-directional",
+      "kind": "directional",
+      "playerLabel": "How should your power appear?",
+      "shortLabel": "How should your power appear?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Subtle, social or indirect"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Obvious battlefield impact"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "single-target-damage",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Bringing down one dangerous enemy",
+      "shortLabel": "Bringing down one dangerous enemy",
+      "helpText": "Reliable contribution against a priority target",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "area-damage",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Damaging groups of enemies",
+      "shortLabel": "Damaging groups of enemies",
+      "helpText": "Meaningful multi-target damage access",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "crowd-control",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Controlling the battlefield",
+      "shortLabel": "Controlling the battlefield",
+      "helpText": "Preventing or limiting enemy actions/positioning",
+      "lowAnchor": {
+        "value": 1,
+        "label": "no meaningful control beyond ordinary attacks."
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "exceptional breadth, progression and encounter-shaping potential."
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": [
+        {
+          "value": 1,
+          "label": "no meaningful control beyond ordinary attacks."
+        },
+        {
+          "value": 3,
+          "label": "a narrow manoeuvre, rare effect or highly situational access."
+        },
+        {
+          "value": 5,
+          "label": "several useful options, but limited breadth or reliability."
+        },
+        {
+          "value": 7,
+          "label": "reliable control can be a primary combat contribution."
+        },
+        {
+          "value": 10,
+          "label": "exceptional breadth, progression and encounter-shaping potential."
+        }
+      ],
+      "status": "reviewed-example",
+      "schemaVersion": 1
+    },
+    {
+      "id": "soft-disruption",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Disrupting enemies without hard control",
+      "shortLabel": "Disrupting enemies without hard control",
+      "helpText": "Penalties, denial, harassment and interference",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ally-buffing",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Making allies stronger",
+      "shortLabel": "Making allies stronger",
+      "helpText": "Improving party offence, defence or action quality",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "healing-recovery",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Restoring the party",
+      "shortLabel": "Restoring the party",
+      "helpText": "In-combat and out-of-combat recovery tools",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "damage-prevention",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Stopping harm before it happens",
+      "shortLabel": "Stopping harm before it happens",
+      "helpText": "Protective magic, denial or mitigation",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "protect-allies",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Standing between danger and the party",
+      "shortLabel": "Standing between danger and the party",
+      "helpText": "Interception, bodyguarding, control or deterrence",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "personal-durability",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Staying on your feet",
+      "shortLabel": "Staying on your feet",
+      "helpText": "HP, armour, defensive features and recovery",
+      "lowAnchor": {
+        "value": 1,
+        "label": "very fragile and strongly dependent on avoiding attention."
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "exceptional layered resilience across common threat types."
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": [
+        {
+          "value": 1,
+          "label": "very fragile and strongly dependent on avoiding attention."
+        },
+        {
+          "value": 3,
+          "label": "limited protection; mistakes are costly."
+        },
+        {
+          "value": 5,
+          "label": "average adventuring durability with reasonable build investment."
+        },
+        {
+          "value": 7,
+          "label": "reliably tough through chassis and class features."
+        },
+        {
+          "value": 10,
+          "label": "exceptional layered resilience across common threat types."
+        }
+      ],
+      "status": "reviewed-example",
+      "schemaVersion": 1
+    },
+    {
+      "id": "mobility",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Moving freely through a fight",
+      "shortLabel": "Moving freely through a fight",
+      "helpText": "Repositioning, charging, teleportation or movement tools",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "stealth-infiltration",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Getting in and out unseen",
+      "shortLabel": "Getting in and out unseen",
+      "helpText": "Stealth, disguise, entry and escape",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "traps-locks",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Handling traps and locks",
+      "shortLabel": "Handling traps and locks",
+      "helpText": "Reliable mechanical/problem-solving access",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "social-influence",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Changing minds",
+      "shortLabel": "Changing minds",
+      "helpText": "Diplomacy, deception, performance or magical influence",
+      "lowAnchor": {
+        "value": 1,
+        "label": "little chassis support and no relevant magical tools."
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "social influence is central and exceptionally well supported."
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": [
+        {
+          "value": 1,
+          "label": "little chassis support and no relevant magical tools."
+        },
+        {
+          "value": 3,
+          "label": "can participate with investment but receives limited support."
+        },
+        {
+          "value": 5,
+          "label": "meaningful skill or ability-score support."
+        },
+        {
+          "value": 7,
+          "label": "reliable face capability with multiple approaches."
+        },
+        {
+          "value": 10,
+          "label": "social influence is central and exceptionally well supported."
+        }
+      ],
+      "status": "reviewed-example",
+      "schemaVersion": 1
+    },
+    {
+      "id": "intimidation",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Winning through fear",
+      "shortLabel": "Winning through fear",
+      "helpText": "Coercion and fear-based combat/social play",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "knowledge-investigation",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Finding the answer",
+      "shortLabel": "Finding the answer",
+      "helpText": "Knowledge, research, identification and investigation",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "wilderness",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Thriving beyond civilisation",
+      "shortLabel": "Thriving beyond civilisation",
+      "helpText": "Tracking, survival and nature interaction",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "magical-utility",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Solving unusual problems with magic",
+      "shortLabel": "Solving unusual problems with magic",
+      "helpText": "Non-combat spell/supernatural breadth",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "summoning-minions",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Bringing additional creatures into play",
+      "shortLabel": "Bringing additional creatures into play",
+      "helpText": "Frequency, quality and centrality of summons/minions",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "combat-manoeuvres",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Moving or disabling enemies physically",
+      "shortLabel": "Moving or disabling enemies physically",
+      "helpText": "Trip, disarm, grapple, reposition and related styles",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "resource-endurance",
+      "categoryId": "pilot-capability",
+      "kind": "capability",
+      "playerLabel": "Remaining useful through a long day",
+      "shortLabel": "Remaining useful through a long day",
+      "helpText": "Performance after limited resources are spent",
+      "lowAnchor": {
+        "value": 1,
+        "label": "loses most signature contribution quickly when daily resources are exhausted."
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "signature contribution is predominantly at-will or extremely sustainable."
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": [
+        {
+          "value": 1,
+          "label": "loses most signature contribution quickly when daily resources are exhausted."
+        },
+        {
+          "value": 3,
+          "label": "strongly resource-limited but retains a modest fallback."
+        },
+        {
+          "value": 5,
+          "label": "limited peaks plus a credible baseline."
+        },
+        {
+          "value": 7,
+          "label": "remains consistently useful through long adventuring days."
+        },
+        {
+          "value": 10,
+          "label": "signature contribution is predominantly at-will or extremely sustainable."
+        }
+      ],
+      "status": "reviewed-example",
+      "schemaVersion": 1
+    },
+    {
+      "id": "build-complexity",
+      "categoryId": "pilot-cognitive-load",
+      "kind": "directional",
+      "playerLabel": null,
+      "shortLabel": "build-complexity",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Few consequential build decisions"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Moderate"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Dense optimisation and interacting choices"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1,
+      "notes": []
+    },
+    {
+      "id": "turn-complexity",
+      "categoryId": "pilot-cognitive-load",
+      "kind": "directional",
+      "playerLabel": null,
+      "shortLabel": "turn-complexity",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Straightforward turns"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Moderate"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Many interacting tactical decisions"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1,
+      "notes": []
+    },
+    {
+      "id": "resource-tracking",
+      "categoryId": "pilot-cognitive-load",
+      "kind": "directional",
+      "playerLabel": null,
+      "shortLabel": "resource-tracking",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Little tracking"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Moderate"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Several pools, durations or conditional resources"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1,
+      "notes": []
+    },
+    {
+      "id": "rules-mastery",
+      "categoryId": "pilot-cognitive-load",
+      "kind": "directional",
+      "playerLabel": null,
+      "shortLabel": "rules-mastery",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Works with basic rules knowledge"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Moderate"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Rewards/requires deep system knowledge"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1,
+      "notes": []
+    },
+    {
+      "id": "extra-entity-burden",
+      "categoryId": "pilot-cognitive-load",
+      "kind": "directional",
+      "playerLabel": null,
+      "shortLabel": "extra-entity-burden",
+      "lowAnchor": {
+        "value": 1,
+        "label": "One character sheet"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Moderate"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Frequent additional stat blocks/actions"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1,
+      "notes": []
+    },
+    {
+      "id": "build-forgiveness",
+      "categoryId": "pilot-cognitive-load",
+      "kind": "directional",
+      "playerLabel": null,
+      "shortLabel": "build-forgiveness",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Easy to remain effective"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Moderate"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Weak choices can seriously impair the build"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1,
+      "notes": [
+        "Blueprint 5.3: consider renaming/reversing anchors during UI testing so all burden scales point the same direction. Never depend on the ID alone; scoring follows declared anchors."
+      ]
+    },
+    {
+      "id": "casting-level",
+      "categoryId": "pilot-categorical",
+      "kind": "categorical",
+      "playerLabel": "Casting level",
+      "shortLabel": "Casting level",
+      "values": [],
+      "allowNotRelevant": true,
+      "allowHardConstraint": true,
+      "status": "needs-values",
+      "schemaVersion": 1,
+      "notes": [
+        "Values per blueprint 5.4: none, minor, 4-level, 6-level, 9-level/full."
+      ]
+    },
+    {
+      "id": "casting-method",
+      "categoryId": "pilot-categorical",
+      "kind": "categorical",
+      "playerLabel": "Casting method",
+      "shortLabel": "Casting method",
+      "values": [],
+      "allowNotRelevant": true,
+      "allowHardConstraint": true,
+      "status": "needs-values",
+      "schemaVersion": 1,
+      "notes": [
+        "Values per blueprint 5.4: none, prepared, spontaneous, flexible/hybrid."
+      ]
+    },
+    {
+      "id": "magic-identity",
+      "categoryId": "pilot-categorical",
+      "kind": "categorical",
+      "playerLabel": "Magic identity",
+      "shortLabel": "Magic identity",
+      "values": [],
+      "allowNotRelevant": true,
+      "allowHardConstraint": true,
+      "status": "needs-values",
+      "schemaVersion": 1,
+      "notes": [
+        "Values per blueprint 5.4: arcane, divine, nature, psychic/occult, alchemical, supernatural/non-spell."
+      ]
+    },
+    {
+      "id": "primary-delivery",
+      "categoryId": "pilot-categorical",
+      "kind": "categorical",
+      "playerLabel": "Primary delivery",
+      "shortLabel": "Primary delivery",
+      "values": [],
+      "allowNotRelevant": true,
+      "allowHardConstraint": true,
+      "status": "needs-values",
+      "schemaVersion": 1,
+      "notes": [
+        "Values per blueprint 5.4: weapon, natural attacks, ranged weapon, spell, bomb, companion, manoeuvre."
+      ]
+    },
+    {
+      "id": "armour-preference",
+      "categoryId": "pilot-categorical",
+      "kind": "categorical",
+      "playerLabel": "Armour preference",
+      "shortLabel": "Armour preference",
+      "values": [],
+      "allowNotRelevant": true,
+      "allowHardConstraint": true,
+      "status": "needs-values",
+      "schemaVersion": 1,
+      "notes": [
+        "Values per blueprint 5.4: unarmoured, light, medium, heavy, shield-compatible."
+      ]
+    },
+    {
+      "id": "companion-type",
+      "categoryId": "pilot-categorical",
+      "kind": "categorical",
+      "playerLabel": "Companion type",
+      "shortLabel": "Companion type",
+      "values": [],
+      "allowNotRelevant": true,
+      "allowHardConstraint": true,
+      "status": "needs-values",
+      "schemaVersion": 1,
+      "notes": [
+        "Values per blueprint 5.4: none, familiar, animal companion, multiple companions, summoned creatures, bonded/sentient item."
+      ]
+    },
+    {
+      "id": "party-contribution",
+      "categoryId": "pilot-categorical",
+      "kind": "categorical",
+      "playerLabel": "Main party contribution",
+      "shortLabel": "Main party contribution",
+      "values": [],
+      "allowNotRelevant": true,
+      "allowHardConstraint": true,
+      "status": "needs-values",
+      "schemaVersion": 1,
+      "notes": [
+        "Values per blueprint 5.4: damage, control, protection, support, healing, skills, information, exploration."
+      ]
+    },
+    {
+      "id": "social-style",
+      "categoryId": "pilot-categorical",
+      "kind": "categorical",
+      "playerLabel": "Social style",
+      "shortLabel": "Social style",
+      "values": [],
+      "allowNotRelevant": true,
+      "allowHardConstraint": true,
+      "status": "needs-values",
+      "schemaVersion": 1,
+      "notes": [
+        "Values per blueprint 5.4: honest leadership, charm, deception, intimidation, performance, no preference."
+      ]
+    }
+  ]
+}
