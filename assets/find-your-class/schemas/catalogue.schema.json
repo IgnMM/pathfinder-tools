@@ -33,12 +33,15 @@
       "additionalProperties": {
         "type": "object",
         "properties": {
-          "rating": { "type": "number", "minimum": 1, "maximum": 10 },
-          "position": { "type": "number", "minimum": 1, "maximum": 10 },
+          "rating": { "type": "integer", "minimum": 1, "maximum": 10 },
+          "position": { "type": "integer", "minimum": 1, "maximum": 10 },
           "confidence": { "type": "string" },
           "evidenceRefs": { "type": "array", "items": { "type": "string" } }
         },
-        "not": { "required": ["rating", "position"] }
+        "oneOf": [
+          { "required": ["rating"], "not": { "required": ["position"] } },
+          { "required": ["position"], "not": { "required": ["rating"] } }
+        ]
       }
     },
     "categories": { "type": "object", "additionalProperties": { "type": "array", "items": { "type": "string" } } },
@@ -98,11 +101,7 @@
     },
     "operations": {
       "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["op"],
-        "properties": { "op": { "type": "string" } }
-      }
+      "items": { "$ref": "#/$defs/operation" }
     },
     "archetypeSummary": { "type": "string" },
     "compatibility": {
@@ -123,5 +122,104 @@
       "if": { "properties": { "entityType": { "const": "option" } } },
       "then": { "required": ["optionFamilyId", "parentClassId", "operations"] }
     }
-  ]
+  ],
+  "$defs": {
+    "operation": {
+      "type": "object",
+      "required": ["op"],
+      "properties": { "op": { "type": "string", "enum": [
+        "set-capability", "adjust-capability", "set-directional-position",
+        "add-fantasy-tag", "remove-fantasy-tag",
+        "add-category-value", "remove-category-value", "set-category-values",
+        "add-strength-fragment", "remove-strength-fragment",
+        "add-tradeoff-fragment", "remove-tradeoff-fragment",
+        "add-rules-restriction", "remove-rules-restriction",
+        "add-dependency", "remove-dependency",
+        "set-progression-band", "add-concept-online-entry"
+      ] } },
+      "allOf": [
+        {
+          "if": { "properties": { "op": { "const": "set-capability" } } },
+          "then": {
+            "required": ["criterionId"],
+            "properties": { "rating": { "type": "integer", "minimum": 1, "maximum": 10 }, "position": { "type": "integer", "minimum": 1, "maximum": 10 } },
+            "oneOf": [
+              { "required": ["rating"], "not": { "required": ["position"] } },
+              { "required": ["position"], "not": { "required": ["rating"] } }
+            ]
+          }
+        },
+        {
+          "if": { "properties": { "op": { "const": "adjust-capability" } } },
+          "then": { "required": ["criterionId", "delta"], "properties": { "delta": { "type": "number" } } }
+        },
+        {
+          "if": { "properties": { "op": { "const": "set-directional-position" } } },
+          "then": { "required": ["criterionId", "position"], "properties": { "position": { "type": "integer", "minimum": 1, "maximum": 10 } } }
+        },
+        {
+          "if": { "properties": { "op": { "enum": ["add-fantasy-tag"] } } },
+          "then": { "required": ["tagId", "strength"], "properties": { "strength": { "type": "integer", "minimum": 1, "maximum": 10 } } }
+        },
+        {
+          "if": { "properties": { "op": { "const": "remove-fantasy-tag" } } },
+          "then": { "required": ["tagId"] }
+        },
+        {
+          "if": { "properties": { "op": { "enum": ["add-category-value", "remove-category-value"] } } },
+          "then": { "required": ["criterionId", "value"], "properties": { "value": { "type": "string" } } }
+        },
+        {
+          "if": { "properties": { "op": { "const": "set-category-values" } } },
+          "then": { "required": ["criterionId", "values"], "properties": { "values": { "type": "array", "items": { "type": "string" } } } }
+        },
+        {
+          "if": { "properties": { "op": { "enum": ["add-strength-fragment", "remove-strength-fragment", "add-tradeoff-fragment", "remove-tradeoff-fragment"] } } },
+          "then": { "required": ["fragmentId"] }
+        },
+        {
+          "if": { "properties": { "op": { "const": "add-rules-restriction" } } },
+          "then": {
+            "required": ["restriction"],
+            "properties": {
+              "restriction": {
+                "type": "object",
+                "required": ["id", "type", "operator", "value", "sourceRef"],
+                "properties": { "id": { "type": "string" }, "type": { "type": "string" }, "operator": { "type": "string" }, "sourceRef": { "type": "string" } }
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "op": { "const": "remove-rules-restriction" } } },
+          "then": { "required": ["id"] }
+        },
+        {
+          "if": { "properties": { "op": { "const": "add-dependency" } } },
+          "then": {
+            "required": ["dependency"],
+            "properties": {
+              "dependency": {
+                "type": "object",
+                "required": ["id", "type", "severity"],
+                "properties": { "id": { "type": "string" }, "type": { "type": "string" }, "severity": { "type": "string", "enum": ["mild", "moderate", "strong"] } }
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "op": { "const": "remove-dependency" } } },
+          "then": { "required": ["id"] }
+        },
+        {
+          "if": { "properties": { "op": { "const": "set-progression-band" } } },
+          "then": { "required": ["band", "value"], "properties": { "band": { "type": "string", "enum": ["low", "mid", "high"] }, "value": { "type": "number" } } }
+        },
+        {
+          "if": { "properties": { "op": { "const": "add-concept-online-entry" } } },
+          "then": { "required": ["conceptTag", "level"], "properties": { "level": { "type": "integer", "minimum": 1, "maximum": 20 } } }
+        }
+      ]
+    }
+  }
 }

@@ -2,8 +2,9 @@
   "schemaVersion": 1,
   "status": "draft",
   "notes": [
-    "Prompts and answer choices are transcribed verbatim from Find_Your_Class_Pilot_Blueprint_v1.md section 8 (Q1-Q12). criteriaClarified and each answer's mutation direction are a first structural mapping onto assets/find-your-class/criteria.json -- the blueprint specifies player-facing wording and intent, not exact numeric mutation payloads, so mutations here are qualitative (criterionId + direction/desiredPosition) pending Codex's numeric calibration. Section 9's discriminator list (Fighter vs Magus, Sorcerer vs Druid, etc.) is separate adaptive-selection logic, not part of this static template file.",
-    "allowNotRelevant is true for every question per the blueprint's own answer lists, which each include a literal 'Not relevant' option except Q10 (campaign levels, which has no Not relevant option in the blueprint)."
+    "Prompts and answer choices are transcribed verbatim from Find_Your_Class_Pilot_Blueprint_v1.md section 8 (Q1-Q12). criteriaClarified and each answer's mutation direction are a first structural mapping onto assets/find-your-class/criteria.json -- the blueprint specifies player-facing wording and intent, not exact numeric mutation payloads, so mutations here are qualitative (criterionId + direction/desiredPosition/importanceHint) pending Codex's numeric calibration. Section 9's discriminator list (Fighter vs Magus, Sorcerer vs Druid, etc.) is separate adaptive-selection logic, not part of this static template file.",
+    "allowNotRelevant is true for every question per the blueprint's own answer lists, which each include a literal 'Not relevant' option except Q10 (campaign levels, which has no Not relevant option in the blueprint).",
+    "Contract, fixed after Codex's review of commit 8c5efdd: (1) a capability-kind criterion (criteria.json kind:\"capability\") is only ever mutated with importanceHint/importance + notRelevant, never desiredPosition -- desiredPosition is exclusively for directional-kind criteria, and loader.js's checkKindMatch() now rejects the wrong field for a criterion's kind. (2) 'Not relevant' on a question clarifying more than one criterion must clear every criterion listed in that question's criteriaClarified, not just the first one. (3) every answer's mutations array is either non-empty or the answer carries nonScoring:true -- an empty array with no flag is always a bug, not an intentional no-op (Q1/Q2's 'no strong lean' answers, Q6's UI-mode toggle, Q10's 'I do not know', and Q12's three navigation-only options are the only nonScoring:true cases)."
   ],
   "questions": [
     {
@@ -17,7 +18,7 @@
         { "label": "Mastering weapons and physical technique.", "mutations": [{ "criterionId": "martial-magic", "desiredPosition": 1 }] },
         { "label": "Combining weapons and magic.", "mutations": [{ "criterionId": "martial-magic", "desiredPosition": 5.5 }] },
         { "label": "Having magic for almost every problem.", "mutations": [{ "criterionId": "martial-magic", "desiredPosition": 10 }] },
-        { "label": "I am open to any of these.", "mutations": [] },
+        { "label": "I am open to any of these.", "mutations": [], "nonScoring": true },
         { "label": "Not relevant.", "mutations": [{ "criterionId": "martial-magic", "notRelevant": true }] }
       ]
     },
@@ -32,7 +33,7 @@
         { "label": "In the middle of melee.", "mutations": [{ "criterionId": "melee-ranged", "desiredPosition": 1 }] },
         { "label": "Moving between close and medium range.", "mutations": [{ "criterionId": "melee-ranged", "desiredPosition": 5.5 }] },
         { "label": "Safely at range.", "mutations": [{ "criterionId": "melee-ranged", "desiredPosition": 10 }] },
-        { "label": "I want to switch depending on the encounter.", "mutations": [] },
+        { "label": "I want to switch depending on the encounter.", "mutations": [], "nonScoring": true },
         { "label": "Not relevant.", "mutations": [{ "criterionId": "melee-ranged", "notRelevant": true }] }
       ]
     },
@@ -76,7 +77,7 @@
         { "label": "A simple familiar or occasional summon is fine.", "mutations": [{ "criterionId": "none-central-companion", "desiredPosition": 4 }] },
         { "label": "I want a meaningful animal companion or similar partner.", "mutations": [{ "criterionId": "none-central-companion", "desiredPosition": 8 }] },
         { "label": "Managing several creatures sounds fun.", "mutations": [{ "criterionId": "none-central-companion", "desiredPosition": 10 }, { "criterionId": "extra-entity-burden", "desiredPosition": 10 }] },
-        { "label": "Not relevant.", "mutations": [{ "criterionId": "none-central-companion", "notRelevant": true }] }
+        { "label": "Not relevant.", "mutations": [{ "criterionId": "none-central-companion", "notRelevant": true }, { "criterionId": "extra-entity-burden", "notRelevant": true }] }
       ]
     },
     {
@@ -92,15 +93,28 @@
         { "label": "Conversation, deception or intimidation.", "mutations": [{ "criterionId": "social-influence", "importanceHint": "high" }] },
         { "label": "Knowledge, investigation and magical answers.", "mutations": [{ "criterionId": "knowledge-investigation", "importanceHint": "high" }] },
         { "label": "Wilderness and exploration.", "mutations": [{ "criterionId": "wilderness", "importanceHint": "high" }] },
-        { "label": "Combat is my main priority.", "mutations": [] },
-        { "label": "Choose several.", "mutations": [] },
-        { "label": "Not relevant.", "mutations": [] }
+        {
+          "label": "Combat is my main priority.",
+          "mutations": [
+            { "criterionId": "stealth-infiltration", "importanceHint": "low" },
+            { "criterionId": "social-influence", "importanceHint": "low" },
+            { "criterionId": "knowledge-investigation", "importanceHint": "low" },
+            { "criterionId": "wilderness", "importanceHint": "low" }
+          ]
+        },
+        { "label": "Choose several.", "mutations": [], "nonScoring": true, "notes": ["UI-mode toggle: switches this question into multi-select. multiSelect:true already allows picking several of the checkbox answers directly; this option carries no preference of its own."] },
+        { "label": "Not relevant.", "mutations": [
+            { "criterionId": "stealth-infiltration", "notRelevant": true },
+            { "criterionId": "social-influence", "notRelevant": true },
+            { "criterionId": "knowledge-investigation", "notRelevant": true },
+            { "criterionId": "wilderness", "notRelevant": true }
+          ] }
       ]
     },
     {
       "id": "q-battlefield-impact",
       "prompt": "When combat starts, what sounds most satisfying?",
-      "criteriaClarified": ["single-target-damage", "area-damage", "crowd-control", "ally-buffing"],
+      "criteriaClarified": ["single-target-damage", "area-damage", "crowd-control", "ally-buffing", "specialist-versatile"],
       "allowNotRelevant": true,
       "estimatedCognitiveCost": 1,
       "priority": 8,
@@ -110,7 +124,13 @@
         { "label": "Controlling where enemies can move or act.", "mutations": [{ "criterionId": "crowd-control", "importanceHint": "high" }] },
         { "label": "Making allies stronger or safer.", "mutations": [{ "criterionId": "ally-buffing", "importanceHint": "high" }] },
         { "label": "Adapting to whatever the fight needs.", "mutations": [{ "criterionId": "specialist-versatile", "desiredPosition": 10 }] },
-        { "label": "Not relevant.", "mutations": [] }
+        { "label": "Not relevant.", "mutations": [
+            { "criterionId": "single-target-damage", "notRelevant": true },
+            { "criterionId": "area-damage", "notRelevant": true },
+            { "criterionId": "crowd-control", "notRelevant": true },
+            { "criterionId": "ally-buffing", "notRelevant": true },
+            { "criterionId": "specialist-versatile", "notRelevant": true }
+          ] }
       ]
     },
     {
@@ -120,12 +140,16 @@
       "allowNotRelevant": true,
       "estimatedCognitiveCost": 1,
       "priority": 7,
+      "notes": ["personal-durability and protect-allies are both kind:\"capability\" -- every answer below uses importanceHint, never desiredPosition (fixed after Codex's review: the pre-review version wrongly wrote desiredPosition against personal-durability, a capability criterion)."],
       "answers": [
-        { "label": "I am comfortable relying on positioning and avoiding attacks.", "mutations": [{ "criterionId": "personal-durability", "desiredPosition": 1 }] },
-        { "label": "I want reasonable protection if enemies reach me.", "mutations": [{ "criterionId": "personal-durability", "desiredPosition": 5.5 }] },
-        { "label": "I want to be difficult to bring down.", "mutations": [{ "criterionId": "personal-durability", "desiredPosition": 9 }] },
+        { "label": "I am comfortable relying on positioning and avoiding attacks.", "mutations": [{ "criterionId": "personal-durability", "importanceHint": "low" }] },
+        { "label": "I want reasonable protection if enemies reach me.", "mutations": [{ "criterionId": "personal-durability", "importanceHint": "medium" }] },
+        { "label": "I want to be difficult to bring down.", "mutations": [{ "criterionId": "personal-durability", "importanceHint": "high" }] },
         { "label": "I want to stand between enemies and my allies.", "mutations": [{ "criterionId": "protect-allies", "importanceHint": "high" }] },
-        { "label": "Not relevant.", "mutations": [{ "criterionId": "personal-durability", "notRelevant": true }] }
+        { "label": "Not relevant.", "mutations": [
+            { "criterionId": "personal-durability", "notRelevant": true },
+            { "criterionId": "protect-allies", "notRelevant": true }
+          ] }
       ]
     },
     {
@@ -155,7 +179,7 @@
         { "label": "Early game, around levels 3-5.", "mutations": [{ "campaignContext": { "startingLevel": 4 } }] },
         { "label": "I am comfortable waiting until levels 6-10.", "mutations": [{ "campaignContext": { "startingLevel": 8 } }] },
         { "label": "This is a high-level campaign.", "mutations": [{ "campaignContext": { "startingLevel": 12 } }] },
-        { "label": "I do not know.", "mutations": [] }
+        { "label": "I do not know.", "mutations": [], "nonScoring": true }
       ]
     },
     {
@@ -169,7 +193,10 @@
         { "label": "I prefer abilities I can rely on all day.", "mutations": [{ "criterionId": "steady-burst", "desiredPosition": 1 }, { "criterionId": "resource-endurance", "importanceHint": "high" }] },
         { "label": "I like a steady baseline with a few stronger moments.", "mutations": [{ "criterionId": "steady-burst", "desiredPosition": 5.5 }] },
         { "label": "I enjoy deciding when to unleash powerful limited resources.", "mutations": [{ "criterionId": "steady-burst", "desiredPosition": 10 }] },
-        { "label": "Not relevant.", "mutations": [{ "criterionId": "steady-burst", "notRelevant": true }] }
+        { "label": "Not relevant.", "mutations": [
+            { "criterionId": "steady-burst", "notRelevant": true },
+            { "criterionId": "resource-endurance", "notRelevant": true }
+          ] }
       ]
     },
     {
@@ -180,12 +207,12 @@
       "estimatedCognitiveCost": 2,
       "priority": 4,
       "notes": [
-        "Blueprint 8/Q12: present only 4-6 fantasy cards selected from the concept and current shortlist, plus the three fixed options below. Card population is dynamic (drawn from vocabularies.json fantasyTags filtered by the current shortlist), not a fixed answer list -- only the trailing fixed options are static."
+        "Blueprint 8/Q12: present only 4-6 fantasy cards selected from the concept and current shortlist, plus the three fixed options below. Card population is dynamic (drawn from vocabularies.json fantasyTags filtered by the current shortlist), not a fixed answer list -- only the trailing fixed options are static, and none of the three carries a mutation of its own (they navigate: show more cards / dismiss / skip the question)."
       ],
       "answers": [
-        { "label": "Show me different ideas.", "mutations": [] },
-        { "label": "None of these.", "mutations": [] },
-        { "label": "Not relevant.", "mutations": [] }
+        { "label": "Show me different ideas.", "mutations": [], "nonScoring": true },
+        { "label": "None of these.", "mutations": [], "nonScoring": true },
+        { "label": "Not relevant.", "mutations": [], "nonScoring": true }
       ]
     }
   ]
