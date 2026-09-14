@@ -58,7 +58,12 @@ const SPELLBOOK_LIBRARY_PAIRS = [
   ['shaman', 'shaman-library'],
   ['spiritualist', 'spiritualist-library'],
   ['ranger', 'ranger-library'],
+  ['wizard', 'wizard-sorcerer-library'],
+  ['mesmerist', 'mesmerist-library'],
 ];
+
+// Every field considered when deciding whether a Spellbook and its paired Library agree.
+const SYNCED_FIELDS = ['school', 'castingTime', 'components', 'range', 'target', 'duration', 'save', 'sr', 'effect', 'source'];
 
 const ALL_SPELLBOOK_DIRS = [
   'alchemist', 'arcanist', 'bard', 'bloodrager', 'cleric', 'druid', 'hunter',
@@ -146,21 +151,50 @@ test('5. Medium contains the four confirmed missing spells in both Spellbook and
 // not one of this brief's named corrections, so left as a documented, asserted exception
 // rather than silently ignored. Ranger's base lists differ by design (its own effect/
 // source sync is covered by a separate test below).
-test('6. paired Spellbook/Library base memberships match after the one documented exception', () => {
+test('6. paired Spellbook/Library base memberships match after documented exceptions', () => {
   const KNOWN_MISSING_FROM_LIBRARY = {
+    // Pre-existing, out-of-scope 1-spell drift predating this audit (see project memory).
     'paladin-library': ['4|Blessing of Fervor'],
   };
+  const KNOWN_EXTRA_IN_LIBRARY = {
+    // The 77-spell Sorcerer bloodline pool is deliberately extra vs wizard/index.html --
+    // it's a standalone, off-by-default pool (BLOODLINE_SPELLS), not part of the base
+    // Wizard/Sorcerer common list, and marked bloodlineOnly:true.
+    'wizard-sorcerer-library': 'bloodlineOnly',
+  };
   for (const [bookDir, libDir] of SPELLBOOK_LIBRARY_PAIRS) {
-    if (bookDir === 'ranger') continue; // Ranger's base lists differ by design; see its own sync tests
     const bookSpells = extractJsonConst(readHtml(bookDir), 'SPELLS');
     const libSpells = extractJsonConst(readHtml(libDir), 'SPELLS');
     const bookKeys = new Set(bookSpells.map(keyOf));
-    const libKeys = new Set(libSpells.map(keyOf));
+    const extraMarker = KNOWN_EXTRA_IN_LIBRARY[libDir];
+    const libSpellsExcludingKnownExtra = extraMarker ? libSpells.filter(s => s[extraMarker] !== true) : libSpells;
+    const libKeys = new Set(libSpellsExcludingKnownExtra.map(keyOf));
     const knownMissing = new Set(KNOWN_MISSING_FROM_LIBRARY[libDir] || []);
     const missingFromLib = [...bookKeys].filter(k => !libKeys.has(k) && !knownMissing.has(k));
     const extraInLib = [...libKeys].filter(k => !bookKeys.has(k));
     assert.deepEqual(missingFromLib, [], `${libDir}: missing spells present in ${bookDir}`);
     assert.deepEqual(extraInLib, [], `${libDir}: extra spells not in ${bookDir}`);
+  }
+});
+
+// 6b. The core guarantee behind correction 5: for every key BOTH a Spellbook and its
+// paired Library carry, every displayed field is byte-identical -- no more "depends on
+// which page you opened" drift, applied with the exact same rule to every pair (no
+// per-class special-casing). This is the direct regression test for the "make the logic
+// the same for everyone" requirement.
+test('6b. every shared Spellbook/Library record is field-identical (no per-class exceptions)', () => {
+  for (const [bookDir, libDir] of SPELLBOOK_LIBRARY_PAIRS) {
+    const bookSpells = extractJsonConst(readHtml(bookDir), 'SPELLS');
+    const libSpells = extractJsonConst(readHtml(libDir), 'SPELLS');
+    const bookMap = new Map(bookSpells.map(s => [keyOf(s), s]));
+    const mismatches = [];
+    for (const l of libSpells) {
+      const b = bookMap.get(keyOf(l));
+      if (!b) continue; // not a shared key (e.g. an archetype-only or bloodline-pool spell)
+      const diffFields = SYNCED_FIELDS.filter(f => (b[f] || '') !== (l[f] || ''));
+      if (diffFields.length) mismatches.push(`${keyOf(l)}: ${diffFields.join(',')}`);
+    }
+    assert.deepEqual(mismatches, [], `${bookDir} <-> ${libDir}: field mismatches on shared records`);
   }
 });
 
