@@ -36,7 +36,14 @@
           "rating": { "type": "integer", "minimum": 1, "maximum": 10 },
           "position": { "type": "integer", "minimum": 1, "maximum": 10 },
           "confidence": { "type": "string" },
-          "evidenceRefs": { "type": "array", "items": { "type": "string" } }
+          "evidenceRefs": { "type": "array", "items": { "type": "string" } },
+          "range": {
+            "description": "Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md section 8: prevents false precision -- [min,max], min<=rating/position<=max.",
+            "type": "array", "items": { "type": "integer", "minimum": 1, "maximum": 10 }, "minItems": 2, "maxItems": 2
+          },
+          "drivers": { "type": "array", "items": { "type": "string" }, "description": "Which option/branch changes this score, e.g. \"nature-bond:animal-companion\"." },
+          "levelBand": { "type": "string" },
+          "editorialNote": { "type": "string" }
         },
         "oneOf": [
           { "required": ["rating"], "not": { "required": ["position"] } },
@@ -45,6 +52,38 @@
       }
     },
     "categories": { "type": "object", "additionalProperties": { "type": "array", "items": { "type": "string" } } },
+    "conduct": {
+      "type": "object",
+      "description": "Structured obligations per Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md section 4. A code/alignment/deity requirement is a compatibility gate, never just a low weighted score -- an option that fails one must be excluded outright.",
+      "properties": {
+        "codePresence": { "type": "string", "enum": ["none", "optional", "expected", "mandatory"] },
+        "mechanicalLossRisk": { "type": "string", "enum": ["none", "limited", "substantial"] },
+        "alignmentRule": {
+          "type": "object",
+          "required": ["kind"],
+          "properties": {
+            "kind": { "type": "string", "enum": ["none", "fixed", "subset", "deity-relative"] },
+            "values": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "deityRequired": { "type": "boolean" },
+        "deityChoiceProvenance": { "type": "string", "enum": ["free-choice-with-consequences", "restricted-choice", "fixed-source", "optional-relationship"] },
+        "institutionRequired": { "type": "boolean" },
+        "changeOrAtonementNotes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "affinities": {
+      "type": "object",
+      "description": "Weighted affinity tags per section 6 -- improve tie-breaking and explanations, must never override a hard compatibilityGate/rulesRestriction.",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["id", "importance"],
+          "properties": { "id": { "type": "string" }, "importance": { "type": "integer", "minimum": 1, "maximum": 10 } }
+        }
+      }
+    },
     "progression": {
       "type": "object",
       "properties": {

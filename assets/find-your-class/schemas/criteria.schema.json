@@ -40,6 +40,7 @@
           "items": { "$ref": "#/$defs/anchorPoint" }
         },
         "values": { "type": "array", "items": { "type": "string" } },
+        "aliases": { "type": "array", "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" } },
         "allowNotRelevant": { "type": "boolean" },
         "allowHardConstraint": { "type": "boolean" },
         "searchTerms": { "type": "array", "items": { "type": "string" } },

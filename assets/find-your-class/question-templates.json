@@ -68,16 +68,16 @@
     {
       "id": "q-companion-burden",
       "prompt": "Would you enjoy controlling another creature?",
-      "criteriaClarified": ["none-central-companion", "extra-entity-burden"],
+      "criteriaClarified": ["companion-centrality", "extra-entity-burden"],
       "allowNotRelevant": true,
       "estimatedCognitiveCost": 1,
       "priority": 9,
       "answers": [
-        { "label": "No; I want to manage only my own character.", "mutations": [{ "criterionId": "none-central-companion", "desiredPosition": 1 }] },
-        { "label": "A simple familiar or occasional summon is fine.", "mutations": [{ "criterionId": "none-central-companion", "desiredPosition": 4 }] },
-        { "label": "I want a meaningful animal companion or similar partner.", "mutations": [{ "criterionId": "none-central-companion", "desiredPosition": 8 }] },
-        { "label": "Managing several creatures sounds fun.", "mutations": [{ "criterionId": "none-central-companion", "desiredPosition": 10 }, { "criterionId": "extra-entity-burden", "desiredPosition": 10 }] },
-        { "label": "Not relevant.", "mutations": [{ "criterionId": "none-central-companion", "notRelevant": true }, { "criterionId": "extra-entity-burden", "notRelevant": true }] }
+        { "label": "No; I want to manage only my own character.", "mutations": [{ "criterionId": "companion-centrality", "desiredPosition": 1 }] },
+        { "label": "A simple familiar or occasional summon is fine.", "mutations": [{ "criterionId": "companion-centrality", "desiredPosition": 4 }] },
+        { "label": "I want a meaningful animal companion or similar partner.", "mutations": [{ "criterionId": "companion-centrality", "desiredPosition": 8 }] },
+        { "label": "Managing several creatures sounds fun.", "mutations": [{ "criterionId": "companion-centrality", "desiredPosition": 10 }, { "criterionId": "extra-entity-burden", "desiredPosition": 10 }] },
+        { "label": "Not relevant.", "mutations": [{ "criterionId": "companion-centrality", "notRelevant": true }, { "criterionId": "extra-entity-burden", "notRelevant": true }] }
       ]
     },
     {

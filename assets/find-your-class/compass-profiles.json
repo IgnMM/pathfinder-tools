@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "status": "draft-editorial-calibration",
+  "levelBand": "5-10",
+  "scale": { "min": 1, "max": 10 },
+  "warning": "Calibration landmarks only. Do not promote to verified until each score has evidence, range and editorial review.",
+  "source": "Find_Your_Class_Compass_Profiles_draft_v1.json, handed off by Codex alongside Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md. Copied verbatim into the repo per that document's implementation-order step 6 (\"Import the compass profiles as draft, never as verified catalogue records\").",
+  "profiles": [
+    {
+      "id": "fighter-archer",
+      "entityType": "archetype",
+      "classId": "fighter",
+      "archetypeId": "archer",
+      "scores": { "melee-ranged": 10, "martial-magic": 1, "specialist-versatile": 3, "no-heavy-preparation": 2, "companion-centrality": 1, "steady-burst": 4, "build-complexity": 7, "turn-complexity": 4, "extra-entity-burden": 1, "code-bound-identity": 2, "single-target-damage": 9, "area-damage": 2, "crowd-control": 3, "protect-allies": 3, "personal-durability": 7, "mobility": 5, "stealth-infiltration": 3, "traps-locks": 1, "knowledge-investigation": 2, "wilderness": 3, "magical-utility": 1, "resource-endurance": 10, "melee-weapon-effectiveness": 3, "ranged-weapon-effectiveness": 10, "offensive-spellcasting": 1, "defensive-magic": 1, "condition-removal": 1, "dispelling-countermagic": 1, "shapeshifting-transformation": 1, "natural-weapon-combat": 1, "skill-breadth": 3, "armour-defence": 7, "equipment-independence": 2, "spell-access-breadth": 1, "ability-score-demand": 5 }
+    },
+    {
+      "id": "fighter-armor-master",
+      "entityType": "archetype",
+      "classId": "fighter",
+      "archetypeId": "armor-master",
+      "scores": { "melee-ranged": 2, "martial-magic": 1, "specialist-versatile": 3, "no-heavy-preparation": 2, "companion-centrality": 1, "steady-burst": 2, "build-complexity": 7, "turn-complexity": 4, "extra-entity-burden": 1, "code-bound-identity": 3, "single-target-damage": 7, "area-damage": 1, "crowd-control": 5, "protect-allies": 7, "personal-durability": 10, "mobility": 3, "stealth-infiltration": 1, "traps-locks": 1, "knowledge-investigation": 2, "wilderness": 3, "magical-utility": 1, "resource-endurance": 10, "melee-weapon-effectiveness": 8, "ranged-weapon-effectiveness": 3, "offensive-spellcasting": 1, "defensive-magic": 1, "condition-removal": 1, "dispelling-countermagic": 1, "shapeshifting-transformation": 1, "natural-weapon-combat": 1, "skill-breadth": 3, "armour-defence": 10, "equipment-independence": 2, "spell-access-breadth": 1, "ability-score-demand": 5 }
+    },
+    {
+      "id": "rogue-burglar",
+      "entityType": "archetype",
+      "classId": "rogue",
+      "archetypeId": "burglar",
+      "scores": { "melee-ranged": 5, "martial-magic": 1, "specialist-versatile": 4, "no-heavy-preparation": 3, "companion-centrality": 1, "steady-burst": 7, "build-complexity": 7, "turn-complexity": 6, "extra-entity-burden": 1, "code-bound-identity": 1, "single-target-damage": 7, "area-damage": 2, "crowd-control": 5, "protect-allies": 2, "personal-durability": 4, "mobility": 8, "stealth-infiltration": 10, "traps-locks": 10, "knowledge-investigation": 5, "wilderness": 4, "magical-utility": 3, "resource-endurance": 7, "melee-weapon-effectiveness": 6, "ranged-weapon-effectiveness": 6, "offensive-spellcasting": 1, "defensive-magic": 1, "condition-removal": 1, "dispelling-countermagic": 1, "shapeshifting-transformation": 1, "natural-weapon-combat": 1, "skill-breadth": 10, "armour-defence": 4, "equipment-independence": 4, "spell-access-breadth": 1, "ability-score-demand": 7 }
+    },
+    {
+      "id": "sorcerer-base",
+      "entityType": "class-path",
+      "classId": "sorcerer",
+      "archetypeId": null,
+      "branchId": "non-companion-bloodline",
+      "scores": { "melee-ranged": 9, "martial-magic": 10, "specialist-versatile": 6, "no-heavy-preparation": 3, "companion-centrality": 1, "steady-burst": 8, "build-complexity": 8, "turn-complexity": 7, "extra-entity-burden": 1, "code-bound-identity": 2, "single-target-damage": 8, "area-damage": 9, "crowd-control": 8, "protect-allies": 7, "personal-durability": 3, "mobility": 7, "stealth-infiltration": 4, "traps-locks": 1, "knowledge-investigation": 7, "wilderness": 2, "magical-utility": 9, "resource-endurance": 5, "melee-weapon-effectiveness": 2, "ranged-weapon-effectiveness": 3, "offensive-spellcasting": 10, "defensive-magic": 8, "condition-removal": 5, "dispelling-countermagic": 7, "shapeshifting-transformation": 6, "natural-weapon-combat": 2, "skill-breadth": 4, "armour-defence": 2, "equipment-independence": 8, "spell-access-breadth": 3, "ability-score-demand": 2 }
+    },
+    {
+      "id": "druid-domain",
+      "entityType": "class-path",
+      "classId": "druid",
+      "archetypeId": null,
+      "branchId": "nature-bond-domain",
+      "scores": { "melee-ranged": 6, "martial-magic": 9, "specialist-versatile": 10, "no-heavy-preparation": 10, "companion-centrality": 1, "steady-burst": 6, "build-complexity": 9, "turn-complexity": 9, "extra-entity-burden": 2, "code-bound-identity": 5, "single-target-damage": 7, "area-damage": 7, "crowd-control": 9, "protect-allies": 8, "personal-durability": 8, "mobility": 8, "stealth-infiltration": 5, "traps-locks": 1, "knowledge-investigation": 8, "wilderness": 10, "magical-utility": 10, "resource-endurance": 8, "melee-weapon-effectiveness": 7, "ranged-weapon-effectiveness": 5, "offensive-spellcasting": 8, "defensive-magic": 9, "condition-removal": 8, "dispelling-countermagic": 7, "shapeshifting-transformation": 10, "natural-weapon-combat": 9, "skill-breadth": 6, "armour-defence": 7, "equipment-independence": 10, "spell-access-breadth": 10, "ability-score-demand": 8 }
+    },
+    {
+      "id": "druid-pack-lord",
+      "entityType": "archetype",
+      "classId": "druid",
+      "archetypeId": "pack-lord",
+      "scores": { "melee-ranged": 5, "martial-magic": 8, "specialist-versatile": 8, "no-heavy-preparation": 10, "companion-centrality": 10, "steady-burst": 5, "build-complexity": 10, "turn-complexity": 10, "extra-entity-burden": 10, "code-bound-identity": 5, "single-target-damage": 8, "area-damage": 5, "crowd-control": 8, "protect-allies": 8, "personal-durability": 8, "mobility": 7, "stealth-infiltration": 4, "traps-locks": 1, "knowledge-investigation": 7, "wilderness": 10, "magical-utility": 9, "resource-endurance": 8, "melee-weapon-effectiveness": 6, "ranged-weapon-effectiveness": 4, "offensive-spellcasting": 6, "defensive-magic": 8, "condition-removal": 7, "dispelling-countermagic": 6, "shapeshifting-transformation": 9, "natural-weapon-combat": 9, "skill-breadth": 5, "armour-defence": 7, "equipment-independence": 9, "spell-access-breadth": 10, "ability-score-demand": 9 }
+    },
+    {
+      "id": "magus-eldritch-archer",
+      "entityType": "archetype",
+      "classId": "magus",
+      "archetypeId": "eldritch-archer",
+      "scores": { "melee-ranged": 10, "martial-magic": 6, "specialist-versatile": 5, "no-heavy-preparation": 8, "companion-centrality": 1, "steady-burst": 9, "build-complexity": 9, "turn-complexity": 10, "extra-entity-burden": 1, "code-bound-identity": 2, "single-target-damage": 10, "area-damage": 5, "crowd-control": 6, "protect-allies": 4, "personal-durability": 6, "mobility": 8, "stealth-infiltration": 4, "traps-locks": 1, "knowledge-investigation": 7, "wilderness": 2, "magical-utility": 7, "resource-endurance": 6, "melee-weapon-effectiveness": 3, "ranged-weapon-effectiveness": 10, "offensive-spellcasting": 8, "defensive-magic": 7, "condition-removal": 3, "dispelling-countermagic": 6, "shapeshifting-transformation": 4, "natural-weapon-combat": 1, "skill-breadth": 5, "armour-defence": 6, "equipment-independence": 4, "spell-access-breadth": 7, "ability-score-demand": 8 }
+    }
+  ]
+}

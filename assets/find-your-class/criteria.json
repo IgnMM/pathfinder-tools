@@ -3,7 +3,8 @@
   "status": "draft",
   "notes": [
     "Transcribed from Find_Your_Class_Pilot_Blueprint_v1.md sections 5.1-5.4 (criterion set) and section 6 (anchor examples for crowd-control, personal-durability, social-influence, resource-endurance).",
-    "status:\"needs-anchors\" / \"needs-values\" criteria are transcribed labels only -- their 1/3/5/7/10 anchors or closed value lists are Codex's editorial work per Find_Your_Class_Product_Architecture_v1.md section 18, not yet authored. Do not use these criteria for scoring until anchors/values are reviewed."
+    "status:\"needs-anchors\" / \"needs-values\" criteria are transcribed labels only -- their 1/3/5/7/10 anchors or closed value lists are Codex's editorial work per Find_Your_Class_Product_Architecture_v1.md section 18, not yet authored. Do not use these criteria for scoring until anchors/values are reviewed.",
+    "20 criteria (13 capability + 7 directional, categoryId \"audit-capability\"/\"audit-directional\") added from Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md section 3, growing the catalogue from 44 to 64 per that document's section 1. companion-centrality (formerly none-central-companion) and build-fragility (formerly build-forgiveness) were renamed per section 2, each keeping the old id as an \"aliases\" entry since question-templates.json and the pilot fixtures already shipped under the old id."
   ],
   "criteria": [
     {
@@ -127,7 +128,7 @@
       "schemaVersion": 1
     },
     {
-      "id": "none-central-companion",
+      "id": "companion-centrality",
       "categoryId": "pilot-directional",
       "kind": "directional",
       "playerLabel": "How involved should a companion be?",
@@ -148,7 +149,13 @@
       "allowHardConstraint": false,
       "anchors": null,
       "status": "needs-anchors",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "aliases": [
+        "none-central-companion"
+      ],
+      "notes": [
+        "Renamed from none-central-companion per Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md section 2 (\"Rename none-central-companion to companion-centrality in the player model if migration is still cheap. Keep a compatibility alias if the ID has already shipped.\"). The alias is kept since question-templates.json and the pilot fixtures already shipped under the old id."
+      ]
     },
     {
       "id": "no-heavy-preparation",
@@ -876,14 +883,14 @@
       "notes": []
     },
     {
-      "id": "build-forgiveness",
+      "id": "build-fragility",
       "categoryId": "pilot-cognitive-load",
       "kind": "directional",
       "playerLabel": null,
-      "shortLabel": "build-forgiveness",
+      "shortLabel": "build-fragility",
       "lowAnchor": {
         "value": 1,
-        "label": "Easy to remain effective"
+        "label": "Hard to ruin / forgiving"
       },
       "midAnchor": {
         "value": 5.5,
@@ -891,7 +898,7 @@
       },
       "highAnchor": {
         "value": 10,
-        "label": "Weak choices can seriously impair the build"
+        "label": "Poor choices are costly or difficult to repair"
       },
       "allowNotRelevant": true,
       "allowHardConstraint": false,
@@ -899,7 +906,10 @@
       "status": "needs-anchors",
       "schemaVersion": 1,
       "notes": [
-        "Blueprint 5.3: consider renaming/reversing anchors during UI testing so all burden scales point the same direction. Never depend on the ID alone; scoring follows declared anchors."
+        "Renamed from build-forgiveness per audit doc section 2: \"The current name and anchor direction invite inverted data.\" The anchor direction itself (1=forgiving, 10=costly) is unchanged from the original build-forgiveness definition -- only the id/label changed, since the name (not the direction) was the confusing part."
+      ],
+      "aliases": [
+        "build-forgiveness"
       ]
     },
     {
@@ -1021,6 +1031,447 @@
       "notes": [
         "Values per blueprint 5.4: honest leadership, charm, deception, intimidation, performance, no preference."
       ]
+    },
+    {
+      "id": "melee-weapon-effectiveness",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Winning fights with melee weapons",
+      "shortLabel": "Winning fights with melee weapons",
+      "helpText": "Separates martial competence from merely standing nearby.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ranged-weapon-effectiveness",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Winning fights with ranged weapons",
+      "shortLabel": "Winning fights with ranged weapons",
+      "helpText": "Prevents \"ranged\" from meaning only offensive spells.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "offensive-spellcasting",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Hurting enemies with spells",
+      "shortLabel": "Hurting enemies with spells",
+      "helpText": "Distinguishes magical damage from weapon damage.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "defensive-magic",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Using magic to keep danger away",
+      "shortLabel": "Using magic to keep danger away",
+      "helpText": "Covers wards, miss chances, resistances and defensive control.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "condition-removal",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Getting allies back into the fight",
+      "shortLabel": "Getting allies back into the fight",
+      "helpText": "Healing hit points and removing conditions are different jobs.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "dispelling-countermagic",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Unravelling enemy magic",
+      "shortLabel": "Unravelling enemy magic",
+      "helpText": "Important anti-caster fantasy not represented by generic utility.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "shapeshifting-transformation",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Changing form to solve problems",
+      "shortLabel": "Changing form to solve problems",
+      "helpText": "Core to druidic and transformation-led concepts.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "natural-weapon-combat",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Fighting with claws, bites or other natural weapons",
+      "shortLabel": "Fighting with claws, bites or other natural weapons",
+      "helpText": "Materially different build and fantasy from manufactured weapons.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "mounted-combat",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Fighting from a mount",
+      "shortLabel": "Fighting from a mount",
+      "helpText": "Needed for cavalier/knight and several archetype concepts later.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "skill-breadth",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Having an answer outside combat",
+      "shortLabel": "Having an answer outside combat",
+      "helpText": "One or two strong skills is not the same as broad coverage.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "first-round-impact",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Taking control as soon as trouble starts",
+      "shortLabel": "Taking control as soon as trouble starts",
+      "helpText": "Captures initiative, opening buffs, ambush and setup costs.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "armour-defence",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Trusting armour to keep you standing",
+      "shortLabel": "Trusting armour to keep you standing",
+      "helpText": "Armour proficiency alone does not express defensive identity.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "shield-combat",
+      "categoryId": "audit-capability",
+      "kind": "capability",
+      "playerLabel": "Making a shield part of how you fight",
+      "shortLabel": "Making a shield part of how you fight",
+      "helpText": "Relevant to protector and knight fantasies.",
+      "lowAnchor": {
+        "value": 1,
+        "label": null
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": null
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "equipment-independence",
+      "categoryId": "audit-directional",
+      "kind": "directional",
+      "playerLabel": "How much should your power rely on gear?",
+      "shortLabel": "How much should your power rely on gear?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Gear is central"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Effective with little or no equipment"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "enemy-type-independence",
+      "categoryId": "audit-directional",
+      "kind": "directional",
+      "playerLabel": "Should your best tricks work against almost anyone?",
+      "shortLabel": "Should your best tricks work against almost anyone?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Specialised prey"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Broadly applicable"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "spell-access-breadth",
+      "categoryId": "audit-directional",
+      "kind": "directional",
+      "playerLabel": "A familiar repertoire, or a vast toolbox?",
+      "shortLabel": "A familiar repertoire, or a vast toolbox?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Small/fixed list"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Broad access that can be changed"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ability-score-demand",
+      "categoryId": "audit-directional",
+      "kind": "directional",
+      "playerLabel": "One defining talent, or several strong abilities?",
+      "shortLabel": "One defining talent, or several strong abilities?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Mostly one key score"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Several scores must be strong"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "code-bound-identity",
+      "categoryId": "audit-directional",
+      "kind": "directional",
+      "playerLabel": "Do you want a sworn code to define your character?",
+      "shortLabel": "Do you want a sworn code to define your character?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Personal freedom"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Oath, code or strict discipline is central"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "conduct-consequence-tolerance",
+      "categoryId": "audit-directional",
+      "kind": "directional",
+      "playerLabel": "Can breaking your principles carry mechanical consequences?",
+      "shortLabel": "Can breaking your principles carry mechanical consequences?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "No power-loss risk"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Welcome meaningful consequences"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
+    },
+    {
+      "id": "institutional-duty",
+      "categoryId": "audit-directional",
+      "kind": "directional",
+      "playerLabel": "A free agent, or part of an order, faith or calling?",
+      "shortLabel": "A free agent, or part of an order, faith or calling?",
+      "lowAnchor": {
+        "value": 1,
+        "label": "Independent"
+      },
+      "midAnchor": {
+        "value": 5.5,
+        "label": "Flexible / no strong lean"
+      },
+      "highAnchor": {
+        "value": 10,
+        "label": "Duty and belonging are central"
+      },
+      "allowNotRelevant": true,
+      "allowHardConstraint": false,
+      "anchors": null,
+      "status": "needs-anchors",
+      "schemaVersion": 1
     }
   ]
 }

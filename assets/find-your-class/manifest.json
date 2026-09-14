@@ -5,9 +5,9 @@
   "catalogueVersion": "0.0.1-draft",
   "status": "draft",
   "notes": [
-    "Scaffold phase (implementation order step 1: data schemas and manifest loader). No class, archetype or option records are loaded yet -- classFiles/archetypeFiles/optionFiles are intentionally empty until the small fixture catalogue phase (one base class plus two archetypes).",
+    "Scaffold phase (implementation order step 1: data schemas and manifest loader), extended with Codex's criteria audit (64 criteria, up from 44) and draft compass calibration profiles. No class, archetype or option catalogue records are loaded yet -- classFiles/archetypeFiles/optionFiles are intentionally empty until the small fixture catalogue phase (one base class plus two archetypes); compassProfileFiles holds calibration landmarks only, never verified data (see compass-profiles.json's own status field).",
     "supportedClassIds is deliberately NOT frozen to current Spellbook/Library folder prefixes (Find_Your_Class_Product_Architecture_v1.md section 17): it is the pilot's own class list, versioned with this manifest, extended by later catalogue versions rather than a schema migration.",
-    "See finder/Find_Your_Class_Pilot_Blueprint_v1.md and finder/Find_Your_Class_Product_Architecture_v1.md for the full product/data specification this scaffold implements."
+    "See finder/Find_Your_Class_Pilot_Blueprint_v1.md, finder/Find_Your_Class_Product_Architecture_v1.md and Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md for the full product/data specification this scaffold implements."
   ],
   "entities": {
     "criteria": "criteria.json",
@@ -20,6 +20,7 @@
   "optionFiles": [],
   "evidenceFiles": [],
   "fixtureFiles": [],
+  "compassProfileFiles": ["compass-profiles.json"],
   "pilotClassIds": ["fighter", "rogue", "sorcerer", "druid", "magus"],
   "supportedClassIds": ["fighter", "rogue", "sorcerer", "druid", "magus"],
   "schemas": {
@@ -27,6 +28,7 @@
     "criteria": "schemas/criteria.schema.json",
     "catalogue": "schemas/catalogue.schema.json",
     "questions": "schemas/questions.schema.json",
-    "explanations": "schemas/explanations.schema.json"
+    "explanations": "schemas/explanations.schema.json",
+    "compassProfile": "schemas/compass-profile.schema.json"
   }
 }

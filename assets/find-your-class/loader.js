@@ -97,13 +97,23 @@
       validateCriterion(c);
       assert(!seen.has(c.id), `duplicate criterion id "${c.id}"`, 'criteria');
       seen.add(c.id);
+      for (const alias of c.aliases || []) {
+        assert(!seen.has(alias), `alias "${alias}" (on "${c.id}") collides with another criterion id or alias`, 'criteria');
+        seen.add(alias);
+      }
     }
     return true;
   }
 
+  // Indexes by canonical id AND by any declared alias (renamed criteria keep the
+  // old id resolvable -- Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md
+  // section 2: "Keep a compatibility alias if the ID has already shipped").
   function indexCriteria(doc) {
     const byId = new Map();
-    for (const c of (doc && doc.criteria) || []) byId.set(c.id, c);
+    for (const c of (doc && doc.criteria) || []) {
+      byId.set(c.id, c);
+      for (const alias of c.aliases || []) byId.set(alias, c);
+    }
     return byId;
   }
 
@@ -119,6 +129,32 @@
     } else if (kind === 'directional') {
       assert(field !== 'rating', `criterion "${criterionId}" is kind:"directional" and must be scored with "position", not "rating"`, path);
     }
+  }
+
+  // ---------------------------------------------------------------------
+  // Compass calibration profiles (Find_Your_Class_Criteria_Audit_and_Compass_
+  // Calibration_v1.md section 9) -- draft landmarks only, never promoted to
+  // verified catalogue data through this loader. Validates every scored
+  // criterionId exists (aliases included) and every score is an integer 1-10.
+  // ---------------------------------------------------------------------
+  function validateCompassProfiles(doc, criteriaIndex) {
+    assert(doc && doc.status === 'draft-editorial-calibration', 'compass profile file must have status "draft-editorial-calibration" -- never import compass profiles as verified data', 'compassProfiles');
+    assert(Array.isArray(doc.profiles) && doc.profiles.length > 0, 'compass profile file must have a non-empty profiles array', 'compassProfiles');
+    const seen = new Set();
+    for (const p of doc.profiles) {
+      const path = `compass profile "${p && p.id}"`;
+      assert(typeof p.id === 'string' && /^[a-z][a-z0-9-]*$/.test(p.id), 'id must be a kebab-case string', path);
+      assert(!seen.has(p.id), `duplicate compass profile id "${p.id}"`, path);
+      seen.add(p.id);
+      assert(['archetype', 'class-path'].includes(p.entityType), 'entityType must be "archetype" or "class-path"', path);
+      assert(typeof p.classId === 'string', 'classId is required', path);
+      assert(p.scores && typeof p.scores === 'object', 'scores object is required', path);
+      for (const [criterionId, value] of Object.entries(p.scores)) {
+        if (criteriaIndex) assert(criteriaIndex.has(criterionId), `scores references unknown criterion "${criterionId}"`, path);
+        assertCandidateValue(value, `scores["${criterionId}"]`, path);
+      }
+    }
+    return true;
   }
 
   // ---------------------------------------------------------------------
@@ -363,6 +399,7 @@
     validateManifest,
     validateCriterion,
     validateCriteriaFile,
+    validateCompassProfiles,
     indexCriteria,
     OPERATIONS_VOCABULARY: Object.keys(OPERATIONS),
     applyOperation,

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "find-your-class/compass-profile.schema.json",
+  "title": "Find Your Class compass calibration profiles (draft editorial landmarks, never verified catalogue records)",
+  "type": "object",
+  "required": ["schemaVersion", "status", "scale", "profiles"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["draft-editorial-calibration"],
+      "description": "Deliberately a single allowed value -- Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md implementation order step 6: 'Import the compass profiles as draft, never as verified catalogue records.' A compass profile is a calibration landmark, not production catalogue data; it never reaches 'verified' through this file."
+    },
+    "levelBand": { "type": "string" },
+    "scale": {
+      "type": "object",
+      "required": ["min", "max"],
+      "properties": { "min": { "type": "integer" }, "max": { "type": "integer" } }
+    },
+    "warning": { "type": "string" },
+    "source": { "type": "string" },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "entityType", "classId", "scores"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+          "entityType": { "type": "string", "enum": ["archetype", "class-path"] },
+          "classId": { "type": "string" },
+          "archetypeId": { "type": ["string", "null"] },
+          "branchId": { "type": "string" },
+          "scores": {
+            "type": "object",
+            "additionalProperties": { "type": "integer", "minimum": 1, "maximum": 10 }
+          }
+        },
+        "allOf": [
+          { "if": { "properties": { "entityType": { "const": "archetype" } } }, "then": { "required": ["archetypeId"] } }
+        ]
+      }
+    }
+  }
+}

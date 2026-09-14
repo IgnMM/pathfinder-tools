@@ -27,6 +27,7 @@
     "optionFiles": { "type": "array", "items": { "type": "string" } },
     "evidenceFiles": { "type": "array", "items": { "type": "string" } },
     "fixtureFiles": { "type": "array", "items": { "type": "string" } },
+    "compassProfileFiles": { "type": "array", "items": { "type": "string" } },
     "pilotClassIds": { "type": "array", "items": { "type": "string" } },
     "supportedClassIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "schemas": { "type": "object" }

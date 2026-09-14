@@ -3,7 +3,8 @@
   "status": "draft",
   "notes": [
     "Closed vocabularies referenced by the schemas and loader. reviewStatuses, criterionKinds and preferenceOrigins are transcribed directly from Find_Your_Class_Product_Architecture_v1.md (sections 19, 10.1 and 10.6). operationVocabulary and restrictionTypes are a first proposal implementing section 10.3/10.5's requirement for a closed, validated vocabulary (the docs give examples, not a final enumerated list) -- pending confirmation before any archetype/option delta uses an operation not listed here.",
-    "fantasyTags is transcribed from section 7.1's initial vocabulary; it is explicitly non-exhaustive there and may grow."
+    "fantasyTags is transcribed from section 7.1's initial vocabulary; it is explicitly non-exhaustive there and may grow.",
+    "restrictionTypes extended with the ten contextual-gate categories from Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md section 5 (kept as restriction TYPES, reusing the existing rulesRestrictions mechanism, rather than inventing a second parallel gate structure). conductCodePresence/conductMechanicalLossRisk/alignmentRuleKind/deityChoiceProvenance are transcribed from section 4. affinityFamilies and their initial vocabularies are transcribed from section 6."
   ],
   "reviewStatuses": ["draft", "needs-review", "reviewed", "disputed", "deprecated"],
   "criterionKinds": ["capability", "directional", "categorical", "boolean", "contextual"],
@@ -17,9 +18,46 @@
     "race",
     "ability-score-minimum",
     "class-prerequisite",
-    "source-policy"
+    "source-policy",
+    "conduct-power-loss",
+    "character-level",
+    "party-needs",
+    "campaign-environment",
+    "rules-gm-compatibility"
   ],
   "dependencySeverities": ["mild", "moderate", "strong"],
+  "conductCodePresence": ["none", "optional", "expected", "mandatory"],
+  "conductMechanicalLossRisk": ["none", "limited", "substantial"],
+  "conductConsequenceStance": ["avoid", "accept", "welcome"],
+  "alignmentRuleKind": ["none", "fixed", "subset", "deity-relative"],
+  "religiousDutyLevel": ["none", "optional", "welcome", "required"],
+  "deityChoiceProvenance": [
+    "free-choice-with-consequences",
+    "restricted-choice",
+    "fixed-source",
+    "optional-relationship"
+  ],
+  "affinityFamilies": {
+    "weapons": [
+      "sword-and-shield", "two-handed", "dual-wielding", "bow", "crossbow", "firearm",
+      "thrown", "reach-weapon", "unarmed", "natural-weapons"
+    ],
+    "magicThemes": [
+      "elemental", "illusion", "enchantment", "necromancy", "divination", "summoning",
+      "curse", "shadow", "healing", "protection", "teleportation", "nature", "psychic",
+      "holy", "profane"
+    ],
+    "fantasies": [
+      "sworn-knight", "arcane-duelist", "battlefield-commander", "shapeshifter", "trickster",
+      "scholar", "monster-hunter", "healer", "face", "scout", "pet-master", "summoner",
+      "infiltrator", "living-weapon"
+    ],
+    "socialIdentity": [
+      "noble", "criminal", "military", "religious", "academic", "primal", "occult",
+      "mercantile", "outsider"
+    ],
+    "creatures": []
+  },
   "operationVocabulary": [
     "set-capability",
     "adjust-capability",
