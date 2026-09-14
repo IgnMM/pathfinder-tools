@@ -115,16 +115,109 @@ function migrateArchetypes(base, archetypes) {
   return {migrated, stats};
 }
 
+// The combined Wizard/Sorcerer Library has no single sibling: Worldseeker and Spell
+// Sage are Wizard-only archetypes (compare against wizard/index.html), Razmiran
+// Priest is Sorcerer-only (compare against sorcerer/index.html). Handled explicitly
+// per-archetype below instead of silently skipping the whole library, as the audit
+// brief (docs/spellbooks-libraries-final-audit-fixes.md) required.
+const WIZARD_SORCERER_ARCHETYPE_SIBLING = {
+  'Worldseeker': 'wizard',
+  'Spell Sage': 'wizard',
+  'Razmiran Priest': 'sorcerer',
+};
+
 function spellbookDirectory(libraryName) {
-  if (libraryName === 'wizard-sorcerer') return null;
+  if (libraryName === 'wizard-sorcerer') return null; // handled per-archetype, see above
   return libraryName;
 }
 
-function compareSibling(libraryName, base, migrated) {
-  const sibling = spellbookDirectory(libraryName);
-  if (!sibling) return [];
-  const siblingPath = path.join(ROOT, sibling, 'index.html');
+// Known, documented pre-existing exceptions where a Library's base list legitimately
+// differs from its Spellbook sibling's base list -- never silently absorbed, always
+// asserted so a NEW, unexplained drift still gets reported.
+const KNOWN_BASE_EXCEPTIONS = {
+  // Paladin's Spellbook has one more base entry than its Library
+  // ("4|Blessing of Fervor") -- a 1-spell drift predating this audit, out of its
+  // scope; tracked in project memory rather than fixed here.
+  paladin: { onlySpellbook: ['4|Blessing of Fervor'] },
+};
+
+function compareBaseMembership(libraryName, base, siblingDir) {
+  const siblingPath = path.join(ROOT, siblingDir, 'index.html');
   if (!fs.existsSync(siblingPath)) return [];
+  const source = fs.readFileSync(siblingPath, 'utf8');
+  let siblingBase;
+  try {
+    siblingBase = extractJsonConst(source, 'SPELLS').value;
+  } catch (error) {
+    return [{type: 'sibling-base-parse-error', sibling: siblingDir, detail: error.message}];
+  }
+  const libKeys = new Set(base.map(key));
+  const sibKeys = new Set(siblingBase.map(key));
+  const exceptions = KNOWN_BASE_EXCEPTIONS[siblingDir] || {};
+  const knownOnlySpellbook = new Set(exceptions.onlySpellbook || []);
+  const knownOnlyLibrary = new Set(exceptions.onlyLibrary || []);
+  const onlySpellbook = [...sibKeys].filter(k => !libKeys.has(k) && !knownOnlySpellbook.has(k));
+  const onlyLibrary = [...libKeys].filter(k => !sibKeys.has(k) && !knownOnlyLibrary.has(k));
+  if (!onlySpellbook.length && !onlyLibrary.length) return [];
+  return [{type: 'base-membership-mismatch', sibling: siblingDir, onlySpellbook, onlyLibrary}];
+}
+
+// Flags a special-only pool (domainOnly/patronOnly/bloodlineOnly) that has leaked back
+// into an archetype's own addedSpells instead of living once in the shared base/pool --
+// exactly the class of bug corrections 2/3/4 fixed; kept as an ongoing regression check.
+const SPECIAL_MARKERS = ['domainOnly', 'patronOnly', 'bloodlineOnly'];
+function reportSpecialPoolLeakage(archetypes) {
+  const issues = [];
+  for (const [name, archetype] of Object.entries(archetypes)) {
+    for (const marker of SPECIAL_MARKERS) {
+      const leaked = (archetype.addedSpells || []).filter(s => s[marker] === true);
+      if (leaked.length) {
+        issues.push({type: 'special-pool-leakage', archetype: name, marker, count: leaked.length});
+      }
+    }
+  }
+  return issues;
+}
+
+function compareSibling(libraryName, base, migrated) {
+  const issues = [];
+
+  if (libraryName === 'wizard-sorcerer') {
+    // Base membership: Wizard and Sorcerer share an identical common spell list per
+    // RAW (verified 2026-09: wizard/index.html's 1885 base spells are byte-identical
+    // to sorcerer/index.html's own 1885 non-bloodline spells) -- compare against
+    // either; wizard/index.html is used here since it has no bloodlineOnly noise.
+    issues.push(...compareBaseMembership(libraryName, base, 'wizard'));
+    for (const [name, libraryArchetype] of Object.entries(migrated)) {
+      const siblingDir = WIZARD_SORCERER_ARCHETYPE_SIBLING[name];
+      if (!siblingDir) { issues.push({type: 'unmapped-archetype-sibling', archetype: name}); continue; }
+      const siblingPath = path.join(ROOT, siblingDir, 'index.html');
+      if (!fs.existsSync(siblingPath)) continue;
+      const source = fs.readFileSync(siblingPath, 'utf8');
+      let siblingArchetypes;
+      try { siblingArchetypes = extractJsonConst(source, 'ARCHETYPES').value; }
+      catch (error) { issues.push({type: 'sibling-parse-error', detail: error.message}); continue; }
+      const siblingArchetype = siblingArchetypes[name];
+      if (!siblingArchetype) continue;
+      const libraryKeys = reconstruct(base, libraryArchetype).filter(s => !s.bloodlineOnly).map(key).sort();
+      const siblingBase = extractJsonConst(source, 'SPELLS').value;
+      const siblingKeys = reconstruct(siblingBase, siblingArchetype).map(key).sort();
+      if (json(libraryKeys) !== json(siblingKeys)) {
+        const libSet = new Set(libraryKeys), sibSet = new Set(siblingKeys);
+        issues.push({
+          type: 'library-spellbook-mismatch', archetype: name,
+          onlyLibrary: libraryKeys.filter(k => !sibSet.has(k)),
+          onlySpellbook: siblingKeys.filter(k => !libSet.has(k)),
+        });
+      }
+    }
+    return issues;
+  }
+
+  const sibling = spellbookDirectory(libraryName);
+  if (!sibling) return issues;
+  const siblingPath = path.join(ROOT, sibling, 'index.html');
+  if (!fs.existsSync(siblingPath)) return issues;
   const source = fs.readFileSync(siblingPath, 'utf8');
   let siblingBase, siblingArchetypes;
   try {
@@ -133,7 +226,11 @@ function compareSibling(libraryName, base, migrated) {
   } catch (error) {
     return [{type: 'sibling-parse-error', detail: error.message}];
   }
-  const issues = [];
+
+  // Compare BASE Spellbook/Library membership too, not only archetype
+  // reconstructions -- this is what would have caught corrections 1 and 5 sooner.
+  issues.push(...compareBaseMembership(libraryName, base, sibling));
+
   for (const [name, libraryArchetype] of Object.entries(migrated)) {
     const siblingArchetype = siblingArchetypes[name];
     if (!siblingArchetype) continue;
@@ -188,6 +285,10 @@ function run() {
     }
     const afterBytes = Buffer.byteLength(source);
     const siblingIssues = compareSibling(name, base, migrated);
+    // migrated is the OLD archetypes object unchanged for files with nothing to
+    // migrate (status 'already-delta') -- still worth scanning for special-pool
+    // leakage (domainOnly/patronOnly/bloodlineOnly) every run, not just once.
+    const poolLeakageIssues = reportSpecialPoolLeakage(migrated);
     if (apply && migratedCount) fs.writeFileSync(file, source);
     report.files.push({
       name,
@@ -197,13 +298,14 @@ function run() {
       afterBytes,
       reductionBytes: beforeBytes - afterBytes,
       stats,
-      siblingIssues
+      siblingIssues,
+      poolLeakageIssues
     });
   }
   const reportPath = path.join(ROOT, 'scripts', apply ? 'library-delta-migration-report.json' : 'library-delta-dry-run-report.json');
   fs.writeFileSync(reportPath, JSON.stringify(report, null, 2) + '\n');
   for (const file of report.files) {
-    console.log(`${file.name}: ${file.migratedCount}/${file.archetypes} migrated, ${file.beforeBytes} -> ${file.afterBytes}, sibling issues=${file.siblingIssues.length}`);
+    console.log(`${file.name}: ${file.migratedCount}/${file.archetypes} migrated, ${file.beforeBytes} -> ${file.afterBytes}, sibling issues=${file.siblingIssues.length}, pool leakage=${file.poolLeakageIssues.length}`);
   }
   console.log(`Report: ${path.relative(ROOT, reportPath)}`);
 }
