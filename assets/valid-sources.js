@@ -145,6 +145,25 @@
       style.textContent = '@media(max-width:900px){header{padding-top:60px!important}header,main{padding-left:7px!important}}';
       document.head.appendChild(style);
     }
+
+    // Spell Library toolbar controls (search/filter/archetype/level/casting-time
+    // buttons, result count) share these same ids across every Library page --
+    // labeled centrally here rather than per-file. Only set an attribute the
+    // element doesn't already carry, so a page with its own more specific label
+    // is never overridden.
+    const labelIfMissing = (id, attr, value) => {
+      const el = document.getElementById(id);
+      if (el && !el.hasAttribute(attr)) el.setAttribute(attr, value);
+    };
+    labelIfMissing('search', 'aria-label', 'Search spells');
+    labelIfMissing('filter', 'aria-label', 'Spell filter');
+    labelIfMissing('archetype', 'aria-label', 'Archetype');
+    labelIfMissing('levelButtons', 'role', 'group');
+    labelIfMissing('levelButtons', 'aria-label', 'Spell levels');
+    labelIfMissing('ctButtons', 'role', 'group');
+    labelIfMissing('ctButtons', 'aria-label', 'Casting time');
+    labelIfMissing('resultCount', 'role', 'status');
+    labelIfMissing('resultCount', 'aria-live', 'polite');
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyGlobalUiBaseline, {once:true});

@@ -100,6 +100,7 @@ function renderList(){
     arr.sort((a,b)=>a.n.localeCompare(b.n)).forEach(s=>g.appendChild(buildCard(s)));
     out.appendChild(sec);
   }
+  if(total===0){let empty=document.createElement('div');empty.className='emptyState';empty.style.cssText='padding:20px;text-align:center;color:var(--muted);font-size:.85rem';empty.textContent='No spells match the current filters.';out.appendChild(empty);}
   $('resultCount').textContent=total+' spell'+(total===1?'':'s')+' shown';
 }
 function renderSources(){
