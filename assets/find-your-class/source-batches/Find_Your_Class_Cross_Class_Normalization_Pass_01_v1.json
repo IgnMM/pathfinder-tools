@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "status": "editorial-corrections-for-claude",
+  "targetCommitReviewed": "09d3730",
+  "scope": "Cross-class normalization of the 27 resolved pilot profiles. Apply only listed changes; preserve every unlisted score and field.",
+  "findings": [
+    "Build complexity was compressed to 7-10 and rules mastery to 6-10, leaving no genuinely approachable anchor.",
+    "Several Sorcerer profiles overstated condition removal available from ordinary arcane spell selection.",
+    "Reincarnation after one day was incorrectly treated as maximum in-combat personal durability.",
+    "Armor Master personal survival was partially conflated with protecting allies.",
+    "The Druid code and ex-druid consequences were understated or absent in structured conduct data.",
+    "Razmiran Priest narrative identity was incorrectly close to becoming a mechanical deity/institution gate.",
+    "Bladebound Ego conflict was partially conflated with breaking a personal code and losing class powers."
+  ],
+  "scoreOverrides": {
+    "fighter-archer": {"build-complexity": 5, "turn-complexity": 3, "rules-mastery": 4, "build-fragility": 4, "first-round-impact": 7},
+    "fighter-armor-master": {"build-complexity": 5, "turn-complexity": 3, "rules-mastery": 5, "build-fragility": 4, "protect-allies": 5, "first-round-impact": 4},
+    "fighter-eldritch-guardian": {"build-complexity": 8, "turn-complexity": 7, "rules-mastery": 8, "build-fragility": 7},
+    "fighter-mutation-warrior": {"build-complexity": 7, "rules-mastery": 7, "build-fragility": 6},
+    "rogue-burglar": {"build-complexity": 6, "turn-complexity": 5, "rules-mastery": 6, "build-fragility": 5, "first-round-impact": 7},
+    "rogue-charlatan": {"build-complexity": 6, "turn-complexity": 5, "rules-mastery": 6, "build-fragility": 5, "first-round-impact": 7},
+    "rogue-scout": {"build-complexity": 7, "turn-complexity": 7, "rules-mastery": 7, "build-fragility": 6, "first-round-impact": 8},
+    "rogue-thug": {"build-complexity": 7, "turn-complexity": 7, "rules-mastery": 7, "build-fragility": 6, "first-round-impact": 8},
+    "sorcerer-base": {"rules-mastery": 8, "condition-removal": 3, "first-round-impact": 8},
+    "sorcerer-crossblooded": {"condition-removal": 3},
+    "sorcerer-eldritch-scrapper": {"condition-removal": 3},
+    "sorcerer-seeker": {"build-complexity": 8, "rules-mastery": 8, "condition-removal": 3, "first-round-impact": 8},
+    "sorcerer-tattooed-sorcerer": {"build-complexity": 8, "rules-mastery": 8, "condition-removal": 3, "first-round-impact": 8},
+    "druid-domain": {"code-bound-identity": 7, "conduct-consequence-tolerance": 9},
+    "druid-pack-lord": {"code-bound-identity": 7, "conduct-consequence-tolerance": 9},
+    "druid-feyspeaker-domain": {"code-bound-identity": 7, "conduct-consequence-tolerance": 9},
+    "druid-nature-fang-domain": {"code-bound-identity": 7, "conduct-consequence-tolerance": 9},
+    "druid-reincarnated-druid-domain": {"personal-durability": 7, "code-bound-identity": 7, "conduct-consequence-tolerance": 9},
+    "druid-storm-druid": {"code-bound-identity": 7, "conduct-consequence-tolerance": 9},
+    "magus-armored-battlemage": {"build-complexity": 8, "turn-complexity": 7, "rules-mastery": 8, "build-fragility": 7},
+    "magus-bladebound": {"code-bound-identity": 3, "conduct-consequence-tolerance": 3},
+    "sorcerer-razmiran-priest": {"code-bound-identity": 5, "conduct-consequence-tolerance": 1, "institutional-duty": 8}
+  },
+  "conductOverrides": {
+    "druid-domain": {"codePresence": "mandatory", "mechanicalLossRisk": "substantial", "alignmentRule": {"kind": "subset", "values": ["any neutral alignment"]}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false, "changeOrAtonementNotes": ["A druid who changes to a prohibited alignment or ceases to revere nature loses spells and druid abilities until atonement; teaching Druidic to a nondruid also causes loss. Prohibited armour separately suppresses druid powers while worn and for 24 hours afterward."]},
+    "druid-pack-lord": {"codePresence": "mandatory", "mechanicalLossRisk": "substantial", "alignmentRule": {"kind": "subset", "values": ["any neutral alignment"]}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false, "changeOrAtonementNotes": ["Inherits the base Druid alignment, nature-reverence, Druidic-language and armour obligations."]},
+    "druid-feyspeaker-domain": {"codePresence": "mandatory", "mechanicalLossRisk": "substantial", "alignmentRule": {"kind": "subset", "values": ["any neutral alignment"]}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+    "druid-nature-fang-domain": {"codePresence": "mandatory", "mechanicalLossRisk": "substantial", "alignmentRule": {"kind": "subset", "values": ["any neutral alignment"]}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+    "druid-reincarnated-druid-domain": {"codePresence": "mandatory", "mechanicalLossRisk": "substantial", "alignmentRule": {"kind": "subset", "values": ["any neutral alignment"]}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+    "druid-storm-druid": {"codePresence": "mandatory", "mechanicalLossRisk": "substantial", "alignmentRule": {"kind": "subset", "values": ["any neutral alignment"]}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+    "sorcerer-razmiran-priest": {"codePresence": "expected", "mechanicalLossRisk": "none", "alignmentRule": {"kind": "none", "values": []}, "deityRequired": false, "deityChoiceProvenance": "fixed-source", "institutionRequired": false, "changeOrAtonementNotes": ["Razmir and his church define the archetype's published narrative identity, but the archetype rules text does not state worship, alignment or church membership as a mechanical prerequisite. Present this as campaign-facing narrative compatibility, not an automatic hard gate."]},
+    "magus-bladebound": {"codePresence": "none", "mechanicalLossRisk": "none", "alignmentRule": {"kind": "none", "values": []}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false, "changeOrAtonementNotes": ["The black blade has a mission and Ego and can attempt dominance in a conflict. This is an intelligent-item relationship consequence, not an oath violation or loss of class powers."]}
+  },
+  "explanationCorrections": {
+    "fighter-armor-master": {"tradeoff": "You become exceptionally hard to hurt, but the archetype does not by itself force enemies to attack you or intercept attacks against allies. Protecting the party still requires positioning, reach, feats or teamwork."},
+    "druid-reincarnated-druid-domain": {"tradeoff": "Many Lives can return you one day after death, but it does not keep you conscious or protect the party during the battle in which you fall. It also fails against death effects and cannot trigger again for seven days."},
+    "sorcerer-razmiran-priest": {"tradeoff": "The defining trick arrives at level 9 and relies on suitable divine spell-trigger or spell-completion items, Use Magic Device and higher-level spell slots. Razmir's church is central to the published fantasy, but the rules text does not explicitly make membership a prerequisite."},
+    "magus-bladebound": {"tradeoff": "Your weapon choice is permanent, your normal arcane pool is smaller, and the blade's growing Ego can create a contest of wills. This is a relationship with an independent personality, not a class code that removes your powers when broken."}
+  },
+  "testsToAdd": [
+    "At least one pilot profile must score 5 or lower in build-complexity and rules-mastery, preserving approachable anchors.",
+    "Every Druid class path and Druid archetype must declare mandatory/substantial inherited Druid conduct unless an archetype explicitly replaces it.",
+    "Razmiran Priest must not create a hard deity or institution compatibility gate from narrative text alone.",
+    "Reincarnated Druid personal-durability must remain below the dedicated in-combat defence anchors Armor Master and Armored Battlemage.",
+    "Armor Master protect-allies must remain below its personal-durability score.",
+    "Bladebound must use sentient item but must not be classified as a mandatory conduct code."
+  ],
+  "doNotChange": [
+    "Do not alter the matching engine in this pass.",
+    "Do not promote any profile beyond needs-review.",
+    "Do not normalize by forcing a statistical distribution; every override above follows a player-facing mechanical distinction."
+  ]
+}
