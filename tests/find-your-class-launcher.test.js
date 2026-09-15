@@ -5,6 +5,9 @@
 // mount()'s actual DOM rendering is exercised manually in a real browser, not
 // here -- see tests/find-your-class-app.test.js for the pure state-logic
 // coverage (9-17, 22-23) that IS exercised in Node.
+// NOTE: the launcher moved from a Library-scene widget in hub.html to the
+// Sanctum home page's pentacle (index.html, 6th "center" node) after manual
+// testing and a design discussion -- tests 1-3/24 target index.html now.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -22,61 +25,47 @@ const profiles = readJson('compass-profiles.json').profiles;
 const questionTemplates = readJson('question-templates.json');
 const explanationCatalogue = readJson('explanation-templates.json');
 
-const hubHtml = fs.readFileSync(path.join(root, 'hub.html'), 'utf8');
+const homeHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const pageHtml = fs.readFileSync(path.join(root, 'find-your-class', 'index.html'), 'utf8');
 const appJs = fs.readFileSync(path.join(dir, 'app.js'), 'utf8');
 
 // ---------------------------------------------------------------------
-// 1-2. Desktop launcher exists, sits inside the library map, and never
-// overlaps a book hitbox -- checked against the SAME coordinate constants
-// hub.html's own script uses to place the book grid (COL_LEFT0 etc.).
+// 1-2. The Arcane Compass launcher lives in the Sanctum home page's pentacle,
+// as its 6th ("center") node, using the real supplied artwork, pointing at
+// find-your-class/, and never sharing coordinates with one of the 5 existing
+// vertex nodes (which would mean visual overlap).
 // ---------------------------------------------------------------------
-test('1. hub.html has a desktop Arcane Compass launcher inside the library map, pointing at find-your-class/', () => {
-  assert.match(hubHtml, /id="compassLauncherDesktop"/);
-  assert.match(hubHtml, /class="compass-launcher"[^>]*id="compassLauncherDesktop"[^>]*href="find-your-class\/"/);
-  // It must be nested inside #libraryMap in the source order (added right after bookLens).
-  const mapIdx = hubHtml.indexOf('id="libraryMap"');
-  const launcherIdx = hubHtml.indexOf('id="compassLauncherDesktop"');
-  const detailsCloseIdx = hubHtml.indexOf('</details>', mapIdx);
-  assert.ok(mapIdx > -1 && launcherIdx > mapIdx && launcherIdx < detailsCloseIdx, 'compass launcher must be inside the Spell Libraries subsection, after the map opens');
+test('1. index.html has an Arcane Compass node in the pentacle, using the real artwork, pointing at find-your-class/', () => {
+  assert.match(homeHtml, /<a class="node" data-pos="center" href="find-your-class\/" tabindex="0">/);
+  assert.match(homeHtml, /data-pos="center"[\s\S]{0,40}[\s\S]*?src="assets\/find-your-class\/arcane-compass-table\.png"/);
+  const imagePath = path.join(root, 'assets', 'find-your-class', 'arcane-compass-table.png');
+  assert.ok(fs.existsSync(imagePath), 'the real Arcane Compass PNG must exist on disk, not just be referenced');
+  assert.ok(fs.statSync(imagePath).size > 10000, 'the asset at that path must be a real image, not a stub/placeholder file');
 });
 
-test('2. desktop launcher CSS never overlaps the book-hitbox grid', () => {
-  // Same constants as hub.html's own book-hitbox placement script.
-  const COL_LEFT0 = 16.50, COL_PITCH = (78.35 - 16.50) / 8, BOX_W = 7.70;
-  const ROW_TOP0 = 2.50, ROW_PITCH = 26.30, BOX_H = 26.99;
-  const gridRight = COL_LEFT0 + COL_PITCH * 8 + BOX_W;
-  const gridBottom = ROW_TOP0 + ROW_PITCH * 2 + BOX_H;
-
-  const css = hubHtml.match(/a\.compass-launcher\{([^}]+)\}/);
-  assert.ok(css, '.compass-launcher rule must exist');
-  const decl = css[1];
-  const left = Number(decl.match(/left:([\d.]+)%/)[1]);
-  const top = Number(decl.match(/top:([\d.]+)%/)[1]);
-  const width = Number(decl.match(/width:([\d.]+)%/)[1]);
-  const height = Number(decl.match(/height:([\d.]+)%/)[1]);
-  const right = left + width;
-
-  // Safe if it lies fully below the grid's bottom edge OR fully right of the
-  // grid's right edge (either condition alone guarantees zero overlap).
-  const safelyBelow = top >= gridBottom;
-  const safelyRight = left >= gridRight;
-  assert.ok(safelyBelow || safelyRight, `launcher box [left:${left} top:${top} right:${right} bottom:${top + height}] must not overlap the book grid [right:${gridRight.toFixed(2)} bottom:${gridBottom.toFixed(2)}]`);
-  assert.ok(right <= 100 && top + height <= 100, 'launcher must stay inside the map bounds');
+test('2. the centre node does not share coordinates with any of the pentacle\'s 5 vertex nodes', () => {
+  const positions = {};
+  for (const m of homeHtml.matchAll(/\.node\[data-pos="([\w-]+)"\]\{\s*left:([\d.]+)%;\s*top:([\d.]+)%/g)) {
+    if (!(m[1] in positions)) positions[m[1]] = { left: Number(m[2]), top: Number(m[3]) };
+  }
+  assert.ok(positions.center, 'expected a .node[data-pos="center"] CSS rule with left/top');
+  for (const key of ['top', 'upper-left', 'upper-right', 'lower-left', 'lower-right']) {
+    assert.ok(positions[key], `expected the pre-existing ${key} node to still be positioned`);
+    const dx = Math.abs(positions.center.left - positions[key].left);
+    const dy = Math.abs(positions.center.top - positions[key].top);
+    assert.ok(dx > 5 || dy > 5, `centre node must not sit on top of the ${key} node`);
+  }
 });
 
 // ---------------------------------------------------------------------
-// 3. Mobile launcher renders as its own card OUTSIDE .library-scroll (so it
-// never scrolls off-screen with the horizontally-scrolling shelf), and the
-// desktop launcher is hidden at the same breakpoint the map switches to a
-// horizontal scroller (<=640px, matching .library-map's own min-width rule).
+// 3. The old Library-scene launcher (desktop card + mobile card) is fully
+// removed now that the Sanctum pentacle is the single entry point -- no
+// leftover dead markup/CSS/ids for it should remain in hub.html.
 // ---------------------------------------------------------------------
-test('3. mobile launcher card lives outside .library-scroll and hides the desktop one at <=640px', () => {
-  const scrollIdx = hubHtml.indexOf('<div class="library-scroll"');
-  const mobileIdx = hubHtml.indexOf('id="compassLauncherMobile"');
-  assert.ok(mobileIdx > -1 && mobileIdx < scrollIdx, 'the mobile launcher card must appear before .library-scroll opens, i.e. entirely outside it');
-  assert.match(hubHtml, /@media\(max-width:640px\)\{a\.compass-launcher\{display:none\}\}/);
-  assert.match(hubHtml, /@media\(max-width:640px\)\{[\s\S]*?a\.compass-launcher-mobile\{display:flex/);
+test('3. the old hub.html Library-scene launcher was removed, not left as dead code alongside the new one', () => {
+  const hubHtml = fs.readFileSync(path.join(root, 'hub.html'), 'utf8');
+  assert.ok(!/compassLauncher/.test(hubHtml), 'hub.html must not still reference the old compass-launcher ids/classes');
+  assert.ok(!/compass-launcher/.test(hubHtml), 'hub.html must not still define compass-launcher CSS');
 });
 
 // ---------------------------------------------------------------------
@@ -90,8 +79,9 @@ test('4. no non-English UI text in the new find-your-class experience', () => {
   assert.ok(!suspiciousChars.test(pageHtml), 'find-your-class/index.html must contain no non-English UI characters');
   // app.js's template strings are where all player-visible copy lives.
   assert.ok(!suspiciousChars.test(appJs), 'app.js must contain no non-English UI characters');
-  const hubLauncherSection = hubHtml.slice(hubHtml.indexOf('compassLauncherMobile') - 50, hubHtml.indexOf('id="subsection-character-sheets"'));
-  assert.ok(!suspiciousChars.test(hubLauncherSection), 'the new compass launcher markup in hub.html must contain no non-English UI characters');
+  const centerNodeMatch = homeHtml.match(/<a class="node" data-pos="center"[\s\S]*?<\/a>/);
+  assert.ok(centerNodeMatch, 'expected to find the centre node markup');
+  assert.ok(!suspiciousChars.test(centerNodeMatch[0]), 'the new pentacle centre node in index.html must contain no non-English UI characters');
 });
 
 // ---------------------------------------------------------------------
@@ -144,12 +134,12 @@ test('21. a one-result shortlist builds a normal card with no special-cased cont
 // element carries a real accessible name (aria-label or visible text), not
 // an icon/image alone.
 // ---------------------------------------------------------------------
-test('24. launcher elements have stable accessible names', () => {
-  assert.match(hubHtml, /id="compassLauncherDesktop"[^>]*aria-label="[^"]+"/);
-  assert.match(hubHtml, /id="compassLauncherMobile"[^>]*aria-label="[^"]+"/);
-  const desktopLabel = hubHtml.match(/id="compassLauncherDesktop"[^>]*aria-label="([^"]+)"/)[1];
-  const mobileLabel = hubHtml.match(/id="compassLauncherMobile"[^>]*aria-label="([^"]+)"/)[1];
-  assert.ok(desktopLabel.length > 5 && mobileLabel.length > 5);
+test('24. the pentacle centre node has a stable accessible name (real alt text, not an empty/decorative image)', () => {
+  const centerNodeMatch = homeHtml.match(/<a class="node" data-pos="center"[\s\S]*?<\/a>/);
+  assert.ok(centerNodeMatch, 'expected to find the centre node markup');
+  const altMatch = centerNodeMatch[0].match(/alt="([^"]+)"/);
+  assert.ok(altMatch && altMatch[1].length > 5, 'the centre node\'s icon must carry meaningful alt text');
+  assert.match(centerNodeMatch[0], /<span class="label">[^<]{4,}<\/span>/, 'the centre node must also carry a visible text label, same as the other 5 nodes');
 });
 
 // ---------------------------------------------------------------------

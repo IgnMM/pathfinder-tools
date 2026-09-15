@@ -116,38 +116,6 @@ details.section[open] .chevron{transform:rotate(180deg)}
 @media(prefers-reduced-motion:reduce){.bookLabel{transition:none}}
 @media(max-width:640px){.library-map{min-width:900px}}
 @media(prefers-reduced-motion:reduce){.bookLens{transition:none}}
-/* The Arcane Compass launcher (Find Your Class). Desktop: sits over the empty
-   plinth area below-right of the book grid (grid bottom edge is ~82.09% down
-   the map -- see COL_LEFT0/ROW_TOP0 etc. below -- so top:86.5%/height:12%
-   never overlaps a book hitbox). Positioned with an explicit `top` (not
-   `bottom`), matching .book-hitbox's own left/top/width/height convention --
-   `bottom`-based percentage positioning inside this aspect-ratio box measured
-   incorrectly in testing, `top`-based (as .book-hitbox already proves at scale)
-   did not. Mobile (<=640px): the map becomes a wide horizontally-scrolling
-   strip, so the launcher instead renders as its own compact card ABOVE the
-   scroll area, outside .library-scroll entirely. */
-/* box-sizing:border-box + explicit padding/margin:0 are required here --
-   .links a (a same-specificity, earlier rule) sets padding:14px 16px and
-   margin:8px 0, which otherwise leak through and inflate/offset this box
-   (confirmed in manual testing: rendered size and position were both off
-   until these were reset explicitly). */
-a.compass-launcher{position:absolute;left:83.5%;top:86.5%;width:14%;height:12%;margin:0;padding:0;box-sizing:border-box;display:block;border-radius:8px;overflow:hidden;text-decoration:none;border:1px solid rgba(233,200,116,.45);background:rgba(10,7,4,.82)}
-.compass-launcher img{display:block;width:100%;height:100%;object-fit:cover}
-.compass-launcher__placeholder{display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;text-align:center;color:#f1d78b;font-family:'Cinzel',Georgia,serif;font-size:.6rem;line-height:1.3;padding:4px;border:1px dashed rgba(233,200,116,.5);box-sizing:border-box}
-.compass-launcher--placeholder .compass-launcher__placeholder{display:flex}
-.compass-launcher__label{position:absolute;left:2%;right:2%;bottom:2%;text-align:center;font-family:'Cinzel',Georgia,serif;font-size:clamp(.42rem,1vw,.62rem);font-weight:700;letter-spacing:.01em;text-transform:uppercase;color:#f1d78b;background:rgba(10,7,4,.82);border:1px solid rgba(255,214,140,.45);border-radius:4px;padding:2px 1px;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;box-sizing:border-box}
-a.compass-launcher:hover,a.compass-launcher:focus-visible{border-color:#f1d78b;box-shadow:0 0 0 2px rgba(241,215,139,.25)}
-@media(max-width:640px){a.compass-launcher{display:none}}
-a.compass-launcher-mobile{display:none}
-@media(max-width:640px){
-  a.compass-launcher-mobile{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:10px 12px;border-radius:10px;border:1px solid rgba(233,200,116,.45);background:rgba(10,7,4,.82);text-decoration:none}
-  .compass-launcher-mobile__art{flex:none;width:52px;height:52px;border-radius:8px;overflow:hidden;border:1px dashed rgba(233,200,116,.5);display:flex;align-items:center;justify-content:center;color:#f1d78b;font-family:'Cinzel',Georgia,serif;font-size:.5rem;line-height:1.2;text-align:center;padding:2px}
-  .compass-launcher-mobile__art img{display:block;width:100%;height:100%;object-fit:cover}
-  .compass-launcher-mobile__art.compass-launcher-mobile__art--placeholder img{display:none}
-  .compass-launcher-mobile__text{flex:1;min-width:0}
-  .compass-launcher-mobile__title{font-family:'Cinzel Decorative',serif;font-size:.85rem;color:#f1d78b;margin:0}
-  .compass-launcher-mobile__sub{font-size:.72rem;color:var(--muted);margin:2px 0 0}
-}
 .subsectionLabel{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:16px 4px 4px;padding-top:12px;border-top:1px solid var(--border)}
 .subsectionLabel:first-child{margin-top:4px;padding-top:0;border-top:none}
 
@@ -255,17 +223,7 @@ setTimeout(()=>{ const v=document.getElementById('loadVeil'); if(v) v.remove(); 
 <span class="subname">Spell Libraries</span>
 <svg class="schevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
 </summary>
-<a class="compass-launcher-mobile" id="compassLauncherMobile" href="find-your-class/" aria-label="The Arcane Compass — Find Your Class, a guided class and archetype recommender">
-<span class="compass-launcher-mobile__art" id="compassLauncherMobileArt"><img src="assets/find-your-class/arcane-compass-table.png" alt="" onerror="this.parentElement.classList.add('compass-launcher-mobile__art--placeholder'); this.remove();"><span aria-hidden="true">Arcane Compass<br>(art soon)</span></span>
-<span class="compass-launcher-mobile__text"><span class="compass-launcher-mobile__title">Find Your Class</span><span class="compass-launcher-mobile__sub">A short guided compass to your next character</span></span>
-</a>
-<div class="library-scroll"><div class="library-map" id="libraryMap"><img src="assets/stone-runes/library-map.png" alt="Spellbook library shelves"><div class="bookLens" id="bookLens" aria-hidden="true"><img src="assets/stone-runes/library-map.png" alt=""></div>
-<a class="compass-launcher" id="compassLauncherDesktop" href="find-your-class/" aria-label="The Arcane Compass — Find Your Class, a guided class and archetype recommender">
-<img src="assets/find-your-class/arcane-compass-table.png" alt="" onerror="this.closest('.compass-launcher').classList.add('compass-launcher--placeholder'); this.remove();">
-<span class="compass-launcher__placeholder" aria-hidden="true">Arcane Compass<br><small>(art soon)</small></span>
-<span class="compass-launcher__label">Find Your Class</span>
-</a>
-</div></div>
+<div class="library-scroll"><div class="library-map" id="libraryMap"><img src="assets/stone-runes/library-map.png" alt="Spellbook library shelves"><div class="bookLens" id="bookLens" aria-hidden="true"><img src="assets/stone-runes/library-map.png" alt=""></div></div></div>
 </details>
 <details class="subsection" id="subsection-character-sheets">
 <summary>

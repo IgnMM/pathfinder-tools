@@ -29,18 +29,6 @@ test('all inline application scripts are syntactically valid', () => {
   }
 });
 
-// Find_Your_Class_UI_and_Onboarding_Handoff_v1.md explicitly instructs: if
-// assets/find-your-class/arcane-compass-table.png is absent, preserve the
-// documented asset hook (this exact src path) and show a clearly marked
-// temporary presentation instead of inventing replacement artwork. hub.html's
-// launcher markup does that (with an onerror fallback to a marked
-// placeholder), so this one reference is a deliberate, documented exception,
-// not an accidental broken link -- remove it from this allowlist once the
-// real artwork is added to the repo.
-const KNOWN_MISSING_ASSET_HOOKS = new Set([
-  'assets/find-your-class/arcane-compass-table.png',
-]);
-
 test('all literal local links and resources resolve', () => {
   const missing = [];
   for (const file of htmlFiles) {
@@ -48,7 +36,6 @@ test('all literal local links and resources resolve', () => {
     for (const match of html.matchAll(/(?:href|src)=["']([^"'#?]+)(?:[?#][^"']*)?["']/g)) {
       const ref = match[1];
       if (/[${}]/.test(ref) || /^(?:https?:|data:|mailto:|javascript:)/.test(ref)) continue;
-      if (KNOWN_MISSING_ASSET_HOOKS.has(ref)) continue;
       const target = path.resolve(path.dirname(file), ref);
       if (!fs.existsSync(target) && !fs.existsSync(path.join(target, 'index.html'))) {
         missing.push(`${path.relative(root, file)} -> ${ref}`);
