@@ -119,9 +119,11 @@ test('8. categorical "exclude" rejects an overlap', () => {
 // ---------------------------------------------------------------------
 // 9/10. Hard gates
 // ---------------------------------------------------------------------
+const SCOUNDREL_GATE_ID = 'rogue-eldritch-scoundrel:rules-gm-compatibility';
+
 test('9. confirmed hard-gate conflict is ineligible', () => {
   const scoundrel = { profile: byId.get('rogue-eldritch-scoundrel'), internalId: 'rogue-eldritch-scoundrel', baseProfileId: 'rogue-eldritch-scoundrel' };
-  const request = baseRequest({ gateAnswers: { 'rules-gm-compatibility': { value: 'conflict', confirmed: true } } });
+  const request = baseRequest({ gateAnswers: { [SCOUNDREL_GATE_ID]: { status: 'conflict' } } });
   const elig = M.evaluateEligibility(scoundrel, request);
   assert.equal(elig.status, 'ineligible');
 });
@@ -131,13 +133,43 @@ test('10. unanswered hard gate is needs-confirmation', () => {
   const elig = M.evaluateEligibility(scoundrel, baseRequest());
   assert.equal(elig.status, 'needs-confirmation');
   assert.ok(elig.unresolvedGate);
+  assert.equal(elig.unresolvedGate.id, SCOUNDREL_GATE_ID);
 });
 
-test('confirmed non-conflicting hard-gate answer keeps the candidate eligible', () => {
+test('confirmed non-conflicting (satisfied) hard-gate answer keeps the candidate eligible', () => {
   const scoundrel = { profile: byId.get('rogue-eldritch-scoundrel'), internalId: 'rogue-eldritch-scoundrel', baseProfileId: 'rogue-eldritch-scoundrel' };
-  const request = baseRequest({ gateAnswers: { 'rules-gm-compatibility': { value: 'chained-rogue', confirmed: true } } });
+  const request = baseRequest({ gateAnswers: { [SCOUNDREL_GATE_ID]: { status: 'satisfied' } } });
   const elig = M.evaluateEligibility(scoundrel, request);
   assert.equal(elig.status, 'eligible');
+});
+
+test('gate answers are keyed by stable candidate-specific gate id, never bare gate type (several candidates share a type)', () => {
+  const sameTypeGates = profiles.flatMap(p => (p.compatibilityGates || []).map(g => ({ profileId: p.id, gate: g })))
+    .filter(x => x.gate.type === 'class-prerequisite');
+  assert.ok(sameTypeGates.length >= 2, 'expected at least two candidates sharing the class-prerequisite gate type for this test to be meaningful');
+  const ids = sameTypeGates.map(x => x.gate.id);
+  assert.equal(new Set(ids).size, ids.length, 'gate ids sharing a type must still be distinct');
+  for (const { profileId, gate } of sameTypeGates) assert.ok(gate.id.startsWith(profileId), `gate id "${gate.id}" is not candidate-specific`);
+});
+
+test('a "commitment" gate is always eligible, never awaits confirmation, and is visibly disclosed', () => {
+  const stormDruid = { profile: byId.get('druid-storm-druid'), internalId: 'druid-storm-druid', baseProfileId: 'druid-storm-druid' };
+  const elig = M.evaluateEligibility(stormDruid, baseRequest());
+  assert.equal(elig.status, 'eligible', 'a commitment gate must never demote a candidate to needs-confirmation or ineligible');
+  assert.equal(elig.unresolvedGate, null);
+  assert.ok(elig.disclosures.some(d => d.type === 'class-prerequisite'), 'the commitment must still be disclosed');
+
+  const bladebound = { profile: byId.get('magus-bladebound'), internalId: 'magus-bladebound', baseProfileId: 'magus-bladebound' };
+  const eligB = M.evaluateEligibility(bladebound, baseRequest());
+  assert.equal(eligB.status, 'eligible');
+  assert.ok(eligB.disclosures.some(d => d.type === 'class-prerequisite'));
+});
+
+test('a "commitment" gate stays eligible even with contradictory or no gateAnswers -- gateAnswers only ever matter for compatibility gates', () => {
+  const stormDruid = { profile: byId.get('druid-storm-druid'), internalId: 'druid-storm-druid', baseProfileId: 'druid-storm-druid' };
+  const request = baseRequest({ gateAnswers: { 'druid-storm-druid:class-prerequisite': { status: 'conflict' } } });
+  const elig = M.evaluateEligibility(stormDruid, request);
+  assert.equal(elig.status, 'eligible', 'a commitment gate ignores gateAnswers entirely -- it is not a compatibility gate');
 });
 
 // ---------------------------------------------------------------------
@@ -299,14 +331,27 @@ test('23. a resolved gate affecting a top candidate changes the next-question ch
 
   const requestResolved = baseRequest({
     numericPreferences: request.numericPreferences,
-    gateAnswers: { 'rules-gm-compatibility': { value: 'chained-rogue', confirmed: true } },
+    gateAnswers: { [SCOUNDREL_GATE_ID]: { status: 'satisfied' } },
   });
   const scoredResolved = candidates.map(c => Object.assign(M.scoreCandidate(c, requestResolved, criteriaDoc), { eligibility: M.evaluateEligibility(c, requestResolved) }));
   const rankedResolved = M.rankCandidates(scoredResolved);
   const qResolved = M.selectNextQuestion(requestResolved, rankedResolved, questionTemplates, criteriaDoc);
 
   if (qUnresolved && qUnresolved.synthetic) {
-    assert.ok(!qResolved || !qResolved.synthetic || qResolved.gateType !== qUnresolved.gateType, 'resolving the gate should change or remove the synthetic gate question');
+    assert.ok(!qResolved || !qResolved.synthetic || qResolved.gateId !== qUnresolved.gateId, 'resolving the gate should change or remove the synthetic gate question');
+  }
+});
+
+test('the synthetic gate question uses the gate\'s own natural-English confirmationPrompt, never "Confirm: <raw rule>"', () => {
+  const request = baseRequest({ numericPreferences: { 'stealth-infiltration': { importance: 9, origin: 'explicit' } } });
+  const candidates = M.expandCandidateBranches(profiles);
+  const scored = candidates.map(c => Object.assign(M.scoreCandidate(c, request, criteriaDoc), { eligibility: M.evaluateEligibility(c, request) }));
+  const ranked = M.rankCandidates(scored);
+  const q = M.selectNextQuestion(request, ranked, questionTemplates, criteriaDoc);
+  if (q && q.synthetic) {
+    assert.ok(!q.prompt.startsWith('Confirm:'), 'synthetic gate prompt must not use the old "Confirm: <raw rule>" phrasing');
+    assert.match(q.prompt, /\?$/, 'a yes/no prompt should read as a question');
+    assert.ok(Array.isArray(q.answers) && q.answers.some(a => a.label === 'Yes') && q.answers.some(a => a.label === 'No'), 'a synthetic gate question must offer a yes/no answer pair');
   }
 });
 
@@ -350,6 +395,39 @@ test('validatePreferenceRequest enforces the handoff\'s stated rules', () => {
   assert.throws(() => M.validatePreferenceRequest(baseRequest({ categoricalPreferences: { 'companion-type': { mode: 'require', values: [] } } }), criteriaDoc), M.ValidationError, 'require needs at least one value');
   assert.throws(() => M.validatePreferenceRequest(baseRequest({ categoricalPreferences: { 'companion-type': { mode: 'prefer', values: ['not-a-real-value'], importance: 5 } } }), criteriaDoc), M.ValidationError, 'unknown categorical value must be rejected');
   assert.doesNotThrow(() => M.validatePreferenceRequest(baseRequest({ numericPreferences: { 'crowd-control': { importance: 5, origin: 'explicit' }, 'melee-ranged': { desiredPosition: 5.5, importance: 5, origin: 'explicit' } } }), criteriaDoc));
+  assert.throws(() => M.validatePreferenceRequest(baseRequest({ gateAnswers: { [SCOUNDREL_GATE_ID]: { status: 'confirmed' } } }), criteriaDoc), M.ValidationError, 'gateAnswers status must be "satisfied" or "conflict" -- the old confirmed:true/value shape must be rejected');
+  assert.doesNotThrow(() => M.validatePreferenceRequest(baseRequest({ gateAnswers: { [SCOUNDREL_GATE_ID]: { status: 'satisfied' } } }), criteriaDoc));
+});
+
+// ---------------------------------------------------------------------
+// Provisional fitBand (matcher-contract correction rule 8)
+// ---------------------------------------------------------------------
+test('best-overall below fit 0.58 is "provisional", stays visible, and forces low overall confidence plus a follow-up question', () => {
+  // Deliberately contradictory/poorly-satisfiable preferences against every
+  // candidate so the true best-overall still has weak fit.
+  const request = baseRequest({
+    numericPreferences: {
+      'stealth-infiltration': { importance: 10, origin: 'explicit' },
+      'offensive-spellcasting': { importance: 10, origin: 'explicit' },
+      'armour-defence': { importance: 10, origin: 'explicit' },
+      'ranged-weapon-effectiveness': { importance: 10, origin: 'explicit' },
+      'shapeshifting-transformation': { importance: 10, origin: 'explicit' },
+      'social-influence': { importance: 10, origin: 'explicit' },
+    },
+    options: { maxResults: 4 },
+  });
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const best = result.recommendations[0];
+  if (best && best.fitBand === 'provisional') {
+    assert.equal(best.role, 'best-overall');
+    assert.equal(result.confidence, 'low', 'a provisional best-overall must force the whole shortlist to read low-confidence');
+    assert.ok(result.nextQuestion, 'a provisional best-overall must still request a follow-up question');
+  }
+});
+
+test('vocabularies.json declares "provisional" as a fitBand', () => {
+  const vocab = readJson('vocabularies.json');
+  assert.ok(vocab.fitBands.includes('provisional'));
 });
 
 // ---------------------------------------------------------------------
@@ -411,7 +489,7 @@ test('golden: stealthy magical infiltrator -> Eldritch Scoundrel or another arca
       'stealth-infiltration': { importance: 10, origin: 'explicit' },
       'offensive-spellcasting': { importance: 7, origin: 'explicit' },
     },
-    gateAnswers: { 'rules-gm-compatibility': { value: 'chained-rogue', confirmed: true } },
+    gateAnswers: { [SCOUNDREL_GATE_ID]: { status: 'satisfied' } },
     options: { maxResults: 4 },
   });
   const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);

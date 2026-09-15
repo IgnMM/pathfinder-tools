@@ -194,8 +194,12 @@
 
       if (p.compatibilityGates !== undefined) {
         assert(Array.isArray(p.compatibilityGates), 'compatibilityGates must be an array', path);
+        const gateIds = new Set();
         for (const g of p.compatibilityGates) {
-          assert(g && typeof g.type === 'string' && typeof g.rule === 'string' && typeof g.hard === 'boolean', 'each compatibilityGate needs type, rule and hard', path);
+          assert(g && typeof g.id === 'string' && typeof g.type === 'string' && typeof g.rule === 'string', 'each compatibilityGate needs id, type and rule', path);
+          assert(['compatibility', 'commitment', 'soft'].includes(g.kind), `compatibilityGate "${g.id}" needs kind: compatibility, commitment or soft`, path);
+          assert(!gateIds.has(g.id), `duplicate compatibilityGate id "${g.id}"`, path);
+          gateIds.add(g.id);
         }
       }
       if (p.materialAlternative !== undefined) {

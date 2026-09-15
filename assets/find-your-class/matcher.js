@@ -90,6 +90,12 @@
       // criterion -- see AMBIGUITY_NOTES #3.
     }
 
+    if (request.gateAnswers) {
+      for (const [gateId, answer] of Object.entries(request.gateAnswers)) {
+        assert(answer && (answer.status === 'satisfied' || answer.status === 'conflict'), 'gateAnswers status must be "satisfied" or "conflict"', `gateAnswers["${gateId}"]`);
+      }
+    }
+
     if (request.conductPreferences) {
       const cp = request.conductPreferences;
       const path = 'conductPreferences';
@@ -139,44 +145,52 @@
   // ---------------------------------------------------------------------
   // evaluateEligibility
   // ---------------------------------------------------------------------
-  // INTERPRETATION: compatibilityGates entries carry only a free-text `rule`
-  // and a `hard` boolean -- there is no structured field connecting a specific
-  // gateAnswers value to "this candidate's gate is satisfied". The handoff's own
-  // gateAnswers example ({value, confirmed}) gives no comparison contract either.
-  // Resolution used here: a hard gate is satisfied by any *confirmed* answer for
-  // its `type` UNLESS that answer's value is exactly the sentinel string
-  // "conflict" (a caller who knows the answer conflicts sets value:"conflict";
-  // any other confirmed value is treated as compliant). This is the minimum
-  // machinery needed to make rules 9/10 ("confirmed conflict -> ineligible",
-  // "unanswered -> needs-confirmation") testable and correct for the one
-  // structured signal we actually have. See AMBIGUITY_NOTES #4 -- this needs
-  // real product input once gates carry structured requirements.
-  function resolveHardGate(gate, gateAnswers) {
-    const answer = gateAnswers && gateAnswers[gate.type];
-    if (!answer || answer.confirmed !== true) return 'needs-confirmation';
-    return answer.value === 'conflict' ? 'conflict' : 'satisfied';
+  // Gate model (2026-09-15 matcher-contract correction, replacing the earlier
+  // hard:boolean + type-keyed sentinel): every compatibilityGate carries a
+  // stable, candidate-specific `id` (several candidates can share a gate
+  // `type`, so `type` alone is never a safe answer key) and a `kind`:
+  //   - "compatibility": an external player/campaign choice can make the
+  //     profile unavailable. Unresolved until request.gateAnswers[gate.id]
+  //     exists; a resolved answer's `status` is "satisfied" or "conflict".
+  //   - "commitment": a restriction automatically accepted by choosing the
+  //     archetype. Always eligible; surfaced as a disclosure, never awaits
+  //     confirmation and never demotes a candidate.
+  //   - "soft": the pre-existing warn-only gates (unchanged behaviour).
+  function resolveCompatibilityGate(gate, gateAnswers) {
+    const answer = gateAnswers && gateAnswers[gate.id];
+    if (!answer) return 'needs-confirmation';
+    assert(answer.status === 'satisfied' || answer.status === 'conflict', `gateAnswers["${gate.id}"].status must be "satisfied" or "conflict"`, 'gateAnswers');
+    return answer.status;
   }
 
   function evaluateEligibility(candidate, request) {
     const profile = candidate.profile;
     const reasons = [];
     const warnings = [];
+    const disclosures = [];
     let status = 'eligible';
     let unresolvedGate = null;
 
     for (const gate of profile.compatibilityGates || []) {
-      if (!gate.hard) {
-        warnings.push({ type: gate.type, rule: gate.rule });
+      if (gate.kind === 'soft') {
+        warnings.push({ id: gate.id, type: gate.type, rule: gate.rule });
         continue;
       }
-      const resolution = resolveHardGate(gate, request.gateAnswers);
+      if (gate.kind === 'commitment') {
+        // Always eligible; visibly disclosed, never awaits confirmation and
+        // never demotes the candidate (rule 6 of the correction).
+        disclosures.push({ id: gate.id, type: gate.type, rule: gate.rule });
+        continue;
+      }
+      // kind === 'compatibility'
+      const resolution = resolveCompatibilityGate(gate, request.gateAnswers);
       if (resolution === 'conflict') {
         status = 'ineligible';
-        reasons.push({ type: gate.type, rule: gate.rule, cause: 'hard-gate-conflict' });
+        reasons.push({ id: gate.id, type: gate.type, rule: gate.rule, cause: 'hard-gate-conflict' });
       } else if (resolution === 'needs-confirmation') {
         if (status !== 'ineligible') status = 'needs-confirmation';
         if (!unresolvedGate) unresolvedGate = gate;
-        reasons.push({ type: gate.type, rule: gate.rule, cause: 'unresolved-hard-gate' });
+        reasons.push({ id: gate.id, type: gate.type, rule: gate.rule, cause: 'unresolved-hard-gate' });
       }
     }
 
@@ -207,7 +221,7 @@
       }
     }
 
-    return { status, reasons, warnings, unresolvedGate };
+    return { status, reasons, warnings, disclosures, unresolvedGate };
   }
 
   // ---------------------------------------------------------------------
@@ -408,33 +422,37 @@
   // selectNextQuestion
   // ---------------------------------------------------------------------
   // INTERPRETATION: question-templates.json has no representation for an
-  // unresolved hard compatibility gate -- only criterion questions exist. Rule 6
+  // unresolved compatibility gate -- only criterion questions exist. Rule 6
   // ("an unresolved hard gate ... outranks an ordinary preference question")
   // is implemented by synthesizing a gate-confirmation question object (same
-  // {id, prompt, answers} shape as a real template, but constructed from the
-  // gate's own `type`/`rule`, id prefixed "gate:") rather than skipping the rule.
-  // See AMBIGUITY_NOTES #6.
-  function selectNextQuestion(request, currentRanking, questionTemplates, criteriaDoc) {
+  // {id, prompt, answers} shape as a real template) keyed by the gate's own
+  // stable `id` (never its `type`, which several candidates can share) with a
+  // natural-English yes/no prompt -- gate.confirmationPrompt when the data
+  // supplies one (every current compatibility gate does), else a generic
+  // fallback template. See AMBIGUITY_NOTES #6.
+  function selectNextQuestion(request, currentRanking, questionTemplates, criteriaDoc, opts) {
+    opts = opts || {};
     const criteriaIndex = FYC.indexCriteria(criteriaDoc);
     const top5 = currentRanking
       .filter(s => s.eligibility.status === 'eligible' || s.eligibility.status === 'needs-confirmation')
       .slice(0, 5);
-    if (top5.length === 0) {
-      // Nothing ranked yet (e.g. first turn): fall back to the highest-priority
-      // fully-unanswered question, if any.
-    }
 
     // Rule 6: an unresolved hard gate on a likely top result outranks a
     // preference question.
     for (const s of top5) {
       if (s.eligibility.unresolvedGate) {
         const gate = s.eligibility.unresolvedGate;
+        const prompt = gate.confirmationPrompt || `Does your build comply with this requirement: ${gate.rule}`;
         return {
-          id: `gate:${gate.type}`,
+          id: `gate:${gate.id}`,
           synthetic: true,
-          prompt: `Confirm: ${gate.rule}`,
+          prompt,
           criteriaClarified: [],
-          gateType: gate.type,
+          gateId: gate.id,
+          answers: [
+            { label: 'Yes', gateAnswer: { id: gate.id, status: 'satisfied' } },
+            { label: 'No', gateAnswer: { id: gate.id, status: 'conflict' } },
+          ],
         };
       }
     }
@@ -488,8 +506,11 @@
     }
 
     if (!best) return null;
-    // Never manufacture a question once the result is already high-confidence.
-    if (top5.length && top5.every(s => s.confidence === 'high')) return null;
+    // Never manufacture a question once the result is already high-confidence
+    // -- unless the caller knows the current best-overall is "provisional"
+    // (fit < 0.58 despite that confidence reading): matcher-contract
+    // correction rule 8 requires a follow-up question be offered in that case.
+    if (!opts.forceQuestion && top5.length && top5.every(s => s.confidence === 'high')) return null;
     return best;
   }
 
@@ -563,6 +584,7 @@
     }
     for (const r of scored.eligibility.reasons) if (r.rule) requirements.push(r.rule);
     for (const w of scored.eligibility.warnings) if (w.rule) requirements.push(w.rule);
+    for (const d of scored.eligibility.disclosures || []) if (d.rule) requirements.push(d.rule);
 
     let summary = profile.playerSummary || profile.editorialNote || `${title} is a ${isClassPath ? 'Pathfinder class' : `${parentLabel} archetype`}.`;
     if (!isClassPath) summary = `${title} is a ${parentLabel} archetype. ${summary}`;
@@ -593,18 +615,18 @@
   function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
   function lowerFirst(s) { return s ? s.charAt(0).toLowerCase() + s.slice(1) : s; }
 
-  // INTERPRETATION: the handoff never states a fitBand floor for best-overall
-  // when its fit is below 0.58 (only that specialised-alternative may be used
-  // "only if selected for a distinct result role", i.e. not for best-overall).
-  // best-overall floors at "worth-considering" rather than falling through to
-  // specialised-alternative. See AMBIGUITY_NOTES #8.
+  // 2026-09-15 matcher-contract correction resolved AMBIGUITY_NOTES #8 (the
+  // earlier "no floor named for a low-fit best-overall" gap) explicitly:
+  // best-overall below 0.58 is "provisional", not "worth-considering" or
+  // "specialised-alternative" -- still shown, but flagged low-confidence with
+  // a follow-up question (see matchProfiles' confidence override below).
   function fitBandFor(scored, role) {
     const fit = scored.overallFit === null ? 0 : scored.overallFit;
     const coverage = scored.coverage === null ? 0 : scored.coverage;
     if (fit >= 0.84 && coverage >= 0.70) return 'excellent';
     if (fit >= 0.72) return 'strong';
     if (fit >= 0.58) return 'worth-considering';
-    return role === 'best-overall' ? 'worth-considering' : 'specialised-alternative';
+    return role === 'best-overall' ? 'provisional' : 'specialised-alternative';
   }
 
   // ---------------------------------------------------------------------
@@ -636,8 +658,13 @@
     const roleEntries = assignResultRoles(ranked, request, criteriaDoc);
     const recommendations = roleEntries.map(entry => buildPresentationResult(entry, request, criteriaDoc));
 
-    const overallConfidence = roleEntries.length === 0 ? 'low' : roleEntries[0].scored.confidence;
-    const nextQuestion = questionTemplates ? selectNextQuestion(request, ranked, questionTemplates, criteriaDoc) : null;
+    // A "provisional" best-overall (fit < 0.58) always marks the whole
+    // shortlist low-confidence, regardless of coverage/breadth -- the
+    // candidate stays visible, but the caller should treat it as unsettled
+    // and keep asking (matcher-contract correction rule 8).
+    const bestIsProvisional = recommendations[0] && recommendations[0].role === 'best-overall' && recommendations[0].fitBand === 'provisional';
+    const overallConfidence = roleEntries.length === 0 ? 'low' : (bestIsProvisional ? 'low' : roleEntries[0].scored.confidence);
+    const nextQuestion = questionTemplates ? selectNextQuestion(request, ranked, questionTemplates, criteriaDoc, { forceQuestion: bestIsProvisional }) : null;
 
     return {
       recommendations,
@@ -674,12 +701,14 @@ AMBIGUITY_NOTES (also summarized in the chat reply that shipped this module):
    merged" cannot be triggered by the given request shape (one mode per
    criterionId) -- implemented as a structurally-satisfied no-op, flagged for
    whenever a multi-entry-per-criterion shape is introduced.
-4. compatibilityGates carry a free-text `rule`, not a structured requirement, so
-   there is no mechanical way to compare a gateAnswers value against "does this
-   satisfy the gate". Implemented a minimal sentinel convention
-   (value:"conflict" => ineligible; any other confirmed value => satisfied) that
-   makes rules 9/10 testable; needs real product input once gates carry
-   structured comparison data.
+4. RESOLVED 2026-09-15 (matcher-contract correction): the earlier value:"conflict"
+   sentinel is gone. Every compatibilityGate now carries a stable, candidate-
+   specific `id` (never keyed by `type` alone, since several candidates share a
+   type) and a `kind` (compatibility / commitment / soft). gateAnswers is keyed
+   by gate id: {status: "satisfied" | "conflict"}; an absent entry means
+   unresolved. Only an unresolved/conflicting `compatibility` gate affects
+   eligibility; `commitment` gates are always eligible and only disclosed
+   (never demote); `soft` gates are unchanged (warn-only).
 5. "Fill unoccupied slots with the next strongest non-duplicate eligible
    candidate. Only then consider needs-confirmation candidates." is implemented
    as the *selection algorithm* for each of roles 2-4 (scan the full ranked list
@@ -690,16 +719,25 @@ AMBIGUITY_NOTES (also summarized in the chat reply that shipped this module):
    extended to role 2 for consistency).
 6. question-templates.json has no gate-confirmation question type.
    selectNextQuestion synthesizes a minimal question object
-   ({id:"gate:<type>", synthetic:true, prompt, gateType}) for an unresolved hard
-   gate on a top candidate, since the handoff requires this case to outrank an
-   ordinary preference question but no template exists for it.
+   ({id:"gate:<gate-id>", synthetic:true, prompt, gateId, answers}) for an
+   unresolved compatibility gate on a top candidate. As of the 2026-09-15
+   correction, `prompt` is the gate's own authored `confirmationPrompt` (a
+   natural English yes/no question) when the data supplies one -- every
+   current compatibility gate does -- else a generic compliance-phrased
+   fallback ("Does your build comply with this requirement: <rule>"), chosen
+   so "Yes" always means satisfied/"No" always means conflict regardless of
+   how the underlying rule text is phrased.
 7. whyItFits/watchFor use a small fixed sentence template keyed off each
    criterion's playerLabel, since explanation-templates.json's fragment library
    was left intentionally empty pending Codex's editorial pass. This satisfies
    "no statistics" but will read more mechanically than the handoff's tone
    examples until real fragments exist.
-8. fitBand floors best-overall at "worth-considering" rather than
-   "specialised-alternative" when fit < 0.58, since the handoff says
-   specialised-alternative applies "only if selected for a distinct result
-   role" (i.e. not best-overall) but names no alternative floor.
+8. RESOLVED 2026-09-15 (matcher-contract correction): best-overall below fit
+   0.58 now gets fitBand "provisional" (added to vocabularies.json's fitBands)
+   rather than the earlier stand-in "worth-considering". matchProfiles also
+   forces the overall `confidence` to "low" whenever the best-overall result is
+   provisional (even if scoreCandidate's own per-candidate confidence read
+   "medium"/"high" from sheer coverage/breadth) and forces selectNextQuestion
+   to still offer a question in that case, per "keep the candidate visible,
+   mark the shortlist low-confidence and request another useful question."
 */

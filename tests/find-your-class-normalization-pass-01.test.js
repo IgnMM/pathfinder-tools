@@ -47,8 +47,10 @@ test('testsToAdd 3: Razmiran Priest creates no hard deity or institution compati
   assert.equal(rp.conduct.deityRequired, false);
   assert.equal(rp.conduct.institutionRequired, false);
   assert.equal(rp.conduct.deityChoiceProvenance, 'fixed-source');
-  const hardGates = (rp.compatibilityGates || []).filter(g => g.hard === true);
-  assert.deepEqual(hardGates, [], 'Razmiran Priest must not carry any hard:true compatibility gate');
+  // Gate shape updated 2026-09-15 (matcher-contract correction): hard:boolean
+  // was replaced by a closed kind vocabulary (compatibility/commitment/soft).
+  const compatibilityGates = (rp.compatibilityGates || []).filter(g => g.kind === 'compatibility');
+  assert.deepEqual(compatibilityGates, [], 'Razmiran Priest must not carry any compatibility-kind gate');
 });
 
 test('testsToAdd 4: Reincarnated Druid personal-durability stays below the dedicated in-combat defence anchors (Armor Master, Armored Battlemage)', () => {

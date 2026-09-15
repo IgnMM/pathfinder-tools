@@ -61,8 +61,14 @@
             "type": "array",
             "items": {
               "type": "object",
-              "required": ["type", "rule", "hard"],
-              "properties": { "type": { "type": "string" }, "rule": { "type": "string" }, "hard": { "type": "boolean" } }
+              "required": ["id", "type", "kind", "rule"],
+              "properties": {
+                "id": { "type": "string", "description": "Stable, candidate-specific (not just type-specific -- several candidates may share a gate type)." },
+                "type": { "type": "string" },
+                "kind": { "type": "string", "enum": ["compatibility", "commitment", "soft"] },
+                "rule": { "type": "string" },
+                "confirmationPrompt": { "type": "string", "description": "Natural-English yes/no question for a compatibility-kind gate's synthetic confirmation question. Optional; falls back to a generic template when absent." }
+              }
             }
           },
           "materialAlternative": {

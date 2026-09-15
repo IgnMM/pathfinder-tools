@@ -98,7 +98,9 @@ test('conduct rules and compatibility gates from the batches are preserved verba
   assert.ok(eldritchScoundrel, 'rogue-eldritch-scoundrel must exist (Batch 03)');
   assert.ok(Array.isArray(eldritchScoundrel.compatibilityGates) && eldritchScoundrel.compatibilityGates.length > 0, 'compatibilityGates must survive the conversion');
   for (const g of eldritchScoundrel.compatibilityGates) {
-    assert.ok(typeof g.type === 'string' && typeof g.rule === 'string' && typeof g.hard === 'boolean');
+    // Gate shape updated 2026-09-15 (matcher-contract correction): hard:boolean
+    // was replaced by a stable id + a closed kind vocabulary.
+    assert.ok(typeof g.id === 'string' && typeof g.type === 'string' && typeof g.rule === 'string' && ['compatibility', 'commitment', 'soft'].includes(g.kind));
   }
 });
 

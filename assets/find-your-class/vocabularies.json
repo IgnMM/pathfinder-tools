@@ -4,13 +4,17 @@
   "notes": [
     "Closed vocabularies referenced by the schemas and loader. reviewStatuses, criterionKinds and preferenceOrigins are transcribed directly from Find_Your_Class_Product_Architecture_v1.md (sections 19, 10.1 and 10.6). operationVocabulary and restrictionTypes are a first proposal implementing section 10.3/10.5's requirement for a closed, validated vocabulary (the docs give examples, not a final enumerated list) -- pending confirmation before any archetype/option delta uses an operation not listed here.",
     "fantasyTags is transcribed from section 7.1's initial vocabulary; it is explicitly non-exhaustive there and may grow.",
-    "restrictionTypes extended with the ten contextual-gate categories from Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md section 5 (kept as restriction TYPES, reusing the existing rulesRestrictions mechanism, rather than inventing a second parallel gate structure). conductCodePresence/conductMechanicalLossRisk/alignmentRuleKind/deityChoiceProvenance are transcribed from section 4. affinityFamilies and their initial vocabularies are transcribed from section 6."
+    "restrictionTypes extended with the ten contextual-gate categories from Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md section 5 (kept as restriction TYPES, reusing the existing rulesRestrictions mechanism, rather than inventing a second parallel gate structure). conductCodePresence/conductMechanicalLossRisk/alignmentRuleKind/deityChoiceProvenance are transcribed from section 4. affinityFamilies and their initial vocabularies are transcribed from section 6.",
+    "gateKinds added 2026-09-15 (matcher-contract correction): a compatibilityGate's `type` (from restrictionTypes) categorizes WHAT it's about; `kind` categorizes HOW it affects eligibility. compatibility = an external player/campaign choice can make the profile unavailable, stays needs-confirmation until answered. commitment = a restriction automatically accepted by choosing the archetype -- always eligible, but visibly disclosed, never awaits confirmation. soft = the pre-existing warn-only gates (level/source timing notes); unchanged behaviour, renamed for a consistent closed vocabulary alongside the other two. Replaces the earlier hard:boolean field entirely.",
+    "fitBands gained \"provisional\" 2026-09-15: when the best-overall candidate's fit is below 0.58, it is presented as provisional (visible, but explicitly low-confidence and paired with a next question) instead of worth-considering."
   ],
   "reviewStatuses": ["draft", "needs-review", "reviewed", "disputed", "deprecated"],
   "criterionKinds": ["capability", "directional", "categorical", "boolean", "contextual"],
   "preferenceOrigins": ["explicit", "inferred-unconfirmed", "inferred-confirmed", "adaptive-answer", "default"],
   "resultRoles": ["best-overall", "different-approach", "more-approachable", "unexpected-fit"],
-  "fitBands": ["excellent", "strong", "worth-considering", "specialised-alternative"],
+  "fitBands": ["excellent", "strong", "worth-considering", "specialised-alternative", "provisional"],
+  "gateKinds": ["compatibility", "commitment", "soft"],
+  "gateAnswerStatuses": ["satisfied", "conflict"],
   "confidenceStatuses": ["high", "medium", "low"],
   "restrictionTypes": [
     "alignment",
