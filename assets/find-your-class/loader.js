@@ -212,6 +212,71 @@
   }
 
   // ---------------------------------------------------------------------
+  // Editorial explanation catalogue (assets/find-your-class/explanation-templates.json).
+  // Validates structure and, when a criteriaIndex is supplied, exact coverage:
+  // numericNarratives must cover every capability/directional criterion (with the
+  // fields its kind requires) and categoricalNarratives must cover every
+  // categorical criterion's full closed value list -- no more, no fewer.
+  // ---------------------------------------------------------------------
+  function validateExplanationCatalogue(doc, criteriaIndex) {
+    assert(doc && typeof doc === 'object', 'explanation catalogue must be an object', 'explanations');
+    assert(doc.numericNarratives && typeof doc.numericNarratives === 'object', 'numericNarratives is required', 'explanations');
+    assert(doc.categoricalNarratives && typeof doc.categoricalNarratives === 'object', 'categoricalNarratives is required', 'explanations');
+    assert(doc.roleOpeners && typeof doc.roleOpeners === 'object', 'roleOpeners is required', 'explanations');
+    assert(Array.isArray(doc.specialCaseRules), 'specialCaseRules must be an array', 'explanations');
+
+    for (const role of ['best-overall', 'different-approach', 'more-approachable', 'unexpected-fit']) {
+      assert(Array.isArray(doc.roleOpeners[role]) && doc.roleOpeners[role].length > 0, `roleOpeners is missing "${role}"`, 'explanations.roleOpeners');
+    }
+
+    for (const [id, entry] of Object.entries(doc.numericNarratives)) {
+      const path = `explanations.numericNarratives["${id}"]`;
+      if (entry.kind === 'capability') {
+        assert(typeof entry.match === 'string' && typeof entry.tension === 'string', 'capability entry needs match and tension', path);
+      } else if (entry.kind === 'directional') {
+        assert(entry.bands && entry.bands.low && entry.bands.middle && entry.bands.high, 'directional entry needs bands.low/middle/high', path);
+        for (const band of ['low', 'middle', 'high']) {
+          assert(typeof entry.bands[band].match === 'string' && typeof entry.bands[band].tension === 'string', `bands.${band} needs match and tension`, path);
+        }
+      } else {
+        assert(false, `unknown kind "${entry.kind}"`, path);
+      }
+    }
+
+    if (criteriaIndex) {
+      const numericIds = new Set([...criteriaIndex.values()].filter(c => c.kind === 'capability' || c.kind === 'directional').map(c => c.id));
+      const categoricalCriteria = [...criteriaIndex.values()].filter(c => c.kind === 'categorical');
+      const narrativeKeys = new Set(Object.keys(doc.numericNarratives));
+      const missingNumeric = [...numericIds].filter(id => !narrativeKeys.has(id));
+      const extraNumeric = [...narrativeKeys].filter(id => !numericIds.has(id));
+      assert(missingNumeric.length === 0, `numericNarratives missing ${missingNumeric.length} criteria: ${missingNumeric.join(', ')}`, 'explanations.numericNarratives');
+      assert(extraNumeric.length === 0, `numericNarratives has entries outside the numeric criterion set: ${extraNumeric.join(', ')}`, 'explanations.numericNarratives');
+
+      for (const [id, entry] of Object.entries(doc.numericNarratives)) {
+        const crit = criteriaIndex.get(id);
+        assert(entry.kind === crit.kind, `numericNarratives["${id}"].kind ("${entry.kind}") does not match criteria.json's kind ("${crit.kind}")`, 'explanations.numericNarratives');
+      }
+
+      const catKeys = new Set(Object.keys(doc.categoricalNarratives));
+      const expectedCatIds = new Set(categoricalCriteria.map(c => c.id));
+      const missingCat = [...expectedCatIds].filter(id => !catKeys.has(id));
+      const extraCat = [...catKeys].filter(id => !expectedCatIds.has(id));
+      assert(missingCat.length === 0, `categoricalNarratives missing ${missingCat.length} criteria: ${missingCat.join(', ')}`, 'explanations.categoricalNarratives');
+      assert(extraCat.length === 0, `categoricalNarratives has entries outside the categorical criterion set: ${extraCat.join(', ')}`, 'explanations.categoricalNarratives');
+
+      for (const crit of categoricalCriteria) {
+        const values = doc.categoricalNarratives[crit.id] || {};
+        const missingValues = crit.values.filter(v => !(v in values));
+        const extraValues = Object.keys(values).filter(v => !crit.values.includes(v));
+        assert(missingValues.length === 0, `categoricalNarratives["${crit.id}"] missing values: ${missingValues.join(', ')}`, 'explanations.categoricalNarratives');
+        assert(extraValues.length === 0, `categoricalNarratives["${crit.id}"] has values outside its closed vocabulary: ${extraValues.join(', ')}`, 'explanations.categoricalNarratives');
+      }
+    }
+
+    return true;
+  }
+
+  // ---------------------------------------------------------------------
   // Typed operation vocabulary (Find_Your_Class_Product_Architecture_v1.md 10.3/10.4).
   // Each entry validates its inputs, then mutates a *clone* of the accumulating
   // effective profile in place. Operations that remove something must find it first
@@ -454,6 +519,7 @@
     validateCriterion,
     validateCriteriaFile,
     validateCompassProfiles,
+    validateExplanationCatalogue,
     indexCriteria,
     OPERATIONS_VOCABULARY: Object.keys(OPERATIONS),
     applyOperation,

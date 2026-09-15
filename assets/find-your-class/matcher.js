@@ -536,12 +536,129 @@
     return (c && (c.playerLabel || c.shortLabel)) || criterionId;
   }
 
-  function buildPresentationResult(roleEntry, request, criteriaDoc) {
+  // 2026-09-15 editorial-catalogue integration. The catalogue's own
+  // instructions block governs selection ("Lead with at most two
+  // highest-weight matches. Add at most one criterion tension after the
+  // profile-specific tradeoff. Never expose criterion IDs, scores, weights or
+  // percentages." / "Do not repeat the same criterion sentence twice in one
+  // shortlist."). candidateBandFor implements "Choose the candidateBand from
+  // catalogue score: low 1-4, middle 5-6, high 7-10" -- banded on the
+  // CANDIDATE's own catalogue score, not the player's desired position.
+  function candidateBandFor(value) {
+    if (value <= 4) return 'low';
+    if (value <= 6) return 'middle';
+    return 'high';
+  }
+
+  function numericFragment(explanationCatalogue, criterionId, mode) {
+    const entry = explanationCatalogue.numericNarratives[criterionId];
+    if (!entry) return null;
+    if (entry.kind === 'capability') return entry[mode] || null;
+    return null; // directional entries are banded by the caller
+  }
+
+  function directionalFragment(explanationCatalogue, criterionId, candidateValue, mode) {
+    const entry = explanationCatalogue.numericNarratives[criterionId];
+    if (!entry || entry.kind !== 'directional' || candidateValue === undefined) return null;
+    const band = entry.bands[candidateBandFor(candidateValue)];
+    return (band && band[mode]) || null;
+  }
+
+  function categoricalFragment(explanationCatalogue, criterionId, value) {
+    const entry = explanationCatalogue.categoricalNarratives[criterionId];
+    return (entry && entry[value]) || null;
+  }
+
+  // Picks up to `limit` match sentences for the criteria this candidate scored
+  // best on (by preference weight, per "highest-weight matches"), skipping any
+  // sentence already used elsewhere in this shortlist (`usedSentences`, shared
+  // across every buildPresentationResult call in one matchProfiles run).
+  function pickMatchSentences(scored, request, criteriaIndex, explanationCatalogue, usedSentences, limit) {
+    const profile = scored.candidate.profile;
+    const ranked = Object.entries(scored.contributions)
+      .filter(([, c]) => !c.unknown && c.fit >= MATCHED_THRESHOLD)
+      .sort((a, b) => b[1].weight - a[1].weight);
+    const picked = [];
+    for (const [criterionId] of ranked) {
+      if (picked.length >= limit) break;
+      const crit = criteriaIndex.get(criterionId);
+      let text = null;
+      if (crit.kind === 'categorical') {
+        const pref = request.categoricalPreferences[criterionId];
+        const candidateValues = profile.categories[criterionId] || [];
+        const overlap = pref.values.find(v => candidateValues.includes(v));
+        if (overlap) text = categoricalFragment(explanationCatalogue, criterionId, overlap);
+      } else if (crit.kind === 'capability') {
+        text = numericFragment(explanationCatalogue, criterionId, 'match');
+      } else {
+        text = directionalFragment(explanationCatalogue, criterionId, profile.scores[criterionId], 'match');
+      }
+      if (text && !usedSentences.has(text)) { usedSentences.add(text); picked.push(text); }
+    }
+    return picked;
+  }
+
+  // Picks at most one tension sentence, by the same weight ordering, for
+  // watchFor (placed after the profile's own tradeoff/editorialNote).
+  function pickTensionSentence(scored, request, criteriaIndex, explanationCatalogue, usedSentences) {
+    const profile = scored.candidate.profile;
+    const ranked = Object.entries(scored.contributions)
+      .filter(([, c]) => !c.unknown && c.fit < TENSION_THRESHOLD)
+      .sort((a, b) => b[1].weight - a[1].weight);
+    for (const [criterionId] of ranked) {
+      const crit = criteriaIndex.get(criterionId);
+      let text = null;
+      if (crit.kind === 'categorical') {
+        // "tension only when the preference is active but no selected value
+        // overlaps" -- show the sentence for the player's own preferred value,
+        // since the catalogue has no separate "tension" string per value.
+        const pref = request.categoricalPreferences[criterionId];
+        text = categoricalFragment(explanationCatalogue, criterionId, pref.values[0]);
+      } else if (crit.kind === 'capability') {
+        text = numericFragment(explanationCatalogue, criterionId, 'tension');
+      } else {
+        text = directionalFragment(explanationCatalogue, criterionId, profile.scores[criterionId], 'tension');
+      }
+      if (text && !usedSentences.has(text)) { usedSentences.add(text); return text; }
+    }
+    return null;
+  }
+
+  // specialCaseRules.appliesTo is "<field>:<value>"; field is one of the
+  // fixed names below or a dotted path into the profile (e.g.
+  // "conduct.deityChoiceProvenance").
+  function resolveSpecialCaseField(candidate, field) {
+    const profile = candidate.profile;
+    if (field === 'classId') return profile.classId;
+    if (field === 'profileId') return candidate.baseProfileId;
+    if (field === 'branchId') return candidate.branchId;
+    if (field === 'entityType') return profile.entityType === 'class-path' ? 'class-path' : 'archetype';
+    return field.split('.').reduce((o, k) => (o && o[k] !== undefined ? o[k] : undefined), profile);
+  }
+
+  function matchingSpecialCaseRules(explanationCatalogue, candidate) {
+    return explanationCatalogue.specialCaseRules.filter(rule => {
+      const sep = rule.appliesTo.indexOf(':');
+      const field = rule.appliesTo.slice(0, sep), value = rule.appliesTo.slice(sep + 1);
+      return String(resolveSpecialCaseField(candidate, field)) === value;
+    });
+  }
+
+  function pickRoleOpener(explanationCatalogue, role, internalId) {
+    const openers = explanationCatalogue.roleOpeners && explanationCatalogue.roleOpeners[role];
+    if (!openers || !openers.length) return null;
+    let hash = 0;
+    for (let i = 0; i < internalId.length; i++) hash = (hash * 31 + internalId.charCodeAt(i)) >>> 0;
+    return openers[hash % openers.length];
+  }
+
+  function buildPresentationResult(roleEntry, request, criteriaDoc, explanationCatalogue, usedSentences) {
     const criteriaIndex = FYC.indexCriteria(criteriaDoc);
     const scored = roleEntry.scored;
     const candidate = scored.candidate;
     const profile = candidate.profile;
     const isClassPath = profile.entityType === 'class-path';
+    usedSentences = usedSentences || new Set();
 
     // INTERPRETATION: title must be the short name ("Hexcrafter"), not the
     // compound "X — Y archetype" label. Batches 02-06 give profile.name
@@ -552,23 +669,44 @@
     const typeLabel = isClassPath ? 'Class' : 'Archetype';
     const parentLabel = isClassPath ? null : capitalize(profile.classId);
 
-    const whyItFits = scored.matchedCriteria.slice(0, 3).map(cid => {
-      const label = describeCriterion(criteriaIndex, cid);
-      return `This matters to you: ${lowerFirst(label)} -- and ${title} delivers on it.`;
-    });
-
-    const watchFor = [];
-    if (profile.tradeoff) watchFor.push(profile.tradeoff);
-    else if (profile.editorialNote) watchFor.push(profile.editorialNote);
-    for (const cid of scored.tensionCriteria) {
-      if (watchFor.length >= 2) break;
-      watchFor.push(`It falls short on ${lowerFirst(describeCriterion(criteriaIndex, cid))}, if that matters to you.`);
+    // whyItFits/watchFor: authored editorial fragments when a catalogue is
+    // supplied (the normal case); the old generic mechanical sentence is kept
+    // ONLY as a last-resort fallback for a criterion the catalogue somehow
+    // doesn't cover (never true for the current catalogue -- see the exact-
+    // coverage test -- but the fallback stays as a safety net rather than a
+    // silent gap).
+    let whyItFits, watchFor;
+    if (explanationCatalogue) {
+      whyItFits = pickMatchSentences(scored, request, criteriaIndex, explanationCatalogue, usedSentences, 2);
+      watchFor = [];
+      if (profile.tradeoff) watchFor.push(profile.tradeoff);
+      else if (profile.editorialNote) watchFor.push(profile.editorialNote);
+      const tension = pickTensionSentence(scored, request, criteriaIndex, explanationCatalogue, usedSentences);
+      if (tension && watchFor.length < 2) watchFor.push(tension);
+    } else {
+      whyItFits = scored.matchedCriteria.slice(0, 2).map(cid => {
+        const label = describeCriterion(criteriaIndex, cid);
+        return `This matters to you: ${lowerFirst(label)} -- and ${title} delivers on it.`;
+      });
+      watchFor = [];
+      if (profile.tradeoff) watchFor.push(profile.tradeoff);
+      else if (profile.editorialNote) watchFor.push(profile.editorialNote);
+      for (const cid of scored.tensionCriteria) {
+        if (watchFor.length >= 2) break;
+        watchFor.push(`It falls short on ${lowerFirst(describeCriterion(criteriaIndex, cid))}, if that matters to you.`);
+      }
     }
+
+    const matchingRules = explanationCatalogue ? matchingSpecialCaseRules(explanationCatalogue, candidate).filter(r => r.id !== 'archetype-parent') : [];
+    const ruleIds = new Set(matchingRules.map(r => r.id));
 
     const requirements = [];
     const conduct = profile.conduct;
     if (conduct) {
-      if (conduct.codePresence === 'mandatory' || conduct.codePresence === 'expected') {
+      // An authored special-case rule takes priority over the generic
+      // mechanical sentence for the same fact, per "Remove the current
+      // generic fallback whenever an authored fragment is available."
+      if ((conduct.codePresence === 'mandatory' || conduct.codePresence === 'expected') && !ruleIds.has('druid-conduct')) {
         requirements.push(`This path ${conduct.codePresence === 'mandatory' ? 'requires' : 'expects'} living by a code${conduct.mechanicalLossRisk !== 'none' ? ', with real mechanical consequences for breaking it' : ''}.`);
       }
       if (conduct.alignmentRule && conduct.alignmentRule.kind !== 'none') {
@@ -576,18 +714,24 @@
       }
       if (conduct.deityRequired) {
         requirements.push('A deity is required.');
-      } else if (conduct.deityChoiceProvenance === 'free-choice-with-consequences') {
+      } else if (conduct.deityChoiceProvenance === 'free-choice-with-consequences' && !ruleIds.has('free-choice-deity')) {
         requirements.push('You choose a deity or patron; once chosen, its expectations shape the character.');
-      } else if (conduct.deityChoiceProvenance === 'fixed-source') {
+      } else if (conduct.deityChoiceProvenance === 'fixed-source' && !ruleIds.has('razmiran-narrative')) {
         requirements.push("A specific patron or source defines this path narratively, not as a mechanical prerequisite.");
       }
     }
     for (const r of scored.eligibility.reasons) if (r.rule) requirements.push(r.rule);
     for (const w of scored.eligibility.warnings) if (w.rule) requirements.push(w.rule);
     for (const d of scored.eligibility.disclosures || []) if (d.rule) requirements.push(d.rule);
+    for (const rule of matchingRules) requirements.push(rule.text);
 
     let summary = profile.playerSummary || profile.editorialNote || `${title} is a ${isClassPath ? 'Pathfinder class' : `${parentLabel} archetype`}.`;
     if (!isClassPath) summary = `${title} is a ${parentLabel} archetype. ${summary}`;
+
+    if (explanationCatalogue) {
+      const opener = pickRoleOpener(explanationCatalogue, roleEntry.role, candidate.internalId);
+      if (opener) summary = `${opener} ${summary}`;
+    }
 
     if (scored.confidence === 'low') {
       summary += ' This shortlist is still provisional -- a couple more answers would sharpen it.';
@@ -605,7 +749,7 @@
       fitBand: fitBandFor(scored, roleEntry.role),
       confidence: scored.confidence,
       summary,
-      whyItFits: whyItFits.slice(0, 3),
+      whyItFits: whyItFits.slice(0, 2),
       watchFor: watchFor.slice(0, 2),
       requirements,
       branchChoice: candidate.branchId || null,
@@ -632,7 +776,7 @@
   // ---------------------------------------------------------------------
   // matchProfiles
   // ---------------------------------------------------------------------
-  function matchProfiles(request, profiles, criteriaDoc, questionTemplates) {
+  function matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue) {
     validatePreferenceRequest(request, criteriaDoc);
 
     const totalActivePrefs =
@@ -656,7 +800,10 @@
 
     const ranked = rankCandidates(scored);
     const roleEntries = assignResultRoles(ranked, request, criteriaDoc);
-    const recommendations = roleEntries.map(entry => buildPresentationResult(entry, request, criteriaDoc));
+    // Shared across every result in this shortlist, per the catalogue's own
+    // "Do not repeat the same criterion sentence twice in one shortlist."
+    const usedSentences = new Set();
+    const recommendations = roleEntries.map(entry => buildPresentationResult(entry, request, criteriaDoc, explanationCatalogue, usedSentences));
 
     // A "provisional" best-overall (fit < 0.58) always marks the whole
     // shortlist low-confidence, regardless of coverage/breadth -- the

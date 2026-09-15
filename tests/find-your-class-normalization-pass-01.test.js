@@ -107,6 +107,9 @@ test('profiles are still exactly 25 archetypes / 27 total, 56 numeric + 8 catego
 });
 
 test('no matching/scoring/ranking engine code was introduced by applying this pass', () => {
+  // Snapshot as of this normalization pass (2026-09-15); validateExplanationCatalogue
+  // was added later by the editorial-explanation-catalogue integration, a separate,
+  // deliberate loader.js change -- not something this normalization pass introduced.
   const exported = Object.keys(FYC).sort();
   assert.deepEqual(exported, [
     'OPERATIONS_VOCABULARY',
@@ -120,6 +123,7 @@ test('no matching/scoring/ranking engine code was introduced by applying this pa
     'validateCompassProfiles',
     'validateCriteriaFile',
     'validateCriterion',
+    'validateExplanationCatalogue',
     'validateManifest',
   ]);
 });

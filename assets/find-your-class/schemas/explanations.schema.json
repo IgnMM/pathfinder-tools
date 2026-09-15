@@ -1,42 +1,87 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "find-your-class/explanations.schema.json",
-  "title": "Find Your Class explanation fragments and evidence records",
+  "title": "Find Your Class editorial explanation catalogue (deterministic, non-statistical fragment library)",
   "type": "object",
-  "required": ["schemaVersion"],
+  "required": ["schemaVersion", "status", "instructions", "numericNarratives", "categoricalNarratives", "roleOpeners", "specialCaseRules"],
   "properties": {
     "schemaVersion": { "type": "integer", "minimum": 1 },
-    "status": { "type": "string" },
-    "notes": { "type": "array", "items": { "type": "string" } },
-    "fragments": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["id", "kind", "text", "reviewStatus"],
-        "properties": {
-          "id": { "type": "string" },
-          "kind": { "type": "string", "enum": ["identity", "strength", "tradeoff", "experience", "compare-cue"] },
-          "text": { "type": "string", "minLength": 1 },
-          "applicabilityConditions": { "type": "array", "items": { "type": "string" } },
-          "evidenceRefs": { "type": "array", "items": { "type": "string" } },
-          "reviewStatus": { "type": "string", "enum": ["draft", "needs-review", "reviewed", "disputed", "deprecated"] }
-        }
+    "status": { "type": "string", "enum": ["editorial-draft", "needs-review", "reviewed"] },
+    "catalogueId": { "type": "string" },
+    "language": { "type": "string" },
+    "tone": { "type": "string" },
+    "instructions": {
+      "type": "object",
+      "required": ["capability", "directional", "categorical", "selection", "variation"],
+      "properties": {
+        "capability": { "type": "string" },
+        "directional": { "type": "string" },
+        "categorical": { "type": "string" },
+        "selection": { "type": "string" },
+        "variation": { "type": "string" }
       }
     },
-    "evidence": {
+    "numericNarratives": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["kind"],
+        "properties": { "kind": { "type": "string", "enum": ["capability", "directional"] } },
+        "allOf": [
+          {
+            "if": { "properties": { "kind": { "const": "capability" } } },
+            "then": {
+              "required": ["match", "tension"],
+              "properties": { "match": { "type": "string", "minLength": 1 }, "tension": { "type": "string", "minLength": 1 } }
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "directional" } } },
+            "then": {
+              "required": ["bands"],
+              "properties": {
+                "bands": {
+                  "type": "object",
+                  "required": ["low", "middle", "high"],
+                  "properties": {
+                    "low": { "$ref": "#/$defs/matchTension" },
+                    "middle": { "$ref": "#/$defs/matchTension" },
+                    "high": { "$ref": "#/$defs/matchTension" }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "categoricalNarratives": {
+      "type": "object",
+      "additionalProperties": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } }
+    },
+    "roleOpeners": {
+      "type": "object",
+      "required": ["best-overall", "different-approach", "more-approachable", "unexpected-fit"],
+      "additionalProperties": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 }
+    },
+    "specialCaseRules": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "claim", "sourceRefs", "reviewStatus"],
+        "required": ["id", "appliesTo", "text"],
         "properties": {
           "id": { "type": "string" },
-          "claim": { "type": "string", "minLength": 1 },
-          "sourceRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
-          "reviewStatus": { "type": "string", "enum": ["draft", "needs-review", "reviewed", "disputed", "deprecated"] },
-          "reviewedAt": { "type": ["string", "null"] },
-          "reviewNotes": { "type": "string" }
+          "appliesTo": { "type": "string", "description": "\"<field>:<value>\" -- field is one of classId, profileId, branchId, entityType, or a dotted path such as conduct.deityChoiceProvenance." },
+          "text": { "type": "string", "minLength": 1 }
         }
       }
+    }
+  },
+  "$defs": {
+    "matchTension": {
+      "type": "object",
+      "required": ["match", "tension"],
+      "properties": { "match": { "type": "string", "minLength": 1 }, "tension": { "type": "string", "minLength": 1 } }
     }
   }
 }

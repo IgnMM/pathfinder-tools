@@ -35,7 +35,12 @@ test('manifest, criteria, vocabularies and question-templates parse and validate
   const questions = readJson(manifest.entities.questionTemplates);
   assert.ok(Array.isArray(questions.questions) && questions.questions.length > 0);
   const explanations = readJson(manifest.entities.explanationTemplates);
-  assert.ok(Array.isArray(explanations.fragments) && Array.isArray(explanations.evidence));
+  // Shape updated 2026-09-15: the empty fragments/evidence stub was replaced by
+  // Find_Your_Class_Editorial_Explanation_Catalogue_v1.json's own real structure
+  // (numericNarratives/categoricalNarratives/roleOpeners/specialCaseRules) --
+  // see the "Editorial explanation catalogue integration" section of
+  // tests/find-your-class-matcher.test.js for full coverage.
+  assert.doesNotThrow(() => FYC.validateExplanationCatalogue(explanations, FYC.indexCriteria(criteria)));
 });
 
 test('every operation vocabulary entry in vocabularies.json is implemented by the loader', () => {

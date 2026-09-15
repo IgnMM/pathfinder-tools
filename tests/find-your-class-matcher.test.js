@@ -21,7 +21,9 @@ function readJson(rel) { return JSON.parse(fs.readFileSync(path.join(dir, rel), 
 const criteriaDoc = readJson('criteria.json');
 const profiles = readJson('compass-profiles.json').profiles;
 const questionTemplates = readJson('question-templates.json');
+const explanationCatalogue = readJson('explanation-templates.json');
 const byId = new Map(profiles.map(p => [p.id, p]));
+const criteriaIndex = FYC.indexCriteria(criteriaDoc);
 
 function baseRequest(overrides) {
   return Object.assign({ schemaVersion: 1, numericPreferences: {}, categoricalPreferences: {} }, overrides || {});
@@ -38,8 +40,8 @@ test('1. same request produces byte-for-byte stable ranking', () => {
     },
     options: { maxResults: 4, includeNeedsConfirmation: true },
   });
-  const a = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
-  const b = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const a = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+  const b = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   assert.deepEqual(a.recommendations, b.recommendations);
   assert.equal(JSON.stringify(a.recommendations), JSON.stringify(b.recommendations));
 });
@@ -58,8 +60,8 @@ test('2. importance 1 contributes a non-zero weight', () => {
 test('3. notRelevant contributes zero weight and cannot change ranking', () => {
   const withPref = baseRequest({ numericPreferences: { 'crowd-control': { importance: 9, origin: 'explicit' }, 'wilderness': { importance: 5, origin: 'explicit' } } });
   const withNotRelevant = baseRequest({ numericPreferences: { 'crowd-control': { importance: 9, origin: 'explicit' }, 'wilderness': { notRelevant: true, origin: 'explicit' } } });
-  const a = M.matchProfiles(withPref, profiles, criteriaDoc, questionTemplates);
-  const b = M.matchProfiles(withNotRelevant, profiles, criteriaDoc, questionTemplates);
+  const a = M.matchProfiles(withPref, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+  const b = M.matchProfiles(withNotRelevant, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   // Ranking is driven only by crowd-control in both cases (wilderness importance
   // 5 vs notRelevant differ, but only crowd-control should move the top result).
   assert.equal(a.recommendations[0].id, b.recommendations[0].id);
@@ -253,7 +255,7 @@ test('17. two branches of the same profile do not fill two ordinary result slots
     numericPreferences: { 'companion-centrality': { desiredPosition: 9, importance: 9, origin: 'explicit' }, 'magical-utility': { importance: 8, origin: 'explicit' } },
     options: { maxResults: 4 },
   });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   const baseIds = result.recommendations.map(r => r.id.split('::')[0]);
   assert.equal(new Set(baseIds).size, baseIds.length, 'no base profile should appear twice across result slots');
 });
@@ -263,7 +265,7 @@ test('17. two branches of the same profile do not fill two ordinary result slots
 // ---------------------------------------------------------------------
 test('18. every archetype result exposes its parent class', () => {
   const request = baseRequest({ numericPreferences: { 'crowd-control': { importance: 9, origin: 'explicit' } } });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   for (const rec of result.recommendations) {
     if (rec.entityType === 'archetype') {
       assert.ok(rec.parentLabel, `${rec.title} is an archetype but has no parentLabel`);
@@ -286,7 +288,7 @@ test('19. class paths are labelled as classes, never archetypes', () => {
 // ---------------------------------------------------------------------
 test('20. more-approachable satisfies both complexity thresholds', () => {
   const request = baseRequest({ numericPreferences: { 'build-complexity': { desiredPosition: 9, importance: 9, origin: 'explicit' } }, options: { maxResults: 4 } });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   const approachable = result.recommendations.find(r => r.role === 'more-approachable');
   if (approachable) {
     const profile = byId.get(approachable.id.split('::')[0]);
@@ -304,7 +306,7 @@ test('21. diverse role selection does not replace the true best-overall result',
   const ranked = M.rankCandidates(scored);
   const eligible = ranked.filter(s => s.eligibility.status === 'eligible');
   const trueBest = eligible[0];
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   const bestOverall = result.recommendations.find(r => r.role === 'best-overall');
   assert.equal(bestOverall.id, trueBest.candidate.internalId);
 });
@@ -314,7 +316,7 @@ test('21. diverse role selection does not replace the true best-overall result',
 // ---------------------------------------------------------------------
 test('22. low-information input returns low confidence and a next question', () => {
   const request = baseRequest({ numericPreferences: { 'crowd-control': { importance: 5, origin: 'explicit' } } });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   assert.equal(result.confidence, 'low');
   assert.ok(result.nextQuestion, 'a next question should be offered when confidence is low');
 });
@@ -360,7 +362,7 @@ test('the synthetic gate question uses the gate\'s own natural-English confirmat
 // ---------------------------------------------------------------------
 test('24. presentation results contain no score or percentage wording', () => {
   const request = baseRequest({ numericPreferences: { 'crowd-control': { importance: 9, origin: 'explicit' }, 'melee-ranged': { desiredPosition: 5.5, importance: 7, origin: 'explicit' } } });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   const serialized = JSON.stringify(result.recommendations);
   assert.ok(!/%/.test(serialized), 'no percent sign anywhere in presentation output');
   assert.ok(!/\bfit\b\s*[:=]?\s*0?\.\d/i.test(serialized), 'no raw decimal fit number embedded in presentation text');
@@ -416,7 +418,7 @@ test('best-overall below fit 0.58 is "provisional", stays visible, and forces lo
     },
     options: { maxResults: 4 },
   });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   const best = result.recommendations[0];
   if (best && best.fitBand === 'provisional') {
     assert.equal(best.role, 'best-overall');
@@ -439,7 +441,7 @@ test('the engine never mutates the source profiles array or its objects', () => 
     numericPreferences: { 'crowd-control': { importance: 9, origin: 'explicit' } },
     categoricalPreferences: { 'companion-type': { mode: 'exclude', values: ['animal companion'], origin: 'explicit' } },
   });
-  M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   assert.deepEqual(profiles, snapshot);
 });
 
@@ -465,7 +467,7 @@ test('golden: ranged, martial, durable, all-day character -> Fighter Archer lead
     },
     options: { maxResults: 4 },
   });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   assert.ok(result.recommendations.length > 0);
   assert.equal(result.recommendations[0].id, 'fighter-archer');
 });
@@ -479,7 +481,7 @@ test('golden: spontaneous offensive caster with low preparation burden -> a Sorc
     categoricalPreferences: { 'casting-method': { mode: 'prefer', values: ['spontaneous'], importance: 8, origin: 'explicit' } },
     options: { maxResults: 4 },
   });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   assert.equal(result.recommendations[0].classId, 'sorcerer');
 });
 
@@ -492,7 +494,7 @@ test('golden: stealthy magical infiltrator -> Eldritch Scoundrel or another arca
     gateAnswers: { [SCOUNDREL_GATE_ID]: { status: 'satisfied' } },
     options: { maxResults: 4 },
   });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   assert.ok(result.recommendations.length > 0);
   assert.ok(result.recommendations[0].id === 'rogue-eldritch-scoundrel' || byId.get(result.recommendations[0].id.split('::')[0]).scores['stealth-infiltration'] >= 7);
 });
@@ -506,7 +508,7 @@ test('golden: nature caster with a central animal companion -> a Druid animal-co
     },
     options: { maxResults: 4 },
   });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   const top = result.recommendations[0];
   assert.equal(byId.get(top.id.split('::')[0]).classId, 'druid');
   assert.ok(top.id.includes('animal-companion') || top.branchChoice === 'nature-bond-animal-companion' || top.id === 'druid-pack-lord');
@@ -521,7 +523,7 @@ test('golden: melee magical weapon-user who wants crowd control -> Hexcrafter or
     },
     options: { maxResults: 4 },
   });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   assert.ok(result.recommendations.length > 0);
   assert.equal(byId.get(result.recommendations[0].id.split('::')[0]).classId, 'magus');
 });
@@ -532,7 +534,7 @@ test('golden: socially influential character with no mandatory code -> excludes 
     conductPreferences: { stance: 'avoid', importance: 9, acceptedCodePresence: ['none', 'optional', 'expected'], acceptedMechanicalLossRisk: ['none', 'limited'] },
     options: { maxResults: 4 },
   });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   for (const rec of result.recommendations) {
     const profile = byId.get(rec.id.split('::')[0]);
     assert.notEqual(profile.conduct && profile.conduct.mechanicalLossRisk, 'substantial');
@@ -547,7 +549,7 @@ test('golden: beginner-friendly option with low rules burden -> a build-complexi
     },
     options: { maxResults: 4 },
   });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   const top = byId.get(result.recommendations[0].id.split('::')[0]);
   assert.ok(top.scores['build-complexity'] <= 5);
 });
@@ -558,6 +560,152 @@ test('golden: sworn or institution-bound identity with accepted consequences -> 
     conductPreferences: { stance: 'welcome', importance: 9, acceptedCodePresence: ['mandatory', 'expected', 'optional', 'none'], acceptedMechanicalLossRisk: ['substantial', 'limited', 'none'] },
     options: { maxResults: 4 },
   });
-  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates);
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
   assert.ok(result.recommendations.some(r => byId.get(r.id.split('::')[0]).conduct.codePresence === 'mandatory'));
+});
+
+// =======================================================================
+// Editorial explanation catalogue integration (2026-09-15)
+// =======================================================================
+
+test('exact coverage: the catalogue has a narrative for every one of the 56 numeric and 8 categorical criteria (and every categorical value)', () => {
+  assert.doesNotThrow(() => FYC.validateExplanationCatalogue(explanationCatalogue, criteriaIndex));
+  const numericIds = criteriaDoc.criteria.filter(c => c.kind === 'capability' || c.kind === 'directional').map(c => c.id);
+  const categoricalCriteria = criteriaDoc.criteria.filter(c => c.kind === 'categorical');
+  for (const id of numericIds) assert.ok(explanationCatalogue.numericNarratives[id], `missing numeric narrative for "${id}"`);
+  for (const crit of categoricalCriteria) {
+    assert.ok(explanationCatalogue.categoricalNarratives[crit.id], `missing categorical narrative for "${crit.id}"`);
+    for (const v of crit.values) assert.ok(explanationCatalogue.categoricalNarratives[crit.id][v], `missing categorical narrative for "${crit.id}"="${v}"`);
+  }
+});
+
+test('validateExplanationCatalogue rejects a catalogue with a missing or extra criterion', () => {
+  const missing = JSON.parse(JSON.stringify(explanationCatalogue));
+  delete missing.numericNarratives['crowd-control'];
+  assert.throws(() => FYC.validateExplanationCatalogue(missing, criteriaIndex), FYC.ValidationError);
+
+  const extra = JSON.parse(JSON.stringify(explanationCatalogue));
+  extra.numericNarratives['not-a-real-criterion'] = { kind: 'capability', match: 'x', tension: 'y' };
+  assert.throws(() => FYC.validateExplanationCatalogue(extra, criteriaIndex), FYC.ValidationError);
+});
+
+test('whyItFits uses authored editorial text (never the retired "This matters to you" fallback) and never exceeds 2 entries', () => {
+  const request = baseRequest({
+    numericPreferences: {
+      'melee-ranged': { desiredPosition: 9, importance: 9, origin: 'explicit' },
+      'resource-endurance': { importance: 9, origin: 'explicit' },
+      'ranged-weapon-effectiveness': { importance: 8, origin: 'explicit' },
+    },
+    options: { maxResults: 1 },
+  });
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+  const best = result.recommendations[0];
+  assert.ok(best.whyItFits.length >= 1 && best.whyItFits.length <= 2);
+  for (const s of best.whyItFits) assert.ok(!s.startsWith('This matters to you'), 'the old generic fallback must not appear once an authored fragment exists');
+});
+
+test('the generic fallback still works when no explanation catalogue is supplied (defensive path, not the normal one)', () => {
+  const scored = { candidate: { internalId: 'fighter-archer', baseProfileId: 'fighter-archer', profile: byId.get('fighter-archer'), branchId: null },
+    overallFit: 0.9, coverage: 1, confidence: 'high',
+    matchedCriteria: ['single-target-damage'], tensionCriteria: [],
+    contributions: { 'single-target-damage': { fit: 0.9, weightedFit: 0.8, weight: 0.9 } },
+    eligibility: { status: 'eligible', reasons: [], warnings: [], disclosures: [] } };
+  const presentation = M.buildPresentationResult({ role: 'best-overall', scored }, baseRequest({ numericPreferences: { 'single-target-damage': { importance: 9, origin: 'explicit' } } }), criteriaDoc, null, new Set());
+  assert.ok(presentation.whyItFits.some(s => s.startsWith('This matters to you')), 'without a catalogue the old generic sentence remains the safety net');
+});
+
+test('special case: Druid conduct replaces the generic code sentence with the authored druid-conduct fragment', () => {
+  const stormDruid = { profile: byId.get('druid-storm-druid'), internalId: 'druid-storm-druid', baseProfileId: 'druid-storm-druid', branchId: null };
+  const request = baseRequest();
+  const scored = Object.assign(M.scoreCandidate(stormDruid, request, criteriaDoc), { eligibility: M.evaluateEligibility(stormDruid, request) });
+  const presentation = M.buildPresentationResult({ role: 'best-overall', scored }, request, criteriaDoc, explanationCatalogue, new Set());
+  assert.ok(presentation.requirements.some(r => /bond with nature is a real class obligation/i.test(r)), 'the authored druid-conduct fragment must appear');
+  assert.ok(!presentation.requirements.some(r => /^This path (requires|expects) living by a code/.test(r)), 'the generic code sentence must be replaced, not duplicated');
+});
+
+test('special case: Razmiran Priest gets the authored razmiran-narrative fragment instead of the generic fixed-source sentence', () => {
+  const razmiran = { profile: byId.get('sorcerer-razmiran-priest'), internalId: 'sorcerer-razmiran-priest', baseProfileId: 'sorcerer-razmiran-priest', branchId: null };
+  const request = baseRequest();
+  const scored = Object.assign(M.scoreCandidate(razmiran, request, criteriaDoc), { eligibility: M.evaluateEligibility(razmiran, request) });
+  const presentation = M.buildPresentationResult({ role: 'best-overall', scored }, request, criteriaDoc, explanationCatalogue, new Set());
+  assert.ok(presentation.requirements.some(r => /Razmir's church defines the published story/i.test(r)));
+  assert.ok(!presentation.requirements.some(r => /^A specific patron or source defines this path narratively/.test(r)), 'the generic fixed-source sentence must be replaced, not duplicated');
+});
+
+test('special case: Bladebound gets the authored bladebound-relationship fragment in addition to (not replacing) the weapon-choice disclosure', () => {
+  const bladebound = { profile: byId.get('magus-bladebound'), internalId: 'magus-bladebound', baseProfileId: 'magus-bladebound', branchId: null };
+  const request = baseRequest();
+  const scored = Object.assign(M.scoreCandidate(bladebound, request, criteriaDoc), { eligibility: M.evaluateEligibility(bladebound, request) });
+  const presentation = M.buildPresentationResult({ role: 'best-overall', scored }, request, criteriaDoc, explanationCatalogue, new Set());
+  assert.ok(presentation.requirements.some(r => /Black Blade has its own purpose and Ego/i.test(r)), 'authored Ego-conflict fragment must appear');
+  assert.ok(presentation.requirements.some(r => /one-handed slashing weapon, rapier or sword cane/i.test(r)), 'the mechanical weapon-choice disclosure must still appear alongside it');
+});
+
+test('special case: the material-animal-companion fragment appears only on the animal-companion branch, never the domain base', () => {
+  const candidates = M.expandCandidateBranches([byId.get('druid-feyspeaker-domain')]);
+  const base = candidates.find(c => !c.isBranch), branch = candidates.find(c => c.isBranch);
+  const request = baseRequest();
+  const scoredBase = Object.assign(M.scoreCandidate(base, request, criteriaDoc), { eligibility: M.evaluateEligibility(base, request) });
+  const scoredBranch = Object.assign(M.scoreCandidate(branch, request, criteriaDoc), { eligibility: M.evaluateEligibility(branch, request) });
+  const presBase = M.buildPresentationResult({ role: 'best-overall', scored: scoredBase }, request, criteriaDoc, explanationCatalogue, new Set());
+  const presBranch = M.buildPresentationResult({ role: 'best-overall', scored: scoredBranch }, request, criteriaDoc, explanationCatalogue, new Set());
+  assert.ok(!presBase.requirements.some(r => /assumes you choose an animal companion/i.test(r)));
+  assert.ok(presBranch.requirements.some(r => /assumes you choose an animal companion/i.test(r)));
+});
+
+test('special case: free-choice-deity fragment replaces the generic sentence when a profile has that deityChoiceProvenance', () => {
+  const syntheticProfile = Object.assign({}, byId.get('sorcerer-base'), {
+    id: 'synthetic-free-choice-deity',
+    conduct: { codePresence: 'none', mechanicalLossRisk: 'none', alignmentRule: { kind: 'none', values: [] }, deityRequired: false, deityChoiceProvenance: 'free-choice-with-consequences', institutionRequired: false },
+  });
+  const candidate = { profile: syntheticProfile, internalId: 'synthetic-free-choice-deity', baseProfileId: 'synthetic-free-choice-deity', branchId: null };
+  const request = baseRequest();
+  const scored = Object.assign(M.scoreCandidate(candidate, request, criteriaDoc), { eligibility: M.evaluateEligibility(candidate, request) });
+  const presentation = M.buildPresentationResult({ role: 'best-overall', scored }, request, criteriaDoc, explanationCatalogue, new Set());
+  assert.ok(presentation.requirements.some(r => /You choose the deity/i.test(r)));
+  assert.ok(!presentation.requirements.some(r => /^You choose a deity or patron; once chosen/.test(r)), 'the generic free-choice sentence must be replaced, not duplicated');
+});
+
+test('special case: archetype-parent is a behavioural rule, never printed as literal requirement text', () => {
+  const hexcrafter = { profile: byId.get('magus-hexcrafter'), internalId: 'magus-hexcrafter', baseProfileId: 'magus-hexcrafter', branchId: null };
+  const request = baseRequest();
+  const scored = Object.assign(M.scoreCandidate(hexcrafter, request, criteriaDoc), { eligibility: M.evaluateEligibility(hexcrafter, request) });
+  const presentation = M.buildPresentationResult({ role: 'best-overall', scored }, request, criteriaDoc, explanationCatalogue, new Set());
+  assert.ok(!presentation.requirements.some(r => /Always state the parent class/i.test(r)), 'archetype-parent\'s text is an authoring instruction, not player-facing prose');
+  // The behaviour it describes must still hold: the parent class is stated first.
+  assert.ok(presentation.summary.includes('Magus archetype'));
+});
+
+test('the same criterion sentence is never repeated twice within one shortlist', () => {
+  const request = baseRequest({
+    numericPreferences: {
+      'personal-durability': { importance: 9, origin: 'explicit' },
+      'melee-weapon-effectiveness': { importance: 8, origin: 'explicit' },
+      'armour-defence': { importance: 8, origin: 'explicit' },
+    },
+    options: { maxResults: 4 },
+  });
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+  const allFragmentSentences = result.recommendations.flatMap(r => r.whyItFits);
+  assert.equal(new Set(allFragmentSentences).size, allFragmentSentences.length, 'a whyItFits sentence must not repeat across the shortlist');
+});
+
+test('no statistical language anywhere in whyItFits, watchFor, summary or requirements', () => {
+  const request = baseRequest({
+    numericPreferences: {
+      'crowd-control': { importance: 9, origin: 'explicit' },
+      'melee-ranged': { desiredPosition: 5.5, importance: 7, origin: 'explicit' },
+      'code-bound-identity': { desiredPosition: 8, importance: 8, origin: 'explicit' },
+    },
+    categoricalPreferences: { 'companion-type': { mode: 'prefer', values: ['animal companion'], importance: 6, origin: 'explicit' } },
+    options: { maxResults: 4, includeNeedsConfirmation: true },
+  });
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+  for (const rec of result.recommendations) {
+    const allText = [rec.summary, ...rec.whyItFits, ...rec.watchFor, ...rec.requirements].join(' \n ');
+    assert.ok(!/%/.test(allText), `${rec.id}: percent sign found`);
+    assert.ok(!/\b0\.\d\d\b/.test(allText), `${rec.id}: raw decimal fit number found`);
+    assert.ok(!/\bfit\b|\bweight(ed)?\b|\bscore\b|\bcoverage\b/i.test(allText), `${rec.id}: statistical/internal terminology leaked into player-facing text`);
+    for (const c of criteriaDoc.criteria) assert.ok(!allText.includes(c.id), `${rec.id}: raw criterion id "${c.id}" leaked into player-facing text`);
+  }
 });

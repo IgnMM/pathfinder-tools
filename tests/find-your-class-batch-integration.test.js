@@ -147,6 +147,9 @@ test('companion-type\'s ambiguous "bonded/sentient item" value was split into "b
 });
 
 test('no matching/scoring algorithm was introduced by this integration -- loader.js exports stay exactly the pre-existing set', () => {
+  // Snapshot as of this batch integration (2026-09-15); validateExplanationCatalogue
+  // was added later by the editorial-explanation-catalogue integration, a separate,
+  // deliberate loader.js change -- not something this batch integration introduced.
   const exported = Object.keys(FYC).sort();
   assert.deepEqual(exported, [
     'OPERATIONS_VOCABULARY',
@@ -160,6 +163,7 @@ test('no matching/scoring algorithm was introduced by this integration -- loader
     'validateCompassProfiles',
     'validateCriteriaFile',
     'validateCriterion',
+    'validateExplanationCatalogue',
     'validateManifest',
   ], 'loader.js must not have grown a new matching/ranking entry point as part of this data integration');
 });
