@@ -1,0 +1,730 @@
+{
+  "schemaVersion": 1,
+  "status": "draft",
+  "notes": [
+    "MVP deterministic concept lexicon (Find_Your_Class_UI_and_Onboarding_Handoff_v1.md \"MVP concept interpretation\"). Every suggestion here is proposed with origin \"inferred-unconfirmed\" -- app.js/concept-parser.js never let one affect matching until the player confirms it on Stage 2.",
+    "Deliberately contains no entry that sets alignment, race, a deity requirement or conductPreferences.stance -- the handoff explicitly forbids inferring those from free text even as an unconfirmed suggestion."
+  ],
+  "entries": [
+    {
+      "phrase": "melee",
+      "suggestions": [
+        {
+          "criterionId": "melee-ranged",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "ranged",
+      "suggestions": [
+        {
+          "criterionId": "melee-ranged",
+          "kind": "directional",
+          "desiredPosition": 10,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "archer",
+      "suggestions": [
+        {
+          "criterionId": "melee-ranged",
+          "kind": "directional",
+          "desiredPosition": 10,
+          "importanceHint": "high"
+        },
+        {
+          "criterionId": "ranged-weapon-effectiveness",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "armour",
+      "suggestions": [
+        {
+          "criterionId": "armour-defence",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "shield",
+      "suggestions": [
+        {
+          "criterionId": "shield-combat",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "durable",
+      "suggestions": [
+        {
+          "criterionId": "personal-durability",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "protector",
+      "suggestions": [
+        {
+          "criterionId": "protect-allies",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "weapon-user",
+      "suggestions": [
+        {
+          "criterionId": "martial-magic",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "martial",
+      "suggestions": [
+        {
+          "criterionId": "martial-magic",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "spellcaster",
+      "suggestions": [
+        {
+          "criterionId": "martial-magic",
+          "kind": "directional",
+          "desiredPosition": 10,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "arcane",
+      "suggestions": [
+        {
+          "criterionId": "magic-identity",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "arcane"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "divine",
+      "suggestions": [
+        {
+          "criterionId": "magic-identity",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "divine"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "nature magic",
+      "suggestions": [
+        {
+          "criterionId": "magic-identity",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "nature"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "nature",
+      "suggestions": [
+        {
+          "criterionId": "magic-identity",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "nature"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "offensive spells",
+      "suggestions": [
+        {
+          "criterionId": "offensive-spellcasting",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "area damage",
+      "suggestions": [
+        {
+          "criterionId": "area-damage",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "single target",
+      "suggestions": [
+        {
+          "criterionId": "single-target-damage",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "control",
+      "suggestions": [
+        {
+          "criterionId": "crowd-control",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "curses",
+      "suggestions": [
+        {
+          "criterionId": "magic-identity",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "curse"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "buffs",
+      "suggestions": [
+        {
+          "criterionId": "ally-buffing",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "healing",
+      "suggestions": [
+        {
+          "criterionId": "healing-recovery",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "protection",
+      "suggestions": [
+        {
+          "criterionId": "damage-prevention",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "stealth",
+      "suggestions": [
+        {
+          "criterionId": "stealth-infiltration",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "traps",
+      "suggestions": [
+        {
+          "criterionId": "traps-locks",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "social",
+      "suggestions": [
+        {
+          "criterionId": "social-influence",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "charming",
+      "suggestions": [
+        {
+          "criterionId": "social-style",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "charm"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "deceptive",
+      "suggestions": [
+        {
+          "criterionId": "social-style",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "deception"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "intimidating",
+      "suggestions": [
+        {
+          "criterionId": "intimidation",
+          "kind": "capability",
+          "importanceHint": "high"
+        },
+        {
+          "criterionId": "social-style",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "intimidation"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "investigation",
+      "suggestions": [
+        {
+          "criterionId": "knowledge-investigation",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "wilderness",
+      "suggestions": [
+        {
+          "criterionId": "wilderness",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "animal companion",
+      "suggestions": [
+        {
+          "criterionId": "companion-centrality",
+          "kind": "directional",
+          "desiredPosition": 9,
+          "importanceHint": "high"
+        },
+        {
+          "criterionId": "companion-type",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "animal companion"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "companion",
+      "suggestions": [
+        {
+          "criterionId": "companion-centrality",
+          "kind": "directional",
+          "desiredPosition": 8,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "familiar",
+      "suggestions": [
+        {
+          "criterionId": "companion-type",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "familiar"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "summons",
+      "suggestions": [
+        {
+          "criterionId": "summoning-minions",
+          "kind": "capability",
+          "importanceHint": "high"
+        },
+        {
+          "criterionId": "companion-type",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "summoned creatures"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "no companion",
+      "suggestions": [
+        {
+          "criterionId": "companion-centrality",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        },
+        {
+          "criterionId": "companion-type",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "none"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "animal partner",
+      "suggestions": [
+        {
+          "criterionId": "companion-centrality",
+          "kind": "directional",
+          "desiredPosition": 9,
+          "importanceHint": "high"
+        },
+        {
+          "criterionId": "companion-type",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "animal companion"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "simple",
+      "suggestions": [
+        {
+          "criterionId": "build-complexity",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        },
+        {
+          "criterionId": "rules-mastery",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "beginner",
+      "suggestions": [
+        {
+          "criterionId": "build-complexity",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        },
+        {
+          "criterionId": "rules-mastery",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "tactical",
+      "suggestions": [
+        {
+          "criterionId": "turn-complexity",
+          "kind": "directional",
+          "desiredPosition": 10,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "complex",
+      "suggestions": [
+        {
+          "criterionId": "build-complexity",
+          "kind": "directional",
+          "desiredPosition": 10,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "low bookkeeping",
+      "suggestions": [
+        {
+          "criterionId": "resource-tracking",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "spontaneous",
+      "suggestions": [
+        {
+          "criterionId": "casting-method",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "spontaneous"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "prepared",
+      "suggestions": [
+        {
+          "criterionId": "casting-method",
+          "kind": "categorical",
+          "mode": "prefer",
+          "values": [
+            "prepared"
+          ],
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "no preparation",
+      "suggestions": [
+        {
+          "criterionId": "no-heavy-preparation",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "oath",
+      "suggestions": [
+        {
+          "criterionId": "code-bound-identity",
+          "kind": "directional",
+          "desiredPosition": 10,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "code",
+      "suggestions": [
+        {
+          "criterionId": "code-bound-identity",
+          "kind": "directional",
+          "desiredPosition": 10,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "order",
+      "suggestions": [
+        {
+          "criterionId": "institutional-duty",
+          "kind": "directional",
+          "desiredPosition": 10,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "faith",
+      "suggestions": [
+        {
+          "criterionId": "institutional-duty",
+          "kind": "directional",
+          "desiredPosition": 8,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "deity",
+      "suggestions": [
+        {
+          "criterionId": "institutional-duty",
+          "kind": "directional",
+          "desiredPosition": 8,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "independent",
+      "suggestions": [
+        {
+          "criterionId": "independent-teamwork",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "shapeshifter",
+      "suggestions": [
+        {
+          "criterionId": "shapeshifting-transformation",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "natural weapons",
+      "suggestions": [
+        {
+          "criterionId": "natural-weapon-combat",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "mounted",
+      "suggestions": [
+        {
+          "criterionId": "mounted-combat",
+          "kind": "capability",
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "specialist",
+      "suggestions": [
+        {
+          "criterionId": "specialist-versatile",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "versatile",
+      "suggestions": [
+        {
+          "criterionId": "specialist-versatile",
+          "kind": "directional",
+          "desiredPosition": 10,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "safe",
+      "suggestions": [
+        {
+          "criterionId": "safe-risky",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "risky",
+      "suggestions": [
+        {
+          "criterionId": "safe-risky",
+          "kind": "directional",
+          "desiredPosition": 10,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "sustained",
+      "suggestions": [
+        {
+          "criterionId": "steady-burst",
+          "kind": "directional",
+          "desiredPosition": 1,
+          "importanceHint": "high"
+        }
+      ]
+    },
+    {
+      "phrase": "burst",
+      "suggestions": [
+        {
+          "criterionId": "steady-burst",
+          "kind": "directional",
+          "desiredPosition": 10,
+          "importanceHint": "high"
+        }
+      ]
+    }
+  ]
+}

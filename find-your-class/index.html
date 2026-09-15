@@ -1,0 +1,109 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><title>Find Your Class</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#10151d">
+<style>
+:root{--bg:#0f1117;--panel:#181c24;--panel2:#202633;--text:#eef2f7;--muted:#9ba7b7;--gold:#d5ad55;--gold2:#f1d78b;--border:#313949;--accent:#5a4318}
+*{box-sizing:border-box}
+html,body{min-height:100%;margin:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
+main{max-width:720px;margin:auto;padding:64px 16px 40px}
+h1{font-family:'Cinzel Decorative',serif;font-size:1.5rem;margin:0 0 8px;color:var(--gold2);text-wrap:balance}
+.fycEyebrow{color:var(--gold);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 6px}
+.fycSupport{color:var(--muted);font-size:.9rem;line-height:1.5;margin:0 0 18px}
+textarea{width:100%;min-height:120px;background:#121721;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:12px;font-size:.95rem;font-family:inherit;resize:vertical}
+.fycExamples{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.fycExamples button{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-size:.8rem;cursor:pointer}
+.fycActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.fycPrimary{background:var(--accent);border:1px solid #816427;color:#fff1c2;border-radius:8px;padding:10px 18px;font-size:.9rem;cursor:pointer;text-decoration:none;display:inline-block}
+.fycSecondary{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 18px;font-size:.9rem;cursor:pointer}
+.fycQuiet{background:none;border:none;color:var(--muted);font-size:.85rem;cursor:pointer;text-decoration:underline;padding:10px 4px}
+.fycError{color:#f0a0a0;font-size:.85rem}
+.fycCards{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.fycCard{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px}
+.fycCardHead{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.fycCardLabel{font-weight:700}
+.fycCardSource{color:var(--muted);font-size:.78rem}
+.fycRange{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted)}
+.fycRange input{flex:1}
+.fycModes{display:flex;gap:6px;margin:6px 0}
+.fycModeBtn{background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:16px;padding:4px 12px;font-size:.78rem;cursor:pointer}
+.fycModeBtn.active{background:var(--accent);border-color:#816427;color:#fff1c2}
+.fycValues{display:flex;flex-wrap:wrap;gap:8px;font-size:.8rem;margin:6px 0}
+.fycImportance{display:flex;gap:4px;flex-wrap:wrap;margin:8px 0}
+.fycImpBtn{width:26px;height:26px;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;font-size:.75rem;cursor:pointer}
+.fycImpBtn.active{background:var(--gold);border-color:var(--gold2);color:#1a1406}
+.fycCardActions{display:flex;gap:8px;margin-top:8px}
+.fycCardActions button{background:none;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:5px 10px;font-size:.78rem;cursor:pointer}
+.fycConflicts{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:10px}
+.fycConflict{background:#241a12;border:1px solid #6b4a1f;border-radius:10px;padding:12px;font-size:.85rem}
+.fycConflictOptions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.fycConflictOptions button{background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:.8rem}
+.fycBrowser{margin-top:18px;border:1px solid var(--border);border-radius:10px;padding:10px 14px}
+.fycBrowser summary{cursor:pointer;font-weight:700;color:var(--gold2)}
+.fycGroup{margin:10px 0 0}
+.fycGroup summary{cursor:pointer;color:var(--muted);font-size:.85rem}
+.fycGroupList{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.fycGroupList button{background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:16px;padding:4px 10px;font-size:.78rem;cursor:pointer}
+.fycAnswers{display:flex;flex-direction:column;gap:8px;margin:16px 0}
+.fycAnswers button{background:var(--panel);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:12px 14px;text-align:left;cursor:pointer;font-size:.9rem}
+.fycAnswers button:hover,.fycAnswers button:focus-visible{border-color:var(--gold)}
+.fycResults{display:flex;flex-direction:column;gap:16px}
+.fycResultCard{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px}
+.fycResultRole{color:var(--gold);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 4px}
+.fycResultType{color:var(--muted);font-size:.8rem;margin:0 0 6px}
+.fycResultCard h2{margin:0 0 8px;font-size:1.15rem}
+.fycResultSummary{color:var(--text);font-size:.9rem;line-height:1.5}
+.fycProvisional{background:#241a12;border:1px solid #6b4a1f;border-radius:8px;padding:8px 10px;font-size:.82rem;color:var(--gold2)}
+.fycWhy,.fycWatch,.fycRequirements{margin-top:10px}
+.fycWhy h3,.fycWatch h3,.fycRequirements h3{margin:0 0 4px;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.fycWhy ul,.fycWatch ul,.fycRequirements ul{margin:0;padding-left:18px;font-size:.85rem;line-height:1.5}
+.fycBranch{color:var(--muted);font-size:.8rem;font-style:italic;margin-top:8px}
+.fycResultActions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.fycSourceLink{color:var(--muted);font-size:.8rem}
+@media(max-width:560px){main{padding-left:16px;padding-right:16px}.fycImpBtn{width:24px;height:24px}}
+</style>
+</head>
+<body>
+<a href="../" title="The Sanctum" style="position:fixed;top:10px;left:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid #343946;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10.3"/><polygon points="12.0,2.4 14.3,8.8 21.1,9.0 15.7,13.2 17.6,19.8 12.0,15.9 6.4,19.8 8.3,13.2 2.9,9.0 9.7,8.8"/></svg></a>
+<style>@media(max-width:900px){main{padding-left:60px !important}}</style>
+<main>
+<div id="app" role="main" aria-live="polite">
+  <p class="fycSupport">Loading the Arcane Compass&hellip;</p>
+</div>
+</main>
+<script src="../assets/find-your-class/loader.js"></script>
+<script src="../assets/find-your-class/matcher.js"></script>
+<script src="../assets/find-your-class/concept-parser.js"></script>
+<script src="../assets/find-your-class/app.js"></script>
+<script>
+(async function () {
+  const base = '../assets/find-your-class/';
+  async function getJson(name) {
+    const res = await fetch(base + name);
+    if (!res.ok) throw new Error('Failed to load ' + name);
+    return res.json();
+  }
+  const container = document.getElementById('app');
+  try {
+    const [criteriaDoc, profilesDoc, questionTemplates, explanationCatalogue, lexicon] = await Promise.all([
+      getJson('criteria.json'),
+      getJson('compass-profiles.json'),
+      getJson('question-templates.json'),
+      getJson('explanation-templates.json'),
+      getJson('concept-lexicon.json'),
+    ]);
+    window.PFFindYourClassApp.mount(container, {
+      criteriaDoc: criteriaDoc,
+      profiles: profilesDoc.profiles,
+      questionTemplates: questionTemplates,
+      explanationCatalogue: explanationCatalogue,
+      lexicon: lexicon,
+    });
+  } catch (e) {
+    container.innerHTML = '<p class="fycError" role="alert">The Arcane Compass could not load its data. Please try again shortly.</p>';
+    if (window.console) console.error(e);
+  }
+}());
+</script>
+</body></html>
