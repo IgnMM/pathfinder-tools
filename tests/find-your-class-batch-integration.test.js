@@ -127,6 +127,23 @@ test('no profile or file claims a "verified" status anywhere -- everything stays
   }
 });
 
+test('companion-type\'s ambiguous "bonded/sentient item" value was split into "bonded object" and "sentient item" (Codex correction, 2026-09-15)', () => {
+  const companionType = criteriaDoc.criteria.find(c => c.id === 'companion-type');
+  assert.ok(companionType.values.includes('bonded object'), 'companion-type must offer "bonded object"');
+  assert.ok(companionType.values.includes('sentient item'), 'companion-type must offer "sentient item"');
+  assert.ok(!companionType.values.includes('bonded/sentient item'), 'the combined "bonded/sentient item" value must be retired now that no profile references it');
+
+  const eldritchArcher = doc.profiles.find(p => p.id === 'magus-eldritch-archer');
+  assert.deepEqual(eldritchArcher.categories['companion-type'], ['bonded object'], 'Eldritch Archer\'s bonded weapon is a bonded object, not a sentient item');
+  const bladebound = doc.profiles.find(p => p.id === 'magus-bladebound');
+  assert.deepEqual(bladebound.categories['companion-type'], ['sentient item'], 'Bladebound\'s black blade is a sentient item');
+
+  for (const p of doc.profiles) {
+    const values = (p.categories && p.categories['companion-type']) || [];
+    assert.ok(!values.includes('bonded/sentient item'), `${p.id}: still references the retired combined value`);
+  }
+});
+
 test('no matching/scoring algorithm was introduced by this integration -- loader.js exports stay exactly the pre-existing set', () => {
   const exported = Object.keys(FYC).sort();
   assert.deepEqual(exported, [

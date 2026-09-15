@@ -1042,7 +1042,7 @@
         "animal companion",
         "multiple companions",
         "summoned creatures",
-        "bonded/sentient item",
+        "bonded object",
         "sentient item"
       ],
       "allowNotRelevant": true,
@@ -1050,7 +1050,7 @@
       "status": "needs-review",
       "schemaVersion": 1,
       "notes": [
-        "Base list per blueprint 5.4, extended with sentient item -- Batch 06 (Bladebound) used this shorter form rather than the base list's \"bonded/sentient item\"; kept as a distinct value rather than silently rewritten, per \"convert...without changing editorial values.\" Worth reconciling with Codex whether these should merge into one value."
+        "Base list per blueprint 5.4 originally used the single combined value \"bonded/sentient item\"; Codex's 2026-09-15 review of commit 5586885 asked to split it into two distinct values (a bonded object need not be sentient; a sentient item need not be a bonded focus) -- \"bonded object\" for Magus Eldritch Archer's bonded weapon, \"sentient item\" for Magus Bladebound's black blade. The combined value is retired from this list now that no profile references it."
       ]
     },
     {
