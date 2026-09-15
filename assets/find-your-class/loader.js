@@ -137,9 +137,23 @@
   // verified catalogue data through this loader. Validates every scored
   // criterionId exists (aliases included) and every score is an integer 1-10.
   // ---------------------------------------------------------------------
+  // Compass profile file status must never claim "verified" -- these are always
+  // editorial calibration/scoring landmarks, not production catalogue records
+  // (Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md implementation
+  // order step 6, reaffirmed by the Batch 01-06 hand-off's own instruction to
+  // "keep all profiles as draft or needs-review").
+  const COMPASS_PROFILE_ALLOWED_STATUSES = ['draft-editorial-calibration', 'draft-editorial-scoring', 'needs-review'];
+
   function validateCompassProfiles(doc, criteriaIndex) {
-    assert(doc && doc.status === 'draft-editorial-calibration', 'compass profile file must have status "draft-editorial-calibration" -- never import compass profiles as verified data', 'compassProfiles');
+    assert(doc && COMPASS_PROFILE_ALLOWED_STATUSES.includes(doc.status), `compass profile file status must be one of ${COMPASS_PROFILE_ALLOWED_STATUSES.join(', ')} -- never import compass profiles as verified data`, 'compassProfiles');
     assert(Array.isArray(doc.profiles) && doc.profiles.length > 0, 'compass profile file must have a non-empty profiles array', 'compassProfiles');
+
+    let numericIds = null, categoricalIds = null;
+    if (criteriaIndex) {
+      numericIds = new Set([...criteriaIndex.values()].filter(c => c.kind === 'capability' || c.kind === 'directional').map(c => c.id));
+      categoricalIds = new Set([...criteriaIndex.values()].filter(c => c.kind === 'categorical').map(c => c.id));
+    }
+
     const seen = new Set();
     for (const p of doc.profiles) {
       const path = `compass profile "${p && p.id}"`;
@@ -148,10 +162,46 @@
       seen.add(p.id);
       assert(['archetype', 'class-path'].includes(p.entityType), 'entityType must be "archetype" or "class-path"', path);
       assert(typeof p.classId === 'string', 'classId is required', path);
+      if (p.entityType === 'archetype') assert(typeof p.archetypeId === 'string' && p.archetypeId, 'archetype profiles require archetypeId', path);
+
       assert(p.scores && typeof p.scores === 'object', 'scores object is required', path);
       for (const [criterionId, value] of Object.entries(p.scores)) {
         if (criteriaIndex) assert(criteriaIndex.has(criterionId), `scores references unknown criterion "${criterionId}"`, path);
         assertCandidateValue(value, `scores["${criterionId}"]`, path);
+      }
+      if (numericIds) {
+        const scoreKeys = new Set(Object.keys(p.scores));
+        const missing = [...numericIds].filter(id => !scoreKeys.has(id));
+        const extra = [...scoreKeys].filter(id => !numericIds.has(id));
+        assert(missing.length === 0, `scores is missing ${missing.length} of the ${numericIds.size} numeric criteria: ${missing.join(', ')}`, path);
+        assert(extra.length === 0, `scores has ${extra.length} key(s) outside the numeric criterion set: ${extra.join(', ')}`, path);
+      }
+
+      if (p.categories !== undefined) {
+        assert(typeof p.categories === 'object', 'categories must be an object', path);
+        for (const [criterionId, values] of Object.entries(p.categories)) {
+          if (categoricalIds) assert(categoricalIds.has(criterionId), `categories references unknown criterion "${criterionId}"`, path);
+          assert(Array.isArray(values), `categories["${criterionId}"] must be an array`, path);
+        }
+        if (categoricalIds) {
+          const catKeys = new Set(Object.keys(p.categories));
+          const missing = [...categoricalIds].filter(id => !catKeys.has(id));
+          const extra = [...catKeys].filter(id => !categoricalIds.has(id));
+          assert(missing.length === 0, `categories is missing ${missing.length} of the ${categoricalIds.size} categorical criteria: ${missing.join(', ')}`, path);
+          assert(extra.length === 0, `categories has ${extra.length} key(s) outside the categorical criterion set: ${extra.join(', ')}`, path);
+        }
+      }
+
+      if (p.compatibilityGates !== undefined) {
+        assert(Array.isArray(p.compatibilityGates), 'compatibilityGates must be an array', path);
+        for (const g of p.compatibilityGates) {
+          assert(g && typeof g.type === 'string' && typeof g.rule === 'string' && typeof g.hard === 'boolean', 'each compatibilityGate needs type, rule and hard', path);
+        }
+      }
+      if (p.materialAlternative !== undefined) {
+        const m = p.materialAlternative;
+        assert(m && typeof m.branchId === 'string', 'materialAlternative requires a branchId', path);
+        if (m.scoreOverrides) for (const v of Object.values(m.scoreOverrides)) assertCandidateValue(v, 'materialAlternative.scoreOverrides value', path);
       }
     }
     return true;

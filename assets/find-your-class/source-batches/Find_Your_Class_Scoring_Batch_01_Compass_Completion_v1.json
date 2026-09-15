@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "status": "draft-editorial-scoring",
+  "purpose": "Completes the 7 existing compass profiles from 35/56 numeric scores to 56/56 and supplies the 8 categorical criteria. This is an overlay keyed by profileId; it does not replace the existing score object.",
+  "levelBand": "5-10",
+  "numericCriterionCount": 56,
+  "categoricalCriterionCount": 8,
+  "totalCriterionCount": 64,
+  "reviewRule": "Keep as draft until each full catalogue record has ranges, evidence references and a second editorial pass.",
+  "groups": {
+    "playStyle": ["melee-ranged", "martial-magic", "specialist-versatile", "routine-tactical", "independent-teamwork", "companion-centrality", "no-heavy-preparation", "steady-burst", "safe-risky", "subtle-overt"],
+    "combatContribution": ["single-target-damage", "area-damage", "crowd-control", "soft-disruption", "ally-buffing", "healing-recovery", "damage-prevention", "protect-allies", "personal-durability", "mobility", "summoning-minions", "combat-manoeuvres", "resource-endurance"],
+    "explorationAndInteraction": ["stealth-infiltration", "traps-locks", "social-influence", "intimidation", "knowledge-investigation", "wilderness", "magical-utility"],
+    "cognitiveLoad": ["build-complexity", "turn-complexity", "resource-tracking", "rules-mastery", "extra-entity-burden", "build-fragility"],
+    "specificCapabilities": ["melee-weapon-effectiveness", "ranged-weapon-effectiveness", "offensive-spellcasting", "defensive-magic", "condition-removal", "dispelling-countermagic", "shapeshifting-transformation", "natural-weapon-combat", "mounted-combat", "skill-breadth", "first-round-impact", "armour-defence", "shield-combat"],
+    "dependenciesAndCommitment": ["equipment-independence", "enemy-type-independence", "spell-access-breadth", "ability-score-demand", "code-bound-identity", "conduct-consequence-tolerance", "institutional-duty"],
+    "categoricalIdentity": ["casting-level", "casting-method", "magic-identity", "primary-delivery", "armour-preference", "companion-type", "party-contribution", "social-style"]
+  },
+  "profileOverlays": [
+    {
+      "profileId": "fighter-archer",
+      "entityLabel": "Archer — Fighter archetype",
+      "addScores": {"routine-tactical": 5, "independent-teamwork": 3, "safe-risky": 3, "subtle-overt": 8, "soft-disruption": 4, "ally-buffing": 2, "healing-recovery": 1, "damage-prevention": 3, "social-influence": 2, "intimidation": 3, "summoning-minions": 1, "combat-manoeuvres": 6, "resource-tracking": 2, "rules-mastery": 6, "build-fragility": 6, "mounted-combat": 4, "first-round-impact": 8, "shield-combat": 1, "enemy-type-independence": 9, "conduct-consequence-tolerance": 1, "institutional-duty": 2},
+      "categories": {"casting-level": ["none"], "casting-method": ["none"], "magic-identity": ["none"], "primary-delivery": ["ranged weapon"], "armour-preference": ["light", "medium", "heavy"], "companion-type": ["none"], "party-contribution": ["damage"], "social-style": ["no preference"]},
+      "compassAnchors": ["ranged-weapon-effectiveness:10", "resource-endurance:10"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Archer"],
+      "editorialNote": "The non-magical ranged endurance anchor. Trick Shot gives it more physical disruption than a generic bow damage profile, especially from level 3 onward."
+    },
+    {
+      "profileId": "fighter-armor-master",
+      "entityLabel": "Armor Master — Fighter archetype",
+      "addScores": {"routine-tactical": 4, "independent-teamwork": 4, "safe-risky": 2, "subtle-overt": 8, "soft-disruption": 3, "ally-buffing": 2, "healing-recovery": 1, "damage-prevention": 8, "social-influence": 2, "intimidation": 4, "summoning-minions": 1, "combat-manoeuvres": 6, "resource-tracking": 2, "rules-mastery": 6, "build-fragility": 5, "mounted-combat": 3, "first-round-impact": 5, "shield-combat": 10, "enemy-type-independence": 9, "conduct-consequence-tolerance": 1, "institutional-duty": 3},
+      "categories": {"casting-level": ["none"], "casting-method": ["none"], "magic-identity": ["none"], "primary-delivery": ["weapon"], "armour-preference": ["heavy", "shield-compatible"], "companion-type": ["none"], "party-contribution": ["protection", "damage"], "social-style": ["no preference"]},
+      "compassAnchors": ["personal-durability:10", "armour-defence:10", "shield-combat:10"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Armor%20Master"],
+      "editorialNote": "The armour-and-shield survival anchor. Its chassis is exceptionally hard to hurt, but protecting allies still depends heavily on positioning, reach and build choices."
+    },
+    {
+      "profileId": "rogue-burglar",
+      "entityLabel": "Burglar — Rogue archetype",
+      "addScores": {"routine-tactical": 7, "independent-teamwork": 6, "safe-risky": 7, "subtle-overt": 1, "soft-disruption": 6, "ally-buffing": 2, "healing-recovery": 1, "damage-prevention": 4, "social-influence": 6, "intimidation": 4, "summoning-minions": 1, "combat-manoeuvres": 4, "resource-tracking": 3, "rules-mastery": 7, "build-fragility": 7, "mounted-combat": 2, "first-round-impact": 8, "shield-combat": 1, "enemy-type-independence": 6, "conduct-consequence-tolerance": 1, "institutional-duty": 1},
+      "categories": {"casting-level": ["none"], "casting-method": ["none"], "magic-identity": ["none"], "primary-delivery": ["weapon"], "armour-preference": ["light"], "companion-type": ["none"], "party-contribution": ["skills", "exploration", "damage"], "social-style": ["deception"]},
+      "compassAnchors": ["stealth-infiltration:10", "traps-locks:10", "skill-breadth:10"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Burglar"],
+      "editorialNote": "The infiltration and protected-site exploration anchor. Combat impact is conditional rather than weak: it depends on creating sneak-attack opportunities."
+    },
+    {
+      "profileId": "sorcerer-base",
+      "entityLabel": "Sorcerer — base class path",
+      "addScores": {"routine-tactical": 8, "independent-teamwork": 6, "safe-risky": 6, "subtle-overt": 8, "soft-disruption": 8, "ally-buffing": 8, "healing-recovery": 3, "damage-prevention": 8, "social-influence": 9, "intimidation": 6, "summoning-minions": 7, "combat-manoeuvres": 2, "resource-tracking": 7, "rules-mastery": 9, "build-fragility": 9, "mounted-combat": 2, "first-round-impact": 9, "shield-combat": 1, "enemy-type-independence": 7, "conduct-consequence-tolerance": 1, "institutional-duty": 2},
+      "categories": {"casting-level": ["9-level/full"], "casting-method": ["spontaneous"], "magic-identity": ["arcane"], "primary-delivery": ["spell"], "armour-preference": ["unarmoured"], "companion-type": ["none"], "party-contribution": ["damage", "control", "support"], "social-style": ["charm", "deception"]},
+      "compassAnchors": ["martial-magic:10", "offensive-spellcasting:10"],
+      "sourceRefs": ["https://www.aonprd.com/ClassDisplay.aspx?ItemName=Sorcerer"],
+      "editorialNote": "The spontaneous full-arcane anchor, assuming a non-companion bloodline. Spell selection is highly consequential, hence high build fragility despite low daily preparation."
+    },
+    {
+      "profileId": "druid-domain",
+      "entityLabel": "Druid — domain path",
+      "addScores": {"routine-tactical": 10, "independent-teamwork": 6, "safe-risky": 4, "subtle-overt": 7, "soft-disruption": 9, "ally-buffing": 8, "healing-recovery": 8, "damage-prevention": 9, "social-influence": 4, "intimidation": 3, "summoning-minions": 9, "combat-manoeuvres": 7, "resource-tracking": 9, "rules-mastery": 10, "build-fragility": 5, "mounted-combat": 5, "first-round-impact": 8, "shield-combat": 5, "enemy-type-independence": 9, "conduct-consequence-tolerance": 4, "institutional-duty": 5},
+      "categories": {"casting-level": ["9-level/full"], "casting-method": ["prepared"], "magic-identity": ["nature", "divine"], "primary-delivery": ["spell", "natural attacks"], "armour-preference": ["medium", "shield-compatible"], "companion-type": ["summoned creatures"], "party-contribution": ["control", "support", "exploration", "healing"], "social-style": ["no preference"]},
+      "compassAnchors": ["specialist-versatile:10", "no-heavy-preparation:10", "wilderness:10", "magical-utility:10", "shapeshifting-transformation:10", "spell-access-breadth:10"],
+      "sourceRefs": ["https://www.aonprd.com/ClassDisplay.aspx?ItemName=Druid"],
+      "editorialNote": "The broad prepared nature-toolbox anchor without a persistent animal companion. Summoning remains available, so extra-entity burden is low rather than absent."
+    },
+    {
+      "profileId": "druid-pack-lord",
+      "entityLabel": "Pack Lord — Druid archetype",
+      "addScores": {"routine-tactical": 10, "independent-teamwork": 9, "safe-risky": 5, "subtle-overt": 8, "soft-disruption": 8, "ally-buffing": 8, "healing-recovery": 7, "damage-prevention": 8, "social-influence": 4, "intimidation": 4, "summoning-minions": 8, "combat-manoeuvres": 8, "resource-tracking": 10, "rules-mastery": 10, "build-fragility": 9, "mounted-combat": 7, "first-round-impact": 8, "shield-combat": 4, "enemy-type-independence": 9, "conduct-consequence-tolerance": 4, "institutional-duty": 5},
+      "categories": {"casting-level": ["9-level/full"], "casting-method": ["prepared"], "magic-identity": ["nature", "divine"], "primary-delivery": ["companion", "spell", "natural attacks"], "armour-preference": ["medium", "shield-compatible"], "companion-type": ["multiple companions", "summoned creatures"], "party-contribution": ["control", "support", "damage", "exploration"], "social-style": ["no preference"]},
+      "compassAnchors": ["companion-centrality:10", "extra-entity-burden:10", "resource-tracking:10", "rules-mastery:10"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Pack%20Lord"],
+      "editorialNote": "The multiple-persistent-companion anchor. Dividing effective druid levels makes companion allocation a consequential and relatively fragile build decision."
+    },
+    {
+      "profileId": "magus-eldritch-archer",
+      "entityLabel": "Eldritch Archer — Magus archetype",
+      "addScores": {"routine-tactical": 10, "independent-teamwork": 5, "safe-risky": 7, "subtle-overt": 9, "soft-disruption": 6, "ally-buffing": 5, "healing-recovery": 2, "damage-prevention": 6, "social-influence": 3, "intimidation": 3, "summoning-minions": 3, "combat-manoeuvres": 3, "resource-tracking": 9, "rules-mastery": 10, "build-fragility": 9, "mounted-combat": 5, "first-round-impact": 9, "shield-combat": 1, "enemy-type-independence": 8, "conduct-consequence-tolerance": 1, "institutional-duty": 2},
+      "categories": {"casting-level": ["6-level"], "casting-method": ["prepared"], "magic-identity": ["arcane"], "primary-delivery": ["ranged weapon", "spell"], "armour-preference": ["light", "medium"], "companion-type": ["bonded/sentient item"], "party-contribution": ["damage", "control"], "social-style": ["no preference"]},
+      "compassAnchors": ["melee-ranged:10", "ranged-weapon-effectiveness:10", "single-target-damage:10", "turn-complexity:10", "rules-mastery:10"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Eldritch%20Archer"],
+      "editorialNote": "The ranged spell-and-weapon burst anchor. Its bonded ranged weapon is equipment dependence, not a creature companion; category wording should eventually separate bonded object from sentient item."
+    }
+  ]
+}

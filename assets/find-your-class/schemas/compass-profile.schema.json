@@ -8,8 +8,8 @@
     "schemaVersion": { "type": "integer", "minimum": 1 },
     "status": {
       "type": "string",
-      "enum": ["draft-editorial-calibration"],
-      "description": "Deliberately a single allowed value -- Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md implementation order step 6: 'Import the compass profiles as draft, never as verified catalogue records.' A compass profile is a calibration landmark, not production catalogue data; it never reaches 'verified' through this file."
+      "enum": ["draft-editorial-calibration", "draft-editorial-scoring", "needs-review"],
+      "description": "Never 'verified' -- Find_Your_Class_Criteria_Audit_and_Compass_Calibration_v1.md implementation order step 6 ('Import the compass profiles as draft, never as verified catalogue records') and the Batch 01-06 hand-off's own instruction ('Keep all profiles as draft or needs-review'). A compass profile is a calibration/scoring landmark, not production catalogue data."
     },
     "levelBand": { "type": "string" },
     "scale": {
@@ -30,10 +30,55 @@
           "classId": { "type": "string" },
           "archetypeId": { "type": ["string", "null"] },
           "branchId": { "type": "string" },
+          "name": { "type": "string" },
+          "displayLabel": { "type": "string" },
           "scores": {
             "type": "object",
             "additionalProperties": { "type": "integer", "minimum": 1, "maximum": 10 }
-          }
+          },
+          "categories": {
+            "type": "object",
+            "additionalProperties": { "type": "array", "items": { "type": "string" } }
+          },
+          "conduct": {
+            "type": "object",
+            "properties": {
+              "codePresence": { "type": "string", "enum": ["none", "optional", "expected", "mandatory"] },
+              "mechanicalLossRisk": { "type": "string", "enum": ["none", "limited", "substantial"] },
+              "alignmentRule": {
+                "type": "object",
+                "properties": {
+                  "kind": { "type": "string", "enum": ["none", "fixed", "subset", "deity-relative"] },
+                  "values": { "type": "array", "items": { "type": "string" } }
+                }
+              },
+              "deityRequired": { "type": "boolean" },
+              "deityChoiceProvenance": { "type": "string", "enum": ["free-choice-with-consequences", "restricted-choice", "fixed-source", "optional-relationship"] },
+              "institutionRequired": { "type": "boolean" }
+            }
+          },
+          "compatibilityGates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["type", "rule", "hard"],
+              "properties": { "type": { "type": "string" }, "rule": { "type": "string" }, "hard": { "type": "boolean" } }
+            }
+          },
+          "materialAlternative": {
+            "type": "object",
+            "required": ["branchId"],
+            "properties": {
+              "branchId": { "type": "string" },
+              "scoreOverrides": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 1, "maximum": 10 } },
+              "categoryOverrides": { "type": "object", "additionalProperties": { "type": "array", "items": { "type": "string" } } }
+            }
+          },
+          "compassAnchors": { "type": "array", "items": { "type": "string" } },
+          "sourceRefs": { "type": "array", "items": { "type": "string" } },
+          "playerSummary": { "type": "string" },
+          "tradeoff": { "type": "string" },
+          "editorialNote": { "type": "string" }
         },
         "allOf": [
           { "if": { "properties": { "entityType": { "const": "archetype" } } }, "then": { "required": ["archetypeId"] } }

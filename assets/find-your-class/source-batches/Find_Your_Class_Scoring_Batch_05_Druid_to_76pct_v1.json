@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "status": "draft-editorial-scoring",
+  "levelBand": "5-10",
+  "scope": "Feyspeaker and Nature Fang, bringing completed archetype coverage to 19/25 (76%).",
+  "branchPolicy": "Both archetypes retain Nature Bond. The scored baseline uses the domain branch so companion scores are not falsely assigned to every character. Companion-branch deltas are supplied separately.",
+  "profiles": [
+    {
+      "id": "druid-feyspeaker-domain", "entityType": "archetype", "classId": "druid", "archetypeId": "feyspeaker", "branchId": "nature-bond-domain", "name": "Feyspeaker", "displayLabel": "Feyspeaker — Druid archetype",
+      "scores": {
+        "melee-ranged": 8, "martial-magic": 10, "specialist-versatile": 10, "routine-tactical": 10, "independent-teamwork": 6, "companion-centrality": 1, "no-heavy-preparation": 10, "steady-burst": 6, "safe-risky": 4, "subtle-overt": 5,
+        "single-target-damage": 6, "area-damage": 7, "crowd-control": 10, "soft-disruption": 10, "ally-buffing": 9, "healing-recovery": 8, "damage-prevention": 9, "protect-allies": 7, "personal-durability": 6, "mobility": 8, "stealth-infiltration": 8, "traps-locks": 1, "social-influence": 10, "intimidation": 5, "knowledge-investigation": 8, "wilderness": 9, "magical-utility": 10, "summoning-minions": 4, "combat-manoeuvres": 3, "resource-endurance": 8,
+        "build-complexity": 10, "turn-complexity": 10, "resource-tracking": 9, "rules-mastery": 10, "extra-entity-burden": 2, "build-fragility": 7,
+        "melee-weapon-effectiveness": 3, "ranged-weapon-effectiveness": 3, "offensive-spellcasting": 8, "defensive-magic": 9, "condition-removal": 8, "dispelling-countermagic": 7, "shapeshifting-transformation": 7, "natural-weapon-combat": 4, "mounted-combat": 3, "skill-breadth": 9, "first-round-impact": 9, "armour-defence": 4, "shield-combat": 4,
+        "equipment-independence": 9, "enemy-type-independence": 8, "spell-access-breadth": 10, "ability-score-demand": 5, "code-bound-identity": 5, "conduct-consequence-tolerance": 4, "institutional-duty": 5
+      },
+      "categories": {"casting-level": ["9-level/full"], "casting-method": ["prepared"], "magic-identity": ["nature", "divine", "fey"], "primary-delivery": ["spell"], "armour-preference": ["light", "shield-compatible"], "companion-type": ["none"], "party-contribution": ["control", "support", "skills", "exploration"], "social-style": ["charm", "deception"]},
+      "conduct": {"codePresence": "expected", "mechanicalLossRisk": "limited", "alignmentRule": {"kind": "subset", "values": ["any neutral alignment"]}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+      "materialAlternative": {"branchId": "nature-bond-animal-companion", "scoreOverrides": {"companion-centrality": 9, "extra-entity-burden": 8, "resource-tracking": 10, "independent-teamwork": 8, "mounted-combat": 6}, "categoryOverrides": {"companion-type": ["animal companion"], "primary-delivery": ["spell", "companion"]}},
+      "compassAnchors": ["social-influence:10", "crowd-control:10", "soft-disruption:10", "The Charisma-based social Druid anchor"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Feyspeaker"],
+      "playerSummary": "You are a fey-touched full nature caster who can speak for the party and weave enchantment and illusion into the Druid's enormous prepared toolbox.",
+      "tradeoff": "Your combat ability becomes caster-like: weaker attack progression, no medium armour, delayed Wild Shape and no spontaneous summoning."
+    },
+    {
+      "id": "druid-nature-fang-domain", "entityType": "archetype", "classId": "druid", "archetypeId": "nature-fang", "branchId": "nature-bond-domain", "name": "Nature Fang", "displayLabel": "Nature Fang — Druid archetype",
+      "scores": {
+        "melee-ranged": 3, "martial-magic": 7, "specialist-versatile": 9, "routine-tactical": 10, "independent-teamwork": 5, "companion-centrality": 1, "no-heavy-preparation": 10, "steady-burst": 7, "safe-risky": 7, "subtle-overt": 6,
+        "single-target-damage": 9, "area-damage": 7, "crowd-control": 8, "soft-disruption": 8, "ally-buffing": 8, "healing-recovery": 8, "damage-prevention": 8, "protect-allies": 6, "personal-durability": 7, "mobility": 7, "stealth-infiltration": 8, "traps-locks": 2, "social-influence": 4, "intimidation": 6, "knowledge-investigation": 7, "wilderness": 9, "magical-utility": 9, "summoning-minions": 8, "combat-manoeuvres": 7, "resource-endurance": 8,
+        "build-complexity": 10, "turn-complexity": 10, "resource-tracking": 9, "rules-mastery": 10, "extra-entity-burden": 2, "build-fragility": 8,
+        "melee-weapon-effectiveness": 8, "ranged-weapon-effectiveness": 6, "offensive-spellcasting": 8, "defensive-magic": 8, "condition-removal": 8, "dispelling-countermagic": 7, "shapeshifting-transformation": 1, "natural-weapon-combat": 2, "mounted-combat": 3, "skill-breadth": 7, "first-round-impact": 9, "armour-defence": 7, "shield-combat": 5,
+        "equipment-independence": 5, "enemy-type-independence": 8, "spell-access-breadth": 10, "ability-score-demand": 9, "code-bound-identity": 6, "conduct-consequence-tolerance": 4, "institutional-duty": 6
+      },
+      "categories": {"casting-level": ["9-level/full"], "casting-method": ["prepared"], "magic-identity": ["nature", "divine"], "primary-delivery": ["weapon", "spell"], "armour-preference": ["medium", "shield-compatible"], "companion-type": ["none"], "party-contribution": ["damage", "control", "support", "exploration"], "social-style": ["intimidation", "no preference"]},
+      "conduct": {"codePresence": "expected", "mechanicalLossRisk": "limited", "alignmentRule": {"kind": "subset", "values": ["any neutral alignment"]}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+      "materialAlternative": {"branchId": "nature-bond-animal-companion", "scoreOverrides": {"companion-centrality": 8, "extra-entity-burden": 8, "resource-tracking": 10, "independent-teamwork": 7, "mounted-combat": 6}, "categoryOverrides": {"companion-type": ["animal companion"], "primary-delivery": ["weapon", "spell", "companion"]}},
+      "compassAnchors": ["shapeshifting-transformation:1", "The full-caster studied-target weapon hunter anchor"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Nature%20Fang"],
+      "playerSummary": "You keep the Druid's full prepared magic but hunt despoilers of nature with Studied Target, Sneak Attack and a growing selection of Slayer talents.",
+      "tradeoff": "You give up Wild Shape completely. Fighting well with weapons also pulls your ability scores and build choices in more directions than a caster-first Druid."
+    }
+  ]
+}

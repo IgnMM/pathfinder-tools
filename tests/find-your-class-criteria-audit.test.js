@@ -87,16 +87,15 @@ test('compass-profiles.json validates as draft-only calibration data, never veri
   const criteria = FYC.indexCriteria(readJson('criteria.json'));
   const doc = readJson('compass-profiles.json');
   assert.doesNotThrow(() => FYC.validateCompassProfiles(doc, criteria));
-  assert.equal(doc.status, 'draft-editorial-calibration');
-  assert.equal(doc.profiles.length, 7, 'audit doc section 9: seven compass profiles in this first hand-off');
-  const ids = doc.profiles.map(p => p.id).sort();
-  assert.deepEqual(ids, [
-    'druid-domain', 'druid-pack-lord', 'fighter-archer', 'fighter-armor-master',
-    'magus-eldritch-archer', 'rogue-burglar', 'sorcerer-base',
-  ]);
+  assert.notEqual(doc.status, 'verified');
+  assert.ok(doc.profiles.length >= 7, 'at least the original seven compass profiles must still be present');
+  const ids = new Set(doc.profiles.map(p => p.id));
+  for (const id of ['druid-domain', 'druid-pack-lord', 'fighter-archer', 'fighter-armor-master', 'magus-eldritch-archer', 'rogue-burglar', 'sorcerer-base']) {
+    assert.ok(ids.has(id), `original compass profile "${id}" missing after later batches were integrated`);
+  }
 });
 
-test('validateCompassProfiles rejects a profile scoring an unknown criterion, and rejects any status other than draft-editorial-calibration', () => {
+test('validateCompassProfiles rejects a profile scoring an unknown criterion, and rejects any status other than the allowed draft/needs-review set', () => {
   const criteria = FYC.indexCriteria(readJson('criteria.json'));
   const bad = { status: 'draft-editorial-calibration', scale: { min: 1, max: 10 }, profiles: [
     { id: 'fake', entityType: 'archetype', classId: 'fighter', archetypeId: 'fake', scores: { 'not-a-real-criterion': 5 } },
@@ -107,7 +106,7 @@ test('validateCompassProfiles rejects a profile scoring an unknown criterion, an
   assert.throws(() => FYC.validateCompassProfiles(verifiedClaim, criteria), FYC.ValidationError, 'compass profiles must never claim "verified" status');
 });
 
-test('every criterionId scored across all 7 compass profiles resolves in criteria.json (including via alias)', () => {
+test('every criterionId scored across all compass profiles resolves in criteria.json (including via alias)', () => {
   const criteria = FYC.indexCriteria(readJson('criteria.json'));
   const doc = readJson('compass-profiles.json');
   const unresolved = new Set();

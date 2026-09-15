@@ -918,13 +918,19 @@
       "kind": "categorical",
       "playerLabel": "Casting level",
       "shortLabel": "Casting level",
-      "values": [],
+      "values": [
+        "none",
+        "minor",
+        "4-level",
+        "6-level",
+        "9-level/full"
+      ],
       "allowNotRelevant": true,
       "allowHardConstraint": true,
-      "status": "needs-values",
+      "status": "needs-review",
       "schemaVersion": 1,
       "notes": [
-        "Values per blueprint 5.4: none, minor, 4-level, 6-level, 9-level/full."
+        "Base list per blueprint 5.4."
       ]
     },
     {
@@ -933,13 +939,21 @@
       "kind": "categorical",
       "playerLabel": "Casting method",
       "shortLabel": "Casting method",
-      "values": [],
+      "values": [
+        "none",
+        "prepared",
+        "spontaneous",
+        "flexible/hybrid",
+        "item-mediated",
+        "spontaneous-domain",
+        "reusable-hexes"
+      ],
       "allowNotRelevant": true,
       "allowHardConstraint": true,
-      "status": "needs-values",
+      "status": "needs-review",
       "schemaVersion": 1,
       "notes": [
-        "Values per blueprint 5.4: none, prepared, spontaneous, flexible/hybrid."
+        "Base list per blueprint 5.4 (none, prepared, spontaneous, flexible/hybrid), extended with item-mediated/spontaneous-domain/reusable-hexes -- values the Batch 01-06 scoring actually used (Bladebound, Feyspeaker/Nature Fang domain branch, Hexcrafter) that the original four-value list did not anticipate."
       ]
     },
     {
@@ -948,13 +962,27 @@
       "kind": "categorical",
       "playerLabel": "Magic identity",
       "shortLabel": "Magic identity",
-      "values": [],
+      "values": [
+        "none",
+        "arcane",
+        "divine",
+        "nature",
+        "psychic/occult",
+        "alchemical",
+        "supernatural/non-spell",
+        "fey",
+        "elemental",
+        "bloodline",
+        "curse",
+        "divine-imitation",
+        "reincarnation"
+      ],
       "allowNotRelevant": true,
       "allowHardConstraint": true,
-      "status": "needs-values",
+      "status": "needs-review",
       "schemaVersion": 1,
       "notes": [
-        "Values per blueprint 5.4: arcane, divine, nature, psychic/occult, alchemical, supernatural/non-spell."
+        "Base list per blueprint 5.4, extended with fey/elemental/bloodline/curse/divine-imitation/reincarnation -- values the Batch 01-06 scoring actually used (Feyspeaker, Storm Druid, Crossblooded/Eldritch Scion/Tattooed Sorcerer, Hexcrafter, Razmiran Priest, Reincarnated Druid)."
       ]
     },
     {
@@ -963,13 +991,22 @@
       "kind": "categorical",
       "playerLabel": "Primary delivery",
       "shortLabel": "Primary delivery",
-      "values": [],
+      "values": [
+        "weapon",
+        "natural attacks",
+        "ranged weapon",
+        "spell",
+        "bomb",
+        "companion",
+        "manoeuvre",
+        "hex"
+      ],
       "allowNotRelevant": true,
       "allowHardConstraint": true,
-      "status": "needs-values",
+      "status": "needs-review",
       "schemaVersion": 1,
       "notes": [
-        "Values per blueprint 5.4: weapon, natural attacks, ranged weapon, spell, bomb, companion, manoeuvre."
+        "Base list per blueprint 5.4, extended with hex (Hexcrafter)."
       ]
     },
     {
@@ -978,13 +1015,19 @@
       "kind": "categorical",
       "playerLabel": "Armour preference",
       "shortLabel": "Armour preference",
-      "values": [],
+      "values": [
+        "unarmoured",
+        "light",
+        "medium",
+        "heavy",
+        "shield-compatible"
+      ],
       "allowNotRelevant": true,
       "allowHardConstraint": true,
-      "status": "needs-values",
+      "status": "needs-review",
       "schemaVersion": 1,
       "notes": [
-        "Values per blueprint 5.4: unarmoured, light, medium, heavy, shield-compatible."
+        "Values per blueprint 5.4; every value seen in Batch 01-06 scoring already fits this list."
       ]
     },
     {
@@ -993,13 +1036,21 @@
       "kind": "categorical",
       "playerLabel": "Companion type",
       "shortLabel": "Companion type",
-      "values": [],
+      "values": [
+        "none",
+        "familiar",
+        "animal companion",
+        "multiple companions",
+        "summoned creatures",
+        "bonded/sentient item",
+        "sentient item"
+      ],
       "allowNotRelevant": true,
       "allowHardConstraint": true,
-      "status": "needs-values",
+      "status": "needs-review",
       "schemaVersion": 1,
       "notes": [
-        "Values per blueprint 5.4: none, familiar, animal companion, multiple companions, summoned creatures, bonded/sentient item."
+        "Base list per blueprint 5.4, extended with sentient item -- Batch 06 (Bladebound) used this shorter form rather than the base list's \"bonded/sentient item\"; kept as a distinct value rather than silently rewritten, per \"convert...without changing editorial values.\" Worth reconciling with Codex whether these should merge into one value."
       ]
     },
     {
@@ -1008,13 +1059,22 @@
       "kind": "categorical",
       "playerLabel": "Main party contribution",
       "shortLabel": "Main party contribution",
-      "values": [],
+      "values": [
+        "damage",
+        "control",
+        "protection",
+        "support",
+        "healing",
+        "skills",
+        "information",
+        "exploration"
+      ],
       "allowNotRelevant": true,
       "allowHardConstraint": true,
-      "status": "needs-values",
+      "status": "needs-review",
       "schemaVersion": 1,
       "notes": [
-        "Values per blueprint 5.4: damage, control, protection, support, healing, skills, information, exploration."
+        "Values per blueprint 5.4; every value seen in Batch 01-06 scoring already fits this list."
       ]
     },
     {
@@ -1023,13 +1083,20 @@
       "kind": "categorical",
       "playerLabel": "Social style",
       "shortLabel": "Social style",
-      "values": [],
+      "values": [
+        "honest leadership",
+        "charm",
+        "deception",
+        "intimidation",
+        "performance",
+        "no preference"
+      ],
       "allowNotRelevant": true,
       "allowHardConstraint": true,
-      "status": "needs-values",
+      "status": "needs-review",
       "schemaVersion": 1,
       "notes": [
-        "Values per blueprint 5.4: honest leadership, charm, deception, intimidation, performance, no preference."
+        "Values per blueprint 5.4; every value seen in Batch 01-06 scoring already fits this list."
       ]
     },
     {

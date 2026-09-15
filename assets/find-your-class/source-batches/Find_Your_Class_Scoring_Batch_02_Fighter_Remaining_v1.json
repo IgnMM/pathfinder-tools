@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "status": "draft-editorial-scoring",
+  "levelBand": "5-10",
+  "scope": "Completes the three Fighter pilot archetypes not already covered by Batch 01.",
+  "method": "Absolute 1-10 ratings calibrated against Fighter Archer, Fighter Armor Master and the cross-class compass profiles. Categories are descriptive, not numeric.",
+  "profiles": [
+    {
+      "id": "fighter-eldritch-guardian",
+      "entityType": "archetype",
+      "classId": "fighter",
+      "archetypeId": "eldritch-guardian",
+      "name": "Eldritch Guardian",
+      "displayLabel": "Eldritch Guardian — Fighter archetype",
+      "scores": {
+        "melee-ranged": 4, "martial-magic": 2, "specialist-versatile": 7, "routine-tactical": 7, "independent-teamwork": 7, "companion-centrality": 7, "no-heavy-preparation": 3, "steady-burst": 3, "safe-risky": 4, "subtle-overt": 7,
+        "single-target-damage": 8, "area-damage": 1, "crowd-control": 5, "soft-disruption": 5, "ally-buffing": 4, "healing-recovery": 1, "damage-prevention": 6, "protect-allies": 7, "personal-durability": 8, "mobility": 5, "stealth-infiltration": 5, "traps-locks": 2, "social-influence": 3, "intimidation": 4, "knowledge-investigation": 6, "wilderness": 3, "magical-utility": 5, "summoning-minions": 1, "combat-manoeuvres": 7, "resource-endurance": 9,
+        "build-complexity": 9, "turn-complexity": 8, "resource-tracking": 6, "rules-mastery": 9, "extra-entity-burden": 7, "build-fragility": 8,
+        "melee-weapon-effectiveness": 8, "ranged-weapon-effectiveness": 7, "offensive-spellcasting": 1, "defensive-magic": 2, "condition-removal": 1, "dispelling-countermagic": 2, "shapeshifting-transformation": 2, "natural-weapon-combat": 5, "mounted-combat": 4, "skill-breadth": 5, "first-round-impact": 7, "armour-defence": 8, "shield-combat": 7,
+        "equipment-independence": 3, "enemy-type-independence": 9, "spell-access-breadth": 1, "ability-score-demand": 7, "code-bound-identity": 4, "conduct-consequence-tolerance": 1, "institutional-duty": 5
+      },
+      "categories": {"casting-level": ["none"], "casting-method": ["none"], "magic-identity": ["supernatural/non-spell"], "primary-delivery": ["weapon", "companion"], "armour-preference": ["heavy", "shield-compatible"], "companion-type": ["familiar"], "party-contribution": ["damage", "protection"], "social-style": ["no preference"]},
+      "conduct": {"codePresence": "none", "mechanicalLossRisk": "none", "alignmentRule": {"kind": "none", "values": []}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+      "compassAnchors": ["The highest companion centrality among the Fighter pilot paths", "A martial familiar-sharing anchor rather than a spellcaster"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Eldritch%20Guardian"],
+      "playerSummary": "You remain a full martial combatant, but your familiar becomes a trained partner that can share your combat feats. It adds scouting, utility and a second body to manage without turning you into a spellcaster.",
+      "tradeoff": "The familiar opens clever combinations, but costs early bonus feats and makes both building and running the character more demanding."
+    },
+    {
+      "id": "fighter-lore-warden",
+      "entityType": "archetype",
+      "classId": "fighter",
+      "archetypeId": "lore-warden",
+      "name": "Lore Warden",
+      "displayLabel": "Lore Warden — Fighter archetype",
+      "scores": {
+        "melee-ranged": 3, "martial-magic": 1, "specialist-versatile": 8, "routine-tactical": 9, "independent-teamwork": 5, "companion-centrality": 1, "no-heavy-preparation": 5, "steady-burst": 4, "safe-risky": 6, "subtle-overt": 6,
+        "single-target-damage": 8, "area-damage": 1, "crowd-control": 8, "soft-disruption": 7, "ally-buffing": 4, "healing-recovery": 1, "damage-prevention": 5, "protect-allies": 6, "personal-durability": 6, "mobility": 6, "stealth-infiltration": 4, "traps-locks": 2, "social-influence": 4, "intimidation": 4, "knowledge-investigation": 9, "wilderness": 5, "magical-utility": 1, "summoning-minions": 1, "combat-manoeuvres": 10, "resource-endurance": 9,
+        "build-complexity": 10, "turn-complexity": 9, "resource-tracking": 3, "rules-mastery": 10, "extra-entity-burden": 1, "build-fragility": 8,
+        "melee-weapon-effectiveness": 9, "ranged-weapon-effectiveness": 5, "offensive-spellcasting": 1, "defensive-magic": 1, "condition-removal": 1, "dispelling-countermagic": 1, "shapeshifting-transformation": 1, "natural-weapon-combat": 2, "mounted-combat": 3, "skill-breadth": 7, "first-round-impact": 7, "armour-defence": 4, "shield-combat": 1,
+        "equipment-independence": 3, "enemy-type-independence": 8, "spell-access-breadth": 1, "ability-score-demand": 8, "code-bound-identity": 3, "conduct-consequence-tolerance": 1, "institutional-duty": 5
+      },
+      "categories": {"casting-level": ["none"], "casting-method": ["none"], "magic-identity": ["none"], "primary-delivery": ["weapon", "manoeuvre"], "armour-preference": ["light"], "companion-type": ["none"], "party-contribution": ["control", "damage", "information"], "social-style": ["no preference"]},
+      "conduct": {"codePresence": "none", "mechanicalLossRisk": "none", "alignmentRule": {"kind": "none", "values": []}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+      "compassAnchors": ["combat-manoeuvres:10", "rules-mastery:10", "The martial scholar anchor"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Lore%20Warden"],
+      "sourceEditionNote": "Scored against the Adventurer's Guide version currently shown by Archives of Nethys. Do not mix it with older Lore Warden text.",
+      "playerSummary": "You fight by understanding the enemy: knowledge, Combat Expertise and a deep manoeuvre toolkit turn the Fighter into a learned battlefield technician.",
+      "tradeoff": "You give up medium armour, heavy armour and shields, and the path rewards a player comfortable with manoeuvre rules and carefully connected feat choices."
+    },
+    {
+      "id": "fighter-mutation-warrior",
+      "entityType": "archetype",
+      "classId": "fighter",
+      "archetypeId": "mutation-warrior",
+      "name": "Mutation Warrior",
+      "displayLabel": "Mutation Warrior — Fighter archetype",
+      "scores": {
+        "melee-ranged": 2, "martial-magic": 2, "specialist-versatile": 6, "routine-tactical": 6, "independent-teamwork": 2, "companion-centrality": 1, "no-heavy-preparation": 5, "steady-burst": 8, "safe-risky": 7, "subtle-overt": 9,
+        "single-target-damage": 10, "area-damage": 1, "crowd-control": 6, "soft-disruption": 4, "ally-buffing": 1, "healing-recovery": 3, "damage-prevention": 5, "protect-allies": 4, "personal-durability": 9, "mobility": 7, "stealth-infiltration": 2, "traps-locks": 1, "social-influence": 2, "intimidation": 7, "knowledge-investigation": 3, "wilderness": 4, "magical-utility": 2, "summoning-minions": 1, "combat-manoeuvres": 7, "resource-endurance": 7,
+        "build-complexity": 8, "turn-complexity": 6, "resource-tracking": 6, "rules-mastery": 8, "extra-entity-burden": 1, "build-fragility": 7,
+        "melee-weapon-effectiveness": 10, "ranged-weapon-effectiveness": 5, "offensive-spellcasting": 1, "defensive-magic": 2, "condition-removal": 2, "dispelling-countermagic": 1, "shapeshifting-transformation": 8, "natural-weapon-combat": 8, "mounted-combat": 3, "skill-breadth": 3, "first-round-impact": 8, "armour-defence": 7, "shield-combat": 5,
+        "equipment-independence": 6, "enemy-type-independence": 9, "spell-access-breadth": 1, "ability-score-demand": 5, "code-bound-identity": 1, "conduct-consequence-tolerance": 1, "institutional-duty": 1
+      },
+      "categories": {"casting-level": ["none"], "casting-method": ["none"], "magic-identity": ["alchemical", "supernatural/non-spell"], "primary-delivery": ["weapon", "natural attacks"], "armour-preference": ["light", "medium", "heavy"], "companion-type": ["none"], "party-contribution": ["damage"], "social-style": ["intimidation"]},
+      "conduct": {"codePresence": "none", "mechanicalLossRisk": "none", "alignmentRule": {"kind": "none", "values": []}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+      "compassAnchors": ["single-target-damage:10", "melee-weapon-effectiveness:10", "The non-spell self-transformation Fighter anchor"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Mutation%20Warrior"],
+      "playerSummary": "You are still unmistakably a Fighter, but a mutagen lets you become stronger, tougher or more bestial when the important battle arrives.",
+      "tradeoff": "Its strongest form is limited by mutagen use and discovery choices, and the physical boost comes with a mental-ability penalty while active."
+    }
+  ]
+}

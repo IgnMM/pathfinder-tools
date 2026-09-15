@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "status": "draft-editorial-scoring",
+  "levelBand": "5-10",
+  "scope": "Final six pilot archetypes. Completes 25/25 archetypes.",
+  "profiles": [
+    {
+      "id": "druid-reincarnated-druid-domain", "entityType": "archetype", "classId": "druid", "archetypeId": "reincarnated-druid", "branchId": "nature-bond-domain", "name": "Reincarnated Druid", "displayLabel": "Reincarnated Druid — Druid archetype",
+      "scores": {
+        "melee-ranged": 6, "martial-magic": 9, "specialist-versatile": 10, "routine-tactical": 10, "independent-teamwork": 5, "companion-centrality": 1, "no-heavy-preparation": 10, "steady-burst": 6, "safe-risky": 2, "subtle-overt": 6,
+        "single-target-damage": 7, "area-damage": 7, "crowd-control": 9, "soft-disruption": 9, "ally-buffing": 8, "healing-recovery": 8, "damage-prevention": 9, "protect-allies": 7, "personal-durability": 10, "mobility": 8, "stealth-infiltration": 6, "traps-locks": 1, "social-influence": 4, "intimidation": 3, "knowledge-investigation": 8, "wilderness": 10, "magical-utility": 10, "summoning-minions": 9, "combat-manoeuvres": 6, "resource-endurance": 9,
+        "build-complexity": 9, "turn-complexity": 9, "resource-tracking": 9, "rules-mastery": 10, "extra-entity-burden": 2, "build-fragility": 5,
+        "melee-weapon-effectiveness": 6, "ranged-weapon-effectiveness": 5, "offensive-spellcasting": 8, "defensive-magic": 9, "condition-removal": 8, "dispelling-countermagic": 7, "shapeshifting-transformation": 8, "natural-weapon-combat": 7, "mounted-combat": 4, "skill-breadth": 6, "first-round-impact": 8, "armour-defence": 7, "shield-combat": 5,
+        "equipment-independence": 10, "enemy-type-independence": 9, "spell-access-breadth": 10, "ability-score-demand": 8, "code-bound-identity": 6, "conduct-consequence-tolerance": 5, "institutional-duty": 3
+      },
+      "categories": {"casting-level": ["9-level/full"], "casting-method": ["prepared"], "magic-identity": ["nature", "divine", "reincarnation"], "primary-delivery": ["spell", "natural attacks"], "armour-preference": ["medium", "shield-compatible"], "companion-type": ["none"], "party-contribution": ["control", "support", "exploration", "healing"], "social-style": ["no preference"]},
+      "conduct": {"codePresence": "expected", "mechanicalLossRisk": "limited", "alignmentRule": {"kind": "subset", "values": ["any neutral alignment"]}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+      "materialAlternative": {"branchId": "nature-bond-animal-companion", "scoreOverrides": {"companion-centrality": 8, "extra-entity-burden": 8, "resource-tracking": 10, "independent-teamwork": 7, "mounted-combat": 6}, "categoryOverrides": {"companion-type": ["animal companion"], "primary-delivery": ["spell", "natural attacks", "companion"]}},
+      "compassAnchors": ["personal-durability:10", "The return-from-death character-identity anchor"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Reincarnated%20Druid"],
+      "playerSummary": "From 5th level onward, death usually changes your face rather than ending your story. You retain the Druid's huge magical toolbox while embodying nature's cycle of renewal.",
+      "tradeoff": "Many Lives waits a full day, fails against death effects and cannot trigger again for seven days. Wild Shape also arrives late and functions two levels behind."
+    },
+    {
+      "id": "druid-storm-druid", "entityType": "archetype", "classId": "druid", "archetypeId": "storm-druid", "name": "Storm Druid", "displayLabel": "Storm Druid — Druid archetype",
+      "scores": {
+        "melee-ranged": 8, "martial-magic": 10, "specialist-versatile": 7, "routine-tactical": 9, "independent-teamwork": 5, "companion-centrality": 1, "no-heavy-preparation": 9, "steady-burst": 8, "safe-risky": 5, "subtle-overt": 10,
+        "single-target-damage": 8, "area-damage": 10, "crowd-control": 10, "soft-disruption": 8, "ally-buffing": 7, "healing-recovery": 7, "damage-prevention": 8, "protect-allies": 6, "personal-durability": 7, "mobility": 8, "stealth-infiltration": 3, "traps-locks": 1, "social-influence": 4, "intimidation": 6, "knowledge-investigation": 7, "wilderness": 9, "magical-utility": 9, "summoning-minions": 4, "combat-manoeuvres": 4, "resource-endurance": 8,
+        "build-complexity": 9, "turn-complexity": 9, "resource-tracking": 8, "rules-mastery": 9, "extra-entity-burden": 1, "build-fragility": 5,
+        "melee-weapon-effectiveness": 5, "ranged-weapon-effectiveness": 4, "offensive-spellcasting": 10, "defensive-magic": 8, "condition-removal": 7, "dispelling-countermagic": 7, "shapeshifting-transformation": 9, "natural-weapon-combat": 7, "mounted-combat": 3, "skill-breadth": 6, "first-round-impact": 10, "armour-defence": 7, "shield-combat": 5,
+        "equipment-independence": 10, "enemy-type-independence": 7, "spell-access-breadth": 9, "ability-score-demand": 7, "code-bound-identity": 5, "conduct-consequence-tolerance": 4, "institutional-duty": 4
+      },
+      "categories": {"casting-level": ["9-level/full"], "casting-method": ["prepared", "spontaneous-domain"], "magic-identity": ["nature", "divine", "elemental"], "primary-delivery": ["spell"], "armour-preference": ["medium", "shield-compatible"], "companion-type": ["none"], "party-contribution": ["damage", "control", "support"], "social-style": ["no preference"]},
+      "conduct": {"codePresence": "expected", "mechanicalLossRisk": "limited", "alignmentRule": {"kind": "subset", "values": ["any neutral alignment"]}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+      "compatibilityGates": [{"type": "class-prerequisite", "rule": "Must choose Air or Weather domain, or Cloud, Storm or Wind subdomain; cannot choose an animal companion.", "hard": true}],
+      "compassAnchors": ["area-damage:10", "crowd-control:10", "subtle-overt:10", "offensive-spellcasting:10", "first-round-impact:10", "The weather-and-battlefield-area Druid anchor"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Storm%20Druid"],
+      "playerSummary": "You look upward rather than into the forest, turning wind, cloud and violent weather into immediate battlefield presence while converting prepared spells into domain magic on demand.",
+      "tradeoff": "Your domain is tightly restricted, you can never choose an animal companion, and giving up spontaneous summoning narrows one of the base Druid's most flexible tools."
+    },
+    {
+      "id": "magus-armored-battlemage", "entityType": "archetype", "classId": "magus", "archetypeId": "armored-battlemage", "name": "Armored Battlemage", "displayLabel": "Armored Battlemage — Magus archetype",
+      "scores": {
+        "melee-ranged": 2, "martial-magic": 5, "specialist-versatile": 4, "routine-tactical": 7, "independent-teamwork": 4, "companion-centrality": 1, "no-heavy-preparation": 8, "steady-burst": 6, "safe-risky": 3, "subtle-overt": 9,
+        "single-target-damage": 8, "area-damage": 5, "crowd-control": 6, "soft-disruption": 5, "ally-buffing": 5, "healing-recovery": 2, "damage-prevention": 9, "protect-allies": 5, "personal-durability": 10, "mobility": 4, "stealth-infiltration": 2, "traps-locks": 1, "social-influence": 3, "intimidation": 6, "knowledge-investigation": 7, "wilderness": 2, "magical-utility": 7, "summoning-minions": 3, "combat-manoeuvres": 6, "resource-endurance": 6,
+        "build-complexity": 9, "turn-complexity": 8, "resource-tracking": 9, "rules-mastery": 9, "extra-entity-burden": 1, "build-fragility": 8,
+        "melee-weapon-effectiveness": 8, "ranged-weapon-effectiveness": 3, "offensive-spellcasting": 6, "defensive-magic": 9, "condition-removal": 3, "dispelling-countermagic": 6, "shapeshifting-transformation": 4, "natural-weapon-combat": 2, "mounted-combat": 3, "skill-breadth": 5, "first-round-impact": 7, "armour-defence": 10, "shield-combat": 1,
+        "equipment-independence": 1, "enemy-type-independence": 8, "spell-access-breadth": 7, "ability-score-demand": 8, "code-bound-identity": 3, "conduct-consequence-tolerance": 1, "institutional-duty": 6
+      },
+      "categories": {"casting-level": ["6-level"], "casting-method": ["prepared"], "magic-identity": ["arcane"], "primary-delivery": ["weapon", "spell"], "armour-preference": ["medium", "heavy"], "companion-type": ["none"], "party-contribution": ["damage", "protection"], "social-style": ["no preference"]},
+      "conduct": {"codePresence": "none", "mechanicalLossRisk": "none", "alignmentRule": {"kind": "none", "values": []}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+      "compassAnchors": ["armour-defence:10", "personal-durability:10", "The Magus-without-Spell-Combat anchor"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Armored%20Battlemage"],
+      "playerSummary": "You turn the Magus into an arcane heavy infantryman, enhancing armour instead of a weapon and casting confidently inside steel.",
+      "tradeoff": "You lose Spell Combat—the defining attack-and-cast rhythm of the normal Magus—along with several arcana and later improvements."
+    },
+    {
+      "id": "magus-bladebound", "entityType": "archetype", "classId": "magus", "archetypeId": "bladebound", "name": "Bladebound", "displayLabel": "Bladebound — Magus archetype",
+      "scores": {
+        "melee-ranged": 1, "martial-magic": 5, "specialist-versatile": 3, "routine-tactical": 10, "independent-teamwork": 5, "companion-centrality": 7, "no-heavy-preparation": 8, "steady-burst": 9, "safe-risky": 8, "subtle-overt": 9,
+        "single-target-damage": 10, "area-damage": 5, "crowd-control": 6, "soft-disruption": 6, "ally-buffing": 5, "healing-recovery": 2, "damage-prevention": 7, "protect-allies": 4, "personal-durability": 7, "mobility": 8, "stealth-infiltration": 4, "traps-locks": 1, "social-influence": 4, "intimidation": 7, "knowledge-investigation": 8, "wilderness": 2, "magical-utility": 7, "summoning-minions": 3, "combat-manoeuvres": 6, "resource-endurance": 6,
+        "build-complexity": 10, "turn-complexity": 10, "resource-tracking": 10, "rules-mastery": 10, "extra-entity-burden": 4, "build-fragility": 8,
+        "melee-weapon-effectiveness": 10, "ranged-weapon-effectiveness": 1, "offensive-spellcasting": 8, "defensive-magic": 7, "condition-removal": 3, "dispelling-countermagic": 7, "shapeshifting-transformation": 4, "natural-weapon-combat": 1, "mounted-combat": 2, "skill-breadth": 5, "first-round-impact": 9, "armour-defence": 6, "shield-combat": 1,
+        "equipment-independence": 1, "enemy-type-independence": 8, "spell-access-breadth": 7, "ability-score-demand": 8, "code-bound-identity": 5, "conduct-consequence-tolerance": 7, "institutional-duty": 5
+      },
+      "categories": {"casting-level": ["6-level"], "casting-method": ["prepared"], "magic-identity": ["arcane", "supernatural/non-spell"], "primary-delivery": ["weapon", "spell"], "armour-preference": ["light", "medium"], "companion-type": ["sentient item"], "party-contribution": ["damage", "control"], "social-style": ["no preference"]},
+      "conduct": {"codePresence": "expected", "mechanicalLossRisk": "limited", "alignmentRule": {"kind": "none", "values": []}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false, "changeOrAtonementNotes": ["The blade shares the wielder's alignment but has its own mission and Ego; disagreement can produce intelligent-item dominance conflicts rather than class-feature loss."]},
+      "compatibilityGates": [{"type": "class-prerequisite", "rule": "The black blade must be a one-handed slashing weapon, rapier or sword cane; weapon type cannot later be changed.", "hard": true}],
+      "compassAnchors": ["equipment-independence:1", "melee-ranged:1", "melee-weapon-effectiveness:10", "single-target-damage:10", "The sentient-item relationship anchor"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Bladebound"],
+      "playerSummary": "Your signature weapon is a conscious partner with its own voice, powers and hidden purpose. The relationship is as central to the story as Spellstrike is to the fighting style.",
+      "tradeoff": "Your weapon choice is permanent, your normal arcane pool is smaller, and the blade's growing Ego can turn disagreement into a real contest of wills."
+    },
+    {
+      "id": "magus-eldritch-scion", "entityType": "archetype", "classId": "magus", "archetypeId": "eldritch-scion", "name": "Eldritch Scion", "displayLabel": "Eldritch Scion — Magus archetype",
+      "scores": {
+        "melee-ranged": 2, "martial-magic": 5, "specialist-versatile": 4, "routine-tactical": 9, "independent-teamwork": 4, "companion-centrality": 1, "no-heavy-preparation": 2, "steady-burst": 9, "safe-risky": 9, "subtle-overt": 9,
+        "single-target-damage": 10, "area-damage": 5, "crowd-control": 6, "soft-disruption": 6, "ally-buffing": 5, "healing-recovery": 2, "damage-prevention": 7, "protect-allies": 4, "personal-durability": 7, "mobility": 8, "stealth-infiltration": 4, "traps-locks": 1, "social-influence": 8, "intimidation": 7, "knowledge-investigation": 5, "wilderness": 2, "magical-utility": 6, "summoning-minions": 3, "combat-manoeuvres": 6, "resource-endurance": 5,
+        "build-complexity": 10, "turn-complexity": 10, "resource-tracking": 10, "rules-mastery": 10, "extra-entity-burden": 1, "build-fragility": 10,
+        "melee-weapon-effectiveness": 9, "ranged-weapon-effectiveness": 3, "offensive-spellcasting": 8, "defensive-magic": 7, "condition-removal": 3, "dispelling-countermagic": 6, "shapeshifting-transformation": 6, "natural-weapon-combat": 5, "mounted-combat": 2, "skill-breadth": 4, "first-round-impact": 9, "armour-defence": 6, "shield-combat": 1,
+        "equipment-independence": 4, "enemy-type-independence": 8, "spell-access-breadth": 3, "ability-score-demand": 7, "code-bound-identity": 3, "conduct-consequence-tolerance": 1, "institutional-duty": 2
+      },
+      "categories": {"casting-level": ["6-level"], "casting-method": ["spontaneous"], "magic-identity": ["arcane", "bloodline"], "primary-delivery": ["weapon", "spell"], "armour-preference": ["light", "medium"], "companion-type": ["none"], "party-contribution": ["damage", "control"], "social-style": ["charm", "intimidation"]},
+      "conduct": {"codePresence": "none", "mechanicalLossRisk": "none", "alignmentRule": {"kind": "none", "values": []}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+      "compassAnchors": ["build-fragility:10", "The spontaneous Charisma Magus anchor", "The resource-gated early Spell Combat anchor"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Eldritch%20Scion"],
+      "playerSummary": "Your weapon magic comes from instinct and bloodline rather than study: you cast spontaneously and power bloodline abilities through a personal eldritch pool.",
+      "tradeoff": "Your spells known are narrow, your bloodline is permanent, and before 8th level Spell Combat consumes mystical focus, making action and resource management particularly demanding."
+    },
+    {
+      "id": "magus-hexcrafter", "entityType": "archetype", "classId": "magus", "archetypeId": "hexcrafter", "name": "Hexcrafter", "displayLabel": "Hexcrafter — Magus archetype",
+      "scores": {
+        "melee-ranged": 2, "martial-magic": 6, "specialist-versatile": 8, "routine-tactical": 10, "independent-teamwork": 5, "companion-centrality": 1, "no-heavy-preparation": 8, "steady-burst": 7, "safe-risky": 8, "subtle-overt": 7,
+        "single-target-damage": 9, "area-damage": 5, "crowd-control": 10, "soft-disruption": 10, "ally-buffing": 7, "healing-recovery": 3, "damage-prevention": 8, "protect-allies": 5, "personal-durability": 7, "mobility": 8, "stealth-infiltration": 5, "traps-locks": 1, "social-influence": 5, "intimidation": 8, "knowledge-investigation": 8, "wilderness": 2, "magical-utility": 8, "summoning-minions": 3, "combat-manoeuvres": 6, "resource-endurance": 8,
+        "build-complexity": 10, "turn-complexity": 10, "resource-tracking": 9, "rules-mastery": 10, "extra-entity-burden": 1, "build-fragility": 8,
+        "melee-weapon-effectiveness": 9, "ranged-weapon-effectiveness": 3, "offensive-spellcasting": 8, "defensive-magic": 8, "condition-removal": 4, "dispelling-countermagic": 7, "shapeshifting-transformation": 5, "natural-weapon-combat": 2, "mounted-combat": 2, "skill-breadth": 5, "first-round-impact": 9, "armour-defence": 6, "shield-combat": 1,
+        "equipment-independence": 4, "enemy-type-independence": 7, "spell-access-breadth": 8, "ability-score-demand": 8, "code-bound-identity": 2, "conduct-consequence-tolerance": 1, "institutional-duty": 2
+      },
+      "categories": {"casting-level": ["6-level"], "casting-method": ["prepared", "reusable-hexes"], "magic-identity": ["arcane", "curse", "supernatural/non-spell"], "primary-delivery": ["weapon", "spell", "hex"], "armour-preference": ["light", "medium"], "companion-type": ["none"], "party-contribution": ["control", "damage", "support"], "social-style": ["intimidation", "no preference"]},
+      "conduct": {"codePresence": "none", "mechanicalLossRisk": "none", "alignmentRule": {"kind": "none", "values": []}, "deityRequired": false, "deityChoiceProvenance": "optional-relationship", "institutionRequired": false},
+      "compassAnchors": ["crowd-control:10", "soft-disruption:10", "The reusable-hex and weapon-delivered curse anchor"],
+      "sourceRefs": ["https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Hexcrafter"],
+      "playerSummary": "You weave a Witch's hexes and a wider catalogue of curses into the Magus chassis, weakening enemies repeatedly before delivering prepared curses through your weapon.",
+      "tradeoff": "Hex and arcana selection creates a dense build, and many effects depend on enemy immunities, saving throws or once-per-target limits."
+    }
+  ]
+}
