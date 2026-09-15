@@ -453,7 +453,7 @@
 
     function renderClarify() {
       const q = nextAdaptiveQuestion(state, deps.questionTemplates, deps.criteriaDoc);
-      if (!q) { goTo('results'); return ''; }
+      if (!q) return null;
       const answers = q.answers || (deps.questionTemplates.questions.find(qt => qt.id === q.id) || {}).answers || [];
       return `<section class="fycStage" aria-labelledby="fycHeading">
         <p class="fycEyebrow">${escapeHtml(progressWording())}</p>
@@ -512,8 +512,19 @@
       let html;
       if (state.stage === 'idea') html = renderIdea();
       else if (state.stage === 'priorities') html = renderPriorities();
-      else if (state.stage === 'clarify') html = renderClarify() || renderResults();
-      else html = renderResults();
+      else if (state.stage === 'clarify') {
+        html = renderClarify();
+        if (html === null) {
+          // No adaptive question left to ask -- fall through to results in
+          // this same render pass (root-cause fix: renderClarify() used to
+          // call goTo('results'), which re-entered rerender()/render() while
+          // the outer render() call was still running, painting the DOM and
+          // binding listeners twice for one state change).
+          state.stage = 'results';
+          persist();
+          html = renderResults();
+        }
+      } else html = renderResults();
       container.innerHTML = html;
       wireEvents();
       const heading = container.querySelector('#fycHeading');

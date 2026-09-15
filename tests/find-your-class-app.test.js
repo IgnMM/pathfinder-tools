@@ -229,3 +229,40 @@ test('the app never mutates the source catalogue documents it is given', () => {
   assert.deepEqual(criteriaDoc, criteriaSnapshot);
   assert.deepEqual(profiles, profilesSnapshot);
 });
+
+// Regression test for the duplicated-question bug: app.js's render() used to
+// let renderClarify() call goTo('results') (a full rerender) from INSIDE the
+// render() call already in progress for the 'clarify' stage, then continue
+// and render a second time itself -- two full render/wireEvents passes for
+// one state change. The state-layer symptom of that same class of bug would
+// be nextAdaptiveQuestion re-selecting or re-recording a question that was
+// already asked; assert that can't happen and that repeated calls against an
+// unchanged state are side-effect-free (idempotent).
+test('nextAdaptiveQuestion never re-adds an already-asked question id, and repeated calls on unchanged state are idempotent', () => {
+  const state = App.createAppState();
+  App.setDirectionalPreference(state, 'melee-ranged', 1, 8, 'explicit');
+  App.runMatching(state, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+
+  const first = App.nextAdaptiveQuestion(state, questionTemplates, criteriaDoc);
+  assert.ok(first, 'expected an adaptive question to be available');
+
+  // Calling it again BEFORE the question is answered (mirrors render() being
+  // invoked more than once for the same state) must return the identical
+  // question, not advance state or duplicate anything.
+  const second = App.nextAdaptiveQuestion(state, questionTemplates, criteriaDoc);
+  assert.equal(second.id, first.id);
+  assert.deepEqual(state.askedQuestionIds, [], 'merely computing the next question must not record it as asked');
+
+  const answer = (first.answers || questionTemplates.questions.find(q => q.id === first.id).answers)[0];
+  App.applyQuestionAnswer(state, first, answer);
+  assert.deepEqual(state.askedQuestionIds, [first.id]);
+
+  // Answering it again with the same question object (simulating a stray
+  // duplicate event/render) must not insert a second copy of the same id.
+  App.applyQuestionAnswer(state, first, answer);
+  assert.deepEqual(state.askedQuestionIds, [first.id]);
+
+  App.runMatching(state, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+  const after = App.nextAdaptiveQuestion(state, questionTemplates, criteriaDoc);
+  assert.notEqual(after && after.id, first.id, 'an already-asked question must never be re-selected');
+});
