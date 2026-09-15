@@ -108,7 +108,9 @@
       "sourceRefs": [
         "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Archer"
       ],
-      "editorialNote": "The non-magical ranged endurance anchor. Trick Shot gives it more physical disruption than a generic bow damage profile, especially from level 3 onward."
+      "editorialNote": "The non-magical ranged endurance anchor. Trick Shot gives it more physical disruption than a generic bow damage profile, especially from level 3 onward.",
+      "playerSummary": "You turn the Fighter's feat-rich combat training into a dedicated ranged style, delivering reliable bow damage while using trick shots to interfere with enemies from a distance.",
+      "tradeoff": "The path is highly specialised. Close-quarters pressure, cramped battlefields or situations where ranged trick shots are difficult can leave fewer good alternatives."
     },
     {
       "id": "fighter-armor-master",
@@ -211,7 +213,8 @@
         "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Armor%20Master"
       ],
       "editorialNote": "The armour-and-shield survival anchor. Its chassis is exceptionally hard to hurt, but protecting allies still depends heavily on positioning, reach and build choices.",
-      "tradeoff": "You become exceptionally hard to hurt, but the archetype does not by itself force enemies to attack you or intercept attacks against allies. Protecting the party still requires positioning, reach, feats or teamwork."
+      "tradeoff": "You become exceptionally hard to hurt, but the archetype does not by itself force enemies to attack you or intercept attacks against allies. Protecting the party still requires positioning, reach, feats or teamwork.",
+      "playerSummary": "You make armour the centre of the character rather than passive equipment, building a Fighter who is exceptionally difficult to injure or disable."
     },
     {
       "id": "rogue-burglar",
@@ -313,7 +316,9 @@
       "sourceRefs": [
         "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Burglar"
       ],
-      "editorialNote": "The infiltration and protected-site exploration anchor. Combat impact is conditional rather than weak: it depends on creating sneak-attack opportunities."
+      "editorialNote": "The infiltration and protected-site exploration anchor. Combat impact is conditional rather than weak: it depends on creating sneak-attack opportunities.",
+      "playerSummary": "You specialise in entering protected places, overcoming locks and traps, and moving through hostile spaces without leaving an obvious route behind you.",
+      "tradeoff": "Your combat contribution still depends heavily on creating sneak-attack opportunities; this path is strongest when infiltration matters as much as open battle."
     },
     {
       "id": "sorcerer-base",
@@ -416,7 +421,9 @@
       "sourceRefs": [
         "https://www.aonprd.com/ClassDisplay.aspx?ItemName=Sorcerer"
       ],
-      "editorialNote": "The spontaneous full-arcane anchor, assuming a non-companion bloodline. Spell selection is highly consequential, hence high build fragility despite low daily preparation."
+      "editorialNote": "The spontaneous full-arcane anchor, assuming a non-companion bloodline. Spell selection is highly consequential, hence high build fragility despite low daily preparation.",
+      "playerSummary": "Sorcerer gives you full arcane magic through instinct and bloodline rather than study. You cast from a familiar repertoire without preparing individual spells each day.",
+      "tradeoff": "Your spells known and bloodline choices are difficult to undo, so a few poor selections can leave important gaps in an otherwise powerful caster."
     },
     {
       "id": "druid-domain",
@@ -542,7 +549,9 @@
         "changeOrAtonementNotes": [
           "A druid who changes to a prohibited alignment or ceases to revere nature loses spells and druid abilities until atonement; teaching Druidic to a nondruid also causes loss. Prohibited armour separately suppresses druid powers while worn and for 24 hours afterward."
         ]
-      }
+      },
+      "playerSummary": "Druid gives you a vast prepared nature-magic toolbox, Wild Shape and a chosen domain, without making a permanent animal companion part of every turn.",
+      "tradeoff": "The breadth comes with substantial daily preparation and rules knowledge, and the Druid's alignment and conduct obligations can suspend class powers when broken."
     },
     {
       "id": "druid-pack-lord",
@@ -667,7 +676,9 @@
         "changeOrAtonementNotes": [
           "Inherits the base Druid alignment, nature-reverence, Druidic-language and armour obligations."
         ]
-      }
+      },
+      "playerSummary": "You replace one powerful animal companion with a whole pack, making several persistent creatures central to exploration and combat.",
+      "tradeoff": "You divide your effective Druid level among the pack. Deciding how many companions to keep and managing all their statistics and actions makes this a demanding, fragile build."
     },
     {
       "id": "magus-eldritch-archer",
@@ -772,7 +783,9 @@
       "sourceRefs": [
         "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Eldritch%20Archer"
       ],
-      "editorialNote": "The ranged spell-and-weapon burst anchor. Its bonded ranged weapon is equipment dependence, not a creature companion; category wording should eventually separate bonded object from sentient item."
+      "editorialNote": "The ranged spell-and-weapon burst anchor. Its bonded ranged weapon is equipment dependence, not a creature companion; category wording should eventually separate bonded object from sentient item.",
+      "playerSummary": "You combine ranged weapon attacks with arcane spellcasting, sending spells through a bow or other ranged weapon while keeping the Magus's hybrid identity.",
+      "tradeoff": "Your strongest turns depend on both limited spells and a suitable bonded ranged weapon, and the path is less comfortable when enemies force you into close combat."
     },
     {
       "id": "fighter-eldritch-guardian",

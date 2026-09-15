@@ -709,3 +709,95 @@ test('no statistical language anywhere in whyItFits, watchFor, summary or requir
     for (const c of criteriaDoc.criteria) assert.ok(!allText.includes(c.id), `${rec.id}: raw criterion id "${c.id}" leaked into player-facing text`);
   }
 });
+
+// =======================================================================
+// Editorial-output quality pass (2026-09-15)
+// =======================================================================
+
+const EDITORIAL_QUALITY_SCENARIOS = [
+  baseRequest({ numericPreferences: { 'crowd-control': { importance: 9, origin: 'explicit' } }, options: { maxResults: 4, includeNeedsConfirmation: true } }),
+  baseRequest({ numericPreferences: { 'melee-ranged': { desiredPosition: 9, importance: 9, origin: 'explicit' }, 'personal-durability': { importance: 8, origin: 'explicit' } }, options: { maxResults: 4 } }),
+  baseRequest({ numericPreferences: { 'martial-magic': { desiredPosition: 9, importance: 9, origin: 'explicit' }, 'companion-centrality': { desiredPosition: 9, importance: 9, origin: 'explicit' }, 'wilderness': { importance: 7, origin: 'explicit' } }, options: { maxResults: 4 } }),
+  baseRequest({ numericPreferences: { 'social-influence': { importance: 9, origin: 'explicit' } }, options: { maxResults: 4 } }),
+  baseRequest({ numericPreferences: { 'stealth-infiltration': { importance: 9, origin: 'explicit' } }, gateAnswers: { [SCOUNDREL_GATE_ID]: { status: 'satisfied' } }, options: { maxResults: 4 } }),
+];
+
+test('EQ1. whyItFits is never empty, across a spread of scenarios (including the strongest-connection fallback path)', () => {
+  for (const request of EDITORIAL_QUALITY_SCENARIOS) {
+    const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+    for (const rec of result.recommendations) {
+      assert.ok(rec.whyItFits.length >= 1, `${rec.id}: whyItFits must never be empty`);
+    }
+  }
+});
+
+test('EQ2. the animal-companion Druid scenario does not pad the shortlist with an unrelated Archer or another sub-0.58 candidate', () => {
+  const request = baseRequest({
+    numericPreferences: {
+      'martial-magic': { desiredPosition: 9, importance: 9, origin: 'explicit' },
+      'companion-centrality': { desiredPosition: 9, importance: 9, origin: 'explicit' },
+      'wilderness': { importance: 7, origin: 'explicit' },
+    },
+    options: { maxResults: 4 },
+  });
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+  assert.ok(!result.recommendations.some(r => r.id.startsWith('fighter-archer')), 'an unrelated Archer must not appear in a nature-caster/animal-companion shortlist');
+  for (const rec of result.recommendations) {
+    const raw = result._internal.ranked.find(s => s.candidate.internalId === rec.id);
+    assert.ok(raw.overallFit === null || raw.overallFit >= 0.58 || rec.role === 'best-overall', `${rec.id}: a non-best-overall role must not be filled below fit 0.58`);
+  }
+});
+
+test('EQ3. none of the seven updated profiles exposes internal-development language ("anchor", "category wording", "eventually separate") in player-facing output', () => {
+  const forbidden = /\banchor\b|category wording|eventually separate/i;
+  const sevenIds = ['fighter-archer', 'fighter-armor-master', 'rogue-burglar', 'sorcerer-base', 'druid-domain', 'druid-pack-lord', 'magus-eldritch-archer'];
+  for (const id of sevenIds) {
+    const p = byId.get(id);
+    assert.ok(p.playerSummary, `${id}: missing playerSummary`);
+    assert.ok(p.tradeoff, `${id}: missing tradeoff`);
+    assert.ok(!forbidden.test(p.playerSummary), `${id}: playerSummary contains internal-development language`);
+    assert.ok(!forbidden.test(p.tradeoff), `${id}: tradeoff contains internal-development language`);
+
+    const candidate = { profile: p, internalId: id, baseProfileId: id, branchId: null };
+    const request = baseRequest();
+    const scored = Object.assign(M.scoreCandidate(candidate, request, criteriaDoc), { eligibility: M.evaluateEligibility(candidate, request) });
+    const presentation = M.buildPresentationResult({ role: 'best-overall', scored }, request, criteriaDoc, explanationCatalogue, new Set());
+    const allText = [presentation.summary, ...presentation.whyItFits, ...presentation.watchFor, ...presentation.requirements].join(' ');
+    assert.ok(!forbidden.test(allText), `${id}: rendered presentation still contains internal-development language (editorialNote leaked)`);
+  }
+});
+
+test('EQ4. Sorcerer and Druid class paths identify themselves as classes in their summaries', () => {
+  for (const id of ['sorcerer-base', 'druid-domain']) {
+    const p = byId.get(id);
+    const candidate = { profile: p, internalId: id, baseProfileId: id, branchId: null };
+    const request = baseRequest();
+    const scored = Object.assign(M.scoreCandidate(candidate, request, criteriaDoc), { eligibility: M.evaluateEligibility(candidate, request) });
+    const presentation = M.buildPresentationResult({ role: 'best-overall', scored }, request, criteriaDoc, explanationCatalogue, new Set());
+    assert.ok(new RegExp(`^${presentation.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[^.]* is a class path\\.`).test(presentation.summary) || presentation.summary.includes(`${presentation.title} is a class path.`), `${id}: summary must state "is a class path"`);
+    assert.equal(presentation.typeLabel, 'Class');
+    assert.ok(!/archetype/i.test(presentation.summary), `${id}: a class path must never be worded as an archetype`);
+  }
+});
+
+test('EQ5. Razmiran Priest never says it requires or expects living by a code', () => {
+  for (const request of [baseRequest(), baseRequest({ conductPreferences: { stance: 'accept', importance: 5, acceptedCodePresence: ['none'], acceptedMechanicalLossRisk: ['none'] } })]) {
+    const razmiran = { profile: byId.get('sorcerer-razmiran-priest'), internalId: 'sorcerer-razmiran-priest', baseProfileId: 'sorcerer-razmiran-priest', branchId: null };
+    const scored = Object.assign(M.scoreCandidate(razmiran, request, criteriaDoc), { eligibility: M.evaluateEligibility(razmiran, request) });
+    const presentation = M.buildPresentationResult({ role: 'best-overall', scored }, request, criteriaDoc, explanationCatalogue, new Set());
+    const allText = [presentation.summary, ...presentation.requirements].join(' ');
+    assert.ok(!/requires living by a code|expects living by a code/i.test(allText), 'Razmiran Priest must never claim a mechanical code-of-conduct requirement');
+    assert.ok(allText.includes("Razmir's church defines the published story"), 'the authored narrative explanation must still appear');
+  }
+});
+
+test('EQ6. every returned result has a summary, at least one reason to consider it, and at most two watchFor entries', () => {
+  for (const request of EDITORIAL_QUALITY_SCENARIOS) {
+    const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+    for (const rec of result.recommendations) {
+      assert.ok(typeof rec.summary === 'string' && rec.summary.length > 0, `${rec.id}: missing summary`);
+      assert.ok(rec.whyItFits.length >= 1, `${rec.id}: no reason to consider it`);
+      assert.ok(rec.watchFor.length <= 2, `${rec.id}: more than two watchFor entries`);
+    }
+  }
+});

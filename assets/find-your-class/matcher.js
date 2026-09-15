@@ -377,6 +377,11 @@
       const bestScored = results[0] && results[0].scored;
       const different = bestScored ? findForRole(eligible, needsConfirmation, results.map(r => r.scored), includeNeedsConfirmation, s => {
         if (s === bestScored) return false;
+        // Rule 2 (2026-09-15 editorial-quality pass): "different-approach,
+        // more-approachable and unexpected-fit require overallFit >= 0.58" --
+        // it is better to return fewer recommendations than pad the shortlist
+        // with a candidate that doesn't genuinely support the player's idea.
+        if (s.overallFit === null || s.overallFit < 0.58) return false;
         const differentClass = s.candidate.profile.classId !== bestScored.candidate.profile.classId;
         const differentCriteria = highIndicesDiffer(s.candidate, bestScored.candidate, request, criteriaDoc);
         return differentClass || differentCriteria >= 2;
@@ -387,6 +392,7 @@
     if (results.length < maxResults) {
       const bestScored = results[0] && results[0].scored;
       const approachable = findForRole(eligible, needsConfirmation, results.map(r => r.scored), includeNeedsConfirmation, s => {
+        if (s.overallFit === null || s.overallFit < 0.58) return false;
         const p = s.candidate.profile;
         const ok = p.scores['build-complexity'] <= 5 && p.scores['rules-mastery'] <= 5;
         if (!ok) return false;
@@ -404,6 +410,7 @@
         const unexpected = findForRole(eligible, needsConfirmation, results.map(r => r.scored), includeNeedsConfirmation, s => {
           if (s.candidate.profile.classId === bestScored.candidate.profile.classId) return false;
           if (s.overallFit === null || bestScored.overallFit === null) return false;
+          if (s.overallFit < 0.58) return false;
           if (bestScored.overallFit - s.overallFit > UNEXPECTED_FIT_MAX_GAP) return false;
           const topMatch = s.matchedCriteria[0];
           if (!topMatch) return false;
@@ -598,6 +605,38 @@
     return picked;
   }
 
+  // Rule 1 (2026-09-15 editorial-quality pass): "whyItFits must never be
+  // empty." Called only when pickMatchSentences returned nothing (no criterion
+  // reached the match threshold, or every candidate sentence was already used
+  // elsewhere in the shortlist). Reuses the candidate's own single
+  // highest-weight usable criterion, deliberately bypassing both the
+  // fit>=0.72 threshold and the shortlist-wide dedup Set -- "explaining every
+  // result takes priority over avoiding repetition" -- wrapped in a
+  // candidate-specific lead-in so a reused sentence never reads as if it were
+  // freshly selected.
+  function pickStrongestConnectionFallback(scored, request, criteriaIndex, explanationCatalogue, title) {
+    const profile = scored.candidate.profile;
+    const ranked = Object.entries(scored.contributions)
+      .filter(([, c]) => !c.unknown)
+      .sort((a, b) => b[1].weight - a[1].weight);
+    for (const [criterionId] of ranked) {
+      const crit = criteriaIndex.get(criterionId);
+      let text = null;
+      if (crit.kind === 'categorical') {
+        const pref = request.categoricalPreferences[criterionId];
+        const candidateValues = profile.categories[criterionId] || [];
+        const overlap = pref.values.find(v => candidateValues.includes(v));
+        text = categoricalFragment(explanationCatalogue, criterionId, overlap || pref.values[0]);
+      } else if (crit.kind === 'capability') {
+        text = numericFragment(explanationCatalogue, criterionId, 'match');
+      } else {
+        text = directionalFragment(explanationCatalogue, criterionId, profile.scores[criterionId], 'match');
+      }
+      if (text) return `For ${title}, the strongest connection is this: ${text}`;
+    }
+    return null;
+  }
+
   // Picks at most one tension sentence, by the same weight ordering, for
   // watchFor (placed after the profile's own tradeoff/editorialNote).
   function pickTensionSentence(scored, request, criteriaIndex, explanationCatalogue, usedSentences) {
@@ -675,12 +714,25 @@
     // doesn't cover (never true for the current catalogue -- see the exact-
     // coverage test -- but the fallback stays as a safety net rather than a
     // silent gap).
+    // "Preserve editorialNote internally, but never use it in player-facing
+    // output when either [playerSummary or tradeoff] field exists" (2026-09-15
+    // editorial-quality pass): editorialNote is only ever a fallback, and only
+    // when NEITHER authored field is present.
+    const hasAuthoredNarrative = !!(profile.playerSummary || profile.tradeoff);
+    const fallbackNote = hasAuthoredNarrative ? null : profile.editorialNote;
+
     let whyItFits, watchFor;
     if (explanationCatalogue) {
       whyItFits = pickMatchSentences(scored, request, criteriaIndex, explanationCatalogue, usedSentences, 2);
+      // Rule 1 (2026-09-15): whyItFits must never be empty. Repetition is
+      // avoided when possible, but explaining every result takes priority.
+      if (whyItFits.length === 0) {
+        const reused = pickStrongestConnectionFallback(scored, request, criteriaIndex, explanationCatalogue, title);
+        if (reused) whyItFits = [reused];
+      }
       watchFor = [];
       if (profile.tradeoff) watchFor.push(profile.tradeoff);
-      else if (profile.editorialNote) watchFor.push(profile.editorialNote);
+      else if (fallbackNote) watchFor.push(fallbackNote);
       const tension = pickTensionSentence(scored, request, criteriaIndex, explanationCatalogue, usedSentences);
       if (tension && watchFor.length < 2) watchFor.push(tension);
     } else {
@@ -690,7 +742,7 @@
       });
       watchFor = [];
       if (profile.tradeoff) watchFor.push(profile.tradeoff);
-      else if (profile.editorialNote) watchFor.push(profile.editorialNote);
+      else if (fallbackNote) watchFor.push(fallbackNote);
       for (const cid of scored.tensionCriteria) {
         if (watchFor.length >= 2) break;
         watchFor.push(`It falls short on ${lowerFirst(describeCriterion(criteriaIndex, cid))}, if that matters to you.`);
@@ -706,7 +758,12 @@
       // An authored special-case rule takes priority over the generic
       // mechanical sentence for the same fact, per "Remove the current
       // generic fallback whenever an authored fragment is available."
-      if ((conduct.codePresence === 'mandatory' || conduct.codePresence === 'expected') && !ruleIds.has('druid-conduct')) {
+      // 2026-09-15 editorial-quality pass: razmiran-narrative must ALSO suppress
+      // this sentence -- Razmiran Priest's codePresence reads "expected", but
+      // "This path expects living by a code" wrongly implies a mechanical
+      // conduct requirement; the authored narrative fragment is accurate and
+      // replaces it (previously only druid-conduct did this).
+      if ((conduct.codePresence === 'mandatory' || conduct.codePresence === 'expected') && !ruleIds.has('druid-conduct') && !ruleIds.has('razmiran-narrative')) {
         requirements.push(`This path ${conduct.codePresence === 'mandatory' ? 'requires' : 'expects'} living by a code${conduct.mechanicalLossRisk !== 'none' ? ', with real mechanical consequences for breaking it' : ''}.`);
       }
       if (conduct.alignmentRule && conduct.alignmentRule.kind !== 'none') {
@@ -725,8 +782,13 @@
     for (const d of scored.eligibility.disclosures || []) if (d.rule) requirements.push(d.rule);
     for (const rule of matchingRules) requirements.push(rule.text);
 
-    let summary = profile.playerSummary || profile.editorialNote || `${title} is a ${isClassPath ? 'Pathfinder class' : `${parentLabel} archetype`}.`;
-    if (!isClassPath) summary = `${title} is a ${parentLabel} archetype. ${summary}`;
+    // Class identity (2026-09-15 editorial-quality pass): class paths are
+    // prefixed just as archetypes are ("Sorcerer is a class path. ..."),
+    // never worded as an archetype.
+    let summary = profile.playerSummary || fallbackNote || '';
+    summary = isClassPath
+      ? `${title} is a class path.${summary ? ' ' + summary : ''}`
+      : `${title} is a ${parentLabel} archetype.${summary ? ' ' + summary : ''}`;
 
     if (explanationCatalogue) {
       const opener = pickRoleOpener(explanationCatalogue, roleEntry.role, candidate.internalId);
