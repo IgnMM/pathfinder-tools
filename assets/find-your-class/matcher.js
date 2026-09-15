@@ -340,6 +340,46 @@
     return selected.some(s => s.candidate.baseProfileId === scored.candidate.baseProfileId);
   }
 
+  // 2026-09-15 more-approachable semantic rule. Finds the player's active
+  // preference(s) with the single highest importance -- numeric (not
+  // notRelevant) and categorical "prefer" entries only, since those are the
+  // only preference kinds that contribute to fit (require/exclude are gates,
+  // never scored). Ties all count: "the player's highest-importance active
+  // preference OR TIED preferences."
+  function highestImportanceCriteria(request) {
+    let max = -Infinity;
+    const active = [];
+    for (const [criterionId, pref] of Object.entries(request.numericPreferences || {})) {
+      if (pref.notRelevant) continue;
+      active.push([criterionId, pref.importance]);
+      if (pref.importance > max) max = pref.importance;
+    }
+    for (const [criterionId, pref] of Object.entries(request.categoricalPreferences || {})) {
+      if (pref.mode !== 'prefer') continue;
+      active.push([criterionId, pref.importance]);
+      if (pref.importance > max) max = pref.importance;
+    }
+    return active.filter(([, importance]) => importance === max).map(([criterionId]) => criterionId);
+  }
+
+  // more-approachable ONLY (not different-approach, which may deliberately
+  // accept a major trade-off if it genuinely preserves another central part
+  // of the concept): a simpler candidate must still land the player's central
+  // idea -- fit >= 0.72 on at least one tied-for-highest-importance
+  // preference, and no tension (fit < 0.45) on any of them.
+  function preservesCentralPreference(scored, request) {
+    const topCriteria = highestImportanceCriteria(request);
+    if (topCriteria.length === 0) return false;
+    let hasStrongMatch = false;
+    for (const criterionId of topCriteria) {
+      const c = scored.contributions[criterionId];
+      if (!c || c.unknown) continue;
+      if (c.fit < TENSION_THRESHOLD) return false;
+      if (c.fit >= MATCHED_THRESHOLD) hasStrongMatch = true;
+    }
+    return hasStrongMatch;
+  }
+
   // Scans eligible, then (if allowed) needs-confirmation candidates, in ranked
   // order, for the first one satisfying `predicate` and not a duplicate/already
   // selected -- this is the literal implementation of "fill unoccupied slots with
@@ -399,6 +439,13 @@
         // "omit ... if it would duplicate the first without adding useful
         // information": skip if it's the same profile family as best-overall.
         if (bestScored && s.candidate.baseProfileId === bestScored.candidate.baseProfileId) return false;
+        // more-approachable-only semantic rule (2026-09-15): a simpler
+        // candidate must still land the player's central idea -- strong fit
+        // on at least one tied-for-highest-importance preference, no tension
+        // on any of them. different-approach has no such requirement; it may
+        // deliberately trade off a major preference if it genuinely preserves
+        // another central part of the concept.
+        if (!preservesCentralPreference(s, request)) return false;
         return true;
       });
       if (approachable) results.push({ role: 'more-approachable', scored: approachable });

@@ -801,3 +801,84 @@ test('EQ6. every returned result has a summary, at least one reason to consider 
     }
   }
 });
+
+// =======================================================================
+// more-approachable semantic rule (2026-09-15)
+// =======================================================================
+
+test('MA1. Armor Master is not offered as the approachable version of a ranged-first character', () => {
+  const request = baseRequest({
+    numericPreferences: {
+      'melee-ranged': { desiredPosition: 9, importance: 9, origin: 'explicit' },
+      'martial-magic': { desiredPosition: 1, importance: 8, origin: 'explicit' },
+      'personal-durability': { importance: 7, origin: 'explicit' },
+      'resource-endurance': { importance: 8, origin: 'explicit' },
+    },
+    options: { maxResults: 4 },
+  });
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+  assert.ok(!result.recommendations.some(r => r.id.startsWith('fighter-armor-master') && r.role === 'more-approachable'),
+    'Armor Master (melee-ranged=2) cannot preserve a highest-importance desiredPosition:9 ranged preference, so it must not be offered as more-approachable');
+  // Confirm directly against the scoring layer too, not just this one shortlist.
+  const armorMaster = { profile: byId.get('fighter-armor-master'), internalId: 'fighter-armor-master', baseProfileId: 'fighter-armor-master' };
+  const scored = M.scoreCandidate(armorMaster, request, criteriaDoc);
+  assert.ok(scored.contributions['melee-ranged'].fit < 0.45, 'Armor Master should show tension, not a match, on the player\'s central ranged preference');
+});
+
+test('MA2. beginner-friendly requests still return a valid more-approachable candidate when one exists', () => {
+  // The real 27-profile catalogue's lowest build-complexity/rules-mastery
+  // scores (Fighter Archer/Armor Master, both 5) happen to correlate with
+  // weak crowd-control everywhere in this pilot's calibration, so a positive
+  // more-approachable case cannot currently be exercised end-to-end through
+  // the real catalogue for a crowd-control-led request -- confirmed directly:
+  const realCatalogueHasQualifyingPair = profiles.some(p => p.scores['build-complexity'] <= 5 && p.scores['rules-mastery'] <= 5 && p.scores['crowd-control'] >= 7);
+  assert.equal(realCatalogueHasQualifyingPair, false, 'if this ever becomes true after a future catalogue update, extend this test with a real-catalogue positive-path assertion');
+
+  // Deterministic positive-path proof using a small synthetic catalogue: a
+  // complex, powerful best-overall plus a genuinely simpler candidate that
+  // STILL lands the player's central (highest-importance) preference.
+  const complexBest = Object.assign({}, byId.get('sorcerer-base'), {
+    id: 'synthetic-complex-best', classId: 'sorcerer', archetypeId: null, name: 'Synthetic Complex Best',
+    scores: Object.assign({}, byId.get('sorcerer-base').scores, { 'crowd-control': 9, 'build-complexity': 9, 'rules-mastery': 9 }),
+  });
+  // Same class as complexBest and identical on every other active/high-
+  // importance criterion (only crowd-control is active here, and both share
+  // its value) so this candidate does NOT also qualify for different-approach
+  // -- isolating the more-approachable path specifically.
+  const simpleButStrong = Object.assign({}, byId.get('sorcerer-base'), {
+    id: 'synthetic-simple-strong', archetypeId: 'synthetic', name: 'Synthetic Simple Strong',
+    scores: Object.assign({}, byId.get('sorcerer-base').scores, { 'crowd-control': 9, 'build-complexity': 3, 'rules-mastery': 3 }),
+  });
+  const syntheticCatalogue = [complexBest, simpleButStrong];
+  const request = baseRequest({ numericPreferences: { 'crowd-control': { importance: 9, origin: 'explicit' } }, options: { maxResults: 4 } });
+  const result = M.matchProfiles(request, syntheticCatalogue, criteriaDoc, questionTemplates, explanationCatalogue);
+  const approachable = result.recommendations.find(r => r.role === 'more-approachable');
+  assert.ok(approachable, 'a genuinely simpler candidate that still lands the central preference must be offered as more-approachable');
+  assert.equal(approachable.id, 'synthetic-simple-strong');
+});
+
+test('MA3. more-approachable is omitted when no simpler candidate preserves the player\'s central preference', () => {
+  // A very narrow, high-importance directional ask (extreme high companion
+  // centrality) that few low-complexity candidates can strongly satisfy.
+  const request = baseRequest({
+    numericPreferences: {
+      'companion-centrality': { desiredPosition: 10, importance: 10, origin: 'explicit' },
+    },
+    options: { maxResults: 4 },
+  });
+  const result = M.matchProfiles(request, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
+  const approachable = result.recommendations.find(r => r.role === 'more-approachable');
+  if (approachable) {
+    // If one was offered, it must genuinely satisfy the rule (not merely be simple).
+    const profile = byId.get(approachable.id.split('::')[0]);
+    assert.ok(profile.scores['build-complexity'] <= 5 && profile.scores['rules-mastery'] <= 5);
+    assert.ok(profile.scores['companion-centrality'] >= 7, 'an offered more-approachable candidate must still strongly deliver the sole central preference');
+  } else {
+    // Explicitly confirm this is a genuine omission, not an accident: at
+    // least one low-complexity candidate exists in the catalogue overall, but
+    // none of them strongly supports companion-centrality -- so omission is
+    // correct, not a bug.
+    const anyLowComplexityStrongCompanion = profiles.some(p => p.scores['build-complexity'] <= 5 && p.scores['rules-mastery'] <= 5 && p.scores['companion-centrality'] >= 7);
+    assert.ok(!anyLowComplexityStrongCompanion, 'more-approachable was omitted, but a qualifying simple+companion-strong profile actually exists -- the role should not have been omitted');
+  }
+});
