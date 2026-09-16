@@ -65,17 +65,17 @@ test('initial state stage is "choice" (pick idea vs. profile), with both drafts 
   assert.deepEqual(state.manualCapabilityPreferences, {});
 });
 
-test('sessionStorage round-trips the v2 state under its own dedicated key, separate from v1', () => {
+test('the search persists to localStorage (not sessionStorage) under its own dedicated key, separate from v1 -- survives closing the browser, like a saved character does', () => {
   const storage = fakeStorage();
   const state = App.createAppState();
   state.stage = 'results';
   state.idea = 'A sneaky elf who likes to hide';
   state.capabilityPreferences['stealth-subterfuge'] = { desiredLevel: 'core', importance: 9 };
   state.manualCapabilityPreferences['melee-combat'] = 'core';
-  App.saveToSessionStorage(state, storage);
-  assert.equal(App.SESSION_STORAGE_KEY, 'pf_find_your_class_v2');
-  assert.notEqual(App.SESSION_STORAGE_KEY, 'pf_find_your_class_v1');
-  const restored = App.loadFromSessionStorage(storage);
+  App.saveToStorage(state, storage);
+  assert.equal(App.STORAGE_KEY, 'pf_find_your_class_v2');
+  assert.notEqual(App.STORAGE_KEY, 'pf_find_your_class_v1');
+  const restored = App.loadFromStorage(storage);
   assert.equal(restored.stage, 'results');
   assert.equal(restored.idea, 'A sneaky elf who likes to hide');
   assert.deepEqual(restored.capabilityPreferences['stealth-subterfuge'], { desiredLevel: 'core', importance: 9 });

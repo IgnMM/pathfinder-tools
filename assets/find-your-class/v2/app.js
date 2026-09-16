@@ -30,7 +30,7 @@
 }(typeof self !== 'undefined' ? self : this, function (V2, Matcher) {
   'use strict';
 
-  const SESSION_STORAGE_KEY = 'pf_find_your_class_v2';
+  const STORAGE_KEY = 'pf_find_your_class_v2';
 
   const CAPABILITY_GROUPS = ['offence', 'battlefield', 'support', 'exploration'];
   const CAPABILITY_GROUP_LABELS = {
@@ -142,20 +142,26 @@
     if (!json) return null;
     try { const parsed = JSON.parse(json); return parsed && parsed.schemaVersion === 2 ? parsed : null; } catch (e) { return null; }
   }
-  function saveToSessionStorage(state, storage) {
-    const s = storage || (typeof sessionStorage !== 'undefined' ? sessionStorage : null);
+  // Uses localStorage (not sessionStorage): a player's search -- including
+  // their manual profile and this search's own locked Sources selection --
+  // should survive closing the tab/browser, the same way a saved character
+  // in Calc or a spellbook profile does. There is only one search slot for
+  // now (no named "saved searches" yet, unlike Calc's per-character list);
+  // this is a single persistent draft per browser.
+  function saveToStorage(state, storage) {
+    const s = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
     if (!s) return;
-    try { s.setItem(SESSION_STORAGE_KEY, serializeState(state)); } catch (e) {}
+    try { s.setItem(STORAGE_KEY, serializeState(state)); } catch (e) {}
   }
-  function loadFromSessionStorage(storage) {
-    const s = storage || (typeof sessionStorage !== 'undefined' ? sessionStorage : null);
+  function loadFromStorage(storage) {
+    const s = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
     if (!s) return null;
-    try { return deserializeState(s.getItem(SESSION_STORAGE_KEY)); } catch (e) { return null; }
+    try { return deserializeState(s.getItem(STORAGE_KEY)); } catch (e) { return null; }
   }
-  function clearSessionStorage(storage) {
-    const s = storage || (typeof sessionStorage !== 'undefined' ? sessionStorage : null);
+  function clearStorage(storage) {
+    const s = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
     if (!s) return;
-    try { s.removeItem(SESSION_STORAGE_KEY); } catch (e) {}
+    try { s.removeItem(STORAGE_KEY); } catch (e) {}
   }
 
   const IDENTITY_LABELS = {
@@ -179,13 +185,13 @@
   function mount(container, deps) {
     const criteriaIndex = V2.indexCriteria(deps.criteriaDoc);
     const profiles = deps.profiles;
-    let state = loadFromSessionStorage() || createAppState();
+    let state = loadFromStorage() || createAppState();
     applyGlobalSourcesToProfile(state, profiles);
     let uiError = null;
 
     let sourcesPanelOpen = false;
 
-    function persist() { saveToSessionStorage(state); }
+    function persist() { saveToStorage(state); }
     function rerender() { persist(); render(); }
     function goTo(stage) { state.stage = stage; uiError = null; rerender(); }
 
@@ -473,7 +479,7 @@
       } else if (action === 'start-over') {
         if (typeof confirm === 'function' && !confirm('Start over? This clears all your selections.')) return;
         state = createAppState();
-        clearSessionStorage();
+        clearStorage();
         rerender();
       }
     }
@@ -483,9 +489,9 @@
   }
 
   return {
-    SESSION_STORAGE_KEY, createAppState, totalActivePreferenceCount, totalActiveManualPreferenceCount,
+    STORAGE_KEY, createAppState, totalActivePreferenceCount, totalActiveManualPreferenceCount,
     buildMatcherRequest, buildManualMatcherRequest, runMatching, runManualMatching,
-    serializeState, deserializeState, saveToSessionStorage, loadFromSessionStorage, clearSessionStorage,
+    serializeState, deserializeState, saveToStorage, loadFromStorage, clearStorage,
     CAPABILITY_GROUPS, CAPABILITY_GROUP_LABELS, MANUAL_VALUES, MANUAL_VALUE_LABELS,
     applyGlobalSourcesToProfile, filterProfilesBySources,
     mount,
