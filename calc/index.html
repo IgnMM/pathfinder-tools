@@ -208,7 +208,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <header>
   <div class="titleRow">
   <h1>Character Hit&amp;Damage Calculator</h1>
-  <details class="sourcesbox" id="sourcesBoxTop"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button></div><div id="sourceList"></div></div></details>
+  <details class="sourcesbox" id="sourcesBoxTop"><summary>Sources</summary><div class="sourcesPanel"><div class="srcActions"><button id="srcAll" type="button">All</button><button id="srcNone" type="button">None</button><button id="srcResetGlobal" type="button" title="Follow the site-wide Valid Sources selection again">Reset to global</button></div><div id="sourcesNote" style="font-size:.62rem;color:var(--muted);margin-bottom:4px"></div><div id="sourceList"></div></div></details>
   </div>
   <div class="subtitle">Pathfinder 1e — attack/damage modifiers with correct bonus-type stacking. Every change saves automatically to this browser — there's no Save button because there's nothing to lose; use "Save As" to keep a copy under a different character's name. Want your characters on another device too? Set a Sync code below.</div>
   <div class="profileBar" style="margin-top:10px">
@@ -466,6 +466,7 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 </div>
 <script src="../assets/calc-engine.js"></script>
 <script src="../assets/conditions.js"></script>
+<script src="../assets/valid-sources.js"></script>
 <script>
 // Full Simple/Martial/Exotic weapon catalog (Core Rulebook, Ultimate Combat, Ultimate
 // Equipment, Advanced Race Guide), sourced from Archives of Nethys (aonprd.com), Medium
@@ -3906,7 +3907,7 @@ function defaultProfile(name){
   return {name, babList:[10], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weaponCategory:'manufactured', weapon:'longsword', customDice:'1d8', customThreat:'20',
     unarmedDice:'1d3', unarmedThreat:'20', naturalAttacks:[], naturalOrigin:'', naturalVSLineIndex:0, wildShapeFormId:'', wildShapeBaseStr:0, wildShapeBaseDex:0, wildShapeBaseCon:0,
     style:'twoHanded', atkStat:'str', dmgStat:'str', offWeaponCategory:'manufactured', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offUnarmedDice:'1d3', offUnarmedThreat:'20', offNaturalDice:'1d4', offNaturalThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
-    enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, race:'', alignment:'', deity:'', compositeBowStrRating:0};
+    enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, sourcesCustomized:false, race:'', alignment:'', deity:'', compositeBowStrRating:0};
 }
 let store=loadStore();
 if(!store.deletedProfiles) store.deletedProfiles={};
@@ -3930,6 +3931,12 @@ store.profiles.forEach(p=>{
   // rather than defaulting to something that would change their totals.
   if(p.offWeapon===undefined){ p.offWeapon=p.weapon; p.offCustomDice=p.customDice||'1d6'; p.offCustomThreat=p.customThreat||'20'; p.offCritMult=p.critMult||2; }
   if(!p.excludedSources) p.excludedSources={};
+  // A profile saved before "sourcesCustomized" existed: if it already has any
+  // exclusions, treat it as customized (preserve exactly what that character
+  // had) rather than silently overwriting it with the global default the
+  // moment this runs -- same migration rule bard.html and the other
+  // spellbook pages use for their own per-character excludedSources.
+  if(p.sourcesCustomized===undefined) p.sourcesCustomized=Object.keys(p.excludedSources||{}).length>0;
   if(p.race===undefined) p.race='';
   if(p.alignment===undefined) p.alignment='';
   if(p.deity===undefined) p.deity='';
@@ -3985,6 +3992,29 @@ store.profiles.forEach(p=>{
     p.babList=list;
   }
 });
+// Sources padlock, same pattern as the spellbook pages (bard/wizard/etc.):
+// while a profile hasn't been individually customized, its excludedSources
+// follows the site-wide global Valid Sources setting. A player who runs
+// several characters across different campaigns/GMs can lock any one of
+// them to its own sourcebook selection (via the Sources panel), independent
+// of what the global default -- or any other character -- is set to.
+function applyGlobalSourcesToProfile(p){
+  if(p.sourcesCustomized) return;
+  if(typeof PFSources==='undefined') return;
+  let allSrc=[...new Set(MODIFIERS.map(m=>m.source||'Unknown'))];
+  p.excludedSources=PFSources.computeExcludedSources(allSrc, PFSources.loadGlobalExcludedLocal());
+}
+store.profiles.forEach(applyGlobalSourcesToProfile);
+// Write straight to localStorage here (bypassing saveStore()'s merge-with-disk
+// step) so this freshly-computed excludedSources actually survives. Why: if
+// nothing has ever been saved to disk yet, saveStore()'s merge compares
+// _updatedAt on both sides -- both are 0 for a brand-new profile, "local"
+// does not win a tie, and the disk copy (a bare defaultProfile() with empty
+// excludedSources, since it was never persisted) silently overwrites this
+// calculation the very first time anything calls saveStore(). Writing here
+// establishes the computed value AS the on-disk baseline before that can
+// happen, exactly once, at load time.
+try{ localStorage.setItem(STORE_KEY, JSON.stringify(store)); }catch(e){}
 function currentProfile(){ return store.profiles.find(p=>p.name===store.active) || store.profiles[0]; }
 
 function populateProfileSelect(){
@@ -4007,6 +4037,7 @@ function updateSyncStatusForActive(){
 
 function loadProfileIntoUI(){
   let p=currentProfile();
+  applyGlobalSourcesToProfile(p);
   $('characterLevel').value=p.characterLevel; $('casterLevel').value=p.casterLevel; $('numAttacks').value=(p.babList&&p.babList.length)||1; $('mythicEnabled').checked=!!p.mythicEnabled; $('mythicTier').value=p.mythicTier; $('currentTarget').value=p.currentTarget; $('str').value=p.str; $('dex').value=p.dex; $('con').value=p.con;
   renderBabInputs();
   $('mythicTierBox').style.display = p.mythicEnabled ? 'grid' : 'none';
@@ -4275,15 +4306,23 @@ function renderSources(){
     let lbl=document.createElement('label');
     let cb=document.createElement('input'); cb.type='checkbox'; cb.checked=!p.excludedSources[src];
     cb.onchange=()=>{
+      p.sourcesCustomized=true;
       if(cb.checked) delete p.excludedSources[src]; else p.excludedSources[src]=true;
-      saveStore(); renderCategories(); compute();
+      saveStore(); renderCategories(); compute(); renderSourcesNote();
     };
     lbl.appendChild(cb); lbl.appendChild(document.createTextNode(src));
     box.appendChild(lbl);
   });
+  renderSourcesNote();
 }
-$('srcAll').onclick=()=>{ let p=currentProfile(); p.excludedSources={}; applyRaceSourceExclusions(); saveStore(); renderSources(); renderCategories(); compute(); };
-$('srcNone').onclick=()=>{ let p=currentProfile(); [...new Set(MODIFIERS.map(m=>m.source||'Unknown'))].forEach(src=>p.excludedSources[src]=true); saveStore(); renderSources(); renderCategories(); compute(); };
+function renderSourcesNote(){
+  let el=$('sourcesNote'); if(!el) return;
+  let p=currentProfile();
+  el.textContent = p.sourcesCustomized ? 'Locked for this character -- independent of the site default' : 'Following the site\'s global Valid Sources setting';
+}
+$('srcAll').onclick=()=>{ let p=currentProfile(); p.sourcesCustomized=true; p.excludedSources={}; applyRaceSourceExclusions(); saveStore(); renderSources(); renderCategories(); compute(); };
+$('srcNone').onclick=()=>{ let p=currentProfile(); p.sourcesCustomized=true; [...new Set(MODIFIERS.map(m=>m.source||'Unknown'))].forEach(src=>p.excludedSources[src]=true); saveStore(); renderSources(); renderCategories(); compute(); };
+$('srcResetGlobal').onclick=()=>{ let p=currentProfile(); p.sourcesCustomized=false; applyGlobalSourcesToProfile(p); saveStore(); renderSources(); renderCategories(); compute(); };
 if(window.PFConditions){ let toolsSlot=document.getElementById('embeddedToolsSlot'); if(toolsSlot) PFConditions.mount(toolsSlot); }
 
 // Results panel: click-to-pin (desktop only) so it floats over the page and stays
@@ -5882,6 +5921,5 @@ if("serviceWorker" in navigator){
   refreshAccountDisplay();
 })();
 </script>
-<script src="../assets/valid-sources.js"></script>
 </body>
 </html>
