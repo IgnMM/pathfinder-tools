@@ -275,6 +275,13 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
 <h3>Character</h3>
 <div class="row"><label>Race</label><input id="race" list="raceList" placeholder="Search race..." autocomplete="off"><datalist id="raceList"></datalist></div>
 <div class="raceNote">Character note only — doesn't hide or filter anything. Feats/traits from any sourcebook are always shown; check their own prerequisites to see if your character actually qualifies.</div>
+<div class="row"><label>Size</label>
+<select id="size">
+  <option value="Fine">Fine</option><option value="Diminutive">Diminutive</option><option value="Tiny">Tiny</option>
+  <option value="Small">Small</option><option value="Medium" selected>Medium</option><option value="Large">Large</option>
+  <option value="Huge">Huge</option><option value="Gargantuan">Gargantuan</option><option value="Colossal">Colossal</option>
+</select></div>
+<div class="raceNote">Drives CMB/CMD's size modifier below. Defaults from Race for a handful of known races (e.g. Gnome/Halfling/Goblin → Small) and Medium otherwise — pick it by hand any time, including for a race not covered here. Enlarge Person or Animal Growth active below temporarily counts as one size category larger for CMB/CMD, on top of whatever you set here.</div>
 <div class="row"><label>Deity</label><input id="deity" list="deityList" placeholder="(optional)" autocomplete="off"><datalist id="deityList"></datalist></div>
 <div class="raceNote">Deity-specific catalog entries (a handful of feats/traits/spells tied to worshipping one particular god) only show up once you've picked that deity here. Leave empty to see none of those — everything else is unaffected.</div>
 <div class="row"><label>Alignment</label>
@@ -457,6 +464,9 @@ button.danger{background:#3a1d21;border-color:#67343b;color:#f0a}
   <div class="result" id="offDmgBox" style="display:none"><div class="small">Off-Hand Damage</div><div class="big" id="offDmg">—</div></div>
   <div class="result" id="offCritBox" style="display:none"><div class="small">Off-Hand Critical Damage</div><div class="big" id="offCrit">—</div></div>
   </div>
+  <div class="result"><div class="small">CMB</div><div class="big" id="cmb">+0</div></div>
+  <div class="result"><div class="small">CMD</div><div class="big" id="cmd">10</div></div>
+  <div class="result full" id="cmbCmdNoteBox"><div id="cmbCmdNote" style="font-size:.68rem;color:var(--muted)"></div></div>
   <div class="result full" id="naturalAttacksResultBox" style="display:none"><div class="small">Natural Attacks</div><div id="naturalAttackResults" style="margin-top:6px"></div></div>
   <div class="result full" id="naturalVSResultBox" style="display:none"></div>
   <div class="result full"><div class="small">Notes</div><div id="notes" style="margin-top:6px;line-height:1.5;font-size:.85rem"></div></div>
@@ -719,6 +729,16 @@ const WILD_SHAPE_FORMS=[
 
 const RACES=["Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Aasimar","Adaro","Android","Aphorite","Aquatic Elf","Astomoi","Being of Ib","Boggard","Caligni","Catfolk","Cecaelia","Changeling","Deep One Hybrid","Dhampir","Drow","Drow Noble","Duergar","Duskwalker","Fetchling","Ganzi","Gathlain","Ghoran","Gillman","Goblin","Green Martian","Grindylow","Grippli","Hobgoblin","Ifrit","Kasatha","Kitsune","Kobold","Kuru","Lashunta","Locathah","Merfolk","Monkey Goblin","Munavri","Nagaji","Naiad","Orang-Pendak","Orc","Oread","Primitive Human","Ratfolk","Reborn Samsaran","Reptoid","Rougarou","Sahuagin","Samsaran","Shabti","Skinwalker","Strix","Suli","Svirfneblin","Sylph","Syrinx","Tengu","Tiefling","Triaxian","Triton","Trox","Undine","Vanara","Vine Leshy","Vishkanya","Wayang","Wyrwood","Wyvaran","Yaddithian"];
 const RACE_SOURCE_MAP={"Dwarf":["Dwarves of Golarion"],"Goblin":["Goblins of Golarion"],"Kobold":["Kobolds of Golarion"],"Orc":["Orcs of Golarion"],"Half-Orc":["Orcs of Golarion"],"Human":["Humans of Golarion"]};
+// Size category for CMB/CMD's special size modifier: Fine -8, Diminutive -4, Tiny -2,
+// Small -1, Medium +0, Large +1, Huge +2, Gargantuan +4, Colossal +8 (opposite sign from
+// the normal attack/AC size modifier -- being bigger HELPS combat maneuvers).
+const SIZE_ORDER=['Fine','Diminutive','Tiny','Small','Medium','Large','Huge','Gargantuan','Colossal'];
+const SIZE_MOD={Fine:-8,Diminutive:-4,Tiny:-2,Small:-1,Medium:0,Large:1,Huge:2,Gargantuan:4,Colossal:8};
+// Deliberately non-exhaustive: only races whose size is confidently known, to avoid
+// defaulting an obscure race's size wrong. Everything not listed here defaults to
+// Medium (correct for the large majority of playable PF1e races) -- the Size field is
+// always manually adjustable regardless of what this map picks.
+const RACE_DEFAULT_SIZE={"Gnome":"Small","Halfling":"Small","Goblin":"Small","Grippli":"Small","Kobold":"Small","Ratfolk":"Small","Svirfneblin":"Small","Vanara":"Small","Wyrwood":"Small","Kitsune":"Small","Monkey Goblin":"Small","Astomoi":"Small","Vine Leshy":"Small","Trox":"Large"};
 // Seed list for the Deity autocomplete — the 20 core Golarion deities. Not exhaustive
 // (empyreal lords, demon lords, archdevils, and regional deities exist too) but covers
 // the common case; typing any other name still works, it just won't autocomplete.
@@ -3907,7 +3927,8 @@ function defaultProfile(name){
   return {name, babList:[10], characterLevel:10, casterLevel:10, str:20,dex:12,con:14,int:10,wis:10,cha:18, weaponCategory:'manufactured', weapon:'longsword', customDice:'1d8', customThreat:'20',
     unarmedDice:'1d3', unarmedThreat:'20', naturalAttacks:[], naturalOrigin:'', naturalVSLineIndex:0, wildShapeFormId:'', wildShapeBaseStr:0, wildShapeBaseDex:0, wildShapeBaseCon:0,
     style:'twoHanded', atkStat:'str', dmgStat:'str', offWeaponCategory:'manufactured', offWeapon:'shortsword', offCustomDice:'1d6', offCustomThreat:'20', offUnarmedDice:'1d3', offUnarmedThreat:'20', offNaturalDice:'1d4', offNaturalThreat:'20', offCritMult:2, offEnh:0, offLight:true, mythicEnabled:false, mythicTier:0, currentTarget:'none',
-    enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, sourcesCustomized:false, race:'', alignment:'', deity:'', compositeBowStrRating:0};
+    enh:2, ammoEnh:0, critMult:2, active:[], custom:[], excludedSources:{}, sourcesCustomized:false, race:'', alignment:'', deity:'', compositeBowStrRating:0,
+    size:'Medium', sizeCustomized:false};
 }
 let store=loadStore();
 if(!store.deletedProfiles) store.deletedProfiles={};
@@ -3937,6 +3958,8 @@ store.profiles.forEach(p=>{
   // moment this runs -- same migration rule bard.html and the other
   // spellbook pages use for their own per-character excludedSources.
   if(p.sourcesCustomized===undefined) p.sourcesCustomized=Object.keys(p.excludedSources||{}).length>0;
+  if(p.size===undefined) p.size='Medium';
+  if(p.sizeCustomized===undefined) p.sizeCustomized=false;
   if(p.race===undefined) p.race='';
   if(p.alignment===undefined) p.alignment='';
   if(p.deity===undefined) p.deity='';
@@ -4059,6 +4082,8 @@ function loadProfileIntoUI(){
   $('ammoEnh').value=p.ammoEnh;
   $('race').value=p.race||''; $('alignment').value=p.alignment||'';
   $('deity').value=p.deity||'';
+  applyRaceSizeDefault(p);
+  $('size').value=p.size||'Medium';
   $('manufacturedBox').style.display = p.weaponCategory==='manufactured' ? 'grid' : 'none';
   $('unarmedBox').style.display = p.weaponCategory==='unarmed' ? 'grid' : 'none';
   $('naturalAttacksBox').style.display = p.weaponCategory==='natural' ? 'grid' : 'none';
@@ -4097,6 +4122,7 @@ function syncUIIntoProfile(){
   p.ammoEnh=+$('ammoEnh').value;
   p.race=$('race').value.trim(); p.alignment=$('alignment').value;
   p.deity=$('deity').value.trim();
+  p.size=$('size').value;
   saveStore();
 }
 function updateEnhLabel(){
@@ -4242,10 +4268,19 @@ $('roundFracUp').addEventListener('input', ()=>{
 $('race').addEventListener('input', ()=>{
   syncUIIntoProfile();
   applyRaceSourceExclusions();
+  applyRaceSizeDefault(currentProfile());
+  $('size').value=currentProfile().size;
   saveStore();
   renderSources(); renderCategories(); compute();
 });
 $('alignment').addEventListener('input', ()=>{ syncUIIntoProfile(); compute(); });
+$('size').addEventListener('change', ()=>{
+  let p=currentProfile();
+  p.sizeCustomized=true;
+  syncUIIntoProfile();
+  saveStore();
+  compute();
+});
 
 // ---------- Race / Sources ----------
 (function populateRaceList(){
@@ -4296,6 +4331,14 @@ function applyRaceSourceExclusions(){
     let allowed = true;
     if(allowed) delete p.excludedSources[src]; else p.excludedSources[src]=true;
   });
+}
+// Same padlock pattern as sources/sourcesCustomized: while the player hasn't manually
+// touched the Size field for this character, it follows the race field automatically
+// (defaulting to Medium for any race not in the curated RACE_DEFAULT_SIZE map). The
+// moment they pick a size by hand, sizeCustomized locks it independently of race.
+function applyRaceSizeDefault(p){
+  if(p.sizeCustomized) return;
+  p.size = RACE_DEFAULT_SIZE[p.race] || 'Medium';
 }
 
 function renderSources(){
@@ -4873,6 +4916,35 @@ const TWF_PENALTIES={ normal:{noFeat:{main:-6,off:-10}, feat:{main:-4,off:-4}}, 
 
 const ABIL_LABEL={str:'STR',dex:'DEX',con:'CON',int:'INT',wis:'WIS',cha:'CHA',none:'no ability'};
 
+// CMB = BAB + Strength modifier + special size modifier (Dexterity instead of Strength
+// for Tiny or smaller). CMD = 10 + BAB + Strength modifier + Dexterity modifier + special
+// size modifier. Uses ctx._finalAbilityMods (populated by resolveAbilityComposites inside
+// collectContributions, called just before this) so any active ability-score effect --
+// Rage, a mutagen, Enlarge Person's own Str/Dex changes, etc. -- is already folded in,
+// regardless of which ability is the character's selected attack/damage stat. Feat/ability
+// bonuses to a SPECIFIC maneuver (e.g. Improved Trip) are per the image's own text not
+// part of this base formula and aren't modeled here.
+function computeCMBCMD(ctx, p){
+  let baseIdx = SIZE_ORDER.indexOf(p.size);
+  if(baseIdx<0) baseIdx = SIZE_ORDER.indexOf('Medium');
+  // Enlarge Person / Animal Growth: an ACTUAL size-category increase (unlike Strong Jaw's
+  // "effective" size-up, which explicitly does NOT change actual size) -- temporarily
+  // shifts the size used for CMB/CMD's size modifier up one step while either is active.
+  let sizeUpActive = p.active.some(a=>(a.id==='enlarge-person'||a.id==='animal-growth') && a.on!==false);
+  let sizeIdx = sizeUpActive ? Math.min(baseIdx+1, SIZE_ORDER.length-1) : baseIdx;
+  let effSize = SIZE_ORDER[sizeIdx];
+  let sizeMod = SIZE_MOD[effSize];
+  let finalMods = ctx._finalAbilityMods || {};
+  let strMod = finalMods.str!==undefined ? finalMods.str : ctx.str;
+  let dexMod = finalMods.dex!==undefined ? finalMods.dex : ctx.dex;
+  let cmbAbilityMod = sizeIdx <= SIZE_ORDER.indexOf('Tiny') ? dexMod : strMod;
+  return {
+    cmb: ctx.bab + cmbAbilityMod + sizeMod,
+    cmd: 10 + ctx.bab + strMod + dexMod + sizeMod,
+    effSize, sizeUpActive, usedDexForCmb: sizeIdx <= SIZE_ORDER.indexOf('Tiny'),
+  };
+}
+
 function compute(){
   let p=currentProfile();
   let babList = (p.babList && p.babList.length) ? p.babList : [6];
@@ -4901,6 +4973,12 @@ function compute(){
   let offCritMultVal = +$('offCritMult').value || critMult;
 
   let {atkEntries,dmgEntries,breakdown,extraDiceList,furiousFocusOn,powerAttackOn,powerAttackAtkVal,powerAttackDmgVal,mythicVitalStrikeOn,mythicFuriousFocusOn,mythicPrecisionOn,flurryOfBlowsOn,flurryMonkLevel,flurryIsZen,smiteEvilOn,smiteDmgVal,smiteDoubles}=collectContributions(ctx);
+  let cmbCmd = computeCMBCMD(ctx, p);
+  $('cmb').textContent = signed(cmbCmd.cmb);
+  $('cmd').textContent = String(cmbCmd.cmd);
+  let cmbCmdNoteParts = ['Size: '+cmbCmd.effSize+(cmbCmd.sizeUpActive?' (base '+p.size+', +1 category from Enlarge Person/Animal Growth)':'')+'.'];
+  if(cmbCmd.usedDexForCmb) cmbCmdNoteParts.push('CMB uses your Dexterity modifier instead of Strength (Tiny or smaller).');
+  $('cmbCmdNote').textContent = cmbCmdNoteParts.join(' ');
   // Build the off-hand context only AFTER collectContributions has populated ctx's
   // derived switches (Mythic Power Attack/Deadly Aim, luck dependencies, effective
   // Charisma, etc.). Cloning it earlier left the off hand using the non-mythic/default
