@@ -89,6 +89,14 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
 .fycManualSummary strong{color:var(--gold2)}
 .fycPrimary[disabled]{opacity:.45;cursor:not-allowed}
 
+/* Search bar (named, multiple saved searches -- same pattern as Calc's character bar) */
+.fycSearchBar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px}
+.fycSearchBarLabel{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.fycSearchBarLabel select{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:5px 8px;font-size:.82rem;min-width:140px}
+.fycSearchBarActions{display:flex;gap:6px;flex-wrap:wrap}
+.fycSearchBarActions button{font-size:.72rem;padding:5px 10px;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;cursor:pointer}
+.fycSearchBarActions button[disabled]{opacity:.4;cursor:not-allowed}
+
 /* Sources panel (padlock pattern, shared with the spellbook pages) */
 .fycSourcesBox{margin:0 0 16px;position:relative}
 .fycSourcesBox summary{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:.8rem;list-style:none;display:inline-block}

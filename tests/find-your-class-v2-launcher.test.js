@@ -38,3 +38,15 @@ test('no non-English UI text in the v2 experience', () => {
 test('the v2 app.js is honest in its own comments about the missing concept-lexicon parser', () => {
   assert.match(appJs, /concept-lexicon.*parser/i);
 });
+
+// Regression: wireEvents() originally fell through to the 'click' listener
+// for any element that wasn't a TEXTAREA or INPUT -- silently including
+// <select> (the search-bar dropdown). A <select>'s value change never fires
+// 'click' in a way that reads the new value, so switching searches via the
+// dropdown did nothing until this was fixed to also treat SELECT as a
+// 'change'-listening element, same as INPUT.
+test('wireEvents attaches a "change" listener to SELECT elements, not "click" (the search-bar dropdown regression)', () => {
+  const wireEventsSrc = appJs.slice(appJs.indexOf('function wireEvents('), appJs.indexOf('function reRunLastSearchIfShowingResults('));
+  assert.match(wireEventsSrc, /SELECT/, 'wireEvents must special-case SELECT elements');
+  assert.match(wireEventsSrc, /'SELECT'[^;]*\?\s*'change'/, 'a SELECT element must be wired to the "change" event, not "click"');
+});

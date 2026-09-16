@@ -21,6 +21,13 @@
 // deliberately left out of this first interface -- per product decision,
 // those describe HOW demanding a character is to play, not WHAT it does,
 // and belong in a later optional "Additional preferences" section.
+//
+// Multiple named searches: a player can save several searches side by side
+// (New/Save As/Rename/Delete, via the search bar shown on every stage) --
+// the same "saved character" concept Calc and the spellbook pages use.
+// Each search has its own idea text, manual profile, and its own locked (or
+// global-following) Sources selection, since a player running several
+// campaigns with different GMs may need different sourcebooks per search.
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
     module.exports = factory(require('./loader.js'), require('./matcher.js'));
@@ -31,6 +38,7 @@
   'use strict';
 
   const STORAGE_KEY = 'pf_find_your_class_v2';
+  const DEFAULT_SEARCH_NAME = 'Search 1';
 
   const CAPABILITY_GROUPS = ['offence', 'battlefield', 'support', 'exploration'];
   const CAPABILITY_GROUP_LABELS = {
@@ -40,7 +48,13 @@
   const MANUAL_VALUES = ['absent', 'available', 'core'];
   const MANUAL_VALUE_LABELS = { 'not-relevant': 'Not relevant', absent: 'Absent', available: 'Available', core: 'Core' };
 
-  function createAppState() {
+  // A "search" is one player's complete draft: their idea text, their manual
+  // 24-criterion profile, and their own locked (or global-following) Sources
+  // selection. Multiple named searches can exist side by side -- the same
+  // "saved character" concept Calc and the spellbook pages already use,
+  // applied here so a player running several campaigns with different GMs
+  // can keep each one's criteria and allowed sourcebooks separate.
+  function createSearch() {
     return {
       schemaVersion: 2, stage: 'choice',
       idea: '',
@@ -57,6 +71,18 @@
       // may run several searches for different campaigns with different GMs.
       excludedSources: {}, sourcesCustomized: false,
     };
+  }
+
+  // The top-level persisted object: a dictionary of named searches plus
+  // which one is active. Mirrors Calc's {active, profiles} shape.
+  function createStore() {
+    return { active: DEFAULT_SEARCH_NAME, searches: { [DEFAULT_SEARCH_NAME]: createSearch() } };
+  }
+
+  function generateSearchName(existingNames) {
+    let n = 1;
+    while (existingNames.includes('Search ' + n)) n++;
+    return 'Search ' + n;
   }
 
   // Recompute excludedSources from the site-wide global Valid Sources
@@ -137,26 +163,39 @@
     return result;
   }
 
-  function serializeState(state) { return JSON.stringify(state); }
-  function deserializeState(json) {
+  function serializeStore(store) { return JSON.stringify(store); }
+
+  // Accepts either the current {active, searches} shape, or a pre-multi-
+  // search single-search blob (schemaVersion:2 at the top level, from before
+  // this feature existed) -- migrated in place by wrapping it as that
+  // player's one named search, so nobody's existing draft is lost when this
+  // feature ships.
+  function deserializeStore(json) {
     if (!json) return null;
-    try { const parsed = JSON.parse(json); return parsed && parsed.schemaVersion === 2 ? parsed : null; } catch (e) { return null; }
+    try {
+      const parsed = JSON.parse(json);
+      if (parsed && parsed.searches && typeof parsed.searches === 'object' && parsed.active) {
+        return Object.keys(parsed.searches).length ? parsed : null;
+      }
+      if (parsed && parsed.schemaVersion === 2) {
+        return { active: DEFAULT_SEARCH_NAME, searches: { [DEFAULT_SEARCH_NAME]: parsed } };
+      }
+      return null;
+    } catch (e) { return null; }
   }
-  // Uses localStorage (not sessionStorage): a player's search -- including
-  // their manual profile and this search's own locked Sources selection --
-  // should survive closing the tab/browser, the same way a saved character
-  // in Calc or a spellbook profile does. There is only one search slot for
-  // now (no named "saved searches" yet, unlike Calc's per-character list);
-  // this is a single persistent draft per browser.
-  function saveToStorage(state, storage) {
+  // Uses localStorage (not sessionStorage): a player's searches -- including
+  // each one's manual profile and its own locked Sources selection -- should
+  // survive closing the tab/browser, the same way saved characters in Calc
+  // or a spellbook do.
+  function saveStoreToStorage(store, storage) {
     const s = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
     if (!s) return;
-    try { s.setItem(STORAGE_KEY, serializeState(state)); } catch (e) {}
+    try { s.setItem(STORAGE_KEY, serializeStore(store)); } catch (e) {}
   }
-  function loadFromStorage(storage) {
+  function loadStoreFromStorage(storage) {
     const s = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
     if (!s) return null;
-    try { return deserializeState(s.getItem(STORAGE_KEY)); } catch (e) { return null; }
+    try { return deserializeStore(s.getItem(STORAGE_KEY)); } catch (e) { return null; }
   }
   function clearStorage(storage) {
     const s = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
@@ -185,17 +224,49 @@
   function mount(container, deps) {
     const criteriaIndex = V2.indexCriteria(deps.criteriaDoc);
     const profiles = deps.profiles;
-    let state = loadFromStorage() || createAppState();
-    applyGlobalSourcesToProfile(state, profiles);
+    let store = loadStoreFromStorage() || createStore();
+    if (!store.searches[store.active]) store.active = Object.keys(store.searches)[0];
+    Object.values(store.searches).forEach(s => applyGlobalSourcesToProfile(s, profiles));
+    let state = store.searches[store.active];
     let uiError = null;
 
     let sourcesPanelOpen = false;
 
-    function persist() { saveToStorage(state); }
+    function persist() { saveStoreToStorage(store); }
     function rerender() { persist(); render(); }
     function goTo(stage) { state.stage = stage; uiError = null; rerender(); }
 
+    function switchSearch(name) {
+      if (!store.searches[name] || name === store.active) return;
+      store.active = name;
+      state = store.searches[name];
+      uiError = null;
+      applyGlobalSourcesToProfile(state, profiles);
+      rerender();
+    }
+
     function escapeHtml(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+    // -----------------------------------------------------------------
+    // Search bar -- named, multiple saved searches (same "saved character"
+    // concept as Calc/the spellbook pages). Shown on every stage, above the
+    // Sources panel, since which search is active determines which
+    // Sources selection is in effect.
+    // -----------------------------------------------------------------
+    function renderSearchBar() {
+      const names = Object.keys(store.searches);
+      return `<div class="fycSearchBar">
+        <label class="fycSearchBarLabel">Search
+          <select data-action="search-select" aria-label="Choose a saved search">${names.map(n => `<option value="${escapeHtml(n)}"${n === store.active ? ' selected' : ''}>${escapeHtml(n)}</option>`).join('')}</select>
+        </label>
+        <div class="fycSearchBarActions">
+          <button type="button" data-action="search-new">New</button>
+          <button type="button" data-action="search-save-as">Save As&hellip;</button>
+          <button type="button" data-action="search-rename">Rename</button>
+          <button type="button" data-action="search-delete" ${names.length > 1 ? '' : 'disabled'}>Delete</button>
+        </div>
+      </div>`;
+    }
 
     // -----------------------------------------------------------------
     // Sources panel -- same padlock pattern as the spellbook pages'
@@ -374,7 +445,7 @@
         : state.stage === 'idea' ? renderIdea()
         : state.stage === 'profile' ? renderProfile()
         : renderResults();
-      container.innerHTML = renderSourcesPanel() + html;
+      container.innerHTML = renderSearchBar() + renderSourcesPanel() + html;
       wireEvents();
       if (state.stage === 'idea') {
         const textarea = container.querySelector('textarea');
@@ -387,7 +458,8 @@
 
     function wireEvents() {
       container.querySelectorAll('[data-action]').forEach(el => {
-        el.addEventListener(el.tagName === 'TEXTAREA' ? 'input' : (el.tagName === 'INPUT' ? 'change' : 'click'), () => handleAction(el));
+        const eventName = el.tagName === 'TEXTAREA' ? 'input' : (el.tagName === 'INPUT' || el.tagName === 'SELECT') ? 'change' : 'click';
+        el.addEventListener(eventName, () => handleAction(el));
       });
       const sourcesDetails = container.querySelector('.fycSourcesBox');
       if (sourcesDetails) sourcesDetails.addEventListener('toggle', () => { sourcesPanelOpen = sourcesDetails.open; });
@@ -401,7 +473,62 @@
 
     function handleAction(el) {
       const action = el.getAttribute('data-action');
-      if (action === 'sources-toggle') {
+      if (action === 'search-select') {
+        switchSearch(el.value);
+        return;
+      } else if (action === 'search-new') {
+        const suggested = generateSearchName(Object.keys(store.searches));
+        const name = typeof prompt === 'function' ? prompt('Name this search:', suggested) : suggested;
+        if (name === null) return;
+        const trimmed = name.trim();
+        if (!trimmed) { uiError = 'Enter a name for the new search.'; render(); return; }
+        if (store.searches[trimmed]) { uiError = `A search named "${trimmed}" already exists.`; render(); return; }
+        const fresh = createSearch();
+        applyGlobalSourcesToProfile(fresh, profiles);
+        store.searches[trimmed] = fresh;
+        store.active = trimmed;
+        state = fresh;
+        uiError = null;
+        rerender();
+        return;
+      } else if (action === 'search-save-as') {
+        const suggested = store.active + ' copy';
+        const name = typeof prompt === 'function' ? prompt('Save this search as:', suggested) : suggested;
+        if (name === null) return;
+        const trimmed = name.trim();
+        if (!trimmed) { uiError = 'Enter a name to save this search as.'; render(); return; }
+        if (store.searches[trimmed]) { uiError = `A search named "${trimmed}" already exists.`; render(); return; }
+        const copy = JSON.parse(JSON.stringify(state));
+        store.searches[trimmed] = copy;
+        store.active = trimmed;
+        state = copy;
+        uiError = null;
+        rerender();
+        return;
+      } else if (action === 'search-rename') {
+        const name = typeof prompt === 'function' ? prompt('Rename this search:', store.active) : null;
+        if (name === null) return;
+        const trimmed = name.trim();
+        if (!trimmed || trimmed === store.active) return;
+        if (store.searches[trimmed]) { uiError = `A search named "${trimmed}" already exists.`; render(); return; }
+        delete store.searches[store.active];
+        store.searches[trimmed] = state;
+        store.active = trimmed;
+        uiError = null;
+        rerender();
+        return;
+      } else if (action === 'search-delete') {
+        const names = Object.keys(store.searches);
+        if (names.length <= 1) return;
+        if (typeof confirm === 'function' && !confirm(`Delete "${store.active}"? This cannot be undone.`)) return;
+        delete store.searches[store.active];
+        const nextName = Object.keys(store.searches)[0];
+        store.active = nextName;
+        state = store.searches[nextName];
+        uiError = null;
+        rerender();
+        return;
+      } else if (action === 'sources-toggle') {
         const src = el.getAttribute('data-source');
         state.sourcesCustomized = true;
         if (el.checked) delete state.excludedSources[src];
@@ -477,21 +604,28 @@
       } else if (action === 'back-to-previous') {
         goTo(state.lastMode === 'profile' ? 'profile' : 'idea');
       } else if (action === 'start-over') {
-        if (typeof confirm === 'function' && !confirm('Start over? This clears all your selections.')) return;
-        state = createAppState();
-        clearStorage();
+        // Resets only the ACTIVE search, not the whole store -- with named
+        // searches now, wiping every saved search on one "start over" click
+        // would be a surprising, destructive action across unrelated
+        // campaigns. To delete a search entirely, use "Delete" instead.
+        if (typeof confirm === 'function' && !confirm(`Start over? This clears "${store.active}"'s selections.`)) return;
+        const fresh = createSearch();
+        applyGlobalSourcesToProfile(fresh, profiles);
+        store.searches[store.active] = fresh;
+        state = fresh;
         rerender();
       }
     }
 
     render();
-    return { getState: () => state };
+    return { getState: () => state, getStore: () => store };
   }
 
   return {
-    STORAGE_KEY, createAppState, totalActivePreferenceCount, totalActiveManualPreferenceCount,
+    STORAGE_KEY, DEFAULT_SEARCH_NAME, createSearch, createStore, generateSearchName,
+    totalActivePreferenceCount, totalActiveManualPreferenceCount,
     buildMatcherRequest, buildManualMatcherRequest, runMatching, runManualMatching,
-    serializeState, deserializeState, saveToStorage, loadFromStorage, clearStorage,
+    serializeStore, deserializeStore, saveStoreToStorage, loadStoreFromStorage, clearStorage,
     CAPABILITY_GROUPS, CAPABILITY_GROUP_LABELS, MANUAL_VALUES, MANUAL_VALUE_LABELS,
     applyGlobalSourcesToProfile, filterProfilesBySources,
     mount,

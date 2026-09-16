@@ -52,7 +52,7 @@ test('the four-state selector is exactly Not relevant / Absent / Available / Cor
 
 // Required test #11 (manual mode): archetypes show their parent class visibly.
 test('manual-profile results show "Parent class" for archetypes and no parent for class-paths', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   state.manualCapabilityPreferences['healing-recovery'] = 'core';
   const result = App.runManualMatching(state, profiles, criteriaIndex, { maxResults: 4 });
   const archetypeRec = result.recommendations.find(r => r.entityType === 'archetype');
@@ -64,7 +64,7 @@ test('manual-profile results show "Parent class" for archetypes and no parent fo
 // Required test #12 (manual mode): result explanations contain no score,
 // weight, decimal, percentage or internal criterion ID.
 test('manual-profile result explanations are in player language -- no scores, decimals, percentages or raw criterion ids', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   state.manualCapabilityPreferences['melee-combat'] = 'core';
   state.manualCapabilityPreferences['personal-durability'] = 'core';
   state.manualCapabilityPreferences['summoning-companions'] = 'absent';
@@ -87,7 +87,7 @@ test('manual-profile result explanations are in player language -- no scores, de
 // exclude a "forbidden source" candidate at all. This test documents that
 // state of affairs rather than faking a filter that doesn't exist.
 test('KNOWN GAP: no source/sourcebook filter exists in v2 yet -- both input modes see the unfiltered 140-profile catalogue', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   state.manualCapabilityPreferences['melee-combat'] = 'core';
   const request = App.buildManualMatcherRequest(state);
   assert.ok(!('sourceFilter' in request) && !('enabledSources' in request), 'no source-filter field exists on the manual request (nothing to preserve yet)');

@@ -28,13 +28,13 @@ function fakeStorage() {
 }
 
 test('a fresh state has no active preferences and matches nothing yet', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   assert.equal(App.totalActivePreferenceCount(state), 0);
   assert.doesNotThrow(() => App.buildMatcherRequest(state));
 });
 
 test('buildMatcherRequest carries all four preference buckets through to the matcher unchanged', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   state.capabilityPreferences['melee-combat'] = { desiredLevel: 'core', importance: 8 };
   state.practicalPreferences['build-complexity'] = { desiredLevel: 'low', importance: 6 };
   state.factPreferences['requires-alignment'] = { desired: false, importance: 4 };
@@ -45,13 +45,13 @@ test('buildMatcherRequest carries all four preference buckets through to the mat
 });
 
 test('a notRelevant capability preference does not count as active', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   state.capabilityPreferences['melee-combat'] = { notRelevant: true };
   assert.equal(App.totalActivePreferenceCount(state), 0);
 });
 
 test('an identity preference only counts as active in "prefer" mode, not require/exclude (those are pure gates)', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   state.identityPreferences.magicIdentity = { mode: 'require', values: ['arcane'] };
   assert.equal(App.totalActivePreferenceCount(state), 0);
   state.identityPreferences.magicIdentity = { mode: 'prefer', values: ['arcane'], importance: 5 };
@@ -59,32 +59,81 @@ test('an identity preference only counts as active in "prefer" mode, not require
 });
 
 test('initial state stage is "choice" (pick idea vs. profile), with both drafts empty', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   assert.equal(state.stage, 'choice');
   assert.equal(state.idea, '');
   assert.deepEqual(state.manualCapabilityPreferences, {});
 });
 
-test('the search persists to localStorage (not sessionStorage) under its own dedicated key, separate from v1 -- survives closing the browser, like a saved character does', () => {
+test('the store persists to localStorage (not sessionStorage) under its own dedicated key, separate from v1 -- survives closing the browser, like saved characters do', () => {
   const storage = fakeStorage();
-  const state = App.createAppState();
-  state.stage = 'results';
-  state.idea = 'A sneaky elf who likes to hide';
-  state.capabilityPreferences['stealth-subterfuge'] = { desiredLevel: 'core', importance: 9 };
-  state.manualCapabilityPreferences['melee-combat'] = 'core';
-  App.saveToStorage(state, storage);
+  const store = App.createStore();
+  const search = store.searches[store.active];
+  search.stage = 'results';
+  search.idea = 'A sneaky elf who likes to hide';
+  search.capabilityPreferences['stealth-subterfuge'] = { desiredLevel: 'core', importance: 9 };
+  search.manualCapabilityPreferences['melee-combat'] = 'core';
+  App.saveStoreToStorage(store, storage);
   assert.equal(App.STORAGE_KEY, 'pf_find_your_class_v2');
   assert.notEqual(App.STORAGE_KEY, 'pf_find_your_class_v1');
-  const restored = App.loadFromStorage(storage);
-  assert.equal(restored.stage, 'results');
-  assert.equal(restored.idea, 'A sneaky elf who likes to hide');
-  assert.deepEqual(restored.capabilityPreferences['stealth-subterfuge'], { desiredLevel: 'core', importance: 9 });
-  assert.equal(restored.manualCapabilityPreferences['melee-combat'], 'core');
+  const restored = App.loadStoreFromStorage(storage);
+  const restoredSearch = restored.searches[restored.active];
+  assert.equal(restoredSearch.stage, 'results');
+  assert.equal(restoredSearch.idea, 'A sneaky elf who likes to hide');
+  assert.deepEqual(restoredSearch.capabilityPreferences['stealth-subterfuge'], { desiredLevel: 'core', importance: 9 });
+  assert.equal(restoredSearch.manualCapabilityPreferences['melee-combat'], 'core');
+});
+
+// =====================================================================
+// Multiple named searches (New / Save As / Rename / Delete) -- same
+// "saved character" concept as Calc and the spellbook pages.
+// =====================================================================
+
+test('createStore starts with exactly one search, named "Search 1"', () => {
+  const store = App.createStore();
+  assert.deepEqual(Object.keys(store.searches), ['Search 1']);
+  assert.equal(store.active, 'Search 1');
+  assert.equal(store.searches['Search 1'].stage, 'choice');
+});
+
+test('generateSearchName finds the first unused "Search N" slot, skipping ones already taken', () => {
+  assert.equal(App.generateSearchName([]), 'Search 1');
+  assert.equal(App.generateSearchName(['Search 1']), 'Search 2');
+  assert.equal(App.generateSearchName(['Search 1', 'Search 2']), 'Search 3');
+  assert.equal(App.generateSearchName(['Search 2']), 'Search 1', 'must fill the first GAP, not just count entries');
+  assert.equal(App.generateSearchName(['My Campaign']), 'Search 1', 'a custom-named search does not block the default sequence');
+});
+
+test('deserializeStore migrates a legacy pre-multi-search single-search blob into a one-search store, so nobody\'s existing draft is lost', () => {
+  const legacy = App.createSearch();
+  legacy.idea = 'An old draft from before multiple searches existed';
+  legacy.manualCapabilityPreferences['melee-combat'] = 'core';
+  const migrated = App.deserializeStore(JSON.stringify(legacy));
+  assert.equal(migrated.active, App.DEFAULT_SEARCH_NAME);
+  assert.deepEqual(Object.keys(migrated.searches), [App.DEFAULT_SEARCH_NAME]);
+  assert.equal(migrated.searches[App.DEFAULT_SEARCH_NAME].idea, 'An old draft from before multiple searches existed');
+  assert.equal(migrated.searches[App.DEFAULT_SEARCH_NAME].manualCapabilityPreferences['melee-combat'], 'core');
+});
+
+test('deserializeStore passes an already-current {active, searches} store through unchanged', () => {
+  const store = App.createStore();
+  store.searches['My Campaign'] = App.createSearch();
+  store.active = 'My Campaign';
+  const roundTripped = App.deserializeStore(JSON.stringify(store));
+  assert.deepEqual(Object.keys(roundTripped.searches).sort(), ['My Campaign', 'Search 1']);
+  assert.equal(roundTripped.active, 'My Campaign');
+});
+
+test('deserializeStore rejects garbage and an empty searches map, returning null', () => {
+  assert.equal(App.deserializeStore(null), null);
+  assert.equal(App.deserializeStore('not json'), null);
+  assert.equal(App.deserializeStore(JSON.stringify({ foo: 'bar' })), null);
+  assert.equal(App.deserializeStore(JSON.stringify({ active: 'X', searches: {} })), null, 'a store with zero searches is not valid');
 });
 
 // --- Manual-profile mode: required test #10 (switching modes preserves both drafts) ---
 test('switching between idea and profile stages preserves both drafts -- neither is silently cleared', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   state.idea = 'A wandering swordsman';
   state.manualCapabilityPreferences['melee-combat'] = 'core';
   state.manualCapabilityPreferences['personal-durability'] = 'available';
@@ -98,7 +147,7 @@ test('switching between idea and profile stages preserves both drafts -- neither
 test('the app never mutates the source profiles or criteria doc it is given', () => {
   const profilesSnapshot = JSON.parse(JSON.stringify(profiles));
   const criteriaSnapshot = JSON.parse(JSON.stringify(criteriaDoc));
-  const state = App.createAppState();
+  const state = App.createSearch();
   state.capabilityPreferences['wilderness-affinity'] = { desiredLevel: 'core', importance: 8 };
   App.runMatching(state, profiles, criteriaIndex, { maxResults: 4 });
   assert.deepEqual(profiles, profilesSnapshot);
@@ -111,7 +160,7 @@ test('the app never mutates the source profiles or criteria doc it is given', ()
 
 // Required test #2: every criterion defaults to Not relevant.
 test('a fresh manual profile has every criterion defaulting to Not relevant (no key present)', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   for (const id of criteriaIndex.keys()) {
     assert.equal(state.manualCapabilityPreferences[id], undefined, `${id} must default to absent-from-map (= not relevant)`);
   }
@@ -121,7 +170,7 @@ test('a fresh manual profile has every criterion defaulting to Not relevant (no 
 // Required test #3: Not relevant criteria are omitted from the request (never
 // serialized as the literal string "not-relevant").
 test('buildManualMatcherRequest omits not-relevant criteria entirely -- never serializes "not-relevant" as a value', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   state.manualCapabilityPreferences['melee-combat'] = 'core';
   // a criterion explicitly reset to not-relevant (e.g. via the chip) must not appear at all
   state.manualCapabilityPreferences['ranged-combat'] = 'not-relevant';
@@ -135,7 +184,7 @@ test('buildManualMatcherRequest omits not-relevant criteria entirely -- never se
 // Required test #4: Absent is retained as an active preference (not treated
 // like not-relevant).
 test('buildManualMatcherRequest retains "absent" as a real, active preference value', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   state.manualCapabilityPreferences['summoning-companions'] = 'absent';
   const request = App.buildManualMatcherRequest(state);
   assert.equal(request.capabilityPreferences['summoning-companions'], 'absent');
@@ -145,7 +194,7 @@ test('buildManualMatcherRequest retains "absent" as a real, active preference va
 // Required test #5: search cannot start with zero active criteria (the guard
 // the UI's disabled button and handleAction both rely on).
 test('totalActiveManualPreferenceCount is 0 for an empty profile, which is what gates "Find my paths"', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   assert.equal(App.totalActiveManualPreferenceCount(state), 0);
   state.manualCapabilityPreferences['melee-combat'] = 'core';
   assert.equal(App.totalActiveManualPreferenceCount(state), 1);
@@ -153,7 +202,7 @@ test('totalActiveManualPreferenceCount is 0 for an empty profile, which is what 
 
 // Required test #9: manual and text input modes use the same candidate catalogue.
 test('runMatching (idea mode) and runManualMatching (profile mode) both search the exact same profiles array', () => {
-  const state = App.createAppState();
+  const state = App.createSearch();
   state.capabilityPreferences['melee-combat'] = { desiredLevel: 'core', importance: 8 };
   state.manualCapabilityPreferences['melee-combat'] = 'core';
   const ideaResult = App.runMatching(state, profiles, criteriaIndex, { maxResults: 4 });
