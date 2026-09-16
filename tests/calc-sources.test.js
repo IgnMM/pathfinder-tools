@@ -114,3 +114,58 @@ test('defaultProfile: new profiles start with sourcesCustomized:false (follow th
   assert.equal(p.sourcesCustomized, false);
   assert.deepEqual(plain(p.excludedSources), {});
 });
+
+// =====================================================================
+// MODIFIERS source-citation cleanliness. Some entries originally had
+// descriptive flavor text appended to their `source` field after a literal
+// newline (e.g. "Advanced Race Guide pg. 78\nYour success drives your
+// further actions."), left over from however the data was first compiled.
+// PFSources.bookName()'s page-suffix regex is anchored to the END of the
+// string, so any trailing text after "pg. NNN" defeats book-name extraction
+// entirely -- that citation's book could never be excluded by the Sources
+// filter. Cleaned by truncating at the first such newline, preserving every
+// multi-citation entry ("Book A pg. X, Book B pg. Y") intact.
+// =====================================================================
+
+function findMalformedSourceCitations() {
+  const start = html.indexOf('const MODIFIERS = [');
+  const end = html.indexOf('\n];', start);
+  const block = html.slice(start, end);
+  const re = /source\s*:\s*(['"])((?:\\.|(?!\1).)*)\1/g;
+  const malformed = [];
+  let m;
+  while ((m = re.exec(block))) {
+    const val = m[2];
+    const pgSuffixRe = /\s*pg\.?\s*\d+[a-zA-Z]?\s*$/i;
+    const hasPg = /pg\.?\s*\d+[a-zA-Z]?/i.test(val);
+    if (hasPg && !pgSuffixRe.test(val)) malformed.push(val);
+  }
+  return malformed;
+}
+
+test('REGRESSION: no MODIFIERS source citation has trailing text after "pg. NNN" -- every citation ends cleanly on a page reference', () => {
+  const malformed = findMalformedSourceCitations();
+  assert.deepEqual(malformed, [], `found ${malformed.length} malformed source citation(s), e.g. ${JSON.stringify((malformed[0] || '').slice(0, 80))}`);
+});
+
+test('REGRESSION: the specific "Advanced Race Guide pg. 78" citation (once concatenated with a stray description) is now clean and excludable by book', () => {
+  assert.match(html, /source:(['"])Advanced Race Guide pg\. 78\1/, 'the citation must be exactly "Advanced Race Guide pg. 78", with nothing appended');
+  assert.ok(!html.includes('Advanced Race Guide pg. 78\\nYour success drives'), 'the old concatenated description must no longer be attached to this citation');
+
+  // Confirm PFSources' real book-name extraction now excludes it correctly.
+  const pfSourcesPath = path.join(__dirname, '../assets/valid-sources.js');
+  const pfSourcesSrc = fs.readFileSync(pfSourcesPath, 'utf8');
+  const context = {
+    window: {},
+    document: { readyState: 'complete', getElementById: () => null, querySelectorAll: () => [], createElement: () => ({ setAttribute() {}, style: {} }), head: { appendChild() {} }, addEventListener() {} },
+  };
+  vm.createContext(context);
+  vm.runInContext(pfSourcesSrc, context);
+  const PFSources = context.window.PFSources;
+  assert.deepEqual(plain(PFSources.booksFor('Advanced Race Guide pg. 78')), ['Advanced Race Guide']);
+  assert.equal(PFSources.isAllowed('Advanced Race Guide pg. 78', PFSources.DEFAULT_EXCLUDED_BOOKS), false, 'Advanced Race Guide is excluded by the site default -- this citation must now be excludable');
+});
+
+test('REGRESSION: a multi-citation entry that was also malformed keeps BOTH book citations intact after cleaning', () => {
+  assert.match(html, /source:(['"])Inner Sea Gods pg\. 208, Faiths of Purity pg\. 24\1/, 'both citations must survive cleaning, comma-joined, exactly as before');
+});
