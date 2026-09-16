@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "find-your-class/v2/archetype-profile.schema.json",
+  "title": "Arcane Compass v2 archetype override profile",
+  "type": "object",
+  "required": ["id", "name", "parentClassId", "sourceCitationText", "sourceUrl", "capabilityOverrides", "practicalOverrides", "factOverrides", "identityAdds", "identityRemoves", "constraints", "evidence"],
+  "properties": {
+    "id": {"type":"string","pattern":"^[a-z0-9-]+:[a-z0-9-]+$"},
+    "name": {"type":"string","minLength":1},
+    "parentClassId": {"type":"string","minLength":1},
+    "sourceCitationText": {"type":"string","pattern":"^.+ pg\\. [0-9]+$"},
+    "sourceUrl": {"type":"string","pattern":"^https://aonprd\\.com/ArchetypeDisplay\\.aspx\\?FixedName="},
+    "capabilityOverrides": {
+      "type":"object",
+      "additionalProperties":{"enum":["absent","available","core"]}
+    },
+    "practicalOverrides": {
+      "type":"object",
+      "additionalProperties":{"enum":["low","medium","high"]}
+    },
+    "factOverrides": {
+      "type":"object",
+      "additionalProperties":{"type":"boolean"}
+    },
+    "identityAdds": {
+      "type":"object",
+      "additionalProperties":{"type":"array","items":{"type":"string"},"uniqueItems":true}
+    },
+    "identityRemoves": {
+      "type":"object",
+      "additionalProperties":{"type":"array","items":{"type":"string"},"uniqueItems":true}
+    },
+    "constraints": {
+      "type":"array",
+      "items": {
+        "type":"object",
+        "required":["type","kind","summary","evidenceSection"],
+        "properties": {
+          "type":{"type":"string"},
+          "kind":{"enum":["requirement","commitment","theme"]},
+          "summary":{"type":"string","minLength":1},
+          "evidenceSection":{"type":"string","minLength":1}
+        }
+      }
+    },
+    "professionIdentity": {
+      "type":"array",
+      "items": {
+        "type":"object",
+        "required":["value","evidenceSection","evidenceText"],
+        "properties": {
+          "value":{"type":"string","minLength":1},
+          "evidenceSection":{"type":"string","minLength":1},
+          "evidenceText":{"type":"string","minLength":1}
+        }
+      }
+    },
+    "evidence": {
+      "type":"array",
+      "items": {
+        "type":"object",
+        "required":["field","section","reason"],
+        "properties": {
+          "field":{"type":"string","minLength":1},
+          "section":{"type":"string","minLength":1},
+          "reason":{"type":"string","minLength":1}
+        }
+      }
+    },
+    "playerSummary":{"type":"string"},
+    "tradeoff":{"type":"string"},
+    "reviewStatus":{"enum":["draft","reviewed"]}
+  },
+  "additionalProperties": false
+}

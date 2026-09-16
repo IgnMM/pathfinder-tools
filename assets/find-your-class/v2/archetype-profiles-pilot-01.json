@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 2,
+  "status": "draft",
+  "inheritanceRule": "Every omitted field inherits the resolved parent class value.",
+  "profiles": [
+    {
+      "id":"alchemist:chirurgeon","name":"Chirurgeon","parentClassId":"alchemist","sourceCitationText":"Ultimate Magic pg. 18","sourceUrl":"https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Chirurgeon",
+      "capabilityOverrides":{"healing-recovery":"core"},"practicalOverrides":{},"factOverrides":{},"identityAdds":{},"identityRemoves":{},"constraints":[],
+      "professionIdentity":[{"value":"chirurgeon","evidenceSection":"Infused Curative","evidenceText":"The archetype is explicitly a chirurgeon specialising in curatives, Heal and restoring life."}],
+      "evidence":[{"field":"capabilityOverrides.healing-recovery","section":"Infused Curative / Power Over Death","reason":"Curative extracts become shareable automatically and later include breath of life."}],
+      "playerSummary":"An Alchemist who turns prepared curatives and medical expertise into a central party-healing role.","tradeoff":"It gives up several poison-related protections and abilities to specialise in treatment and recovery.","reviewStatus":"draft"
+    },
+    {
+      "id":"alchemist:beastmorph","name":"Beastmorph","parentClassId":"alchemist","sourceCitationText":"Advanced Player's Guide pg. 93","sourceUrl":"https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Beastmorph",
+      "capabilityOverrides":{"melee-combat":"core","combat-mobility":"core","transformation-shapeshifting":"core"},"practicalOverrides":{},"factOverrides":{"has-shapeshifting":true},"identityAdds":{"primaryDelivery":["natural attacks"]},"identityRemoves":{},"constraints":[],"professionIdentity":[],
+      "evidence":[{"field":"capabilityOverrides.transformation-shapeshifting","section":"Beastform Mutagen","reason":"The mutagen progressively grants alter self and beast shape abilities."},{"field":"capabilityOverrides.melee-combat","section":"Improved Beastform Mutagen","reason":"Beast-shape abilities and supported feral discoveries make physical transformed combat central."},{"field":"capabilityOverrides.combat-mobility","section":"Greater Beastform Mutagen","reason":"Repeated selectable beast-shape abilities materially broaden movement options."}],
+      "playerSummary":"A mutagen-focused Alchemist who adopts increasingly powerful animalistic forms and fights through physical transformation.","tradeoff":"It exchanges alchemical speed and poison resilience for a much more body-focused style.","reviewStatus":"draft"
+    },
+    {
+      "id":"antipaladin:fearmonger","name":"Fearmonger","parentClassId":"antipaladin","sourceCitationText":"Horror Adventures pg. 54","sourceUrl":"https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Fearmonger",
+      "capabilityOverrides":{},"practicalOverrides":{},"factOverrides":{},"identityAdds":{},"identityRemoves":{},"constraints":[],"professionIdentity":[],
+      "evidence":[],
+      "playerSummary":"An Antipaladin whose existing debuffing identity becomes explicitly centred on escalating fear and feeding on frightened enemies.","tradeoff":"The narrower fear focus is vulnerable when enemies resist or ignore fear, without changing the broader class role enough to alter a capability level.","reviewStatus":"draft"
+    },
+    {
+      "id":"arcanist:brown-fur-transmuter","name":"Brown-Fur Transmuter","parentClassId":"arcanist","sourceCitationText":"Advanced Class Guide pg. 77","sourceUrl":"https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Brown-Fur%20Transmuter",
+      "capabilityOverrides":{},"practicalOverrides":{},"factOverrides":{},"identityAdds":{},"identityRemoves":{},"constraints":[],"professionIdentity":[],
+      "evidence":[],
+      "playerSummary":"An Arcanist who makes transformation magic stronger and can place normally personal transmutations on allies.","tradeoff":"Several general-purpose exploits are surrendered for a focused transmutation identity.","reviewStatus":"draft"
+    },
+    {
+      "id":"barbarian:mad-dog","name":"Mad Dog","parentClassId":"barbarian","sourceCitationText":"Animal Archive pg. 7","sourceUrl":"https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Mad%20Dog",
+      "capabilityOverrides":{"summoning-companions":"core","tactical-leadership":"core"},"practicalOverrides":{"play-complexity":"high","resource-management":"high"},"factOverrides":{"has-animal-companion":true,"controls-additional-entity":true},"identityAdds":{"primaryDelivery":["companion"]},"identityRemoves":{},"constraints":[],"professionIdentity":[],
+      "evidence":[{"field":"capabilityOverrides.summoning-companions","section":"War Beast","reason":"A full-level animal companion becomes a defining part of the class."},{"field":"capabilityOverrides.tactical-leadership","section":"Pack Tactics / Ferocious Fetch","reason":"The Barbarian and war beast gain coordinated flanking and command-based manoeuvres."}],
+      "playerSummary":"A Barbarian who fights as a coordinated pair with a full animal companion rather than relying only on personal rage.","tradeoff":"Rage arrives later, several rage powers are lost and the player must manage a second combatant.","reviewStatus":"draft"
+    },
+    {
+      "id":"bard:archaeologist","name":"Archaeologist","parentClassId":"bard","sourceCitationText":"Ultimate Combat pg. 32","sourceUrl":"https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Archaeologist",
+      "capabilityOverrides":{"tactical-leadership":"absent","support-buffing":"available"},"practicalOverrides":{},"factOverrides":{},"identityAdds":{},"identityRemoves":{},"constraints":[],
+      "professionIdentity":[{"value":"archaeologist","evidenceSection":"Clever Explorer","evidenceText":"The archetype explicitly represents an archaeologist skilled with traps, locks and dangerous exploration."}],
+      "evidence":[{"field":"capabilityOverrides.tactical-leadership","section":"Bardic Performance","reason":"The archetype loses bardic performance and every performance type."},{"field":"capabilityOverrides.support-buffing","section":"Archaeologist's Luck","reason":"The replacement luck ability benefits only the Archaeologist rather than coordinating the party."}],
+      "playerSummary":"A self-reliant Bardic explorer with trap expertise, rogue talents and personal luck instead of party performances.","tradeoff":"It gives up the Bard's defining group inspiration and leadership role.","reviewStatus":"draft"
+    },
+    {
+      "id":"brawler:shield-champion","name":"Shield Champion","parentClassId":"brawler","sourceCitationText":"Advanced Class Guide pg. 86","sourceUrl":"https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Shield%20Champion",
+      "capabilityOverrides":{"ranged-combat":"core"},"practicalOverrides":{"equipment-dependence":"high"},"factOverrides":{"depends-on-specific-equipment":true},"identityAdds":{"primaryDelivery":["ranged weapon"]},"identityRemoves":{},"constraints":[],"professionIdentity":[],
+      "evidence":[{"field":"capabilityOverrides.ranged-combat","section":"Throw Shield / Returning Shield","reason":"Thrown and ricocheting shields become a fully supported recurring attack style."}],
+      "playerSummary":"A Brawler who makes the shield both a close-combat weapon and a returning ranged weapon.","tradeoff":"Its distinctive tactics depend heavily on carrying and improving the right shield.","reviewStatus":"draft"
+    },
+    {
+      "id":"cavalier:beast-rider","name":"Beast Rider","parentClassId":"cavalier","sourceCitationText":"Advanced Player's Guide pg. 33","sourceUrl":"https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Beast%20Rider",
+      "capabilityOverrides":{},"practicalOverrides":{},"factOverrides":{},"identityAdds":{},"identityRemoves":{},"constraints":[{"type":"companion-choice","kind":"commitment","summary":"The chosen exotic mount must be able to bear the rider and follows size and anatomy restrictions.","evidenceSection":"Exotic Mount"}],"professionIdentity":[],
+      "evidence":[],
+      "playerSummary":"A Cavalier who replaces the standard mount with a broader and increasingly exotic selection of animal companions.","tradeoff":"The class role remains recognisably Cavalier, while mount eligibility depends on rider size and suitable anatomy.","reviewStatus":"draft"
+    },
+    {
+      "id":"cleric:merciful-healer","name":"Merciful Healer","parentClassId":"cleric","sourceCitationText":"Ultimate Combat pg. 41","sourceUrl":"https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Merciful%20Healer",
+      "capabilityOverrides":{},"practicalOverrides":{"versatility":"medium"},"factOverrides":{},"identityAdds":{},"identityRemoves":{},
+      "constraints":[{"type":"deity","kind":"requirement","summary":"If the character worships a deity, that deity must grant the Healing domain.","evidenceSection":"Willing Healer"},{"type":"domain-choice","kind":"commitment","summary":"The Healing domain and positive-energy channeling are mandatory, and the second domain is lost.","evidenceSection":"Willing Healer"}],
+      "professionIdentity":[{"value":"healer","evidenceSection":"Combat Medic","evidenceText":"The archetype explicitly specialises in healing safely during combat and removing harmful conditions."}],
+      "evidence":[{"field":"practicalOverrides.versatility","section":"Willing Healer","reason":"Mandatory Healing domain, positive channeling and loss of the second domain narrow the Cleric's choices."}],
+      "playerSummary":"A Cleric explicitly committed to safe combat healing and removing an expanding range of harmful conditions.","tradeoff":"Healing was already core to Cleric, so the functional profile stays similar while domain and channel choices become much narrower.","reviewStatus":"draft"
+    },
+    {
+      "id":"druid:feyspeaker","name":"Feyspeaker","parentClassId":"druid","sourceCitationText":"Legacy of the First World pg. 22","sourceUrl":"https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Feyspeaker",
+      "capabilityOverrides":{"melee-combat":"available","social-influence":"core","practical-expertise":"core"},"practicalOverrides":{},"factOverrides":{},"identityAdds":{},"identityRemoves":{},"constraints":[],"professionIdentity":[],
+      "evidence":[{"field":"capabilityOverrides.melee-combat","section":"Fey Speech","reason":"Base attack bonus is reduced to half level and wild shape progression is delayed."},{"field":"capabilityOverrides.social-influence","section":"Fey Speech / Wild Mischief","reason":"Charisma casting, four social class skills and supernatural-style deception make social play central."},{"field":"capabilityOverrides.practical-expertise","section":"Fey Speech","reason":"Skill ranks rise to 6 plus Intelligence and the class skill list expands materially."}],
+      "playerSummary":"A Charisma-driven Druid with fey enchantments, illusions and unusually strong social and skill capabilities.","tradeoff":"It becomes a weaker direct combatant, loses spontaneous summoning and receives wild shape later.","reviewStatus":"draft"
+    }
+  ]
+}

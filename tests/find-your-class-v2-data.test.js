@@ -10,6 +10,8 @@ const batches = ['class-profiles-batch-01.json', 'class-profiles-batch-02.json',
 const batch = batches[0];
 const profiles = batches.flatMap(item => item.profiles);
 const criterionIds = criteria.criteria.map(item => item.id);
+const pilot = JSON.parse(fs.readFileSync(new URL('archetype-pilot-selection.json', root), 'utf8'));
+const archetypeBatch01 = JSON.parse(fs.readFileSync(new URL('archetype-profiles-pilot-01.json', root), 'utf8'));
 
 test('Compass v2 defines 24 unique three-level capabilities', () => {
   assert.equal(criterionIds.length, 24);
@@ -86,4 +88,45 @@ test('coarse capabilities still identify clear compass concepts', () => {
   assert.equal(bestFor(['melee-combat', 'personal-durability', 'protecting-allies']), 'paladin');
   assert.equal(bestFor(['wilderness-affinity', 'transformation-shapeshifting', 'summoning-companions']), 'druid');
   assert.equal(bestFor(['ranged-combat', 'offensive-magic', 'single-target-damage', 'area-multi-target-damage']), 'kineticist');
+});
+
+test('the archetype pilot selects 100 unique sourced records across all 40 classes', () => {
+  assert.equal(pilot.records.length, 100);
+  assert.equal(new Set(pilot.records.map(record => record.id)).size, 100);
+  assert.equal(Object.keys(pilot.classCounts).length, 40);
+  assert.ok(Math.min(...Object.values(pilot.classCounts)) >= 2);
+  for (const record of pilot.records) {
+    assert.match(record.sourceCitationText, /^.+ pg\. \d+$/);
+    assert.match(record.sourceUrl, /^https:\/\/aonprd\.com\/ArchetypeDisplay\.aspx\?FixedName=.+$/);
+  }
+});
+
+test('archetype overrides use valid fields, inherit everything omitted and may legitimately be empty', () => {
+  const selectedIds = new Set(pilot.records.map(record => record.id));
+  const classById = new Map(profiles.map(profile => [profile.id, profile]));
+  const allowedPractical = new Set(model.practicalRatings.map(item => item.id));
+  const allowedFacts = new Set(model.booleanFacts);
+  assert.equal(archetypeBatch01.profiles.length, 10);
+  assert.ok(archetypeBatch01.profiles.some(profile => Object.keys(profile.capabilityOverrides).length === 0));
+
+  for (const archetype of archetypeBatch01.profiles) {
+    assert.ok(selectedIds.has(archetype.id), archetype.id);
+    const parent = classById.get(archetype.parentClassId);
+    assert.ok(parent, archetype.parentClassId);
+    for (const [id, value] of Object.entries(archetype.capabilityOverrides)) {
+      assert.ok(criterionIds.includes(id), `${archetype.id}: ${id}`);
+      assert.ok(criteria.scale.values.includes(value), `${archetype.id}: ${value}`);
+      assert.notEqual(value, parent.capabilities[id], `${archetype.id}: redundant ${id}`);
+    }
+    for (const [id, value] of Object.entries(archetype.practicalOverrides)) {
+      assert.ok(allowedPractical.has(id), `${archetype.id}: ${id}`);
+      assert.ok(model.practicalScale.values.includes(value), `${archetype.id}: ${value}`);
+      assert.notEqual(value, parent.practical[id], `${archetype.id}: redundant ${id}`);
+    }
+    for (const [id, value] of Object.entries(archetype.factOverrides)) {
+      assert.ok(allowedFacts.has(id), `${archetype.id}: ${id}`);
+      assert.equal(typeof value, 'boolean');
+      assert.notEqual(value, parent.facts[id], `${archetype.id}: redundant ${id}`);
+    }
+  }
 });
