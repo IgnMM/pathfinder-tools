@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 2,
+  "status": "draft",
+  "inheritanceRule": "Every omitted field inherits the resolved parent class value.",
+  "profiles": [
+    {
+      "id": "antipaladin:iron-tyrant",
+      "name": "Iron Tyrant",
+      "parentClassId": "antipaladin",
+      "sourceCitationText": "Armor Master's Handbook pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Iron%20Tyrant",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "identityAdds.primaryDelivery",
+          "section": "Iron Fist",
+          "reason": "Gauntlets, spiked gauntlets and armour spikes gain level-based weapon damage."
+        }
+      ],
+      "playerSummary": "An armour-bound Antipaladin who turns gauntlets, armour spikes and a fiendish armour bond into his signature weapons and defence.",
+      "tradeoff": "Touch of corruption, cruelties and the normal fiendish boon are replaced by a narrower armour-centred package.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "arcanist:white-mage",
+      "name": "White Mage",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Guide pg. 79",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20White%20Mage",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-healing": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Spontaneous Healing / Greater Exploit",
+          "reason": "Cleric cure spells, breath of life and group fast healing become dedicated class options."
+        }
+      ],
+      "playerSummary": "An Arcanist who spends reservoir points and spell slots to deliver spontaneous cure magic, emergency revival and group fast healing.",
+      "tradeoff": "Two general exploits are committed to healing, narrowing some of the Arcanist's modular freedom.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "barbarian:titan-mauler",
+      "name": "Titan Mauler",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Combat pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Titan%20Mauler",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Titanic Rage",
+          "reason": "High-level rage can enlarge the Barbarian at an increased rage cost."
+        }
+      ],
+      "playerSummary": "A Barbarian specialised in oversized weapons and fighting creatures larger than herself, eventually growing during rage.",
+      "tradeoff": "Several defensive and movement features are exchanged for a weapon style with unusual penalties and equipment needs.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "bard:street-performer",
+      "name": "Street Performer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Player's Guide pg. 85",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Street%20Performer",
+      "capabilityOverrides": {
+        "support-buffing": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "street performer",
+          "evidenceSection": "Gladhanding / Streetwise",
+          "evidenceText": "The archetype explicitly earns money performing and specialises in crowds, disguises and gathering street information."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Bardic Performance",
+          "reason": "Several broad inspiration performances are replaced by concealment, self-protection and enemy disruption."
+        }
+      ],
+      "playerSummary": "A streetwise Bard who hides allies, manipulates crowds, changes disguises quickly and humiliates enemies through performance.",
+      "tradeoff": "Classic party-wide inspiration is reduced in favour of subterfuge and disruptive tricks.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "bloodrager:bloodrider",
+      "name": "Bloodrider",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 82",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Bloodrider",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "companion-choice",
+          "kind": "commitment",
+          "summary": "The feral companion must be suitable for the Bloodrager to ride.",
+          "evidenceSection": "Feral Mount"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Feral Mount / Blood Bond",
+          "reason": "A scaling rideable animal companion shares rage, resistances and personal spells."
+        }
+      ],
+      "playerSummary": "A mounted Bloodrager bonded to a feral companion that shares parts of the character's bloodrage and bloodline magic.",
+      "tradeoff": "The mount arrives at 5th level and replaces both forms of uncanny dodge.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "bloodrager:rageshaper",
+      "name": "Rageshaper",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 84",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Rageshaper",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Bestial Aspect / Furious Transformation",
+          "reason": "Polymorph forms gain stronger natural attacks, faster movement and extended duration during bloodrage."
+        }
+      ],
+      "playerSummary": "A Bloodrager who makes polymorph magic and bestial natural attacks a defining extension of bloodrage.",
+      "tradeoff": "Blood sanctuary and improved uncanny dodge are lost for a specialised transformed-combat package.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "brawler:hinyasi",
+      "name": "Hinyasi",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Blood of the Ancients pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Hinyasi",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "equipment-dependence": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "improvised weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "practicalOverrides.equipment-dependence",
+          "section": "Improvisation Training",
+          "reason": "Common improvised objects use unarmed-strike damage and become the archetype's supported weapons."
+        },
+        {
+          "field": "identityAdds.primaryDelivery",
+          "section": "Improvisation Training / Improvised Maneuver",
+          "reason": "Improvised weapons deliver both damage and free combat manoeuvre attempts."
+        }
+      ],
+      "playerSummary": "A Brawler who turns almost any nearby object into an effective weapon and uses it to trigger physical manoeuvres.",
+      "tradeoff": "Shield proficiency, knockout and close-weapon mastery are exchanged for the improvised style.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "cavalier:musketeer",
+      "name": "Musketeer",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Combat pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Musketeer",
+      "capabilityOverrides": {
+        "ranged-combat": "core",
+        "combat-mobility": "available",
+        "summoning-companions": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": false,
+        "has-firearms": true,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "The gifted firearm cannot be sold, and its destruction suppresses the feature while a replacement is made.",
+          "evidenceSection": "Gifted Firearm"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Gifted Firearm / Swift Powder",
+          "reason": "A scaling gifted firearm, reload support and focused full attacks replace mounted progression."
+        },
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Gifted Firearm",
+          "reason": "The standard Cavalier mount is explicitly replaced."
+        }
+      ],
+      "playerSummary": "A Cavalier who gives up the mount to make an order-granted pistol or musket the focus of combat.",
+      "tradeoff": "Mounted mobility and companion play disappear, while the character becomes highly dependent on one firearm.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "cleric:undead-lord",
+      "name": "Undead Lord",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Ultimate Magic pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Undead%20Lord",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "domain-choice",
+          "kind": "commitment",
+          "summary": "The Death domain and Undead subdomain, when available, are mandatory and the second domain is lost.",
+          "evidenceSection": "Death Magic"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "factOverrides.controls-additional-entity",
+          "section": "Corpse Companion",
+          "reason": "The Cleric creates and directly commands a persistent skeleton or zombie companion."
+        },
+        {
+          "field": "practicalOverrides.versatility",
+          "section": "Death Magic",
+          "reason": "Domain choice is fixed and the second Cleric domain is lost."
+        }
+      ],
+      "playerSummary": "A Cleric devoted to death magic with a persistent corpse companion and exceptional ability to command and restore undead.",
+      "tradeoff": "Domain choice is tightly fixed and much of the specialised healing benefits undead rather than living allies.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "druid:pack-lord",
+      "name": "Pack Lord",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Magic pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Pack%20Lord",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "companion-choice",
+          "kind": "commitment",
+          "summary": "An animal companion is mandatory and effective Druid levels must be permanently allocated among members of the pack.",
+          "evidenceSection": "Pack Bond"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [],
+      "playerSummary": "A Druid who divides normal companion progression among a personally managed pack and can perceive through its members.",
+      "tradeoff": "Several weaker companions replace one full-strength companion, allocated levels are difficult to redistribute and a domain cannot be chosen.",
+      "reviewStatus": "draft"
+    }
+  ]
+}

@@ -11,7 +11,9 @@ const batch = batches[0];
 const profiles = batches.flatMap(item => item.profiles);
 const criterionIds = criteria.criteria.map(item => item.id);
 const pilot = JSON.parse(fs.readFileSync(new URL('archetype-pilot-selection.json', root), 'utf8'));
-const archetypeBatch01 = JSON.parse(fs.readFileSync(new URL('archetype-profiles-pilot-01.json', root), 'utf8'));
+const archetypeBatches = ['archetype-profiles-pilot-01.json', 'archetype-profiles-pilot-02.json']
+  .map(file => JSON.parse(fs.readFileSync(new URL(file, root), 'utf8')));
+const archetypeProfiles = archetypeBatches.flatMap(item => item.profiles);
 
 test('Compass v2 defines 24 unique three-level capabilities', () => {
   assert.equal(criterionIds.length, 24);
@@ -106,11 +108,15 @@ test('archetype overrides use valid fields, inherit everything omitted and may l
   const classById = new Map(profiles.map(profile => [profile.id, profile]));
   const allowedPractical = new Set(model.practicalRatings.map(item => item.id));
   const allowedFacts = new Set(model.booleanFacts);
-  assert.equal(archetypeBatch01.profiles.length, 10);
-  assert.ok(archetypeBatch01.profiles.some(profile => Object.keys(profile.capabilityOverrides).length === 0));
+  assert.equal(archetypeProfiles.length, 20);
+  assert.equal(new Set(archetypeProfiles.map(profile => profile.id)).size, 20);
+  assert.ok(archetypeProfiles.some(profile => Object.keys(profile.capabilityOverrides).length === 0));
 
-  for (const archetype of archetypeBatch01.profiles) {
+  for (const archetype of archetypeProfiles) {
     assert.ok(selectedIds.has(archetype.id), archetype.id);
+    const selection = pilot.records.find(record => record.id === archetype.id);
+    assert.equal(archetype.sourceCitationText, selection.sourceCitationText, `${archetype.id}: citation`);
+    assert.equal(archetype.sourceUrl, selection.sourceUrl, `${archetype.id}: URL`);
     const parent = classById.get(archetype.parentClassId);
     assert.ok(parent, archetype.parentClassId);
     for (const [id, value] of Object.entries(archetype.capabilityOverrides)) {
