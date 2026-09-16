@@ -41,6 +41,74 @@
     "elementThemes": ["acid","air","cold","earth","electricity","fire","water","wood","void","mixed","none","other"],
     "professionIdentity": []
   },
+  "enemySpecialization": {
+    "purpose": "Sparse mechanical aptitude against a requested kind of enemy. This is separate from spiritualThemes: commanding, becoming or studying a creature does not imply being especially effective against it.",
+    "scale": ["absent", "available", "core"],
+    "omissionRule": "An omitted target means no documented special advantage against it; do not populate every target with absent.",
+    "levels": {
+      "available": "The class or archetype can gain or already has a meaningful advantage against this target, but it is conditional, optional or secondary.",
+      "core": "The advantage is built in, broadly reliable against the target and central to the option's identity or performance."
+    },
+    "targets": [
+      "undead",
+      "fiends",
+      "celestials",
+      "demons",
+      "devils",
+      "daemons",
+      "outsiders",
+      "dragons",
+      "aberrations",
+      "constructs",
+      "fey",
+      "animals",
+      "magical beasts",
+      "monstrous humanoids",
+      "humanoids",
+      "elementals",
+      "plants",
+      "oozes",
+      "vermin",
+      "evil creatures",
+      "good creatures",
+      "user-chosen creature type"
+    ],
+    "targetParents": {
+      "demons": ["fiends", "outsiders"],
+      "devils": ["fiends", "outsiders"],
+      "daemons": ["fiends", "outsiders"],
+      "fiends": ["outsiders"]
+    },
+    "conceptAliases": {
+      "undead": ["undead", "zombie", "zombies", "skeleton", "skeletons", "vampire", "vampires", "lich", "liches"],
+      "fiends": ["fiend", "fiends", "infernal creature", "infernal creatures"],
+      "celestials": ["celestial", "celestials", "angel", "angels"],
+      "demons": ["demon", "demons", "demonic creature", "demonic creatures"],
+      "devils": ["devil", "devils", "diabolic creature", "diabolic creatures"],
+      "daemons": ["daemon", "daemons"],
+      "dragons": ["dragon", "dragons"],
+      "aberrations": ["aberration", "aberrations"],
+      "constructs": ["construct", "constructs", "golem", "golems"],
+      "fey": ["fey"],
+      "animals": ["animal", "animals"],
+      "magical beasts": ["magical beast", "magical beasts"],
+      "monstrous humanoids": ["monstrous humanoid", "monstrous humanoids"],
+      "humanoids": ["humanoid", "humanoids"],
+      "elementals": ["elemental", "elementals"],
+      "plants": ["plant creature", "plant creatures"],
+      "oozes": ["ooze", "oozes"],
+      "vermin": ["vermin"],
+      "evil creatures": ["evil creature", "evil creatures"],
+      "good creatures": ["good creature", "good creatures"]
+    },
+    "matchingRules": [
+      "Prefer an exact target match; a broader parent target remains a valid but less specific match.",
+      "user-chosen creature type can match any requested creature type, but the recommendation must disclose that the player must make or activate that choice.",
+      "Alignment-based abilities only support a creature target when they reliably apply to that target; otherwise use available and disclose the condition.",
+      "Never infer hunting aptitude from spiritualThemes or narrative theme alone."
+    ],
+    "evidenceRule": "Every non-empty class assignment and every archetype override must identify the source feature that supports it."
+  },
   "professionIdentityRules": [
     "Assign only when the official name or source text explicitly presents the archetype as that profession or vocation.",
     "Do not infer a profession from a skill rank, class skill or thematic resemblance alone.",

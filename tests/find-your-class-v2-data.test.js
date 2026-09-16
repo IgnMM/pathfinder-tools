@@ -51,6 +51,40 @@ test('calibration identities use the declared categorical vocabularies', () => {
   }
 });
 
+test('enemy specializations are sparse, sourced and distinct from creature themes', () => {
+  const specialization = model.enemySpecialization;
+  const allowedTargets = new Set(specialization.targets);
+  const allowedLevels = new Set(specialization.scale);
+  assert.equal(allowedTargets.size, specialization.targets.length);
+
+  for (const [child, parents] of Object.entries(specialization.targetParents)) {
+    assert.ok(allowedTargets.has(child), child);
+    for (const parent of parents) assert.ok(allowedTargets.has(parent), `${child}/${parent}`);
+  }
+  for (const [target, aliases] of Object.entries(specialization.conceptAliases)) {
+    assert.ok(allowedTargets.has(target), target);
+    assert.ok(aliases.length > 0, target);
+  }
+
+  for (const profile of profiles) {
+    const assignments = profile.enemySpecializations || {};
+    const evidence = profile.enemySpecializationEvidence || {};
+    assert.deepEqual(Object.keys(evidence).sort(), Object.keys(assignments).sort(), profile.id);
+    for (const [target, level] of Object.entries(assignments)) {
+      assert.ok(allowedTargets.has(target), `${profile.id}: ${target}`);
+      assert.ok(allowedLevels.has(level), `${profile.id}: ${level}`);
+      assert.notEqual(level, 'absent', `${profile.id}: sparse base profiles omit absent targets`);
+      assert.ok(evidence[target].feature, `${profile.id}: ${target} feature`);
+      assert.ok(evidence[target].reason, `${profile.id}: ${target} reason`);
+    }
+  }
+
+  assert.equal(profiles.find(profile => profile.id === 'ranger').enemySpecializations['user-chosen creature type'], 'core');
+  assert.equal(profiles.find(profile => profile.id === 'inquisitor').enemySpecializations['user-chosen creature type'], 'core');
+  assert.equal(profiles.find(profile => profile.id === 'paladin').enemySpecializations.fiends, 'core');
+  assert.equal(profiles.find(profile => profile.id === 'cleric').enemySpecializations.undead, 'available');
+});
+
 test('the calibration catalogue contains exactly 40 unique class profiles', () => {
   const expected = [
     'alchemist', 'antipaladin', 'arcanist', 'barbarian', 'bard', 'bloodrager', 'brawler', 'cavalier',
@@ -133,6 +167,16 @@ test('archetype overrides use valid fields, inherit everything omitted and may l
       assert.ok(allowedFacts.has(id), `${archetype.id}: ${id}`);
       assert.equal(typeof value, 'boolean');
       assert.notEqual(value, parent.facts[id], `${archetype.id}: redundant ${id}`);
+    }
+    for (const [target, value] of Object.entries(archetype.enemySpecializationOverrides || {})) {
+      assert.ok(model.enemySpecialization.targets.includes(target), `${archetype.id}: ${target}`);
+      assert.ok(model.enemySpecialization.scale.includes(value), `${archetype.id}: ${value}`);
+      const inherited = (parent.enemySpecializations || {})[target] || 'absent';
+      assert.notEqual(value, inherited, `${archetype.id}: redundant enemy specialization ${target}`);
+      assert.ok(
+        archetype.evidence.some(item => item.field === `enemySpecializationOverrides.${target}`),
+        `${archetype.id}: missing enemy-specialization evidence for ${target}`
+      );
     }
   }
 });

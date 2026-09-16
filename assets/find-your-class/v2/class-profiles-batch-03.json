@@ -403,6 +403,15 @@
         "depends-on-specific-equipment": true,
         "controls-additional-entity": true
       },
+      "enemySpecializations": {
+        "user-chosen creature type": "core"
+      },
+      "enemySpecializationEvidence": {
+        "user-chosen creature type": {
+          "feature": "Favored Enemy",
+          "reason": "The Ranger chooses creature types and gains scaling bonuses to relevant skills and weapon damage against them."
+        }
+      },
       "identity": {
         "magicIdentity": [
           "nature",

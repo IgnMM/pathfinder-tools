@@ -832,6 +832,15 @@
           "spellcasting"
         ]
       },
+      "enemySpecializations": {
+        "user-chosen creature type": "core"
+      },
+      "enemySpecializationEvidence": {
+        "user-chosen creature type": {
+          "feature": "Bane",
+          "reason": "When Bane is activated, the Inquisitor chooses the creature type against which the weapon gains the bane property."
+        }
+      },
       "calibrationRole": "Pending cross-class normalization."
     },
     {

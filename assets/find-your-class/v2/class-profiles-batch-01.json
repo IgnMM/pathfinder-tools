@@ -336,6 +336,15 @@
           "spellcasting",
           "melee weapon"
         ]
+      },
+      "enemySpecializations": {
+        "undead": "available"
+      },
+      "enemySpecializationEvidence": {
+        "undead": {
+          "feature": "Channel Energy",
+          "reason": "A Cleric who channels positive energy can choose to damage undead, but the energy choice depends on deity and alignment."
+        }
       }
     },
     {
@@ -588,6 +597,30 @@
         "primaryDelivery": [
           "melee weapon"
         ]
+      },
+      "enemySpecializations": {
+        "evil creatures": "core",
+        "fiends": "core",
+        "undead": "available",
+        "dragons": "available"
+      },
+      "enemySpecializationEvidence": {
+        "evil creatures": {
+          "feature": "Smite Evil",
+          "reason": "Smite Evil provides a built-in attack and damage advantage against an evil target."
+        },
+        "fiends": {
+          "feature": "Smite Evil",
+          "reason": "The first successful smite attack gains the larger damage bonus against evil outsiders, which includes fiends."
+        },
+        "undead": {
+          "feature": "Smite Evil",
+          "reason": "The first successful smite attack gains the larger damage bonus against undead, but Smite Evil still requires an evil target."
+        },
+        "dragons": {
+          "feature": "Smite Evil",
+          "reason": "The first successful smite attack gains the larger damage bonus against evil-aligned dragons only."
+        }
       }
     },
     {
