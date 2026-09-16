@@ -40,6 +40,70 @@ test('practicalFit: distance-based, exact match scores 1, one step off scores 0.
   assert.equal(Matcher.practicalFit('low', 'high'), 0);
 });
 
+// =====================================================================
+// Manual-profile mode (request.inputMode === 'manual-profile'): symmetric
+// distance-based fit over absent=0/available=1/core=2, deliberately
+// DIFFERENT from capabilityFit above (which treats "available" as a
+// satisfied threshold for the idea/concept-text mode). Both modes share
+// rankCandidates/selectRoles/buildResult -- only scoreCandidate branches.
+// =====================================================================
+
+function manualReq(capabilityPreferences) {
+  return { inputMode: 'manual-profile', capabilityPreferences };
+}
+
+test('manualCapabilityFit matches the spec\'s full 3x3 symmetric distance table', () => {
+  assert.equal(Matcher.manualCapabilityFit('absent', 'absent'), 1.0);
+  assert.equal(Matcher.manualCapabilityFit('absent', 'available'), 0.5);
+  assert.equal(Matcher.manualCapabilityFit('absent', 'core'), 0.0);
+  assert.equal(Matcher.manualCapabilityFit('available', 'absent'), 0.5);
+  assert.equal(Matcher.manualCapabilityFit('available', 'available'), 1.0);
+  assert.equal(Matcher.manualCapabilityFit('available', 'core'), 0.5);
+  assert.equal(Matcher.manualCapabilityFit('core', 'absent'), 0.0);
+  assert.equal(Matcher.manualCapabilityFit('core', 'available'), 0.5);
+  assert.equal(Matcher.manualCapabilityFit('core', 'core'), 1.0);
+});
+
+// Required test #6: exact candidate matches rank above partial matches.
+test('manual mode: a candidate matching every desired level exactly outranks one that only partially matches', () => {
+  const exact = { id: 'exact', capabilities: { 'melee-combat': 'core', 'personal-durability': 'core' } };
+  const partial = { id: 'partial', capabilities: { 'melee-combat': 'core', 'personal-durability': 'available' } };
+  const request = manualReq({ 'melee-combat': 'core', 'personal-durability': 'core' });
+  const [a, b] = Matcher.rankCandidates([partial, exact], request);
+  assert.equal(a.profile.id, 'exact');
+  assert.equal(a.overallFit, 1);
+  assert.ok(b.overallFit < a.overallFit);
+});
+
+// Required test #7: core vs. absent is a stronger mismatch than core vs. available.
+test('manual mode: desiring core but getting absent scores worse than desiring core but getting available', () => {
+  const gotAbsent = { id: 'got-absent', capabilities: { 'melee-combat': 'absent' } };
+  const gotAvailable = { id: 'got-available', capabilities: { 'melee-combat': 'available' } };
+  const request = manualReq({ 'melee-combat': 'core' });
+  const scoredAbsent = Matcher.scoreCandidateManual(gotAbsent, request);
+  const scoredAvailable = Matcher.scoreCandidateManual(gotAvailable, request);
+  assert.ok(scoredAbsent.overallFit < scoredAvailable.overallFit, 'core-vs-absent must be a worse mismatch than core-vs-available');
+  assert.equal(scoredAbsent.overallFit, 0);
+  assert.equal(scoredAvailable.overallFit, 0.5);
+});
+
+test('manual mode: all active criteria are weighted equally (no 1-10 importance in this mode)', () => {
+  const candidate = { id: 'c', capabilities: { 'melee-combat': 'core', 'ranged-combat': 'absent', 'offensive-magic': 'available' } };
+  const request = manualReq({ 'melee-combat': 'core', 'ranged-combat': 'core', 'offensive-magic': 'core' });
+  const scored = Matcher.scoreCandidateManual(candidate, request);
+  // fits: melee 1.0, ranged 0.0, magic 0.5 -> average 0.5, unweighted
+  assert.equal(scored.overallFit, 0.5);
+});
+
+test('manual mode: not-relevant criteria are excluded from both numerator and denominator', () => {
+  const candidate = { id: 'c', capabilities: { 'melee-combat': 'absent', 'ranged-combat': 'core' } };
+  // 'ranged-combat' is omitted entirely from the request (= not relevant)
+  const request = manualReq({ 'melee-combat': 'core' });
+  const scored = Matcher.scoreCandidateManual(candidate, request);
+  assert.equal(scored.overallFit, 0, 'only melee-combat (core desired, absent actual = 0 fit) should count');
+  assert.equal(scored.weightTotal, 1, 'only 1 active criterion, ranged-combat must not be counted even though the candidate has it');
+});
+
 test('a request for strong melee + durability + protecting allies ranks Paladin highest among real class-paths', () => {
   const request = req({
     capabilityPreferences: {

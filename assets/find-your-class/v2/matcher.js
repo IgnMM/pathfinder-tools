@@ -47,7 +47,45 @@
 
   function factFit(desired, actual) { return desired === actual ? 1 : 0; }
 
+  // ---------------------------------------------------------------------
+  // Manual-profile mode (request.inputMode === 'manual-profile'): the player
+  // sets each of the 24 capability criteria directly to absent/available/core
+  // (or leaves it unset = not relevant), with no separate 1-10 importance --
+  // the chosen level already IS the full preference. Per spec, this uses a
+  // symmetric distance-based fit over the ordered scale absent=0/available=1/
+  // core=2, and every active criterion is weighted equally. This is
+  // deliberately a DIFFERENT formula from capabilityFit above (which treats
+  // "available" as a satisfied threshold for the concept-text/idea mode) --
+  // the two input modes score differently by design, per the manual-profile
+  // spec, even though both flow through the same rankCandidates/selectRoles/
+  // buildResult pipeline below.
+  // ---------------------------------------------------------------------
+  const CAPABILITY_VALUE_RANK = { absent: 0, available: 1, core: 2 };
+
+  function manualCapabilityFit(desiredValue, candidateLevel) {
+    const desired = CAPABILITY_VALUE_RANK[desiredValue];
+    const candidate = CAPABILITY_VALUE_RANK[candidateLevel];
+    const distance = Math.abs(desired - candidate);
+    return 1 - distance / 2;
+  }
+
+  function scoreCandidateManual(profile, request) {
+    let sum = 0;
+    let count = 0;
+    const matchedCriteria = [];
+    for (const [id, desiredValue] of Object.entries(request.capabilityPreferences || {})) {
+      if (!desiredValue || desiredValue === 'not-relevant') continue;
+      const fit = manualCapabilityFit(desiredValue, profile.capabilities[id]);
+      sum += fit; count++;
+      if (fit >= 0.75) matchedCriteria.push({ kind: 'capability', id, fit, desiredValue });
+    }
+    const overallFit = count > 0 ? sum / count : 0;
+    return { overallFit, matchedCriteria, weightTotal: count };
+  }
+
   function scoreCandidate(profile, request) {
+    if (request.inputMode === 'manual-profile') return scoreCandidateManual(profile, request);
+
     let weightedSum = 0;
     let weightTotal = 0;
     const matchedCriteria = [];
@@ -57,7 +95,7 @@
       const w = importanceWeight(pref.importance);
       const fit = capabilityFit(pref.desiredLevel, profile.capabilities[id]);
       weightedSum += fit * w; weightTotal += w;
-      if (fit >= 0.75) matchedCriteria.push({ kind: 'capability', id, fit });
+      if (fit >= 0.75) matchedCriteria.push({ kind: 'capability', id, fit, desiredValue: pref.desiredLevel });
     }
     for (const [id, pref] of Object.entries(request.practicalPreferences || {})) {
       if (!pref || pref.notRelevant) continue;
@@ -164,10 +202,20 @@
     return fa.classId !== fb.classId || fa.primaryDelivery !== fb.primaryDelivery || fa.magic !== fb.magic;
   }
 
+  // INTERPRETATION: manual-profile mode has no per-criterion importance
+  // score, so "top preference" here is approximated as any 'core' pick
+  // (treated as maximum importance) -- 'available'/'absent' picks are
+  // equally-weighted preferences, not top ones, for this role-selection
+  // purpose only. This does not affect scoreCandidateManual's overall fit,
+  // which weights every active criterion equally per spec.
   function topPreferenceIds(request) {
     const all = [];
     for (const [id, pref] of Object.entries(request.capabilityPreferences || {})) {
-      if (pref && !pref.notRelevant) all.push({ kind: 'capability', id, importance: pref.importance || 5 });
+      if (request.inputMode === 'manual-profile') {
+        if (pref && pref !== 'not-relevant') all.push({ kind: 'capability', id, importance: pref === 'core' ? 10 : 5 });
+      } else if (pref && !pref.notRelevant) {
+        all.push({ kind: 'capability', id, importance: pref.importance || 5 });
+      }
     }
     if (!all.length) return [];
     const maxImportance = Math.max(...all.map(p => p.importance));
@@ -233,14 +281,28 @@
     return role === 'best-overall' ? 'provisional' : 'specialised-alternative';
   }
 
+  // Explanation priority (spec, manual-profile mode): core matches first,
+  // then active absent matches, then available matches, then fit as a
+  // tiebreaker. Entries with no desiredValue (older/idea-mode matches that
+  // predate this field) sort last within their fit tier.
+  const CAPABILITY_EXPLANATION_PRIORITY = { core: 0, absent: 1, available: 2 };
+
   function buildWhyItFits(candidate, criteriaIndex) {
     const sentences = candidate.matchedCriteria
       .filter(m => m.kind === 'capability')
-      .sort((a, b) => b.fit - a.fit)
+      .sort((a, b) => {
+        const pa = CAPABILITY_EXPLANATION_PRIORITY[a.desiredValue];
+        const pb = CAPABILITY_EXPLANATION_PRIORITY[b.desiredValue];
+        const ra = pa === undefined ? 3 : pa, rb = pb === undefined ? 3 : pb;
+        if (ra !== rb) return ra - rb;
+        return b.fit - a.fit;
+      })
       .slice(0, 2)
       .map(m => {
         const c = criteriaIndex.get(m.id);
-        return `You want ${lowerFirst(c ? c.playerLabel : m.id)}, and this path delivers.`;
+        const label = lowerFirst(c ? c.playerLabel : m.id);
+        if (m.desiredValue === 'absent') return `You asked to avoid ${label}, and this path does not depend on it.`;
+        return `You want ${label}, and this path delivers.`;
       });
     if (sentences.length) return sentences;
     return [`${candidate.profile.name} is the strongest connection to what you asked for, even without one single standout match.`];
@@ -285,8 +347,9 @@
   }
 
   return {
-    scoreCandidate, evaluateEligibility, rankCandidates, selectRoles, matchProfiles,
-    capabilityFit, practicalFit, factFit, importanceWeight, constraintId,
+    scoreCandidate, scoreCandidateManual, evaluateEligibility, rankCandidates, selectRoles, matchProfiles,
+    capabilityFit, manualCapabilityFit, practicalFit, factFit, importanceWeight, constraintId,
+    CAPABILITY_VALUE_RANK,
   };
 }));
 

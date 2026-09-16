@@ -3,7 +3,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#10151d">
 <style>
-:root{--bg:#0f1117;--panel:#181c24;--panel2:#202633;--text:#eef2f7;--muted:#9ba7b7;--gold:#d5ad55;--gold2:#f1d78b;--border:#313949;--accent:#5a4318}
+:root{--bg:#0f1117;--panel:#181c24;--panel2:#202633;--text:#eef2f7;--muted:#9ba7b7;--gold:#d5ad55;--gold2:#f1d78b;--border:#313949;--accent:#5a4318;--arcane-blue:#4a7ba6;--arcane-blue2:#6fa3cf;--absent-red:#6b4646;--absent-red2:#8a6262}
 *{box-sizing:border-box}
 html,body{min-height:100%;margin:0}
 body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
@@ -46,6 +46,48 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
 .fycResultActions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
 @media(max-width:560px){main{padding-left:16px;padding-right:16px}.fycImpBtn{width:24px;height:24px}}
 .fycTextarea{width:100%;min-height:100px;padding:12px;font-family:inherit;font-size:.95rem;border:1px solid var(--border);border-radius:8px;background:var(--panel);color:var(--text);line-height:1.5;resize:vertical}
+
+/* Choice screen */
+.fycChoiceGrid{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:24px}
+.fycChoiceOr{align-self:center;color:var(--muted);font-size:.85rem;text-transform:lowercase}
+.fycChoiceCard{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px 20px;cursor:pointer;text-align:left;color:var(--text);display:flex;flex-direction:column;gap:8px;transition:border-color .15s,transform .15s}
+.fycChoiceCard:hover{border-color:var(--gold);transform:translateY(-2px)}
+.fycChoiceTitle{font-family:'Cinzel Decorative',serif;font-size:1.1rem;color:var(--gold2)}
+.fycChoiceDesc{color:var(--muted);font-size:.85rem;line-height:1.4}
+@media(max-width:640px){.fycChoiceGrid{grid-template-columns:1fr}.fycChoiceOr{padding:2px 0}}
+
+/* Manual profile builder */
+.fycManualGroups{display:flex;flex-direction:column;gap:14px;margin-bottom:16px}
+.fycManualGroup{background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.fycManualGroupHead{width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--panel2);border:none;color:var(--text);padding:12px 14px;cursor:pointer;text-align:left}
+.fycManualGroupTitle{font-family:'Cinzel',Georgia,serif;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--gold)}
+.fycManualGroupSummary{color:var(--muted);font-size:.78rem}
+.fycManualCards{list-style:none;margin:0;padding:10px;display:flex;flex-direction:column;gap:8px}
+.fycManualCard{border:1px solid var(--border);border-radius:8px;background:var(--bg)}
+.fycManualCard--absent{border-color:var(--absent-red2)}
+.fycManualCard--available{border-color:var(--arcane-blue)}
+.fycManualCard--core{border-color:var(--gold)}
+.fycManualHead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.fycManualLabel{flex:1;text-align:left;background:none;border:none;color:var(--text);font-size:.88rem;padding:10px 12px;cursor:pointer}
+.fycManualLabel:hover{color:var(--gold2)}
+.fycManualChip{border:1px solid var(--border);background:var(--panel2);color:var(--muted);border-radius:14px;padding:4px 10px;font-size:.72rem;cursor:pointer;margin-right:8px;white-space:nowrap}
+.fycManualChip--absent{background:var(--absent-red);border-color:var(--absent-red2);color:#f0d9d9}
+.fycManualChip--available{background:var(--arcane-blue);border-color:var(--arcane-blue2);color:#eaf3fb}
+.fycManualChip--core{background:var(--gold);border-color:var(--gold2);color:#1a1406;font-weight:700}
+.fycManualBody{padding:0 12px 12px}
+.fycManualDesc{color:var(--muted);font-size:.82rem;line-height:1.4;margin:0 0 8px}
+.fycManualOptions{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.fycManualOptBtn{background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:14px;padding:5px 12px;font-size:.78rem;cursor:pointer}
+.fycManualOptBtn--absent.active{background:var(--absent-red);border-color:var(--absent-red2);color:#f0d9d9}
+.fycManualOptBtn--available.active{background:var(--arcane-blue);border-color:var(--arcane-blue2);color:#eaf3fb}
+.fycManualOptBtn--core.active{background:var(--gold);border-color:var(--gold2);color:#1a1406;font-weight:700}
+.fycManualBoundary{color:var(--muted);font-size:.78rem}
+.fycManualBoundary summary{cursor:pointer;color:var(--arcane-blue2)}
+.fycManualBoundary p{margin:6px 0 0}
+.fycManualSummary{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:.85rem;line-height:1.6;margin-bottom:8px}
+.fycManualSummary p{margin:0 0 4px}
+.fycManualSummary strong{color:var(--gold2)}
+.fycPrimary[disabled]{opacity:.45;cursor:not-allowed}
 </style>
 </head>
 <body>
