@@ -58,16 +58,24 @@ test('an identity preference only counts as active in "prefer" mode, not require
   assert.equal(App.totalActivePreferenceCount(state), 1);
 });
 
+test('initial state stage is "idea" (describe your character), not "start" (criteria)', () => {
+  const state = App.createAppState();
+  assert.equal(state.stage, 'idea');
+  assert.equal(state.idea, '');
+});
+
 test('sessionStorage round-trips the v2 state under its own dedicated key, separate from v1', () => {
   const storage = fakeStorage();
   const state = App.createAppState();
   state.stage = 'results';
+  state.idea = 'A sneaky elf who likes to hide';
   state.capabilityPreferences['stealth-subterfuge'] = { desiredLevel: 'core', importance: 9 };
   App.saveToSessionStorage(state, storage);
   assert.equal(App.SESSION_STORAGE_KEY, 'pf_find_your_class_v2');
   assert.notEqual(App.SESSION_STORAGE_KEY, 'pf_find_your_class_v1');
   const restored = App.loadFromSessionStorage(storage);
   assert.equal(restored.stage, 'results');
+  assert.equal(restored.idea, 'A sneaky elf who likes to hide');
   assert.deepEqual(restored.capabilityPreferences['stealth-subterfuge'], { desiredLevel: 'core', importance: 9 });
 });
 

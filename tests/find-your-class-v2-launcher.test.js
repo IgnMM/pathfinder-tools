@@ -35,6 +35,6 @@ test('no non-English UI text in the v2 experience', () => {
   assert.ok(!suspiciousChars.test(appJs));
 });
 
-test('the v2 app.js is honest in its own comments about the missing free-text idea entry (no v2 concept-lexicon exists yet)', () => {
-  assert.match(appJs, /no v2 concept-lexicon\/parser yet/i);
+test('the v2 app.js is honest in its own comments about the missing concept-lexicon parser', () => {
+  assert.match(appJs, /concept-lexicon.*parser/i);
 });

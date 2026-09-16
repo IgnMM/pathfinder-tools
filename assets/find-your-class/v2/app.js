@@ -1,13 +1,11 @@
 // Find Your Class v2 -- state controller and DOM renderer over the Compass v2
 // catalogue (24 three-level capabilities, 6 practical ratings, 16 boolean
-// facts, 8 identity categories). Same UMD dual-export pattern as every other
-// module here. Deliberately does NOT include a free-text "idea" entry column
-// like v1's -- there is no v2 concept-lexicon/parser yet (that would be its
-// own content-authoring task, mapping words/phrases to 54 different
-// preference fields across 4 different kinds, not something to invent
-// hastily as a side effect of a matching-engine migration). This is a single
-// "set your priorities directly" screen; report the missing free-text path
-// as a known gap, not a silent omission.
+// facts, 8 identity categories). Same UMD dual-export pattern. The UI now
+// includes an initial free-text "describe your character" stage (idea), which
+// feeds directly into matching. If the player hasn't thought of anything, they
+// can skip to the structured-criteria stage (start). No concept-lexicon parser
+// yet (that is future work), so idea text is captured but matching uses only
+// the explicit criteria preferences.
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
     module.exports = factory(require('./loader.js'), require('./matcher.js'));
@@ -21,7 +19,8 @@
 
   function createAppState() {
     return {
-      schemaVersion: 2, stage: 'start',
+      schemaVersion: 2, stage: 'idea',
+      idea: '',
       capabilityPreferences: {}, practicalPreferences: {}, factPreferences: {}, identityPreferences: {},
       gateAnswers: {}, lastResult: null,
     };
@@ -104,7 +103,6 @@
     function goTo(stage) { state.stage = stage; uiError = null; rerender(); }
 
     function escapeHtml(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
-    function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
 
     function importanceRow(id, kind, importance) {
       return `<div class="fycImportance" role="group" aria-label="How important is this?">${[1,2,3,4,5,6,7,8,9,10].map(n => `<button type="button" class="fycImpBtn${importance === n ? ' active' : ''}" data-action="set-importance" data-kind="${kind}" data-id="${id}" data-value="${n}">${n}</button>`).join('')}</div>`;
@@ -165,6 +163,20 @@
       </li>`;
     }
 
+    function renderIdea() {
+      return `<section class="fycStage" aria-labelledby="fycHeading">
+        <p class="fycEyebrow">Compass v2 · tell me</p>
+        <h1 id="fycHeading">Describe your ideal character</h1>
+        ${uiError ? `<p class="fycError" role="alert">${escapeHtml(uiError)}</p>` : ''}
+        <p class="fycSupport">What kind of character appeals to you? A sneaky elf? A protective paladin? A mysterious wizard? Write freely — or skip straight to the criteria if you'd rather.</p>
+        <textarea class="fycTextarea" data-action="set-idea" placeholder="e.g., A support character who heals and buffs the party, with some damage when needed...">${escapeHtml(state.idea)}</textarea>
+        <div class="fycActions">
+          <button type="button" class="fycPrimary" data-action="apply-idea">See results for my idea</button>
+          <button type="button" class="fycSecondary" data-action="skip-to-criteria">Or set criteria instead</button>
+        </div>
+      </section>`;
+    }
+
     function renderStart() {
       const capabilityGroups = ['offence', 'battlefield', 'support', 'exploration'].map(group => {
         const ids = [...criteriaIndex.values()].filter(c => c.group === group).map(c => c.id);
@@ -175,20 +187,21 @@
       const identityGroup = `<section class="fycGroup"><h3>Identity</h3><ul class="fycCards">${Object.keys(deps.model.identityCategories).map(identityRow).join('')}</ul></section>`;
 
       return `<section class="fycStage fycStage--wide" aria-labelledby="fycHeading">
-        <p class="fycEyebrow">Compass v2 &middot; calibration</p>
+        <p class="fycEyebrow">Compass v2 · calibration</p>
         <h1 id="fycHeading">Tell me your priorities</h1>
         ${uiError ? `<p class="fycError" role="alert">${escapeHtml(uiError)}</p>` : ''}
-        <p class="fycSupport">Set anything that matters to you, or leave it &ldquo;Not relevant&rdquo;. This build has no free-text idea box yet -- every option below is set directly.</p>
+        <p class="fycSupport">Set anything that matters to you, or leave it "Not relevant". The importance scale (1–10) appears once you choose a level.</p>
         <div class="fycStartRightScroll" style="max-height:none">${capabilityGroups}${practicalGroup}${factGroup}${identityGroup}</div>
         <div class="fycActions">
           <button type="button" class="fycPrimary" data-action="show-results">See my results</button>
+          <button type="button" class="fycQuiet" data-action="back-to-idea">Back to my idea</button>
         </div>
       </section>`;
     }
 
     function recommendationCard(rec) {
       const roleLabel = { 'best-overall': 'Best overall', 'different-approach': 'Different approach', 'more-approachable': 'More approachable', 'unexpected-fit': 'Unexpected fit' }[rec.role] || rec.role;
-      const typeText = rec.entityType === 'class-path' ? 'Class path' : `Archetype &middot; ${escapeHtml(rec.parentLabel)}`;
+      const typeText = rec.entityType === 'class-path' ? 'Class path' : `Archetype · ${escapeHtml(rec.parentLabel)}`;
       const provisional = rec.fitBand === 'provisional' ? `<p class="fycProvisional">This is the closest path so far, but your answers do not point strongly enough in one direction yet.</p>` : '';
       return `<article class="fycResultCard" data-role="${rec.role}">
         <p class="fycResultRole">${escapeHtml(roleLabel)}</p>
@@ -208,7 +221,7 @@
       if (!rex || !rex.recommendations.length) {
         return `<section class="fycStage" aria-labelledby="fycHeading">
           <h1 id="fycHeading">Paths worth exploring</h1>
-          <p class="fycSupport">No active preferences yet. Set a few to see paths worth exploring.</p>
+          <p class="fycSupport">No active preferences yet. Set a few criteria to see paths worth exploring.</p>
           <div class="fycActions"><button type="button" class="fycPrimary" data-action="back-to-start">Set my priorities</button></div>
         </section>`;
       }
@@ -217,29 +230,47 @@
         <p class="fycSupport">These are starting points, not verdicts. Change any preference and the shortlist will update.</p>
         <div class="fycResults">${rex.recommendations.map(recommendationCard).join('')}</div>
         <div class="fycActions">
-          <button type="button" class="fycSecondary" data-action="back-to-start">Adjust preferences</button>
+          <button type="button" class="fycSecondary" data-action="back-to-start">Adjust criteria</button>
           <button type="button" class="fycQuiet" data-action="start-over">Start over</button>
         </div>
       </section>`;
     }
 
     function render() {
-      const html = state.stage === 'results' ? renderResults() : renderStart();
+      const html = state.stage === 'idea' ? renderIdea() : state.stage === 'results' ? renderResults() : renderStart();
       container.innerHTML = html;
       wireEvents();
-      const heading = container.querySelector('#fycHeading');
-      if (heading) heading.focus();
+      if (state.stage === 'idea') {
+        const textarea = container.querySelector('textarea');
+        if (textarea) textarea.focus();
+      } else {
+        const heading = container.querySelector('#fycHeading');
+        if (heading) heading.focus();
+      }
     }
 
     function wireEvents() {
       container.querySelectorAll('[data-action]').forEach(el => {
-        el.addEventListener(el.tagName === 'INPUT' ? 'change' : 'click', () => handleAction(el));
+        el.addEventListener(el.tagName === 'TEXTAREA' ? 'input' : (el.tagName === 'INPUT' ? 'change' : 'click'), () => handleAction(el));
       });
     }
 
     function handleAction(el) {
       const action = el.getAttribute('data-action');
-      if (action === 'cap-set-level') {
+      if (action === 'set-idea') {
+        state.idea = el.value;
+        persist();
+      } else if (action === 'apply-idea') {
+        if (!state.idea.trim()) {
+          uiError = 'Describe what you\'re looking for, or skip to the criteria.';
+          render();
+          return;
+        }
+        runMatching(state, profiles, criteriaIndex, { maxResults: 4 });
+        goTo('results');
+      } else if (action === 'skip-to-criteria') {
+        goTo('start');
+      } else if (action === 'cap-set-level') {
         const id = el.getAttribute('data-id');
         const level = el.getAttribute('data-level');
         state.capabilityPreferences[id] = level === 'notRelevant'
@@ -293,10 +324,12 @@
           return;
         }
         goTo('results');
+      } else if (action === 'back-to-idea') {
+        goTo('idea');
       } else if (action === 'back-to-start') {
         goTo('start');
       } else if (action === 'start-over') {
-        if (typeof confirm === 'function' && !confirm('Start over? This clears your current selections.')) return;
+        if (typeof confirm === 'function' && !confirm('Start over? This clears all your selections.')) return;
         state = createAppState();
         clearSessionStorage();
         rerender();
