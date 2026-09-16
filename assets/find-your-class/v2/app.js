@@ -47,7 +47,45 @@
       manualCapabilityPreferences: {}, manualExpanded: {}, manualSectionCollapsed: {},
       capabilityPreferences: {}, practicalPreferences: {}, factPreferences: {}, identityPreferences: {},
       gateAnswers: {}, lastResult: null,
+      // Sources (sourcebooks) filter: same pattern as the spellbook pages'
+      // per-character "Sources" panel (assets/valid-sources.js). While
+      // !sourcesCustomized, excludedSources is re-derived from the site's
+      // global Valid Sources setting every time this search loads. The
+      // moment the player edits a source here, sourcesCustomized flips true
+      // and this search's sources lock independently of the global default
+      // -- exactly the "closed padlock" behaviour requested, since a player
+      // may run several searches for different campaigns with different GMs.
+      excludedSources: {}, sourcesCustomized: false,
     };
+  }
+
+  // Recompute excludedSources from the site-wide global Valid Sources
+  // selection, but only while this search hasn't been individually
+  // customized (mirrors applyGlobalSourcesToProfile in every spellbook page).
+  function applyGlobalSourcesToProfile(state, allProfiles) {
+    if (state.sourcesCustomized) return;
+    if (typeof PFSources === 'undefined') return;
+    const allCitations = allProfiles.map(p => p.sourceCitationText || 'Unknown');
+    state.excludedSources = PFSources.computeExcludedSources(allCitations, PFSources.loadGlobalExcludedLocal());
+  }
+
+  // Filters the resolved profile catalogue down to those whose source is
+  // currently allowed. Applied identically for both input modes (idea and
+  // manual-profile) right before matching, per spec: "preserve the existing
+  // selected-source filters and pass them into matching exactly as the
+  // current flow does."
+  //
+  // NOTE: state.excludedSources is keyed by each profile's exact
+  // sourceCitationText (e.g. "Ultimate Magic pg. 18"), matching the same
+  // per-character excludedSources shape every spellbook page already uses --
+  // NOT by short book name (that keying, used only for the GLOBAL default
+  // map, belongs to PFSources.isAllowed's second argument and must never be
+  // passed state.excludedSources directly, which is a book-name/citation
+  // shape mismatch). The direct-lookup comparison below mirrors bard.html's
+  // own `!state.excludedSources[s.source||'Unknown']` spell-list filter.
+  function filterProfilesBySources(allProfiles, state) {
+    if (typeof PFSources === 'undefined') return allProfiles;
+    return allProfiles.filter(p => !state.excludedSources[p.sourceCitationText || 'Unknown']);
   }
 
   function totalActivePreferenceCount(state) {
@@ -86,13 +124,15 @@
   }
 
   function runMatching(state, profiles, criteriaIndex, options) {
-    const result = Matcher.matchProfiles(buildMatcherRequest(state), profiles, criteriaIndex, options);
+    const allowed = filterProfilesBySources(profiles, state);
+    const result = Matcher.matchProfiles(buildMatcherRequest(state), allowed, criteriaIndex, options);
     state.lastResult = result;
     return result;
   }
 
   function runManualMatching(state, profiles, criteriaIndex, options) {
-    const result = Matcher.matchProfiles(buildManualMatcherRequest(state), profiles, criteriaIndex, options);
+    const allowed = filterProfilesBySources(profiles, state);
+    const result = Matcher.matchProfiles(buildManualMatcherRequest(state), allowed, criteriaIndex, options);
     state.lastResult = result;
     return result;
   }
@@ -140,13 +180,40 @@
     const criteriaIndex = V2.indexCriteria(deps.criteriaDoc);
     const profiles = deps.profiles;
     let state = loadFromSessionStorage() || createAppState();
+    applyGlobalSourcesToProfile(state, profiles);
     let uiError = null;
+
+    let sourcesPanelOpen = false;
 
     function persist() { saveToSessionStorage(state); }
     function rerender() { persist(); render(); }
     function goTo(stage) { state.stage = stage; uiError = null; rerender(); }
 
     function escapeHtml(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+    // -----------------------------------------------------------------
+    // Sources panel -- same padlock pattern as the spellbook pages'
+    // per-character Sources panel. Shown on every stage. Editing any
+    // checkbox here locks (sourcesCustomized=true) this search's sources
+    // independently of the site's global Valid Sources default.
+    // -----------------------------------------------------------------
+    function renderSourcesPanel() {
+      if (typeof PFSources === 'undefined') return '';
+      const allCitations = [...new Set(profiles.map(p => p.sourceCitationText || 'Unknown'))].sort();
+      const excludedCount = allCitations.filter(c => state.excludedSources[c]).length;
+      return `<details class="fycSourcesBox"${sourcesPanelOpen ? ' open' : ''}>
+        <summary>Sources${excludedCount ? ` (${excludedCount} excluded)` : ''}</summary>
+        <div class="fycSourcesPanel">
+          <p class="fycSourcesNote">${state.sourcesCustomized ? '🔒 Locked for this search -- follows its own sources, independent of the site default.' : 'Following the site\'s global Valid Sources setting.'}</p>
+          <div class="fycSourcesActions">
+            <button type="button" data-action="sources-all">All</button>
+            <button type="button" data-action="sources-none">None</button>
+            <button type="button" data-action="sources-reset-global" ${state.sourcesCustomized ? '' : 'disabled'}>🔓 Reset to global</button>
+          </div>
+          <div class="fycSourcesList">${allCitations.map(c => `<label><input type="checkbox" data-action="sources-toggle" data-source="${escapeHtml(c)}" ${state.excludedSources[c] ? '' : 'checked'}> ${escapeHtml(c)}</label>`).join('')}</div>
+        </div>
+      </details>`;
+    }
 
     // -----------------------------------------------------------------
     // Choice screen
@@ -301,7 +368,7 @@
         : state.stage === 'idea' ? renderIdea()
         : state.stage === 'profile' ? renderProfile()
         : renderResults();
-      container.innerHTML = html;
+      container.innerHTML = renderSourcesPanel() + html;
       wireEvents();
       if (state.stage === 'idea') {
         const textarea = container.querySelector('textarea');
@@ -316,11 +383,46 @@
       container.querySelectorAll('[data-action]').forEach(el => {
         el.addEventListener(el.tagName === 'TEXTAREA' ? 'input' : (el.tagName === 'INPUT' ? 'change' : 'click'), () => handleAction(el));
       });
+      const sourcesDetails = container.querySelector('.fycSourcesBox');
+      if (sourcesDetails) sourcesDetails.addEventListener('toggle', () => { sourcesPanelOpen = sourcesDetails.open; });
+    }
+
+    function reRunLastSearchIfShowingResults() {
+      if (state.stage !== 'results') return;
+      if (state.lastMode === 'profile') runManualMatching(state, profiles, criteriaIndex, { maxResults: 4 });
+      else runMatching(state, profiles, criteriaIndex, { maxResults: 4 });
     }
 
     function handleAction(el) {
       const action = el.getAttribute('data-action');
-      if (action === 'choose-idea') {
+      if (action === 'sources-toggle') {
+        const src = el.getAttribute('data-source');
+        state.sourcesCustomized = true;
+        if (el.checked) delete state.excludedSources[src];
+        else state.excludedSources[src] = true;
+        reRunLastSearchIfShowingResults();
+        rerender();
+        return;
+      } else if (action === 'sources-all') {
+        state.sourcesCustomized = true;
+        state.excludedSources = {};
+        reRunLastSearchIfShowingResults();
+        rerender();
+        return;
+      } else if (action === 'sources-none') {
+        state.sourcesCustomized = true;
+        const allCitations = [...new Set(profiles.map(p => p.sourceCitationText || 'Unknown'))];
+        allCitations.forEach(c => { state.excludedSources[c] = true; });
+        reRunLastSearchIfShowingResults();
+        rerender();
+        return;
+      } else if (action === 'sources-reset-global') {
+        state.sourcesCustomized = false;
+        applyGlobalSourcesToProfile(state, profiles);
+        reRunLastSearchIfShowingResults();
+        rerender();
+        return;
+      } else if (action === 'choose-idea') {
         goTo('idea');
       } else if (action === 'choose-profile') {
         goTo('profile');
@@ -385,6 +487,7 @@
     buildMatcherRequest, buildManualMatcherRequest, runMatching, runManualMatching,
     serializeState, deserializeState, saveToSessionStorage, loadFromSessionStorage, clearSessionStorage,
     CAPABILITY_GROUPS, CAPABILITY_GROUP_LABELS, MANUAL_VALUES, MANUAL_VALUE_LABELS,
+    applyGlobalSourcesToProfile, filterProfilesBySources,
     mount,
   };
 }));
