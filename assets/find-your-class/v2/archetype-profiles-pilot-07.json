@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 2,
+  "status": "draft",
+  "inheritanceRule": "Every omitted field inherits the resolved parent class value.",
+  "profiles": [
+    {
+      "id": "shifter:oozemorph",
+      "name": "Oozemorph",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Ultimate Wilderness pg. 81",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Oozemorph",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "curse-or-drawback",
+          "kind": "commitment",
+          "summary": "The natural form is an amorphous ooze; humanoid form lasts limited hours and restricts equipment use.",
+          "evidenceSection": "Fluidic Body"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "inherited.personal-durability",
+          "section": "Fluidic Body / Damage Reduction",
+          "reason": "Compression, ooze immunities and scaling damage reduction reinforce survival."
+        }
+      ],
+      "playerSummary": "An amorphous Shifter who mimics humanoid form for limited periods and develops fluid limbs, compression and ooze resilience.",
+      "tradeoff": "Its true body cannot use normal equipment or communicate conventionally, creating major exploration and social complications.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "shifter:weretouched",
+      "name": "Weretouched",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Ultimate Wilderness pg. 83",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Weretouched",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "form-choice",
+          "kind": "commitment",
+          "summary": "One lycanthropic animal aspect is selected permanently.",
+          "evidenceSection": "Lycanthrope Aspect"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "inherited.personal-durability",
+          "section": "Lycanthropic Wild Shape",
+          "reason": "A stable hybrid form gains lycanthropic resilience while retaining equipment and speech."
+        }
+      ],
+      "playerSummary": "A Shifter committed to one lycanthropic hybrid form that preserves gear, speech and a humanoid silhouette.",
+      "tradeoff": "Broad animal-form flexibility is exchanged for one permanent thematic and mechanical form choice.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "skald:court-poet",
+      "name": "Court Poet",
+      "parentClassId": "skald",
+      "sourceCitationText": "Heroes of the High Court pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Court%20Poet",
+      "capabilityOverrides": {
+        "melee-combat": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-rage": false
+      },
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "inherited.social-influence",
+          "section": "Raging Song / Handling the Crowd",
+          "reason": "The performance enhances mental and social ability rather than physical rage."
+        }
+      ],
+      "playerSummary": "A courtly Skald whose performance heightens intellect and charisma instead of driving allies into physical rage.",
+      "tradeoff": "The class’s direct martial boost is reduced, favouring casters and social or intellectual parties.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "skald:spell-warrior",
+      "name": "Spell Warrior",
+      "parentClassId": "skald",
+      "sourceCitationText": "Advanced Class Guide pg. 116",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Spell%20Warrior",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Improved Counterspell / Greater Counterspell",
+          "reason": "Multiple features are devoted to countering, weakening and manipulating enemy spells."
+        }
+      ],
+      "playerSummary": "A Skald who enchants allied weapons through song while countering and tampering with enemy spellcasting.",
+      "tradeoff": "Several personal rage powers and performance benefits are redirected into weapons and reactive magic.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "sorcerer:crossblooded",
+      "name": "Crossblooded",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Ultimate Magic pg. 69",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Crossblooded",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bloodline-choice",
+          "kind": "commitment",
+          "summary": "Two bloodlines are chosen; their arcana combine but powers and spells must be selected between them.",
+          "evidenceSection": "Bloodline Powers / Drawbacks"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "constraints",
+          "section": "Bloodline Powers / Drawbacks",
+          "reason": "Two bloodline identities are combined at the price of reduced spells known and weaker mental saves."
+        }
+      ],
+      "playerSummary": "A Sorcerer combining two bloodlines, mixing their arcana and choosing powers and spells from either lineage.",
+      "tradeoff": "One fewer spell known at every level and a Will-save penalty make the hybrid substantially less forgiving.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "sorcerer:razmiran-priest",
+      "name": "Razmiran Priest",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Inner Sea Magic pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Razmiran%20Priest",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "theme",
+          "summary": "Razmiran priesthood is a narrative identity, not a hard deity or institutional gate imposed by the engine.",
+          "evidenceSection": "False Piety"
+        }
+      ],
+      "professionIdentity": [
+        {
+          "value": "false priest",
+          "evidenceSection": "False Piety / Lay Healer",
+          "evidenceText": "The archetype explicitly impersonates divine authority and performs a priestly role through arcane deception."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Lay Healer / Razmiran Channel",
+          "reason": "Cleric spell access and divine-item activation add strong healing without true divine casting."
+        }
+      ],
+      "playerSummary": "An arcane impostor who convincingly performs priesthood and accesses divine healing through spell knowledge and magic items.",
+      "tradeoff": "The divine identity is deliberately false, and much of the strongest flexibility depends on consumable magic items.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "spiritualist:phantom-blade",
+      "name": "Phantom Blade",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Psychic Anthology pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Phantom%20Blade",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "summoning-companions": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "The phantom manifests as one bonded weapon rather than an independent companion.",
+          "evidenceSection": "Phantom Weapon"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Phantom Weapon",
+          "reason": "The independent phantom is replaced by a weapon used through spell combat and spellstrike."
+        }
+      ],
+      "playerSummary": "A Spiritualist whose phantom becomes a bonded weapon, creating a spell-combat martial hybrid instead of a two-creature team.",
+      "tradeoff": "The independent phantom and its separate actions disappear, and the character becomes weapon dependent.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "spiritualist:priest-of-the-fallen",
+      "name": "Priest of the Fallen",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Heroes of Golarion pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Priest%20of%20the%20Fallen",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "enemySpecializationOverrides": {
+        "undead": "available"
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "priest of fallen heroes",
+          "evidenceSection": "Mythmaker / Channel Energy",
+          "evidenceText": "The source explicitly presents a priest who invokes fallen hero-gods and channels their divine energy."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Mythmaker",
+          "reason": "Six hero-god archetypes let the manifested phantom support, cast, fight or lead in distinct ways."
+        },
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Channel Energy",
+          "reason": "A positive-channel version can damage undead, depending on alignment and the permanent energy choice."
+        }
+      ],
+      "playerSummary": "A priest who calls one of several fallen hero-god phantoms and channels its legendary role and divine energy.",
+      "tradeoff": "Only one hero-god can be channelled each day, and it refuses confinement inside the Spiritualist for most of the career.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "summoner:master-summoner",
+      "name": "Master Summoner",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Ultimate Magic pg. 80",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Master%20Summoner",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Summoning Mastery / Hordes of Summoned Monsters",
+          "reason": "The archetype sustains multiple summon-monster effects and gains Augment Summoning."
+        }
+      ],
+      "playerSummary": "A Summoner who weakens the eidolon to maintain multiple enhanced summoned creatures at once.",
+      "tradeoff": "It creates one of the game’s heaviest multi-creature workloads and leaves the permanent eidolon significantly weaker.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "summoner:synthesist",
+      "name": "Synthesist",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Ultimate Magic pg. 81",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Synthesist",
+      "capabilityOverrides": {
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "core",
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Fused Eidolon",
+          "reason": "The eidolon is worn as a living form that supplies physical abilities, evolutions and temporary hit points."
+        }
+      ],
+      "playerSummary": "A Summoner who fuses with the eidolon as living armour, personally using its body, evolutions and natural attacks.",
+      "tradeoff": "The separate companion and its action economy are lost except for a late limited split-forms ability.",
+      "reviewStatus": "draft"
+    }
+  ]
+}

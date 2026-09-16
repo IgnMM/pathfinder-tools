@@ -11,7 +11,13 @@ const batch = batches[0];
 const profiles = batches.flatMap(item => item.profiles);
 const criterionIds = criteria.criteria.map(item => item.id);
 const pilot = JSON.parse(fs.readFileSync(new URL('archetype-pilot-selection.json', root), 'utf8'));
-const archetypeBatches = ['archetype-profiles-pilot-01.json', 'archetype-profiles-pilot-02.json', 'archetype-profiles-pilot-03.json']
+const archetypeBatches = [
+  'archetype-profiles-pilot-01.json', 'archetype-profiles-pilot-02.json',
+  'archetype-profiles-pilot-03.json', 'archetype-profiles-pilot-04.json',
+  'archetype-profiles-pilot-05.json', 'archetype-profiles-pilot-06.json',
+  'archetype-profiles-pilot-07.json', 'archetype-profiles-pilot-08.json',
+  'archetype-profiles-pilot-09.json', 'archetype-profiles-pilot-10.json'
+]
   .map(file => JSON.parse(fs.readFileSync(new URL(file, root), 'utf8')));
 const archetypeProfiles = archetypeBatches.flatMap(item => item.profiles);
 
@@ -142,8 +148,8 @@ test('archetype overrides use valid fields, inherit everything omitted and may l
   const classById = new Map(profiles.map(profile => [profile.id, profile]));
   const allowedPractical = new Set(model.practicalRatings.map(item => item.id));
   const allowedFacts = new Set(model.booleanFacts);
-  assert.equal(archetypeProfiles.length, 30);
-  assert.equal(new Set(archetypeProfiles.map(profile => profile.id)).size, 30);
+  assert.equal(archetypeProfiles.length, 100);
+  assert.equal(new Set(archetypeProfiles.map(profile => profile.id)).size, 100);
   assert.ok(archetypeProfiles.some(profile => Object.keys(profile.capabilityOverrides).length === 0));
 
   for (const archetype of archetypeProfiles) {
@@ -177,6 +183,46 @@ test('archetype overrides use valid fields, inherit everything omitted and may l
         archetype.evidence.some(item => item.field === `enemySpecializationOverrides.${target}`),
         `${archetype.id}: missing enemy-specialization evidence for ${target}`
       );
+    }
+  }
+});
+
+test('all 100 pilot profiles have valid identity deltas, constraints and player-facing evidence', () => {
+  const selectedIds = new Set(pilot.records.map(record => record.id));
+  const profiledIds = new Set(archetypeProfiles.map(profile => profile.id));
+  const classById = new Map(profiles.map(profile => [profile.id, profile]));
+  assert.deepEqual([...profiledIds].sort(), [...selectedIds].sort());
+
+  for (const archetype of archetypeProfiles) {
+    const parent = classById.get(archetype.parentClassId);
+    assert.ok(archetype.playerSummary?.length, `${archetype.id}: summary`);
+    assert.ok(archetype.tradeoff?.length, `${archetype.id}: tradeoff`);
+    assert.ok(archetype.evidence.length > 0, `${archetype.id}: evidence`);
+
+    for (const [category, values] of Object.entries(archetype.identityAdds)) {
+      assert.ok(model.identityCategories[category], `${archetype.id}: ${category}`);
+      for (const value of values) {
+        assert.ok(model.identityCategories[category].includes(value), `${archetype.id}: ${category}/${value}`);
+        assert.ok(!parent.identity[category].includes(value), `${archetype.id}: redundant add ${category}/${value}`);
+      }
+    }
+    for (const [category, values] of Object.entries(archetype.identityRemoves)) {
+      assert.ok(model.identityCategories[category], `${archetype.id}: ${category}`);
+      for (const value of values) {
+        assert.ok(model.identityCategories[category].includes(value), `${archetype.id}: ${category}/${value}`);
+        assert.ok(parent.identity[category].includes(value), `${archetype.id}: absent removal ${category}/${value}`);
+      }
+    }
+    for (const constraint of archetype.constraints) {
+      assert.ok(model.constraintTypes.includes(constraint.type), `${archetype.id}: ${constraint.type}`);
+      assert.ok(Object.hasOwn(model.constraintKinds, constraint.kind), `${archetype.id}: ${constraint.kind}`);
+    }
+    if (archetype.professionIdentity.length) {
+      assert.equal(archetype.factOverrides['has-profession-identity'], true, `${archetype.id}: profession fact`);
+      for (const profession of archetype.professionIdentity) {
+        assert.ok(profession.evidenceSection.length, `${archetype.id}: profession section`);
+        assert.ok(profession.evidenceText.length, `${archetype.id}: profession evidence`);
+      }
     }
   }
 });

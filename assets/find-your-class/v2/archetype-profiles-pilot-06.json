@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 2,
+  "status": "draft",
+  "inheritanceRule": "Every omitted field inherits the resolved parent class value.",
+  "profiles": [
+    {
+      "id": "psychic:mutation-mind",
+      "name": "Mutation Mind",
+      "parentClassId": "psychic",
+      "sourceCitationText": "Occult Adventures pg. 105",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Mutation%20Mind",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Physical Mutation / Bodily Mutations",
+          "reason": "The Psychic repeatedly reshapes its body with attribute changes, natural weapons and movement adaptations."
+        }
+      ],
+      "playerSummary": "A Psychic who turns phrenic power inward to grow claws, armour, wings and other temporary bodily mutations.",
+      "tradeoff": "Phrenic amplifications are surrendered for a self-focused transformation resource.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "psychic:psychic-duelist",
+      "name": "Psychic Duelist",
+      "parentClassId": "psychic",
+      "sourceCitationText": "Occult Adventures pg. 107",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Psychic%20Duelist",
+      "capabilityOverrides": {
+        "single-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.single-target-damage",
+          "section": "Psychic Duel Acumen / Thought Made Real",
+          "reason": "The archetype specialises in focused one-on-one psychic duels and empowered manifestations."
+        }
+      ],
+      "playerSummary": "A Psychic specialised in entering and dominating psychic duels through stronger manifestations and thought constructs.",
+      "tradeoff": "Several broadly useful phrenic amplifications are replaced by abilities that matter primarily inside psychic duels.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "ranger:wilderness-medic",
+      "name": "Wilderness Medic",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Healer's Handbook pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wilderness%20Medic",
+      "capabilityOverrides": {
+        "healing-recovery": "core",
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "wilderness medic",
+          "evidenceSection": "Herbalist Training / Herbal Medicine",
+          "evidenceText": "The source explicitly makes field medicine, herbal treatment and ally recovery the archetype’s vocation."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Herbal Medicine / Rallying Bond",
+          "reason": "Prepared herbal remedies heal damage and the hunter’s bond can restore allies in combat."
+        }
+      ],
+      "playerSummary": "A Ranger who replaces part of favored enemy and spellcasting with field medicine, herbal remedies and rallying recovery.",
+      "tradeoff": "Some hunting bonuses and spell access are lost, and remedies require preparation and natural materials.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "ranger:shapeshifter",
+      "name": "Shapeshifter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Player's Guide pg. 126",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Shapeshifter",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Shifter’s Blessing / Dual Form Shifter",
+          "reason": "Scaling animal aspects and eventually two simultaneous forms replace combat-style feats."
+        }
+      ],
+      "playerSummary": "A Ranger who abandons combat styles to adopt increasingly powerful animal aspects and combined forms.",
+      "tradeoff": "Several bonus combat feats are exchanged for a limited, self-focused transformation progression.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "rogue:eldritch-scoundrel",
+      "name": "Eldritch Scoundrel",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Arcane Anthology pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Eldritch%20Scoundrel",
+      "capabilityOverrides": {
+        "offensive-magic": "core",
+        "area-multi-target-damage": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "resource-management": "high"
+      },
+      "factOverrides": {
+        "has-spellcasting": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Spells",
+          "reason": "Six-level Wizard spellcasting adds genuine arcane offence and utility to the Rogue chassis."
+        }
+      ],
+      "playerSummary": "A Rogue who trades much of sneak attack and its talent progression for prepared arcane spellcasting up to 6th level.",
+      "tradeoff": "Armour, skills, sneak attack and rogue talents are all reduced, producing a demanding hybrid build.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "rogue:charlatan",
+      "name": "Charlatan",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Combat pg. 72",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Charlatan",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "charlatan",
+          "evidenceSection": "Natural Born Liar / Grand Hoax",
+          "evidenceText": "The archetype explicitly operates through lies, false identities and elaborate hoaxes."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "inherited.social-influence",
+          "section": "Natural Born Liar / Grand Hoax",
+          "reason": "Deception, forged magic and large-scale false events become its defining tools."
+        }
+      ],
+      "playerSummary": "A professional fraud who builds false identities, convincingly fakes magic and eventually stages elaborate supernatural hoaxes.",
+      "tradeoff": "Trap expertise and several talents are replaced by abilities that depend heavily on deception and preparation.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "samurai:warrior-poet",
+      "name": "Warrior Poet",
+      "parentClassId": "samurai",
+      "sourceCitationText": "Heroes from the Fringe pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai%20Warrior%20Poet",
+      "capabilityOverrides": {
+        "personal-durability": "available",
+        "summoning-companions": "absent"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "medium"
+      },
+      "factOverrides": {
+        "has-mount": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "inherited.combat-mobility",
+          "section": "Dancer’s Grace / Skirmisher’s Challenge",
+          "reason": "Unarmoured speed, mobile challenge attacks and battle dance define the fighting style."
+        }
+      ],
+      "playerSummary": "An unarmoured Samurai who replaces mounted weight with speed, graceful strikes and mobile challenges.",
+      "tradeoff": "The mount and heavy defensive profile are lost, making positioning and lighter equipment essential.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "samurai:yojimbo",
+      "name": "Yojimbo",
+      "parentClassId": "samurai",
+      "sourceCitationText": "Armor Master's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai%20Yojimbo",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "bodyguard",
+          "evidenceSection": "Resolute Defense / Intercept",
+          "evidenceText": "The archetype explicitly guards a chosen ward and intercepts attacks aimed at that person."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Resolute Defense / Intercept",
+          "reason": "Challenge and resolve are redirected into defending and physically intercepting for a ward."
+        }
+      ],
+      "playerSummary": "A professional bodyguard Samurai who designates a ward, intercepts attacks and spends resolve to keep that person safe.",
+      "tradeoff": "Offensive challenge benefits and mounted development are reduced in favour of one protected ally.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "shaman:witch-doctor",
+      "name": "Witch Doctor",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Advanced Class Guide pg. 113",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Witch%20Doctor",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "enemySpecializationOverrides": {
+        "undead": "available"
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "witch doctor",
+          "evidenceSection": "Channel Energy / Counter Curse / Countering Hex",
+          "evidenceText": "The named vocation centres on healing energy and countering curses, hexes and hostile magic."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Counter Curse / Countering Hex",
+          "reason": "Prepared countermeasures can dispel curses, hexes and hostile spellcasting."
+        },
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Channel Energy",
+          "reason": "A positive-channel Witch Doctor can damage undead, subject to the archetype’s alignment-based energy choice."
+        }
+      ],
+      "playerSummary": "A Shaman healer and counter-curse specialist who channels energy and dismantles hostile magic or hexes.",
+      "tradeoff": "Several hex selections and spirit-magic flexibility are committed to reactive support.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "shaman:speaker-for-the-past",
+      "name": "Speaker for the Past",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Advanced Class Guide pg. 111",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Speaker%20for%20the%20Past",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "ancestors"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "inherited.knowledge-investigation",
+          "section": "Mysteries of the Past / Revelations of the Past",
+          "reason": "Ancestor and time revelations provide historical knowledge, divination and temporal insight."
+        }
+      ],
+      "playerSummary": "An ancestor-focused Shaman who supplements spirits with Oracle mysteries and revelations of lore and time.",
+      "tradeoff": "Wandering-spirit flexibility is reduced in exchange for a fixed ancestral and historical identity.",
+      "reviewStatus": "draft"
+    }
+  ]
+}

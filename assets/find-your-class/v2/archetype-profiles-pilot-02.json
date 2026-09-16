@@ -95,7 +95,9 @@
         "support-buffing": "available"
       },
       "practicalOverrides": {},
-      "factOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
       "identityAdds": {},
       "identityRemoves": {},
       "constraints": [],
@@ -343,7 +345,13 @@
         }
       ],
       "professionIdentity": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Pack Bond",
+          "reason": "The normal companion progression is divided among a managed pack rather than increasing the already-core companion capability."
+        }
+      ],
       "playerSummary": "A Druid who divides normal companion progression among a personally managed pack and can perceive through its members.",
       "tradeoff": "Several weaker companions replace one full-strength companion, allocated levels are difficult to redistribute and a domain cannot be chosen.",
       "reviewStatus": "draft"

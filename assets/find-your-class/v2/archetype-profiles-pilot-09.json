@@ -1,0 +1,324 @@
+{
+  "schemaVersion": 2,
+  "status": "draft",
+  "inheritanceRule": "Every omitted field inherits the resolved parent class value.",
+  "profiles": [
+    {
+      "id": "alchemist:gun-chemist",
+      "name": "Gun Chemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "People of the Wastes pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Gun%20Chemist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "inherited.ranged-combat",
+          "section": "Alchemical Ordnance",
+          "reason": "Bomb power is infused directly into firearm ammunition and supported by gunsmithing and reload features."
+        }
+      ],
+      "playerSummary": "An Alchemist who loads bomb-like alchemical ordnance into firearms and modifies it through specialised discoveries.",
+      "tradeoff": "Firearms, ammunition and unstable infused shots replace ordinary thrown-bomb flexibility.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "alchemist:vivisectionist",
+      "name": "Vivisectionist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Magic pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Vivisectionist",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "area-multi-target-damage": "absent",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Sneak Attack",
+          "reason": "The entire bomb progression is replaced by full Rogue-equivalent sneak attack."
+        }
+      ],
+      "playerSummary": "A surgical Alchemist who abandons bombs for full sneak attack, anatomical expertise and disturbing transformation procedures.",
+      "tradeoff": "Reliable area damage disappears and the strongest offence depends on qualifying for sneak attack.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "bard:detective",
+      "name": "Detective",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Player's Guide pg. 81",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Detective",
+      "capabilityOverrides": {
+        "support-buffing": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "detective",
+          "evidenceSection": "Eye for Detail / Arcane Investigation",
+          "evidenceText": "The archetype explicitly investigates evidence, lies, magical traps and hidden information."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "inherited.knowledge-investigation",
+          "section": "Eye for Detail / Arcane Investigation",
+          "reason": "Investigation bonuses, trapfinding, divinations and anti-deception magic define the archetype."
+        }
+      ],
+      "playerSummary": "A Bard detective who coordinates careful allies and investigates traps, disguises, lies and hidden magical evidence.",
+      "tradeoff": "Several iconic inspiration performances and broad bardic knowledge are replaced by investigative specialisation.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "bard:arcane-healer",
+      "name": "Arcane Healer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Faiths and Philosophies pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Arcane%20Healer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "enemySpecializationOverrides": {
+        "undead": "available"
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "healer",
+          "evidenceSection": "Channel Energy / Inspiring Healing",
+          "evidenceText": "The named archetype explicitly converts performance and channel energy into group healing."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "inherited.healing-recovery",
+          "section": "Channel Energy / Inspiring Healing",
+          "reason": "Positive channeling and performance-powered cure spells make healing a defining role."
+        },
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Channel Energy",
+          "reason": "Positive channel energy can damage undead."
+        }
+      ],
+      "playerSummary": "A Bard healer who channels positive energy and converts performance rounds into progressively stronger cure magic.",
+      "tradeoff": "Several versatile performances are replaced by a focused healing resource package.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "druid:nature-fang",
+      "name": "Nature Fang",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Class Guide pg. 92",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Nature%20Fang",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": false,
+        "has-sneak-attack": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Slayer Talent",
+          "reason": "Wild shape is completely replaced by Slayer talents and sneak attack."
+        }
+      ],
+      "playerSummary": "A Druid who abandons wild shape for studied target, sneak attack and a full progression of Slayer talents.",
+      "tradeoff": "The class’s defining personal transformation is lost for a stealthier martial toolkit.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "druid:reincarnated-druid",
+      "name": "Reincarnated Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Magic pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Reincarnated%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Many Lives / Cheat Death",
+          "reason": "Automatic reincarnation and repeated resistance to death distinguish the archetype without changing the coarse role profile."
+        }
+      ],
+      "playerSummary": "A mysterious Druid who repeatedly returns in a new body and develops exceptional resistance to death and necromancy.",
+      "tradeoff": "Wild shape arrives late and functions two levels behind the normal Druid progression.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "druid:storm-druid",
+      "name": "Storm Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Magic pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Storm%20Druid",
+      "capabilityOverrides": {
+        "summoning-companions": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": false
+      },
+      "identityAdds": {
+        "elementThemes": [
+          "air",
+          "electricity"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "patron-oath-order",
+          "kind": "commitment",
+          "summary": "Nature bond must be Air, Weather, Cloud, Storm or Wind; an animal companion is forbidden.",
+          "evidenceSection": "Nature Bond"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Spontaneous Domain Casting / Nature Bond",
+          "reason": "The animal companion and spontaneous summon-nature’s-ally engine are both removed, though prepared summons remain possible."
+        }
+      ],
+      "playerSummary": "A domain-bound Druid of wind, weather and storms who casts domain magic spontaneously and ignores severe weather.",
+      "tradeoff": "The animal companion is forbidden and spontaneous summoning is replaced by a narrow mandatory domain choice.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "fighter:armor-master",
+      "name": "Armor Master",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Combat pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Armor%20Master",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Deflective Shield / Armored Defense",
+          "reason": "Touch defence, damage reduction, fortification and critical immunity deepen durability already core to Fighter."
+        }
+      ],
+      "playerSummary": "A Fighter who pushes armour and shield survival to its limit through touch defence, damage reduction and fortification.",
+      "tradeoff": "Bravery, weapon training and weapon mastery are surrendered for purely personal defence.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "fighter:lore-warden",
+      "name": "Lore Warden",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Adventurer's Guide pg. 144",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Lore%20Warden",
+      "capabilityOverrides": {
+        "personal-durability": "available",
+        "practical-expertise": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Scholastic / Swords Secret",
+          "reason": "Extra Intelligence skills and analytical combat secrets make scholarship mechanically central."
+        }
+      ],
+      "playerSummary": "A scholarly Fighter who studies enemies, masters Intelligence skills and uses analytical combat secrets.",
+      "tradeoff": "Medium and heavy armour and shields are lost, reducing the Fighter’s normal defensive ceiling.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "fighter:mutation-warrior",
+      "name": "Mutation Warrior",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Class Guide pg. 93",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Mutation%20Warrior",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Mutagen / Mutagen Discovery",
+          "reason": "Mutagen and discoveries can reshape physical ability and add wings, limbs or natural attacks."
+        }
+      ],
+      "playerSummary": "A Fighter who replaces armour training with Alchemist mutagens and a sequence of bodily discoveries.",
+      "tradeoff": "Defensive armour progression is reduced and the strongest physical boosts carry mutagen drawbacks and limited use.",
+      "reviewStatus": "draft"
+    }
+  ]
+}

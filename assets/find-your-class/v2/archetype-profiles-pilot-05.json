@@ -1,0 +1,340 @@
+{
+  "schemaVersion": 2,
+  "status": "draft",
+  "inheritanceRule": "Every omitted field inherits the resolved parent class value.",
+  "profiles": [
+    {
+      "id": "monk-unchained:scaled-fist",
+      "name": "Scaled Fist",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Legacy of Dragons pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Scaled%20Fist",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "mixed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "patron-oath-order",
+          "kind": "commitment",
+          "summary": "A draconic exemplar and associated dragon type shape several class features.",
+          "evidenceSection": "Draconic Might"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Draconic Breath",
+          "reason": "The Monk eventually gains a scaling elemental breath weapon."
+        }
+      ],
+      "playerSummary": "A Charisma-driven draconic Monk whose chosen exemplar grants claws, elemental damage, fear resistance and a breath weapon.",
+      "tradeoff": "Its draconic choice fixes several later benefits and shifts key class abilities toward Charisma.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "monk-unchained:elemental-monk",
+      "name": "Elemental Monk",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Disciple's Doctrine pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Elemental%20Monk",
+      "capabilityOverrides": {
+        "offensive-magic": "available",
+        "area-multi-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "mixed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "The Monk must have a neutral component to alignment rather than follow the normal lawful restriction.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Elemental Strike / Genie Style (Ex, Sp)",
+          "reason": "Elemental damage and later genie spell-like powers become recurring combat tools."
+        }
+      ],
+      "playerSummary": "An element-aligned Monk who cycles elemental strikes and develops supernatural techniques inspired by genies.",
+      "tradeoff": "The elemental progression replaces several traditional ki and defensive features and imposes a different alignment requirement.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "ninja:gunpowder-bombardier",
+      "name": "Gunpowder Bombardier",
+      "parentClassId": "ninja",
+      "sourceCitationText": "Heroes from the Fringe pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja%20Gunpowder%20Bombardier",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-bombs": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "supernatural attack"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Gunpowder Bomb / Delayed Explosive",
+          "reason": "Scaling explosives create bursts, impair targets and can be planted with delayed detonation."
+        }
+      ],
+      "playerSummary": "A Ninja who turns ki into thrown or planted explosives with configurable damage types and impairments.",
+      "tradeoff": "A meaningful share of ninja tricks is committed to a limited explosive resource.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "ninja:petal-ninja",
+      "name": "Petal Ninja",
+      "parentClassId": "ninja",
+      "sourceCitationText": "Wilderness Origins pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja%20Petal%20Ninja",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Blossom Shower / Burst of Blossoms",
+          "reason": "Petal clouds obscure areas and impose sensory or movement-related effects."
+        }
+      ],
+      "playerSummary": "A floral Ninja who creates showers and bursts of blossoms to obscure, distract and hinder groups.",
+      "tradeoff": "Several standard ninja tricks are replaced by conspicuous plant-themed area effects.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "occultist:battle-host",
+      "name": "Battle Host",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Occult Adventures pg. 100",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Battle%20Host",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "A chosen weapon, armour or shield becomes the sole implement and central panoply bond.",
+          "evidenceSection": "Panoply Bond"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Battle Skill / Bonus Feats",
+          "reason": "Full martial progression, combat feats and a spirit warrior centre the Occultist on battle."
+        }
+      ],
+      "playerSummary": "A martial Occultist whose entire implement practice is bound into one weapon, suit of armour or shield.",
+      "tradeoff": "The single bonded panoply sharply narrows implement freedom and makes equipment loss especially costly.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "occultist:silksworn",
+      "name": "Silksworn",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Heroes of the High Court pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Silksworn",
+      "capabilityOverrides": {
+        "melee-combat": "absent",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Silksworn Eloquence / Silksworn Deception",
+          "reason": "Courtly clothing implements provide strong social and deceptive powers."
+        }
+      ],
+      "playerSummary": "A courtly Occultist who carries a larger magical repertoire through expensive clothing and jewellery.",
+      "tradeoff": "Martial armour and weapon competence are exchanged for socially powerful but gear-dependent mysticism.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "oracle:pei-zin-practitioner",
+      "name": "Pei Zin Practitioner",
+      "parentClassId": "oracle",
+      "sourceCitationText": "Healer's Handbook pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle%20Pei%20Zin%20Practitioner",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "herbal healer",
+          "evidenceSection": "Master Herbalist / Healer’s Way",
+          "evidenceText": "The archetype explicitly practises herbal medicine and delivers scaling treatment and condition removal."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "inherited.healing-recovery",
+          "section": "Healer’s Way / Master Healing Technique",
+          "reason": "Lay-on-hands-style healing and advanced condition treatment become defining revelations."
+        }
+      ],
+      "playerSummary": "An Oracle trained as a professional herbal healer, combining divine magic with efficient hands-on treatment and condition removal.",
+      "tradeoff": "The mystery’s normal skill package and several revelations are committed to healing practice.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "oracle:warsighted",
+      "name": "Warsighted",
+      "parentClassId": "oracle",
+      "sourceCitationText": "Advanced Class Guide pg. 106",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle%20Warsighted",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Martial Flexibility",
+          "reason": "Repeated access to temporary combat feats makes martial adaptation a central Oracle feature."
+        }
+      ],
+      "playerSummary": "An Oracle who exchanges several revelations for Brawler-style martial flexibility across melee and ranged builds.",
+      "tradeoff": "Its combat strength depends on knowing a large feat catalogue and choosing the right temporary feat.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "paladin:hospitaler",
+      "name": "Hospitaler",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Player's Guide pg. 116",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Hospitaler",
+      "capabilityOverrides": {
+        "single-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "inherited.protecting-allies",
+          "section": "Channel Positive Energy / Aura of Healing",
+          "reason": "Independent channel uses and a stabilising, cleansing healing aura make group protection central."
+        }
+      ],
+      "playerSummary": "A Paladin who sacrifices smite frequency to become a stronger battlefield healer and protector of afflicted allies.",
+      "tradeoff": "Smite Evil advances at roughly half the normal frequency and Aura of Justice is lost.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "paladin:holy-gun",
+      "name": "Holy Gun",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Ultimate Combat pg. 63",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Holy%20Gun",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "Divine bond must take the form of a firearm.",
+          "evidenceSection": "Divine Bond"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Divine Deed / Divine Bond",
+          "reason": "Smite damage, grit deeds and divine bond are delivered through firearms."
+        }
+      ],
+      "playerSummary": "A firearm Paladin who spends grit on devastating smiting shots and bonds permanently with a gun.",
+      "tradeoff": "Heavy armour and ordinary melee-centred smite are replaced by a costly, resource-driven firearm style.",
+      "reviewStatus": "draft"
+    }
+  ]
+}

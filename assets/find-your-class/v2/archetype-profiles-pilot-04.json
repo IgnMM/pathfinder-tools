@@ -1,0 +1,354 @@
+{
+  "schemaVersion": 2,
+  "status": "draft",
+  "inheritanceRule": "Every omitted field inherits the resolved parent class value.",
+  "profiles": [
+    {
+      "id": "kineticist:kinetic-chirurgeon",
+      "name": "Kinetic Chirurgeon",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Occult Adventures pg. 90",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Kinetic%20Chirurgeon",
+      "capabilityOverrides": {
+        "offensive-magic": "available",
+        "area-multi-target-damage": "absent",
+        "battlefield-control": "available",
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "element-choice",
+          "kind": "commitment",
+          "summary": "Aether or water must be selected as the primary element.",
+          "evidenceSection": "Kinetic Chirurgery"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Kinetic Chirurgery / Metahealer",
+          "reason": "Kinetic healer, mercies, stronger healing and emergency revival replace offensive infusions and metakinesis."
+        }
+      ],
+      "playerSummary": "A Kineticist who gives up infusions and much of the blast toolkit to become a burn-powered healer, mercy user and emergency reviver.",
+      "tradeoff": "Its offensive blast remains, but area shaping and infusion versatility are sharply reduced.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "kineticist:kinetic-knight",
+      "name": "Kinetic Knight",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Psychic Anthology pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Kinetic%20Knight",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "area-multi-target-damage": "available",
+        "social-influence": "available",
+        "stealth-subterfuge": "absent"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Several defences require heavy armour and an attuned shield.",
+          "evidenceSection": "Elemental Bastion"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Elemental Blade",
+          "reason": "The blast is restricted to kinetic blade and its descendant infusions, making close combat defining."
+        }
+      ],
+      "playerSummary": "An armoured elemental knight who turns kinetic blast into blades and whips, fights with a shield and uses resolve to stay standing.",
+      "tradeoff": "Ordinary ranged blasting and stealth are surrendered for equipment-heavy melee durability.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "magus:eldritch-archer",
+      "name": "Eldritch Archer",
+      "parentClassId": "magus",
+      "sourceCitationText": "Heroes of the Streets pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Eldritch%20Archer",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "The arcane bond must be a ranged weapon.",
+          "evidenceSection": "Ranged Weapon Bond"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Ranged Spell Combat / Ranged Spellstrike",
+          "reason": "Both signature Magus delivery features are rebuilt around ranged weapons."
+        }
+      ],
+      "playerSummary": "A Magus who channels spell combat and spellstrike through a bonded ranged weapon.",
+      "tradeoff": "Its signature action loop is tied to ranged attacks and loses the normal melee emphasis.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "magus:bladebound",
+      "name": "Bladebound",
+      "parentClassId": "magus",
+      "sourceCitationText": "Ultimate Magic pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Bladebound",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "A sentient black blade has its own mission, Ego and potential conflicts with its wielder.",
+          "evidenceSection": "Black Blades / Black Blade Basics"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "constraints",
+          "section": "Black Blade",
+          "reason": "A permanent sentient weapon replaces part of the Magus arcana and arcane-pool progression."
+        }
+      ],
+      "playerSummary": "A Magus permanently partnered with a growing sentient black blade that has powers, resources, opinions and a mission of its own.",
+      "tradeoff": "The weapon type is fixed, familiars are forbidden and the blade can resist its wielder through Ego conflicts.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "medium:spirit-dancer",
+      "name": "Spirit Dancer",
+      "parentClassId": "medium",
+      "sourceCitationText": "Occult Adventures pg. 94",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Spirit%20Dancer",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Spirit Aura",
+          "reason": "The current spirit’s seance boon is projected to every nearby ally."
+        }
+      ],
+      "playerSummary": "A Medium who prepares all six legends and changes between their powers through a limited spirit dance.",
+      "tradeoff": "Exceptional flexibility is compressed into limited rounds and carries influence, lockout and post-dance penalties.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "medium:reanimated-medium",
+      "name": "Reanimated Medium",
+      "parentClassId": "medium",
+      "sourceCitationText": "Occult Adventures pg. 93",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Reanimated%20Medium",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "curse-or-drawback",
+          "kind": "commitment",
+          "summary": "At zero influence the body enters a helpless, deathlike coma for 24 hours.",
+          "evidenceSection": "Channel Self"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Lingering Spirit / Spirit Warding",
+          "reason": "The spirit can linger after death and gains strong defence, eventually immunity, against death and negative energy."
+        }
+      ],
+      "playerSummary": "A dead spirit inhabiting its own restored body, growing stronger through reversed influence and resisting death, possession and negative energy.",
+      "tradeoff": "Influence works backwards, and exhausting it leaves the body helpless for an entire day.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "mesmerist:vexing-daredevil",
+      "name": "Vexing Daredevil",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Occult Adventures pg. 98",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Vexing%20Daredevil",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "combat-manoeuvres": "available",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Dazzling Feint",
+          "reason": "Weapon attacks, feints, free movement, manoeuvres and follow-up strikes become the archetype’s central loop."
+        }
+      ],
+      "playerSummary": "A martial Mesmerist who feints stared targets to blind, reposition, manoeuvre or strike again.",
+      "tradeoff": "Touch treatment and several tricks are exchanged for a weapon-and-feint routine.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "mesmerist:cult-master",
+      "name": "Cult Master",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Occult Adventures pg. 96",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Cult%20Master",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "support-buffing": "core",
+        "summoning-companions": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true,
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "cult leader",
+          "evidenceSection": "Insidious Personality / Faithful Followers",
+          "evidenceText": "The source explicitly builds a cult leader who recruits, manipulates and commands a cohort and followers."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Fanatical Stare / Faithful Followers",
+          "reason": "The archetype buffs followers, gains Leadership and implants tricks specifically in its organisation."
+        }
+      ],
+      "playerSummary": "A charismatic cult leader who recruits followers, strengthens their fanaticism and uses them as agents, shields and eventual vessels.",
+      "tradeoff": "Many benefits require a cohort or followers and introduce substantial additional-character management.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "monk:zen-archer",
+      "name": "Zen Archer",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Player's Guide pg. 115",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Zen%20Archer",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Flurry of Blows / Way of the Bow",
+          "reason": "Flurry, scaling damage, Wisdom accuracy and ki techniques are all rebuilt around bows."
+        }
+      ],
+      "playerSummary": "A disciplined bow specialist who flurries at range, shoots through cover and applies ki techniques through arrows.",
+      "tradeoff": "Most signature combat features require a bow, substantially increasing equipment dependence.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "monk:tetori",
+      "name": "Tetori",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Combat pg. 61",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Tetori",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Graceful Grappler / Inescapable Grasp",
+          "reason": "The entire progression specialises in initiating, maintaining and preventing escape from grapples."
+        }
+      ],
+      "playerSummary": "A relentlessly specialised grappling Monk who suppresses magical escapes, anchors shapeshifters and can seize incorporeal foes.",
+      "tradeoff": "Flurry, mobility and several broad defensive features are traded for an exceptionally narrow control style.",
+      "reviewStatus": "draft"
+    }
+  ]
+}

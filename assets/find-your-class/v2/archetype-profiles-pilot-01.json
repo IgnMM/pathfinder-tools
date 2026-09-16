@@ -13,7 +13,9 @@
         "healing-recovery": "core"
       },
       "practicalOverrides": {},
-      "factOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
       "identityAdds": {},
       "identityRemoves": {},
       "constraints": [],
@@ -92,7 +94,13 @@
       "identityRemoves": {},
       "constraints": [],
       "professionIdentity": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Feed on Fear / Fearsome",
+          "reason": "Escalating fear and gaining power from frightened creatures refine an already core Antipaladin debuff role."
+        }
+      ],
       "playerSummary": "An Antipaladin whose existing debuffing identity becomes explicitly centred on escalating fear and feeding on frightened enemies.",
       "tradeoff": "The narrower fear focus is vulnerable when enemies resist or ignore fear, without changing the broader class role enough to alter a capability level.",
       "reviewStatus": "draft"
@@ -110,7 +118,13 @@
       "identityRemoves": {},
       "constraints": [],
       "professionIdentity": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Powerful Change / Share Transmutation",
+          "reason": "Stronger ability changes and shared personal transmutations deepen the Arcanist's inherited transformation capability."
+        }
+      ],
       "playerSummary": "An Arcanist who makes transformation magic stronger and can place normally personal transmutations on allies.",
       "tradeoff": "Several general-purpose exploits are surrendered for a focused transmutation identity.",
       "reviewStatus": "draft"
@@ -168,7 +182,9 @@
         "support-buffing": "available"
       },
       "practicalOverrides": {},
-      "factOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
       "identityAdds": {},
       "identityRemoves": {},
       "constraints": [],
@@ -249,7 +265,13 @@
         }
       ],
       "professionIdentity": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Exotic Mount",
+          "reason": "A wider list of scaling animal mounts changes companion choice without changing the Cavalier's inherited companion role."
+        }
+      ],
       "playerSummary": "A Cavalier who replaces the standard mount with a broader and increasingly exotic selection of animal companions.",
       "tradeoff": "The class role remains recognisably Cavalier, while mount eligibility depends on rider size and suitable anatomy.",
       "reviewStatus": "draft"
@@ -264,7 +286,9 @@
       "practicalOverrides": {
         "versatility": "medium"
       },
-      "factOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
       "identityAdds": {},
       "identityRemoves": {},
       "constraints": [

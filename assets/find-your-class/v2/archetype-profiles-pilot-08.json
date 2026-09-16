@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 2,
+  "status": "draft",
+  "inheritanceRule": "Every omitted field inherits the resolved parent class value.",
+  "profiles": [
+    {
+      "id": "swashbuckler:flying-blade",
+      "name": "Flying Blade",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Advanced Class Guide pg. 124",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Flying%20Blade",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Most defining features require daggers or starknives.",
+          "evidenceSection": "Panache / Flying Blade Training"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Deeds / Flying Blade Training",
+          "reason": "Thrown daggers and starknives gain range, damage, critical and panache support."
+        }
+      ],
+      "playerSummary": "A Swashbuckler specialised in throwing daggers and starknives with panache, precision and unusual reach.",
+      "tradeoff": "Its panache engine and scaling benefits are tightly restricted to two weapon families.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "swashbuckler:picaroon",
+      "name": "Picaroon",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Advanced Class Guide pg. 127",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Picaroon",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "The intended style pairs a one-handed firearm with a light or one-handed piercing weapon.",
+          "evidenceSection": "Two-Weapon Finesse"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Panache / Two-Weapon Finesse",
+          "reason": "Firearm attacks are integrated directly into the Swashbuckler’s two-weapon routine."
+        }
+      ],
+      "playerSummary": "A Swashbuckler who fights with a pistol in one hand and a finesse weapon in the other.",
+      "tradeoff": "The hybrid style is equipment intensive and several deeds are replaced by firearm-specific techniques.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "vigilante:magical-child",
+      "name": "Magical Child",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 57",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Magical%20Child",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {
+        "resource-management": "high"
+      },
+      "factOverrides": {
+        "has-spellcasting": true,
+        "has-familiar": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Animal Guide / Staunch Ally",
+          "reason": "A scaling magical familiar participates in both identities and can deliver vigilante appearance abilities."
+        }
+      ],
+      "playerSummary": "A transforming Vigilante with limited spontaneous arcane magic and a magical familiar that grows into a true combat partner.",
+      "tradeoff": "Skills and armour are reduced, and the spell, identity and familiar subsystems create a demanding character.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "vigilante:gunmaster",
+      "name": "Gunmaster",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 57",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Gunmaster",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon and Armor Proficiencies / Gunmaster Talents",
+          "reason": "Gunsmithing and an extensive firearm-talent progression define the vigilante identity."
+        }
+      ],
+      "playerSummary": "A firearm Vigilante with gunsmithing, specialised gun talents and light-armour agility.",
+      "tradeoff": "Martial weapons and medium armour are lost, while effectiveness depends heavily on firearms and ammunition.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "warpriest:sacred-fist",
+      "name": "Sacred Fist",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Advanced Class Guide pg. 130",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Sacred%20Fist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "equipment-dependence": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "AC and flurry benefits require remaining unarmoured, unshielded and lightly encumbered.",
+          "evidenceSection": "Weapon and Armor Proficiency / AC Bonus"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "practicalOverrides.equipment-dependence",
+          "section": "Unarmed Strike / AC Bonus",
+          "reason": "Unarmed damage and unarmoured Wisdom defence replace sacred-weapon and armour dependence."
+        }
+      ],
+      "playerSummary": "An unarmoured Warpriest combining divine spells and fervour with Monk-style flurry, unarmed damage, ki and saving resilience.",
+      "tradeoff": "Armour and shield use disable central benefits, and several bonus feats and sacred-weapon features are replaced.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "warpriest:shieldbearer",
+      "name": "Shieldbearer",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Armor Master's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Shieldbearer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Sacred weapon, sacred shield and altered channel energy all depend on carrying a shield.",
+          "evidenceSection": "Shield Adept / Channel Energy"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "inherited.personal-durability",
+          "section": "Sacred Shield",
+          "reason": "Scaling divine shield enhancement and defensive properties make shield defence central."
+        }
+      ],
+      "playerSummary": "A Warpriest who makes the shield both sacred weapon and divinely enhanced defence.",
+      "tradeoff": "Several class features arrive later or function only while carrying a shield, creating strong equipment dependence.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "witch:white-haired-witch",
+      "name": "White-Haired Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Dragon Empires Primer pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20White-Haired%20Witch",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "White Hair",
+          "reason": "A reach natural attack automatically attempts grapple and later gains constrict and manipulation abilities."
+        }
+      ],
+      "playerSummary": "A Witch whose supernatural hair becomes a reach weapon that grapples, constricts and manipulates enemies.",
+      "tradeoff": "The entire hex progression is replaced by close-combat hair and a narrow selection of Rogue talents.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "witch:havocker",
+      "name": "Havocker",
+      "parentClassId": "witch",
+      "sourceCitationText": "Magic Tactics Toolbox pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Havocker",
+      "capabilityOverrides": {
+        "single-target-damage": "core",
+        "debuffing-enemies": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "supernatural attack"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "element-choice",
+          "kind": "commitment",
+          "summary": "One kineticist element replaces the normal patron and determines blast and infusion access.",
+          "evidenceSection": "Patron Element"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.single-target-damage",
+          "section": "Patron Element / Spellburn",
+          "reason": "A scaling kinetic blast becomes the reliable offensive centre of the Witch."
+        }
+      ],
+      "playerSummary": "A Witch who trades patron spells and hexes for an elemental kinetic blast powered and modified through sacrificed spells.",
+      "tradeoff": "Most hex-based debuffing and utility disappear, and infusion use consumes prepared spell slots.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "wizard:spellslinger",
+      "name": "Spellslinger",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Ultimate Combat pg. 75",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Spellslinger",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high",
+        "versatility": "medium"
+      },
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "One or two firearms become arcane guns used to deliver and enhance spells.",
+          "evidenceSection": "Arcane Gun"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Arcane Gun / Mage Bullets",
+          "reason": "Firearms deliver spells, improve attack DCs and convert spell slots into gun enhancements."
+        }
+      ],
+      "playerSummary": "A Wizard who channels spells through one or two arcane firearms and converts spell energy into magical ammunition.",
+      "tradeoff": "Four opposition schools and intense firearm dependence substantially narrow the Wizard’s usual breadth.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "wizard:arcane-physician",
+      "name": "Arcane Physician",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Healer's Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Arcane%20Physician",
+      "capabilityOverrides": {
+        "healing-recovery": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "physician",
+          "evidenceSection": "Medicinal Alchemy / Brew Potion",
+          "evidenceText": "The named archetype explicitly practises medicine through alchemical healing items and potion construction."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Medicinal Alchemy",
+          "reason": "Healing-subschool alchemist magic can be activated from items and supplied through crafted potions."
+        }
+      ],
+      "playerSummary": "A Wizard physician who accesses healing through alchemical magic items and can build restorative potions without knowing the spells.",
+      "tradeoff": "Healing remains item-mediated rather than ordinary Wizard casting and replaces scroll-focused development.",
+      "reviewStatus": "draft"
+    }
+  ]
+}

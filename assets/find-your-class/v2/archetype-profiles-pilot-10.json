@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 2,
+  "status": "draft",
+  "inheritanceRule": "Every omitted field inherits the resolved parent class value.",
+  "profiles": [
+    {
+      "id": "magus:armored-battlemage",
+      "name": "Armored Battlemage",
+      "parentClassId": "magus",
+      "sourceCitationText": "Armor Master's Handbook pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Armored%20Battlemage",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Arcane Pool / Armor Training",
+          "reason": "The arcane pool enhances armour and a full armour-training progression replaces offensive spell-combat improvements."
+        }
+      ],
+      "playerSummary": "A heavily armoured Magus who channels arcane-pool power into armour instead of weapons.",
+      "tradeoff": "Spell combat is lost entirely, substantially weakening the normal cast-and-strike action economy.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "magus:hexcrafter",
+      "name": "Hexcrafter",
+      "parentClassId": "magus",
+      "sourceCitationText": "Ultimate Magic pg. 48",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Hexcrafter",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Hex Magus / Spells",
+          "reason": "Witch hexes and curse spells make lasting magical hindrance the archetype’s defining addition."
+        }
+      ],
+      "playerSummary": "A Magus who integrates Witch hexes and curse magic into an already aggressive spell-and-weapon chassis.",
+      "tradeoff": "Several Magus arcana choices are redirected into hexes, increasing option and resource complexity.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "magus:eldritch-scion",
+      "name": "Eldritch Scion",
+      "parentClassId": "magus",
+      "sourceCitationText": "Advanced Class Guide pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Eldritch%20Scion",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "castingMethod": [
+          "spontaneous"
+        ]
+      },
+      "identityRemoves": {
+        "castingMethod": [
+          "prepared"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "bloodline-choice",
+          "kind": "commitment",
+          "summary": "One bloodrager bloodline determines bonus spells and bloodline powers.",
+          "evidenceSection": "Bloodline"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "identityAdds.castingMethod",
+          "section": "Spells / Bloodline",
+          "reason": "The Magus becomes a spontaneous Charisma caster tied to a bloodrager bloodline."
+        }
+      ],
+      "playerSummary": "A spontaneous Charisma-based Magus whose arcane pool and combat magic awaken through a bloodrager bloodline.",
+      "tradeoff": "Spell combat is delayed and restricted by mystical focus, and the bloodline is a permanent build commitment.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "rogue:burglar",
+      "name": "Burglar",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 132",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Burglar",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "burglar",
+          "evidenceSection": "Careful Disarm / Distraction",
+          "evidenceText": "The archetype explicitly specialises in breaking in, bypassing traps and diverting attention."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "professionIdentity",
+          "section": "Careful Disarm / Distraction",
+          "reason": "Trap handling and getaway distraction reinforce the explicit burglary vocation."
+        }
+      ],
+      "playerSummary": "A professional burglar specialised in careful trap work, covert entry and distracting pursuit during an escape.",
+      "tradeoff": "Trap sense and uncanny dodge are replaced by situational infiltration techniques.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "rogue:scout",
+      "name": "Scout",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 134",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Scout",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "scout",
+          "evidenceSection": "Scout’s Charge / Skirmisher",
+          "evidenceText": "The archetype explicitly fights through movement, charging and mobile reconnaissance-style attacks."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "inherited.combat-mobility",
+          "section": "Scout’s Charge / Skirmisher",
+          "reason": "Charge and movement directly enable sneak attack, making mobility central to offence."
+        }
+      ],
+      "playerSummary": "A mobile Rogue who creates sneak-attack openings by charging or moving across the battlefield.",
+      "tradeoff": "Uncanny dodge is lost, and peak offence depends on having room and actions to move.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "rogue:thug",
+      "name": "Thug",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 135",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Thug",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Frightening / Brutal Beating",
+          "reason": "Demoralisation lasts longer and sneak attack can impose sickened instead of extra damage."
+        }
+      ],
+      "playerSummary": "An intimidating Rogue who prolongs fear and trades some sneak-attack damage for brutal debilitating blows.",
+      "tradeoff": "Trapfinding and trap sense are reduced for a style that depends on fear and vulnerable targets.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "sorcerer:eldritch-scrapper",
+      "name": "Eldritch Scrapper",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Advanced Class Guide pg. 122",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Eldritch%20Scrapper",
+      "capabilityOverrides": {
+        "melee-combat": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Martial Flexibility / Bloodline Weapons",
+          "reason": "Temporary combat feats and bloodline weapon proficiency add a genuine martial route."
+        }
+      ],
+      "playerSummary": "A Sorcerer who trades early bloodline powers for flexible combat feats and weapons associated with the bloodline.",
+      "tradeoff": "It remains a low-BAB caster and must understand the combat-feat tree to use its flexibility well.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "sorcerer:seeker",
+      "name": "Seeker",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Pathfinder Society Field Guide pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Seeker",
+      "capabilityOverrides": {
+        "practical-expertise": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "seeker",
+          "evidenceSection": "Tinkering / Seeker Lore",
+          "evidenceText": "The archetype explicitly searches out magical secrets, disables devices and studies hidden lore."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Tinkering",
+          "reason": "Trapfinding and Disable Device expertise add a practical exploration role absent from the base Sorcerer."
+        }
+      ],
+      "playerSummary": "A Sorcerer seeker who investigates magical secrets, handles traps and pushes bloodline magic beyond ordinary limits.",
+      "tradeoff": "Several bloodline powers are delayed or replaced by a specialised exploration package.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "sorcerer:tattooed-sorcerer",
+      "name": "Tattooed Sorcerer",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Inner Sea Magic pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Tattooed%20Sorcerer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "A familiar is embodied in a magical tattoo and replaces the normal 1st-level bloodline power.",
+          "evidenceSection": "Familiar Tattoo"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "inherited.summoning-companions",
+          "section": "Familiar Tattoo",
+          "reason": "A tattoo familiar becomes a persistent magical companion with unusual concealment."
+        }
+      ],
+      "playerSummary": "A Sorcerer whose bloodline manifests through magical tattoos and a familiar that can retreat into the skin.",
+      "tradeoff": "The 1st-level bloodline power is lost and much of the archetype’s identity is tied to visible tattoos and one familiar.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "wizard:scroll-scholar",
+      "name": "Scroll Scholar",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Pathfinder Society Field Guide pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Scroll%20Scholar",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "scholar",
+          "evidenceSection": "Diligent Student / Secrets Revealed",
+          "evidenceText": "The archetype explicitly develops multiple fields of scholarship and language and identification expertise."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "professionIdentity",
+          "section": "Diligent Student",
+          "reason": "Scaling Knowledge specialities support the explicit scholarly identity without changing the Wizard’s already-core knowledge role."
+        }
+      ],
+      "playerSummary": "A Wizard scholar who accumulates specialised fields of knowledge, reads obscure texts and produces sudden flashes of insight.",
+      "tradeoff": "The arcane school’s normal power progression is reduced for broadly applicable but less dramatic scholarship.",
+      "reviewStatus": "draft"
+    }
+  ]
+}
