@@ -35,8 +35,8 @@ const appJs = fs.readFileSync(path.join(dir, 'app.js'), 'utf8');
 // find-your-class/, and never sharing coordinates with one of the 5 existing
 // vertex nodes (which would mean visual overlap).
 // ---------------------------------------------------------------------
-test('1. index.html has an Arcane Compass node in the pentacle, using the real artwork, pointing at find-your-class/', () => {
-  assert.match(homeHtml, /<a class="node" data-pos="center" href="find-your-class\/" tabindex="0">/);
+test('1. index.html has an Arcane Compass node in the pentacle, using the real artwork, pointing at find-your-class-v2/ (the current Compass v2 system)', () => {
+  assert.match(homeHtml, /<a class="node" data-pos="center" href="find-your-class-v2\/" tabindex="0">/);
   assert.match(homeHtml, /data-pos="center"[\s\S]{0,40}[\s\S]*?src="assets\/find-your-class\/arcane-compass-table\.png"/);
   const imagePath = path.join(root, 'assets', 'find-your-class', 'arcane-compass-table.png');
   assert.ok(fs.existsSync(imagePath), 'the real Arcane Compass PNG must exist on disk, not just be referenced');

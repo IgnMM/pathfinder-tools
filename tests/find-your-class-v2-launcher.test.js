@@ -1,0 +1,40 @@
+// Run with: node --test tests/find-your-class-v2-launcher.test.js
+// Static HTML coverage for find-your-class-v2/index.html, mirroring the
+// static-check style already used for the v1 page (no DOM/jsdom available).
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const root = path.join(__dirname, '..');
+const pageHtml = fs.readFileSync(path.join(root, 'find-your-class-v2', 'index.html'), 'utf8');
+const appJs = fs.readFileSync(path.join(root, 'assets', 'find-your-class', 'v2', 'app.js'), 'utf8');
+
+test('find-your-class-v2/index.html loads the v2 scripts, not the v1 ones', () => {
+  assert.match(pageHtml, /src="\.\.\/assets\/find-your-class\/v2\/loader\.js"/);
+  assert.match(pageHtml, /src="\.\.\/assets\/find-your-class\/v2\/matcher\.js"/);
+  assert.match(pageHtml, /src="\.\.\/assets\/find-your-class\/v2\/app\.js"/);
+  assert.ok(!/src="\.\.\/assets\/find-your-class\/(loader|matcher|concept-parser)\.js"/.test(pageHtml), 'must not accidentally load a v1 script');
+});
+
+test('find-your-class-v2/index.html resolves all 40 class profiles + all 10 archetype pilot batches into one profile set at bootstrap', () => {
+  for (let i = 1; i <= 3; i++) assert.match(pageHtml, new RegExp(`class-profiles-batch-0${i}\\.json`));
+  for (let i = 1; i <= 10; i++) assert.match(pageHtml, new RegExp(`archetype-profiles-pilot-${String(i).padStart(2, '0')}\\.json`));
+  assert.match(pageHtml, /resolveAllProfiles\(classProfiles, archetypeOverrides\)/);
+});
+
+test('find-your-class-v2/index.html has no fixed-width element wider than a 320px viewport', () => {
+  const styleBlock = pageHtml.match(/<style>([\s\S]*?)<\/style>/)[1];
+  const fixedWidthPx = [...styleBlock.matchAll(/(?<![\w-])width:\s*(\d+)px/g)].map(m => Number(m[1]));
+  for (const w of fixedWidthPx) assert.ok(w <= 320, `found a fixed pixel width of ${w}px, which would overflow a 320px viewport`);
+});
+
+test('no non-English UI text in the v2 experience', () => {
+  const suspiciousChars = /[áéíóúñ¿¡]/i;
+  assert.ok(!suspiciousChars.test(pageHtml));
+  assert.ok(!suspiciousChars.test(appJs));
+});
+
+test('the v2 app.js is honest in its own comments about the missing free-text idea entry (no v2 concept-lexicon exists yet)', () => {
+  assert.match(appJs, /no v2 concept-lexicon\/parser yet/i);
+});
