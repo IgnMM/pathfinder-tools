@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 2,
+  "status": "draft",
+  "inheritanceRule": "Every omitted field inherits the resolved parent class value.",
+  "profiles": [
+    {
+      "id": "fighter:archer",
+      "name": "Archer",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Archer",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "area-multi-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Weapon and Armor Proficiency / Expert Archer",
+          "reason": "The archetype gives up heavier armour and tower shields while dedicating its scaling weapon features to bows."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Volley",
+          "reason": "At high level the Archer can make one bow attack against every target in a 15-foot-radius burst."
+        }
+      ],
+      "playerSummary": "A dedicated bow Fighter who performs ranged combat manoeuvres, shoots safely through a melee and eventually unleashes wide volleys.",
+      "tradeoff": "Its defining training, defences and mastery are tied to bows, with less armour and less emphasis on close combat.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "fighter:eldritch-guardian",
+      "name": "Eldritch Guardian",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Familiar Folio pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Eldritch%20Guardian",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {
+        "play-complexity": "high"
+      },
+      "factOverrides": {
+        "has-familiar": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Familiar / Share Training",
+          "reason": "A full-level familiar is central to the archetype and can share the Fighter's combat feats."
+        },
+        {
+          "field": "practicalOverrides.play-complexity",
+          "section": "Share Training",
+          "reason": "Operating a separate familiar with a changing set of shared combat feats adds substantial table management."
+        }
+      ],
+      "playerSummary": "A Fighter who trains alongside a familiar, sharing combat feats so the pair can fight as a coordinated unit.",
+      "tradeoff": "Early bonus feats and some martial class skills are exchanged for managing and protecting a second combatant.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "gunslinger:bolt-ace",
+      "name": "Bolt Ace",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Advanced Class Guide pg. 94",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Bolt%20Ace",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "factOverrides.has-firearms",
+          "section": "Weapon Proficiency / Crossbow Maven",
+          "reason": "Crossbows replace firearms, gunsmithing and firearm proficiency throughout the archetype."
+        }
+      ],
+      "playerSummary": "A Gunslinger engine rebuilt around crossbows, applying grit, deeds and weapon training without using firearms.",
+      "tradeoff": "Its signature tricks are restricted to crossbows and it gives up the class's firearm identity entirely.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "gunslinger:gun-tank",
+      "name": "Gun Tank",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Ultimate Combat pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Gun%20Tank",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Gun Tank's Resolve / Armor Training",
+          "reason": "Heavy armour, shield use, critical and sneak-attack negation, bullet deflection and armour training define the package."
+        }
+      ],
+      "playerSummary": "A heavily armoured Gunslinger who survives critical hits, deflects bullets and keeps moving effectively in armour.",
+      "tradeoff": "Nimble and several bonus feats are replaced by a much more equipment-heavy defensive progression.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "hunter:forester",
+      "name": "Forester",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Ultimate Wilderness pg. 52",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Forester",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "summoning-companions": "absent",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {
+        "play-complexity": "medium"
+      },
+      "factOverrides": {
+        "has-animal-companion": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Animal Focus",
+          "reason": "The Forester explicitly has no animal companion and applies animal focus only to herself."
+        },
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Tactician / Greater Tactician / Master Tactician",
+          "reason": "A scaling tactician progression repeatedly grants teamwork feats to nearby allies."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Camouflage / Hide in Plain Sight",
+          "reason": "The archetype gains camouflage and eventually hides in favoured terrain while observed."
+        },
+        {
+          "field": "practicalOverrides.play-complexity",
+          "section": "Animal Companion",
+          "reason": "Removing the permanent animal companion eliminates an additional character sheet and combat entity."
+        }
+      ],
+      "playerSummary": "A solitary Hunter who replaces an animal companion with favoured terrain, stealth mastery and shared teamwork tactics.",
+      "tradeoff": "It loses the class's defining permanent companion and concentrates its teamwork and animal focus on the Hunter and nearby allies.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "hunter:primal-companion-hunter",
+      "name": "Primal Companion Hunter",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Advanced Class Guide pg. 97",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Primal%20Companion%20Hunter",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Primal Transformation",
+          "reason": "Temporary eidolon evolutions repeatedly reshape the animal companion, or the Hunter when the companion is dead."
+        }
+      ],
+      "playerSummary": "A Hunter who spends primal energy to reshape an animal companion with a flexible selection of evolutions.",
+      "tradeoff": "Precise teamwork tactics are reduced in exchange for another limited resource and a highly configurable companion transformation.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "inquisitor:monster-tactician",
+      "name": "Monster Tactician",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Monster Summoner's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Monster%20Tactician",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Summon Monster",
+          "reason": "A standard-action, minutes-per-level summon monster progression reaching summon monster IX becomes the defining combat feature."
+        },
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Summon Tactics",
+          "reason": "Every summoned creature receives the Inquisitor's teamwork feats without needing to meet their prerequisites."
+        }
+      ],
+      "playerSummary": "An Inquisitor who calls long-lasting extraplanar allies and turns them into a coordinated team through shared feats.",
+      "tradeoff": "Judgments are surrendered, and managing summoned creatures becomes the centre of both tactics and table complexity.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "inquisitor:sanctified-slayer",
+      "name": "Sanctified Slayer",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Advanced Class Guide pg. 99",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Sanctified%20Slayer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "factOverrides.has-sneak-attack",
+          "section": "Sneak Attack",
+          "reason": "The archetype gains a scaling sneak attack progression alongside studied target and slayer talents."
+        }
+      ],
+      "playerSummary": "An Inquisitor who marks one quarry, exploits openings with sneak attacks and selects talents from the Slayer and Rogue toolkits.",
+      "tradeoff": "Judgments and their later improvements are replaced by a more martial, target-focused progression.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "investigator:forensic-physician",
+      "name": "Forensic Physician",
+      "parentClassId": "investigator",
+      "sourceCitationText": "Ultimate Intrigue pg. 33",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Forensic%20Physician",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "forensic physician",
+          "evidenceSection": "Medical Expertise / Blood Lore",
+          "evidenceText": "The archetype explicitly practises medicine, treats disease and analyses bodies, blood and medical evidence."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "factOverrides.has-profession-identity",
+          "section": "Medical Expertise / Blood Lore",
+          "reason": "Its named and mechanical identity is the professional examination and treatment of patients and physical evidence."
+        }
+      ],
+      "playerSummary": "An Investigator who works as a medical and forensic specialist, reading bodies, blood and disease as evidence.",
+      "tradeoff": "Trapfinding, trap sense and two investigator talents are exchanged for a deliberately narrow professional speciality.",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "investigator:empiricist",
+      "name": "Empiricist",
+      "parentClassId": "investigator",
+      "sourceCitationText": "Advanced Class Guide pg. 100",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Empiricist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "attribute-demands": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "practicalOverrides.attribute-demands",
+          "section": "Ceaseless Observation",
+          "reason": "Intelligence replaces several different ability scores for important investigative, social and practical skills."
+        }
+      ],
+      "playerSummary": "An Intelligence-centred Investigator who applies observation and reason to perception, motives, devices, information gathering and magic items.",
+      "tradeoff": "Poison lore and resistance, swift alchemy and some trap talent are exchanged for unusually concentrated mental ability use.",
+      "reviewStatus": "draft"
+    }
+  ]
+}

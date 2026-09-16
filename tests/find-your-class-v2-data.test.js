@@ -11,7 +11,7 @@ const batch = batches[0];
 const profiles = batches.flatMap(item => item.profiles);
 const criterionIds = criteria.criteria.map(item => item.id);
 const pilot = JSON.parse(fs.readFileSync(new URL('archetype-pilot-selection.json', root), 'utf8'));
-const archetypeBatches = ['archetype-profiles-pilot-01.json', 'archetype-profiles-pilot-02.json']
+const archetypeBatches = ['archetype-profiles-pilot-01.json', 'archetype-profiles-pilot-02.json', 'archetype-profiles-pilot-03.json']
   .map(file => JSON.parse(fs.readFileSync(new URL(file, root), 'utf8')));
 const archetypeProfiles = archetypeBatches.flatMap(item => item.profiles);
 
@@ -108,8 +108,8 @@ test('archetype overrides use valid fields, inherit everything omitted and may l
   const classById = new Map(profiles.map(profile => [profile.id, profile]));
   const allowedPractical = new Set(model.practicalRatings.map(item => item.id));
   const allowedFacts = new Set(model.booleanFacts);
-  assert.equal(archetypeProfiles.length, 20);
-  assert.equal(new Set(archetypeProfiles.map(profile => profile.id)).size, 20);
+  assert.equal(archetypeProfiles.length, 30);
+  assert.equal(new Set(archetypeProfiles.map(profile => profile.id)).size, 30);
   assert.ok(archetypeProfiles.some(profile => Object.keys(profile.capabilityOverrides).length === 0));
 
   for (const archetype of archetypeProfiles) {
