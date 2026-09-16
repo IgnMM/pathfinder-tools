@@ -165,7 +165,6 @@
 
     function renderIdea() {
       return `<section class="fycStage" aria-labelledby="fycHeading">
-        <p class="fycEyebrow">Compass v2 · tell me</p>
         <h1 id="fycHeading">Describe your ideal character</h1>
         ${uiError ? `<p class="fycError" role="alert">${escapeHtml(uiError)}</p>` : ''}
         <p class="fycSupport">What kind of character appeals to you? A sneaky elf? A protective paladin? A mysterious wizard? Write freely — or skip straight to the criteria if you'd rather.</p>
@@ -187,10 +186,9 @@
       const identityGroup = `<section class="fycGroup"><h3>Identity</h3><ul class="fycCards">${Object.keys(deps.model.identityCategories).map(identityRow).join('')}</ul></section>`;
 
       return `<section class="fycStage fycStage--wide" aria-labelledby="fycHeading">
-        <p class="fycEyebrow">Compass v2 · calibration</p>
-        <h1 id="fycHeading">Tell me your priorities</h1>
+        <h1 id="fycHeading">Set your priorities</h1>
         ${uiError ? `<p class="fycError" role="alert">${escapeHtml(uiError)}</p>` : ''}
-        <p class="fycSupport">Set anything that matters to you, or leave it "Not relevant". The importance scale (1–10) appears once you choose a level.</p>
+        <p class="fycSupport">Choose what matters to you. Importance (1–10) appears only once you pick a level.</p>
         <div class="fycStartRightScroll" style="max-height:none">${capabilityGroups}${practicalGroup}${factGroup}${identityGroup}</div>
         <div class="fycActions">
           <button type="button" class="fycPrimary" data-action="show-results">See my results</button>
