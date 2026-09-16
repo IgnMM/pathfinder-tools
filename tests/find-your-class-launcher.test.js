@@ -37,10 +37,36 @@ const appJs = fs.readFileSync(path.join(dir, 'app.js'), 'utf8');
 // ---------------------------------------------------------------------
 test('1. index.html has an Arcane Compass node in the pentacle, using the real artwork, pointing at find-your-class-v2/ (the current Compass v2 system)', () => {
   assert.match(homeHtml, /<a class="node" data-pos="center" href="find-your-class-v2\/" tabindex="0">/);
-  assert.match(homeHtml, /data-pos="center"[\s\S]{0,40}[\s\S]*?src="assets\/find-your-class\/arcane-compass-table\.png"/);
-  const imagePath = path.join(root, 'assets', 'find-your-class', 'arcane-compass-table.png');
+  assert.match(homeHtml, /data-pos="center"[\s\S]{0,400}[\s\S]*?src="assets\/find-your-class\/arcane-compass-icon\.png"/);
+  const imagePath = path.join(root, 'assets', 'find-your-class', 'arcane-compass-icon.png');
   assert.ok(fs.existsSync(imagePath), 'the real Arcane Compass PNG must exist on disk, not just be referenced');
   assert.ok(fs.statSync(imagePath).size > 10000, 'the asset at that path must be a real image, not a stub/placeholder file');
+});
+
+// Regression: this exact image previously existed under two other names at once
+// (arcane-compass-orb.png, arcane-compass-table.png) after the user renamed/replaced the
+// file but the HTML reference was never updated to match -- the icon silently kept
+// pointing at a stale duplicate. Guard against that recurring: exactly one file, the
+// canonical name, referenced with explicit width/height (so the browser reserves layout
+// space immediately and never flashes a broken-image icon while the network request is
+// in flight) and a load-fade-in class, with no leftover same-purpose duplicate on disk.
+test('1b. exactly one Arcane Compass icon file exists on disk -- no stale duplicate under a different name', () => {
+  const assetDir = path.join(root, 'assets', 'find-your-class');
+  const compassImages = fs.readdirSync(assetDir).filter(f => /^arcane-compass.*\.(png|jpe?g|webp)$/i.test(f));
+  assert.deepEqual(compassImages, ['arcane-compass-icon.png'], 'there must be exactly one compass image file, under the canonical name referenced in index.html');
+});
+
+test('1c. the Arcane Compass <img> has explicit width/height and a load-fade-in handler, so it never flashes a broken-image icon', () => {
+  // Anchored to the <a> element specifically (not just the string "data-pos=\"center\"",
+  // which ALSO appears earlier in a CSS rule) -- every pentacle node's icon shares
+  // class="icon", so an unanchored match could silently grab a DIFFERENT node's tag.
+  const centerNodeMatch = homeHtml.match(/<a class="node" data-pos="center"[\s\S]*?(<img class="icon"[^>]*>)/);
+  assert.ok(centerNodeMatch, 'the compass <img> tag must exist inside the center node');
+  const imgTag = centerNodeMatch[1];
+  assert.match(imgTag, /width="300"/);
+  assert.match(imgTag, /height="300"/);
+  assert.match(imgTag, /onload="this\.classList\.add\('loaded'\)"/);
+  assert.match(homeHtml, /<link rel="preload" as="image" href="assets\/find-your-class\/arcane-compass-icon\.png">/, 'the icon should also be preloaded in <head> for the fastest possible paint');
 });
 
 test('2. the centre node does not share coordinates with any of the pentacle\'s 5 vertex nodes', () => {

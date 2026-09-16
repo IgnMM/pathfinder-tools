@@ -6,6 +6,7 @@
 <title>The Sanctum — Pathfinder Tools</title>
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" as="image" href="assets/find-your-class/arcane-compass-icon.png">
 <meta name="theme-color" content="#0a0906">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -146,8 +147,10 @@
     height:88%;
     object-fit:contain;
     filter:drop-shadow(0 6px 18px rgba(0,0,0,.75)) brightness(.82) saturate(.85);
-    transition:filter .45s ease, transform .45s ease;
+    transition:filter .45s ease, transform .45s ease, opacity .35s ease;
+    opacity:0;
   }
+  .node img.icon.loaded{ opacity:1; }
   .node .label{
     margin-top:10px;
     font-family:'Cinzel',Georgia,serif;
@@ -301,7 +304,13 @@
     </a>
 
     <a class="node" data-pos="center" href="find-your-class-v2/" tabindex="0">
-      <span class="ring"><img class="icon" src="assets/find-your-class/arcane-compass-table.png" alt="A luminous scrying orb on an ornate silver stand"></span>
+      <!-- CANONICAL asset name: assets/find-your-class/arcane-compass-icon.png -- this is
+           the ONLY find-your-class pentacle icon file in the repo. Do not add a second
+           copy under a different name (e.g. "-orb"/"-table"/etc.) -- replace THIS file in
+           place if the artwork changes, so nothing else needs to be touched. Pre-sized to
+           300x300 (the icon never renders above ~92px) specifically so it loads instantly
+           and never flashes a broken-image icon before painting. -->
+      <span class="ring"><img class="icon" src="assets/find-your-class/arcane-compass-icon.png" width="300" height="300" alt="A luminous scrying orb on an ornate silver stand" onload="this.classList.add('loaded')"></span>
       <span class="label">Find Your Class</span>
       <span class="rune">Iter Vocationis</span>
     </a>
