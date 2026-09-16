@@ -1,0 +1,1376 @@
+{
+  "schemaVersion": 2,
+  "status": "calibration",
+  "levelBand": "whole-career-1-20",
+  "notes": [
+    "Final class calibration batch; every unspecified capability is explicitly absent.",
+    "Profession identity is intentionally empty on class profiles and is reserved for explicitly professional archetypes."
+  ],
+  "profiles": [
+    {
+      "id": "ninja",
+      "name": "Ninja",
+      "sourceCitationText": "Ultimate Combat pg. 13",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Ninja",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "available",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "available",
+        "combat-mobility": "core",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "available",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "limited"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "ranged weapon"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "occultist",
+      "name": "Occultist",
+      "sourceCitationText": "Occult Adventures pg. 46",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Occultist",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "available",
+        "offensive-magic": "available",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "available",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "available",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "available",
+        "social-influence": "available",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "psychic",
+          "occult"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "occult"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting",
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "sourceCitationText": "Advanced Player's Guide pg. 42",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Oracle",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "available",
+        "offensive-magic": "core",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "available",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "core",
+        "healing-recovery": "core",
+        "defensive-protective-magic": "core",
+        "utility-magic": "core",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "available",
+        "social-influence": "available",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "available"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "full"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity",
+          "other"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "curse-or-drawback",
+          "kind": "commitment",
+          "summary": "Every oracle bears an oracle curse that grants benefits while imposing an ongoing drawback."
+        }
+      ],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "psychic",
+      "name": "Psychic",
+      "sourceCitationText": "Occult Adventures pg. 60",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Psychic",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "core",
+        "combat-mobility": "available",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "available",
+        "support-buffing": "available",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "low",
+        "equipment-dependence": "low",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "psychic",
+          "occult"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "full"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "occult"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "ranger",
+      "name": "Ranger",
+      "sourceCitationText": "PRPG Core Rulebook pg. 64",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Ranger",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "core",
+        "offensive-magic": "available",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "available",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "available",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "available",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "absent",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "core"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": true,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "nature",
+          "divine"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [
+          "wilderness"
+        ],
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "ranged weapon",
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "samurai",
+      "name": "Samurai",
+      "sourceCitationText": "Ultimate Combat pg. 18",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Samurai",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "available",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "core",
+        "personal-durability": "core",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "core",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "available",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "core",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": true,
+        "has-code-of-conduct": true,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "companion"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "code-of-conduct",
+          "kind": "commitment",
+          "summary": "A samurai order imposes edicts and shapes the character’s expected conduct."
+        }
+      ],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "shaman",
+      "name": "Shaman",
+      "sourceCitationText": "Advanced Class Guide pg. 35",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Shaman",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "available",
+        "offensive-magic": "core",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "available",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "available",
+        "support-buffing": "core",
+        "healing-recovery": "core",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "available",
+        "social-influence": "available",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "available"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": true,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine",
+          "nature"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "full"
+        ],
+        "environmentThemes": [
+          "wilderness"
+        ],
+        "spiritualThemes": [
+          "spirits",
+          "nature"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "shifter",
+      "name": "Shifter",
+      "sourceCitationText": "Ultimate Wilderness pg. 26",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Shifter",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "available",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "core",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "core",
+        "practical-expertise": "available",
+        "social-influence": "absent",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "core"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": true,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "nature"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "limited"
+        ],
+        "environmentThemes": [
+          "wilderness"
+        ],
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "skald",
+      "name": "Skald",
+      "sourceCitationText": "Advanced Class Guide pg. 49",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Skald",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "available",
+        "offensive-magic": "available",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "core",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "core",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "available",
+        "social-influence": "core",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "available"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": true,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "sorcerer",
+      "name": "Sorcerer",
+      "sourceCitationText": "PRPG Core Rulebook pg. 70",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Sorcerer",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "core",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "core",
+        "combat-mobility": "available",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "available",
+        "support-buffing": "available",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "low",
+        "equipment-dependence": "low",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": true,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "full"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "spiritualist",
+      "name": "Spiritualist",
+      "sourceCitationText": "Occult Adventures pg. 72",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Spiritualist",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "available",
+        "offensive-magic": "available",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "available",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "available",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "available",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "psychic",
+          "occult"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "spirits",
+          "occult"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "companion",
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "summoner",
+      "name": "Summoner",
+      "sourceCitationText": "Advanced Player's Guide pg. 54",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Summoner",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "available",
+        "offensive-magic": "available",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "available",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "available",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "available",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "companion",
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "swashbuckler",
+      "name": "Swashbuckler",
+      "sourceCitationText": "Advanced Class Guide pg. 56",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Swashbuckler",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "available",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "available",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "core",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "core",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [
+          "urban"
+        ],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "vigilante",
+      "name": "Vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 9",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Vigilante",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "available",
+        "offensive-magic": "available",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "available",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "available",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "available",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "available",
+        "social-influence": "core",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "medium",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none",
+          "other"
+        ],
+        "castingMethod": [
+          "none",
+          "spell-like"
+        ],
+        "castingExtent": [
+          "none",
+          "limited"
+        ],
+        "environmentThemes": [
+          "urban"
+        ],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "ranged weapon",
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "warpriest",
+      "name": "Warpriest",
+      "sourceCitationText": "Advanced Class Guide pg. 60",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Warpriest",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "available",
+        "offensive-magic": "available",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "available",
+        "personal-durability": "core",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "core",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "core",
+        "utility-magic": "available",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "available",
+        "social-influence": "available",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "high",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "ranged weapon",
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Pending cross-class normalization."
+    },
+    {
+      "id": "witch",
+      "name": "Witch",
+      "sourceCitationText": "Advanced Player's Guide pg. 65",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Witch",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "available",
+        "personal-durability": "absent",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "available",
+        "support-buffing": "available",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "available",
+        "social-influence": "available",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "available"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "low",
+        "equipment-dependence": "medium",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": true,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane",
+          "occult"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "full"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "patron",
+          "occult"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "patron-oath-order",
+          "kind": "theme",
+          "summary": "A witch selects a patron theme, while the familiar stores and mediates her spells."
+        }
+      ],
+      "calibrationRole": "Pending cross-class normalization."
+    }
+  ]
+}

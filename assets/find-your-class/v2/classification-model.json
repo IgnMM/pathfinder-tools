@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "status": "calibration",
+  "practicalRatings": [
+    {"id":"build-complexity","low":"Straightforward to build effectively","high":"Requires many interdependent build decisions"},
+    {"id":"play-complexity","low":"Straightforward to operate at the table","high":"Tracks many choices, entities, timings or resources"},
+    {"id":"attribute-demands","low":"Functions mainly from one key ability","high":"Needs several strong ability scores"},
+    {"id":"equipment-dependence","low":"Core identity works with little specialised equipment","high":"Relies heavily on particular equipment and upgrades"},
+    {"id":"resource-management","low":"Few limited resources to track","high":"Frequent management of several limited resources"},
+    {"id":"versatility","low":"Focused specialist","high":"Broadly adaptable problem solver"}
+  ],
+  "practicalScale": {
+    "values": ["low", "medium", "high"],
+    "rule": "Use the middle value for a meaningful but non-defining burden or benefit; avoid false numeric precision."
+  },
+  "booleanFacts": [
+    "has-spellcasting",
+    "has-animal-companion",
+    "has-familiar",
+    "has-mount",
+    "has-code-of-conduct",
+    "requires-deity",
+    "requires-alignment",
+    "has-shapeshifting",
+    "has-sneak-attack",
+    "has-healing",
+    "has-firearms",
+    "has-bombs",
+    "has-rage",
+    "has-profession-identity",
+    "depends-on-specific-equipment",
+    "controls-additional-entity"
+  ],
+  "identityCategories": {
+    "magicIdentity": ["none","arcane","divine","psychic","alchemical","occult","nature","other"],
+    "castingMethod": ["none","prepared","spontaneous","extracts","spell-like","mixed","other"],
+    "castingExtent": ["none","limited","partial","full"],
+    "primaryDelivery": ["melee weapon","ranged weapon","firearm","unarmed","natural attacks","spellcasting","supernatural attack","companion"],
+    "environmentThemes": ["urban","wilderness","maritime","underground","planar","other"],
+    "spiritualThemes": ["deity","nature","ancestors","spirits","patron","undead","outsiders","occult","none","other"],
+    "elementThemes": ["acid","air","cold","earth","electricity","fire","water","wood","void","mixed","none","other"],
+    "professionIdentity": []
+  },
+  "professionIdentityRules": [
+    "Assign only when the official name or source text explicitly presents the archetype as that profession or vocation.",
+    "Do not infer a profession from a skill rank, class skill or thematic resemblance alone.",
+    "Store the supporting source excerpt and source reference with every assigned profession value.",
+    "Allow multiple values when the source explicitly supports them."
+  ],
+  "constraintKinds": {
+    "requirement":"Determines whether the option can legally be selected.",
+    "commitment":"Does not normally block selection, but creates an ongoing behavioural, build or narrative obligation.",
+    "theme":"Describes identity without imposing a material mechanical restriction."
+  },
+  "constraintTypes": [
+    "sourcebook","race","alignment","deity","code-of-conduct","organization","region","campaign","curse-or-drawback","patron-oath-order","bonded-entity","loss-of-powers-condition","weapon-or-armour-restriction"
+  ],
+  "mechanicalTags": [
+    "action-economy-improved","swift-action-pressure","immediate-action-options","full-round-dependent","move-and-act-friendly","burst-oriented","steady-performance","resource-limited","resource-independent"
+  ],
+  "editorialDistinctiveness": ["traditional","distinctive","highly-distinctive"]
+}

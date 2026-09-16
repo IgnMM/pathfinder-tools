@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "status": "calibration",
+  "scale": {
+    "type": "ordinal",
+    "values": ["absent", "available", "core"],
+    "definitions": {
+      "absent": "Effectively absent from the normal character experience.",
+      "available": "A genuine secondary or situational option, but not a defining strength.",
+      "core": "A strong, regularly useful and identity-defining part of the character experience."
+    }
+  },
+  "scoringRules": [
+    "Score the expected play experience across a normal Pathfinder 1e campaign, not a single optimised build.",
+    "A capability may support more than one criterion when it genuinely answers different player intentions.",
+    "Do not reward raw power, action-economy efficiency or system tier unless the criterion explicitly measures the resulting play experience.",
+    "A class receives a complete profile. An archetype inherits it and stores only material overrides.",
+    "Capability levels describe the candidate. Preference importance from 1 to 10 and Not relevant are separate request fields.",
+    "Multiple capabilities may be core simultaneously; the scale is not a forced either-or axis."
+  ],
+  "criteria": [
+    {"id":"melee-combat","group":"offence","playerLabel":"Fighting in melee","definition":"Reliably contributing through weapons, natural attacks or unarmed combat at close range.","boundary":"Do not award for durability alone or for merely being able to carry a weapon."},
+    {"id":"ranged-combat","group":"offence","playerLabel":"Fighting at range","definition":"Reliably contributing through bows, crossbows, firearms, thrown weapons or other non-spell ranged attacks.","boundary":"Spell attacks belong under Offensive Magic unless a weapon attack remains the primary delivery method."},
+    {"id":"offensive-magic","group":"offence","playerLabel":"Attacking with magic","definition":"Using spells or supernatural powers as a regular means of directly harming enemies.","boundary":"Pure conditions without meaningful direct harm belong under Debuffing Enemies."},
+    {"id":"single-target-damage","group":"offence","playerLabel":"Bringing down one important enemy","definition":"Concentrating meaningful damage on one priority target.","boundary":"Score the outcome regardless of whether it comes from weapons, spells or companions."},
+    {"id":"area-multi-target-damage","group":"offence","playerLabel":"Damaging groups of enemies","definition":"Damaging several enemies in an area or through reliable multi-target attacks.","boundary":"Do not award for control effects that cause no meaningful damage."},
+    {"id":"combat-manoeuvres","group":"offence","playerLabel":"Controlling foes physically","definition":"Using trips, grapples, disarms, bull rushes, feints or comparable physical techniques.","boundary":"Terrain, magical zones and broad action denial belong under Battlefield Control."},
+    {"id":"tactical-leadership","group":"offence","playerLabel":"Leading and coordinating allies","definition":"Directing allies through commands, teamwork benefits, granted movement or coordinated positioning.","boundary":"Generic numerical buffs without a leadership or coordination component belong under Support and Buffing."},
+
+    {"id":"personal-durability","group":"battlefield","playerLabel":"Being hard to bring down","definition":"Surviving through hit points, armour, avoidance, resistances, mitigation or self-defence.","boundary":"Protecting other characters is scored separately."},
+    {"id":"protecting-allies","group":"battlefield","playerLabel":"Keeping allies safe","definition":"Intercepting attacks, absorbing or redirecting harm, defending positions or preventing enemies reaching allies.","boundary":"Magical wards may also support Defensive and Protective Magic when magic is central to the protection."},
+    {"id":"battlefield-control","group":"battlefield","playerLabel":"Controlling the battlefield","definition":"Restricting movement or actions through terrain, zones, walls, forced positioning or broad crowd control.","boundary":"Single-target penalties belong primarily under Debuffing; direct physical manoeuvres have their own criterion."},
+    {"id":"combat-mobility","group":"battlefield","playerLabel":"Moving freely through a fight","definition":"Repositioning, charging, flying, teleporting or fighting effectively while mounted or on the move.","boundary":"A mount increases this score only when it materially improves normal combat movement."},
+    {"id":"debuffing-enemies","group":"battlefield","playerLabel":"Weakening enemies","definition":"Imposing penalties, conditions, fear, curses or other disadvantages on enemies.","boundary":"A spell can score here and in Offensive Magic only when it both harms and meaningfully debilitates."},
+    {"id":"anti-magic-disruption","group":"battlefield","playerLabel":"Countering magic and enemy abilities","definition":"Dispelling, countering, interrupting, suppressing or resisting hostile magic and comparable special abilities.","boundary":"General saving throws or passive toughness alone are Personal Durability."},
+
+    {"id":"support-buffing","group":"support","playerLabel":"Making allies stronger","definition":"Improving allies' attacks, defences, movement, skills or other capabilities.","boundary":"Direct coordination and command mechanics may additionally support Tactical Leadership."},
+    {"id":"healing-recovery","group":"support","playerLabel":"Healing and restoring the party","definition":"Restoring hit points, removing harmful conditions or returning allies to effective action.","boundary":"Temporary prevention of harm belongs under protection rather than recovery."},
+    {"id":"defensive-protective-magic","group":"support","playerLabel":"Using magic for protection","definition":"Creating magical wards, barriers, resistances, immunities or other preventative protections.","boundary":"This measures magical protection specifically; mundane guarding belongs under Protecting Allies."},
+    {"id":"utility-magic","group":"support","playerLabel":"Solving problems with magic","definition":"Using magic for travel, detection, communication, exploration and non-damage problem solving.","boundary":"Knowledge gained through skills rather than magic belongs under Knowledge and Investigation."},
+    {"id":"summoning-companions","group":"support","playerLabel":"Adventuring with summoned or bonded allies","definition":"Relying on summoned creatures, familiars, animal companions, mounts, eidolons or comparable entities.","boundary":"Score centrality and usefulness, not the mere presence of a cosmetic companion."},
+    {"id":"transformation-shapeshifting","group":"support","playerLabel":"Changing form or transforming yourself","definition":"Changing shape, adopting aspects, mutating or substantially altering the character's body and capabilities.","boundary":"Simple numerical self-buffs without a transformation fantasy do not qualify strongly."},
+
+    {"id":"practical-expertise","group":"exploration","playerLabel":"Handling practical challenges","definition":"Solving practical problems through skills such as traps, devices, crafting, medicine, navigation or specialised tools.","boundary":"Knowledge skills and wilderness identity are scored separately; profession identity is categorical."},
+    {"id":"social-influence","group":"exploration","playerLabel":"Influencing people","definition":"Persuading, deceiving, intimidating, entertaining, leading or navigating social situations.","boundary":"A high Charisma score alone is insufficient without meaningful class support or expected use."},
+    {"id":"knowledge-investigation","group":"exploration","playerLabel":"Knowing things and uncovering answers","definition":"Applying lore, research, perception of clues, divination or investigative methods.","boundary":"Hands-on technical solutions belong under Practical Expertise."},
+    {"id":"stealth-subterfuge","group":"exploration","playerLabel":"Using stealth and subterfuge","definition":"Infiltrating, hiding, disguising, deceiving tactically or striking from concealed advantage.","boundary":"Social deception without infiltration belongs primarily under Social Influence."},
+    {"id":"wilderness-affinity","group":"exploration","playerLabel":"Thriving in the wilderness","definition":"Tracking, surviving, navigating nature, handling animals and mastering wild environments.","boundary":"A single class skill is insufficient; the wilderness must be a supported part of the play experience."}
+  ]
+}
