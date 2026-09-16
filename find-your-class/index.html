@@ -7,8 +7,11 @@
 *{box-sizing:border-box}
 html,body{min-height:100%;margin:0}
 body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
-main{max-width:720px;margin:auto;padding:64px 16px 40px}
+main{max-width:1180px;margin:auto;padding:64px 16px 40px}
 h1{font-family:'Cinzel Decorative',serif;font-size:1.5rem;margin:0 0 8px;color:var(--gold2);text-wrap:balance}
+h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:var(--gold2)}
+.fycStage{max-width:720px;margin:0 auto}
+.fycStage--wide{max-width:none}
 .fycEyebrow{color:var(--gold);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 6px}
 .fycSupport{color:var(--muted);font-size:.9rem;line-height:1.5;margin:0 0 18px}
 textarea{width:100%;min-height:120px;background:#121721;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:12px;font-size:.95rem;font-family:inherit;resize:vertical}
@@ -39,12 +42,25 @@ textarea{width:100%;min-height:120px;background:#121721;color:var(--text);border
 .fycConflict{background:#241a12;border:1px solid #6b4a1f;border-radius:10px;padding:12px;font-size:.85rem}
 .fycConflictOptions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .fycConflictOptions button{background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:.8rem}
-.fycBrowser{margin-top:18px;border:1px solid var(--border);border-radius:10px;padding:10px 14px}
-.fycBrowser summary{cursor:pointer;font-weight:700;color:var(--gold2)}
-.fycGroup{margin:10px 0 0}
-.fycGroup summary{cursor:pointer;color:var(--muted);font-size:.85rem}
-.fycGroupList{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
-.fycGroupList button{background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:16px;padding:4px 10px;font-size:.78rem;cursor:pointer}
+.fycStartSplit{display:flex;align-items:flex-start;gap:0;margin-top:8px}
+.fycStartLeft{flex:1 1 0;min-width:0;padding-right:28px}
+.fycStartRight{flex:1 1 0;min-width:0;padding-left:28px}
+.fycStartDivider{flex:none;display:flex;flex-direction:column;align-items:center;padding-top:60px;position:relative}
+.fycStartDivider::before,.fycStartDivider::after{content:"";flex:1;width:1px;background:var(--border);min-height:24px}
+.fycStartDivider span{font-family:'Cinzel Decorative',serif;color:var(--muted);font-size:.82rem;padding:10px 0;text-transform:lowercase}
+.fycStartRightScroll{max-height:70vh;overflow-y:auto;padding-right:6px;margin-top:4px}
+.fycGroup{margin:0 0 20px}
+.fycGroup h3{margin:0 0 8px;font-family:'Cinzel',Georgia,serif;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);border-bottom:1px solid var(--border);padding-bottom:6px}
+.fycCard--pending{border-color:var(--gold);box-shadow:0 0 0 1px rgba(213,173,85,.25)}
+.fycCard--notRelevant{opacity:.62;padding:10px 14px}
+.fycCard--notRelevant .fycCardHead{margin-bottom:0}
+@media(max-width:900px){
+  .fycStartSplit{flex-direction:column}
+  .fycStartLeft,.fycStartRight{padding-left:0;padding-right:0;flex:none;width:100%}
+  .fycStartDivider{flex-direction:row;padding:16px 0;width:100%}
+  .fycStartDivider::before,.fycStartDivider::after{height:1px;width:auto;min-width:24px;min-height:0}
+  .fycStartRightScroll{max-height:none;overflow-y:visible}
+}
 .fycAnswers{display:flex;flex-direction:column;gap:8px;margin:16px 0}
 .fycAnswers button{background:var(--panel);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:12px 14px;text-align:left;cursor:pointer;font-size:.9rem}
 .fycAnswers button:hover,.fycAnswers button:focus-visible{border-color:var(--gold)}

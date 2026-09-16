@@ -156,8 +156,25 @@ test('25. find-your-class/index.html has no fixed-width element wider than a 320
   assert.ok(!/main\{[^}]*min-width/.test(styleBlock));
 });
 
-test('the Stage 1 ("Your idea") copy required by the handoff is present in app.js', () => {
-  assert.match(appJs, /What kind of character are you imagining/);
-  assert.match(appJs, /Read my idea/);
-  assert.match(appJs, /Browse preferences instead/);
+test('the merged start screen (idea + priorities side by side) copy is present in app.js', () => {
+  assert.match(appJs, /Tell me what you've got in mind/);
+  assert.match(appJs, /Tell me your priorities/);
+  assert.match(appJs, /Use my idea/);
+});
+
+test('the merged start screen renders both halves as one section, split by an "or" divider', () => {
+  assert.match(appJs, /class="fycStartSplit"/);
+  assert.match(appJs, /class="fycStartLeft"/);
+  assert.match(appJs, /class="fycStartRight"/);
+  assert.match(appJs, /class="fycStartDivider"[^>]*>[\s\S]{0,80}or/i);
+});
+
+test('every criterion in every preference group is rendered as a row on the right, not hidden behind a collapsed "add preference" picker', () => {
+  // The old design hid every not-yet-touched criterion behind a collapsed
+  // <details>"Add another preference" browser; the merged screen instead
+  // shows all of them from the start. Confirm the old picker markup is
+  // gone and the new one iterates every group's full assignment list
+  // through criterionRow() with no filtering by "already set".
+  assert.ok(!/fycBrowser/.test(appJs), 'the old collapsed preference-picker markup must be removed, not left alongside the new screen');
+  assert.match(appJs, /PREFERENCE_GROUP_ASSIGNMENTS\[name\][\s\S]{0,200}\.map\(id => criterionRow\(id\)\)/);
 });

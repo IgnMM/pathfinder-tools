@@ -368,56 +368,73 @@
 
     function goTo(stage) { state.stage = stage; uiError = null; rerender(); }
 
-    function suggestionRow(s, opts) {
-      const crit = criteriaIndex.get(s.criterionId);
-      const label = criterionLabel(criteriaIndex, s.criterionId);
-      const source = Array.isArray(s.sourcePhrase)
-        ? `You mentioned &ldquo;${escapeHtml(s.sourcePhrase.join('&rdquo;, &ldquo;'))}&rdquo;`
-        : (s.origin === 'explicit' ? 'Added by you' : (s.origin === 'adaptive-answer' ? 'From your last answer' : 'Added by you'));
+    // Renders ONE row per criterion, always -- the merged start screen shows
+    // every criterion from the start (see renderStart()), not just ones the
+    // player has already touched. Figures out this criterion's own current
+    // state (confirmed / pending-suggested-but-unconfirmed / fully untouched)
+    // and renders the matching control pre-filled accordingly. A criterion
+    // currently in state.pendingConflicts is skipped by the caller -- it
+    // renders in the conflicts list instead, never here (avoids a double
+    // row for the same criterion).
+    function criterionRow(criterionId) {
+      const crit = criteriaIndex.get(criterionId);
+      const label = criterionLabel(criteriaIndex, criterionId);
+      const bucket = crit.kind === 'categorical' ? state.categoricalPreferences : state.numericPreferences;
+      const confirmed = bucket[criterionId];
+      const suggestion = !confirmed ? state.pendingSuggestions.find(s => s.criterionId === criterionId) : null;
+      const isPending = !confirmed && !!suggestion;
+      const data = confirmed || suggestion || {};
+
+      if (confirmed && confirmed.notRelevant) {
+        return `<li class="fycCard fycCard--notRelevant" data-criterion="${crit.id}">
+          <div class="fycCardHead"><span class="fycCardLabel">${escapeHtml(label)}</span><span class="fycCardSource">Marked not relevant</span></div>
+          <div class="fycCardActions"><button type="button" data-action="clear-not-relevant" data-criterion="${crit.id}">Make relevant again</button></div>
+        </li>`;
+      }
+
+      let sourceHtml = '';
+      if (isPending && Array.isArray(suggestion.sourcePhrase)) {
+        sourceHtml = `Suggested from &ldquo;${escapeHtml(suggestion.sourcePhrase.join('&rdquo;, &ldquo;'))}&rdquo;`;
+      } else if (confirmed) {
+        sourceHtml = confirmed.origin === 'adaptive-answer' ? 'From your last answer'
+          : confirmed.origin === 'inferred-confirmed' ? 'From your idea' : 'Set by you';
+      }
+
       let control = '';
       if (crit.kind === 'directional') {
+        const pos = data.desiredPosition != null ? data.desiredPosition : 5.5;
         control = `<label class="fycRange">${escapeHtml(crit.lowAnchor.label)}
-          <input type="range" min="1" max="10" step="1" value="${Math.round(s.desiredPosition)}" data-action="set-position" data-criterion="${crit.id}">
+          <input type="range" min="1" max="10" step="1" value="${Math.round(pos)}" data-action="set-position" data-criterion="${crit.id}">
           ${escapeHtml(crit.highAnchor.label)}</label>`;
       } else if (crit.kind === 'categorical') {
         const modes = ['prefer', 'require', 'exclude'];
-        control = `<div class="fycModes" role="group" aria-label="How should ${escapeHtml(label)} be used?">${modes.map(m => `<button type="button" class="fycModeBtn${s.mode === m ? ' active' : ''}" data-action="set-mode" data-criterion="${crit.id}" data-mode="${m}">${capitalize(m)}</button>`).join('')}</div>
-          <div class="fycValues">${crit.values.map(v => `<label><input type="checkbox" data-action="toggle-value" data-criterion="${crit.id}" data-value="${escapeHtml(v)}" ${s.values && s.values.includes(v) ? 'checked' : ''}> ${escapeHtml(v)}</label>`).join('')}</div>`;
+        control = `<div class="fycModes" role="group" aria-label="How should ${escapeHtml(label)} be used?">${modes.map(m => `<button type="button" class="fycModeBtn${data.mode === m ? ' active' : ''}" data-action="set-mode" data-criterion="${crit.id}" data-mode="${m}">${capitalize(m)}</button>`).join('')}</div>
+          <div class="fycValues">${crit.values.map(v => `<label><input type="checkbox" data-action="toggle-value" data-criterion="${crit.id}" data-value="${escapeHtml(v)}" ${data.values && data.values.includes(v) ? 'checked' : ''}> ${escapeHtml(v)}</label>`).join('')}</div>`;
       }
-      const importanceRow = (crit.kind !== 'categorical' || s.mode === 'prefer') ? `<div class="fycImportance" role="group" aria-label="How important is ${escapeHtml(label)}?">${[1,2,3,4,5,6,7,8,9,10].map(n => `<button type="button" class="fycImpBtn${s.importance === n ? ' active' : ''}" data-action="set-importance" data-criterion="${crit.id}" data-value="${n}">${n}</button>`).join('')}</div>` : '';
-      return `<li class="fycCard" data-criterion="${crit.id}">
-        <div class="fycCardHead"><span class="fycCardLabel">${escapeHtml(label)}</span><span class="fycCardSource">${source}</span></div>
+      const showImportance = crit.kind !== 'categorical' || data.mode === 'prefer';
+      const importanceRow = showImportance ? `<div class="fycImportance" role="group" aria-label="How important is ${escapeHtml(label)}?">${[1,2,3,4,5,6,7,8,9,10].map(n => `<button type="button" class="fycImpBtn${data.importance === n ? ' active' : ''}" data-action="set-importance" data-criterion="${crit.id}" data-value="${n}">${n}</button>`).join('')}</div>` : '';
+
+      return `<li class="fycCard${isPending ? ' fycCard--pending' : ''}" data-criterion="${crit.id}">
+        <div class="fycCardHead"><span class="fycCardLabel">${escapeHtml(label)}</span>${sourceHtml ? `<span class="fycCardSource">${sourceHtml}</span>` : ''}</div>
         ${control}
         ${importanceRow}
         <div class="fycCardActions">
           <button type="button" data-action="not-relevant" data-criterion="${crit.id}">Not relevant</button>
-          ${opts && opts.removable ? `<button type="button" data-action="remove-suggestion" data-criterion="${crit.id}">Remove</button>` : ''}
+          ${isPending ? `<button type="button" data-action="remove-suggestion" data-criterion="${crit.id}">Remove suggestion</button>` : ''}
         </div>
       </li>`;
     }
 
     function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
-    function renderIdea() {
-      return `<section class="fycStage" aria-labelledby="fycHeading">
-        <p class="fycEyebrow">Begin anywhere</p>
-        <h1 id="fycHeading">What kind of character are you imagining?</h1>
-        <p class="fycSupport">Describe a fantasy, a combat role, a personality, or a precise build idea. The Compass will turn it into preferences you can correct before it recommends anything.</p>
-        ${uiError ? `<p class="fycError" role="alert">${escapeHtml(uiError)}</p>` : ''}
-        <textarea id="fycConceptText" aria-label="Describe your character idea" placeholder="For example: a clever weapon-user who controls enemies with curses, but does not manage a companion.">${escapeHtml(state.conceptText)}</textarea>
-        <div class="fycExamples" role="group" aria-label="Example character ideas">
-          <button type="button" data-action="insert-example" data-example="A simple armoured protector">A simple armoured protector</button>
-          <button type="button" data-action="insert-example" data-example="A charming magical trickster">A charming magical trickster</button>
-          <button type="button" data-action="insert-example" data-example="A nature caster with a true animal partner">A nature caster with a true animal partner</button>
-        </div>
-        <div class="fycActions">
-          <button type="button" class="fycPrimary" data-action="read-idea">Read my idea</button>
-          <button type="button" class="fycSecondary" data-action="browse-instead">Browse preferences instead</button>
-        </div>
-      </section>`;
-    }
-
-    function renderPriorities() {
+    // The merged start screen: two parallel entry points on one view (free
+    // text on the left, every criterion directly settable on the right,
+    // separated by "or"), instead of the old sequential idea -> priorities
+    // stages. Typing on the left and clicking "Use my idea" pre-fills the
+    // matching rows on the right as pending suggestions (see criterionRow())
+    // rather than navigating to a separate confirmation screen -- the two
+    // sides feed the exact same underlying preference state.
+    function renderStart() {
       const conflictsHtml = state.pendingConflicts.map(c => {
         const label = criterionLabel(criteriaIndex, c.criterionId);
         return `<li class="fycConflict">
@@ -425,20 +442,40 @@
           <div class="fycConflictOptions">${c.options.map((o, i) => `<button type="button" data-action="resolve-conflict" data-criterion="${c.criterionId}" data-option="${i}">${escapeHtml(Array.isArray(o.sourcePhrase) ? o.sourcePhrase.join(', ') : o.sourcePhrase)}</button>`).join('')}</div>
         </li>`;
       }).join('');
-      const suggestionsHtml = state.pendingSuggestions.map(s => suggestionRow(s, { removable: true })).join('');
-      const confirmedNumeric = Object.entries(state.numericPreferences).map(([id, p]) => suggestionRow(Object.assign({ criterionId: id }, p), { removable: false })).join('');
-      const confirmedCategorical = Object.entries(state.categoricalPreferences).map(([id, p]) => suggestionRow(Object.assign({ criterionId: id }, p), { removable: false })).join('');
-      const groupsHtml = PREFERENCE_GROUP_NAMES.map(name => `<details class="fycGroup"><summary>${escapeHtml(name)}</summary><ul class="fycGroupList">${(PREFERENCE_GROUP_ASSIGNMENTS[name] || []).filter(id => !(id in state.numericPreferences) && !(id in state.categoricalPreferences) && !state.pendingSuggestions.some(s => s.criterionId === id)).map(id => `<li><button type="button" data-action="add-preference" data-criterion="${id}">${escapeHtml(criterionLabel(criteriaIndex, id))}</button></li>`).join('')}</ul></details>`).join('');
+      const groupsHtml = PREFERENCE_GROUP_NAMES.map(name => {
+        const rows = (PREFERENCE_GROUP_ASSIGNMENTS[name] || [])
+          .filter(id => !state.pendingConflicts.some(c => c.criterionId === id))
+          .map(id => criterionRow(id))
+          .join('');
+        return `<section class="fycGroup"><h3>${escapeHtml(name)}</h3><ul class="fycCards">${rows}</ul></section>`;
+      }).join('');
 
-      return `<section class="fycStage" aria-labelledby="fycHeading">
-        <h1 id="fycHeading">Does this sound right?</h1>
-        <p class="fycSupport">Change their importance, remove anything that does not matter, or add another preference. A 1 is still a real preference; &ldquo;Not relevant&rdquo; removes it completely.</p>
-        ${conflictsHtml ? `<ul class="fycConflicts">${conflictsHtml}</ul>` : ''}
-        <ul class="fycCards">${suggestionsHtml}${confirmedNumeric}${confirmedCategorical}</ul>
-        <details class="fycBrowser"><summary>Add another preference</summary><div class="fycBrowserGroups">${groupsHtml}</div></details>
+      return `<section class="fycStage fycStage--wide" aria-labelledby="fycHeading">
+        <p class="fycEyebrow">Begin anywhere</p>
+        <h1 id="fycHeading">Let's find your class</h1>
+        ${uiError ? `<p class="fycError" role="alert">${escapeHtml(uiError)}</p>` : ''}
+        <div class="fycStartSplit">
+          <div class="fycStartLeft">
+            <h2>Tell me what you've got in mind</h2>
+            <p class="fycSupport">Describe a fantasy, a combat role, or a personality. The Compass turns it into preferences on the right, which you can still correct.</p>
+            <textarea id="fycConceptText" aria-label="Describe your character idea" placeholder="For example: a clever weapon-user who controls enemies with curses, but does not manage a companion.">${escapeHtml(state.conceptText)}</textarea>
+            <div class="fycExamples" role="group" aria-label="Example character ideas">
+              <button type="button" data-action="insert-example" data-example="A simple armoured protector">A simple armoured protector</button>
+              <button type="button" data-action="insert-example" data-example="A charming magical trickster">A charming magical trickster</button>
+              <button type="button" data-action="insert-example" data-example="A nature caster with a true animal partner">A nature caster with a true animal partner</button>
+            </div>
+            <button type="button" class="fycPrimary" data-action="apply-idea">Use my idea</button>
+          </div>
+          <div class="fycStartDivider" aria-hidden="true"><span>or&hellip;</span></div>
+          <div class="fycStartRight">
+            <h2>Tell me your priorities</h2>
+            <p class="fycSupport">Set anything that matters to you, or mark it &ldquo;Not relevant&rdquo;. A 1 is still a real preference.</p>
+            ${conflictsHtml ? `<ul class="fycConflicts">${conflictsHtml}</ul>` : ''}
+            <div class="fycStartRightScroll">${groupsHtml}</div>
+          </div>
+        </div>
         <div class="fycActions">
-          <button type="button" class="fycPrimary" data-action="continue-to-clarify">Continue</button>
-          <button type="button" class="fycSecondary" data-action="edit-idea">Edit my idea</button>
+          <button type="button" class="fycPrimary" data-action="continue-to-clarify">See my results</button>
           <button type="button" class="fycQuiet" data-action="show-results">Show current results</button>
         </div>
       </section>`;
@@ -493,7 +530,7 @@
         return `<section class="fycStage" aria-labelledby="fycHeading">
           <h1 id="fycHeading">Paths worth exploring</h1>
           <p class="fycSupport">No active preferences yet. Add a few to see paths worth exploring.</p>
-          <div class="fycActions"><button type="button" class="fycPrimary" data-action="back-to-priorities">Review preferences</button></div>
+          <div class="fycActions"><button type="button" class="fycPrimary" data-action="back-to-start">Set my priorities</button></div>
         </section>`;
       }
       return `<section class="fycStage" aria-labelledby="fycHeading">
@@ -501,7 +538,7 @@
         <p class="fycSupport">These are starting points, not verdicts. Change any preference and the shortlist will update.</p>
         <div class="fycResults">${rex.recommendations.map(recommendationCard).join('')}</div>
         <div class="fycActions">
-          <button type="button" class="fycSecondary" data-action="back-to-priorities">Adjust preferences</button>
+          <button type="button" class="fycSecondary" data-action="back-to-start">Adjust preferences</button>
           <button type="button" class="fycSecondary" data-action="refine-further">Refine further</button>
           <button type="button" class="fycQuiet" data-action="start-over">Start over</button>
         </div>
@@ -510,9 +547,7 @@
 
     function render() {
       let html;
-      if (state.stage === 'idea') html = renderIdea();
-      else if (state.stage === 'priorities') html = renderPriorities();
-      else if (state.stage === 'clarify') {
+      if (state.stage === 'clarify') {
         html = renderClarify();
         if (html === null) {
           // No adaptive question left to ask -- fall through to results in
@@ -524,7 +559,14 @@
           persist();
           html = renderResults();
         }
-      } else html = renderResults();
+      } else if (state.stage === 'results') {
+        html = renderResults();
+      } else {
+        // 'idea' and any legacy/unrecognised stage value (e.g. an old saved
+        // session's 'priorities', from before the two stages were merged)
+        // all resolve to the single merged start screen.
+        html = renderStart();
+      }
       container.innerHTML = html;
       wireEvents();
       const heading = container.querySelector('#fycHeading');
@@ -540,12 +582,28 @@
       if (textarea) textarea.addEventListener('input', () => { state.conceptText = textarea.value; });
     }
 
+    // Every criterion now has its own permanently-visible row (see
+    // criterionRow()), so any interaction with it -- even one that was never
+    // suggested or previously set -- must be able to create a real,
+    // bucket-backed entry on the spot. If a pending (unconfirmed) suggestion
+    // exists for this criterion, the first interaction promotes it via
+    // confirmSuggestion() (which also removes it from pendingSuggestions,
+    // so the row never renders twice -- once as a suggestion, once as
+    // confirmed); otherwise a fresh entry is created directly in the bucket.
     function currentBucketAndEntry(criterionId) {
       const crit = criteriaIndex.get(criterionId);
       const bucket = crit.kind === 'categorical' ? state.categoricalPreferences : state.numericPreferences;
-      let entry = bucket[criterionId];
-      if (!entry) entry = state.pendingSuggestions.find(s => s.criterionId === criterionId);
-      return { crit, bucket, entry };
+      if (!bucket[criterionId]) {
+        const suggestion = state.pendingSuggestions.find(s => s.criterionId === criterionId);
+        if (suggestion) {
+          confirmSuggestion(state, suggestion);
+        } else {
+          bucket[criterionId] = crit.kind === 'categorical'
+            ? { mode: undefined, values: [], origin: 'explicit' }
+            : { origin: 'explicit' };
+        }
+      }
+      return { crit, bucket, entry: bucket[criterionId] };
     }
 
     function handleAction(action, el) {
@@ -553,20 +611,19 @@
       if (action === 'insert-example') {
         state.conceptText = el.getAttribute('data-example');
         rerender();
-      } else if (action === 'read-idea') {
+      } else if (action === 'apply-idea') {
         const textarea = container.querySelector('#fycConceptText');
         const text = textarea ? textarea.value : state.conceptText;
-        if (!text || !text.trim()) { uiError = 'Write a few words about the character, or browse preferences instead.'; render(); return; }
+        if (!text || !text.trim()) { uiError = 'Write a few words about the character, or set your priorities directly on the right.'; render(); return; }
         parseConceptText(state, text, deps.lexicon);
-        if (!state.pendingSuggestions.length && !state.pendingConflicts.length) {
-          uiError = 'The Compass did not find a clear preference yet. Choose a few ideas below to get started.';
-        }
-        goTo('priorities');
-      } else if (action === 'browse-instead') {
-        state.pendingSuggestions = []; state.pendingConflicts = [];
-        goTo('priorities');
-      } else if (action === 'edit-idea') {
-        goTo('idea');
+        uiError = (!state.pendingSuggestions.length && !state.pendingConflicts.length)
+          ? 'The Compass did not find a clear preference in that yet -- try rewording it, or set priorities directly on the right.'
+          : null;
+        rerender();
+      } else if (action === 'clear-not-relevant') {
+        const crit = criteriaIndex.get(criterionId);
+        removePreference(state, criterionId, crit.kind === 'categorical' ? 'categorical' : 'numeric');
+        rerender();
       } else if (action === 'resolve-conflict') {
         const conflict = state.pendingConflicts.find(c => c.criterionId === criterionId);
         const option = conflict.options[Number(el.getAttribute('data-option'))];
@@ -581,41 +638,35 @@
         discardPendingSuggestion(state, criterionId);
         rerender();
       } else if (action === 'set-position') {
-        const { bucket, entry } = currentBucketAndEntry(criterionId);
-        const value = Number(el.value);
-        if (entry) { entry.desiredPosition = value; if (!('importance' in entry)) entry.importance = 5; bucket[criterionId] = bucket[criterionId] || entry; }
+        const { entry } = currentBucketAndEntry(criterionId);
+        entry.desiredPosition = Number(el.value);
+        if (!('importance' in entry) || entry.importance === undefined) entry.importance = 5;
         rerender();
       } else if (action === 'set-importance') {
-        const { bucket, entry } = currentBucketAndEntry(criterionId);
-        const value = Number(el.getAttribute('data-value'));
-        if (entry) { entry.importance = value; bucket[criterionId] = bucket[criterionId] || entry; }
+        const { entry } = currentBucketAndEntry(criterionId);
+        entry.importance = Number(el.getAttribute('data-value'));
         rerender();
       } else if (action === 'set-mode') {
-        const { bucket, entry } = currentBucketAndEntry(criterionId);
-        const mode = el.getAttribute('data-mode');
-        if (entry) { entry.mode = mode; if (mode !== 'prefer') delete entry.importance; else if (!('importance' in entry)) entry.importance = 5; bucket[criterionId] = bucket[criterionId] || entry; }
+        const { entry } = currentBucketAndEntry(criterionId);
+        entry.mode = el.getAttribute('data-mode');
+        if (entry.mode !== 'prefer') delete entry.importance; else if (!('importance' in entry)) entry.importance = 5;
         rerender();
       } else if (action === 'toggle-value') {
-        const { bucket, entry } = currentBucketAndEntry(criterionId);
+        const { entry } = currentBucketAndEntry(criterionId);
         const value = el.getAttribute('data-value');
-        if (entry) {
-          entry.values = entry.values || [];
-          const i = entry.values.indexOf(value);
-          if (el.checked && i === -1) entry.values.push(value);
-          if (!el.checked && i !== -1) entry.values.splice(i, 1);
-          bucket[criterionId] = bucket[criterionId] || entry;
-        }
-        rerender();
-      } else if (action === 'add-preference') {
-        const crit = criteriaIndex.get(criterionId);
-        if (crit.kind === 'directional') setDirectionalPreference(state, criterionId, 5.5, 5, 'explicit');
-        else if (crit.kind === 'capability') setCapabilityPreference(state, criterionId, 5, 'explicit');
-        else setCategoricalPreference(state, criterionId, 'prefer', [], 5, 'explicit');
+        entry.values = entry.values || [];
+        const i = entry.values.indexOf(value);
+        if (el.checked && i === -1) entry.values.push(value);
+        if (!el.checked && i !== -1) entry.values.splice(i, 1);
         rerender();
       } else if (action === 'continue-to-clarify') {
         for (const s of state.pendingSuggestions.slice()) confirmSuggestion(state, s);
         runMatching(state, deps.profiles, deps.criteriaDoc, deps.questionTemplates, deps.explanationCatalogue);
-        if (totalActivePreferenceCount(state) === 0) { goTo('priorities'); return; }
+        if (totalActivePreferenceCount(state) === 0) {
+          uiError = 'Set at least one preference -- on the left or the right -- before continuing.';
+          render();
+          return;
+        }
         goTo('clarify');
       } else if (action === 'show-results') {
         for (const s of state.pendingSuggestions.slice()) confirmSuggestion(state, s);
@@ -630,8 +681,8 @@
         applyQuestionAnswer(state, liveQuestion || question, answers[idx]);
         runMatching(state, deps.profiles, deps.criteriaDoc, deps.questionTemplates, deps.explanationCatalogue);
         goTo('clarify');
-      } else if (action === 'back-to-priorities') {
-        goTo('priorities');
+      } else if (action === 'back-to-start') {
+        goTo('idea');
       } else if (action === 'refine-further') {
         state.wantsMoreQuestions = true;
         goTo('clarify');

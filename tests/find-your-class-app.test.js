@@ -35,10 +35,11 @@ function fakeStorage() {
   };
 }
 
-test('9. the tool is fully usable through "Browse preferences instead" with no concept text', () => {
+test('9. the tool is fully usable through the priorities panel alone, with no concept text', () => {
   const state = App.createAppState();
-  // No parseConceptText call at all -- the player goes straight to manually
-  // adding preferences, exactly like the "Browse preferences instead" path.
+  // No parseConceptText call at all -- the player goes straight to setting
+  // preferences directly on the right-hand priorities panel, never typing
+  // an idea on the left.
   App.setCapabilityPreference(state, 'crowd-control', 9, 'explicit');
   assert.doesNotThrow(() => App.buildMatcherRequest(state));
   const result = App.runMatching(state, profiles, criteriaDoc, questionTemplates, explanationCatalogue);
