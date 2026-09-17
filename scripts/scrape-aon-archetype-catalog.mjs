@@ -119,7 +119,7 @@ function parseDetail(html) {
   };
 }
 
-const classProfiles = (await Promise.all(['01', '02', '03', '04', '05'].map(async batch =>
+const classProfiles = (await Promise.all(['01', '02', '03', '04', '05', '06'].map(async batch =>
   JSON.parse(await fs.readFile(path.join(repo, 'assets/find-your-class/v2', `class-profiles-batch-${batch}.json`), 'utf8')).profiles
 ))).flat();
 const valuedClassIds = new Set(classProfiles.map(item => item.id));

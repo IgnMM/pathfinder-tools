@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "levelBand": "whole-career-1-20",
+  "notes": [
+    "The two remaining AoN player classes. AoN exposes no separate archetype rows for either unchained class."
+  ],
+  "profiles": [
+    {
+      "id": "barbarian-unchained",
+      "name": "Barbarian (Unchained)",
+      "sourceCitationText": "Pathfinder Unchained pg. 8",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Barbarian%20(Unchained)",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "available",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "available",
+        "personal-durability": "core",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "core",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "available"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": true,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [
+          "wilderness"
+        ],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "calibrationRole": "Streamlined rage martial with strong melee damage, speed, toughness and selectable rage powers."
+    },
+    {
+      "id": "rogue-unchained",
+      "name": "Rogue (Unchained)",
+      "sourceCitationText": "Pathfinder Unchained pg. 20",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Rogue%20(Unchained)",
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "low",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "calibrationRole": "Dexterity-focused skill expert with sneak attack, skill unlocks and built-in debilitating strikes.",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "available",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "available",
+        "combat-mobility": "core",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "core",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "available"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [
+          "urban"
+        ],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "ranged weapon"
+        ]
+      }
+    }
+  ]
+}

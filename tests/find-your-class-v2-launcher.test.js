@@ -18,7 +18,7 @@ test('find-your-class-v2/index.html loads the v2 scripts, not the v1 ones', () =
 });
 
 test('find-your-class-v2/index.html resolves all class profiles and archetype batches into one profile set at bootstrap', () => {
-  for (let i = 1; i <= 5; i++) assert.match(pageHtml, new RegExp(`class-profiles-batch-0${i}\\.json`));
+  for (let i = 1; i <= 6; i++) assert.match(pageHtml, new RegExp(`class-profiles-batch-0${i}\\.json`));
   for (let i = 1; i <= 10; i++) assert.match(pageHtml, new RegExp(`archetype-profiles-pilot-${String(i).padStart(2, '0')}\\.json`));
   assert.match(pageHtml, /archetype-profiles-slayer\.json/);
   assert.match(pageHtml, /archetype-profiles-summoner-unchained\.json/);

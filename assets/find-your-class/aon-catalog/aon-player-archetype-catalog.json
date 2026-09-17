@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T08:01:38.860Z",
+  "generatedAt": "2026-09-17T10:11:26.523Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
     "classes": 44,
     "archetypes": 1275,
     "entities": 1319,
-    "valuedClasses": 42,
+    "valuedClasses": 44,
     "valuedArchetypes": 135,
-    "pendingClasses": 2,
+    "pendingClasses": 0,
     "pendingArchetypes": 1140,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
@@ -57,7 +57,7 @@
       "entityType": "class",
       "aonUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Barbarian%20(Unchained)",
       "archetypeCount": 0,
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard",
@@ -257,7 +257,7 @@
       "entityType": "class",
       "aonUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Rogue%20(Unchained)",
       "archetypeCount": 0,
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "samurai",

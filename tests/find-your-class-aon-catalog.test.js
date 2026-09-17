@@ -6,7 +6,7 @@ const repo = new URL('../', import.meta.url);
 const readJson = relative => JSON.parse(fs.readFileSync(new URL(relative, repo), 'utf8'));
 const catalogue = readJson('assets/find-your-class/aon-catalog/aon-player-archetype-catalog.json');
 const added = readJson('assets/find-your-class/aon-catalog/new-scope-archetype-details.json').profiles;
-const classes = ['01', '02', '03', '04', '05'].flatMap(batch =>
+const classes = ['01', '02', '03', '04', '05', '06'].flatMap(batch =>
   readJson(`assets/find-your-class/v2/class-profiles-batch-${batch}.json`).profiles
 );
 const archetypes = Array.from({length: 10}, (_, index) => String(index + 1).padStart(2, '0')).flatMap(batch =>
@@ -25,14 +25,14 @@ test('AoN catalogue contains 44 classes and 1,275 unique archetypes', () => {
   assert.equal(catalogue.counts.entities, 1319);
 });
 
-test('all 42 class profiles and 135 archetype profiles are present and marked valued', () => {
+test('all 44 class profiles and 135 archetype profiles are present and marked valued', () => {
   const classStatus = new Map(catalogue.classes.map(item => [item.id, item.valuationStatus]));
   const archetypeStatus = new Map(catalogue.archetypes.map(item => [item.id, item.valuationStatus]));
-  assert.equal(classes.length, 42);
+  assert.equal(classes.length, 44);
   assert.equal(archetypes.length, 135);
   for (const profile of classes) assert.equal(classStatus.get(profile.id), 'valued', profile.id);
   for (const profile of archetypes) assert.equal(archetypeStatus.get(profile.id), 'valued', profile.id);
-  assert.equal(catalogue.counts.valuedClasses, 42);
+  assert.equal(catalogue.counts.valuedClasses, 44);
   assert.equal(catalogue.counts.valuedArchetypes, 135);
 });
 
