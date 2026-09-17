@@ -1,0 +1,2007 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Ranger parent value.",
+  "profiles": [
+    {
+      "id": "ranger:abendego-diver",
+      "name": "Abendego Diver",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Elemental Master's Handbook pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Abendego%20Diver",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Ocean’s Blessing / Deep Diver / Aquatic Terrain",
+          "reason": "Weapon and Armor Proficiency / Ocean’s Blessing / Deep Diver / Aquatic Terrain defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Named for the vicious and unending storm in the southern Arcadian Ocean, Abendego divers have pushed their bodies to their limits, holding their breath to expand their lung capacity and swimming until ocean travel is second nature to them.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiencies; Track; Wild Empathy; Favored Terrain; Woodland Stride; Swift Tracker; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:battle-scout",
+      "name": "Battle Scout",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Combat pg. 66",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Battle%20Scout",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Hunter’s Bond / Advantageous Terrain / Infiltration / Superior Tactics",
+          "reason": "The archetype’s Hunter’s Bond / Advantageous Terrain / Infiltration / Superior Tactics package materially changes tactical leadership from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Though regular outdoorsmen might suffice in many cases, some large forces look to battle scouts to keep the body of their troops safe and prepared for the terrain and whatever dangers that terrain hides.",
+      "tradeoff": "It replaces or alters Hunter’s Bond; 2nd, 3rd, 4th Favored Enemies; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:beast-master",
+      "name": "Beast Master",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Player's Guide pg. 124",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Beast%20Master",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Class Skills / Animal Companion / Improved Empathic Link / Strong Bond",
+          "reason": "The archetype’s Class Skills / Animal Companion / Improved Empathic Link / Strong Bond package materially changes summoning companions from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Some rangers, particularly those in primitive lands or who were raised by animals, have unusually strong bonds with animals.",
+      "tradeoff": "It replaces or alters Hunter's Bond; 6th-level Combat Style Feat; Camouflage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:blightwarden",
+      "name": "Blightwarden",
+      "parentClassId": "ranger",
+      "sourceCitationText": "People of the Wastes pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Blightwarden",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "decay"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Hunt the Blighted / Emulate Taint / Blightwalker / Resist Corruption",
+          "reason": "The archetype’s Hunt the Blighted / Emulate Taint / Blightwalker / Resist Corruption package materially changes debuffing enemies from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Some rangers feel so closely connected to their homelands that they stand as guardians against pervasive corruptions that pervert those lands beyond the point of recognition.",
+      "tradeoff": "It replaces or alters Favored Enemy; Wild Empathy; 1st Favored Terrain; Endurance;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:bow-nomad",
+      "name": "Bow Nomad",
+      "parentClassId": "ranger",
+      "sourceCitationText": "People of the Stars pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Bow%20Nomad",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "dual ranged weapons"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available to kasathas and other races with four or more arms.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Twin Bows / Combat Style / Agile Maneuvers / Trick Shot",
+          "reason": "Twin Bows / Combat Style / Agile Maneuvers / Trick Shot defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Thanks to their four arms, kasathas can master a combat form native to their home world and rarely witnessed on Golarion—wielding two bows at once.",
+      "tradeoff": "It replaces or alters Wild Empathy; Combat Style; Endurance; Favored Terrain; 6th-level Combat Feat; Camouflage; Hide in Plain Sight; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:cinderwalker",
+      "name": "Cinderwalker",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Pathfinder #95: Anvil of Fire pg. 72",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Cinderwalker",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ],
+        "environmentThemes": [
+          "mountains"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Born to the Fire / Inured / Cinderwalk",
+          "reason": "Born to the Fire / Inured / Cinderwalk defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Cinderwalkers traverse burning wastelands and restless mountains, thriving in lands most creatures avoid.",
+      "tradeoff": "It replaces or alters 1st Favored Terrain; Wild Empathy; Hunter’s Bond; Woodland Stride; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:code-runner",
+      "name": "Code Runner",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Intrigue pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Code%20Runner",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "courier"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Mnemonic Genius / Resist Interrogation",
+          "reason": "Class Skills / Mnemonic Genius / Resist Interrogation defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "A code runner specializes in the subtle and speedy transfer of secret messages.",
+      "tradeoff": "It replaces or alters Class Skills; Wild Empathy; Hunter's Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:corpse-hunter",
+      "name": "Corpse Hunter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Undead Slayer's Handbook pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Corpse%20Hunter",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ],
+        "professionIdentity": [
+          "undead hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Class Skills / Spells / Undead Exterminator / Disrupt Control",
+          "reason": "The archetype’s Class Skills / Spells / Undead Exterminator / Disrupt Control package materially changes anti magic disruption from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Many rangers count the undead among their favored enemies, but some make a full-time job out of hunting down and destroying these walking corpses.",
+      "tradeoff": "It replaces or alters Class Skills; Spells; Favored Enemies; Woodland Stride; Swift Tracker; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:dandy",
+      "name": "Dandy",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Intrigue pg. 41",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Dandy",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ],
+        "professionIdentity": [
+          "courtier"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Favored Nation / Rumor Empathy / Favored Terrain",
+          "reason": "The archetype’s Class Skills / Favored Nation / Rumor Empathy / Favored Terrain package materially changes social influence from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "The antithesis of the gruff and wild woodsmen, a dandy takes effort to master the subtle etiquette of noble courts, the whispers of dark rumors, and the customs of the cultured world.",
+      "tradeoff": "It replaces or alters Class Skills; Favored Enemy; Wild Empathy; Favored Terrain; Hunter's Bond; Spellcasting; Woodland Stride; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:darklands-sailor",
+      "name": "Darklands Sailor",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Heroes of the Darklands pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Darklands%20Sailor",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground",
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Skilled Pilot / Keen Ear / Quick Swim / Subsonic Warning",
+          "reason": "Skilled Pilot / Keen Ear / Quick Swim / Subsonic Warning defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Those plying the lightless waters of the Darklands learn to use sound to augment their compromised vision, providing insight into the hazards lurking below the surface.",
+      "tradeoff": "It replaces or alters Track; Favored Terrain; Woodland Stride; Swift Tracker; Camouflage; Hide in Plain Sight; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:deep-walker",
+      "name": "Deep Walker",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Combat pg. 66",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Deep%20Walker",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Deep Knowledge / Rock Hopper / Deep Walker Camouflage / One with the Stone",
+          "reason": "Deep Knowledge / Rock Hopper / Deep Walker Camouflage / One with the Stone defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Some rangers devote their lives to the woods, becoming hunters, protectors, and wilderness guides among its diverse terrain types.",
+      "tradeoff": "It replaces or alters Favored Terrain; Woodland Stride; Camouflage; Hide in Plain Sight; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:divine-tracker",
+      "name": "Divine Tracker",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Class Guide pg. 108",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Divine%20Tracker",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Favored Weapon / Blessings",
+          "reason": "Alignment / Favored Weapon / Blessings defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Blessed by his deity, a divine tracker hunts down those he deems deserving of his retribution.",
+      "tradeoff": "It replaces or alters Alignment; Wild Empathy; Hunter’s Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:dragon-hunter",
+      "name": "Dragon Hunter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Dragonslayer's Handbook pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Dragon%20Hunter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ],
+        "professionIdentity": [
+          "dragon hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Predatory Deduction / Wyrm Hatred / Dragoncrafting",
+          "reason": "Class Skills / Predatory Deduction / Wyrm Hatred / Dragoncrafting defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "The quintessential dragonslayers, dragon hunters are\r experts at forging through the wilds in search of great\r wyrms.",
+      "tradeoff": "It replaces or alters Class Skills; Track; 5th, 10th, 15th, 20th-level Favored Enemies; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:drake-warden",
+      "name": "Drake Warden",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Legacy of Dragons pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Drake%20Warden",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Young Drake",
+          "reason": "The archetype’s Young Drake package materially changes summoning companions from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Some rangers specialize in dealing with rambunctious younger drakes and thanks to their methods, their drakes are both fiercely loyal and extremely useful for scouting and stealth missions.",
+      "tradeoff": "It replaces or alters Hunter's Bond; 2nd Favored Enemy; Swift Tracker; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:dungeon-rover",
+      "name": "Dungeon Rover",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Dungeoneer's Handbook pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Dungeon%20Rover",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Stone Scouting / Vermin Affinity / Dungeon Ally",
+          "reason": "Class Skills / Stone Scouting / Vermin Affinity / Dungeon Ally defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "These rangers specialize in surviving hostile subterranean environs. They are well equipped to avoid traps, spot secret passages, and deal with inimical dungeon tenants.",
+      "tradeoff": "It replaces or alters Class Skills; Track; Wild Empathy; Hunter’s Bond; Woodland Stride; Swift Tracker; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:dusk-stalker",
+      "name": "Dusk Stalker",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Race Guide pg. 110",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Dusk%20Stalker",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ],
+        "environmentThemes": [
+          "planar"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Fetchling characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Shadow Guide / Shadow Bond / Dark Sight",
+          "reason": "Class Skills / Shadow Guide / Shadow Bond / Dark Sight defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Hunters and guides through the Shadow Plane, dusk stalkers are rangers that thrive in shadow.",
+      "tradeoff": "It replaces or alters Class Skills; Favored Terrain; Hunter’s Bond; Camouflage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:elemental-envoy",
+      "name": "Elemental Envoy",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Disciple's Doctrine pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Elemental%20Envoy",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "planar"
+        ],
+        "elementThemes": [
+          "mixed"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Planar Combatant / Elemental Explorer",
+          "reason": "Planar Combatant / Elemental Explorer defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "An elemental envoy travels the Elemental Planes. He has learned to protect himself from their many dangers, and he models his fighting style after their teachings.",
+      "tradeoff": "It replaces or alters Combat Style; Favored Terrain; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:falconer",
+      "name": "Falconer",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Combat pg. 67",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Falconer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Feathered Companion / Roam / Distract / Hunter’s Bond",
+          "reason": "Feathered Companion / Roam / Distract / Hunter’s Bond defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Rangers have always enjoyed a special bond with a specific animal, but the falconer takes this bond to a deeper level.",
+      "tradeoff": "It replaces or alters Wild Empathy; Hunter’s Bond; 6th-level Combat Style Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:flamewarden",
+      "name": "Flamewarden",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Wilderness pg. 72",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Flamewarden",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Touch of Flame / Spells / Stoking the Embers / Burning Renewal",
+          "reason": "The archetype’s Touch of Flame / Spells / Stoking the Embers / Burning Renewal package materially changes healing recovery from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Emulating the blazing phoenix, flamewardens sweep through the world like a selective forest fire, burning away corruption, evil, and those who cling to decay.",
+      "tradeoff": "It replaces or alters Hunter's Bond; Spells; Evasion; Camouflage; Improved Evasion; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:fortune-finder",
+      "name": "Fortune-Finder",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Blood of the Beast pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Fortune-Finder",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Hinterlander / Adaptable Study / Trailblazer / Fast Study",
+          "reason": "Hinterlander / Adaptable Study / Trailblazer / Fast Study defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Vanaras often leave home to seek fortune and sate their curiosity regarding the mysterious lands that lie beyond their native territories. The most skilled of these thrillseekers are called ba-sadhaks, or fortune-finders.",
+      "tradeoff": "It replaces or alters Track; Hunter's Bond; Woodland Stride; Quarry; Improved Quarry; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:freebooter",
+      "name": "Freebooter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Pirates of the Inner Sea pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Freebooter",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "professionIdentity": [
+          "pirate"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Freebooter's Bane / Freebooter’s Bond / Fast Swimmer",
+          "reason": "The archetype’s Freebooter's Bane / Freebooter’s Bond / Fast Swimmer package materially changes tactical leadership from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "A freebooter is a natural leader, a pirate who works well with a variety of people and in a variety of roles.",
+      "tradeoff": "It replaces or alters Favored Enemy; Hunter's Bond; Woodland Stride; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:galvanic-saboteur",
+      "name": "Galvanic Saboteur",
+      "parentClassId": "ranger",
+      "sourceCitationText": "People of the River pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Galvanic%20Saboteur",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "saboteur"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Favored Enemy / Reprogram / Lucky Dodge",
+          "reason": "Class Skills / Favored Enemy / Reprogram / Lucky Dodge defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Many Kellid locals blame Kevoth-Kul’s change on the influence of the Technic League and view both the League and their mechanical minions with a mix of fear and distrust. Some Kellid rangers have since developed skills to defeat the League’s robotic enforcers and devious arcanists.",
+      "tradeoff": "It replaces or alters Class Skills; Favored Enemy; Wild Empathy; Favored Terrain; Woodland Stride; Swift Tracker; Camouflage; Hide in Plain Sight; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:groom",
+      "name": "Groom",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Dungeoneer's Handbook pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Groom",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "groom"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Hide the Horses / Horse Whisperer / Scout the Area",
+          "reason": "Hide the Horses / Horse Whisperer / Scout the Area defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "The groom attends to the needs of the party’s mounts and beasts of burden during their adventures, and guards these animals while the party goes underground.",
+      "tradeoff": "It replaces or alters Track; Endurance; 1st Favored Terrain; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:guide",
+      "name": "Guide",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Player's Guide pg. 125",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Guide",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Ranger’s Focus / Terrain Bond / Ranger’s Luck / Inspired Moment",
+          "reason": "The archetype’s Ranger’s Focus / Terrain Bond / Ranger’s Luck / Inspired Moment package materially changes tactical leadership from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Many rangers are loners, but some choose to use their familiarity with the land to guide others safely through the wilderness.",
+      "tradeoff": "It replaces or alters Favored Enemy; Hunter's Bond; Evasion; Quarry; Improved Quarry; Improved Evasion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:guildbreaker",
+      "name": "Guildbreaker",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Intrigue pg. 41",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Guildbreaker",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ],
+        "professionIdentity": [
+          "infiltrator"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Favored Organization / Read the City / Deep Cover",
+          "reason": "The archetype’s Class Skills / Favored Organization / Read the City / Deep Cover package materially changes social influence from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Guildbreakers stoke their enmity for their foes, and they train to track the movements of rival organizations, and even to infiltrate these groups to gather secret intelligence.",
+      "tradeoff": "It replaces or alters Class Skills; Favored Enemy; Wild Empathy; Hunter's Bond; Woodland Stride; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:hooded-champion",
+      "name": "Hooded Champion",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Class Guide pg. 108",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Hooded%20Champion",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Panache / Deeds / Dead Aim / Hooded Champion’s Initiative",
+          "reason": "Panache / Deeds / Dead Aim / Hooded Champion’s Initiative defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "The hooded champion lives on the periphery of civilized lands, and is often at odds with the forces of law and order.",
+      "tradeoff": "It replaces or alters 1st-level Favored Enemy; Combat Syle; Wild Empathy; Endurance; Evasion; Improved Evasion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:horse-lord",
+      "name": "Horse Lord",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Player's Guide pg. 125",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Horse%20Lord",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Combat Style Feat / Mounted Bond / Strong Bond / Spiritual Bond",
+          "reason": "The archetype’s Combat Style Feat / Mounted Bond / Strong Bond / Spiritual Bond package materially changes summoning companions from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Rangers of the plains use horses or other riding beasts to hunt their lands, forging a near-mystical relationship with their mounts.",
+      "tradeoff": "It replaces or alters Hunter's Bond; Camouflage; Hide in Plain Sight; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:ilsurian-archer",
+      "name": "Ilsurian Archer",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Weapon Master's Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Ilsurian%20Archer",
+      "capabilityOverrides": {
+        "offensive-magic": "absent",
+        "utility-magic": "absent"
+      },
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {
+        "has-spellcasting": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "magicIdentity": [
+          "nature",
+          "divine"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Bullseye Shot / Archery Style / Vicious Aim / Iomedae’s Influence",
+          "reason": "The archetype’s Bullseye Shot / Archery Style / Vicious Aim / Iomedae’s Influence package materially changes offensive magic from the Ranger baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Bullseye Shot / Archery Style / Vicious Aim / Iomedae’s Influence",
+          "reason": "The archetype’s Bullseye Shot / Archery Style / Vicious Aim / Iomedae’s Influence package materially changes utility magic from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Ilsurian archers maintain the strong tradition of archery first developed by soldiers in the service of Ilsur, who raised a small army with which he intended to overthrow the monarch of Korvosa after the fall of the Chelish Empire.",
+      "tradeoff": "It replaces or alters Track; Wild Empathy; Combat Style; Spellcasting; Swift Tracking; Quarry; Improved Quarry; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:infiltrator",
+      "name": "Infiltrator",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Player's Guide pg. 125",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Infiltrator",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Adaptation / Aberration / Animal / Construct",
+          "reason": "Adaptation / Aberration / Animal / Construct defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Some rangers study their favored enemies and learn their ways, applying this knowledge to their own abilities and using their foes’ strengths against them.",
+      "tradeoff": "It replaces or alters Favored Terrain; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:jungle-lord",
+      "name": "Jungle Lord",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Pathfinder: Worldscape #4 pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Jungle%20Lord",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "jungle"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Jungle LordSource Pathfinder / Class Skills / Bonus Language / Animal Focus",
+          "reason": "The archetype’s Jungle LordSource Pathfinder / Class Skills / Bonus Language / Animal Focus package materially changes summoning companions from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Jungle lords are tempered by their harsh and unforgiving environments into something more than ordinary men and women.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon and Armor Proficiency; Favored Enemy; Favored Terrain; Hunter's Bond; Spells; 5th, 10th, 15th, 18th-level Favored Terrain; Quarry; Improved Quarry; Camouflage; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:lantern-lighter",
+      "name": "Lantern Lighter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Adventurer's Guide pg. 113",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Lantern%20Lighter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Daylight / Enhanced Vision / Poison Resistance / Favored Terrain",
+          "reason": "Daylight / Enhanced Vision / Poison Resistance / Favored Terrain defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Lantern lighters were originally entrusted with secretly eliminating the drow and quarantining any knowledge of their existence, but in the new Lantern Bearer era, the lantern lighters have refocused their efforts on helping to rescue those imprisoned by the drow, or even to help individual drow who seek to escape the cruelties of their society for a chance at redemption on the surface.",
+      "tradeoff": "It replaces or alters Wild Empathy; Endurance; Favored Terrain; Woodland Stride; Camouflage; Hide in Plain Sight; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:nirmathi-irregular",
+      "name": "Nirmathi Irregular",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Inner Sea Magic pg. 37",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Nirmathi%20Irregular",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Focused Enemy / Forest Ghost / Focused Terrain",
+          "reason": "Weapon and Armor Proficiency / Focused Enemy / Forest Ghost / Focused Terrain defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "An irregular troop from Nirmathas, this ranger chooses to focus on the magic of stealth.",
+      "tradeoff": "It replaces or alters Normal Weapon/Armor Proficiencies; Favored Enemy; Favored Terrain; Altered Spell List; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:planar-scout",
+      "name": "Planar Scout",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Planar Adventures pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Planar%20Scout",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "planar"
+        ],
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Planar Empathy / Planar Terrains / Planar Bond",
+          "reason": "Class Skills / Planar Empathy / Planar Terrains / Planar Bond defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Planar scouts are rangers specializing in traversing the planes—and surviving their journeys.",
+      "tradeoff": "It replaces or alters Class Skills; Wild Empathy; Favored Terrain; Hunter's Bond; Evasion; Improved Evasion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:poison-darter",
+      "name": "Poison Darter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Blood of the Beast pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Poison%20Darter",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "poisoner"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Debilitating Venom / Poison Use / Poison Style / Precise Dart",
+          "reason": "The archetype’s Debilitating Venom / Poison Use / Poison Style / Precise Dart package materially changes debuffing enemies from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "In dense jungles, foliage and tight spaces hinder all but the most deceptively humble weapons: blowguns and poison.",
+      "tradeoff": "It replaces or alters Favored Enemy; Wild Empathy; Combat Style; Hunter's Bond; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:raven-master",
+      "name": "Raven Master",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Adventurer's Guide pg. 175",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Raven%20Master",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "spy"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Class Skills / Avian Empathy / Raven Companion / Silver Champion",
+          "reason": "The archetype’s Class Skills / Avian Empathy / Raven Companion / Silver Champion package materially changes summoning companions from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Raven masters serve as messengers and spies for the Silver Ravens, eschewing a ranger’s usual connection to the natural world to form a mystic bond with their birds and to grant both animal and master a number of specialized abilities",
+      "tradeoff": "It replaces or alters Class Skills; Wild Empathy; Hunter's Bond; Woodland Stride; Swift Tracker; Camouflage; Spellcasting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:realm-wanderer",
+      "name": "Realm Wanderer",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Distant Realms pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Realm%20Wanderer",
+      "capabilityOverrides": {
+        "social-influence": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Deceptive Subtlety / Queen’s Bond / Dual Master",
+          "reason": "The archetype’s Class Skills / Deceptive Subtlety / Queen’s Bond / Dual Master package materially changes social influence from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "These rangers take to heart the lessons they’ve learned from their vastly contrasting experiences and know that creatively embracing this wisdom is sometimes the difference between life and death.",
+      "tradeoff": "It replaces or alters Class Skills; Track; Hunter's Bond; Swift Tracker; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:sable-company-marine",
+      "name": "Sable Company Marine",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Inner Sea Combat pg. 43",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Sable%20Company%20Marine",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true
+      },
+      "identityAdds": {
+        "environmentThemes": [
+          "sky"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Hippogriff Companion",
+          "reason": "The archetype’s Hippogriff Companion package materially changes summoning companions from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Sable Company marines receive their training at the elite Endrin Military Academy in Korvosa. A large portion of their education is the handling and riding of hippogriffs, the iconic mounts of members of the company.",
+      "tradeoff": "It replaces or alters Hunter’s Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:sentinel",
+      "name": "Sentinel",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Intrigue pg. 42",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Sentinel",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "investigator"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Mugshot / Uncanny Alertness / Sense Intruder / Mugshot Quarry",
+          "reason": "Mugshot / Uncanny Alertness / Sense Intruder / Mugshot Quarry defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "A sentinel specializes in heightening all of her senses to expose spies and those who work for opposing factions, rooting out all who attempt to slip past her evervigilant watch.",
+      "tradeoff": "It replaces or alters Wild Empathy; Hunter's Bond; Woodland Stride; 6th-level Combat Style Feat; Quarry; Improved Quarry; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:shapeshifter",
+      "name": "Shapeshifter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Player's Guide pg. 126",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Shapeshifter",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Combat Style Feat / Shifter’s Blessing / Form of the Bear / Form of the Cat",
+          "reason": "The archetype’s Combat Style Feat / Shifter’s Blessing / Form of the Bear / Form of the Cat package materially changes transformation shapeshifting from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Most rangers venture into the wilderness, but there are some who let the wilderness seep into them.",
+      "tradeoff": "It replaces or alters Favored Terrain; Camouflage; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:skirmisher",
+      "name": "Skirmisher",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Player's Guide pg. 128",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Skirmisher",
+      "capabilityOverrides": {
+        "combat-mobility": "core",
+        "offensive-magic": "absent",
+        "utility-magic": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "magicIdentity": [
+          "nature",
+          "divine"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Hunter’s Tricks / Aiding Attack / Bolster Companion / Catfall",
+          "reason": "The archetype’s Hunter’s Tricks / Aiding Attack / Bolster Companion / Catfall package materially changes combat mobility from the Ranger baseline."
+        },
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Hunter’s Tricks / Aiding Attack / Bolster Companion / Catfall",
+          "reason": "The archetype’s Hunter’s Tricks / Aiding Attack / Bolster Companion / Catfall package materially changes offensive magic from the Ranger baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Hunter’s Tricks / Aiding Attack / Bolster Companion / Catfall",
+          "reason": "The archetype’s Hunter’s Tricks / Aiding Attack / Bolster Companion / Catfall package materially changes utility magic from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Many rangers rely on spells, but there are some who eschew aid from divine powers for their own reasons.",
+      "tradeoff": "It replaces or alters Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:spirit-ranger",
+      "name": "Spirit Ranger",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Player's Guide pg. 129",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Spirit%20Ranger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Spirit Bond / Wisdom of the Spirits",
+          "reason": "Spirit Bond / Wisdom of the Spirits defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Some rangers nurture a connection with the spirits that reside in all things.",
+      "tradeoff": "It replaces or alters Hunter's Bond; Camouflage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:stormwalker",
+      "name": "Stormwalker",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Wilderness pg. 72",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Stormwalker",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "air"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Combat Style Feat / Thundershot / Wind Treader / Flash Step",
+          "reason": "The archetype’s Combat Style Feat / Thundershot / Wind Treader / Flash Step package materially changes combat mobility from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Rangers who walk in the tempest unafraid draw the power of the storm into themselves and become stormwalkers.",
+      "tradeoff": "It replaces or alters Combat Style; Hunter's Bond; Swift Tracker; Quarry; Improved Evasion; Improved Quarry; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:summit-sentinel",
+      "name": "Summit Sentinel",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Wilderness pg. 72",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Summit%20Sentinel",
+      "capabilityOverrides": {
+        "personal-durability": "core",
+        "area-multi-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "mountains"
+        ],
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Roots of the Mountain / Mountain Mastery / Spells / Rockslide",
+          "reason": "The archetype’s Roots of the Mountain / Mountain Mastery / Spells / Rockslide package materially changes personal durability from the Ranger baseline."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Roots of the Mountain / Mountain Mastery / Spells / Rockslide",
+          "reason": "The archetype’s Roots of the Mountain / Mountain Mastery / Spells / Rockslide package materially changes area multi target damage from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Some rangers eschew the path of the swift skirmisher and embrace the implacable strength of the mountain.",
+      "tradeoff": "It replaces or alters Combat Style; Favored Terrain; Swift Tracker; Hide in Plain Sight; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:sword-devil",
+      "name": "Sword-Devil",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Pathfinder: Worldscape #1 pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Sword-Devil",
+      "capabilityOverrides": {
+        "offensive-magic": "absent",
+        "utility-magic": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "magicIdentity": [
+          "nature",
+          "divine"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Sword-DevilSource Pathfinder / Class Skills / Death Vow / Slashing Fury",
+          "reason": "The archetype’s Sword-DevilSource Pathfinder / Class Skills / Death Vow / Slashing Fury package materially changes offensive magic from the Ranger baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Sword-DevilSource Pathfinder / Class Skills / Death Vow / Slashing Fury",
+          "reason": "The archetype’s Sword-DevilSource Pathfinder / Class Skills / Death Vow / Slashing Fury package materially changes utility magic from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Agile, vengeful, and deadly, a sword-devil ﬁghts with precision and grace, channeling the difficult lessons of a star-crossed life into unparalleled battle prowess.",
+      "tradeoff": "It replaces or alters Class Skills; Favored Enemy; Favored Terrain; Hunter's Bond; Spells; Quarry; Improved Quarry; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:tanglebriar-demonslayer",
+      "name": "Tanglebriar Demonslayer",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Inner Sea Combat pg. 46",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Tanglebriar%20Demonslayer",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "professionIdentity": [
+          "demon hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "faction",
+          "kind": "requirement",
+          "summary": "This archetype is available only to elves sworn to defend Kyonin against the demon lord Treerazer.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Skills / Favored Enemy / Demonologist / Expanded Spell List",
+          "reason": "The archetype’s Skills / Favored Enemy / Demonologist / Expanded Spell List package materially changes anti magic disruption from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Though they are sworn foes of Treerazer and his kin, Tanglebriar demonslayers are known to venture forth from Kyonin to broaden their expertise in the destruction of demons.",
+      "tradeoff": "It replaces or alters Class Skills; Favored Enemy; Endurance; Spells; Quarry; Improved Quarry; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:tidal-hunter",
+      "name": "Tidal Hunter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Wilderness pg. 73",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Tidal%20Hunter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Waterborn / Keen Scent / Aquatic Mastery / Wave Rush",
+          "reason": "Waterborn / Keen Scent / Aquatic Mastery / Wave Rush defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "The tidal hunter draws strength from the fish and other wildlife of the deep.",
+      "tradeoff": "It replaces or alters Wild Empathy; 6th-level Combat Style Feat; Track; Camouflage; Favored Terrain; Woodland Stride; Improved Evasion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:toxic-herbalist",
+      "name": "Toxic Herbalist",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Wilderness pg. 74",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Toxic%20Herbalist",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "herbalist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Toxic Touch / Nature’s Mercy / Sudden Onset / Grim Harvest",
+          "reason": "The archetype’s Toxic Touch / Nature’s Mercy / Sudden Onset / Grim Harvest package materially changes healing recovery from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Saviors and destroyers in equal measure, toxic herbalists use nature’s bounty to craft remedies and poisons.",
+      "tradeoff": "It replaces or alters Wild Empathy; Endurance; Hunter's Bond; Swift Tracker; Quarry; Improved Quarry; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:toxophilite",
+      "name": "Toxophilite",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ranged Tactics Toolbox pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Toxophilite",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Arrow-Splitter / Combat Style Feat / Intercept Arrow / Improved Intercept",
+          "reason": "Arrow-Splitter / Combat Style Feat / Intercept Arrow / Improved Intercept defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "The toxophilite emulates the sharpshooting rangers of legend, who could pin a fly to the wall with a single shot or split one arrow with another.",
+      "tradeoff": "It replaces or alters Wild Empathy; Combat Style; Endurance; Quarry; Improved Quarry; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:transporter",
+      "name": "Transporter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Intrigue pg. 43",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Transporter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "smuggler"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Trailbreaker / Plot Course / Smuggler’s Bond / Hideaway",
+          "reason": "Trailbreaker / Plot Course / Smuggler’s Bond / Hideaway defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Transporters specialize in smuggling people as efficiently as possible through harsh and difficult environments.",
+      "tradeoff": "It replaces or alters Wild Empathy; Favored Terrain; Hunter's Bond; Woodland Stride; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:trapper",
+      "name": "Trapper",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Magic pg. 65",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Trapper",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "offensive-magic": "absent",
+        "utility-magic": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "traps"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "nature",
+          "divine"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Class Skills / Trapfinding / Trap / Launch Trap",
+          "reason": "The archetype’s Class Skills / Trapfinding / Trap / Launch Trap package materially changes battlefield control from the Ranger baseline."
+        },
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Class Skills / Trapfinding / Trap / Launch Trap",
+          "reason": "The archetype’s Class Skills / Trapfinding / Trap / Launch Trap package materially changes offensive magic from the Ranger baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Class Skills / Trapfinding / Trap / Launch Trap",
+          "reason": "The archetype’s Class Skills / Trapfinding / Trap / Launch Trap package materially changes utility magic from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "A trapper is a ranger who focuses exclusively on traps, rather than learning conventional magic.",
+      "tradeoff": "It replaces or alters Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:trophy-hunter",
+      "name": "Trophy Hunter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Combat pg. 67",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Trophy%20Hunter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ],
+        "professionIdentity": [
+          "trophy hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Improved Tracking / Firearm Style / Hunter’s Aim",
+          "reason": "Improved Tracking / Firearm Style / Hunter’s Aim defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Some rangers have taken up the mysteries of black powder in order to become big game hunters.",
+      "tradeoff": "It replaces or alters Wild Empathy; Combat Feat Style; Hunter’s Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:urban-ranger",
+      "name": "Urban Ranger",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Player's Guide pg. 130",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Urban%20Ranger",
+      "capabilityOverrides": {
+        "wilderness-affinity": "absent",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Urban Ranger / Favored Community / Trapfinding / Push Through",
+          "reason": "The archetype’s Urban Ranger / Favored Community / Trapfinding / Push Through package materially changes wilderness affinity from the Ranger baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Urban Ranger / Favored Community / Trapfinding / Push Through",
+          "reason": "The archetype’s Urban Ranger / Favored Community / Trapfinding / Push Through package materially changes stealth subterfuge from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "For the urban ranger, the streets and sewers of the city are just as dangerous as the barren wastelands or the deep forests.",
+      "tradeoff": "It replaces or alters Favored Terrain; Endurance; Woodland Stride; Camouflage; Hide in Plain Sight; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:warden",
+      "name": "Warden",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Combat pg. 68",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Warden",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Master of Terrain / Live in Comfort / Terrain Bond / Able Explorer",
+          "reason": "The archetype’s Master of Terrain / Live in Comfort / Terrain Bond / Able Explorer package materially changes tactical leadership from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "All rangers have a bond with the wilderness, but the warden may have the strongest. This protector sits guard in the middle of the wilderness, keeping a lookout for any dangers that might spill from the deeper wilderness beyond, and protecting civilization from the savagery of nature—and vice versa.",
+      "tradeoff": "It replaces or alters Favored Enemy; Combat Style Feats; Hunter’s Bond; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:wave-warden",
+      "name": "Wave Warden",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Race Guide pg. 194",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wave%20Warden",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Merfolk characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Deep Sentinel / Aquatic Prowess Feat / Favored Terrain / Seaborn",
+          "reason": "Deep Sentinel / Aquatic Prowess Feat / Favored Terrain / Seaborn defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "The wave warden patrols beneath the sea, preserving the safety and secrets of merfolk communities.",
+      "tradeoff": "It replaces or alters Track; Combat Style; Favored Terrain; Woodland Stride; Swift Tracker; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:wild-hunter",
+      "name": "Wild Hunter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Class Guide pg. 108",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wild%20Hunter",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Animal Focus / Shared Focus",
+          "reason": "The archetype’s Animal Focus / Shared Focus package materially changes transformation shapeshifting from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "A wild hunter seeks to emulate the animals around him to keep him safe while he tracks his prey.",
+      "tradeoff": "It replaces or alters Favored Enemy; Woodland Stride; Swift Tracker; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:wild-shadow",
+      "name": "Wild Shadow",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Advanced Race Guide pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wild%20Shadow",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Half-Elf characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Wild at Heart / Favored Terrain / Woodland Stride / Unfettered Step",
+          "reason": "The archetype’s Wild at Heart / Favored Terrain / Woodland Stride / Unfettered Step package materially changes battlefield control from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "The isolation that some half-elves feel leads them to live a life of isolation amid the wild places of the world.",
+      "tradeoff": "It replaces or alters Track; Wild Empathy; Favored Terrain; Hunter’s Bond; Woodland Stride; Quarry; Camouflage; Improved Quarry; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:wild-soul",
+      "name": "Wild Soul",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Wilderness pg. 75",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wild%20Soul",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "conduct",
+          "kind": "commitment",
+          "summary": "A wild soul swears never to use or benefit from advanced technology, alchemy, arcane magic or firearms, and loses this archetype’s abilities until atoning if he violates the oath.",
+          "evidenceSection": "Unfettered Soul"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Unfettered Soul / Nemesis / Nemesis Defense / Break the Interloper",
+          "reason": "The archetype’s Unfettered Soul / Nemesis / Nemesis Defense / Break the Interloper package materially changes anti magic disruption from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Wild souls hail from primitive roots in the wild and venture to more civilized lands and learn their ways.",
+      "tradeoff": "It replaces or alters Code of Conduct; Favored Enemy; Swift Tracker; Quarry; Improved Quarry; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:wild-stalker",
+      "name": "Wild Stalker",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Combat pg. 68",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wild%20Stalker",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-rage": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Strong Senses / Uncanny Dodge / Rage of the Wild / Rage Powers",
+          "reason": "The archetype’s Strong Senses / Uncanny Dodge / Rage of the Wild / Rage Powers package materially changes personal durability from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "The wild stalker forsakes the bonds of community and lives in the trackless wilds far from others of his kind, or perhaps grew up there, never knowing of civilization as anything more than his enemy.",
+      "tradeoff": "It replaces or alters Favored Enemy; 2nd-level Combat Style Feat; Hunter’s Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:wilderness-explorer",
+      "name": "Wilderness Explorer",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Ultimate Wilderness pg. 74",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wilderness%20Explorer",
+      "capabilityOverrides": {
+        "social-influence": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Cultural Contact / Hazard Sense / Indigenous Spirit",
+          "reason": "The archetype’s Class Skills / Cultural Contact / Hazard Sense / Indigenous Spirit package materially changes social influence from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Wilderness explorers are adept at making peaceful contact with remote societies.",
+      "tradeoff": "It replaces or alters Class Skills; Wild Empathy; Hunter's Bond; Swift Tracker; Favored Terrain; Quarry; Improved Quarry; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:wilderness-medic",
+      "name": "Wilderness Medic",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Healer's Handbook pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wilderness%20Medic",
+      "capabilityOverrides": {
+        "healing-recovery": "core",
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "wilderness medic",
+          "evidenceSection": "Herbalist Training / Herbal Medicine",
+          "evidenceText": "The source explicitly makes field medicine, herbal treatment and ally recovery the archetype’s vocation."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Herbalist Training / Herbal Medicine / Rallying Bond",
+          "reason": "The archetype’s Herbalist Training / Herbal Medicine / Rallying Bond package materially changes healing recovery from the Ranger baseline."
+        },
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Herbalist Training / Herbal Medicine / Rallying Bond",
+          "reason": "The archetype’s Herbalist Training / Herbal Medicine / Rallying Bond package materially changes protecting allies from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Wilderness medics know a variety of ways they can supply and preserve a rebellion or similar movement without requiring any resources that might make them easier to track down.",
+      "tradeoff": "It replaces or alters Wild Empathy; Endurance; Evasion; Hunter's Bond; Improved Evasion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:witchguard",
+      "name": "Witchguard",
+      "parentClassId": "ranger",
+      "sourceCitationText": "People of the North pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Witchguard",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "professionIdentity": [
+          "bodyguard"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Class Skills / Defend Charge / Bodyguard / Patron",
+          "reason": "The archetype’s Class Skills / Defend Charge / Bodyguard / Patron package materially changes protecting allies from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Witchguards are the sworn defenders of the White Witches of Irrisen.",
+      "tradeoff": "It replaces or alters Class Skills; Hunter’s Bond; Endurance; Spells; Woodland Stride; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ranger:yokai-hunter",
+      "name": "Yokai Hunter",
+      "parentClassId": "ranger",
+      "sourceCitationText": "Dragon Empires Primer pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Yokai%20Hunter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ],
+        "professionIdentity": [
+          "yokai hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Favored Yokai / Yokai Sense / Resist Yokai",
+          "reason": "Favored Yokai / Yokai Sense / Resist Yokai defines the material change from the Ranger baseline."
+        }
+      ],
+      "playerSummary": "Yokai hunters possess a supernatural tether to the spirit worlds that shroud mortal existence.",
+      "tradeoff": "It replaces or alters Favored Enemy; Woodland Stride; Camouflage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

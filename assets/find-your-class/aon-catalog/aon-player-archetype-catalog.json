@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T15:11:37.090Z",
+  "generatedAt": "2026-09-17T15:57:02.966Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
@@ -8,9 +8,9 @@
     "archetypes": 1275,
     "entities": 1319,
     "valuedClasses": 44,
-    "valuedArchetypes": 898,
+    "valuedArchetypes": 964,
     "pendingClasses": 0,
-    "pendingArchetypes": 377,
+    "pendingArchetypes": 311,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -9468,7 +9468,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Amnesiac",
       "replaces": "Spellcasting",
       "aonSummary": "The amnesiac once possessed great psychic power, but mental blocks—resulting from either a traumatic event or intentional implantation—have caused her to forget what she knew before",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "psychic:esoteric-starseeker",
@@ -9479,7 +9479,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Esoteric%20Starseeker",
       "replaces": "Discipline Spells; 1st, 11th-level Phrenic Amplifications; Major Amplifications",
       "aonSummary": "An esoteric starseeker is a psychic who focuses her studies on uncovering the secrets of the sky and the constellations of the Cosmic Caravan.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "psychic:formless-adept",
@@ -9490,7 +9490,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Formless%20Adept",
       "replaces": "Phrenic Pool; Psychic Discipline; Discipline Powers; 1st and 15th-level Phrenic Amplification; Discipline Spells; Remade Self",
       "aonSummary": "Formless adepts master their psychic powers to unshackle themselves from the confines of the flesh and empower their spellcasting.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "psychic:magaambyan-telepath",
@@ -9501,7 +9501,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Magaambyan%20Telepath",
       "replaces": "Discipline Spells; 1st, 11th-level Phrenic Amplifications; Telepathic Bond; Telepathy",
       "aonSummary": "Followers of Old-Mage Jatembe’s more esoteric wisdom instead focus on the occult connection between all living creatures and the resonance between the natural and supernatural world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "psychic:mutation-mind",
@@ -9534,7 +9534,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Psychic%20Marauder",
       "replaces": "Alignment; Detect Thoughts; 3rd, 11th, 19th-level Phrenic Amplification; Telepathic Bond; Remade Self",
       "aonSummary": "The psychic marauder’s powers come hand in hand with madness, either from exposure to alien psyches or from terrifying glimpses into the cosmos that the psychic can’t suppress.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "psychic:terror-weaver",
@@ -9545,7 +9545,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Terror%20Weaver",
       "replaces": "Detect Thoughts; Telepathic Bond; 11th, 15th, 19th-level Phrenic Amplifications",
       "aonSummary": "A number of exceptional Darklands half-orcs have developed potent psychic abilities, unlocked by generations of exposure to a specific combination of mind-altering fungi and radiation",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:abendego-diver",
@@ -9556,7 +9556,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Abendego%20Diver",
       "replaces": "Weapon and Armor Proficiencies; Track; Wild Empathy; Favored Terrain; Woodland Stride; Swift Tracker; Master Hunter",
       "aonSummary": "Named for the vicious and unending storm in the southern Arcadian Ocean, Abendego divers have pushed their bodies to their limits, holding their breath to expand their lung capacity and swimming until ocean travel is second nature to them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:battle-scout",
@@ -9567,7 +9567,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Battle%20Scout",
       "replaces": "Hunter’s Bond; 2nd, 3rd, 4th Favored Enemies; Master Hunter",
       "aonSummary": "Though regular outdoorsmen might suffice in many cases, some large forces look to battle scouts to keep the body of their troops safe and prepared for the terrain and whatever dangers that terrain hides.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:beast-master",
@@ -9578,7 +9578,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Beast%20Master",
       "replaces": "Hunter's Bond; 6th-level Combat Style Feat; Camouflage",
       "aonSummary": "Some rangers, particularly those in primitive lands or who were raised by animals, have unusually strong bonds with animals.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:blightwarden",
@@ -9589,7 +9589,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Blightwarden",
       "replaces": "Favored Enemy; Wild Empathy; 1st Favored Terrain; Endurance;",
       "aonSummary": "Some rangers feel so closely connected to their homelands that they stand as guardians against pervasive corruptions that pervert those lands beyond the point of recognition.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:bow-nomad",
@@ -9600,7 +9600,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Bow%20Nomad",
       "replaces": "Wild Empathy; Combat Style; Endurance; Favored Terrain; 6th-level Combat Feat; Camouflage; Hide in Plain Sight",
       "aonSummary": "(Kasatha Only) Thanks to their four arms, kasathas can master a combat form native to their home world and rarely witnessed on Golarion—wielding two bows at once.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:cinderwalker",
@@ -9611,7 +9611,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Cinderwalker",
       "replaces": "1st Favored Terrain; Wild Empathy; Hunter’s Bond; Woodland Stride",
       "aonSummary": "Cinderwalkers traverse burning wastelands and restless mountains, thriving in lands most creatures avoid.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:code-runner",
@@ -9622,7 +9622,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Code%20Runner",
       "replaces": "Class Skills; Wild Empathy; Hunter's Bond",
       "aonSummary": "A code runner specializes in the subtle and speedy transfer of secret messages.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:corpse-hunter",
@@ -9633,7 +9633,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Corpse%20Hunter",
       "replaces": "Class Skills; Spells; Favored Enemies; Woodland Stride; Swift Tracker",
       "aonSummary": "Many rangers count the undead among their favored enemies, but some make a full-time job out of hunting down and destroying these walking corpses.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:dandy",
@@ -9644,7 +9644,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Dandy",
       "replaces": "Class Skills; Favored Enemy; Wild Empathy; Favored Terrain; Hunter's Bond; Spellcasting; Woodland Stride",
       "aonSummary": "The antithesis of the gruff and wild woodsmen, a dandy takes effort to master the subtle etiquette of noble courts, the whispers of dark rumors, and the customs of the cultured world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:darklands-sailor",
@@ -9655,7 +9655,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Darklands%20Sailor",
       "replaces": "Track; Favored Terrain; Woodland Stride; Swift Tracker; Camouflage; Hide in Plain Sight",
       "aonSummary": "Those plying the lightless waters of the Darklands learn to use sound to augment their compromised vision, providing insight into the hazards lurking below the surface.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:deep-walker",
@@ -9666,7 +9666,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Deep%20Walker",
       "replaces": "Favored Terrain; Woodland Stride; Camouflage; Hide in Plain Sight",
       "aonSummary": "Some rangers devote their lives to the woods, becoming hunters, protectors, and wilderness guides among its diverse terrain types.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:divine-tracker",
@@ -9677,7 +9677,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Divine%20Tracker",
       "replaces": "Alignment; Wild Empathy; Hunter’s Bond",
       "aonSummary": "Blessed by his deity, a divine tracker hunts down those he deems deserving of his retribution.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:dragon-hunter",
@@ -9688,7 +9688,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Dragon%20Hunter",
       "replaces": "Class Skills; Track; 5th, 10th, 15th, 20th-level Favored Enemies",
       "aonSummary": "The quintessential dragonslayers, dragon hunters are\r experts at forging through the wilds in search of great\r wyrms.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:drake-warden",
@@ -9699,7 +9699,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Drake%20Warden",
       "replaces": "Hunter's Bond; 2nd Favored Enemy; Swift Tracker",
       "aonSummary": "Some rangers specialize in dealing with rambunctious younger drakes and thanks to their methods, their drakes are both fiercely loyal and extremely useful for scouting and stealth missions.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:dungeon-rover",
@@ -9710,7 +9710,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Dungeon%20Rover",
       "replaces": "Class Skills; Track; Wild Empathy; Hunter’s Bond; Woodland Stride; Swift Tracker",
       "aonSummary": "These rangers specialize in surviving hostile subterranean environs. They are well equipped to avoid traps, spot secret passages, and deal with inimical dungeon tenants.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:dusk-stalker",
@@ -9721,7 +9721,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Dusk%20Stalker",
       "replaces": "Class Skills; Favored Terrain; Hunter’s Bond; Camouflage",
       "aonSummary": "(Fetchling Only) Hunters and guides through the Shadow Plane, dusk stalkers are rangers that thrive in shadow.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:elemental-envoy",
@@ -9732,7 +9732,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Elemental%20Envoy",
       "replaces": "Combat Style; Favored Terrain",
       "aonSummary": "An elemental envoy travels the Elemental Planes. He has learned to protect himself from their many dangers, and he models his fighting style after their teachings.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:falconer",
@@ -9743,7 +9743,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Falconer",
       "replaces": "Wild Empathy; Hunter’s Bond; 6th-level Combat Style Feat",
       "aonSummary": "Rangers have always enjoyed a special bond with a specific animal, but the falconer takes this bond to a deeper level.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:flamewarden",
@@ -9754,7 +9754,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Flamewarden",
       "replaces": "Hunter's Bond; Spells; Evasion; Camouflage; Improved Evasion; Master Hunter",
       "aonSummary": "Emulating the blazing phoenix, flamewardens sweep through the world like a selective forest fire, burning away corruption, evil, and those who cling to decay.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:fortune-finder",
@@ -9765,7 +9765,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Fortune-Finder",
       "replaces": "Track; Hunter's Bond; Woodland Stride; Quarry; Improved Quarry; Master Hunter",
       "aonSummary": "Vanaras often leave home to seek fortune and sate their curiosity regarding the mysterious lands that lie beyond their native territories. The most skilled of these thrillseekers are called ba-sadhaks, or fortune-finders.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:freebooter",
@@ -9776,7 +9776,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Freebooter",
       "replaces": "Favored Enemy; Hunter's Bond; Woodland Stride",
       "aonSummary": "A freebooter is a natural leader, a pirate who works well with a variety of people and in a variety of roles.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:galvanic-saboteur",
@@ -9787,7 +9787,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Galvanic%20Saboteur",
       "replaces": "Class Skills; Favored Enemy; Wild Empathy; Favored Terrain; Woodland Stride; Swift Tracker; Camouflage; Hide in Plain Sight",
       "aonSummary": "Many Kellid locals blame Kevoth-Kul’s change on the influence of the Technic League and view both the League and their mechanical minions with a mix of fear and distrust. Some Kellid rangers have since developed skills to defeat the League’s robotic enforcers and devious arcanists.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:groom",
@@ -9798,7 +9798,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Groom",
       "replaces": "Track; Endurance; 1st Favored Terrain",
       "aonSummary": "The groom attends to the needs of the party’s mounts and beasts of burden during their adventures, and guards these animals while the party goes underground.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:guide",
@@ -9809,7 +9809,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Guide",
       "replaces": "Favored Enemy; Hunter's Bond; Evasion; Quarry; Improved Quarry; Improved Evasion",
       "aonSummary": "Many rangers are loners, but some choose to use their familiarity with the land to guide others safely through the wilderness.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:guildbreaker",
@@ -9820,7 +9820,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Guildbreaker",
       "replaces": "Class Skills; Favored Enemy; Wild Empathy; Hunter's Bond; Woodland Stride",
       "aonSummary": "Guildbreakers stoke their enmity for their foes, and they train to track the movements of rival organizations, and even to infiltrate these groups to gather secret intelligence.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:hooded-champion",
@@ -9831,7 +9831,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Hooded%20Champion",
       "replaces": "1st-level Favored Enemy; Combat Syle; Wild Empathy; Endurance; Evasion; Improved Evasion",
       "aonSummary": "The hooded champion lives on the periphery of civilized lands, and is often at odds with the forces of law and order.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:horse-lord",
@@ -9842,7 +9842,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Horse%20Lord",
       "replaces": "Hunter's Bond; Camouflage; Hide in Plain Sight",
       "aonSummary": "Rangers of the plains use horses or other riding beasts to hunt their lands, forging a near-mystical relationship with their mounts.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:ilsurian-archer",
@@ -9853,7 +9853,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Ilsurian%20Archer",
       "replaces": "Track; Wild Empathy; Combat Style; Spellcasting; Swift Tracking; Quarry; Improved Quarry",
       "aonSummary": "Ilsurian archers maintain the strong tradition of archery first developed by soldiers in the service of Ilsur, who raised a small army with which he intended to overthrow the monarch of Korvosa after the fall of the Chelish Empire.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:infiltrator",
@@ -9864,7 +9864,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Infiltrator",
       "replaces": "Favored Terrain",
       "aonSummary": "Some rangers study their favored enemies and learn their ways, applying this knowledge to their own abilities and using their foes’ strengths against them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:jungle-lord",
@@ -9875,7 +9875,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Jungle%20Lord",
       "replaces": "Class Skills; Weapon and Armor Proficiency; Favored Enemy; Favored Terrain; Hunter's Bond; Spells; 5th, 10th, 15th, 18th-level Favored Terrain; Quarry; Improved Quarry; Camouflage; Master Hunter",
       "aonSummary": "Jungle lords are tempered by their harsh and unforgiving environments into something more than ordinary men and women.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:lantern-lighter",
@@ -9886,7 +9886,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Lantern%20Lighter",
       "replaces": "Wild Empathy; Endurance; Favored Terrain; Woodland Stride; Camouflage; Hide in Plain Sight",
       "aonSummary": "Lantern lighters were originally entrusted with secretly eliminating the drow and quarantining any knowledge of their existence, but in the new Lantern Bearer era, the lantern lighters have refocused their efforts on helping to rescue those imprisoned by the drow, or even to help individual drow who seek to escape the cruelties of their society for a chance at redemption on the surface.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:nirmathi-irregular",
@@ -9897,7 +9897,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Nirmathi%20Irregular",
       "replaces": "Normal Weapon/Armor Proficiencies; Favored Enemy; Favored Terrain; Altered Spell List",
       "aonSummary": "An irregular troop from Nirmathas, this ranger chooses to focus on the magic of stealth.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:planar-scout",
@@ -9908,7 +9908,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Planar%20Scout",
       "replaces": "Class Skills; Wild Empathy; Favored Terrain; Hunter's Bond; Evasion; Improved Evasion",
       "aonSummary": "Planar scouts are rangers specializing in traversing the planes—and surviving their journeys.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:poison-darter",
@@ -9919,7 +9919,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Poison%20Darter",
       "replaces": "Favored Enemy; Wild Empathy; Combat Style; Hunter's Bond; Master Hunter",
       "aonSummary": "In dense jungles, foliage and tight spaces hinder all but the most deceptively humble weapons: blowguns and poison.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:raven-master",
@@ -9930,7 +9930,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Raven%20Master",
       "replaces": "Class Skills; Wild Empathy; Hunter's Bond; Woodland Stride; Swift Tracker; Camouflage; Spellcasting",
       "aonSummary": "Raven masters serve as messengers and spies for the Silver Ravens, eschewing a ranger’s usual connection to the natural world to form a mystic bond with their birds and to grant both animal and master a number of specialized abilities",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:realm-wanderer",
@@ -9941,7 +9941,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Realm%20Wanderer",
       "replaces": "Class Skills; Track; Hunter's Bond; Swift Tracker; Master Hunter",
       "aonSummary": "These rangers take to heart the lessons they’ve learned from their vastly contrasting experiences and know that creatively embracing this wisdom is sometimes the difference between life and death.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:sable-company-marine",
@@ -9952,7 +9952,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Sable%20Company%20Marine",
       "replaces": "Hunter’s Bond",
       "aonSummary": "Sable Company marines receive their training at the elite Endrin Military Academy in Korvosa. A large portion of their education is the handling and riding of hippogriffs, the iconic mounts of members of the company.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:sentinel",
@@ -9963,7 +9963,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Sentinel",
       "replaces": "Wild Empathy; Hunter's Bond; Woodland Stride; 6th-level Combat Style Feat; Quarry; Improved Quarry",
       "aonSummary": "A sentinel specializes in heightening all of her senses to expose spies and those who work for opposing factions, rooting out all who attempt to slip past her evervigilant watch.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:shapeshifter",
@@ -9985,7 +9985,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Skirmisher",
       "replaces": "Spells",
       "aonSummary": "Many rangers rely on spells, but there are some who eschew aid from divine powers for their own reasons.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:spirit-ranger",
@@ -9996,7 +9996,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Spirit%20Ranger",
       "replaces": "Hunter's Bond; Camouflage",
       "aonSummary": "Some rangers nurture a connection with the spirits that reside in all things.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:stormwalker",
@@ -10007,7 +10007,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Stormwalker",
       "replaces": "Combat Style; Hunter's Bond; Swift Tracker; Quarry; Improved Evasion; Improved Quarry",
       "aonSummary": "Rangers who walk in the tempest unafraid draw the power of the storm into themselves and become stormwalkers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:summit-sentinel",
@@ -10018,7 +10018,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Summit%20Sentinel",
       "replaces": "Combat Style; Favored Terrain; Swift Tracker; Hide in Plain Sight",
       "aonSummary": "Some rangers eschew the path of the swift skirmisher and embrace the implacable strength of the mountain.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:sword-devil",
@@ -10029,7 +10029,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Sword-Devil",
       "replaces": "Class Skills; Favored Enemy; Favored Terrain; Hunter's Bond; Spells; Quarry; Improved Quarry; Master Hunter",
       "aonSummary": "Agile, vengeful, and deadly, a sword-devil ﬁghts with precision and grace, channeling the difficult lessons of a star-crossed life into unparalleled battle prowess.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:tanglebriar-demonslayer",
@@ -10040,7 +10040,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Tanglebriar%20Demonslayer",
       "replaces": "Class Skills; Favored Enemy; Endurance; Spells; Quarry; Improved Quarry",
       "aonSummary": "Though they are sworn foes of Treerazer and his kin, Tanglebriar demonslayers are known to venture forth from Kyonin to broaden their expertise in the destruction of demons.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:tidal-hunter",
@@ -10051,7 +10051,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Tidal%20Hunter",
       "replaces": "Wild Empathy; 6th-level Combat Style Feat; Track; Camouflage; Favored Terrain; Woodland Stride; Improved Evasion",
       "aonSummary": "The tidal hunter draws strength from the fish and other wildlife of the deep.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:toxic-herbalist",
@@ -10062,7 +10062,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Toxic%20Herbalist",
       "replaces": "Wild Empathy; Endurance; Hunter's Bond; Swift Tracker; Quarry; Improved Quarry",
       "aonSummary": "Saviors and destroyers in equal measure, toxic herbalists use nature’s bounty to craft remedies and poisons.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:toxophilite",
@@ -10073,7 +10073,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Toxophilite",
       "replaces": "Wild Empathy; Combat Style; Endurance; Quarry; Improved Quarry",
       "aonSummary": "The toxophilite emulates the sharpshooting rangers of legend, who could pin a fly to the wall with a single shot or split one arrow with another.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:transporter",
@@ -10084,7 +10084,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Transporter",
       "replaces": "Wild Empathy; Favored Terrain; Hunter's Bond; Woodland Stride",
       "aonSummary": "Transporters specialize in smuggling people as efficiently as possible through harsh and difficult environments.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:trapper",
@@ -10095,7 +10095,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Trapper",
       "replaces": "Spells",
       "aonSummary": "A trapper is a ranger who focuses exclusively on traps, rather than learning conventional magic.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:trophy-hunter",
@@ -10106,7 +10106,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Trophy%20Hunter",
       "replaces": "Wild Empathy; Combat Feat Style; Hunter’s Bond",
       "aonSummary": "Some rangers have taken up the mysteries of black powder in order to become big game hunters.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:urban-ranger",
@@ -10117,7 +10117,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Urban%20Ranger",
       "replaces": "Favored Terrain; Endurance; Woodland Stride; Camouflage; Hide in Plain Sight",
       "aonSummary": "For the urban ranger, the streets and sewers of the city are just as dangerous as the barren wastelands or the deep forests.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:warden",
@@ -10128,7 +10128,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Warden",
       "replaces": "Favored Enemy; Combat Style Feats; Hunter’s Bond; Master Hunter",
       "aonSummary": "All rangers have a bond with the wilderness, but the warden may have the strongest. This protector sits guard in the middle of the wilderness, keeping a lookout for any dangers that might spill from the deeper wilderness beyond, and protecting civilization from the savagery of nature—and vice versa.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:wave-warden",
@@ -10139,7 +10139,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wave%20Warden",
       "replaces": "Track; Combat Style; Favored Terrain; Woodland Stride; Swift Tracker",
       "aonSummary": "(Merfolk Only) The wave warden patrols beneath the sea, preserving the safety and secrets of merfolk communities.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:wild-hunter",
@@ -10150,7 +10150,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wild%20Hunter",
       "replaces": "Favored Enemy; Woodland Stride; Swift Tracker",
       "aonSummary": "A wild hunter seeks to emulate the animals around him to keep him safe while he tracks his prey.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:wild-shadow",
@@ -10161,7 +10161,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wild%20Shadow",
       "replaces": "Track; Wild Empathy; Favored Terrain; Hunter’s Bond; Woodland Stride; Quarry; Camouflage; Improved Quarry",
       "aonSummary": "(Half-Elf Only) The isolation that some half-elves feel leads them to live a life of isolation amid the wild places of the world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:wild-soul",
@@ -10172,7 +10172,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wild%20Soul",
       "replaces": "Code of Conduct; Favored Enemy; Swift Tracker; Quarry; Improved Quarry; Master Hunter",
       "aonSummary": "Wild souls hail from primitive roots in the wild and venture to more civilized lands and learn their ways.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:wild-stalker",
@@ -10183,7 +10183,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wild%20Stalker",
       "replaces": "Favored Enemy; 2nd-level Combat Style Feat; Hunter’s Bond",
       "aonSummary": "The wild stalker forsakes the bonds of community and lives in the trackless wilds far from others of his kind, or perhaps grew up there, never knowing of civilization as anything more than his enemy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:wilderness-explorer",
@@ -10194,7 +10194,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Wilderness%20Explorer",
       "replaces": "Class Skills; Wild Empathy; Hunter's Bond; Swift Tracker; Favored Terrain; Quarry; Improved Quarry",
       "aonSummary": "Wilderness explorers are adept at making peaceful contact with remote societies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:wilderness-medic",
@@ -10216,7 +10216,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Witchguard",
       "replaces": "Class Skills; Hunter’s Bond; Endurance; Spells; Woodland Stride",
       "aonSummary": "Witchguards are the sworn defenders of the White Witches of Irrisen.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "ranger:yokai-hunter",
@@ -10227,7 +10227,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ranger%20Yokai%20Hunter",
       "replaces": "Favored Enemy; Woodland Stride; Camouflage",
       "aonSummary": "Yokai hunters possess a supernatural tether to the spirit worlds that shroud mortal existence.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:acrobat",

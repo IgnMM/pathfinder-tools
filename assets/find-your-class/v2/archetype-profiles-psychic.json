@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Psychic parent value.",
+  "profiles": [
+    {
+      "id": "psychic:amnesiac",
+      "name": "Amnesiac",
+      "parentClassId": "psychic",
+      "sourceCitationText": "Occult Adventures pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Amnesiac",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Repressed Memories / Spells / Spell Recollection",
+          "reason": "Repressed Memories / Spells / Spell Recollection defines the material change from the Psychic baseline."
+        }
+      ],
+      "playerSummary": "The amnesiac once possessed great psychic power, but mental blocks—resulting from either a traumatic event or intentional implantation—have caused her to forget what she knew before",
+      "tradeoff": "It replaces or alters Spellcasting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "psychic:esoteric-starseeker",
+      "name": "Esoteric Starseeker",
+      "parentClassId": "psychic",
+      "sourceCitationText": "Wilderness Origins pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Esoteric%20Starseeker",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Written in the Stars / The Thrush / The Lantern Bearer / The Newlyweds",
+          "reason": "Written in the Stars / The Thrush / The Lantern Bearer / The Newlyweds defines the material change from the Psychic baseline."
+        }
+      ],
+      "playerSummary": "An esoteric starseeker is a psychic who focuses her studies on uncovering the secrets of the sky and the constellations of the Cosmic Caravan.",
+      "tradeoff": "It replaces or alters Discipline Spells; 1st, 11th-level Phrenic Amplifications; Major Amplifications; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "psychic:formless-adept",
+      "name": "Formless Adept",
+      "parentClassId": "psychic",
+      "sourceCitationText": "Occult Adventures pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Formless%20Adept",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core",
+        "personal-durability": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "incorporeal form"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Phrenic Charisma / Formless Body / Blurred Body / Gaseous Body",
+          "reason": "The archetype’s Phrenic Charisma / Formless Body / Blurred Body / Gaseous Body package materially changes transformation shapeshifting from the Psychic baseline."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Phrenic Charisma / Formless Body / Blurred Body / Gaseous Body",
+          "reason": "The archetype’s Phrenic Charisma / Formless Body / Blurred Body / Gaseous Body package materially changes personal durability from the Psychic baseline."
+        }
+      ],
+      "playerSummary": "Formless adepts master their psychic powers to unshackle themselves from the confines of the flesh and empower their spellcasting.",
+      "tradeoff": "It replaces or alters Phrenic Pool; Psychic Discipline; Discipline Powers; 1st and 15th-level Phrenic Amplification; Discipline Spells; Remade Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "psychic:magaambyan-telepath",
+      "name": "Magaambyan Telepath",
+      "parentClassId": "psychic",
+      "sourceCitationText": "Wilderness Origins pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Magaambyan%20Telepath",
+      "capabilityOverrides": {
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "magicIdentity": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Primal Spells / Nature’s Command / Know the Land / Wild Mind",
+          "reason": "The archetype’s Primal Spells / Nature’s Command / Know the Land / Wild Mind package materially changes wilderness affinity from the Psychic baseline."
+        }
+      ],
+      "playerSummary": "Followers of Old-Mage Jatembe’s more esoteric wisdom instead focus on the occult connection between all living creatures and the resonance between the natural and supernatural world.",
+      "tradeoff": "It replaces or alters Discipline Spells; 1st, 11th-level Phrenic Amplifications; Telepathic Bond; Telepathy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "psychic:mutation-mind",
+      "name": "Mutation Mind",
+      "parentClassId": "psychic",
+      "sourceCitationText": "Occult Adventures pg. 105",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Mutation%20Mind",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Physical Mutation / Bodily Mutations / Adhesive / Bite Attack",
+          "reason": "The archetype’s Physical Mutation / Bodily Mutations / Adhesive / Bite Attack package materially changes melee combat from the Psychic baseline."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Physical Mutation / Bodily Mutations / Adhesive / Bite Attack",
+          "reason": "The archetype’s Physical Mutation / Bodily Mutations / Adhesive / Bite Attack package materially changes transformation shapeshifting from the Psychic baseline."
+        }
+      ],
+      "playerSummary": "Exposure to unintended spell effects, curses, or sources of radiation cause some to manifest psychic powers. When a mutation mind uses her psychic abilities, her physical body changes under the stress, and she risks losing control if she pushes too far.",
+      "tradeoff": "It replaces or alters 1st-level Phrenic Amplification; Phrenic Amplifications; Major Amplifications; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "psychic:psychic-duelist",
+      "name": "Psychic Duelist",
+      "parentClassId": "psychic",
+      "sourceCitationText": "Occult Adventures pg. 107",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Psychic%20Duelist",
+      "capabilityOverrides": {
+        "single-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.single-target-damage",
+          "section": "Psychic Duel Acumen / Manifestation Amplifications / Extended Effect / Faithful Creature",
+          "reason": "The archetype’s Psychic Duel Acumen / Manifestation Amplifications / Extended Effect / Faithful Creature package materially changes single target damage from the Psychic baseline."
+        }
+      ],
+      "playerSummary": "Psychic duelists hone their mental powers for combat, much as warriors do with their blades.",
+      "tradeoff": "It replaces or alters 4th-level Discipline Spell; 7th-level Phrenic Amplification; Phrenic Amplifications; Telepathic Bond; Telepathy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "psychic:psychic-marauder",
+      "name": "Psychic Marauder",
+      "parentClassId": "psychic",
+      "sourceCitationText": "Heroes of the Darklands pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Psychic%20Marauder",
+      "capabilityOverrides": {
+        "personal-durability": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A psychic marauder must be of nonlawful alignment.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Alignment / Skewed Mentality / Aura of Insanity / Cracked Perspectives",
+          "reason": "The archetype’s Alignment / Skewed Mentality / Aura of Insanity / Cracked Perspectives package materially changes personal durability from the Psychic baseline."
+        }
+      ],
+      "playerSummary": "The psychic marauder’s powers come hand in hand with madness, either from exposure to alien psyches or from terrifying glimpses into the cosmos that the psychic can’t suppress.",
+      "tradeoff": "It replaces or alters Alignment; Detect Thoughts; 3rd, 11th, 19th-level Phrenic Amplification; Telepathic Bond; Remade Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "psychic:terror-weaver",
+      "name": "Terror Weaver",
+      "parentClassId": "psychic",
+      "sourceCitationText": "Heroes from the Fringe pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic%20Terror%20Weaver",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to half-orc characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Manipulation / Aura of Intimidation / Persistent Nightmare",
+          "reason": "Manipulation / Aura of Intimidation / Persistent Nightmare defines the material change from the Psychic baseline."
+        }
+      ],
+      "playerSummary": "A number of exceptional Darklands half-orcs have developed potent psychic abilities, unlocked by generations of exposure to a specific combination of mind-altering fungi and radiation",
+      "tradeoff": "It replaces or alters Detect Thoughts; Telepathic Bond; 11th, 15th, 19th-level Phrenic Amplifications; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

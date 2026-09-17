@@ -13,8 +13,8 @@ const model = readJson('classification-model.json');
 const classProfiles = ['class-profiles-batch-01.json', 'class-profiles-batch-02.json', 'class-profiles-batch-03.json', 'class-profiles-batch-04.json', 'class-profiles-batch-05.json', 'class-profiles-batch-06.json']
   .flatMap(f => readJson(f).profiles);
 const archetypeOverrides = Array.from({ length: 10 }, (_, i) => `archetype-profiles-pilot-${String(i + 1).padStart(2, '0')}.json`)
-  .flatMap(f => readJson(f).profiles).filter(p => !['alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric','druid','fighter','gunslinger','hunter','inquisitor','investigator','kineticist','magus','medium','mesmerist','monk','monk-unchained','ninja','occultist','oracle','paladin'].includes(p.parentClassId))
-  .concat(...['slayer','summoner-unchained','alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric','druid','fighter','gunslinger','hunter','inquisitor','investigator','kineticist','magus','medium','mesmerist','monk','monk-unchained','ninja','occultist','oracle','paladin'].map(id => readJson(`archetype-profiles-${id}.json`).profiles));
+  .flatMap(f => readJson(f).profiles).filter(p => !['alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric','druid','fighter','gunslinger','hunter','inquisitor','investigator','kineticist','magus','medium','mesmerist','monk','monk-unchained','ninja','occultist','oracle','paladin','psychic','ranger'].includes(p.parentClassId))
+  .concat(...['slayer','summoner-unchained','alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric','druid','fighter','gunslinger','hunter','inquisitor','investigator','kineticist','magus','medium','mesmerist','monk','monk-unchained','ninja','occultist','oracle','paladin','psychic','ranger'].map(id => readJson(`archetype-profiles-${id}.json`).profiles));
 
 const criteriaIndex = V2.indexCriteria(criteriaDoc);
 const classById = new Map(classProfiles.map(c => [c.id, c]));
@@ -63,12 +63,12 @@ test('resolveEffectiveProfile applies identityAdds and identityRemoves correctly
   }
 });
 
-test('resolveAllProfiles produces 44 class-paths + 898 archetypes = 942 profiles, all with unique ids', () => {
+test('resolveAllProfiles produces 44 class-paths + 964 archetypes = 1008 profiles, all with unique ids', () => {
   const all = V2.resolveAllProfiles(classProfiles, archetypeOverrides);
-  assert.equal(all.length, 942);
-  assert.equal(new Set(all.map(p => p.id)).size, 942);
+  assert.equal(all.length, 1008);
+  assert.equal(new Set(all.map(p => p.id)).size, 1008);
   assert.equal(all.filter(p => p.entityType === 'class-path').length, 44);
-  assert.equal(all.filter(p => p.entityType === 'archetype').length, 898);
+  assert.equal(all.filter(p => p.entityType === 'archetype').length, 964);
 });
 
 test('calibrationRole never leaks into resolveEffectiveProfile\'s playerSummary (regression: it is an internal field, and most real classes still hold the literal placeholder "Pending cross-class normalization.")', () => {
