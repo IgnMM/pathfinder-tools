@@ -285,6 +285,31 @@ const PROFILES = [
     playerSummary: 'A conjurer specializing in binding and negotiating with genies -- marking creatures and surfaces with elemental seals that charm genies, grant allies elemental resistance, or trap enemies in an elemental blast, while choosing once and forever between commanding a genie-blooded eidolon or deepening her own spellcasting.',
     tradeoff: 'Entry requires a nongood alignment, the Persuasive and Spell Focus (conjuration) feats, heavy Knowledge (planes) investment, and access to planar ally, planar binding, or summon monster VI already, and the class caps out at only 5 levels with a permanent, irreversible choice made at 1st level.',
   }),
+  author('technomancer', {
+    c: {'offensive-magic': 'core', 'utility-magic': 'core', 'debuffing-enemies': 'available', 'practical-expertise': 'core', 'knowledge-investigation': 'available'},
+    p: {'build-complexity': 'high', 'play-complexity': 'high', 'attribute-demands': 'high', 'equipment-dependence': 'high', 'resource-management': 'medium', versatility: 'medium'},
+    f: {'has-spellcasting': true, 'has-firearms': true, 'depends-on-specific-equipment': true},
+    identity: {magicIdentity: ['arcane'], castingMethod: ['mixed'], castingExtent: ['partial'], spiritualThemes: ['none'], elementThemes: ['none'], primaryDelivery: ['spellcasting', 'firearm']},
+    playerSummary: 'A magic-meets-technology tinkerer who repairs and reactivates ancient technological relics, powers gadgets with spent spell slots (and vice versa), commands robots, and blends technomantic countermagic into a normal arcane spell list.',
+    tradeoff: 'Entry requires Skill Focus (Knowledge [engineering]), the Technologist feat, heavy Disable Device/Knowledge (engineering)/Spellcraft investment, and 3rd-level arcane spells, and nearly every ability depends on having technological devices to recondition, power or command.',
+  }),
+  author('halfling-opportunist', {
+    c: {'melee-combat': 'available', 'combat-manoeuvres': 'core', 'single-target-damage': 'available', 'personal-durability': 'available', 'social-influence': 'available', 'stealth-subterfuge': 'available'},
+    p: {'build-complexity': 'medium', 'play-complexity': 'medium', 'attribute-demands': 'medium', 'equipment-dependence': 'low', 'resource-management': 'low', versatility: 'medium'},
+    f: {'has-sneak-attack': true},
+    identity: {magicIdentity: ['none'], castingMethod: ['none'], castingExtent: ['none'], spiritualThemes: ['none'], elementThemes: ['none'], primaryDelivery: ['melee weapon']},
+    constraints: [{type: 'race', kind: 'requirement', summary: 'A halfling opportunist must be a halfling.', evidenceSection: 'Race'}],
+    playerSummary: 'A halfling who turns her enemies’ own actions against them -- seizing a combat maneuver check off a giant’s swing or a spellcaster’s blast to grant herself a timely bonus, all while getting luckier and sneakier as she goes.',
+    tradeoff: 'Entry requires being a halfling, Perception/Stealth ranks, and the Defensive Combat Training feat, and the class caps out at only 5 levels.',
+  }),
+  author('aspis-agent', {
+    c: {'debuffing-enemies': 'core', 'single-target-damage': 'available', 'practical-expertise': 'core', 'social-influence': 'available', 'knowledge-investigation': 'available', 'stealth-subterfuge': 'available', 'personal-durability': 'available'},
+    p: {'build-complexity': 'high', 'play-complexity': 'medium', 'attribute-demands': 'medium', 'equipment-dependence': 'medium', 'resource-management': 'low', versatility: 'high'},
+    f: {'has-sneak-attack': true, 'depends-on-specific-equipment': true},
+    identity: {magicIdentity: ['none'], castingMethod: ['none'], castingExtent: ['none'], spiritualThemes: ['none'], elementThemes: ['none'], professionIdentity: ['spy'], primaryDelivery: ['melee weapon']},
+    playerSummary: 'A corporate spy-adventurer for the Aspis Consortium who rigs recovered traps to ambush rivals, masks her alignment from detection magic, and picks up an ever-growing menu of agency secrets -- bonus feats, rogue talents, or caster level boosts -- to stay one step ahead.',
+    tradeoff: 'Entry requires whip proficiency plus trap sense or detect secret doors, and heavy investment across seven different skills (Appraise/Bluff/Craft [traps]/Disable Device/Intimidate/Knowledge [history]/Perception).',
+  }),
 ];
 
 const seen = new Set(PROFILES.map(p => p.id));

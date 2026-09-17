@@ -2521,6 +2521,277 @@
       "playerSummary": "A conjurer specializing in binding and negotiating with genies -- marking creatures and surfaces with elemental seals that charm genies, grant allies elemental resistance, or trap enemies in an elemental blast, while choosing once and forever between commanding a genie-blooded eidolon or deepening her own spellcasting.",
       "tradeoff": "Entry requires a nongood alignment, the Persuasive and Spell Focus (conjuration) feats, heavy Knowledge (planes) investment, and access to planar ally, planar binding, or summon monster VI already, and the class caps out at only 5 levels with a permanent, irreversible choice made at 1st level.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:technomancer",
+      "name": "Technomancer",
+      "sourceCitationText": "Technology Guide pg. 14",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Technomancer",
+      "requirementsText": "To qualify to become a technomancer, a character must fulfill all the following criteria.\nFeats: Skill Focus (Knowledge [engineering]), Technologist.\nSkills: Disable Device 6 ranks, Knowledge (engineering) 6 ranks, Spellcraft 6 ranks.\nSpecial: Ability to cast 3rd-level arcane spells.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "absent",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": true,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting",
+          "firearm"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A magic-meets-technology tinkerer who repairs and reactivates ancient technological relics, powers gadgets with spent spell slots (and vice versa), commands robots, and blends technomantic countermagic into a normal arcane spell list.",
+      "tradeoff": "Entry requires Skill Focus (Knowledge [engineering]), the Technologist feat, heavy Disable Device/Knowledge (engineering)/Spellcraft investment, and 3rd-level arcane spells, and nearly every ability depends on having technological devices to recondition, power or command.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:halfling-opportunist",
+      "name": "Halfling Opportunist",
+      "sourceCitationText": "Halflings of Golarion pg. 28",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Halfling%20Opportunist",
+      "requirementsText": "To qualify to become a halfling opportunist, a character must fulfill all the following criteria.\nRace: Halfling.\nSkills: Perception 5 ranks, Stealth 5 ranks.\nFeats: Defensive Combat Training.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "core",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "A halfling opportunist must be a halfling.",
+          "evidenceSection": "Race"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A halfling who turns her enemies’ own actions against them -- seizing a combat maneuver check off a giant’s swing or a spellcaster’s blast to grant herself a timely bonus, all while getting luckier and sneakier as she goes.",
+      "tradeoff": "Entry requires being a halfling, Perception/Stealth ranks, and the Defensive Combat Training feat, and the class caps out at only 5 levels.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:aspis-agent",
+      "name": "Aspis Agent",
+      "sourceCitationText": "Adventurer's Guide pg. 30",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Aspis%20Agent",
+      "requirementsText": "To qualify to become an Aspis agent, a character must fulfill the following criteria.\nSkills: Appraise 5 ranks, Bluff 5 ranks, Craft (traps) 5 ranks, Disable Device 5 ranks, Intimidate 5 ranks, Knowledge (history) 5 ranks, Perception 5 ranks.\nSpecial: Proficiency with the whip, as well as either the trap sense class feature or the ability to cast detect secret doors.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "available",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "spy"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A corporate spy-adventurer for the Aspis Consortium who rigs recovered traps to ambush rivals, masks her alignment from detection magic, and picks up an ever-growing menu of agency secrets -- bonus feats, rogue talents, or caster level boosts -- to stay one step ahead.",
+      "tradeoff": "Entry requires whip proficiency plus trap sense or detect secret doors, and heavy investment across seven different skills (Appraise/Bluff/Craft [traps]/Disable Device/Intimidate/Knowledge [history]/Perception).",
+      "reviewStatus": "reviewed"
     }
   ]
 }
