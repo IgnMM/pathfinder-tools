@@ -54,7 +54,7 @@ test('alignment-gated prestige classes (assassin evil, arcane trickster nonlawfu
   assert.ok(m.get('prestige:master-chymist').constraints.some(c => c.type === 'curse-or-drawback'));
 });
 
-test('70/119 prestige classes are curated so far, 49 remain pending', () => {
-  assert.equal(prestige.length, 70);
+test('80/119 prestige classes are curated so far, 39 remain pending', () => {
+  assert.equal(prestige.length, 80);
   assert.equal(details.length, 119);
 });

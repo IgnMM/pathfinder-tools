@@ -6683,6 +6683,1020 @@
       "playerSummary": "An elite information-broker seductress who casts divination and enchantment spells covertly with a Bluff/Sleight of Hand check, delivers them through a willing touch or kiss, and eventually stuns or staggers a target outright with a touch of overwhelming, pain-suppressing ecstasy.",
       "tradeoff": "Entry requires Spell Focus (divination) or (enchantment), Bluff/Knowledge (arcana)/Sense Motive/Perform ranks, and two divination and two enchantment spells including one of each at 2nd level or higher, and her whole kit is built around social manipulation and divination/enchantment magic rather than direct combat power.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:envoy-of-balance",
+      "name": "Envoy of Balance",
+      "sourceCitationText": "Champions of Balance pg. 30",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Envoy%20of%20Balance",
+      "requirementsText": "To qualify to for this prestige class, a character must fulfill the following criteria.\nAlignment: Neutral.\nFeats: Augment Summoning, Improved Counterspell, or Versatile ChannelerUM.\nSkills: Knowledge (planes) 5 ranks, Spellcraft 5 ranks.\nSpells: Able to cast 3rd-level spells.\nSpecial: If the character gains spells from a deity, this deity’s alignment must be neutral and it must be able to grant followers the ability to channel both positive and negative energy.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "core",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "An envoy of balance must be neutral, and loses all class features if she ceases to be neutral until she atones.",
+          "evidenceSection": "Alignment / Ex-Envoys of Balance"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A neutral arbiter of cosmic balance who counters and dispels alignment-descriptor spells with their opposite, picks endowments like twinned healing-and-harming channeled energy or a mind blank aura, and eventually delivers a save-or-die killing touch that can be paired with a true resurrection of an opposite-aligned corpse.",
+      "tradeoff": "Entry requires strict neutral alignment, Augment Summoning/Improved Counterspell/Versatile Channeler, Knowledge (planes)/Spellcraft 5 ranks, and 3rd-level spells, and drifting from neutrality strips every class feature until she atones.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:feysworn",
+      "name": "Feysworn",
+      "sourceCitationText": "The First World, Realm of the Fey pg. 8",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Feysworn",
+      "requirementsText": "To qualify to become a feysworn, a character must fulfill all of the following criteria.\nFeat: Fey Obedience\nLanguages: Aklo, First Speech, or Sylvan.\nSkills: Knowledge (planes) 5 ranks.\nSpecial: Must worship one of the Eldest.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": true,
+        "requires-deity": true,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "patron"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A feysworn must worship one of the Eldest fey lords and perform a daily obedience to maintain her abilities.",
+          "evidenceSection": "Special / Obedience"
+        },
+        {
+          "type": "loss-of-powers-condition",
+          "kind": "requirement",
+          "summary": "A feysworn who goes against her Eldest’s will loses all class features until she atones or is accepted by another Eldest.",
+          "evidenceSection": "Ex-Feysworn"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A pledged servant of one of the Eldest fey lords who becomes immune to most humanoid-only mind control, hardens her skin against cold iron, summons fey creatures, and eventually rips open the planar fabric to unleash a random catastrophic spell effect while immune to it herself.",
+      "tradeoff": "Entry requires the Fey Obedience feat, Aklo/First Speech/Sylvan, Knowledge (planes) 5 ranks, and worship of an Eldest, and defying her patron’s will strips every class feature -- including any enhanced spellcasting -- until she atones or is accepted by a new Eldest.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:golden-legionnaire",
+      "name": "Golden Legionnaire",
+      "sourceCitationText": "Adventurer's Guide pg. 66",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Golden%20Legionnaire",
+      "requirementsText": "To qualify to become a Golden Legionnaire, a character must fulfill the following criteria.\nAlignment: Any good.\nArmor Proficiency: Must be proficient with heavy armor.\nBase Attack Bonus: +5.\nSkills: Diplomacy 5 ranks, Intimidate 5 ranks.\nSpecial: A senior Eagle Knight must invite the character into the organization.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "core",
+        "personal-durability": "absent",
+        "protecting-allies": "core",
+        "battlefield-control": "available",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "soldier"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Golden Legionnaire must be any good.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A senior Eagle Knight must invite the character into the Golden Legion.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "soldier"
+      ],
+      "playerSummary": "A good-aligned Andoren border guardian who commands allies for a shared bonus to attacks and saves, sacrifices some of her own AC to shield an adjacent ally, punishes anyone who attacks her friends, and eventually rerolls a crucial attack or save -- or forces an enemy to.",
+      "tradeoff": "Entry requires a good alignment, heavy armor proficiency, base attack bonus +5, Diplomacy/Intimidate 5 ranks, and a formal invitation from a senior Eagle Knight, and her buffs only reach allies who choose to obey her commands and stay adjacent to her.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:gray-corsair",
+      "name": "Gray Corsair",
+      "sourceCitationText": "Adventurer's Guide pg. 68",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Gray%20Corsair",
+      "requirementsText": "To qualify to become a Gray Corsair, a character must fulfill the following criteria.\nAlignment: Any nonevil.\nFeat: Sea LegsUC.\nSkills: Acrobatics 5 ranks, Profession (sailor) 5 ranks, Stealth 5 ranks.\nSpecial: A senior Eagle Knight must invite the character into the organization.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "core",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "privateer"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Gray Corsair must be any nonevil.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A senior Eagle Knight must invite the character into the Gray Corsairs, and the character must choose an existing class as a gray focus to continue advancing.",
+          "evidenceSection": "Special / Gray Focus"
+        }
+      ],
+      "professionIdentity": [
+        "privateer"
+      ],
+      "playerSummary": "A nonevil anti-slaver privateer of the Eagle Knights who picks a favored port for social and initiative bonuses, keeps advancing an earlier class through her gray focus, gains bonuses against known slavers, and eventually casts wind walk and word of recall to whisk her crew to freedom.",
+      "tradeoff": "Entry requires any nonevil alignment, Sea Legs, Acrobatics/Profession (sailor)/Stealth 5 ranks, and a formal invitation from a senior Eagle Knight, and every gray boon depends on having levels in the specific class she chose as her gray focus.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:gray-gardener",
+      "name": "Gray Gardener",
+      "sourceCitationText": "Paths of Prestige pg. 24",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Gray%20Gardener",
+      "requirementsText": "To qualify to become a Gray Gardener, a character must fulfill all of the following criteria.\nFeats: Combat Reflexes.\nSkills: Bluff 2 ranks, Diplomacy 2 ranks, Disguise 2 ranks, Intimidate 5 ranks, Perception 2 ranks, Sense Motive 5 ranks.\nSpells: Able to cast 2nd-level divine spells.\nSpecial: The character must publicly execute a tried and sentenced individual. Whether the victim is actually guilty or innocent is irrelevant.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "core",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "executioner"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A Gray Gardener must have publicly executed a tried and sentenced individual, guilty or innocent.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "executioner"
+      ],
+      "playerSummary": "A hooded, anonymous executioner of Galt’s Red Revolution who pronounces inquisitor-style judgments, enhances weapons with an escalating bane against chosen creature types, and eventually captures a slain foe’s soul in her blade or a magical guillotine while making that foe far harder to raise from the dead.",
+      "tradeoff": "Entry requires Combat Reflexes, Bluff/Diplomacy/Disguise/Intimidate/Perception/Sense Motive ranks, 2nd-level divine spells, and proof of having publicly executed a sentenced individual, and several of her most powerful class features are only usable once per day or week.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:green-faith-acolyte",
+      "name": "Green Faith Acolyte",
+      "sourceCitationText": "Paths of Prestige pg. 26",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Green%20Faith%20Acolyte",
+      "requirementsText": "To qualify to become a Green Faith acolyte, a character must fulfill all of the following criteria.\nAlignment: Any neutral.\nFeats: Green Faith Acolyte (The Inner Sea World Guide 287).\nSkills: Handle Animal 5 ranks, Knowledge (nature) 5 ranks, Survival 5 ranks.\nSpells: Able to cast 3rd-level divine spells.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "core",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": true,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": true,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "druid hierarch"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Green Faith acolyte must be any neutral.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A Green Faith acolyte climbs a strict hierarchy of titles -- Archdruid, Great Druid, Grand Druid -- earned or lost through formal challenges against rivals.",
+          "evidenceSection": "Archdruid / Great Druid / Grand Druid"
+        }
+      ],
+      "professionIdentity": [
+        "druid hierarch"
+      ],
+      "playerSummary": "A neutral high priestess of the Green Faith who advances her animal companion and wild shape as if gaining druid levels, becomes immune to all poisons, and climbs a strict hierarchy of titles -- Archdruid, Great Druid, Grand Druid -- eventually casting extra spells each day and never aging.",
+      "tradeoff": "Entry requires strict neutral alignment, the Green Faith Acolyte feat, Handle Animal/Knowledge (nature)/Survival 5 ranks, and 3rd-level divine spells, and reaching 9th and 10th level requires winning a formal challenge against a rival to claim each higher title.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:heritor-knight",
+      "name": "Heritor Knight",
+      "sourceCitationText": "Paths of the Righteous pg. 16",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Heritor%20Knight",
+      "requirementsText": "To qualify to become a heritor knight, a character must fulfill all of the following criteria.\nBase Attack Bonus: +5.\nAlignment: Lawful good, lawful neutral, or neutral good.\nDeity: Must worship Iomedae.\nSkills: Knowledge (religion) 5 ranks.\nFeats: Iron Will, Skill Focus (Knowledge [religion]), Weapon Focus (longsword).",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "available",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "absent",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "holy knight"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A heritor knight must be lawful good, lawful neutral, or neutral good.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A heritor knight must worship Iomedae.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "holy knight"
+      ],
+      "playerSummary": "A longsword-wielding devotee of Iomedae who frees grappled or swallowed allies with a single strike, grounds flying foes, breaks undead special attacks and eventually destroys and redeems good-aligned undead outright, and comes to resemble the Inheritor herself, healing good creatures or smiting evil ones with a touch.",
+      "tradeoff": "Entry requires a lawful-or-neutral good alignment, worship of Iomedae, base attack bonus +5, Iron Will, Skill Focus (Knowledge [religion]), Weapon Focus (longsword), and Knowledge (religion) 5 ranks, and nearly every signature attack is built specifically around wielding a longsword.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:hinterlander",
+      "name": "Hinterlander",
+      "sourceCitationText": "Paths of the Righteous pg. 18",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Hinterlander",
+      "requirementsText": "To qualify to become a hinterlander, a character must fulfill all of the following criteria.\nAlignment: Lawful good or neutral good.\nDeity: Must worship Erastil.\nSkills: Knowledge (nature) 5 ranks, Survival 5 ranks.\nFeats: Endurance, Weapon Focus (longbow).\nSpellcasting: Able to cast 1st-level spells.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "core",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "available",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "core"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "frontier guardian"
+        ],
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A hinterlander must be lawful good or neutral good.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A hinterlander must worship Erastil.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "frontier guardian"
+      ],
+      "playerSummary": "A good-aligned Erastil-worshiping bow guardian of rural frontier villages who gains a favored enemy and a stack of ranger-style bonus archery feats, senses unnatural threats near a defended hearth, and eventually creates waymarkers to teleport back and protect the settlements she guards.",
+      "tradeoff": "Entry requires a good alignment, worship of Erastil, Endurance, Weapon Focus (longbow), Knowledge (nature)/Survival 5 ranks, and 1st-level spells, and most of her signature bonuses only apply near a small settlement of 2,000 or fewer people.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:inheritor-s-crusader",
+      "name": "Inheritor's Crusader",
+      "sourceCitationText": "Pathfinder #26: The Sixfold Trial pg. 71",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Inheritor%27s%20Crusader",
+      "requirementsText": "To qualify to become an Inheritor’s crusader, a character must fulfill the following criteria:\nAlignment: Lawful good.\nDeity: Iomedae.\nFeats: Iron Will.\nSkills: Knowledge (religion) 5 ranks, Sense Motive 5 ranks.\nSpecial: Proficient in longsword, channel positive energy.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "available",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "available",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "low",
+        "play-complexity": "low",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": true,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "holy knight"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "An Inheritor’s crusader must be lawful good and follows a paladin-like code of conduct.",
+          "evidenceSection": "Alignment / Champion of Honor"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "An Inheritor’s crusader must worship Iomedae.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "holy knight"
+      ],
+      "playerSummary": "A lawful good champion of Iomedae’s ideals who radiates a stronger aura of courage, uses channel energy or lay on hands to break charm and compulsion effects on herself or allies, and can strike a guilty target with an automatic-hit judgment of Iomedae while sparing the innocent entirely.",
+      "tradeoff": "Entry requires lawful good alignment, worship of Iomedae, Iron Will, Knowledge (religion)/Sense Motive 5 ranks, longsword proficiency, and channel positive energy, and the class is only 3 levels long, so it is a short capstone layered onto an existing cleric or paladin.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:inner-sea-pirate",
+      "name": "Inner Sea Pirate",
+      "sourceCitationText": "Pirates of the Inner Sea pg. 24",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Inner%20Sea%20Pirate",
+      "requirementsText": "To qualify to become an Inner Sea pirate, a character must fulfill all of the following criteria.\nAlignment: Any nonlawful.\nSkills: Appraise 5 ranks, Profession (sailor) 5 ranks, Swim 5 ranks.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "low",
+        "attribute-demands": "low",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "pirate"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "An Inner Sea pirate must be any nonlawful.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [
+        "pirate"
+      ],
+      "playerSummary": "A nonlawful Inner Sea buccaneer who gains a growing rogue-style sneak attack and picks up a flexible menu of pirate tricks -- from a favored tavern where she drinks for free to lightning-fast quick appraisal, storm-savvy sailing, and combat tricks that trip or disarm sneak-attacked foes.",
+      "tradeoff": "Entry requires any nonlawful alignment and Appraise/Profession (sailor)/Swim 5 ranks, and she gains no armor proficiency at all, so she stays lightly armored and reliant on Dexterity and precision damage.",
+      "reviewStatus": "reviewed"
     }
   ]
 }
