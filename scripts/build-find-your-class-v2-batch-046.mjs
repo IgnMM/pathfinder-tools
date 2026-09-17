@@ -38,7 +38,7 @@ set('vigilante', 'faceless-enforcer', { c: { 'personal-durability': 'core' }, f:
 set('vigilante', 'ferocious-hunter', { c: { 'personal-durability': 'core' }, constraints: [{ type: 'race', kind: 'requirement', summary: 'A ferocious hunter must present as human for his social identity and as a half-orc for his vigilante identity.', evidenceSection: 'Hidden Heritage' }] });
 set('vigilante', 'half-elf-double-scion', { c: { 'single-target-damage': 'core' }, constraints: [{ type: 'race', kind: 'requirement', summary: 'A half-elf double scion must be a half-elf, appearing as an elf in one identity and a human in the other.', evidenceSection: 'Dual Heritage' }] });
 set('vigilante', 'hangman', { c: { 'debuffing-enemies': 'core', 'knowledge-investigation': 'core' } });
-set('vigilante', 'hidden-current', { c: { 'combat-mobility': 'core' }, a: { environmentThemes: ['aquatic'] } });
+set('vigilante', 'hidden-current', { c: { 'combat-mobility': 'core' }, a: { environmentThemes: ['maritime'] } });
 set('vigilante', 'imperial-agent', { a: { professionIdentity: ['spy'] } });
 set('vigilante', 'masked-maiden', { c: { 'personal-durability': 'core' }, f: { 'depends-on-specific-equipment': true }, constraints: [{ type: 'weapon-or-armour-restriction', kind: 'commitment', summary: 'Mortal peril while in the social identity can force an involuntary Will-save-gated switch to the vigilante identity, and a maiden compelled this way cannot switch back that day.', evidenceSection: 'Imperfect Control' }] });
 set('vigilante', 'mounted-fury', { c: { 'summoning-companions': 'core' }, f: { 'has-mount': true, 'controls-additional-entity': true }, a: { primaryDelivery: ['mount'] } });
