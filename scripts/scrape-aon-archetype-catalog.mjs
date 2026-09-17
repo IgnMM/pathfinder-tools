@@ -123,7 +123,7 @@ const classProfiles = (await Promise.all(['01', '02', '03', '04', '05', '06'].ma
   JSON.parse(await fs.readFile(path.join(repo, 'assets/find-your-class/v2', `class-profiles-batch-${batch}.json`), 'utf8')).profiles
 ))).flat();
 const valuedClassIds = new Set(classProfiles.map(item => item.id));
-const completedArchetypeProfiles = (await Promise.all(['alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric'].map(async id =>
+const completedArchetypeProfiles = (await Promise.all(['alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric','druid','fighter'].map(async id =>
   JSON.parse(await fs.readFile(path.join(repo, `assets/find-your-class/v2/archetype-profiles-${id}.json`), 'utf8')).profiles
 ))).flat();
 const valuedArchetypeIds = new Set((await Promise.all(Array.from({length: 10}, async (_, index) =>

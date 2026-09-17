@@ -1,0 +1,2382 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Druid parent value.",
+  "profiles": [
+    {
+      "id": "druid:aerie-protector",
+      "name": "Aerie Protector",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Wilderness pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Aerie%20Protector",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "mountains",
+          "sky"
+        ],
+        "elementThemes": [
+          "air"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Nature Bond / Wild Empathy / Sky and Stone",
+          "reason": "Weapon and Armor Proficiency / Nature Bond / Wild Empathy / Sky and Stone defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "The aerie protector guards nature’s nests and lairs in the highest mountains, and she is only ever truly at ease when under vast expanses of open sky.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Nature Bond; Wild Empathy; Woodland Stride; Resist Nature’s Lure; Wild Shape; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:ancient-guardian",
+      "name": "Ancient Guardian",
+      "parentClassId": "druid",
+      "sourceCitationText": "Monster Codex pg. 140",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Ancient%20Guardian",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "tribal guardian"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Ancient Arms / Community Bond / Patience of Nature / Ancient Ways",
+          "reason": "The archetype’s Ancient Arms / Community Bond / Patience of Nature / Ancient Ways package materially changes tactical leadership from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Ancient guardians revere nature and draw power from its divine energies, but also protect the customs, histories, and lore of their tribe and race.",
+      "tradeoff": "It replaces or alters Weapon Proficiencies; Nature Bond; Wild Empathy; Trackless Step; Woodland Stride; Spontaneous Casting; Resist Nature’s Lure; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:ape-shaman",
+      "name": "Ape Shaman",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Combat pg. 42",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Ape%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "totem shaman"
+        ],
+        "primaryDelivery": [
+          "ape forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons",
+          "reason": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A shaman with this totem calls upon the mighty ape, a peaceful but powerful simian whose strength is beyond compare.",
+      "tradeoff": "It replaces or alters A Thousand Faces; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:aquatic-druid",
+      "name": "Aquatic Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 98",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Aquatic%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Wild Empathy / Aquatic Adaptation / Natural Swimmer / Resist Ocean’s Fury",
+          "reason": "Wild Empathy / Aquatic Adaptation / Natural Swimmer / Resist Ocean’s Fury defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Shepherds of the lakes and seas, aquatic druids guard ecosystems ranging from shallows streams to deep ocean trenches, ministering to their residents and communing with the tides.",
+      "tradeoff": "It replaces or alters Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:arctic-druid",
+      "name": "Arctic Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 98",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Arctic%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "arctic"
+        ],
+        "elementThemes": [
+          "cold"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Arctic Native / Icewalking / Arctic Endurance / Wild Shape",
+          "reason": "Arctic Native / Icewalking / Arctic Endurance / Wild Shape defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "An arctic druid watches over the stark landscape of the far frozen reaches of the world.",
+      "tradeoff": "It replaces or alters Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:ashvawg-tamer",
+      "name": "Ashvawg Tamer",
+      "parentClassId": "druid",
+      "sourceCitationText": "Pathfinder #5: Sins of the Saviors pg. 71",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Ashvawg%20Tamer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "monstrous companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Bestial Bond / Variant Companion / Undying Bond",
+          "reason": "Class Skills / Bestial Bond / Variant Companion / Undying Bond defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Ashvawg Tamers are druids who have chosen to bond with a strange and monstrous creature.",
+      "tradeoff": "It replaces or alters Resist Nature's Lure, one less Wild Shape/day, Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:bat-shaman",
+      "name": "Bat Shaman",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Combat pg. 42",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Bat%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ],
+        "primaryDelivery": [
+          "bat forms"
+        ],
+        "professionIdentity": [
+          "totem shaman"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons",
+          "reason": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "The bat shaman’s totem is the agile bat, flitting and turning with incredible speed through even the most convoluted mazes.",
+      "tradeoff": "It replaces or alters A Thousand Faces; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:bear-shaman",
+      "name": "Bear Shaman",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 102",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Bear%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "totem shaman"
+        ],
+        "primaryDelivery": [
+          "bear forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons",
+          "reason": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A shaman with this focus calls upon the mighty bear, titan of the woodlands and mountains, a paragon of strength and ferocity, and yet also a quiet protector rich in wisdom.",
+      "tradeoff": "It replaces or alters A Thousand Faces; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:blight-druid",
+      "name": "Blight Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 98",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Blight%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "decay"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Vermin Empathy / Miasma / Blightblooded",
+          "reason": "Nature Bond / Vermin Empathy / Miasma / Blightblooded defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "The devoted servants of nature corrupted, ruined, and destroyed, blight druids are the caretakers of lands ravaged by natural disaster.",
+      "tradeoff": "It replaces or alters Wild Empathy; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:boar-shaman",
+      "name": "Boar Shaman",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Combat pg. 43",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Boar%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "totem shaman"
+        ],
+        "primaryDelivery": [
+          "boar forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons",
+          "reason": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A boar shaman chooses the stolid and ferocious boar as her totem.",
+      "tradeoff": "It replaces or alters A Thousand Faces; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:cave-druid",
+      "name": "Cave Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 99",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Cave%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ],
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Cavesense / Nature Bond / Wild Empathy / Tunnelrunner",
+          "reason": "Cavesense / Nature Bond / Wild Empathy / Tunnelrunner defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A few druids seek to preserve the hidden underdark and purge it of the fell horrors that creep up from below.",
+      "tradeoff": "It replaces or alters Nature Sense; Woodland Stride; Trackless Step; Resist Nature's Lure; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:death-druid",
+      "name": "Death Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Horror Adventures pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Death%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "death"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Phantom / Soul Magic / Resist Death's Call / Negative Immunity",
+          "reason": "Phantom / Soul Magic / Resist Death's Call / Negative Immunity defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some druids believe that birth and death are the most important parts of the natural cycle.",
+      "tradeoff": "It replaces or alters Nature Bond; Wild Shape; Resist Nature's Lure; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:defender-of-the-true-world",
+      "name": "Defender of the True World",
+      "parentClassId": "druid",
+      "sourceCitationText": "Monster Hunter's Handbook pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Defender%20of%20the%20True%20World",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "fey"
+        ],
+        "professionIdentity": [
+          "fey hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Bonus Languages / Enemy of the First World / Fey Empathy",
+          "reason": "Class Skills / Bonus Languages / Enemy of the First World / Fey Empathy defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some druids specialize in protecting Golarion from the threat of First World inhabitants.",
+      "tradeoff": "It replaces or alters Class Skills; Wild Empathy; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:desert-druid",
+      "name": "Desert Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 99",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Desert%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "desert"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Desert Native / Sandwalker / Desert Endurance / Wild Shape",
+          "reason": "Desert Native / Sandwalker / Desert Endurance / Wild Shape defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Desert druids come to the desert to pay homage, protect and maintain the few habitable locales, and witness nature's majesty in all its burning, merciless glory.",
+      "tradeoff": "It replaces or alters Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:devolutionist",
+      "name": "Devolutionist",
+      "parentClassId": "druid",
+      "sourceCitationText": "Horror Adventures pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Devolutionist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "anti-civilisation zealot"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Devolved Companion / Undomesticate / Devolution",
+          "reason": "Devolved Companion / Undomesticate / Devolution defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Devolutionists believe that the world would be better off without any sentient life at all.",
+      "tradeoff": "It replaces or alters Nature Bond; Resist Nature's Lure; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:dinosaur-druid",
+      "name": "Dinosaur Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Wilderness pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Dinosaur%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "dinosaur forms",
+          "megafauna"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Summon Dinosaur / Summon Nature’s Ally I / Summon Nature’s Ally II / Summon Nature’s Ally III",
+          "reason": "Summon Dinosaur / Summon Nature’s Ally I / Summon Nature’s Ally II / Summon Nature’s Ally III defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A dinosaur druid speaks for the spirit of prehistoric nature, even taking the form of great beasts of legend.",
+      "tradeoff": "It replaces or alters Spontaneous Casting; Nature’s Bond; Wild Shape; Resist Nature’s Lure; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:draconic-druid",
+      "name": "Draconic Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Legacy of Dragons pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Draconic%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ],
+        "primaryDelivery": [
+          "dragon forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Dragon Sense / Resist Dragon's Might / Dragon Shape",
+          "reason": "Dragon Sense / Resist Dragon's Might / Dragon Shape defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some druids believe that dragons are the ultimate expression of nature and eventually transform into draconic forms.",
+      "tradeoff": "It replaces or alters Nature Bond; Wild Empathy; Woodland Stride; Venom Immunity; A Thousand Faces; Timeless Body; Nature Sense; Resist Nature's Lure; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:dragon-shaman",
+      "name": "Dragon Shaman",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Magic pg. 37",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Dragon%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "totem shaman"
+        ],
+        "spiritualThemes": [
+          "dragons"
+        ],
+        "primaryDelivery": [
+          "dragon forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons",
+          "reason": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Your totem is the legendary dragon, fearsome and deadly yet cunning and wise, a creature born of pure magic and raw elemental fury, bound within a shell of fangs, claws, and scales that few dare to challenge.",
+      "tradeoff": "It replaces or alters A Thousand Faces; 8th-level Wild Shape; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:drovier",
+      "name": "Drovier",
+      "parentClassId": "druid",
+      "sourceCitationText": "Magic Tactics Toolbox pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Drovier",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Nature's Bond / Communal Aspect",
+          "reason": "The archetype’s Nature's Bond / Communal Aspect package materially changes tactical leadership from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Droviers view their allies and adventuring companions as a herd or pack to be protected and directed.",
+      "tradeoff": "It replaces or alters Nature's Bond; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:eagle-shaman",
+      "name": "Eagle Shaman",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 102",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Eagle%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "totem shaman"
+        ],
+        "primaryDelivery": [
+          "bird forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons",
+          "reason": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A shaman with this totem calls upon the noble eagle, stern and proud, soaring high above the world with keen and pitiless eyes that miss nothing.",
+      "tradeoff": "It replaces or alters A Thousand Faces; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:elemental-ally",
+      "name": "Elemental Ally",
+      "parentClassId": "druid",
+      "sourceCitationText": "Monster Summoner's Handbook pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Elemental%20Ally",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "elementals"
+        ],
+        "primaryDelivery": [
+          "elemental companions"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Elemental Eidolons / Elemental Empathy / Elemental Magic / Elemental Resistance",
+          "reason": "Elemental Eidolons / Elemental Empathy / Elemental Magic / Elemental Resistance defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "An elemental ally is a druid who has crafted powerful bonds of trust and friendship with one ally from each of the four primary elemental planes.",
+      "tradeoff": "It replaces or alters Nature’s Bond; Wild Shape; Wild Empathy; Resist Nature’s Lure; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:feral-child",
+      "name": "Feral Child",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Race Guide pg. 74",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Feral%20Child",
+      "capabilityOverrides": {
+        "practical-expertise": "core",
+        "social-influence": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "feral survivor"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Human characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Weapon and Armor Proficiency / Class Skills / Illiteracy / Improved Unarmed Strike",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Class Skills / Illiteracy / Improved Unarmed Strike package materially changes practical expertise from the Druid baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Weapon and Armor Proficiency / Class Skills / Illiteracy / Improved Unarmed Strike",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Class Skills / Illiteracy / Improved Unarmed Strike package materially changes social influence from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some youths, abandoned in the wilderness and then raised by animals, are so connected with their adoptive home and family that they become feral.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Class Skills; Nature Bond; Trackless Step; A Thousand Faces; Wild Shape; Resist Nature’s Lure; Venom Immunity; Timeless Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:feral-shifter",
+      "name": "Feral Shifter",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Class Guide pg. 92",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Feral%20Shifter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Animal Focus / Second Animal Focus",
+          "reason": "Animal Focus / Second Animal Focus defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A feral shifter internalizes her communion with and mastery over animals. Instead of forming a bond with an animal companion or an aspect of nature, she alters her own essence or being as homage to the noble creatures of the wild.",
+      "tradeoff": "It replaces or alters Nature Bond; Venom Immunity; A Thousand Faces; Timeless Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:feyspeaker",
+      "name": "Feyspeaker",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Intrigue pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Feyspeaker",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {
+        "attribute-demands": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "fey"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Fey Magic / Fey Speech / Wild Mischief",
+          "reason": "The archetype’s Fey Magic / Fey Speech / Wild Mischief package materially changes melee combat from the Druid baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Fey Magic / Fey Speech / Wild Mischief",
+          "reason": "The archetype’s Fey Magic / Fey Speech / Wild Mischief package materially changes social influence from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some druids hear the whispers of the natural world like fey creatures do, and learn to mimic those tantalizing murmurs in order to influence the minds of both wild beasts and civilized people.",
+      "tradeoff": "It replaces or alters Spontaneous Casting; Wild Shape; Nature Sense; Base Attack Bonus; Class Skills; Skill Ranks; Armor Proficiency; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:fungal-pilgrim",
+      "name": "Fungal Pilgrim",
+      "parentClassId": "druid",
+      "sourceCitationText": "Heroes of the Darklands pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Fungal%20Pilgrim",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "fungus"
+        ],
+        "primaryDelivery": [
+          "plant forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Devotion to Ascension / Spore Spawning / Fungal Companion / Mycological Transformation",
+          "reason": "Devotion to Ascension / Spore Spawning / Fungal Companion / Mycological Transformation defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Fungal pilgrims are druids seeking transformation into a more plantlike existence.",
+      "tradeoff": "It replaces or alters Nature Bond; Wild Shape; Timeless Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:goliath-druid",
+      "name": "Goliath Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Giant Hunter's Handbook pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Goliath%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "dinosaur forms",
+          "megafauna"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Bonus Languages / Primal Size / Primal Bond",
+          "reason": "Class Skills / Bonus Languages / Primal Size / Primal Bond defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Goliath druids hone their spiritual and magical connections to nature’s largest creatures, especially dinosaurs, giants, and megafauna, revering these massive creatures as living relics of a primeval time when all creatures were more in harmony with nature.",
+      "tradeoff": "It replaces or alters Class Skills; Nature Sense; Nature Bond; Wild Empathy; Resist Nature’s Lure; Wild Shape; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:green-faith-initiate",
+      "name": "Green Faith Initiate",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Wilderness pg. 141",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Green%20Faith%20Initiate",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "Green Faith initiate"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Mediator’s Ear / Zephyr Message / Path to Refuge / Secrets across Lifetimes",
+          "reason": "Mediator’s Ear / Zephyr Message / Path to Refuge / Secrets across Lifetimes defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Druids who are initiated into the magic of nature as strict students of the Green Faith’s traditions sometimes demonstrate abilities unique to their organization.",
+      "tradeoff": "It replaces or alters Trackless Step; 6th, 10th-level use of Wild Shape; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:green-scourge",
+      "name": "Green Scourge",
+      "parentClassId": "druid",
+      "sourceCitationText": "Monster Hunter's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Green%20Scourge",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "militant guardian"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature’s Armaments / Aberration Sense / Scentless / Resist Unnatural Influence",
+          "reason": "Nature’s Armaments / Aberration Sense / Scentless / Resist Unnatural Influence defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Green scourges are militant druids sworn to restore natural order.",
+      "tradeoff": "It replaces or alters Spontaneous Casting; Nature Sense; Trackless Step; Resist Nature's Lure; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:halcyon-druid",
+      "name": "Halcyon Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Adventurer's Guide pg. 121",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Halcyon%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bonded Mask / Magaambya-Trained / Peacekeeper / Spontaneous Casting",
+          "reason": "Bonded Mask / Magaambya-Trained / Peacekeeper / Spontaneous Casting defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Though they revere the natural world, halcyon druids are less focused on emulating its inhabitants. Instead, like Old-Mage Jatembe, they treat with beings from the Outer Sphere.",
+      "tradeoff": "It replaces or alters Nature Bond; Nature Sense; Class Skills; Wild Empathy; Spontaneous Casting; Wild Shape; Resist Nature's Lure; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:jungle-druid",
+      "name": "Jungle Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 100",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Jungle%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "jungle"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Jungle Guardian / Woodland Stride / Torrid Endurance / Wild Shape",
+          "reason": "Jungle Guardian / Woodland Stride / Torrid Endurance / Wild Shape defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "The jungle druid waches over the fecund jungles of the equatorial regions, rich in life and ancient tradition.",
+      "tradeoff": "It replaces or alters Woodland Stride; Trackless Step; Resist Nature's Lure; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:kraken-caller",
+      "name": "Kraken Caller",
+      "parentClassId": "druid",
+      "sourceCitationText": "Dirty Tactics Toolbox pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Kraken%20Caller",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Call of the Waves / Bonus Languages / Dauntless Swimmer / Hold Breath",
+          "reason": "Call of the Waves / Bonus Languages / Dauntless Swimmer / Hold Breath defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some druids draw upon power irreverently stolen from one of the most dangerous creatures of the depths: the kraken.",
+      "tradeoff": "It replaces or alters Bonus Language; Woodland Stride; Trackless Step; Resist Nature’s Lure; Wild Shape; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:leshy-warden",
+      "name": "Leshy Warden",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Wilderness pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Leshy%20Warden",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "plants"
+        ],
+        "elementThemes": [
+          "wood"
+        ],
+        "primaryDelivery": [
+          "plant companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Leshy Familiar / Green Empathy / Leshy Summoner / Leshy Tender",
+          "reason": "Leshy Familiar / Green Empathy / Leshy Summoner / Leshy Tender defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "The natural world is full of bodiless nature spirits connected to the forces of glades, springs, and individual plants. Some druids hear their call keenly and are able to effortlessly incarnate them as the miniature creatures known as leshys.",
+      "tradeoff": "It replaces or alters Nature Bond; Wild Empathy; Spontaneous Casting; Resist Nature’s Lure; Wild Shape; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:life-channeler",
+      "name": "Life Channeler",
+      "parentClassId": "druid",
+      "sourceCitationText": "Horror Adventures pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Life%20Channeler",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "sacrifice"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Plant Preservation / Wicker Talismans / Rampant Growth",
+          "reason": "Alignment / Plant Preservation / Wicker Talismans / Rampant Growth defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "By sacrificing the life of a sentient creature, life channelers can generate energy that guarantees fertility and prosperity for lower creatures like plants and animals.",
+      "tradeoff": "It replaces or alters Alignment; Nature Bond; Wild Shape; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:lion-shaman",
+      "name": "Lion Shaman",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 103",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Lion%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "totem shaman"
+        ],
+        "primaryDelivery": [
+          "feline forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons",
+          "reason": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A shaman with this totem calls upon the proud lion, imposing and majestic, the mighty leader of deadly hunters.",
+      "tradeoff": "It replaces or alters A Thousand Faces; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:mantella",
+      "name": "Mantella",
+      "parentClassId": "druid",
+      "sourceCitationText": "Potions and Poisons pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Mantella",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "poisoner"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Grippli characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Poison Affinity / Toxic Diet",
+          "reason": "The archetype’s Poison Affinity / Toxic Diet package materially changes stealth subterfuge from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A mantella focuses on exploring her poisonous heritage, whether or not it has manifested in her own personal biology.",
+      "tradeoff": "It replaces or alters Wild Shape; Venom Immunity; Spontaneous Casting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:menhir-savant",
+      "name": "Menhir Savant",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Magic pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Menhir%20Savant",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "ley-line adept"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Spirit Sense / Place Magic / Walk the Lines / Empty Body",
+          "reason": "Spirit Sense / Place Magic / Walk the Lines / Empty Body defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some druids study the paths of nature’s power through the nodes and ley lines that connect standing stones and megalithic circles, learning to tap into their energies.",
+      "tradeoff": "It replaces or alters Nature Sense; Wild Empathy; Woodland Stride; Trackless Step; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:mooncaller",
+      "name": "Mooncaller",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Magic pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Mooncaller",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "moon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Night Sight / Resist Call of the Wild / Purity of Body / Wolfsbane",
+          "reason": "Night Sight / Resist Call of the Wild / Purity of Body / Wolfsbane defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A mooncaller is bound to the subtle influences of the ever-changing moon and its endless cycles from light to dark and back again.",
+      "tradeoff": "It replaces or alters Woodland Stride; Resist Nature's Lure; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:mountain-druid",
+      "name": "Mountain Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 100",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Mountain%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "mountains"
+        ],
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Mountaineer / Sure-Footed / Spire Walker / Wild Shape",
+          "reason": "Mountaineer / Sure-Footed / Spire Walker / Wild Shape defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "As more and more of the soft, easy lands become cultivated and civilized, many druids look for refuge and solitude among the eternal peaks of the highest mountains.",
+      "tradeoff": "It replaces or alters Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:naga-aspirant",
+      "name": "Naga Aspirant",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Race Guide pg. 196",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Naga%20Aspirant",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nagas"
+        ],
+        "primaryDelivery": [
+          "naga forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Nagaji characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Aspirant’s Bond / Aspirant’s Enlightenment / Naga Shape / Augmented Form",
+          "reason": "Aspirant’s Bond / Aspirant’s Enlightenment / Naga Shape / Augmented Form defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "The naga aspirant follows the ancient beliefs and engages in the rituals of a druidic sect dedicated to the transcendence of her nagaji form through absolute devotion to nagas and naga gods.",
+      "tradeoff": "It replaces or alters Spontaneous Casting; Resist Nature’s Lure; Wild Shape; Venom Immunity; A Thousand Faces; Timeless Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:nature-fang",
+      "name": "Nature Fang",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Class Guide pg. 92",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Nature%20Fang",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "nature assassin"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Studied Target / Slayer Talent / Sneak Attack / Swift Studied Target",
+          "reason": "The archetype’s Studied Target / Slayer Talent / Sneak Attack / Swift Studied Target package materially changes stealth subterfuge from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A nature fang is a druid who stalks and slays those who despoil nature, kill scarce animals, or introduce diseases to unprotected habitats.",
+      "tradeoff": "It replaces or alters Nature Sense; Wild Empathy; Woodland Stride; Wild Shape; Resist Nature’s Lure; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:nature-priest",
+      "name": "Nature Priest",
+      "parentClassId": "druid",
+      "sourceCitationText": "Healer's Handbook pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Nature%20Priest",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature priests serve two masters / Faithful / Class Skills / Weapon Proficiencies",
+          "reason": "Nature priests serve two masters / Faithful / Class Skills / Weapon Proficiencies defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Nature priests serve two masters: their deities and nature itself, and can call upon the power of both to fuel their divine abilities.",
+      "tradeoff": "It replaces or alters Deity; Class Skills; Weapon Proficiencies; Nature Sense; Nature Bond; Resist Nature's Lure; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:nithveil-adept",
+      "name": "Nithveil Adept",
+      "parentClassId": "druid",
+      "sourceCitationText": "Inner Sea Intrigue pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Nithveil%20Adept",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "fey"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nithveil Skills / Nature Bond / Animal Speech / Resist Fey Influence",
+          "reason": "Nithveil Skills / Nature Bond / Animal Speech / Resist Fey Influence defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Nithveil adepts learn the secret magic of the First World fey in the moving, reality-phasing city of Nithveil",
+      "tradeoff": "It replaces or alters Nature Sense; Nature Bond; Spontaneous Casting; Resist Nature's Lure; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:pack-lord",
+      "name": "Pack Lord",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Magic pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Pack%20Lord",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "animal pack"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Pack Bond / Improved Empathic Link",
+          "reason": "The archetype’s Pack Bond / Improved Empathic Link package materially changes tactical leadership from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some druids bond with many animal companions rather than just one, achieving a level of communion rare even in druidic circles and leading their pack brothers and pack sisters with total authority.",
+      "tradeoff": "It replaces or alters Nature Bond; 6th-level Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:plains-druid",
+      "name": "Plains Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 100",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Plains%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "plains"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Plains Traveler / Run Like the Wind / Savanna Ambush / Wild Shape",
+          "reason": "Plains Traveler / Run Like the Wind / Savanna Ambush / Wild Shape defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Out upon the wide and rolling prairies and savannahs, plains druids stand guard over the grasslands.",
+      "tradeoff": "It replaces or alters Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:planar-extremist",
+      "name": "Planar Extremist",
+      "parentClassId": "druid",
+      "sourceCitationText": "Antihero's Handbook pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Planar%20Extremist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Aura / Spells / Planar Bond",
+          "reason": "Alignment / Aura / Spells / Planar Bond defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Planar extremists are those druids that have lost their neutral stance and find themselves gravitating toward one of the four most extreme alignments",
+      "tradeoff": "It replaces or alters Alignment; Spells; Nature's Bond; Spontaneous Casting; Resist Nature's Lure; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:progenitor",
+      "name": "Progenitor",
+      "parentClassId": "druid",
+      "sourceCitationText": "Planar Adventures pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Progenitor",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "fey"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Infused Summoning / Primal Bond / Fey Shape",
+          "reason": "Infused Summoning / Primal Bond / Fey Shape defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Progenitors are druids who tap into the vibrant power of the First World to propagate natural and supernatural wonders.",
+      "tradeoff": "It replaces or alters Spontaneous Casting; Nature Bond; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:reincarnated-druid",
+      "name": "Reincarnated Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Magic pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Reincarnated%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "reincarnation"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Mysterious Stranger / Resist Death’s Touch / Many Lives / Wild Shape",
+          "reason": "Mysterious Stranger / Resist Death’s Touch / Many Lives / Wild Shape defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Spun off into the endless circle of life, an incarnate druid is an embodiment of nature’s eternal renewal.",
+      "tradeoff": "It replaces or alters Woodland Stride; Resist Nature's Lure; Venom Immunity; Timeless Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:restorer",
+      "name": "Restorer",
+      "parentClassId": "druid",
+      "sourceCitationText": "Healer's Handbook pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Restorer",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "healer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Healing Touch / Natural Medic / Enemy of Blight / Guide across Lifetimes",
+          "reason": "The archetype’s Healing Touch / Natural Medic / Enemy of Blight / Guide across Lifetimes package materially changes protecting allies from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Restorers carefully tend to the health of both the environment and creatures in it.",
+      "tradeoff": "It replaces or alters Nature Sense; Spontanteous Casting; Resist Nature's Lore; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:river-druid",
+      "name": "River Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Wilderness pg. 48",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20River%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Ferrier / Read the Currents / Countercurrent / Deep Breath",
+          "reason": "Ferrier / Read the Currents / Countercurrent / Deep Breath defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "These druids are the guardians of rivers and the creatures that depend on them.",
+      "tradeoff": "It replaces or alters Class Skills; Nature Sense; Woodland Stride; Trackless Step; Resist Nature’s Lure; Wild Shape; Timeless Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:road-keeper",
+      "name": "Road Keeper",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Wilderness pg. 48",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Road%20Keeper",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "traveller"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "One with the Road / Road Bond / Take the High Road / Trodden Path",
+          "reason": "One with the Road / Road Bond / Take the High Road / Trodden Path defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Guardians of the lonely paths between cities, road keepers protect the wild from travelers, and travelers from the wild.",
+      "tradeoff": "It replaces or alters Spontaneous Casting; Nature Bond; Wild Empathy; Woodland Stride; Resist Nature’s Lure; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:rot-warden",
+      "name": "Rot Warden",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Wilderness pg. 49",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Rot%20Warden",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "decay"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Invoke Decay / Nature Bond / Vermin Empathy / Swarmcaller",
+          "reason": "Invoke Decay / Nature Bond / Vermin Empathy / Swarmcaller defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Harbingers of decay, rot wardens live in damp lands where insects and rot break down the dead to feed the living.",
+      "tradeoff": "It replaces or alters Spontaneous Casting; Nature Bond; Wild Empathy; Trackless Step; Venom Immunity; Resist Nature’s Lure; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:saurian-shaman",
+      "name": "Saurian Shaman",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Magic pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Saurian%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "totem shaman"
+        ],
+        "primaryDelivery": [
+          "dinosaur forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons",
+          "reason": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A shaman with this focus calls upon the primeval dinosaur, the archaic terror that lingers as a hungering, atavistic stranger at the fringes of the ecosystem, a destroyer and despoiler whose coming other animals dread.",
+      "tradeoff": "It replaces or alters Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:season-keeper",
+      "name": "Season Keeper",
+      "parentClassId": "druid",
+      "sourceCitationText": "People of the Stars pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Season%20Keeper",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "seasons"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Triaxian characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Spirit of Summer / Spirit of Winter / Wild Shape",
+          "reason": "Nature Bond / Spirit of Summer / Spirit of Winter / Wild Shape defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Imbued with the primeval potency of their planet’s seasons, those druids known as season keepers guide Triaxian communities through the stark transition from summer to winter (and vice versa).",
+      "tradeoff": "It replaces or alters Nature Bond; Trackless Step; Venom Immunity; Timeless Body; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:season-sage",
+      "name": "Season Sage",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Wilderness pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Season%20Sage",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "seasons"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Gathlain characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Season’s Touch / Vernal Growth / Summer Might / Autumn Rot",
+          "reason": "Season’s Touch / Vernal Growth / Summer Might / Autumn Rot defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Season sages wander as the seasons change, turning the leaves and transforming nature as they pass and taking pleasure in the transition between seasons.",
+      "tradeoff": "It replaces or alters Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:serpent-shaman",
+      "name": "Serpent Shaman",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 103",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Serpent%20Shaman",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "totem shaman"
+        ],
+        "primaryDelivery": [
+          "serpent forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons",
+          "reason": "The archetype’s Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons package materially changes stealth subterfuge from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A shaman with this totem calls upon the cunning serpent, the stealthy deceiver who draws the weak minded in and strikes while they are unaware.",
+      "tradeoff": "It replaces or alters A Thousand Faces; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:shark-shaman",
+      "name": "Shark Shaman",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Magic pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Shark%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "totem shaman"
+        ],
+        "environmentThemes": [
+          "maritime"
+        ],
+        "primaryDelivery": [
+          "shark forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons",
+          "reason": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some druids emulate the deadly shark, a remorseless hunter that marine dwellers dread.",
+      "tradeoff": "It replaces or alters A Thousand Faces; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:skinshaper",
+      "name": "Skinshaper",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Intrigue pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Skinshaper",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "humanoid forms"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Skinshaping / Flashmorph",
+          "reason": "The archetype’s Class Skills / Skinshaping / Flashmorph package materially changes social influence from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Using the same primal energy with which other druids assume animal forms, skinshapers can imitate some of the most dangerous beasts of all: humans and other humanoids.",
+      "tradeoff": "It replaces or alters Class Skills; Wild Shape; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:sky-druid",
+      "name": "Sky Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Race Guide pg. 158",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Sky%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "mountains",
+          "sky"
+        ],
+        "elementThemes": [
+          "air"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Sylph characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Nature Bond / Sky’s Embrace / Resist Storm",
+          "reason": "Weapon and Armor Proficiency / Nature Bond / Sky’s Embrace / Resist Storm defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some druids develop ties not to a particular landscape, but instead to the endless blue expanse of the skies.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Nature Bond; Woodland Stride; Resist Nature’s Lure; Trackless Step; Wild Shape; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:storm-druid",
+      "name": "Storm Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Magic pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Storm%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Spontaneous Domain Casting / Nature Bond / Windwalker / Stormvoice",
+          "reason": "Spontaneous Domain Casting / Nature Bond / Windwalker / Stormvoice defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "While most druids focus their attention upon the rich earth and the bounty of nature that springs forth from it, the storm druid’s eyes have ever been cast to the skies and the endless expanse of blue, channeling the most raw and untamed aspects of nature.",
+      "tradeoff": "It replaces or alters Spontaneous Casting; Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:sunrider",
+      "name": "Sunrider",
+      "parentClassId": "druid",
+      "sourceCitationText": "Adventurer's Guide pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Sunrider",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "desert"
+        ],
+        "elementThemes": [
+          "fire",
+          "radiance"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Weapon and Armor Proficiencies / Nature Bond / Born to the Saddle",
+          "reason": "Class Skills / Weapon and Armor Proficiencies / Nature Bond / Born to the Saddle defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Sunriders help their allies, be they fellow tribe members or fellow adventurers, to survive in harsh desert terrain, while simultaneously making it even harsher for their foes.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon and Armor Proficiencies; Nature Bond; Woodland Stride; Trackless Step; Resist Nature's Lure; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:supernaturalist",
+      "name": "Supernaturalist",
+      "parentClassId": "druid",
+      "sourceCitationText": "Occult Origins pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Supernaturalist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Eldritch Botanist / Paranormal Scholar / Animal Spirit",
+          "reason": "Weapon and Armor Proficiency / Eldritch Botanist / Paranormal Scholar / Animal Spirit defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Supernaturalists wholly embrace paranormal phenomena as extensions of nature.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Nature Bond; Wild Empathy; Nature Sense; Trackless Step; Resist Nature’s Lure; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:survivor",
+      "name": "Survivor",
+      "parentClassId": "druid",
+      "sourceCitationText": "Champions of Balance pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Survivor",
+      "capabilityOverrides": {
+        "offensive-magic": "absent",
+        "healing-recovery": "available",
+        "utility-magic": "available",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {
+        "resource-management": "medium"
+      },
+      "factOverrides": {
+        "has-spellcasting": false
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "survivalist"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "nature",
+          "divine"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "full"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Class Skills / Weapon Proficiencies / Diminished Spellcasting / Nature Bond",
+          "reason": "The archetype’s Class Skills / Weapon Proficiencies / Diminished Spellcasting / Nature Bond package materially changes offensive magic from the Druid baseline."
+        },
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Class Skills / Weapon Proficiencies / Diminished Spellcasting / Nature Bond",
+          "reason": "The archetype’s Class Skills / Weapon Proficiencies / Diminished Spellcasting / Nature Bond package materially changes healing recovery from the Druid baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Class Skills / Weapon Proficiencies / Diminished Spellcasting / Nature Bond",
+          "reason": "The archetype’s Class Skills / Weapon Proficiencies / Diminished Spellcasting / Nature Bond package materially changes utility magic from the Druid baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Class Skills / Weapon Proficiencies / Diminished Spellcasting / Nature Bond",
+          "reason": "The archetype’s Class Skills / Weapon Proficiencies / Diminished Spellcasting / Nature Bond package materially changes practical expertise from the Druid baseline."
+        }
+      ],
+      "playerSummary": "The survivor embodies the neutral aspect of the natural world and eschews druidic magic in favor of more pragmatic and worldly survival methods.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon/Armor Proficiencies; Spellcasting; Nature Bond; Resist Nature’s Lure; Wild Shape; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:swamp-druid",
+      "name": "Swamp Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 100",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Swamp%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "swamp"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Marshwight / Swamp Strider / Pond Scum / Wild Shape",
+          "reason": "Marshwight / Swamp Strider / Pond Scum / Wild Shape defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some druids eschew pleasant glades and groves and instead seek out dank marshes, misty bogs and heaths, and trackless swamps as the place they call home and watch over with care, finding beauty and life in abundance in places few others would willingly enter.",
+      "tradeoff": "It replaces or alters Woodland Stride; Trackless Step; Resist Nature's Lure; A Thousand Faces; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:swarm-monger",
+      "name": "Swarm Monger",
+      "parentClassId": "druid",
+      "sourceCitationText": "Blood of the Beast pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Swarm%20Monger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "decay"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Fecund Familiar / Low Friends / Shadowy Opportunist / Child of Pollution",
+          "reason": "Fecund Familiar / Low Friends / Shadowy Opportunist / Child of Pollution defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Whereas other druids commune with nature or even the spirit of a city, swarm mongers find beauty and strength in decay, and they draw their power from fungus, disease, and their own singular will to survive.",
+      "tradeoff": "It replaces or alters Nature Bond; Woodland Stride; Nature Sense; Resist Nature's Lure; 12th-level Wild Shape options; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:tempest-druid",
+      "name": "Tempest Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Adventurer's Guide pg. 183",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Tempest%20Druid",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "desert"
+        ],
+        "elementThemes": [
+          "air",
+          "electricity"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Armor and Weapon Proficiencies / Spontaneous Domain Casting / Nature Bond",
+          "reason": "Alignment / Armor and Weapon Proficiencies / Spontaneous Domain Casting / Nature Bond defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some druids have come to worship the Eye of Abendego as an aspect of pure elemental fury, channeling its mysteries into their own magic",
+      "tradeoff": "It replaces or alters Alignment; Weapon and Armor Proficiencies; Nature Bond; Nature Sense; Trackless Step; Resist Nature's Lure; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:tempest-tamer",
+      "name": "Tempest Tamer",
+      "parentClassId": "druid",
+      "sourceCitationText": "Blood of the Sea pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Tempest%20Tamer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Speech of the Sea / Whirlpool Walker / Tempest Wild Shape",
+          "reason": "Speech of the Sea / Whirlpool Walker / Tempest Wild Shape defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Tempest Tamer\nSource Blood of the Sea pg. 25\nDruids draw upon the fiercest powers of nature, and tsunamis, typhoons, and whirlpools are among the most powerful forces in the ocean.",
+      "tradeoff": "It replaces or alters Bonus Languages; Resist Nature's Lure; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:toxicologist",
+      "name": "Toxicologist",
+      "parentClassId": "druid",
+      "sourceCitationText": "Magic Tactics Toolbox pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Toxicologist",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "poisoner"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Expanded Repertoire / Natural Poison Lore / Expert Poisoner / Toxic Shaper",
+          "reason": "The archetype’s Expanded Repertoire / Natural Poison Lore / Expert Poisoner / Toxic Shaper package materially changes stealth subterfuge from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Toxicologists specialize in the stealthy application of insidious poisons to their targets, believing word of their foes’ horrifying deaths will deter others from attempting similar desecrations of the natural world.",
+      "tradeoff": "It replaces or alters Spontaneous Casting; Wild Empathy; Woodland Stride; Trackless Step; Resist Nature's Lure; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:treesinger",
+      "name": "Treesinger",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Race Guide pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Treesinger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "plants"
+        ],
+        "elementThemes": [
+          "wood"
+        ],
+        "primaryDelivery": [
+          "plant companion"
+        ],
+        "environmentThemes": [
+          "forest"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Elf and Vine Leshy characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Plant Bond / Green Empathy / Wild Shape / Carnivorous Flower Starting Statistics",
+          "reason": "Plant Bond / Green Empathy / Wild Shape / Carnivorous Flower Starting Statistics defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Some elves turn to the timeless growth of nature for solace, finding allies among the great trees themselves, and even leading the forest’s plants into combat.",
+      "tradeoff": "It replaces or alters Nature Bond; Wild Empathy; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:troll-fury",
+      "name": "Troll Fury",
+      "parentClassId": "druid",
+      "sourceCitationText": "Monster Codex pg. 224",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Troll%20Fury",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "tribal guardian"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Troll characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Inspire Fervor / Chosen Prey / Troll Fury’s Mark",
+          "reason": "The archetype’s Inspire Fervor / Chosen Prey / Troll Fury’s Mark package materially changes tactical leadership from the Druid baseline."
+        }
+      ],
+      "playerSummary": "Troll furies combine a druid’s love of natural balance with a single-minded devotion to the welfare of the troll tribe.",
+      "tradeoff": "It replaces or alters Wild Empathy; Resist Nature’s Lure; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:undine-adept",
+      "name": "Undine Adept",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Race Guide pg. 176",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Undine%20Adept",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Undine characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Domains / Amphibious / Augment Summoning / Resist Water’s Call",
+          "reason": "Domains / Amphibious / Augment Summoning / Resist Water’s Call defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "An undine adept dedicates herself to preserving the knowledge of the first undines and ensuring her people’s ancient connections to the natural world remain undisturbed.",
+      "tradeoff": "It replaces or alters Domains; Woodland Stride; Trackless Step; Resist Nature’s Lure; Wild Shape; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:urban-druid",
+      "name": "Urban Druid",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 101",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Urban%20Druid",
+      "capabilityOverrides": {
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Spontaneous Casting / Nature Bond / Lorekeeper / Resist Temptation",
+          "reason": "The archetype’s Spontaneous Casting / Nature Bond / Lorekeeper / Resist Temptation package materially changes wilderness affinity from the Druid baseline."
+        }
+      ],
+      "playerSummary": "While many druids keep to the wilderness, some make their way within settlements, communing with the animals and vermin who live there and speaking for the nature that runs rampant in civilization's very cradle.",
+      "tradeoff": "It replaces or alters Spontaneous Casting; Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:urushiol",
+      "name": "Urushiol",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Intrigue pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Urushiol",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "poisoner"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Toxic Secretions / Urushiol Venom / Venom Immunity",
+          "reason": "The archetype’s Toxic Secretions / Urushiol Venom / Venom Immunity package materially changes stealth subterfuge from the Druid baseline."
+        }
+      ],
+      "playerSummary": "When an urushiol druid forms a bond with nature, it takes a vastly different form than for most druids. His body becomes increasingly toxic, allowing him to secrete a deadly poison through his pores.",
+      "tradeoff": "It replaces or alters Nature Bond; Resist Nature's Lure; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:wild-whisperer",
+      "name": "Wild Whisperer",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Class Guide pg. 92",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Wild%20Whisperer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "animal behaviourist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Inspiration / Wild Shape / Natural Expertise / Investigator Talent",
+          "reason": "Inspiration / Wild Shape / Natural Expertise / Investigator Talent defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A wild whisperer is an expert at studying, predicting, and explaining animal behavior.",
+      "tradeoff": "It replaces or alters Woodland Stride; Trackless Step; Resist Nature’s Lure; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:wolf-shaman",
+      "name": "Wolf Shaman",
+      "parentClassId": "druid",
+      "sourceCitationText": "Advanced Player's Guide pg. 103",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Wolf%20Shaman",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "totem shaman"
+        ],
+        "primaryDelivery": [
+          "wolf forms"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons",
+          "reason": "The archetype’s Nature Bond / Wild Empathy / Totem Transformation / Totemic Summons package materially changes tactical leadership from the Druid baseline."
+        }
+      ],
+      "playerSummary": "A shaman with this totem calls upon the clever wolf, capable of roaming alone yet wise enough to run with a pack when facing dangers too great for one alone.",
+      "tradeoff": "It replaces or alters A Thousand Faces; Venom Immunity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "druid:world-walker",
+      "name": "World Walker",
+      "parentClassId": "druid",
+      "sourceCitationText": "Ultimate Combat pg. 43",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20World%20Walker",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "traveller"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Favored Terrain / Path of Trees",
+          "reason": "Favored Terrain / Path of Trees defines the material change from the Druid baseline."
+        }
+      ],
+      "playerSummary": "While all druids traverse the wilderness with ease, the world walkers take it upon themselves to travel the entire world.",
+      "tradeoff": "It replaces or alters Trackless Step; Resist Nature’s Lure; Venom Immunity; Timeless Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

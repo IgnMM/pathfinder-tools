@@ -1,0 +1,2188 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Fighter parent value.",
+  "profiles": [
+    {
+      "id": "fighter:aerial-assaulter",
+      "name": "Aerial Assaulter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Blood of the Ancients pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Aerial%20Assaulter",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "aerial melee"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Class Skills / Aerial Expertise / Take the High Ground / Aerial Dodge",
+          "reason": "The archetype’s Class Skills / Aerial Expertise / Take the High Ground / Aerial Dodge package materially changes combat mobility from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Aerial assaulters leap to great heights and create higher ground where there is none.",
+      "tradeoff": "It replaces or alters Class Skills; Bravery; 2nd, 12th-level Bonus Feat, Armor Mastery, Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:airborne-ambusher",
+      "name": "Airborne Ambusher",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Race Guide pg. 201",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Airborne%20Ambusher",
+      "capabilityOverrides": {
+        "combat-mobility": "core",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "sky"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Strix characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Weapon and Armor Proficiency / Class Skills / Combat Flyer / Aerobatics",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Class Skills / Combat Flyer / Aerobatics package materially changes combat mobility from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Weapon and Armor Proficiency / Class Skills / Combat Flyer / Aerobatics",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Class Skills / Combat Flyer / Aerobatics package materially changes stealth subterfuge from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Driven by suspicion and hatred, strix doggedly guard their territories, making deadly use of their flight.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Class Skills; Bravery; Weapon Training 1-4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:aldori-defender",
+      "name": "Aldori Defender",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Adventurer's Guide pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Aldori%20Defender",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "duelist"
+        ],
+        "primaryDelivery": [
+          "one-handed weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Suggested Feats / Defensive Parry / Disarming Strike / Steel Net",
+          "reason": "Suggested Feats / Defensive Parry / Disarming Strike / Steel Net defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Trained warrior in the art of the Aldori dueling sword.",
+      "tradeoff": "It replaces or alters Armor Training; 6th, 8th, 10th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:aquanaut",
+      "name": "Aquanaut",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Aquatic Adventures pg. 51",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Aquanaut",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Armor Proficiency / Piercing Focus / Tidal Celerity / Aquadynamic Paragon",
+          "reason": "The archetype’s Armor Proficiency / Piercing Focus / Tidal Celerity / Aquadynamic Paragon package materially changes combat mobility from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Aquanaut fighters master the movement of water, using its flow to their advantage in combat.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Bravery; Armor Training 1-4; Armor Mastery; Weapon Training 1-4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:archer",
+      "name": "Archer",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Archer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "bow"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Hawkeye / Trick Shot / Expert Archer / Safe Shot",
+          "reason": "Hawkeye / Trick Shot / Expert Archer / Safe Shot defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The archer is dedicated to the careful mastery of the bow, perfecting his skills with years of practice.",
+      "tradeoff": "It replaces or alters Bravery; Armor Training 1-4; Weapon Training 1-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:armiger",
+      "name": "Armiger",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Adventurer's Guide pg. 94",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Armiger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-code-of-conduct": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "Hellknight aspirant"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bonus Feats / Hellknight Order / Studious Squire / Ardent",
+          "reason": "Bonus Feats / Hellknight Order / Studious Squire / Ardent defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Fighters who focus their training to become Hellknights.",
+      "tradeoff": "It replaces or alters Class Skills; Skill Points; 1st, 10th-level Bonus Feats; Bravery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:armor-master",
+      "name": "Armor Master",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Combat pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Armor%20Master",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "heavy armor"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Deflective Shield / Armored Defense / Fortification / Indestructible",
+          "reason": "The archetype’s Deflective Shield / Armored Defense / Fortification / Indestructible package materially changes protecting allies from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "While many fighters hone their weapon skills to a point of inescapable grace and lethality, there are those who live under the maxim that a good offense can be accomplished though an impenetrable defense.",
+      "tradeoff": "It replaces or alters Bravery; Weapon Training 1-4; Armor Mastery; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:brawler",
+      "name": "Brawler",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Combat pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Brawler",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Close Control / Close Combatant / Menacing Stance / No Escape",
+          "reason": "Close Control / Close Combatant / Menacing Stance / No Escape defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "All melee is up close and personal, but some warriors bring it as close as they can get.",
+      "tradeoff": "It replaces or alters Armor Training 1-4; Weapon Training 1-4; Armor Mastery, Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:cad",
+      "name": "Cad",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Combat pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Cad",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Weapon and Armor Proficiency / Skills / Dirty Maneuvers / Catch Off-Guard",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Skills / Dirty Maneuvers / Catch Off-Guard package materially changes debuffing enemies from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Weapon and Armor Proficiency / Skills / Dirty Maneuvers / Catch Off-Guard",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Skills / Dirty Maneuvers / Catch Off-Guard package materially changes stealth subterfuge from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "In combat, most fighters have some sort of code of honor. Some believe that one should not kick enemies when they are down, or should limit use of other such dirty tricks to the most dire of circumstances. The cad places no such limitations on himself.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Bravery; Armor Training 1-4; Weapon Training 1-4; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:calistrian-hunter",
+      "name": "Calistrian Hunter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Inner Sea Combat pg. 36",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Calistrian%20Hunter",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core",
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "bounty hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Weapon and Armor Proficiency / Class Skills / Tenacious Tracker / Vengeance",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Class Skills / Tenacious Tracker / Vengeance package materially changes knowledge investigation from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Weapon and Armor Proficiency / Class Skills / Tenacious Tracker / Vengeance",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Class Skills / Tenacious Tracker / Vengeance package materially changes wilderness affinity from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Like a bounty hunter following his own rules, a Calistrian hunter tracks down elusive prey using his wits and delivers long-overdue retribution while easily ignoring his own injuries thanks to the joy he receives from a job well done.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Class Skills; Bravery; Weapon Training 1-4; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:cavern-sniper",
+      "name": "Cavern Sniper",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Race Guide pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Cavern%20Sniper",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Drow characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Imbued Shot / Silent Shooter / Quick and Deadly",
+          "reason": "The archetype’s Class Skills / Imbued Shot / Silent Shooter / Quick and Deadly package materially changes stealth subterfuge from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Perfectly at home in the darkness, the cavern sniper capitalizes on stealth and ranged attacks imbued with his spell-like abilities to harass his opponents.",
+      "tradeoff": "It replaces or alters Class Skills; 1st, 4th-level Fighter Bonus Feats; Bravery; Weapon Training 1-4; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:child-of-acavna-and-amaznen",
+      "name": "Child of Acavna and Amaznen",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Arcane Anthology pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Child%20of%20Acavna%20and%20Amaznen",
+      "capabilityOverrides": {
+        "offensive-magic": "available",
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {
+        "resource-management": "medium"
+      },
+      "factOverrides": {
+        "has-spellcasting": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "minor"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none",
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Weapon and Armor Proficiency / Eldritch Lore / Lore of Acavna and Amaznen / Eldritch Armor Training",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Eldritch Lore / Lore of Acavna and Amaznen / Eldritch Armor Training package materially changes offensive magic from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Weapon and Armor Proficiency / Eldritch Lore / Lore of Acavna and Amaznen / Eldritch Armor Training",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Eldritch Lore / Lore of Acavna and Amaznen / Eldritch Armor Training package materially changes utility magic from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The child of Acavna and Amaznen has trained in the nearly forgotten arts of Azlant passed down by Aroden, which combine martial prowess with elementary wizardry. Inspired by the deities Aroden once worshiped long ago, children of Acavna and Amaznen strive to understand the dangers of the world and overcome them with knowledge and strength of arms.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Skills; 1st, 2nd, 8th, 12th, 16th, and 20th-level Combat Feats; Armor Training; Weapon Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:corsair",
+      "name": "Corsair",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Pirates of the Inner Sea pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Corsair",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "professionIdentity": [
+          "pirate"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Pirate Weapons / Deck Fighting / Armored Pirate / Improved Deck Fighting",
+          "reason": "Pirate Weapons / Deck Fighting / Armored Pirate / Improved Deck Fighting defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "A corsair is a pirate who focuses on shipboard combat, relying on his strength of arms over his agility.",
+      "tradeoff": "It replaces or alters 2nd-level Bonus Feat; Armor Training; 6th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:crossbowman",
+      "name": "Crossbowman",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Crossbowman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "crossbow"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Deadshot / Crossbow Expert / Improved Deadshot / Quick Sniper",
+          "reason": "Deadshot / Crossbow Expert / Improved Deadshot / Quick Sniper defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The crossbowman has perfected the deadly use of the crossbow, a simple but cruelly efficient weapon, as a craftsman mastering a lethal tool.",
+      "tradeoff": "It replaces or alters Armor Training 1-4; Weapon Training 1-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:cyber-soldier",
+      "name": "Cyber-Soldier",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Technology Guide pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Cyber-Soldier",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "cyborg"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Cybernetic Combat / Improved Implantation / Resilience",
+          "reason": "The archetype’s Cybernetic Combat / Improved Implantation / Resilience package materially changes transformation shapeshifting from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Cyber-soldiers replace fallible flesh with precisioncrafted machinery.",
+      "tradeoff": "It replaces or alters Weapon Training 1; Armor Training 2 and 4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:dirty-fighter",
+      "name": "Dirty Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Race Guide pg. 140",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Dirty%20Fighter",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Orc characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Sidestep / Maneuver Training / Speedy Tricks / Double Tricks",
+          "reason": "The archetype’s Sidestep / Maneuver Training / Speedy Tricks / Double Tricks package materially changes debuffing enemies from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Sidestep / Maneuver Training / Speedy Tricks / Double Tricks",
+          "reason": "The archetype’s Sidestep / Maneuver Training / Speedy Tricks / Double Tricks package materially changes stealth subterfuge from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The dirty fighter laughs at concepts like honor and fair play. He cares only for victory, no matter how he achieves it, and spends as much time mastering sneaky combat maneuvers as he does drilling with weapons or learning how to wear armor.",
+      "tradeoff": "It replaces or alters Bravery; Weapon Training 1-4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:dragonheir-scion",
+      "name": "Dragonheir Scion",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Legacy of Dragons pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Dragonheir%20Scion",
+      "capabilityOverrides": {
+        "offensive-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ],
+        "elementThemes": [
+          "mixed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Draconic Bloodline / Eldritch Strikes / Fearful Might / Draconic Strike",
+          "reason": "The archetype’s Draconic Bloodline / Eldritch Strikes / Fearful Might / Draconic Strike package materially changes offensive magic from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Dragonheir scions are the martially inclined humanoid descendants of those influenced by draconic power.",
+      "tradeoff": "It replaces or alters Class Skills; 1st, 3rd, 5th-level Bonus Feats; Bravery; Armor Training; Armor Mastery; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:dragoon",
+      "name": "Dragoon",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Combat pg. 46",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Dragoon",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Weapon and Armor Proficiency / Skilled Rider / Spear Training / Spinning Lance",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Skilled Rider / Spear Training / Spinning Lance package materially changes combat mobility from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "These gallant lancers serve in the vanguard of many armies or as knights-errant.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; 1st-level Bonus Feat; Weapon Training 1-4; Armor Training 2-4; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:drill-sergeant",
+      "name": "Drill Sergeant",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Melee Tactics Toolbox pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Drill%20Sergeant",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "commander"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Tactician / Weapon Training / Greater Tactician / Weapon Trainer",
+          "reason": "The archetype’s Tactician / Weapon Training / Greater Tactician / Weapon Trainer package materially changes tactical leadership from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Tactician / Weapon Training / Greater Tactician / Weapon Trainer",
+          "reason": "The archetype’s Tactician / Weapon Training / Greater Tactician / Weapon Trainer package materially changes support buffing from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Drill sergeants excel at training other combatants in fighting techniques.",
+      "tradeoff": "It replaces or alters Bravery; Weapon Training 1-4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:druman-blackjacket",
+      "name": "Druman Blackjacket",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Inner Sea Combat pg. 36",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Druman%20Blackjacket",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "mercenary"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Bonus Feats / Well-Paid Loyalty / Blackjacket Tactics / Superior Tactics",
+          "reason": "The archetype’s Bonus Feats / Well-Paid Loyalty / Blackjacket Tactics / Superior Tactics package materially changes practical expertise from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Known as the Blackjackets, the elite soldiers of Druma are and always have been mercenaries rather than a standing army.",
+      "tradeoff": "It replaces or alters Bravery; 4th, 8th, 12th, 16th-level Bonus Feats;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:eldritch-guardian",
+      "name": "Eldritch Guardian",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Familiar Folio pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Eldritch%20Guardian",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "summoning-companions": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Class Skills / Familiar / Share Training / Steel Will",
+          "reason": "The archetype’s Class Skills / Familiar / Share Training / Steel Will package materially changes anti magic disruption from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Class Skills / Familiar / Share Training / Steel Will",
+          "reason": "The archetype’s Class Skills / Familiar / Share Training / Steel Will package materially changes summoning companions from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Eldritch guardians are trained to detect and give warning about magic threats to the people and places they protect.",
+      "tradeoff": "It replaces or alters Class Skills; 1st and 2nd-level Bonus Feats; Bravery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:foehammer",
+      "name": "Foehammer",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Race Guide pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Foehammer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "hammer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Dwarf characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Sledgehammer / Weapon Training / Hammer to the Ground / Rhythmic Blows",
+          "reason": "Sledgehammer / Weapon Training / Hammer to the Ground / Rhythmic Blows defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "While the axe is the most famous dwarven weapon, the hammer is at the heart of dwarves’ heritage as forgemasters and warriors alike.",
+      "tradeoff": "It replaces or alters Armor Training 1-4; Weapon Training 2-4; Armor Mastery; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:free-hand-fighter",
+      "name": "Free Hand Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 105",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Free%20Hand%20Fighter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "duelist"
+        ],
+        "primaryDelivery": [
+          "one-handed weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Deceptive Strike / Elusive / Singleton / Timely Tip",
+          "reason": "Deceptive Strike / Elusive / Singleton / Timely Tip defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The free hand fighter specializes in the delicate art of handling a single weapon in one hand while using his free hand to balance, block, tip, and distract his opponents.",
+      "tradeoff": "It replaces or alters Bravery; Armor Training 1-4; Weapon Training 1-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:gladiator",
+      "name": "Gladiator",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Combat pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Gladiator",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "performer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Skills / Weapon and Armor Proficiency / Bonus Feats / Fame",
+          "reason": "The archetype’s Skills / Weapon and Armor Proficiency / Bonus Feats / Fame package materially changes social influence from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The gladiator is both a cunning warrior and a consummate performer, knowing life and death are balanced not only on a sword’s edge, but also on the cheers or jeers of the crowd.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Bravery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:gloomblade",
+      "name": "Gloomblade",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Planar Adventures pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Gloomblade",
+      "capabilityOverrides": {
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "shadow"
+        ],
+        "primaryDelivery": [
+          "conjured weapon"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none",
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Student of Darkness / Shadow Weapon / Shadow Weapon Training",
+          "reason": "The archetype’s Student of Darkness / Shadow Weapon / Shadow Weapon Training package materially changes utility magic from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The Shadow Plane’s substance is legendary for its versatility. In shadow-shrouded lands, secretive martial practitioners long ago learned to shape supernatural weapons from ribbons of pure darkness.",
+      "tradeoff": "It replaces or alters Class Skills; Armor Proficiencies; Armor Training; Weapon Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:high-guardian",
+      "name": "High Guardian",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Heroes of the High Court pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20High%20Guardian",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "shield"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Class Skills / Obligation / Right Hand / Defender’s Reflexes",
+          "reason": "The archetype’s Class Skills / Obligation / Right Hand / Defender’s Reflexes package materially changes protecting allies from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Class Skills / Obligation / Right Hand / Defender’s Reflexes",
+          "reason": "The archetype’s Class Skills / Obligation / Right Hand / Defender’s Reflexes package materially changes battlefield control from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "High guardians epitomize personal devotion, serving as the shield that protects his lord from the myriad dangers around every corner.",
+      "tradeoff": "It replaces or alters Class Skills; 1st, 2nd, 4th-level Bonus Feats; Bravery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:lore-warden",
+      "name": "Lore Warden",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Adventurer's Guide pg. 144",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Lore%20Warden",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "scholar-warrior"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Scholastic / Skill Over Strength / Swords Secret / Exploit Weakness",
+          "reason": "The archetype’s Scholastic / Skill Over Strength / Swords Secret / Exploit Weakness package materially changes knowledge investigation from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Scholastic / Skill Over Strength / Swords Secret / Exploit Weakness",
+          "reason": "The archetype’s Scholastic / Skill Over Strength / Swords Secret / Exploit Weakness package materially changes practical expertise from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Lore wardens are fighters who benefit from learning to outsmart and outmaneuver their foes rather than just overpower them.",
+      "tradeoff": "It replaces or alters Armor Proficiencies; Bravery; 2nd-level Bonus Feat; Armor Training; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:lore-warden-pfs-field-guide",
+      "name": "Lore Warden (PFS Field Guide)",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Pathfinder Society Field Guide pg. 31",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Lore%20Warden%20(PFS%20Field%20Guide)",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "scholar-warrior"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Scholastic / Expertise / Maneuver Mastery / Know Thy Enemy",
+          "reason": "The archetype’s Scholastic / Expertise / Maneuver Mastery / Know Thy Enemy package materially changes knowledge investigation from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Scholastic / Expertise / Maneuver Mastery / Know Thy Enemy",
+          "reason": "The archetype’s Scholastic / Expertise / Maneuver Mastery / Know Thy Enemy package materially changes practical expertise from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Lore wardens are fighters who benefit from learning to outsmart and outmaneuver their foes rather than just overpower them.",
+      "tradeoff": "It replaces or alters Medium Armor, Heavy Armor, and Shield Proficiency; Bravery 1; Armor Training 1-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:martial-master",
+      "name": "Martial Master",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Class Guide pg. 93",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Martial%20Master",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Martial Flexibility",
+          "reason": "Martial Flexibility defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "There are those who learn the fighting arts though countless hours of repetition and training, while others seem to pick up new stances and forms as if they were born to them.",
+      "tradeoff": "It replaces or alters Weapon Training; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:mobile-fighter",
+      "name": "Mobile Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 105",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Mobile%20Fighter",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Agility / Leaping Attack / Rapid Attack / Fleet Footed",
+          "reason": "The archetype’s Agility / Leaping Attack / Rapid Attack / Fleet Footed package materially changes combat mobility from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Where some fighters focus on strength and raw power, the mobile fighter relies on swiftness and mobility, gliding across the battlefield like a steel whirlwind and leaving destruction in his wake.",
+      "tradeoff": "It replaces or alters Bravery; Weapon Training 1-4; Armor Training 3-4; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:molthuni-defender",
+      "name": "Molthuni Defender",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Armor Master's Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Molthuni%20Defender",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Armored Defense",
+          "reason": "The archetype’s Armored Defense package materially changes battlefield control from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Taking advantage of their weighty armor, Molthuni defenders can hold back an onslaught of enemies intent on breaking through their line.",
+      "tradeoff": "It replaces or alters Armor Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:mutation-warrior",
+      "name": "Mutation Warrior",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Class Guide pg. 93",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Mutation%20Warrior",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "available"
+      },
+      "practicalOverrides": {
+        "resource-management": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "alchemical warrior"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Mutagen / Mutagen Discovery",
+          "reason": "The archetype’s Mutagen / Mutagen Discovery package materially changes transformation shapeshifting from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "While most fighters rely on physical fitness and rigorous training to achieve martial superiority, a few prefer to create and imbibe dangerous concoctions that mutate them into fearsome creatures.",
+      "tradeoff": "It replaces or alters Armor Training 1-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:opportunist",
+      "name": "Opportunist",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Blood of the Beast pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Opportunist",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Duplicitous / Underhanded / Cunning Edge / Alchemical Admixture",
+          "reason": "The archetype’s Duplicitous / Underhanded / Cunning Edge / Alchemical Admixture package materially changes debuffing enemies from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Duplicitous / Underhanded / Cunning Edge / Alchemical Admixture",
+          "reason": "The archetype’s Duplicitous / Underhanded / Cunning Edge / Alchemical Admixture package materially changes stealth subterfuge from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Opportunists believe every battle is one of wits rather than arms.",
+      "tradeoff": "It replaces or alters Class Skils; Bravery; 1st, 4th, 8th, 12th, 16th, 20th-level Bonus Feat; Weapon Training 1; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:pack-mule",
+      "name": "Pack Mule",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Black Markets pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Pack%20Mule",
+      "capabilityOverrides": {
+        "practical-expertise": "core",
+        "stealth-subterfuge": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "porter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Skill Ranks per Level / Unobtrusive / Efficient Packer / Weight Training",
+          "reason": "The archetype’s Skill Ranks per Level / Unobtrusive / Efficient Packer / Weight Training package materially changes practical expertise from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Skill Ranks per Level / Unobtrusive / Efficient Packer / Weight Training",
+          "reason": "The archetype’s Skill Ranks per Level / Unobtrusive / Efficient Packer / Weight Training package materially changes stealth subterfuge from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Pack mules carry heavy loads with ease and small packages with discretion.",
+      "tradeoff": "It replaces or alters Skill Ranks; 1st-level Bonus Feat; Bravery; Armor Training 1-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:phalanx-soldier",
+      "name": "Phalanx Soldier",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 105",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Phalanx%20Soldier",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "shield"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Stand Firm / Phalanx Fighting / Ready Pike / Deft Shield",
+          "reason": "The archetype’s Stand Firm / Phalanx Fighting / Ready Pike / Deft Shield package materially changes protecting allies from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Stand Firm / Phalanx Fighting / Ready Pike / Deft Shield",
+          "reason": "The archetype’s Stand Firm / Phalanx Fighting / Ready Pike / Deft Shield package materially changes battlefield control from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The phalanx soldier specializes in defensive tactics, using his shield to guard himself and his allies and forming a shield wall like an unbreakable anvil against which his enemies break.",
+      "tradeoff": "It replaces or alters Bravery; Armor Training 1-4; Weapon Training 1-4; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:polearm-master",
+      "name": "Polearm Master",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 106",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Polearm%20Master",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "reach weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Pole Fighting / Steadfast Pike / Polearm Training / Flexible Flanker",
+          "reason": "The archetype’s Pole Fighting / Steadfast Pike / Polearm Training / Flexible Flanker package materially changes battlefield control from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The polearm master is schooled in the ancient wisdom that enemies are best faced at the end of long striking pole.",
+      "tradeoff": "It replaces or alters Bravery; Armor Training 1-4; Weapon Training 1-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:qadira-dawnflower-dervish",
+      "name": "Qadira: Dawnflower Dervish",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Inner Sea Primer pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Qadira%20%20Dawnflower%20Dervish",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "duelist"
+        ],
+        "primaryDelivery": [
+          "one-handed weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Qadira / Suggested Feats / Burst of Speed / Desert Stride",
+          "reason": "Qadira / Suggested Feats / Burst of Speed / Desert Stride defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Spinning warrior dervish of Sarenrae, wielding a scimitar with devastating consequences.",
+      "tradeoff": "It replaces or alters Armor Training 1-4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:relic-master",
+      "name": "Relic Master",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Weapon Master's Handbook pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Relic%20Master",
+      "capabilityOverrides": {
+        "utility-magic": "core",
+        "anti-magic-disruption": "available",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "relic expert"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Class Skills / Improved Item Mastery / Relic Channeler / Improvised Item Mastery",
+          "reason": "The archetype’s Class Skills / Improved Item Mastery / Relic Channeler / Improvised Item Mastery package materially changes utility magic from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Class Skills / Improved Item Mastery / Relic Channeler / Improvised Item Mastery",
+          "reason": "The archetype’s Class Skills / Improved Item Mastery / Relic Channeler / Improvised Item Mastery package materially changes anti magic disruption from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Class Skills / Improved Item Mastery / Relic Channeler / Improvised Item Mastery",
+          "reason": "The archetype’s Class Skills / Improved Item Mastery / Relic Channeler / Improvised Item Mastery package materially changes knowledge investigation from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Commonly trained in the well-funded temples of Osirion or Qadira, the relic master is skilled in magic item mastery.",
+      "tradeoff": "It replaces or alters Class Skills; Armor Training; Weapon Training; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:roughrider",
+      "name": "Roughrider",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 106",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Roughrider",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Steadfast Mount / Armored Charger / Mounted Mettle / Leap from the Saddle",
+          "reason": "The archetype’s Steadfast Mount / Armored Charger / Mounted Mettle / Leap from the Saddle package materially changes combat mobility from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Roughriders study and practice the fine points of mounted combat, drilling endlessly with warbeasts—from noble thoroughbreds to trained monsters—to form a perfect synergy between rider and steed.",
+      "tradeoff": "It replaces or alters Bravery; Armor Training 1-4; Weapon Training 1-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:savage-warrior",
+      "name": "Savage Warrior",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 107",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Savage%20Warrior",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Spark of Life / Natural Savagery / Savage Charge / Careful Claw",
+          "reason": "Spark of Life / Natural Savagery / Savage Charge / Careful Claw defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Warriors' might is not measured only by their skill with steel, but also by their ability to inflict death with fang and claw, horn and hoof, and every exotic appendage the natural and unnatural world has to offer.",
+      "tradeoff": "It replaces or alters Bravery; Weapon Training 1-4; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:scrapper",
+      "name": "Scrapper",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Construct Handbook pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Scrapper",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "salvager"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Scrap Armor / Scrapper Training",
+          "reason": "The archetype’s Scrap Armor / Scrapper Training package materially changes practical expertise from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Scrappers are adept at collecting the leftovers from their enemy’s armor and using these scraps to improve their own armor.",
+      "tradeoff": "It replaces or alters Armor Training; Weapon Training 1; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:seasoned-commander",
+      "name": "Seasoned Commander",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Villain Codex pg. 164",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Seasoned%20Commander",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "commander"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Strategic Training / Tactician / Inspiring Speech / Inspire Greatness",
+          "reason": "The archetype’s Strategic Training / Tactician / Inspiring Speech / Inspire Greatness package materially changes tactical leadership from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Strategic Training / Tactician / Inspiring Speech / Inspire Greatness",
+          "reason": "The archetype’s Strategic Training / Tactician / Inspiring Speech / Inspire Greatness package materially changes support buffing from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The seasoned commander excels at leading troops through inspiration and the use of unit tactics.",
+      "tradeoff": "It replaces or alters Armor Proficiencies; Skill Ranks per Level; Class Skills; 1st-level Bonus Feat; Armor Training 1, 3, 4; Weapon Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:sensate",
+      "name": "Sensate",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Occult Adventures pg. 118",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Sensate",
+      "capabilityOverrides": {
+        "knowledge-investigation": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Skills / Weapon and Armor Proficiency / Guarded Senses / Uncanny Dodge",
+          "reason": "The archetype’s Skills / Weapon and Armor Proficiency / Guarded Senses / Uncanny Dodge package materially changes knowledge investigation from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "A sensate perceives battle through senses beyond mortal ken, anticipating his opponents’ movements before they even begin to act.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon/Armor Proficiencies; Bravery; Armor Training 1-4; Weapon Training 2-4; Armor Mastery; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:shielded-fighter",
+      "name": "Shielded Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 108",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Shielded%20Fighter",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "shield"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Active Defense / Shield Fighter / Shield Buffet / Shield Guard",
+          "reason": "The archetype’s Active Defense / Shield Fighter / Shield Buffet / Shield Guard package materially changes protecting allies from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Active Defense / Shield Fighter / Shield Buffet / Shield Guard",
+          "reason": "The archetype’s Active Defense / Shield Fighter / Shield Buffet / Shield Guard package materially changes battlefield control from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "A shielded fighter focuses on both offense and defense, blending weapon and shield in perfect balance to impede his enemies while delivering deadly blows, and even turning the shield itself into a formidable weapon.",
+      "tradeoff": "It replaces or alters Armor Training 1-4; Weapon Training 1-4; Armor Mastery; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:siegebreaker",
+      "name": "Siegebreaker",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Heroes of the Streets pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Siegebreaker",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Breaker Rush / Armored Vigor / Breaker Momentum / Persistent Menace",
+          "reason": "The archetype’s Breaker Rush / Armored Vigor / Breaker Momentum / Persistent Menace package materially changes battlefield control from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The siegebreaker is trained to break through lines of enemy soldiers.",
+      "tradeoff": "It replaces or alters 1st, 2nd, 4th, and 8th-level Bonus Feats; Bravery; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:skirmisher",
+      "name": "Skirmisher",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Wilderness pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Skirmisher",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Armor Proficiency / Wilderness Training / Conditioning / Alpine Training",
+          "reason": "The archetype’s Armor Proficiency / Wilderness Training / Conditioning / Alpine Training package materially changes combat mobility from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Not all battles are fought between armies; sometimes, a settlement or nation faces a threat too dire to fight in the open. In order to repel a much larger enemy force, some soldiers must abandon equipment and tactics designed for open-field warfare and instead rely on ambushes, hit-andrun tactics, and sabotage to whittle down their enemies’ strength and morale.",
+      "tradeoff": "It replaces or alters Armor Proficiencies; Class Skills; Skill Ranks; 2nd-level Bonus Feat; Bravery; Armor Training; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:spear-fighter",
+      "name": "Spear Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Martial Arts Handbook pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Spear%20Fighter",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "reach weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Class Skills / Armor Proficiency / Balanced Stride / Spear Parry",
+          "reason": "The archetype’s Class Skills / Armor Proficiency / Balanced Stride / Spear Parry package materially changes battlefield control from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "One of the oldest spear-fighting styles originates in Vudra, where many martial arts traditions consider the spear to be the ultimate weapon.",
+      "tradeoff": "It replaces or alters Class Skills; Armor Proficiencies; Bravery; Armor Training; Armor Mastery; Weapon Training; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:steelbound-fighter",
+      "name": "Steelbound Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Haunted Heroes Handbook pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Steelbound%20Fighter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "ancestral weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Archetype Features",
+          "reason": "Archetype Features defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "A fighter who has impressive martial resolve and technique with a specific weapon as the result of a powerful relationship a similar weapon had with one of his ancestors.",
+      "tradeoff": "It replaces or alters 1st level Bonus Feat; Weapon Training 1-4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:swarm-fighter",
+      "name": "Swarm Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Kobolds of Golarion pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Swarm%20Fighter",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Kobold characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Weapon and Armor Proficiency / Athletic Prowess / Mobility / Safety in Numbers",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Athletic Prowess / Mobility / Safety in Numbers package materially changes combat mobility from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Scuttling between the legs of friend and\r foe alike, the swarm fighter is an unshakable combatant.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; 1st, 2nd, 6th, 10th, 14th, 18th-level Bonus Feats; Bravery; Weapon Training 1-4; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:tactician",
+      "name": "Tactician",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Combat pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Tactician",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "commander"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Weapon and Armor Proficiency / Strategic Training / Bonus Feats / Tactical Awareness",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Strategic Training / Bonus Feats / Tactical Awareness package materially changes tactical leadership from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Weapon and Armor Proficiency / Strategic Training / Bonus Feats / Tactical Awareness",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Strategic Training / Bonus Feats / Tactical Awareness package materially changes support buffing from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "While many fighters focus on the fundamentals of melee and ranged combat, there are those who are trained to view the bigger picture on the battlefield.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; 1st-level Bonus Feat; Bravery; Weapon Training 1; Armor Training 3, 4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:taldor-rondelero-duelist",
+      "name": "Taldor: Rondelero Duelist",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Inner Sea Primer pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Taldor%20%20Rondelero%20Duelist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "duelist"
+        ],
+        "primaryDelivery": [
+          "one-handed weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Taldor / Suggested Feats / Buckler Bash / Buckler Catch",
+          "reason": "Taldor / Suggested Feats / Buckler Bash / Buckler Catch defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "One who has perfected the art of rondelero, fighting with falcata and buckler.",
+      "tradeoff": "It replaces or alters Armor Training 1-3, Bravery, Weapon Training 1; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:thunderstriker",
+      "name": "Thunderstriker",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Combat pg. 48",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Thunderstriker",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "two-handed weapon",
+          "shield"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Strapped Shield / Hardbuckler / Knockback Smash / Hammer and Anvil",
+          "reason": "The archetype’s Strapped Shield / Hardbuckler / Knockback Smash / Hammer and Anvil package materially changes protecting allies from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The thunderstriker adopts an unusual fighting style, gripping a heavy weapon with both hands and switching to a defensive posture with weapon and buckler, lashing out with the shield with surprising speed and power.",
+      "tradeoff": "It replaces or alters Armor Training 1-4; Weapon Training 3-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:titan-fighter",
+      "name": "Titan Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Giant Hunter's Handbook pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Titan%20Fighter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "two-handed weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Giant Weapon Wielder / Incredible Heft / Unstoppable Momentum",
+          "reason": "Giant Weapon Wielder / Incredible Heft / Unstoppable Momentum defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Titan fighters make use of enormous weapons others can barely lift.",
+      "tradeoff": "It replaces or alters 1st-level Bonus Feat; Armor Training; Weapon Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:tower-shield-specialist",
+      "name": "Tower Shield Specialist",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Combat pg. 48",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Tower%20Shield%20Specialist",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "shield"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Burst Barrier / Tower Shield Training / Tower Shield Specialist / Tower Shield Defense",
+          "reason": "The archetype’s Burst Barrier / Tower Shield Training / Tower Shield Specialist / Tower Shield Defense package materially changes protecting allies from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Burst Barrier / Tower Shield Training / Tower Shield Specialist / Tower Shield Defense",
+          "reason": "The archetype’s Burst Barrier / Tower Shield Training / Tower Shield Specialist / Tower Shield Defense package materially changes battlefield control from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Many fighters believe the tower shield is a tool suitable only for troops on the battlefield, claiming it is too large and bulky to use in skirmishes or within dungeon corridors.",
+      "tradeoff": "It replaces or alters Bravery; Weapon Training 1-4; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:trench-fighter",
+      "name": "Trench Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Pathfinder #71: Rasputin Must Die! pg. 67",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Trench%20Fighter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Note from Nethys / Trench Warfare",
+          "reason": "Note from Nethys / Trench Warfare defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Advances in technology have made archaic armors\r obsolete by the twentieth century, and modern soldiers\r concentrate training on firearms and swift feet.",
+      "tradeoff": "It replaces or alters Armor Training 1-4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:tribal-fighter",
+      "name": "Tribal Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Wilderness pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Tribal%20Fighter",
+      "capabilityOverrides": {
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "tribal warrior"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Forbidden Armor / Battle Focus / Tribal Weapon Training",
+          "reason": "The archetype’s Forbidden Armor / Battle Focus / Tribal Weapon Training package materially changes wilderness affinity from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "A tribal fighter knows that it is not the weapon that matters but the hand that wields it. Instead of encasing himself in metal armor like the soldiers fighting and dying for the socalled civilized lands do, he prefers to wear something he or his ancestors have killed.",
+      "tradeoff": "It replaces or alters 1st-level Bonus Feat; Weapon Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:two-handed-fighter",
+      "name": "Two-Handed Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 108",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Two-Handed%20Fighter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "two-handed weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Shattering Strike / Overhand Chop / Weapon Training / Backswing",
+          "reason": "Shattering Strike / Overhand Chop / Weapon Training / Backswing defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Some fighters focus their efforts on finding the biggest, heaviest, most imposing weapon they can find and training to manage and harness the weight of their massive weapons for maximum impact.",
+      "tradeoff": "It replaces or alters Bravery; Armor Training 1-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:two-weapon-warrior",
+      "name": "Two-Weapon Warrior",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 109",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Two-Weapon%20Warrior",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "dual weapons"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Defensive Flurry / Twin Blades / Doublestrike / Improved Balance",
+          "reason": "Defensive Flurry / Twin Blades / Doublestrike / Improved Balance defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Trained under great masters who preached the simple truth that two are better than one when it comes to weapons, the two-weapon warrior is a terror when his hands are full.",
+      "tradeoff": "It replaces or alters Armor Training 1-4; Weapon Training 1-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:unarmed-fighter",
+      "name": "Unarmed Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Combat pg. 48",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Unarmed%20Fighter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Unarmed Style / Harsh Training / Tough Guy",
+          "reason": "Weapon and Armor Proficiency / Unarmed Style / Harsh Training / Tough Guy defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The unarmed fighter picks up a weapon only rarely, and when he does, he prefers the weapons of the monk.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; 1st-level Bonus Feat; Bravery; Armor Training 1-4; Weapon Training 1-4; 8th, 12th-level Bonus Feat; Armor Mastery; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:unbreakable",
+      "name": "Unbreakable",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Combat pg. 49",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Unbreakable",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "heavy armor"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Weapon and Armor Proficiency / Tough as Nails / Unflinching / Heroic Recovery",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Tough as Nails / Unflinching / Heroic Recovery package materially changes protecting allies from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The unbreakable is a warrior of indomitable will, unstoppable and implacable once he has set his mind upon a course of action.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; 1st-level Bonus Feat; Bravery; Weapon Training 1-4; Armor Training 3-4; Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:ustalavic-duelist",
+      "name": "Ustalavic Duelist",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Inner Sea Combat pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Ustalavic%20Duelist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "duelist"
+        ],
+        "primaryDelivery": [
+          "one-handed weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Duelist Stance / Duelist Training / Lepidstadt Thrust",
+          "reason": "Weapon and Armor Proficiency / Duelist Stance / Duelist Training / Lepidstadt Thrust defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The University of Lepidstadt has developed a reputation for churning out fearsome duelists. At the end of each academic year, the students all gather together and duel one another with light blades. Each student duels one opponent after another until he is marked on the cheek by an adversary’s blade. These “Lepidstadt scars” are recognized throughout the Inner Sea region and beyond as marks of their prowess. The Lepidstadt Style is one of fluid motion and precise thrusts.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; 1st-level Bonus Feat; Weapon Training 1-4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:varisian-free-style-fighter",
+      "name": "Varisian Free-Style Fighter",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Weapon Master's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Varisian%20Free-Style%20Fighter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Martial Flexibility / Free Fighting Style",
+          "reason": "Class Skills / Martial Flexibility / Free Fighting Style defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Free-style fighters are most common in Varisia, where their training—students’ traveling study with multiple teachers, or perhaps instruction in the anything-goes mentality of the Price of Freedom school in Kaer Maga—allows them to blend fighting styles into a greater whole.",
+      "tradeoff": "It replaces or alters Class Skills; 1st, 6th, 10th, and 12th-level Bonus Feats; Weapon Training; Weapon Mastery; Armor Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:venomblade",
+      "name": "Venomblade",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Potions and Poisons pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Venomblade",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "poisoner"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Nagaji characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Venom Projection / Sneak Attack / Viper Strike",
+          "reason": "The archetype’s Venom Projection / Sneak Attack / Viper Strike package materially changes debuffing enemies from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The venomblade has learned to take full advantage of his toxic spittle, blinding his targets and then rushing in to cut them down where they stand.",
+      "tradeoff": "It replaces or alters 1st, 6th, 12th-level Bonus Feat; Bravery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:viking",
+      "name": "Viking",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Ultimate Wilderness pg. 51",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Viking",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-rage": true
+      },
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "professionIdentity": [
+          "raider"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Weapon and Armor Proficiency / Fearsome / Shield Defense / Berserker",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Fearsome / Shield Defense / Berserker package materially changes debuffing enemies from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Vikings seek to raid “softer societies” and return with their longships filled with plunder. A viking strikes fear into the heart of her foes, and in battle she can fly into a terrible rage.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Bravery; Armor Training; Weapon Training; Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:warlord",
+      "name": "Warlord",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Pathfinder: Worldscape #3 pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Warlord",
+      "capabilityOverrides": {
+        "social-influence": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ],
+        "professionIdentity": [
+          "warlord"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "WarlordSource Pathfinder / Class Skills / Evasive Dueling / Battle Bravado",
+          "reason": "The archetype’s WarlordSource Pathfinder / Class Skills / Evasive Dueling / Battle Bravado package materially changes social influence from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Honorable, fearless experts in gun and blade, warlords eschew armor as impractical to their harsh and often desert-like environment",
+      "tradeoff": "It replaces or alters Class Skills; Weapon and Armor Proficiency; Armor Training; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:weapon-bearer-squire",
+      "name": "Weapon Bearer Squire",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Knights of the Inner Sea pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Weapon%20Bearer%20Squire",
+      "capabilityOverrides": {
+        "support-buffing": "available",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "squire"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Weapon Rack / Swift Sharpening / Combat Repairs",
+          "reason": "The archetype’s Weapon Rack / Swift Sharpening / Combat Repairs package materially changes support buffing from the Fighter baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Weapon Rack / Swift Sharpening / Combat Repairs",
+          "reason": "The archetype’s Weapon Rack / Swift Sharpening / Combat Repairs package materially changes practical expertise from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "The weapon bearer squire ensures her knight is equipped for any task.",
+      "tradeoff": "It replaces or alters 1st-level Bonus Feat; 2nd-level Bonus Feat; Armor Training 1; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "fighter:weapon-master",
+      "name": "Weapon Master",
+      "parentClassId": "fighter",
+      "sourceCitationText": "Advanced Player's Guide pg. 109",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Weapon%20Master",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "single chosen weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon Guard / Weapon Training / Reliable Strike / Mirror Move",
+          "reason": "Weapon Guard / Weapon Training / Reliable Strike / Mirror Move defines the material change from the Fighter baseline."
+        }
+      ],
+      "playerSummary": "Devoted to the perfection of a single weapon, the weapon master's meditations upon his favored weapon border on the obsessive, but none can deny his consummate skill.",
+      "tradeoff": "It replaces or alters Bravery; Armor Training 1-4; Weapon Training 1-4; Armor Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

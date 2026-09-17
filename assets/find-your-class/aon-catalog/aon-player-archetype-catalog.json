@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T11:17:06.732Z",
+  "generatedAt": "2026-09-17T11:25:43.392Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
@@ -8,9 +8,9 @@
     "archetypes": 1275,
     "entities": 1319,
     "valuedClasses": 44,
-    "valuedArchetypes": 424,
+    "valuedArchetypes": 556,
     "pendingClasses": 0,
-    "pendingArchetypes": 851,
+    "pendingArchetypes": 719,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -3803,7 +3803,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Aerie%20Protector",
       "replaces": "Weapon/Armor Proficiencies; Nature Bond; Wild Empathy; Woodland Stride; Resist Nature’s Lure; Wild Shape; Venom Immunity",
       "aonSummary": "The aerie protector guards nature’s nests and lairs in the highest mountains, and she is only ever truly at ease when under vast expanses of open sky.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:ancient-guardian",
@@ -3814,7 +3814,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Ancient%20Guardian",
       "replaces": "Weapon Proficiencies; Nature Bond; Wild Empathy; Trackless Step; Woodland Stride; Spontaneous Casting; Resist Nature’s Lure; A Thousand Faces",
       "aonSummary": "Ancient guardians revere nature and draw power from its divine energies, but also protect the customs, histories, and lore of their tribe and race.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:ape-shaman",
@@ -3825,7 +3825,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Ape%20Shaman",
       "replaces": "A Thousand Faces; Venom Immunity",
       "aonSummary": "A shaman with this totem calls upon the mighty ape, a peaceful but powerful simian whose strength is beyond compare.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:aquatic-druid",
@@ -3836,7 +3836,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Aquatic%20Druid",
       "replaces": "Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces",
       "aonSummary": "Shepherds of the lakes and seas, aquatic druids guard ecosystems ranging from shallows streams to deep ocean trenches, ministering to their residents and communing with the tides.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:arctic-druid",
@@ -3847,7 +3847,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Arctic%20Druid",
       "replaces": "Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces",
       "aonSummary": "An arctic druid watches over the stark landscape of the far frozen reaches of the world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:ashvawg-tamer",
@@ -3858,7 +3858,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Ashvawg%20Tamer",
       "replaces": "Resist Nature's Lure, one less Wild Shape/day, Venom Immunity",
       "aonSummary": "Ashvawg Tamers are druids who have chosen to bond with a strange and monstrous creature.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:bat-shaman",
@@ -3869,7 +3869,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Bat%20Shaman",
       "replaces": "A Thousand Faces; Venom Immunity",
       "aonSummary": "The bat shaman’s totem is the agile bat, flitting and turning with incredible speed through even the most convoluted mazes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:bear-shaman",
@@ -3880,7 +3880,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Bear%20Shaman",
       "replaces": "A Thousand Faces; Venom Immunity",
       "aonSummary": "A shaman with this focus calls upon the mighty bear, titan of the woodlands and mountains, a paragon of strength and ferocity, and yet also a quiet protector rich in wisdom.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:blight-druid",
@@ -3891,7 +3891,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Blight%20Druid",
       "replaces": "Wild Empathy; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces",
       "aonSummary": "The devoted servants of nature corrupted, ruined, and destroyed, blight druids are the caretakers of lands ravaged by natural disaster.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:boar-shaman",
@@ -3902,7 +3902,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Boar%20Shaman",
       "replaces": "A Thousand Faces; Venom Immunity",
       "aonSummary": "A boar shaman chooses the stolid and ferocious boar as her totem.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:cave-druid",
@@ -3913,7 +3913,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Cave%20Druid",
       "replaces": "Nature Sense; Woodland Stride; Trackless Step; Resist Nature's Lure",
       "aonSummary": "A few druids seek to preserve the hidden underdark and purge it of the fell horrors that creep up from below.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:death-druid",
@@ -3924,7 +3924,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Death%20Druid",
       "replaces": "Nature Bond; Wild Shape; Resist Nature's Lure; Venom Immunity",
       "aonSummary": "Some druids believe that birth and death are the most important parts of the natural cycle.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:defender-of-the-true-world",
@@ -3935,7 +3935,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Defender%20of%20the%20True%20World",
       "replaces": "Class Skills; Wild Empathy; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces",
       "aonSummary": "Some druids specialize in protecting Golarion from the threat of First World inhabitants.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:desert-druid",
@@ -3946,7 +3946,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Desert%20Druid",
       "replaces": "Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces",
       "aonSummary": "Desert druids come to the desert to pay homage, protect and maintain the few habitable locales, and witness nature's majesty in all its burning, merciless glory.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:devolutionist",
@@ -3957,7 +3957,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Devolutionist",
       "replaces": "Nature Bond; Resist Nature's Lure; Venom Immunity",
       "aonSummary": "Devolutionists believe that the world would be better off without any sentient life at all.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:dinosaur-druid",
@@ -3968,7 +3968,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Dinosaur%20Druid",
       "replaces": "Spontaneous Casting; Nature’s Bond; Wild Shape; Resist Nature’s Lure",
       "aonSummary": "A dinosaur druid speaks for the spirit of prehistoric nature, even taking the form of great beasts of legend.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:draconic-druid",
@@ -3979,7 +3979,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Draconic%20Druid",
       "replaces": "Nature Bond; Wild Empathy; Woodland Stride; Venom Immunity; A Thousand Faces; Timeless Body; Nature Sense; Resist Nature's Lure",
       "aonSummary": "Some druids believe that dragons are the ultimate expression of nature and eventually transform into draconic forms.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:dragon-shaman",
@@ -3990,7 +3990,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Dragon%20Shaman",
       "replaces": "A Thousand Faces; 8th-level Wild Shape; Venom Immunity",
       "aonSummary": "Your totem is the legendary dragon, fearsome and deadly yet cunning and wise, a creature born of pure magic and raw elemental fury, bound within a shell of fangs, claws, and scales that few dare to challenge.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:drovier",
@@ -4001,7 +4001,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Drovier",
       "replaces": "Nature's Bond; Wild Shape",
       "aonSummary": "Droviers view their allies and adventuring companions as a herd or pack to be protected and directed.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:eagle-shaman",
@@ -4012,7 +4012,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Eagle%20Shaman",
       "replaces": "A Thousand Faces; Venom Immunity",
       "aonSummary": "A shaman with this totem calls upon the noble eagle, stern and proud, soaring high above the world with keen and pitiless eyes that miss nothing.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:elemental-ally",
@@ -4023,7 +4023,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Elemental%20Ally",
       "replaces": "Nature’s Bond; Wild Shape; Wild Empathy; Resist Nature’s Lure",
       "aonSummary": "An elemental ally is a druid who has crafted powerful bonds of trust and friendship with one ally from each of the four primary elemental planes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:feral-child",
@@ -4034,7 +4034,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Feral%20Child",
       "replaces": "Weapon/Armor Proficiency; Class Skills; Nature Bond; Trackless Step; A Thousand Faces; Wild Shape; Resist Nature’s Lure; Venom Immunity; Timeless Body",
       "aonSummary": "(Human Only) Some youths, abandoned in the wilderness and then raised by animals, are so connected with their adoptive home and family that they become feral.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:feral-shifter",
@@ -4045,7 +4045,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Feral%20Shifter",
       "replaces": "Nature Bond; Venom Immunity; A Thousand Faces; Timeless Body",
       "aonSummary": "A feral shifter internalizes her communion with and mastery over animals. Instead of forming a bond with an animal companion or an aspect of nature, she alters her own essence or being as homage to the noble creatures of the wild.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:feyspeaker",
@@ -4067,7 +4067,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Fungal%20Pilgrim",
       "replaces": "Nature Bond; Wild Shape; Timeless Body",
       "aonSummary": "Fungal pilgrims are druids seeking transformation into a more plantlike existence.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:goliath-druid",
@@ -4078,7 +4078,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Goliath%20Druid",
       "replaces": "Class Skills; Nature Sense; Nature Bond; Wild Empathy; Resist Nature’s Lure; Wild Shape; Venom Immunity; A Thousand Faces",
       "aonSummary": "Goliath druids hone their spiritual and magical connections to nature’s largest creatures, especially dinosaurs, giants, and megafauna, revering these massive creatures as living relics of a primeval time when all creatures were more in harmony with nature.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:green-faith-initiate",
@@ -4089,7 +4089,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Green%20Faith%20Initiate",
       "replaces": "Trackless Step; 6th, 10th-level use of Wild Shape; Venom Immunity; A Thousand Faces",
       "aonSummary": "Druids who are initiated into the magic of nature as strict students of the Green Faith’s traditions sometimes demonstrate abilities unique to their organization.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:green-scourge",
@@ -4100,7 +4100,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Green%20Scourge",
       "replaces": "Spontaneous Casting; Nature Sense; Trackless Step; Resist Nature's Lure",
       "aonSummary": "Green scourges are militant druids sworn to restore natural order.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:halcyon-druid",
@@ -4111,7 +4111,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Halcyon%20Druid",
       "replaces": "Nature Bond; Nature Sense; Class Skills; Wild Empathy; Spontaneous Casting; Wild Shape; Resist Nature's Lure; A Thousand Faces",
       "aonSummary": "Though they revere the natural world, halcyon druids are less focused on emulating its inhabitants. Instead, like Old-Mage Jatembe, they treat with beings from the Outer Sphere.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:jungle-druid",
@@ -4122,7 +4122,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Jungle%20Druid",
       "replaces": "Woodland Stride; Trackless Step; Resist Nature's Lure; A Thousand Faces",
       "aonSummary": "The jungle druid waches over the fecund jungles of the equatorial regions, rich in life and ancient tradition.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:kraken-caller",
@@ -4133,7 +4133,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Kraken%20Caller",
       "replaces": "Bonus Language; Woodland Stride; Trackless Step; Resist Nature’s Lure; Wild Shape; A Thousand Faces",
       "aonSummary": "Some druids draw upon power irreverently stolen from one of the most dangerous creatures of the depths: the kraken.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:leshy-warden",
@@ -4144,7 +4144,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Leshy%20Warden",
       "replaces": "Nature Bond; Wild Empathy; Spontaneous Casting; Resist Nature’s Lure; Wild Shape; A Thousand Faces",
       "aonSummary": "The natural world is full of bodiless nature spirits connected to the forces of glades, springs, and individual plants. Some druids hear their call keenly and are able to effortlessly incarnate them as the miniature creatures known as leshys.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:life-channeler",
@@ -4155,7 +4155,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Life%20Channeler",
       "replaces": "Alignment; Nature Bond; Wild Shape; Venom Immunity",
       "aonSummary": "By sacrificing the life of a sentient creature, life channelers can generate energy that guarantees fertility and prosperity for lower creatures like plants and animals.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:lion-shaman",
@@ -4166,7 +4166,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Lion%20Shaman",
       "replaces": "A Thousand Faces; Venom Immunity",
       "aonSummary": "A shaman with this totem calls upon the proud lion, imposing and majestic, the mighty leader of deadly hunters.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:mantella",
@@ -4177,7 +4177,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Mantella",
       "replaces": "Wild Shape; Venom Immunity; Spontaneous Casting",
       "aonSummary": "(Grippli) A mantella focuses on exploring her poisonous heritage, whether or not it has manifested in her own personal biology.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:menhir-savant",
@@ -4188,7 +4188,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Menhir%20Savant",
       "replaces": "Nature Sense; Wild Empathy; Woodland Stride; Trackless Step; A Thousand Faces",
       "aonSummary": "Some druids study the paths of nature’s power through the nodes and ley lines that connect standing stones and megalithic circles, learning to tap into their energies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:mooncaller",
@@ -4199,7 +4199,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Mooncaller",
       "replaces": "Woodland Stride; Resist Nature's Lure; Venom Immunity; A Thousand Faces",
       "aonSummary": "A mooncaller is bound to the subtle influences of the ever-changing moon and its endless cycles from light to dark and back again.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:mountain-druid",
@@ -4210,7 +4210,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Mountain%20Druid",
       "replaces": "Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces",
       "aonSummary": "As more and more of the soft, easy lands become cultivated and civilized, many druids look for refuge and solitude among the eternal peaks of the highest mountains.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:naga-aspirant",
@@ -4221,7 +4221,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Naga%20Aspirant",
       "replaces": "Spontaneous Casting; Resist Nature’s Lure; Wild Shape; Venom Immunity; A Thousand Faces; Timeless Body",
       "aonSummary": "(Nagaji Only) The naga aspirant follows the ancient beliefs and engages in the rituals of a druidic sect dedicated to the transcendence of her nagaji form through absolute devotion to nagas and naga gods.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:nature-fang",
@@ -4243,7 +4243,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Nature%20Priest",
       "replaces": "Deity; Class Skills; Weapon Proficiencies; Nature Sense; Nature Bond; Resist Nature's Lure; Venom Immunity",
       "aonSummary": "Nature priests serve two masters: their deities and nature itself, and can call upon the power of both to fuel their divine abilities.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:nithveil-adept",
@@ -4254,7 +4254,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Nithveil%20Adept",
       "replaces": "Nature Sense; Nature Bond; Spontaneous Casting; Resist Nature's Lure",
       "aonSummary": "Nithveil adepts learn the secret magic of the First World fey in the moving, reality-phasing city of Nithveil",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:pack-lord",
@@ -4276,7 +4276,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Plains%20Druid",
       "replaces": "Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity; A Thousand Faces",
       "aonSummary": "Out upon the wide and rolling prairies and savannahs, plains druids stand guard over the grasslands.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:planar-extremist",
@@ -4287,7 +4287,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Planar%20Extremist",
       "replaces": "Alignment; Spells; Nature's Bond; Spontaneous Casting; Resist Nature's Lure; Wild Shape",
       "aonSummary": "(Ex-druid archetype) Planar extremists are those druids that have lost their neutral stance and find themselves gravitating toward one of the four most extreme alignments",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:progenitor",
@@ -4298,7 +4298,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Progenitor",
       "replaces": "Spontaneous Casting; Nature Bond; Wild Shape",
       "aonSummary": "Progenitors are druids who tap into the vibrant power of the First World to propagate natural and supernatural wonders.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:reincarnated-druid",
@@ -4320,7 +4320,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Restorer",
       "replaces": "Nature Sense; Spontanteous Casting; Resist Nature's Lore; A Thousand Faces",
       "aonSummary": "Restorers carefully tend to the health of both the environment and creatures in it.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:river-druid",
@@ -4331,7 +4331,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20River%20Druid",
       "replaces": "Class Skills; Nature Sense; Woodland Stride; Trackless Step; Resist Nature’s Lure; Wild Shape; Timeless Body",
       "aonSummary": "These druids are the guardians of rivers and the creatures that depend on them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:road-keeper",
@@ -4342,7 +4342,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Road%20Keeper",
       "replaces": "Spontaneous Casting; Nature Bond; Wild Empathy; Woodland Stride; Resist Nature’s Lure; Wild Shape",
       "aonSummary": "Guardians of the lonely paths between cities, road keepers protect the wild from travelers, and travelers from the wild.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:rot-warden",
@@ -4353,7 +4353,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Rot%20Warden",
       "replaces": "Spontaneous Casting; Nature Bond; Wild Empathy; Trackless Step; Venom Immunity; Resist Nature’s Lure; Wild Shape",
       "aonSummary": "Harbingers of decay, rot wardens live in damp lands where insects and rot break down the dead to feed the living.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:saurian-shaman",
@@ -4364,7 +4364,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Saurian%20Shaman",
       "replaces": "Venom Immunity",
       "aonSummary": "A shaman with this focus calls upon the primeval dinosaur, the archaic terror that lingers as a hungering, atavistic stranger at the fringes of the ecosystem, a destroyer and despoiler whose coming other animals dread.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:season-keeper",
@@ -4375,7 +4375,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Season%20Keeper",
       "replaces": "Nature Bond; Trackless Step; Venom Immunity; Timeless Body; Wild Shape",
       "aonSummary": "(Triaxian Only) Imbued with the primeval potency of their planet’s seasons, those druids known as season keepers guide Triaxian communities through the stark transition from summer to winter (and vice versa).",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:season-sage",
@@ -4386,7 +4386,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Season%20Sage",
       "replaces": "Wild Shape",
       "aonSummary": "(Gathlain) Season sages wander as the seasons change, turning the leaves and transforming nature as they pass and taking pleasure in the transition between seasons.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:serpent-shaman",
@@ -4397,7 +4397,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Serpent%20Shaman",
       "replaces": "A Thousand Faces; Venom Immunity",
       "aonSummary": "A shaman with this totem calls upon the cunning serpent, the stealthy deceiver who draws the weak minded in and strikes while they are unaware.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:shark-shaman",
@@ -4408,7 +4408,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Shark%20Shaman",
       "replaces": "A Thousand Faces; Venom Immunity",
       "aonSummary": "Some druids emulate the deadly shark, a remorseless hunter that marine dwellers dread.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:skinshaper",
@@ -4419,7 +4419,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Skinshaper",
       "replaces": "Class Skills; Wild Shape; A Thousand Faces",
       "aonSummary": "Using the same primal energy with which other druids assume animal forms, skinshapers can imitate some of the most dangerous beasts of all: humans and other humanoids.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:sky-druid",
@@ -4430,7 +4430,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Sky%20Druid",
       "replaces": "Weapon/Armor Proficiency; Nature Bond; Woodland Stride; Resist Nature’s Lure; Trackless Step; Wild Shape; Venom Immunity; A Thousand Faces",
       "aonSummary": "(Sylph Only) Some druids develop ties not to a particular landscape, but instead to the endless blue expanse of the skies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:storm-druid",
@@ -4452,7 +4452,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Sunrider",
       "replaces": "Class Skills; Weapon and Armor Proficiencies; Nature Bond; Woodland Stride; Trackless Step; Resist Nature's Lure; Wild Shape",
       "aonSummary": "Sunriders help their allies, be they fellow tribe members or fellow adventurers, to survive in harsh desert terrain, while simultaneously making it even harsher for their foes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:supernaturalist",
@@ -4463,7 +4463,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Supernaturalist",
       "replaces": "Weapon/Armor Proficiencies; Nature Bond; Wild Empathy; Nature Sense; Trackless Step; Resist Nature’s Lure; Wild Shape",
       "aonSummary": "Supernaturalists wholly embrace paranormal phenomena as extensions of nature.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:survivor",
@@ -4474,7 +4474,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Survivor",
       "replaces": "Class Skills; Weapon/Armor Proficiencies; Spellcasting; Nature Bond; Resist Nature’s Lure; Wild Shape; Venom Immunity",
       "aonSummary": "The survivor embodies the neutral aspect of the natural world and eschews druidic magic in favor of more pragmatic and worldly survival methods.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:swamp-druid",
@@ -4485,7 +4485,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Swamp%20Druid",
       "replaces": "Woodland Stride; Trackless Step; Resist Nature's Lure; A Thousand Faces",
       "aonSummary": "Some druids eschew pleasant glades and groves and instead seek out dank marshes, misty bogs and heaths, and trackless swamps as the place they call home and watch over with care, finding beauty and life in abundance in places few others would willingly enter.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:swarm-monger",
@@ -4496,7 +4496,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Swarm%20Monger",
       "replaces": "Nature Bond; Woodland Stride; Nature Sense; Resist Nature's Lure; 12th-level Wild Shape options",
       "aonSummary": "Whereas other druids commune with nature or even the spirit of a city, swarm mongers find beauty and strength in decay, and they draw their power from fungus, disease, and their own singular will to survive.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:tempest-druid",
@@ -4507,7 +4507,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Tempest%20Druid",
       "replaces": "Alignment; Weapon and Armor Proficiencies; Nature Bond; Nature Sense; Trackless Step; Resist Nature's Lure; Venom Immunity",
       "aonSummary": "Some druids have come to worship the Eye of Abendego as an aspect of pure elemental fury, channeling its mysteries into their own magic",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:tempest-tamer",
@@ -4518,7 +4518,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Tempest%20Tamer",
       "replaces": "Bonus Languages; Resist Nature's Lure; Wild Shape",
       "aonSummary": "Tempest Tamer\nSource Blood of the Sea pg. 25\nDruids draw upon the fiercest powers of nature, and tsunamis, typhoons, and whirlpools are among the most powerful forces in the ocean.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:toxicologist",
@@ -4529,7 +4529,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Toxicologist",
       "replaces": "Spontaneous Casting; Wild Empathy; Woodland Stride; Trackless Step; Resist Nature's Lure; Wild Shape",
       "aonSummary": "Toxicologists specialize in the stealthy application of insidious poisons to their targets, believing word of their foes’ horrifying deaths will deter others from attempting similar desecrations of the natural world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:treesinger",
@@ -4540,7 +4540,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Treesinger",
       "replaces": "Nature Bond; Wild Empathy; Wild Shape",
       "aonSummary": "(Elf and Vine Leshy Only) Some elves turn to the timeless growth of nature for solace, finding allies among the great trees themselves, and even leading the forest’s plants into combat.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:troll-fury",
@@ -4551,7 +4551,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Troll%20Fury",
       "replaces": "Wild Empathy; Resist Nature’s Lure; Venom Immunity",
       "aonSummary": "(Troll Only) Troll furies combine a druid’s love of natural balance with a single-minded devotion to the welfare of the troll tribe.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:undine-adept",
@@ -4562,7 +4562,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Undine%20Adept",
       "replaces": "Domains; Woodland Stride; Trackless Step; Resist Nature’s Lure; Wild Shape; Venom Immunity",
       "aonSummary": "(Undine Only) An undine adept dedicates herself to preserving the knowledge of the first undines and ensuring her people’s ancient connections to the natural world remain undisturbed.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:urban-druid",
@@ -4573,7 +4573,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Urban%20Druid",
       "replaces": "Spontaneous Casting; Woodland Stride; Trackless Step; Resist Nature's Lure; Venom Immunity",
       "aonSummary": "While many druids keep to the wilderness, some make their way within settlements, communing with the animals and vermin who live there and speaking for the nature that runs rampant in civilization's very cradle.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:urushiol",
@@ -4584,7 +4584,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Urushiol",
       "replaces": "Nature Bond; Resist Nature's Lure",
       "aonSummary": "When an urushiol druid forms a bond with nature, it takes a vastly different form than for most druids. His body becomes increasingly toxic, allowing him to secrete a deadly poison through his pores.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:wild-whisperer",
@@ -4595,7 +4595,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Wild%20Whisperer",
       "replaces": "Woodland Stride; Trackless Step; Resist Nature’s Lure; Wild Shape",
       "aonSummary": "A wild whisperer is an expert at studying, predicting, and explaining animal behavior.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:wolf-shaman",
@@ -4606,7 +4606,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20Wolf%20Shaman",
       "replaces": "A Thousand Faces; Venom Immunity",
       "aonSummary": "A shaman with this totem calls upon the clever wolf, capable of roaming alone yet wise enough to run with a pack when facing dangers too great for one alone.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:world-walker",
@@ -4617,7 +4617,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Druid%20World%20Walker",
       "replaces": "Trackless Step; Resist Nature’s Lure; Venom Immunity; Timeless Body",
       "aonSummary": "While all druids traverse the wilderness with ease, the world walkers take it upon themselves to travel the entire world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:aerial-assaulter",
@@ -4628,7 +4628,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Aerial%20Assaulter",
       "replaces": "Class Skills; Bravery; 2nd, 12th-level Bonus Feat, Armor Mastery, Weapon Mastery",
       "aonSummary": "Aerial assaulters leap to great heights and create higher ground where there is none.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:airborne-ambusher",
@@ -4639,7 +4639,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Airborne%20Ambusher",
       "replaces": "Weapon/Armor Proficiency; Class Skills; Bravery; Weapon Training 1-4",
       "aonSummary": "(Strix Only) Driven by suspicion and hatred, strix doggedly guard their territories, making deadly use of their flight.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:aldori-defender",
@@ -4650,7 +4650,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Aldori%20Defender",
       "replaces": "Armor Training; 6th, 8th, 10th-level Bonus Feat",
       "aonSummary": "Trained warrior in the art of the Aldori dueling sword.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:aquanaut",
@@ -4661,7 +4661,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Aquanaut",
       "replaces": "Armor Proficiency; Bravery; Armor Training 1-4; Armor Mastery; Weapon Training 1-4",
       "aonSummary": "Aquanaut fighters master the movement of water, using its flow to their advantage in combat.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:archer",
@@ -4683,7 +4683,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Armiger",
       "replaces": "Class Skills; Skill Points; 1st, 10th-level Bonus Feats; Bravery",
       "aonSummary": "Fighters who focus their training to become Hellknights.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:armor-master",
@@ -4705,7 +4705,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Brawler",
       "replaces": "Armor Training 1-4; Weapon Training 1-4; Armor Mastery, Weapon Mastery",
       "aonSummary": "All melee is up close and personal, but some warriors bring it as close as they can get.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:cad",
@@ -4716,7 +4716,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Cad",
       "replaces": "Weapon/Armor Proficiency; Bravery; Armor Training 1-4; Weapon Training 1-4; Weapon Mastery",
       "aonSummary": "In combat, most fighters have some sort of code of honor. Some believe that one should not kick enemies when they are down, or should limit use of other such dirty tricks to the most dire of circumstances. The cad places no such limitations on himself.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:calistrian-hunter",
@@ -4727,7 +4727,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Calistrian%20Hunter",
       "replaces": "Weapon/Armor Proficiency; Class Skills; Bravery; Weapon Training 1-4; Weapon Mastery",
       "aonSummary": "Like a bounty hunter following his own rules, a Calistrian hunter tracks down elusive prey using his wits and delivers long-overdue retribution while easily ignoring his own injuries thanks to the joy he receives from a job well done.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:cavern-sniper",
@@ -4738,7 +4738,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Cavern%20Sniper",
       "replaces": "Class Skills; 1st, 4th-level Fighter Bonus Feats; Bravery; Weapon Training 1-4; Weapon Mastery",
       "aonSummary": "(Drow Only) Perfectly at home in the darkness, the cavern sniper capitalizes on stealth and ranged attacks imbued with his spell-like abilities to harass his opponents.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:child-of-acavna-and-amaznen",
@@ -4749,7 +4749,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Child%20of%20Acavna%20and%20Amaznen",
       "replaces": "Weapon/Armor Proficiency; Skills; 1st, 2nd, 8th, 12th, 16th, and 20th-level Combat Feats; Armor Training; Weapon Training",
       "aonSummary": "The child of Acavna and Amaznen has trained in the nearly forgotten arts of Azlant passed down by Aroden, which combine martial prowess with elementary wizardry. Inspired by the deities Aroden once worshiped long ago, children of Acavna and Amaznen strive to understand the dangers of the world and overcome them with knowledge and strength of arms.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:corsair",
@@ -4760,7 +4760,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Corsair",
       "replaces": "2nd-level Bonus Feat; Armor Training; 6th-level Bonus Feat",
       "aonSummary": "A corsair is a pirate who focuses on shipboard combat, relying on his strength of arms over his agility.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:crossbowman",
@@ -4771,7 +4771,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Crossbowman",
       "replaces": "Armor Training 1-4; Weapon Training 1-4; Armor Mastery",
       "aonSummary": "The crossbowman has perfected the deadly use of the crossbow, a simple but cruelly efficient weapon, as a craftsman mastering a lethal tool.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:cyber-soldier",
@@ -4782,7 +4782,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Cyber-Soldier",
       "replaces": "Weapon Training 1; Armor Training 2 and 4; Armor Mastery",
       "aonSummary": "Cyber-soldiers replace fallible flesh with precisioncrafted machinery.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:dirty-fighter",
@@ -4793,7 +4793,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Dirty%20Fighter",
       "replaces": "Bravery; Weapon Training 1-4",
       "aonSummary": "(Orc Only) The dirty fighter laughs at concepts like honor and fair play. He cares only for victory, no matter how he achieves it, and spends as much time mastering sneaky combat maneuvers as he does drilling with weapons or learning how to wear armor.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:dragonheir-scion",
@@ -4804,7 +4804,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Dragonheir%20Scion",
       "replaces": "Class Skills; 1st, 3rd, 5th-level Bonus Feats; Bravery; Armor Training; Armor Mastery; Weapon Mastery",
       "aonSummary": "Dragonheir scions are the martially inclined humanoid descendants of those influenced by draconic power.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:dragoon",
@@ -4815,7 +4815,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Dragoon",
       "replaces": "Weapon/Armor Proficiency; 1st-level Bonus Feat; Weapon Training 1-4; Armor Training 2-4; Weapon Mastery",
       "aonSummary": "These gallant lancers serve in the vanguard of many armies or as knights-errant.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:drill-sergeant",
@@ -4826,7 +4826,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Drill%20Sergeant",
       "replaces": "Bravery; Weapon Training 1-4",
       "aonSummary": "Drill sergeants excel at training other combatants in fighting techniques.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:druman-blackjacket",
@@ -4837,7 +4837,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Druman%20Blackjacket",
       "replaces": "Bravery; 4th, 8th, 12th, 16th-level Bonus Feats;",
       "aonSummary": "Known as the Blackjackets, the elite soldiers of Druma are and always have been mercenaries rather than a standing army.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:eldritch-guardian",
@@ -4859,7 +4859,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Foehammer",
       "replaces": "Armor Training 1-4; Weapon Training 2-4; Armor Mastery; Weapon Mastery",
       "aonSummary": "(Dwarf Only) While the axe is the most famous dwarven weapon, the hammer is at the heart of dwarves’ heritage as forgemasters and warriors alike.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:free-hand-fighter",
@@ -4870,7 +4870,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Free%20Hand%20Fighter",
       "replaces": "Bravery; Armor Training 1-4; Weapon Training 1-4; Armor Mastery",
       "aonSummary": "The free hand fighter specializes in the delicate art of handling a single weapon in one hand while using his free hand to balance, block, tip, and distract his opponents.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:gladiator",
@@ -4881,7 +4881,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Gladiator",
       "replaces": "Weapon/Armor Proficiency; Bravery",
       "aonSummary": "The gladiator is both a cunning warrior and a consummate performer, knowing life and death are balanced not only on a sword’s edge, but also on the cheers or jeers of the crowd.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:gloomblade",
@@ -4892,7 +4892,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Gloomblade",
       "replaces": "Class Skills; Armor Proficiencies; Armor Training; Weapon Training",
       "aonSummary": "The Shadow Plane’s substance is legendary for its versatility. In shadow-shrouded lands, secretive martial practitioners long ago learned to shape supernatural weapons from ribbons of pure darkness.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:high-guardian",
@@ -4903,7 +4903,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20High%20Guardian",
       "replaces": "Class Skills; 1st, 2nd, 4th-level Bonus Feats; Bravery",
       "aonSummary": "High guardians epitomize personal devotion, serving as the shield that protects his lord from the myriad dangers around every corner.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:lore-warden",
@@ -4925,7 +4925,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Lore%20Warden%20(PFS%20Field%20Guide)",
       "replaces": "Medium Armor, Heavy Armor, and Shield Proficiency; Bravery 1; Armor Training 1-4; Armor Mastery",
       "aonSummary": "Lore wardens are fighters who benefit from learning to outsmart and outmaneuver their foes rather than just overpower them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:martial-master",
@@ -4936,7 +4936,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Martial%20Master",
       "replaces": "Weapon Training; Weapon Mastery",
       "aonSummary": "There are those who learn the fighting arts though countless hours of repetition and training, while others seem to pick up new stances and forms as if they were born to them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:mobile-fighter",
@@ -4947,7 +4947,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Mobile%20Fighter",
       "replaces": "Bravery; Weapon Training 1-4; Armor Training 3-4; Weapon Mastery",
       "aonSummary": "Where some fighters focus on strength and raw power, the mobile fighter relies on swiftness and mobility, gliding across the battlefield like a steel whirlwind and leaving destruction in his wake.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:molthuni-defender",
@@ -4958,7 +4958,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Molthuni%20Defender",
       "replaces": "Armor Training",
       "aonSummary": "Taking advantage of their weighty armor, Molthuni defenders can hold back an onslaught of enemies intent on breaking through their line.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:mutation-warrior",
@@ -4980,7 +4980,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Opportunist",
       "replaces": "Class Skils; Bravery; 1st, 4th, 8th, 12th, 16th, 20th-level Bonus Feat; Weapon Training 1",
       "aonSummary": "Opportunists believe every battle is one of wits rather than arms.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:pack-mule",
@@ -4991,7 +4991,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Pack%20Mule",
       "replaces": "Skill Ranks; 1st-level Bonus Feat; Bravery; Armor Training 1-4; Armor Mastery",
       "aonSummary": "Pack mules carry heavy loads with ease and small packages with discretion.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:phalanx-soldier",
@@ -5002,7 +5002,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Phalanx%20Soldier",
       "replaces": "Bravery; Armor Training 1-4; Weapon Training 1-4; Weapon Mastery",
       "aonSummary": "The phalanx soldier specializes in defensive tactics, using his shield to guard himself and his allies and forming a shield wall like an unbreakable anvil against which his enemies break.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:polearm-master",
@@ -5013,7 +5013,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Polearm%20Master",
       "replaces": "Bravery; Armor Training 1-4; Weapon Training 1-4; Armor Mastery",
       "aonSummary": "The polearm master is schooled in the ancient wisdom that enemies are best faced at the end of long striking pole.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:qadira-dawnflower-dervish",
@@ -5024,7 +5024,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Qadira%20%20Dawnflower%20Dervish",
       "replaces": "Armor Training 1-4",
       "aonSummary": "Spinning warrior dervish of Sarenrae, wielding a scimitar with devastating consequences.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:relic-master",
@@ -5035,7 +5035,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Relic%20Master",
       "replaces": "Class Skills; Armor Training; Weapon Training; Armor Mastery",
       "aonSummary": "Commonly trained in the well-funded temples of Osirion or Qadira, the relic master is skilled in magic item mastery.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:roughrider",
@@ -5046,7 +5046,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Roughrider",
       "replaces": "Bravery; Armor Training 1-4; Weapon Training 1-4; Armor Mastery",
       "aonSummary": "Roughriders study and practice the fine points of mounted combat, drilling endlessly with warbeasts—from noble thoroughbreds to trained monsters—to form a perfect synergy between rider and steed.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:savage-warrior",
@@ -5057,7 +5057,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Savage%20Warrior",
       "replaces": "Bravery; Weapon Training 1-4; Weapon Mastery",
       "aonSummary": "Warriors' might is not measured only by their skill with steel, but also by their ability to inflict death with fang and claw, horn and hoof, and every exotic appendage the natural and unnatural world has to offer.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:scrapper",
@@ -5068,7 +5068,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Scrapper",
       "replaces": "Armor Training; Weapon Training 1",
       "aonSummary": "Scrappers are adept at collecting the leftovers from their enemy’s armor and using these scraps to improve their own armor.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:seasoned-commander",
@@ -5079,7 +5079,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Seasoned%20Commander",
       "replaces": "Armor Proficiencies; Skill Ranks per Level; Class Skills; 1st-level Bonus Feat; Armor Training 1, 3, 4; Weapon Training",
       "aonSummary": "The seasoned commander excels at leading troops through inspiration and the use of unit tactics.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:sensate",
@@ -5090,7 +5090,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Sensate",
       "replaces": "Class Skills; Weapon/Armor Proficiencies; Bravery; Armor Training 1-4; Weapon Training 2-4; Armor Mastery; Weapon Mastery",
       "aonSummary": "A sensate perceives battle through senses beyond mortal ken, anticipating his opponents’ movements before they even begin to act.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:shielded-fighter",
@@ -5101,7 +5101,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Shielded%20Fighter",
       "replaces": "Armor Training 1-4; Weapon Training 1-4; Armor Mastery; Weapon Mastery",
       "aonSummary": "A shielded fighter focuses on both offense and defense, blending weapon and shield in perfect balance to impede his enemies while delivering deadly blows, and even turning the shield itself into a formidable weapon.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:siegebreaker",
@@ -5112,7 +5112,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Siegebreaker",
       "replaces": "1st, 2nd, 4th, and 8th-level Bonus Feats; Bravery; Weapon Mastery",
       "aonSummary": "The siegebreaker is trained to break through lines of enemy soldiers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:skirmisher",
@@ -5123,7 +5123,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Skirmisher",
       "replaces": "Armor Proficiencies; Class Skills; Skill Ranks; 2nd-level Bonus Feat; Bravery; Armor Training; Armor Mastery",
       "aonSummary": "Not all battles are fought between armies; sometimes, a settlement or nation faces a threat too dire to fight in the open. In order to repel a much larger enemy force, some soldiers must abandon equipment and tactics designed for open-field warfare and instead rely on ambushes, hit-andrun tactics, and sabotage to whittle down their enemies’ strength and morale.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:spear-fighter",
@@ -5134,7 +5134,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Spear%20Fighter",
       "replaces": "Class Skills; Armor Proficiencies; Bravery; Armor Training; Armor Mastery; Weapon Training; Weapon Mastery",
       "aonSummary": "One of the oldest spear-fighting styles originates in Vudra, where many martial arts traditions consider the spear to be the ultimate weapon.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:steelbound-fighter",
@@ -5145,7 +5145,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Steelbound%20Fighter",
       "replaces": "1st level Bonus Feat; Weapon Training 1-4",
       "aonSummary": "A fighter who has impressive martial resolve and technique with a specific weapon as the result of a powerful relationship a similar weapon had with one of his ancestors.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:swarm-fighter",
@@ -5156,7 +5156,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Swarm%20Fighter",
       "replaces": "Weapon/Armor Proficiency; 1st, 2nd, 6th, 10th, 14th, 18th-level Bonus Feats; Bravery; Weapon Training 1-4; Weapon Mastery",
       "aonSummary": "(Kobold Only) Scuttling between the legs of friend and\r foe alike, the swarm fighter is an unshakable combatant.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:tactician",
@@ -5167,7 +5167,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Tactician",
       "replaces": "Weapon/Armor Proficiency; 1st-level Bonus Feat; Bravery; Weapon Training 1; Armor Training 3, 4",
       "aonSummary": "While many fighters focus on the fundamentals of melee and ranged combat, there are those who are trained to view the bigger picture on the battlefield.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:taldor-rondelero-duelist",
@@ -5178,7 +5178,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Taldor%20%20Rondelero%20Duelist",
       "replaces": "Armor Training 1-3, Bravery, Weapon Training 1",
       "aonSummary": "One who has perfected the art of rondelero, fighting with falcata and buckler.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:thunderstriker",
@@ -5189,7 +5189,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Thunderstriker",
       "replaces": "Armor Training 1-4; Weapon Training 3-4; Armor Mastery",
       "aonSummary": "The thunderstriker adopts an unusual fighting style, gripping a heavy weapon with both hands and switching to a defensive posture with weapon and buckler, lashing out with the shield with surprising speed and power.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:titan-fighter",
@@ -5200,7 +5200,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Titan%20Fighter",
       "replaces": "1st-level Bonus Feat; Armor Training; Weapon Training",
       "aonSummary": "Titan fighters make use of enormous weapons others can barely lift.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:tower-shield-specialist",
@@ -5211,7 +5211,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Tower%20Shield%20Specialist",
       "replaces": "Bravery; Weapon Training 1-4; Weapon Mastery",
       "aonSummary": "Many fighters believe the tower shield is a tool suitable only for troops on the battlefield, claiming it is too large and bulky to use in skirmishes or within dungeon corridors.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:trench-fighter",
@@ -5222,7 +5222,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Trench%20Fighter",
       "replaces": "Armor Training 1-4",
       "aonSummary": "Advances in technology have made archaic armors\r obsolete by the twentieth century, and modern soldiers\r concentrate training on firearms and swift feet.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:tribal-fighter",
@@ -5233,7 +5233,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Tribal%20Fighter",
       "replaces": "1st-level Bonus Feat; Weapon Training",
       "aonSummary": "A tribal fighter knows that it is not the weapon that matters but the hand that wields it. Instead of encasing himself in metal armor like the soldiers fighting and dying for the socalled civilized lands do, he prefers to wear something he or his ancestors have killed.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:two-handed-fighter",
@@ -5244,7 +5244,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Two-Handed%20Fighter",
       "replaces": "Bravery; Armor Training 1-4; Armor Mastery",
       "aonSummary": "Some fighters focus their efforts on finding the biggest, heaviest, most imposing weapon they can find and training to manage and harness the weight of their massive weapons for maximum impact.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:two-weapon-warrior",
@@ -5255,7 +5255,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Two-Weapon%20Warrior",
       "replaces": "Armor Training 1-4; Weapon Training 1-4; Armor Mastery",
       "aonSummary": "Trained under great masters who preached the simple truth that two are better than one when it comes to weapons, the two-weapon warrior is a terror when his hands are full.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:unarmed-fighter",
@@ -5266,7 +5266,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Unarmed%20Fighter",
       "replaces": "Weapon/Armor Proficiency; 1st-level Bonus Feat; Bravery; Armor Training 1-4; Weapon Training 1-4; 8th, 12th-level Bonus Feat; Armor Mastery; Weapon Mastery",
       "aonSummary": "The unarmed fighter picks up a weapon only rarely, and when he does, he prefers the weapons of the monk.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:unbreakable",
@@ -5277,7 +5277,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Unbreakable",
       "replaces": "Weapon/Armor Proficiency; 1st-level Bonus Feat; Bravery; Weapon Training 1-4; Armor Training 3-4; Weapon Mastery",
       "aonSummary": "The unbreakable is a warrior of indomitable will, unstoppable and implacable once he has set his mind upon a course of action.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:ustalavic-duelist",
@@ -5288,7 +5288,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Ustalavic%20Duelist",
       "replaces": "Weapon/Armor Proficiency; 1st-level Bonus Feat; Weapon Training 1-4",
       "aonSummary": "The University of Lepidstadt has developed a reputation for churning out fearsome duelists. At the end of each academic year, the students all gather together and duel one another with light blades. Each student duels one opponent after another until he is marked on the cheek by an adversary’s blade. These “Lepidstadt scars” are recognized throughout the Inner Sea region and beyond as marks of their prowess. The Lepidstadt Style is one of fluid motion and precise thrusts.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:varisian-free-style-fighter",
@@ -5299,7 +5299,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Varisian%20Free-Style%20Fighter",
       "replaces": "Class Skills; 1st, 6th, 10th, and 12th-level Bonus Feats; Weapon Training; Weapon Mastery; Armor Training",
       "aonSummary": "Free-style fighters are most common in Varisia, where their training—students’ traveling study with multiple teachers, or perhaps instruction in the anything-goes mentality of the Price of Freedom school in Kaer Maga—allows them to blend fighting styles into a greater whole.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:venomblade",
@@ -5310,7 +5310,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Venomblade",
       "replaces": "1st, 6th, 12th-level Bonus Feat; Bravery",
       "aonSummary": "(Nagaji) The venomblade has learned to take full advantage of his toxic spittle, blinding his targets and then rushing in to cut them down where they stand.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:viking",
@@ -5321,7 +5321,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Viking",
       "replaces": "Weapon/Armor Proficiencies; Bravery; Armor Training; Weapon Training; Bonus Feats",
       "aonSummary": "Vikings seek to raid “softer societies” and return with their longships filled with plunder. A viking strikes fear into the heart of her foes, and in battle she can fly into a terrible rage.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:warlord",
@@ -5332,7 +5332,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Warlord",
       "replaces": "Class Skills; Weapon and Armor Proficiency; Armor Training; Armor Mastery",
       "aonSummary": "Honorable, fearless experts in gun and blade, warlords eschew armor as impractical to their harsh and often desert-like environment",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:weapon-bearer-squire",
@@ -5343,7 +5343,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Weapon%20Bearer%20Squire",
       "replaces": "1st-level Bonus Feat; 2nd-level Bonus Feat; Armor Training 1",
       "aonSummary": "The weapon bearer squire ensures her knight is equipped for any task.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "fighter:weapon-master",
@@ -5354,7 +5354,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Fighter%20Weapon%20Master",
       "replaces": "Bravery; Armor Training 1-4; Weapon Training 1-4; Armor Mastery",
       "aonSummary": "Devoted to the perfection of a single weapon, the weapon master's meditations upon his favored weapon border on the obsessive, but none can deny his consummate skill.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:black-powder-vaulter",

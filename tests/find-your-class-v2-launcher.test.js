@@ -23,7 +23,7 @@ test('find-your-class-v2/index.html resolves all class profiles and archetype ba
   assert.match(pageHtml, /archetype-profiles-slayer\.json/);
   assert.match(pageHtml, /archetype-profiles-summoner-unchained\.json/);
   assert.match(pageHtml, /archetype-profiles-alchemist\.json/);
-  for (const id of ['antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric']) assert.match(pageHtml, new RegExp(`archetype-profiles-${id}\\.json`));
+  for (const id of ['antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric','druid','fighter']) assert.match(pageHtml, new RegExp(`archetype-profiles-${id}\\.json`));
   assert.match(pageHtml, /resolveAllProfiles\(classProfiles, archetypeOverrides\)/);
 });
 
