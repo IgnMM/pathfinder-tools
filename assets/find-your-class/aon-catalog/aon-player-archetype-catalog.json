@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T15:57:02.966Z",
+  "generatedAt": "2026-09-17T16:10:08.580Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
@@ -8,9 +8,9 @@
     "archetypes": 1275,
     "entities": 1319,
     "valuedClasses": 44,
-    "valuedArchetypes": 964,
+    "valuedArchetypes": 1037,
     "pendingClasses": 0,
-    "pendingArchetypes": 311,
+    "pendingArchetypes": 238,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -10238,7 +10238,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Acrobat",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "Whether they are daring thieves, infiltrating assassins, or intrepid spies, proper training in acrobatics is a valuable boon for rogues.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:bandit",
@@ -10249,7 +10249,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Bandit",
       "replaces": "Uncanny Dodge",
       "aonSummary": "Bandits tend to have a variety of skills; sometimes these skills are similar to a ranger’s, but a bandit’s tactics always deal with surprise followed by intimidation, with the clear threat of naked force if intimidation does not do the trick.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:bekyar-kidnapper",
@@ -10260,7 +10260,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Bekyar%20Kidnapper",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "A Bekyar kidnapper is not only adept at hiding herself in thick jungles and quickly subduing her prey, but also at spreading rumors of hidden ruins, buried treasure, and other such valuables that might lure an unwary foreigner into her traps.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:bellflower-irrigator",
@@ -10271,7 +10271,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Bellflower%20Irrigator",
       "replaces": "Trapfinding; 4th-level Rogue Talent; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Rather than focusing on saving slaves, Bellflower irrigators seek to defeat slavery by aiming to eliminate the source.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:burglar",
@@ -10293,7 +10293,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Carnivalist",
       "replaces": "2nd, 4th, 6th-level Rogue Talents; Sneak Attack; Trap Sense",
       "aonSummary": "Carnivalists train their miniature minions to perform acts of larceny and often hide their true talents behind theatrical sideshows.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:cat-burglar",
@@ -10304,7 +10304,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Cat%20Burglar",
       "replaces": "Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "(Catfolk Only) Cat burglars are masters of breaking and entering, using their feline grace to make it seem as though no crime was ever committed in the first place.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:chameleon",
@@ -10315,7 +10315,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Chameleon",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "An absolute master of disguise, a chameleon effortlessly blends into any environment.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:charlatan",
@@ -10337,7 +10337,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Consigliere",
       "replaces": "Class Skills; Trapfinding; Evasion; Uncanny Dodge; Improved Uncanny Dodge; Trap Sense; 10th-level Rogue Talent",
       "aonSummary": "Consiglieres act as trusted mediators and administrators for crime families and various criminal organizations, and many serve as the right hand to the leaders of such groups.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:construct-saboteur",
@@ -10348,7 +10348,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Construct%20Saboteur",
       "replaces": "Class Skills; Trapfinding; 2nd-level Rogue Talent; Trap Sense",
       "aonSummary": "The construct saboteur harnesses arcane energy to combat the golems and eldritch guardians that prowl the depths of ancient ruins and forgotten tombs.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:counterfeit-mage",
@@ -10359,7 +10359,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Counterfeit%20Mage",
       "replaces": "Trapfinding; 4th-level Rogue Talent",
       "aonSummary": "Charlatans and stage magicians use slight of hand to fake magic. A counterfeit mage goes a step further, parroting the motions and activation phrases used by arcane casters to activate wands or other magical accoutrements.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:cutpurse",
@@ -10370,7 +10370,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Cutpurse",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "Cutpurses are often trained by guilds to collect the guild’s tax from local businesses on a daily basis, whether through intimidation or pickpocketing. Some find themselves taking up the mantle of adventurer, and their talents are generally appreciated in this role, but the cutpurse is still the first person her companions look to when an item goes missing.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:dark-lurker",
@@ -10381,7 +10381,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Dark%20Lurker",
       "replaces": "Evasion; 2nd, 8th, 14th, and 20th-level Rogue Talents",
       "aonSummary": "Dark lurkers use darkness as an ally.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:deadly-courtesan",
@@ -10392,7 +10392,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Deadly%20Courtesan",
       "replaces": "Class Skills; 2nd-level Rogue Trick; Trap Sense; Improved Uncanny Dodge",
       "aonSummary": "(Vishkanya Only) Skilled at manipulation and diversion, the deadly courtesan builds up those around her and periodically takes them down.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:desert-raider",
@@ -10403,7 +10403,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Desert%20Raider",
       "replaces": "Class Skills; Trapfinding; Trap Sense",
       "aonSummary": "Desert raider learn the secrets of the deserts and become inured to their dangers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:discretion-specialist",
@@ -10414,7 +10414,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Discretion%20Specialist",
       "replaces": "Trapfinding; Trap Sense/Danger Sense; 4th, 12-th level Rogue Talents; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Discretion specialists deal with bodies, inconvenient witnesses, and other loose ends.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:dreamthief",
@@ -10425,7 +10425,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Dreamthief",
       "replaces": "Class Skills; Sneak Attack; Master Strike; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge; 12th-level Rogue Talent",
       "aonSummary": "Each dreamthief bears a focused fragment of emotion, known as a dreamshard, within her soul. This metaphysical crystal grants a dreamthief supernatural powers, which she supplements with skill and grace.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:driver",
@@ -10436,7 +10436,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Driver",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "A driver makes her living driving vehicles in the service of those who can pay for her considerable talents.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:earthshadow",
@@ -10447,7 +10447,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Earthshadow",
       "replaces": "Trapfinding; Evasion; 4th, 8th, 12th, 16th-level Rogue Talents",
       "aonSummary": "In the centuries since the Quest for the Sky, the mystic lore the dwarves call earthcraft has been passed down through the generations, and its practitioners are called earthshadows.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:eldritch-raider",
@@ -10458,7 +10458,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Eldritch%20Raider",
       "replaces": "Class Skills; Skill Ranks; 2nd-level Rogue Talent; Trap Sense",
       "aonSummary": "(Gillman Only) An eldritch raider is a rogue who seeks to unravel the mysteries of the destruction of the gillmen’s homeland.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:eldritch-scoundrel",
@@ -10480,7 +10480,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Escapologist",
       "replaces": "Trapfinding; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "The escapologist excels at escaping any confinement, whether physical, magical, or mental. Few restraints can hold an escapologist for long.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:false-medium",
@@ -10491,7 +10491,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20False%20Medium",
       "replaces": "Trapfinding; 2nd-level Rogue Talent; Trap Sense",
       "aonSummary": "The false medium is a master of pretending to have occult powers in order to manipulate the emotions and atmosphere of the people and places around him, often reaping a healthy reward from the bereaved, who find solace in his comforting lies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:fey-prankster",
@@ -10502,7 +10502,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Fey%20Prankster",
       "replaces": "Trapfinding; 2nd, 6th, 8th, and 12th-level Rogue Talents; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "(Gathlain) Fey pranksters specialize in tricking others to teach a lesson or for their own entertainment.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:filcher",
@@ -10513,7 +10513,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Filcher",
       "replaces": "Evasion; Trap Sense 1-6; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "(Halfling Only) Whether cutting purses in the midst of combat or replacing prized items with fakes under the noses of their owners, the filcher is the master of the quick and quiet steal.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:galtan-agitator",
@@ -10524,7 +10524,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Galtan%20Agitator",
       "replaces": "Trapfinding; Trap Sense; 4th, 8th, 12th-level Rogue Talent",
       "aonSummary": "Galtan agitators fight mightily to cast down the enemies of their ideals within the shambles of the tumultuous nation of Galt.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:guerrilla",
@@ -10535,7 +10535,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Guerrilla",
       "replaces": "Trapfinding; Evasion; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Guerrillas fight against oppressive leadership and governments including Chelish colonization in Sargava and the power structures in Cheliax proper, Nidal, and Razmiran",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:guild-agent",
@@ -10546,7 +10546,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Guild%20Agent",
       "replaces": "Evasion; Uncanny Dodge; Improved Evasion; Master Strike",
       "aonSummary": "Guild agents are members of a thieves’ guild or other shadowy organization. What they lose in independence, they more than make up for in benefits gained due to their association’s infrastructure.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:gun-smuggler",
@@ -10557,7 +10557,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Gun%20Smuggler",
       "replaces": "Weapon Proficiencies; Trapfinding; Sneak Attack; Trap Finding; 6th-level Rogue Talent; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Gun smugglers are adept at procuring firearms and concealing their secret weapons",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:heister",
@@ -10568,7 +10568,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Heister",
       "replaces": "2nd, 4th, 8th-level Rogue Talent; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Notorious for their stealth, imagination, and elaborately planned thefts and capers, heisters specialize in breaking into secure locations, stealing items of value, and escaping undetected.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:investigator",
@@ -10579,7 +10579,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Investigator",
       "replaces": "Trapfinding",
       "aonSummary": "Not all rogues work against the law. Investigators use their skills to serve the law, often in the employ of nobles or in the pursuit of noble causes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:kintargo-rebel",
@@ -10590,7 +10590,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Kintargo%20Rebel",
       "replaces": "Trap Sense; Uncanny Dodge",
       "aonSummary": "Whenever the Chelish navy sails into the port, these rebels are quick to appear agreeably subservient in order to conceal their noncompliance and avoid retribution.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:kitsune-trickster",
@@ -10601,7 +10601,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Kitsune%20Trickster",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "(Kitsune Only) The kitsune trickster combines her sharpened wit with minor arcane powers of charm and persuasion.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:knife-master",
@@ -10612,7 +10612,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Knife%20Master",
       "replaces": "Trapfinding; Sneak Attack; Trap Sense",
       "aonSummary": "The knife master is a trained killer who specializes in close-up combat and the wave and weave of knife fighting.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:makeshift-scrapper",
@@ -10623,7 +10623,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Makeshift%20Scrapper",
       "replaces": "Weapon Proficiencies; Trapfinding; Trap Sense; 12th-level Rogue Talent",
       "aonSummary": "Some combatants specialize in the study of certain weapons, but those without formal training often learn to survive a fight by making brilliant use of whatever is lying around.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:master-of-disguise",
@@ -10634,7 +10634,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Master%20of%20Disguise",
       "replaces": "Trapfinding; 2nd, 10th-level Rogue Talent",
       "aonSummary": "A master of disguise believes that never letting her adversaries know her true identity protects her from bad luck or missteps on a job.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:nameless-shadow",
@@ -10645,7 +10645,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Nameless%20Shadow",
       "replaces": "Trapfinding; 2nd, 4th, 6th, 8th, 10th, 14th, 18th-level Rogue Talents",
       "aonSummary": "Where bandits and tyrants prey on merchants and caravans, the nameless shadow preys on bandits and tyrants.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:needler",
@@ -10656,7 +10656,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Needler",
       "replaces": "Evasion; Uncanny Dodge; 6th-level Rogue Talent; Improved Uncanny Dodge",
       "aonSummary": "Needlers use subtlety and misdirection to deliver deadly poisons to unsuspecting victims in creative and unorthodox ways.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:numerian-scavenger",
@@ -10667,7 +10667,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Numerian%20Scavenger",
       "replaces": "Trapfinding; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "A Numerian scavenger lives for the discovery of new technological wonders scraped from the depths of the strange ruins, metal caverns, and outlandish junkyards of Numeria.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:okeno-liberator",
@@ -10678,7 +10678,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Okeno%20Liberator",
       "replaces": "Trapfinding; Trap Sense; Uncanny Dodge",
       "aonSummary": "The sight of yellow sails on the Inner Sea signals the approach of a ship from Okeno, home port of the most ruthless and feared of all slaving operations. Most who see these sails flee in terror, but some freedom fighters actually endeavor to be captured, knowing that being taken to Stonespine Island in manacles is the easiest way to infiltrate the city, liberate other slaves, and lead them to freedom.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:phantom-thief",
@@ -10689,7 +10689,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Phantom%20Thief",
       "replaces": "Class Skills; Sneak Attack; Trapfinding; Trap Sense; Master Strike",
       "aonSummary": "Phantom thieves come from the ranks of the elite, having grown bored with their finery, and seek thrills from acts of daring, skill, and crime.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:pirate",
@@ -10700,7 +10700,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Pirate",
       "replaces": "Trapfinding; 2nd-level Rogue Talent; Trapfinding",
       "aonSummary": "A pirate breaks from the confines of country and king to commit her crimes upon the high seas.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:planar-sneak",
@@ -10711,7 +10711,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Planar%20Sneak",
       "replaces": "Trapsense; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "A planar sneak finds creative ways to defy conventional limitations when trying to overcome extraplanar obstacles.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:poisoner",
@@ -10722,7 +10722,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Poisoner",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "The poisoner knows poison is just a tool toward an end, and is no different than any other weapon.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:rake",
@@ -10733,7 +10733,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Rake",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "The rake is a rogue who is open about her skills and talents, often to the point of being boastful.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:relic-raider",
@@ -10744,7 +10744,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Relic%20Raider",
       "replaces": "Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Relic raiders are rogues who specialize in recovering treasures from ruins and tombs, some in a quest for knowledge, others out of a desire for riches.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:river-rat",
@@ -10755,7 +10755,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20River%20Rat",
       "replaces": "Class Skills; Trapfinding; Trap Sense",
       "aonSummary": "River rats are skilled at hiding amid reeds and roots, striking the unwary from the shallows as others would from the shadows.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:roof-runner",
@@ -10766,7 +10766,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Roof%20Runner",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "A specialized urban acrobat, the roof runner makes her home high atop the spires and gables of great cities.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:rotdrinker",
@@ -10777,7 +10777,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Rotdrinker",
       "replaces": "Evasion; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Poisons are common tools in a rogue’s trade, and some poison-using rogues are so frequently exposed to these toxins that they have developed resistances to particular poisons.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:sanctified-rogue",
@@ -10788,7 +10788,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sanctified%20Rogue",
       "replaces": "Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "The sanctified rogue serves a higher purpose, acting as a representative of a church or cult, or following the tenets of a specific faith or deity.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:sapper",
@@ -10799,7 +10799,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sapper",
       "replaces": "Trapfinding; 2nd and 4th-level Rogue Talents",
       "aonSummary": "The sapper is a trained siege engineer and can deal with traps and other obstacles given plenty of time.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:scout",
@@ -10821,7 +10821,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Scroll%20Scoundrel",
       "replaces": "2nd-level Rogue Talent, Trap Sense, Uncanny Dodge, Improved Uncanny Dodge, 10th-level Rogue Talent",
       "aonSummary": "Using knowledge from extensive research, the scroll scoundrel exploits overconfidence and predictability to better stay alive.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:sczarni-swindler",
@@ -10832,7 +10832,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sczarni%20Swindler",
       "replaces": "Trapfinding; Evasion; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "If life is a game, the Sczarni play to win. When skill and luck aren’t enough, cheating is often the best option.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:seeker-of-the-lost",
@@ -10843,7 +10843,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Seeker%20of%20the%20Lost",
       "replaces": "2nd-level Rogue Talent; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Aquatic elven adventurers descending into the ruins of sunken Azlant developed techniques to ease their explorations, and they now share these techniques among a loose group of acquaintances calling themselves the seekers of the lost.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:shadow-scion",
@@ -10854,7 +10854,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Shadow%20Scion",
       "replaces": "Trapfinding; 2nd, 8th, 14th-level Rogue Talent; Master Strike",
       "aonSummary": "Shadow scions have learned the secrets of light and dark and draw power from the shadows themselves.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:shadow-walker",
@@ -10865,7 +10865,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Shadow%20Walker",
       "replaces": "Trapfinding; 2nd-level Rogue Talent; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Shadow walkers are comfortable in light, darkness, and the shadows in between.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:sharper",
@@ -10876,7 +10876,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sharper",
       "replaces": "Trapfinding; 2nd, 4th, 6th, 8th, 10th, 16th-level Rogue Talent; Trap Sense;",
       "aonSummary": "Sharpers use trickery and deception to part an owner from his valuables.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:skulking-slayer",
@@ -10887,7 +10887,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Skulking%20Slayer",
       "replaces": "Weapon/Armor Proficiency; Class Skills; Trapfinding; Rogue Talent; Advanced Rogue Talent; Trap Sense 1-4",
       "aonSummary": "(Half-Orc Only) Pushed into a life of crime by the society around them, half-orcs gravitate toward criminal activities that suit them best.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:sly-saboteur",
@@ -10898,7 +10898,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sly%20Saboteur",
       "replaces": "Class Skills; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge;",
       "aonSummary": "Sly saboteurs are irregular soldiers who specialize in sabotage and surprise attacks.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:smuggler",
@@ -10909,7 +10909,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Smuggler",
       "replaces": "Trap Sense; Trapfinding; Evasion",
       "aonSummary": "Smugglers specialize in moving contraband from one area to another while avoiding detection by authorities.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:snare-setter",
@@ -10920,7 +10920,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Snare%20Setter",
       "replaces": "Sneak Attack; Trapfinding; Master Strike",
       "aonSummary": "(Kobold Only) Deep in darkness, the snare setter constructs his deadly\r traps and brutal mechanisms to confound and destroy any\r who try to invade his domain.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:sniper",
@@ -10931,7 +10931,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sniper",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "Some say that the sniper is the worst kind of assassin: a killer who waits silently in the shadows and then strikes from a distance without remorse.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:snoop",
@@ -10942,7 +10942,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Snoop",
       "replaces": "Trapfinding; Evasion; Uncanny Dodge; Improved Uncanny Dodge; 8th-level Rogue Talent",
       "aonSummary": "Snoops act as information peddlers, specializing in gathering secrets through investigation, subterfuge, and coercion, and selling or trading those secrets for personal gain.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:spy",
@@ -10953,7 +10953,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Spy",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "The best spies are like chameleons, but not only can they change their appearances to fit the situation, they can also change their personalities, allegiances, and even loves if that’s what it takes to achieve their clandestine goals.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:survivalist",
@@ -10964,7 +10964,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Survivalist",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "The survivalist focuses her talents on surviving harsh and unforgiving conditions that would kill a lesser rogue.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:swamp-poisoner",
@@ -10975,7 +10975,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Swamp%20Poisoner",
       "replaces": "Racial Traits; Trapfinding; 2nd-level Rogue Talent; Trap Sense",
       "aonSummary": "(Grippli) Swamp poisoners use their own toxins to defend their homes and level the playing field",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:swashbuckler",
@@ -10986,7 +10986,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Swashbuckler",
       "replaces": "Trapfinding; Trap Sense",
       "aonSummary": "A paragon of mobile swordplay, the swashbuckler is a rogue who focuses almost exclusively on honing her skill at arms and perfecting daring acrobatic moves and elaborate flourishes that border on performance.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:swordmaster",
@@ -10997,7 +10997,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Swordmaster",
       "replaces": "Class Skills; Trap Sense",
       "aonSummary": "(Tengu Only) A swordmaster meditates to strengthen her spiritual connection to her blade. She strives to perfect her skills by mastering six deadly trances.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:sylvan-trickster",
@@ -11008,7 +11008,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sylvan%20Trickster",
       "replaces": "Class Skills; Trapfinding; Rogue Talents; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Sylvan tricksters are rogues who model themselves after the mischievous fey of legend.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:thug",
@@ -11030,7 +11030,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Tidal%20Trickster",
       "replaces": "Trapfinding; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge; 4th, 8th-level Rogue Talent",
       "aonSummary": "Tidal tricksters roam the seas, using their skillful mastery of the currents to move across aquatic battlefields and throw their enemies off-balance.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:toxic-talon",
@@ -11041,7 +11041,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Toxic%20Talon",
       "replaces": "Weapon Proficiencies; Trapfinding; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "A toxic talon spends resources and time combining easy-to-obtain materials into dangerous toxins to aid in the defense of Andoran.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:trapsmith",
@@ -11052,7 +11052,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Trapsmith",
       "replaces": "Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Some rogues are not content with just disabling traps—they love to build them, finding a captivating beauty in the turning of gears and the slither of ropes over pulleys.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:underground-chemist",
@@ -11063,7 +11063,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Underground%20Chemist",
       "replaces": "Evasion; 4th-level Rogue Talent; Advanced Talents",
       "aonSummary": "Underground chemists are part of the rotting, fetid underbelly of the alchemical world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:vexing-dodger",
@@ -11074,7 +11074,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Vexing%20Dodger",
       "replaces": "Trapfinding; 2nd-level Rogue Talent; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Vexing dodgers take advantage of their smaller size to outmaneuver larger foes such as giants.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "rogue:waylayer",
@@ -11085,7 +11085,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Waylayer",
       "replaces": "Trapfinding; Uncanny Dodge; Improved Uncanny Dodge; 12th and 20th-level Rogue Talents",
       "aonSummary": "A clever rogue knows the easiest battle to win is the one that’s over before your foe knows it has begun.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "samurai:brawling-blademaster",

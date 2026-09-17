@@ -9,7 +9,7 @@ const added = readJson('assets/find-your-class/aon-catalog/new-scope-archetype-d
 const classes = ['01', '02', '03', '04', '05', '06'].flatMap(batch =>
   readJson(`assets/find-your-class/v2/class-profiles-batch-${batch}.json`).profiles
 );
-const completedClassIds = ['alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric','druid','fighter','gunslinger','hunter','inquisitor','investigator','kineticist','magus','medium','mesmerist','monk','monk-unchained','ninja','occultist','oracle','paladin','psychic','ranger'];
+const completedClassIds = ['alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric','druid','fighter','gunslinger','hunter','inquisitor','investigator','kineticist','magus','medium','mesmerist','monk','monk-unchained','ninja','occultist','oracle','paladin','psychic','ranger','rogue'];
 const archetypes = Array.from({length: 10}, (_, index) => String(index + 1).padStart(2, '0')).flatMap(batch =>
   readJson(`assets/find-your-class/v2/archetype-profiles-pilot-${batch}.json`).profiles
 ).filter(profile => !completedClassIds.includes(profile.parentClassId)).concat(
@@ -27,15 +27,15 @@ test('AoN catalogue contains 44 classes and 1,275 unique archetypes', () => {
   assert.equal(catalogue.counts.entities, 1319);
 });
 
-test('all 44 class profiles and 964 archetype profiles are present and marked valued', () => {
+test('all 44 class profiles and 1037 archetype profiles are present and marked valued', () => {
   const classStatus = new Map(catalogue.classes.map(item => [item.id, item.valuationStatus]));
   const archetypeStatus = new Map(catalogue.archetypes.map(item => [item.id, item.valuationStatus]));
   assert.equal(classes.length, 44);
-  assert.equal(archetypes.length, 964);
+  assert.equal(archetypes.length, 1037);
   for (const profile of classes) assert.equal(classStatus.get(profile.id), 'valued', profile.id);
   for (const profile of archetypes) assert.equal(archetypeStatus.get(profile.id), 'valued', profile.id);
   assert.equal(catalogue.counts.valuedClasses, 44);
-  assert.equal(catalogue.counts.valuedArchetypes, 964);
+  assert.equal(catalogue.counts.valuedArchetypes, 1037);
 });
 
 test('the newly discovered Slayer and unchained Summoner records are complete', () => {

@@ -1,0 +1,2518 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Rogue parent value.",
+  "profiles": [
+    {
+      "id": "rogue:acrobat",
+      "name": "Acrobat",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 132",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Acrobat",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Expert Acrobat / Second Chance / Rogue Talents / Advanced Talents",
+          "reason": "Expert Acrobat / Second Chance / Rogue Talents / Advanced Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Whether they are daring thieves, infiltrating assassins, or intrepid spies, proper training in acrobatics is a valuable boon for rogues.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:bandit",
+      "name": "Bandit",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Combat pg. 71",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Bandit",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "bandit"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Ambush / Fearsome Strike / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Ambush / Fearsome Strike / Rogue Talents / Advanced Talents package materially changes debuffing enemies from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Bandits tend to have a variety of skills; sometimes these skills are similar to a ranger’s, but a bandit’s tactics always deal with surprise followed by intimidation, with the clear threat of naked force if intimidation does not do the trick.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:bekyar-kidnapper",
+      "name": "Bekyar Kidnapper",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Inner Sea Combat pg. 36",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Bekyar%20Kidnapper",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Clean Capture / Abductor / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Clean Capture / Abductor / Rogue Talents / Advanced Talents package materially changes combat manoeuvres from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A Bekyar kidnapper is not only adept at hiding herself in thick jungles and quickly subduing her prey, but also at spreading rumors of hidden ruins, buried treasure, and other such valuables that might lure an unwary foreigner into her traps.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:bellflower-irrigator",
+      "name": "Bellflower Irrigator",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Adventurer's Guide pg. 43",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Bellflower%20Irrigator",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "abolitionist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Bellflower Crop / Poison Use / Grafting / Irrigation",
+          "reason": "The archetype’s Bellflower Crop / Poison Use / Grafting / Irrigation package materially changes tactical leadership from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Bellflower Crop / Poison Use / Grafting / Irrigation",
+          "reason": "The archetype’s Bellflower Crop / Poison Use / Grafting / Irrigation package materially changes debuffing enemies from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Rather than focusing on saving slaves, Bellflower irrigators seek to defeat slavery by aiming to eliminate the source.",
+      "tradeoff": "It replaces or alters Trapfinding; 4th-level Rogue Talent; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:burglar",
+      "name": "Burglar",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 132",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Burglar",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "burglar",
+          "evidenceSection": "Careful Disarm / Distraction",
+          "evidenceText": "The archetype explicitly specialises in breaking in, bypassing traps and diverting attention."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Careful Disarm / Distraction / Rogue Talents / Advanced Talents",
+          "reason": "Careful Disarm / Distraction / Rogue Talents / Advanced Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Adept at infiltration, trap removal, and lock picking, burglars prey on the homes of the wealthy and forgotten tombs alike.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:carnivalist",
+      "name": "Carnivalist",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Animal Archive pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Carnivalist",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "support-buffing": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Class Skills / Familiar / Pet Performance / Trained Legerdemain",
+          "reason": "The archetype’s Class Skills / Familiar / Pet Performance / Trained Legerdemain package materially changes summoning companions from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Class Skills / Familiar / Pet Performance / Trained Legerdemain",
+          "reason": "The archetype’s Class Skills / Familiar / Pet Performance / Trained Legerdemain package materially changes support buffing from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Carnivalists train their miniature minions to perform acts of larceny and often hide their true talents behind theatrical sideshows.",
+      "tradeoff": "It replaces or alters 2nd, 4th, 6th-level Rogue Talents; Sneak Attack; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:cat-burglar",
+      "name": "Cat Burglar",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Race Guide pg. 92",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Cat%20Burglar",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Catfolk characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Phantom Presence / Trap Saboteur / Rogue Talents / Advanced Talents",
+          "reason": "Phantom Presence / Trap Saboteur / Rogue Talents / Advanced Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Cat burglars are masters of breaking and entering, using their feline grace to make it seem as though no crime was ever committed in the first place.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:chameleon",
+      "name": "Chameleon",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Combat pg. 71",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Chameleon",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Misdirection / Effortless Sneak / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Misdirection / Effortless Sneak / Rogue Talents / Advanced Talents package materially changes wilderness affinity from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "An absolute master of disguise, a chameleon effortlessly blends into any environment.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:charlatan",
+      "name": "Charlatan",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Combat pg. 72",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Charlatan",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "charlatan",
+          "evidenceSection": "Natural Born Liar / Grand Hoax",
+          "evidenceText": "The archetype explicitly operates through lies, false identities and elaborate hoaxes."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Natural Born Liar / Grand Hoax / Rogue Talents / Advanced Talents",
+          "reason": "Natural Born Liar / Grand Hoax / Rogue Talents / Advanced Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A charlatan is a master of lies and deception.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:consigliere",
+      "name": "Consigliere",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Intrigue pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Consigliere",
+      "capabilityOverrides": {
+        "tactical-leadership": "available",
+        "support-buffing": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "consigliere"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Class Skills / Convincing Attitude / Combat Advisor / Bonus Feats",
+          "reason": "The archetype’s Class Skills / Convincing Attitude / Combat Advisor / Bonus Feats package materially changes tactical leadership from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Class Skills / Convincing Attitude / Combat Advisor / Bonus Feats",
+          "reason": "The archetype’s Class Skills / Convincing Attitude / Combat Advisor / Bonus Feats package materially changes support buffing from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Consiglieres act as trusted mediators and administrators for crime families and various criminal organizations, and many serve as the right hand to the leaders of such groups.",
+      "tradeoff": "It replaces or alters Class Skills; Trapfinding; Evasion; Uncanny Dodge; Improved Uncanny Dodge; Trap Sense; 10th-level Rogue Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:construct-saboteur",
+      "name": "Construct Saboteur",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Construct Handbook pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Construct%20Saboteur",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "construct hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Class Skills / Arcane Strike / Arcane Sabotage / Diminish Senses",
+          "reason": "The archetype’s Class Skills / Arcane Strike / Arcane Sabotage / Diminish Senses package materially changes anti magic disruption from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Class Skills / Arcane Strike / Arcane Sabotage / Diminish Senses",
+          "reason": "The archetype’s Class Skills / Arcane Strike / Arcane Sabotage / Diminish Senses package materially changes debuffing enemies from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The construct saboteur harnesses arcane energy to combat the golems and eldritch guardians that prowl the depths of ancient ruins and forgotten tombs.",
+      "tradeoff": "It replaces or alters Class Skills; Trapfinding; 2nd-level Rogue Talent; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:counterfeit-mage",
+      "name": "Counterfeit Mage",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Class Guide pg. 109",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Counterfeit%20Mage",
+      "capabilityOverrides": {
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "charlatan mage"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Magical Expertise / Signature Wand / Wand Adept / Rogue Talents",
+          "reason": "The archetype’s Magical Expertise / Signature Wand / Wand Adept / Rogue Talents package materially changes utility magic from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Charlatans and stage magicians use slight of hand to fake magic. A counterfeit mage goes a step further, parroting the motions and activation phrases used by arcane casters to activate wands or other magical accoutrements.",
+      "tradeoff": "It replaces or alters Trapfinding; 4th-level Rogue Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:cutpurse",
+      "name": "Cutpurse",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 132",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Cutpurse",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Measure the Mark / Stab and Grab / Rogue Talents / Advanced Talents",
+          "reason": "Measure the Mark / Stab and Grab / Rogue Talents / Advanced Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Cutpurses are often trained by guilds to collect the guild’s tax from local businesses on a daily basis, whether through intimidation or pickpocketing. Some find themselves taking up the mantle of adventurer, and their talents are generally appreciated in this role, but the cutpurse is still the first person her companions look to when an item goes missing.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:dark-lurker",
+      "name": "Dark Lurker",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Heroes of the Streets pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Dark%20Lurker",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Blades from the Shadows / Blind-Fight / Improved Blind-Fight / Greater Blind-Fight",
+          "reason": "The archetype’s Blades from the Shadows / Blind-Fight / Improved Blind-Fight / Greater Blind-Fight package materially changes personal durability from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Dark lurkers use darkness as an ally.",
+      "tradeoff": "It replaces or alters Evasion; 2nd, 8th, 14th, and 20th-level Rogue Talents; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:deadly-courtesan",
+      "name": "Deadly Courtesan",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Race Guide pg. 208",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Deadly%20Courtesan",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "courtesan"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Vishkanya characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Class Skills / Bardic Performance / Inspire Competence / Performance Strike",
+          "reason": "The archetype’s Class Skills / Bardic Performance / Inspire Competence / Performance Strike package materially changes support buffing from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Skilled at manipulation and diversion, the deadly courtesan builds up those around her and periodically takes them down.",
+      "tradeoff": "It replaces or alters Class Skills; 2nd-level Rogue Trick; Trap Sense; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:desert-raider",
+      "name": "Desert Raider",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Wilderness pg. 76",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Desert%20Raider",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "desert"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Desert Tracker / Sun at Your Back / Light Step",
+          "reason": "The archetype’s Class Skills / Desert Tracker / Sun at Your Back / Light Step package materially changes wilderness affinity from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Desert raider learn the secrets of the deserts and become inured to their dangers.",
+      "tradeoff": "It replaces or alters Class Skills; Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:discretion-specialist",
+      "name": "Discretion Specialist",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Antihero's Handbook pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Discretion%20Specialist",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "fixer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Fast Talker / Obfuscation / Evidence Disposal / No Loose Ends",
+          "reason": "The archetype’s Fast Talker / Obfuscation / Evidence Disposal / No Loose Ends package materially changes debuffing enemies from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Fast Talker / Obfuscation / Evidence Disposal / No Loose Ends",
+          "reason": "The archetype’s Fast Talker / Obfuscation / Evidence Disposal / No Loose Ends package materially changes utility magic from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Discretion specialists deal with bodies, inconvenient witnesses, and other loose ends.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense/Danger Sense; 4th, 12-th level Rogue Talents; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:dreamthief",
+      "name": "Dreamthief",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Planar Adventures pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Dreamthief",
+      "capabilityOverrides": {
+        "offensive-magic": "available",
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": false
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "dreams"
+        ],
+        "professionIdentity": [
+          "dreamthief"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Skills / Dreamshard Focus / Lucid Dreamer / Soothe Dreaming",
+          "reason": "The archetype’s Skills / Dreamshard Focus / Lucid Dreamer / Soothe Dreaming package materially changes offensive magic from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Skills / Dreamshard Focus / Lucid Dreamer / Soothe Dreaming",
+          "reason": "The archetype’s Skills / Dreamshard Focus / Lucid Dreamer / Soothe Dreaming package materially changes personal durability from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Each dreamthief bears a focused fragment of emotion, known as a dreamshard, within her soul. This metaphysical crystal grants a dreamthief supernatural powers, which she supplements with skill and grace.",
+      "tradeoff": "It replaces or alters Class Skills; Sneak Attack; Master Strike; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge; 12th-level Rogue Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:driver",
+      "name": "Driver",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Combat pg. 72",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Driver",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Hard Drive / Driver’s Fortitude / Rogue Talents / Advanced Talents",
+          "reason": "Hard Drive / Driver’s Fortitude / Rogue Talents / Advanced Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A driver makes her living driving vehicles in the service of those who can pay for her considerable talents.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:earthshadow",
+      "name": "Earthshadow",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Elemental Master's Handbook pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Earthshadow",
+      "capabilityOverrides": {
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Earthlink / Earthcraft / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Earthlink / Earthcraft / Rogue Talents / Advanced Talents package materially changes utility magic from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "In the centuries since the Quest for the Sky, the mystic lore the dwarves call earthcraft has been passed down through the generations, and its practitioners are called earthshadows.",
+      "tradeoff": "It replaces or alters Trapfinding; Evasion; 4th, 8th, 12th, 16th-level Rogue Talents; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:eldritch-raider",
+      "name": "Eldritch Raider",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Race Guide pg. 189",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Eldritch%20Raider",
+      "capabilityOverrides": {
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "professionIdentity": [
+          "relic hunter"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Gillman characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Class Skills / Skill Ranks per Level / Detect Magic / Eldritch Intuition",
+          "reason": "The archetype’s Class Skills / Skill Ranks per Level / Detect Magic / Eldritch Intuition package materially changes utility magic from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "An eldritch raider is a rogue who seeks to unravel the mysteries of the destruction of the gillmen’s homeland.",
+      "tradeoff": "It replaces or alters Class Skills; Skill Ranks; 2nd-level Rogue Talent; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:eldritch-scoundrel",
+      "name": "Eldritch Scoundrel",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Arcane Anthology pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Eldritch%20Scoundrel",
+      "capabilityOverrides": {
+        "offensive-magic": "core",
+        "area-multi-target-damage": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "resource-management": "high"
+      },
+      "factOverrides": {
+        "has-spellcasting": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Armor Proficiencies / Class Skills / Spells / Alarm Sense",
+          "reason": "The archetype’s Armor Proficiencies / Class Skills / Spells / Alarm Sense package materially changes offensive magic from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Armor Proficiencies / Class Skills / Spells / Alarm Sense",
+          "reason": "The archetype’s Armor Proficiencies / Class Skills / Spells / Alarm Sense package materially changes area multi target damage from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Armor Proficiencies / Class Skills / Spells / Alarm Sense",
+          "reason": "The archetype’s Armor Proficiencies / Class Skills / Spells / Alarm Sense package materially changes defensive protective magic from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Armor Proficiencies / Class Skills / Spells / Alarm Sense",
+          "reason": "The archetype’s Armor Proficiencies / Class Skills / Spells / Alarm Sense package materially changes utility magic from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Students of arcane magic, legerdemain, and stealth, eldritch scoundrels are a rare breed of adventurer most commonly found seeking lost and valuable arcane writings in the ruins of fallen empires, such as Thassilon or the Jistka Imperium.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Skills; Trap Sense; Sneak Attack; Rogue Talents; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:escapologist",
+      "name": "Escapologist",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Occult Adventures pg. 123",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Escapologist",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "available",
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "escape artist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Elusive / Unfettered Mind / Impossible Escape",
+          "reason": "The archetype’s Elusive / Unfettered Mind / Impossible Escape package materially changes anti magic disruption from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Elusive / Unfettered Mind / Impossible Escape",
+          "reason": "The archetype’s Elusive / Unfettered Mind / Impossible Escape package materially changes personal durability from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The escapologist excels at escaping any confinement, whether physical, magical, or mental. Few restraints can hold an escapologist for long.",
+      "tradeoff": "It replaces or alters Trapfinding; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:false-medium",
+      "name": "False Medium",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Occult Adventures pg. 123",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20False%20Medium",
+      "capabilityOverrides": {
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "false medium"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Dim the Lights / False Sensitivity / Haunting Presences / Rogue Talents",
+          "reason": "The archetype’s Dim the Lights / False Sensitivity / Haunting Presences / Rogue Talents package materially changes utility magic from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The false medium is a master of pretending to have occult powers in order to manipulate the emotions and atmosphere of the people and places around him, often reaping a healthy reward from the bereaved, who find solace in his comforting lies.",
+      "tradeoff": "It replaces or alters Trapfinding; 2nd-level Rogue Talent; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:fey-prankster",
+      "name": "Fey Prankster",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Wilderness pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Fey%20Prankster",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Gathlain characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Treacherous Plants / Improved Dirty Trick / Steal Appearance / Greater Dirty Trick",
+          "reason": "The archetype’s Treacherous Plants / Improved Dirty Trick / Steal Appearance / Greater Dirty Trick package materially changes battlefield control from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Fey pranksters specialize in tricking others to teach a lesson or for their own entertainment.",
+      "tradeoff": "It replaces or alters Trapfinding; 2nd, 6th, 8th, and 12th-level Rogue Talents; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:filcher",
+      "name": "Filcher",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Race Guide pg. 64",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Filcher",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "thief"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Halfling characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Quicker than the Eye / Rummage / Filch / Superior Filching",
+          "reason": "The archetype’s Quicker than the Eye / Rummage / Filch / Superior Filching package materially changes combat manoeuvres from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Whether cutting purses in the midst of combat or replacing prized items with fakes under the noses of their owners, the filcher is the master of the quick and quiet steal.",
+      "tradeoff": "It replaces or alters Evasion; Trap Sense 1-6; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:galtan-agitator",
+      "name": "Galtan Agitator",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Inner Sea Intrigue pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Galtan%20Agitator",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "agitator"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Reputation / Ready for Betrayal / Enthralling Agitation / Revolutionary’s Cause",
+          "reason": "The archetype’s Reputation / Ready for Betrayal / Enthralling Agitation / Revolutionary’s Cause package materially changes battlefield control from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Galtan agitators fight mightily to cast down the enemies of their ideals within the shambles of the tumultuous nation of Galt.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; 4th, 8th, 12th-level Rogue Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:guerrilla",
+      "name": "Guerrilla",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Inner Sea Intrigue pg. 41",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Guerrilla",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "guerrilla fighter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Skilled Liar / Cover of Night / Secret Messenger / Guerrilla Sniping",
+          "reason": "Skilled Liar / Cover of Night / Secret Messenger / Guerrilla Sniping defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Guerrillas fight against oppressive leadership and governments including Chelish colonization in Sargava and the power structures in Cheliax proper, Nidal, and Razmiran",
+      "tradeoff": "It replaces or alters Trapfinding; Evasion; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:guild-agent",
+      "name": "Guild Agent",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Intrigue pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Guild%20Agent",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "guild agent"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "commitment",
+          "summary": "A guild agent must remain a member in good standing of a thieves’ guild or loses all abilities granted by this archetype until rejoining one.",
+          "evidenceSection": "Honor Among Thieves"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Honor Among Thieves / Guild Connections / Pull Rank / Criminal Mastermind",
+          "reason": "The archetype’s Honor Among Thieves / Guild Connections / Pull Rank / Criminal Mastermind package materially changes tactical leadership from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Guild agents are members of a thieves’ guild or other shadowy organization. What they lose in independence, they more than make up for in benefits gained due to their association’s infrastructure.",
+      "tradeoff": "It replaces or alters Evasion; Uncanny Dodge; Improved Evasion; Master Strike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:gun-smuggler",
+      "name": "Gun Smuggler",
+      "parentClassId": "rogue",
+      "sourceCitationText": "People of the Wastes pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Gun%20Smuggler",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ],
+        "professionIdentity": [
+          "smuggler"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon Proficiency / Hidden Gun / Secret Sidearm / Selective Targeting",
+          "reason": "Weapon Proficiency / Hidden Gun / Secret Sidearm / Selective Targeting defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Gun smugglers are adept at procuring firearms and concealing their secret weapons",
+      "tradeoff": "It replaces or alters Weapon Proficiencies; Trapfinding; Sneak Attack; Trap Finding; 6th-level Rogue Talent; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:heister",
+      "name": "Heister",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Intrigue pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Heister",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "heister"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Rum Dubber / Ferret’s Grace / Unseen / Rogue Talents",
+          "reason": "Rum Dubber / Ferret’s Grace / Unseen / Rogue Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Notorious for their stealth, imagination, and elaborately planned thefts and capers, heisters specialize in breaking into secure locations, stealing items of value, and escaping undetected.",
+      "tradeoff": "It replaces or alters 2nd, 4th, 8th-level Rogue Talent; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:investigator",
+      "name": "Investigator",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 133",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Investigator",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Follow Up / Rogue Talents / Advanced Talents",
+          "reason": "Follow Up / Rogue Talents / Advanced Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Not all rogues work against the law. Investigators use their skills to serve the law, often in the employ of nobles or in the pursuit of noble causes.",
+      "tradeoff": "It replaces or alters Trapfinding; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:kintargo-rebel",
+      "name": "Kintargo Rebel",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Inner Sea Combat pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Kintargo%20Rebel",
+      "capabilityOverrides": {
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "rebel"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Sophisticated Stealth / Misdirection / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Sophisticated Stealth / Misdirection / Rogue Talents / Advanced Talents package materially changes utility magic from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Whenever the Chelish navy sails into the port, these rebels are quick to appear agreeably subservient in order to conceal their noncompliance and avoid retribution.",
+      "tradeoff": "It replaces or alters Trap Sense; Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:kitsune-trickster",
+      "name": "Kitsune Trickster",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Race Guide pg. 192",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Kitsune%20Trickster",
+      "capabilityOverrides": {
+        "offensive-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to kitsune characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Kitsune’s Guile / Kitsune’s Charm / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Kitsune’s Guile / Kitsune’s Charm / Rogue Talents / Advanced Talents package materially changes offensive magic from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The kitsune trickster combines her sharpened wit with minor arcane powers of charm and persuasion.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:knife-master",
+      "name": "Knife Master",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Combat pg. 72",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Knife%20Master",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "light blade"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Hidden Blade / Sneak Stab / Blade Sense / Rogue Talents",
+          "reason": "The archetype’s Hidden Blade / Sneak Stab / Blade Sense / Rogue Talents package materially changes personal durability from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The knife master is a trained killer who specializes in close-up combat and the wave and weave of knife fighting.",
+      "tradeoff": "It replaces or alters Trapfinding; Sneak Attack; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:makeshift-scrapper",
+      "name": "Makeshift Scrapper",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Melee Tactics Toolbox pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Makeshift%20Scrapper",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "improvised weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon Proficiency / Improvised Weapons / Supernatural Improvisation / Improvised Weapon Mastery",
+          "reason": "Weapon Proficiency / Improvised Weapons / Supernatural Improvisation / Improvised Weapon Mastery defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Some combatants specialize in the study of certain weapons, but those without formal training often learn to survive a fight by making brilliant use of whatever is lying around.",
+      "tradeoff": "It replaces or alters Weapon Proficiencies; Trapfinding; Trap Sense; 12th-level Rogue Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:master-of-disguise",
+      "name": "Master of Disguise",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Intrigue pg. 46",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Master%20of%20Disguise",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "master of disguise"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Consummate Actor / Grandmaster of Disguise / Rogue Talents / Advanced Talents",
+          "reason": "Consummate Actor / Grandmaster of Disguise / Rogue Talents / Advanced Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A master of disguise believes that never letting her adversaries know her true identity protects her from bad luck or missteps on a job.",
+      "tradeoff": "It replaces or alters Trapfinding; 2nd, 10th-level Rogue Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:nameless-shadow",
+      "name": "Nameless Shadow",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Merchant's Manifest pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Nameless%20Shadow",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "vigilante"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Harmless Guise / Face in the Crowd",
+          "reason": "Harmless Guise / Face in the Crowd defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Where bandits and tyrants prey on merchants and caravans, the nameless shadow preys on bandits and tyrants.",
+      "tradeoff": "It replaces or alters Trapfinding; 2nd, 4th, 6th, 8th, 10th, 14th, 18th-level Rogue Talents; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:needler",
+      "name": "Needler",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Potions and Poisons pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Needler",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "poisoner"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Adroit Poisoner / Subtle Poisoning / Needle Poisoner / Concealed Delivery",
+          "reason": "The archetype’s Adroit Poisoner / Subtle Poisoning / Needle Poisoner / Concealed Delivery package materially changes debuffing enemies from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Needlers use subtlety and misdirection to deliver deadly poisons to unsuspecting victims in creative and unorthodox ways.",
+      "tradeoff": "It replaces or alters Evasion; Uncanny Dodge; 6th-level Rogue Talent; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:numerian-scavenger",
+      "name": "Numerian Scavenger",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Technology Guide pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Numerian%20Scavenger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "scavenger"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Technic Training / Lucky Glitch / Robot Slayer",
+          "reason": "Technic Training / Lucky Glitch / Robot Slayer defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A Numerian scavenger lives for the discovery of new technological wonders scraped from the depths of the strange ruins, metal caverns, and outlandish junkyards of Numeria.",
+      "tradeoff": "It replaces or alters Trapfinding; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:okeno-liberator",
+      "name": "Okeno Liberator",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Inner Sea Combat pg. 41",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Okeno%20Liberator",
+      "capabilityOverrides": {
+        "support-buffing": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "liberator"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Bond Breaker / Covert Commander / Catch Off-Guard / Rogue Talents",
+          "reason": "The archetype’s Bond Breaker / Covert Commander / Catch Off-Guard / Rogue Talents package materially changes support buffing from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The sight of yellow sails on the Inner Sea signals the approach of a ship from Okeno, home port of the most ruthless and feared of all slaving operations. Most who see these sails flee in terror, but some freedom fighters actually endeavor to be captured, knowing that being taken to Stonespine Island in manacles is the easiest way to infiltrate the city, liberate other slaves, and lead them to freedom.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:phantom-thief",
+      "name": "Phantom Thief",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Intrigue pg. 46",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Phantom%20Thief",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "gentleman thief"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Refined Education / Broad Education / Social Sense / Master of All",
+          "reason": "Refined Education / Broad Education / Social Sense / Master of All defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Phantom thieves come from the ranks of the elite, having grown bored with their finery, and seek thrills from acts of daring, skill, and crime.",
+      "tradeoff": "It replaces or alters Class Skills; Sneak Attack; Trapfinding; Trap Sense; Master Strike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:pirate",
+      "name": "Pirate",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Combat pg. 73",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Pirate",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "professionIdentity": [
+          "pirate"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Sea Legs / Swinging Reposition / Unflinching / Rogue Talents",
+          "reason": "Sea Legs / Swinging Reposition / Unflinching / Rogue Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A pirate breaks from the confines of country and king to commit her crimes upon the high seas.",
+      "tradeoff": "It replaces or alters Trapfinding; 2nd-level Rogue Talent; Trapfinding; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:planar-sneak",
+      "name": "Planar Sneak",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Planes of Power pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Planar%20Sneak",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Planar Sense / Elemental Execution / Rogue Talents / Advanced Rogue Talents",
+          "reason": "The archetype’s Planar Sense / Elemental Execution / Rogue Talents / Advanced Rogue Talents package materially changes anti magic disruption from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A planar sneak finds creative ways to defy conventional limitations when trying to overcome extraplanar obstacles.",
+      "tradeoff": "It replaces or alters Trapsense; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:poisoner",
+      "name": "Poisoner",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 134",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Poisoner",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "poisoner"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Poison Use / Master Poisoner / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Poison Use / Master Poisoner / Rogue Talents / Advanced Talents package materially changes debuffing enemies from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The poisoner knows poison is just a tool toward an end, and is no different than any other weapon.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:rake",
+      "name": "Rake",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 134",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Rake",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "rake"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Bravado’s Blade / Rake’s Smile / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Bravado’s Blade / Rake’s Smile / Rogue Talents / Advanced Talents package materially changes debuffing enemies from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The rake is a rogue who is open about her skills and talents, often to the point of being boastful.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:relic-raider",
+      "name": "Relic Raider",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Black Markets pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Relic%20Raider",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "relic hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Curse Sense / Disable Curse / Advanced Talents",
+          "reason": "The archetype’s Curse Sense / Disable Curse / Advanced Talents package materially changes anti magic disruption from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Relic raiders are rogues who specialize in recovering treasures from ruins and tombs, some in a quest for knowledge, others out of a desire for riches.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:river-rat",
+      "name": "River Rat",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Wilderness pg. 76",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20River%20Rat",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "swamp"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Swamper / Rat’s Resilience / Rogue Talents",
+          "reason": "Class Skills / Swamper / Rat’s Resilience / Rogue Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "River rats are skilled at hiding amid reeds and roots, striking the unwary from the shallows as others would from the shadows.",
+      "tradeoff": "It replaces or alters Class Skills; Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:roof-runner",
+      "name": "Roof Runner",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Combat pg. 74",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Roof%20Runner",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Roof Running / Tumbling Descent / Rogue Talents / Advanced Talents",
+          "reason": "Roof Running / Tumbling Descent / Rogue Talents / Advanced Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A specialized urban acrobat, the roof runner makes her home high atop the spires and gables of great cities.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:rotdrinker",
+      "name": "Rotdrinker",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Potions and Poisons pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Rotdrinker",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "rotdrinker"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Poison Resistance / Unnatural Ingestion",
+          "reason": "The archetype’s Poison Resistance / Unnatural Ingestion package materially changes personal durability from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Poisons are common tools in a rogue’s trade, and some poison-using rogues are so frequently exposed to these toxins that they have developed resistances to particular poisons.",
+      "tradeoff": "It replaces or alters Evasion; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:sanctified-rogue",
+      "name": "Sanctified Rogue",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Combat pg. 74",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sanctified%20Rogue",
+      "capabilityOverrides": {
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Divine Purpose / Divine Epiphany / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Divine Purpose / Divine Epiphany / Rogue Talents / Advanced Talents package materially changes utility magic from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The sanctified rogue serves a higher purpose, acting as a representative of a church or cult, or following the tenets of a specific faith or deity.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:sapper",
+      "name": "Sapper",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Dungeoneer's Handbook pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sapper",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "sapper"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Destructive Dismantle / Sapping / Fence",
+          "reason": "The archetype’s Destructive Dismantle / Sapping / Fence package materially changes battlefield control from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The sapper is a trained siege engineer and can deal with traps and other obstacles given plenty of time.",
+      "tradeoff": "It replaces or alters Trapfinding; 2nd and 4th-level Rogue Talents; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:scout",
+      "name": "Scout",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 134",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Scout",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "scout",
+          "evidenceSection": "’s Charge / Skirmisher",
+          "evidenceText": "The archetype explicitly fights through movement, charging and mobile reconnaissance-style attacks."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Scout’s Charge / Skirmisher / Rogue Talents / Advanced Talents",
+          "reason": "Scout’s Charge / Skirmisher / Rogue Talents / Advanced Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Scouts frequently roam the wilderness, often banding together as bandits, but sometimes serving as guides, as trailblazers, or as companions to a ranger or barbarian warrior.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:scroll-scoundrel",
+      "name": "Scroll Scoundrel",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Pathfinder Society Field Guide pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Scroll%20Scoundrel",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "duelist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Fast Talker / Adaptive Learning / Pay it Back / Elusive Gambit",
+          "reason": "The archetype’s Fast Talker / Adaptive Learning / Pay it Back / Elusive Gambit package materially changes personal durability from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Using knowledge from extensive research, the scroll scoundrel exploits overconfidence and predictability to better stay alive.",
+      "tradeoff": "It replaces or alters 2nd-level Rogue Talent, Trap Sense, Uncanny Dodge, Improved Uncanny Dodge, 10th-level Rogue Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:sczarni-swindler",
+      "name": "Sczarni Swindler",
+      "parentClassId": "rogue",
+      "sourceCitationText": "The Harrow Handbook pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sczarni%20Swindler",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "gambler"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Let Fate Decide / Quicker Than the Eye / Poker Face / No Fool",
+          "reason": "Let Fate Decide / Quicker Than the Eye / Poker Face / No Fool defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "If life is a game, the Sczarni play to win. When skill and luck aren’t enough, cheating is often the best option.",
+      "tradeoff": "It replaces or alters Trapfinding; Evasion; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:seeker-of-the-lost",
+      "name": "Seeker of the Lost",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Blood of the Sea pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Seeker%20of%20the%20Lost",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "professionIdentity": [
+          "ruin explorer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Arcana Breaker / Underwater Striker / Wary Disarm / Rogue Talents",
+          "reason": "Arcana Breaker / Underwater Striker / Wary Disarm / Rogue Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Aquatic elven adventurers descending into the ruins of sunken Azlant developed techniques to ease their explorations, and they now share these techniques among a loose group of acquaintances calling themselves the seekers of the lost.",
+      "tradeoff": "It replaces or alters 2nd-level Rogue Talent; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:shadow-scion",
+      "name": "Shadow Scion",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Legacy of the First World pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Shadow%20Scion",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Shadow Dweller / Shadow Strike / Shadow Step / Shadow Speaker",
+          "reason": "Shadow Dweller / Shadow Strike / Shadow Step / Shadow Speaker defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Shadow scions have learned the secrets of light and dark and draw power from the shadows themselves.",
+      "tradeoff": "It replaces or alters Trapfinding; 2nd, 8th, 14th-level Rogue Talent; Master Strike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:shadow-walker",
+      "name": "Shadow Walker",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Blood of Shadows pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Shadow%20Walker",
+      "capabilityOverrides": {
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Expanded Sight / Illumination Control / Favored Illumination / Rogue Talents",
+          "reason": "The archetype’s Expanded Sight / Illumination Control / Favored Illumination / Rogue Talents package materially changes utility magic from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Shadow walkers are comfortable in light, darkness, and the shadows in between.",
+      "tradeoff": "It replaces or alters Trapfinding; 2nd-level Rogue Talent; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:sharper",
+      "name": "Sharper",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Intrigue pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sharper",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "con artist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Scam Artist / Sticky Fingers / Lucky Save / Audacious Overconfidence",
+          "reason": "The archetype’s Scam Artist / Sticky Fingers / Lucky Save / Audacious Overconfidence package materially changes personal durability from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Sharpers use trickery and deception to part an owner from his valuables.",
+      "tradeoff": "It replaces or alters Trapfinding; 2nd, 4th, 6th, 8th, 10th, 16th-level Rogue Talent; Trap Sense;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:skulking-slayer",
+      "name": "Skulking Slayer",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Race Guide pg. 55",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Skulking%20Slayer",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to half-orc characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Weapon and Armor Proficiency / Class Skills / Skill Ranks per Level / Pass for Human",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Class Skills / Skill Ranks per Level / Pass for Human package materially changes combat manoeuvres from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Pushed into a life of crime by the society around them, half-orcs gravitate toward criminal activities that suit them best.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Class Skills; Trapfinding; Rogue Talent; Advanced Rogue Talent; Trap Sense 1-4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:sly-saboteur",
+      "name": "Sly Saboteur",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Wilderness pg. 77",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sly%20Saboteur",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "anti-magic-disruption": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Class Skills / Scamper / Catastrophic Failure / Disable Magic Device",
+          "reason": "The archetype’s Class Skills / Scamper / Catastrophic Failure / Disable Magic Device package materially changes battlefield control from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Class Skills / Scamper / Catastrophic Failure / Disable Magic Device",
+          "reason": "The archetype’s Class Skills / Scamper / Catastrophic Failure / Disable Magic Device package materially changes anti magic disruption from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Sly saboteurs are irregular soldiers who specialize in sabotage and surprise attacks.",
+      "tradeoff": "It replaces or alters Class Skills; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:smuggler",
+      "name": "Smuggler",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Pirates of the Inner Sea pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Smuggler",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "smuggler"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bribery / Conceal Item / Distraction",
+          "reason": "Bribery / Conceal Item / Distraction defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Smugglers specialize in moving contraband from one area to another while avoiding detection by authorities.",
+      "tradeoff": "It replaces or alters Trap Sense; Trapfinding; Evasion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:snare-setter",
+      "name": "Snare Setter",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Kobolds of Golarion pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Snare%20Setter",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "traps"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Kobold characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Trapper / Trapsmithing / Deadly Traps / Sneak Attack",
+          "reason": "The archetype’s Trapper / Trapsmithing / Deadly Traps / Sneak Attack package materially changes battlefield control from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Deep in darkness, the snare setter constructs his deadly\r traps and brutal mechanisms to confound and destroy any\r who try to invade his domain.",
+      "tradeoff": "It replaces or alters Sneak Attack; Trapfinding; Master Strike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:sniper",
+      "name": "Sniper",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 134",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sniper",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Accuracy / Deadly Range / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Accuracy / Deadly Range / Rogue Talents / Advanced Talents package materially changes ranged combat from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Some say that the sniper is the worst kind of assassin: a killer who waits silently in the shadows and then strikes from a distance without remorse.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:snoop",
+      "name": "Snoop",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Intrigue pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Snoop",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "detective"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Inspiration / Investigator Talents / Uncanny Snoop / Master of Whispers",
+          "reason": "Inspiration / Investigator Talents / Uncanny Snoop / Master of Whispers defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Snoops act as information peddlers, specializing in gathering secrets through investigation, subterfuge, and coercion, and selling or trading those secrets for personal gain.",
+      "tradeoff": "It replaces or alters Trapfinding; Evasion; Uncanny Dodge; Improved Uncanny Dodge; 8th-level Rogue Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:spy",
+      "name": "Spy",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 135",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Spy",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "spy"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Skilled Liar / Poison Use / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Skilled Liar / Poison Use / Rogue Talents / Advanced Talents package materially changes debuffing enemies from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The best spies are like chameleons, but not only can they change their appearances to fit the situation, they can also change their personalities, allegiances, and even loves if that’s what it takes to achieve their clandestine goals.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:survivalist",
+      "name": "Survivalist",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Combat pg. 74",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Survivalist",
+      "capabilityOverrides": {
+        "personal-durability": "core",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Hardy / Endure Elements / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Hardy / Endure Elements / Rogue Talents / Advanced Talents package materially changes personal durability from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Hardy / Endure Elements / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Hardy / Endure Elements / Rogue Talents / Advanced Talents package materially changes wilderness affinity from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "The survivalist focuses her talents on surviving harsh and unforgiving conditions that would kill a lesser rogue.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:swamp-poisoner",
+      "name": "Swamp Poisoner",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Potions and Poisons pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Swamp%20Poisoner",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "swamp"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype requires the grippli toxic skin alternate racial trait.",
+          "evidenceSection": "Prerequisites"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Prerequisites / Mucous Membrane / Mark the Vein / Poison the Well",
+          "reason": "The archetype’s Prerequisites / Mucous Membrane / Mark the Vein / Poison the Well package materially changes debuffing enemies from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Swamp poisoners use their own toxins to defend their homes and level the playing field",
+      "tradeoff": "It replaces or alters Racial Traits; Trapfinding; 2nd-level Rogue Talent; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:swashbuckler",
+      "name": "Swashbuckler",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 135",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Swashbuckler",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "duelist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Martial Training / Daring / Rogue Talents / Advanced Talents",
+          "reason": "Martial Training / Daring / Rogue Talents / Advanced Talents defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A paragon of mobile swordplay, the swashbuckler is a rogue who focuses almost exclusively on honing her skill at arms and perfecting daring acrobatic moves and elaborate flourishes that border on performance.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:swordmaster",
+      "name": "Swordmaster",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Race Guide pg. 164",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Swordmaster",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "martial artist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Tengu characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Trance / Crane Trance / Dragon Trance",
+          "reason": "Class Skills / Trance / Crane Trance / Dragon Trance defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A swordmaster meditates to strengthen her spiritual connection to her blade. She strives to perfect her skills by mastering six deadly trances.",
+      "tradeoff": "It replaces or alters Class Skills; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:sylvan-trickster",
+      "name": "Sylvan Trickster",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Ultimate Wilderness pg. 77",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Sylvan%20Trickster",
+      "capabilityOverrides": {
+        "utility-magic": "available",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Class Skills / Wild Empathy / Fey Tricks / Resist Nature’s Lure",
+          "reason": "The archetype’s Class Skills / Wild Empathy / Fey Tricks / Resist Nature’s Lure package materially changes utility magic from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Wild Empathy / Fey Tricks / Resist Nature’s Lure",
+          "reason": "The archetype’s Class Skills / Wild Empathy / Fey Tricks / Resist Nature’s Lure package materially changes wilderness affinity from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Sylvan tricksters are rogues who model themselves after the mischievous fey of legend.",
+      "tradeoff": "It replaces or alters Class Skills; Trapfinding; Rogue Talents; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:thug",
+      "name": "Thug",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 135",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Thug",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Frightening / Brutal Beating / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Frightening / Brutal Beating / Rogue Talents / Advanced Talents package materially changes debuffing enemies from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Some criminals steal with finesse, their victims only discovering the crime when the rogue is long gone and the coin already spent. A thug, on the other hand, cares nothing for finesse.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:tidal-trickster",
+      "name": "Tidal Trickster",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Aquatic Adventures pg. 55",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Tidal%20Trickster",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Wisdom of the Waves / Liquid Disruption / Tidal Distortion",
+          "reason": "Wisdom of the Waves / Liquid Disruption / Tidal Distortion defines the material change from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Tidal tricksters roam the seas, using their skillful mastery of the currents to move across aquatic battlefields and throw their enemies off-balance.",
+      "tradeoff": "It replaces or alters Trapfinding; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge; 4th, 8th-level Rogue Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:toxic-talon",
+      "name": "Toxic Talon",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Adventurer's Guide pg. 75",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Toxic%20Talon",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "poisoner"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Forceful Breath / Poison Adept / Toxin Resistance / Catalyst",
+          "reason": "The archetype’s Forceful Breath / Poison Adept / Toxin Resistance / Catalyst package materially changes debuffing enemies from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Forceful Breath / Poison Adept / Toxin Resistance / Catalyst",
+          "reason": "The archetype’s Forceful Breath / Poison Adept / Toxin Resistance / Catalyst package materially changes personal durability from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A toxic talon spends resources and time combining easy-to-obtain materials into dangerous toxins to aid in the defense of Andoran.",
+      "tradeoff": "It replaces or alters Weapon Proficiencies; Trapfinding; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:trapsmith",
+      "name": "Trapsmith",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Player's Guide pg. 135",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Trapsmith",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Careful Disarm / Trap Master / Rogue Talents / Advanced Talents",
+          "reason": "The archetype’s Careful Disarm / Trap Master / Rogue Talents / Advanced Talents package materially changes battlefield control from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Some rogues are not content with just disabling traps—they love to build them, finding a captivating beauty in the turning of gears and the slither of ropes over pulleys.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:underground-chemist",
+      "name": "Underground Chemist",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Advanced Class Guide pg. 109",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Underground%20Chemist",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "alchemist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Chemical Weapons / Precise Splash Weapons / Discovery / Rogue Talents",
+          "reason": "The archetype’s Chemical Weapons / Precise Splash Weapons / Discovery / Rogue Talents package materially changes area multi target damage from the Rogue baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Chemical Weapons / Precise Splash Weapons / Discovery / Rogue Talents",
+          "reason": "The archetype’s Chemical Weapons / Precise Splash Weapons / Discovery / Rogue Talents package materially changes debuffing enemies from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Underground chemists are part of the rotting, fetid underbelly of the alchemical world.",
+      "tradeoff": "It replaces or alters Evasion; 4th-level Rogue Talent; Advanced Talents; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:vexing-dodger",
+      "name": "Vexing Dodger",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Giant Hunter's Handbook pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Vexing%20Dodger",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "giant hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Limb-Climber / Improved Dirty Trick / Underfoot Agility / Underfoot Trickster",
+          "reason": "The archetype’s Limb-Climber / Improved Dirty Trick / Underfoot Agility / Underfoot Trickster package materially changes combat manoeuvres from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "Vexing dodgers take advantage of their smaller size to outmaneuver larger foes such as giants.",
+      "tradeoff": "It replaces or alters Trapfinding; 2nd-level Rogue Talent; Trap Sense; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rogue:waylayer",
+      "name": "Waylayer",
+      "parentClassId": "rogue",
+      "sourceCitationText": "Dirty Tactics Toolbox pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Rogue%20Waylayer",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Staggering Reflexes / Ambuscading Sneak Attack / Danger Awareness / Exceptional Reflexes",
+          "reason": "The archetype’s Staggering Reflexes / Ambuscading Sneak Attack / Danger Awareness / Exceptional Reflexes package materially changes personal durability from the Rogue baseline."
+        }
+      ],
+      "playerSummary": "A clever rogue knows the easiest battle to win is the one that’s over before your foe knows it has begun.",
+      "tradeoff": "It replaces or alters Trapfinding; Uncanny Dodge; Improved Uncanny Dodge; 12th and 20th-level Rogue Talents; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}
