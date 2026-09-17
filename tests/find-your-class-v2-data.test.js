@@ -5,7 +5,7 @@ import test from 'node:test';
 const root = new URL('../assets/find-your-class/v2/', import.meta.url);
 const criteria = JSON.parse(fs.readFileSync(new URL('criteria.json', root), 'utf8'));
 const model = JSON.parse(fs.readFileSync(new URL('classification-model.json', root), 'utf8'));
-const batches = ['class-profiles-batch-01.json', 'class-profiles-batch-02.json', 'class-profiles-batch-03.json']
+const batches = ['class-profiles-batch-01.json', 'class-profiles-batch-02.json', 'class-profiles-batch-03.json', 'class-profiles-batch-04.json']
   .map(file => JSON.parse(fs.readFileSync(new URL(file, root), 'utf8')));
 const batch = batches[0];
 const profiles = batches.flatMap(item => item.profiles);
@@ -91,16 +91,16 @@ test('enemy specializations are sparse, sourced and distinct from creature theme
   assert.equal(profiles.find(profile => profile.id === 'cleric').enemySpecializations.undead, 'available');
 });
 
-test('the calibration catalogue contains exactly 40 unique class profiles', () => {
+test('the catalogue contains 41 unique valued class profiles after completing Slayer', () => {
   const expected = [
     'alchemist', 'antipaladin', 'arcanist', 'barbarian', 'bard', 'bloodrager', 'brawler', 'cavalier',
     'cleric', 'druid', 'fighter', 'gunslinger', 'hunter', 'inquisitor', 'investigator', 'kineticist',
     'magus', 'medium', 'mesmerist', 'monk', 'monk-unchained', 'ninja', 'occultist', 'oracle',
     'paladin', 'psychic', 'ranger', 'rogue', 'samurai', 'shaman', 'shifter', 'skald', 'sorcerer',
-    'spiritualist', 'summoner', 'swashbuckler', 'vigilante', 'warpriest', 'witch', 'wizard'
+    'slayer', 'spiritualist', 'summoner', 'swashbuckler', 'vigilante', 'warpriest', 'witch', 'wizard'
   ];
-  assert.equal(profiles.length, 40);
-  assert.equal(new Set(profiles.map(profile => profile.id)).size, 40);
+  assert.equal(profiles.length, 41);
+  assert.equal(new Set(profiles.map(profile => profile.id)).size, 41);
   assert.deepEqual(profiles.map(profile => profile.id).sort(), expected.sort());
   assert.equal(profiles.filter(profile => profile.identity.professionIdentity.length).length, 0);
   for (const profile of profiles) {

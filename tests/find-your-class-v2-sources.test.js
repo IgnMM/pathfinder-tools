@@ -15,10 +15,10 @@ const dir = path.join(__dirname, '..', 'assets', 'find-your-class', 'v2');
 const V2 = require(path.join(dir, 'loader.js'));
 
 function readJson(rel) { return JSON.parse(fs.readFileSync(path.join(dir, rel), 'utf8')); }
-const classProfiles = ['class-profiles-batch-01.json', 'class-profiles-batch-02.json', 'class-profiles-batch-03.json']
+const classProfiles = ['class-profiles-batch-01.json', 'class-profiles-batch-02.json', 'class-profiles-batch-03.json', 'class-profiles-batch-04.json']
   .flatMap(f => readJson(f).profiles);
 const archetypeOverrides = Array.from({ length: 10 }, (_, i) => `archetype-profiles-pilot-${String(i + 1).padStart(2, '0')}.json`)
-  .flatMap(f => readJson(f).profiles);
+  .concat('archetype-profiles-slayer.json').flatMap(f => readJson(f).profiles);
 const profiles = V2.resolveAllProfiles(classProfiles, archetypeOverrides);
 
 // A minimal but faithful mock of the real assets/valid-sources.js API --

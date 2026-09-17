@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T06:45:28.013Z",
+  "generatedAt": "2026-09-17T07:15:29.107Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
     "classes": 44,
     "archetypes": 1275,
     "entities": 1319,
-    "valuedClasses": 40,
-    "valuedArchetypes": 100,
-    "pendingClasses": 4,
-    "pendingArchetypes": 1175,
+    "valuedClasses": 41,
+    "valuedArchetypes": 126,
+    "pendingClasses": 3,
+    "pendingArchetypes": 1149,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -297,7 +297,7 @@
       "entityType": "class",
       "aonUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Slayer",
       "archetypeCount": 26,
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "sorcerer",
@@ -11800,7 +11800,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Ankou%27s%20Shadow",
       "replaces": "Studied Target; Stalker; Quarry; Improved Quarry",
       "aonSummary": "Ankou’s shadow practice the deadliest skills of the First World’s most feared enforcers: terrifying, winged fey assassins dispatched by the greatest lords of the First World to eliminate their rivals",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:avalancher",
@@ -11811,7 +11811,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Avalancher",
       "replaces": "Studied Target; Track; Swift Tracker; Stalker; Quarry; Improved Quarry; Master Slayer",
       "aonSummary": "Avalanchers attack from overhead cliffs and mesas like a landslide of arrows and blades.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:bloody-jake",
@@ -11822,7 +11822,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Bloody%20Jake",
       "replaces": "Alignment; Weapon and Armor Proficiency; Studied Target; 4th, 6th, 8th, 12th, 16th-level Slayer Talents; Swift Tracker; Slayer's Advance",
       "aonSummary": "Bloody jakes are cruel backwoods folk who prey upon their country cousins while terrorizing civilized people who venture into their rural range.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:bounty-hunter",
@@ -11833,7 +11833,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Bounty%20Hunter",
       "replaces": "Weapon/Armor Proficiencies; 2nd, 6th, and 10th-level Slayer Talents",
       "aonSummary": "Whether tasked with bringing in wanted criminals or paid to drag debtors back to their loan sharks, bounty hunters are valued for their ability to capture targets alive.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:butterfly-blade",
@@ -11844,7 +11844,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Butterfly%20Blade",
       "replaces": "Studied Target; Track; Sneak Attack; Stalker; Swift Tracker; Quarry; Improved Quarry",
       "aonSummary": "Butterfly blades work in the shadows, eliminating threats with their namesake weapons and intimidating troublesome nobles.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:cleaner",
@@ -11855,7 +11855,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Cleaner",
       "replaces": "Track; 4th-level Slayer Talent; Stalker",
       "aonSummary": "A cleaner is responsible for destroying or removing incriminating evidence from a crime scene, disposing of corpses and eliminating witnesses to make a crime look like an accident or a mere disappearance.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:covenbane",
@@ -11866,7 +11866,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Covenbane",
       "replaces": "Track; 2nd-level Slayer Talent; Stalker; Swift Tracker",
       "aonSummary": "Covenbane slayers are scarred by arcane magic at a young age, and that resonance gives them supernatural insight into the psychic bonds between others.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:cutthroat",
@@ -11877,7 +11877,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Cutthroat",
       "replaces": "Class Skills; Track; 2nd and 6th-level Slayer Talents",
       "aonSummary": "Street-smart and extremely resourceful, cutthroats stalk city streets and alleyways, preying on those unfortunate enough to catch their eye.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:deliverer",
@@ -11888,7 +11888,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Deliverer",
       "replaces": "Weapon/Armor Proficiencies; 2nd, 6th, and 10th-level Slayer Talents",
       "aonSummary": "Also known as a divine assassin, god’s blade, or wrath-bringer, a deliverer is a weapon chosen by a god to punish those who have committed an affront to that deity.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:dune-rider",
@@ -11899,7 +11899,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Dune%20Rider",
       "replaces": "Track; Swift Tracker; Studied Target; Stalker, 4th, 8th-level Slayer Talent; Master Slayer",
       "aonSummary": "Mounted harriers, saboteurs, and skirmishers, dune riders can disrupt even the most organized opposition.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:family-hunter",
@@ -11910,7 +11910,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Family%20Hunter",
       "replaces": "2nd, 6th-level Slayer Talent; Sneak Attack; Studied Target",
       "aonSummary": "Most slayers focus their efforts on single targets, but family hunters try to root out every branch of a tainted tree of life.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:grave-warden",
@@ -11921,7 +11921,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Grave%20Warden",
       "replaces": "2nd and 10th-level Slayer Talents; Stalker;",
       "aonSummary": "While paladins and inquisitors use their connection with the divine to fight undead hordes and other horrors of the night, a grave warden relies on knowledge, skill with weapons, and tenacity to put an end to these night-born terrors.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:guerrilla",
@@ -11932,7 +11932,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Guerrilla",
       "replaces": "Track; Swift Tracker; 6th-level Slayer Talent; Quarry; Improved Quarry",
       "aonSummary": "Slayers characterized by cunning and patience, guerrillas specialize in ambush and harassment of enemies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:pureblade",
@@ -11943,7 +11943,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Pureblade",
       "replaces": "Track; 2nd and 8th-level Slayer Talents; Stalker; Master Slayer",
       "aonSummary": "In Numeria, Pureblades are skilled at slaying naturally arising aberrations and any creatures that have been mutated by exposure to the bizarre alien technology that pervades the land. Pureblades from Alkenstar and Nex lead forays into the magic-starved Mana Wastes to eliminate aberrations before the creatures can threaten their lands.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:sczarni-executioner",
@@ -11954,7 +11954,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Sczarni%20Executioner",
       "replaces": "Class Skills; Studied Target; 4th-level Slayer Talent; Swift Tracker; Quarry; Improved Quarry",
       "aonSummary": "These professional killers are trained and used almost exclusively by the various Sczarni crime families.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:sniper",
@@ -11965,7 +11965,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Sniper",
       "replaces": "Track",
       "aonSummary": "Whether it’s with a bullet from a sling, a quarrel from a crossbow, or even an expertly thrown dagger, the sniper ensures that a single shot disables his targets.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:spawn-slayer",
@@ -11976,7 +11976,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Spawn%20Slayer",
       "replaces": "Studied Target; Stalker; Master Slayer",
       "aonSummary": "Generations of Ninshaburian warriors fought the Spawn of Rovagug, holding the line against impossible odds. Some of their ancient techniques persist to this day.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:spire-diver",
@@ -11987,7 +11987,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Spire%20Diver",
       "replaces": "Studied Target; Stalker; Track; Swift Tracker; Slayer's Advance; Quarry; Improved Quarry",
       "aonSummary": "Peerless divers, assassins, and scouts, spire divers operate in and out of water using the same weapons and equipment.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:spiritslayer",
@@ -11998,7 +11998,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Spiritslayer",
       "replaces": "2nd level Slayer Talent; Stalker",
       "aonSummary": "Slayers that focus in culling ghosts, shadow demons, and other incorporeal creatures.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:stygian-slayer",
@@ -12009,7 +12009,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Stygian%20Slayer",
       "replaces": "Armor Proficiencies; 4th and 10th-level Slayer Talents; Stalker",
       "aonSummary": "A stygian slayer crawls out of the darkest shadows to strike fear into the hearts of civilized folk.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:toxic-sniper",
@@ -12020,7 +12020,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Toxic%20Sniper",
       "replaces": "Weapon and Armor Proficiencies; Track; Studied Target; Slayer Talents",
       "aonSummary": "Followers of the daemonic harbinger Cixyron hide throughout the Mana Wastes, scavenging for guns. With significant firepower in hand, the Furious Thunder’s snipers bring poisonous death to the wastes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:turncoat",
@@ -12031,7 +12031,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Turncoat",
       "replaces": "Track; Stalker; Quarry; Improved Quarry",
       "aonSummary": "The turncoat’s natural talents for deception and treachery are fitting when negotiating with the untrustworthy individuals and his ability to adapt allows him to preempt opponents’ schemes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:vanguard",
@@ -12042,7 +12042,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Vanguard",
       "replaces": "Track; 2nd and 4th-level Slayer Talents; Stalker",
       "aonSummary": "Vanguards are battlefield commanders who focus on the brutality of combat and lead their allies to bloody victory.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:velvet-blade",
@@ -12053,7 +12053,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Velvet%20Blade",
       "replaces": "Class Skills; Armor Proficiency; Studied Target; Track; Swift Tracker",
       "aonSummary": "Velvet blades specialize in infiltrating the upper echelons of society, mingling with nobles and courtiers, and killing them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:witch-killer",
@@ -12064,7 +12064,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Witch%20Killer",
       "replaces": "Class Skills; Studied Target; 4th, 10th-level Slayer Talent",
       "aonSummary": "Born into cultures where magic users are hated and feared, witch killers devote their lives to purge the arcane taint from the world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:woodland-sniper",
@@ -12075,7 +12075,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Woodland%20Sniper",
       "replaces": "Track; Sneak Attack; Stalker; Swift Tracker; Slayer's Advance",
       "aonSummary": "Woodland snipers are guardians of forest and grove, keeping vigil on their borders and hunting bounties and trespassers from the shelter of sturdy branches.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "sorcerer:crossblooded",

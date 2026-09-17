@@ -6,12 +6,12 @@ const repo = new URL('../', import.meta.url);
 const readJson = relative => JSON.parse(fs.readFileSync(new URL(relative, repo), 'utf8'));
 const catalogue = readJson('assets/find-your-class/aon-catalog/aon-player-archetype-catalog.json');
 const added = readJson('assets/find-your-class/aon-catalog/new-scope-archetype-details.json').profiles;
-const classes = ['01', '02', '03'].flatMap(batch =>
+const classes = ['01', '02', '03', '04'].flatMap(batch =>
   readJson(`assets/find-your-class/v2/class-profiles-batch-${batch}.json`).profiles
 );
 const archetypes = Array.from({length: 10}, (_, index) => String(index + 1).padStart(2, '0')).flatMap(batch =>
   readJson(`assets/find-your-class/v2/archetype-profiles-pilot-${batch}.json`).profiles
-);
+).concat(readJson('assets/find-your-class/v2/archetype-profiles-slayer.json').profiles);
 
 test('AoN catalogue contains 44 classes and 1,275 unique archetypes', () => {
   assert.equal(catalogue.classes.length, 44);
@@ -22,15 +22,15 @@ test('AoN catalogue contains 44 classes and 1,275 unique archetypes', () => {
   assert.equal(catalogue.counts.entities, 1319);
 });
 
-test('all 40 class profiles and 100 archetype profiles are present and marked valued', () => {
+test('all 41 class profiles and 126 archetype profiles are present and marked valued', () => {
   const classStatus = new Map(catalogue.classes.map(item => [item.id, item.valuationStatus]));
   const archetypeStatus = new Map(catalogue.archetypes.map(item => [item.id, item.valuationStatus]));
-  assert.equal(classes.length, 40);
-  assert.equal(archetypes.length, 100);
+  assert.equal(classes.length, 41);
+  assert.equal(archetypes.length, 126);
   for (const profile of classes) assert.equal(classStatus.get(profile.id), 'valued', profile.id);
   for (const profile of archetypes) assert.equal(archetypeStatus.get(profile.id), 'valued', profile.id);
-  assert.equal(catalogue.counts.valuedClasses, 40);
-  assert.equal(catalogue.counts.valuedArchetypes, 100);
+  assert.equal(catalogue.counts.valuedClasses, 41);
+  assert.equal(catalogue.counts.valuedArchetypes, 126);
 });
 
 test('the newly discovered Slayer and unchained Summoner records are complete', () => {
@@ -42,7 +42,7 @@ test('the newly discovered Slayer and unchained Summoner records are complete', 
     assert.ok(item.sourceBook);
     assert.ok(Number.isInteger(item.sourcePage));
     assert.ok(item.sourceText.length > 100, item.id);
-    assert.equal(item.valuationStatus, 'pending');
+    assert.equal(item.valuationStatus, item.parentClassId === 'slayer' ? 'valued' : 'pending');
   }
 });
 

@@ -1,5 +1,5 @@
 // Find Your Class v2 -- matching engine over the 140 resolved profiles (40
-// class-paths + 100 archetypes) from loader.js's resolveAllProfiles(). Ported
+// class paths + inherited archetypes from loader.js's resolveAllProfiles(). Ported
 // from ../matcher.js's (v1) overall shape -- importance weighting, eligibility
 // gates, best-overall/different-approach/more-approachable/unexpected-fit role
 // selection -- but rebuilt for v2's three-level ordinal scale (no numeric

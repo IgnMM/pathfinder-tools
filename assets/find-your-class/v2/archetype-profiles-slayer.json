@@ -1,0 +1,1160 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Slayer parent value.",
+  "profiles": [
+    {
+      "id": "slayer:ankou-s-shadow",
+      "name": "Ankou's Shadow",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Legacy of the First World pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Ankou%27s%20Shadow",
+      "capabilityOverrides": {
+        "tactical-leadership": "available",
+        "personal-durability": "core",
+        "combat-mobility": "core",
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "limited"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Shadow Double",
+          "reason": "Up to four persistent shadow doubles provide flanking, aid allies and become alternate origins for attacks."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Shadow Double",
+          "reason": "The doubles function as replenishable mirror images while sharing the Slayer’s space."
+        },
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Shadow Double",
+          "reason": "Directed doubles flank and use aid another for the Slayer and allies."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Shadow Double",
+          "reason": "Attacks and abilities can originate from independently positioned doubles."
+        }
+      ],
+      "playerSummary": "A fey-inspired assassin who fights through mobile shadow doubles that flank, assist, misdirect attacks and eventually strike independently.",
+      "tradeoff": "Studied target is lost, and the doubles are fragile illusions whose positioning adds substantial play complexity.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:avalancher",
+      "name": "Avalancher",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Ultimate Wilderness pg. 86",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Avalancher",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Cliff Jumper / Fall-By Attack",
+          "reason": "Leaping and falling become the archetype’s defining movement and attack engine."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Fall-By Attack",
+          "reason": "A long descending jump can distribute a full attack across several creatures."
+        }
+      ],
+      "playerSummary": "A vertical skirmisher who drops from cliffs and ledges, attacking several enemies during a single fall.",
+      "tradeoff": "Its strongest bonuses require reliable elevation and safe falling routes, replacing the universally applicable studied-target engine.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:bloody-jake",
+      "name": "Bloody Jake",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Horror Adventures pg. 66",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Bloody%20Jake",
+      "capabilityOverrides": {
+        "offensive-magic": "available",
+        "battlefield-control": "core",
+        "debuffing-enemies": "core",
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {
+        "attribute-demands": "high",
+        "resource-management": "high"
+      },
+      "factOverrides": {
+        "requires-alignment": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "limited"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Bloody Jake must be evil and cannot advance in the archetype after becoming nonevil.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Cruel Tricks",
+          "reason": "Fear, disorientation, ability damage and supernatural misdirection become recurring tools."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Sadistic Snare / Something’s Not Right",
+          "reason": "Ranger traps and area fear effects control terrain and groups."
+        },
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Cruel Tricks",
+          "reason": "Supernatural fear and terrain magic directly attack enemy effectiveness."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Distant Voices / Woodland Shortcut",
+          "reason": "Ventriloquism, blindsense and tree stride add magical utility."
+        }
+      ],
+      "playerSummary": "An evil backwoods predator who dominates one favored terrain with fear, snares, folk magic and sadistic sneak attacks.",
+      "tradeoff": "Studied target is delayed and weakened, several talents disappear, and much of the toolkit depends on one chosen terrain and Charisma.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:bounty-hunter",
+      "name": "Bounty Hunter",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Advanced Class Guide pg. 118",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Bounty%20Hunter",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "bounty hunter",
+          "evidenceSection": "Dirty Trick / Submission Hold",
+          "evidenceText": "The archetype is explicitly hired to capture wanted targets or debtors alive."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Dirty Trick / Submission Hold",
+          "reason": "Sneak attack converts directly into dirty tricks and enhanced grappling."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Dirty Trick / Incapacitate",
+          "reason": "Dirty tricks and forced unconsciousness make disabling targets defining."
+        }
+      ],
+      "playerSummary": "A professional captor who converts sneak attacks into dirty tricks, submission holds and nonlethal incapacitation.",
+      "tradeoff": "Several flexible Slayer talents are replaced by a narrow capture-and-control package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:butterfly-blade",
+      "name": "Butterfly Blade",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Heroes of the High Court pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Butterfly%20Blade",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": false,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Bonus Feats / Innocent Butterfly",
+          "reason": "Intimidation, negotiation and supernatural inconspicuousness support political infiltration."
+        },
+        {
+          "field": "factOverrides.has-sneak-attack",
+          "section": "Butterfly’s Kiss",
+          "reason": "The normal sneak-attack progression is fully replaced by butterfly-sword bonuses and knockout."
+        }
+      ],
+      "playerSummary": "A courtly enforcer who intimidates nobles, appears harmless and fights nonlethally with specialised butterfly swords.",
+      "tradeoff": "Sneak attack is lost and most signature combat benefits depend on one unusual weapon.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:cleaner",
+      "name": "Cleaner",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Advanced Class Guide pg. 118",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Cleaner",
+      "capabilityOverrides": {
+        "practical-expertise": "core",
+        "social-influence": "core",
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "crime-scene cleaner",
+          "evidenceSection": "Without a Trace",
+          "evidenceText": "The source explicitly defines the job as destroying evidence, disposing of bodies and eliminating witnesses."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Without a Trace",
+          "reason": "The Cleaner can reconstruct, conceal or falsify physical evidence at a crime scene."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Deceitful",
+          "reason": "Bluff and Disguise receive explicit feat support."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Mislead",
+          "reason": "At-will misdirection masks the Cleaner from divination."
+        }
+      ],
+      "playerSummary": "A professional crime-scene cleaner who removes bodies, falsifies evidence, deceives investigators and masks divinations.",
+      "tradeoff": "Tracking and some combat flexibility are exchanged for specialised post-crime utility.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:covenbane",
+      "name": "Covenbane",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Blood of the Coven pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Covenbane",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Disrupt Coven",
+          "reason": "Threatened creatures cannot participate in coven powers, friendly spellcasting or teamwork."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Hag Sense / Unseen Sense",
+          "reason": "Magical scars detect hags, spellcasters, magical disguises and invisible magical foes."
+        }
+      ],
+      "playerSummary": "A scarred hunter of hags and magically linked groups who detects hidden magic and severs coven cooperation.",
+      "tradeoff": "Several broadly useful Slayer features are replaced by tools strongest against spellcasters and linked enemies.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:cutthroat",
+      "name": "Cutthroat",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Advanced Class Guide pg. 119",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Cutthroat",
+      "capabilityOverrides": {
+        "practical-expertise": "core",
+        "social-influence": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Street Stalker",
+          "reason": "Survival and geography are removed and Track becomes an urban skill speciality."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Street Stalker / Stab and Grab",
+          "reason": "Urban movement and opportunistic theft become supported practical tools."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills",
+          "reason": "Diplomacy, nobility and Linguistics receive explicit class support."
+        }
+      ],
+      "playerSummary": "An urban opportunist who exploits surprise, street skills and swift theft rather than wilderness tracking.",
+      "tradeoff": "Wilderness capability and several talents are traded for situational advantages in cities and surprise rounds.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:deliverer",
+      "name": "Deliverer",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Advanced Class Guide pg. 119",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Deliverer",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-code-of-conduct": true,
+        "requires-deity": true,
+        "has-profession-identity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A Deliverer is chosen by and serves a deity.",
+          "evidenceSection": "Deliverer"
+        },
+        {
+          "type": "code-of-conduct",
+          "kind": "commitment",
+          "summary": "Grossly violating the deity’s required conduct removes the archetype’s class features until atonement.",
+          "evidenceSection": "Ex-Deliverers"
+        }
+      ],
+      "professionIdentity": [
+        {
+          "value": "divine assassin",
+          "evidenceSection": "Deliverer",
+          "evidenceText": "The source explicitly calls the Deliverer a divine assassin, god’s blade or wrath-bringer."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Determined Zeal / True Believer",
+          "reason": "Diehard, Will bonuses and continued action below zero hit points reinforce survival against moral opposites."
+        }
+      ],
+      "playerSummary": "A deity’s chosen assassin who survives mortal wounds and deals divine punishment to enemies far from the Deliverer’s alignment.",
+      "tradeoff": "Its strongest benefits are alignment-dependent, and violating the deity’s code removes the archetype’s powers.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:dune-rider",
+      "name": "Dune Rider",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Ultimate Wilderness pg. 86",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Dune%20Rider",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Sand Foot / Galloping Fire",
+          "reason": "Mounted speed, terrain freedom and reduced mounted-ranged penalties define the combat style."
+        }
+      ],
+      "playerSummary": "A mounted desert skirmisher who rides quickly over sand and rock while delivering accurate ranged attacks.",
+      "tradeoff": "Studied-target benefits become terrain-bound and peak performance requires both a mount and warm desert, hill or mountain terrain.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:family-hunter",
+      "name": "Family Hunter",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Horror Adventures pg. 66",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Family%20Hunter",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "available",
+        "utility-magic": "available",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "limited"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Find Family",
+          "reason": "At-will supernatural kinship detection makes tracing one bloodline central."
+        },
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Disrupt Teamwork",
+          "reason": "Studied targets cannot flank, aid or use teamwork against the Family Hunter."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Find Family",
+          "reason": "At-will discern next of kin provides supernatural investigative utility."
+        }
+      ],
+      "playerSummary": "An obsessive hunter who traces one bloodline, attacks its relatives more effectively and disrupts coordinated enemies.",
+      "tradeoff": "Multiple studied targets must be related, and its defining benefits depend heavily on the selected family.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:grave-warden",
+      "name": "Grave Warden",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Advanced Class Guide pg. 120",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Grave%20Warden",
+      "capabilityOverrides": {
+        "defensive-protective-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "enemySpecializationOverrides": {
+        "undead": "core"
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "undead hunter",
+          "evidenceSection": "Grave Warden",
+          "evidenceText": "The archetype is explicitly dedicated to ending undead and other night-born horrors."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Holy Water Sprinkler / Dustbringer",
+          "reason": "Holy-water weapon treatment and a dedicated destruction ability provide reliable anti-undead advantages."
+        },
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Death Ward",
+          "reason": "A repeatable holy-water ritual grants personal death ward."
+        }
+      ],
+      "playerSummary": "A practical undead hunter who weaponises holy water, protects himself with death ward and destroys studied undead.",
+      "tradeoff": "Its replacement features are highly specialised and consume purchased holy water.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:guerrilla",
+      "name": "Guerrilla",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Ultimate Wilderness pg. 87",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Guerrilla",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Quick Start",
+          "reason": "The Guerrilla can make a full-distance charge during the surprise round."
+        }
+      ],
+      "playerSummary": "An ambush specialist who remains hidden while sniping, charges immediately and prolongs vulnerability after a surprise sneak attack.",
+      "tradeoff": "Tracking and late-game quarry features are exchanged for benefits concentrated in surprise and the opening round.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:pureblade",
+      "name": "Pureblade",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Advanced Class Origins pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Pureblade",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "available",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "enemySpecializationOverrides": {
+        "aberrations": "core"
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "enemySpecializationOverrides.aberrations",
+          "section": "Aberration Hunter / Discern Weakness",
+          "reason": "Aberrations can be studied immediately and suffer improved critical confirmation and capstone access."
+        },
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Steely Mind",
+          "reason": "Scaling saves and limited break enchantment counter effects created by aberrations."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Alien Prescience / Aberration Hunter",
+          "reason": "Detection and untrained identification make investigating aberrations central."
+        }
+      ],
+      "playerSummary": "A dedicated aberration hunter who detects alien creatures, finds their weak points and resists their mental influence.",
+      "tradeoff": "Several broad Slayer tools become narrow benefits that matter primarily against aberrations.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:sczarni-executioner",
+      "name": "Sczarni Executioner",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Advanced Class Origins pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Sczarni%20Executioner",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-alignment": true,
+        "has-profession-identity": true
+      },
+      "enemySpecializationOverrides": {
+        "humanoids": "core"
+      },
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Sczarni Executioner must be evil; becoming nonevil converts the character into a regular Slayer.",
+          "evidenceSection": "Bloodstained Hands"
+        }
+      ],
+      "professionIdentity": [
+        {
+          "value": "professional killer",
+          "evidenceSection": "Sczarni Executioner",
+          "evidenceText": "The source explicitly presents these characters as professional killers hired by crime families."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Painful Strike",
+          "reason": "Sneak attacks impose a scaling sickened condition."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills",
+          "reason": "Diplomacy and urban criminal skills replace several wilderness skills."
+        },
+        {
+          "field": "enemySpecializationOverrides.humanoids",
+          "section": "Focused Killer",
+          "reason": "Studied-target bonuses and Slayer DCs increase against humanoids and decrease against other targets."
+        }
+      ],
+      "playerSummary": "An evil professional killer specialising in humanoids, painful sneak attacks and rapid assassination.",
+      "tradeoff": "Performance drops against non-humanoids, wilderness skills are reduced and evil alignment is mandatory.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:sniper",
+      "name": "Sniper",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Advanced Class Guide pg. 120",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Sniper",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "sniper",
+          "evidenceSection": "Accuracy / Deadly Sniper",
+          "evidenceText": "The named archetype is explicitly built around disabling targets with one distant shot."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Accuracy / Deadly Sniper",
+          "reason": "Range penalties are reduced and the opening unseen shot gains exceptional sneak-attack reach and damage."
+        }
+      ],
+      "playerSummary": "A long-range marksman whose first unseen shot can deliver unusually distant and damaging sneak attack.",
+      "tradeoff": "The strongest benefit works only on the first attack against a target completely unaware of the Sniper.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:spawn-slayer",
+      "name": "Spawn Slayer",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Blood of the Ancients pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Spawn%20Slayer",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core",
+        "anti-magic-disruption": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Studied Spawn / Gain Leverage",
+          "reason": "Size restrictions are ignored and escalating bonuses counter larger creatures’ CMB and CMD."
+        },
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Force Vulnerability",
+          "reason": "The capstone temporarily strips immunity, resistances, regeneration or spell resistance."
+        }
+      ],
+      "playerSummary": "A specialist in bringing down enormous single foes by neutralising their size advantage and defensive abilities.",
+      "tradeoff": "Only one studied target can be maintained and several advantages require Large or larger enemies.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:spire-diver",
+      "name": "Spire Diver",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Pathfinder #124: City in the Deep pg. 80",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Spire%20Diver",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Swift Swimmer / Diver’s Advance",
+          "reason": "A full swim speed and burst swimming make underwater repositioning defining."
+        }
+      ],
+      "playerSummary": "An amphibious scout and assassin who shoots bows underwater, holds breath for extraordinary periods and swims at full speed.",
+      "tradeoff": "Several tracking and social studied-target benefits become aquatic advantages that are weak away from water.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:spiritslayer",
+      "name": "Spiritslayer",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Haunted Heroes Handbook pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Spiritslayer",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "enemySpecializationOverrides": {
+        "undead": "available",
+        "outsiders": "available"
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Spirit Sense / Disrupt Possession",
+          "reason": "The archetype detects invisible or possessing entities and can damage and expel possessors."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Spirit Sense",
+          "reason": "Enhanced Perception pinpoints invisible, ethereal and possessing entities."
+        },
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Ghost Slayer",
+          "reason": "Studied incorporeal undead lose major defences against the Slayer’s attacks and precision damage."
+        },
+        {
+          "field": "enemySpecializationOverrides.outsiders",
+          "section": "Ghost Slayer",
+          "reason": "Studied incorporeal outsiders lose major defences against the Slayer’s attacks and precision damage."
+        }
+      ],
+      "playerSummary": "A hunter of invisible, possessing and incorporeal spirits who exposes them and bypasses their unusual defences.",
+      "tradeoff": "Its specialised senses and combat advantages replace general talents and matter most against a narrow supernatural enemy set.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:stygian-slayer",
+      "name": "Stygian Slayer",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Advanced Class Guide pg. 120",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Stygian%20Slayer",
+      "capabilityOverrides": {
+        "offensive-magic": "available",
+        "utility-magic": "core",
+        "transformation-shapeshifting": "available"
+      },
+      "practicalOverrides": {
+        "resource-management": "medium"
+      },
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "limited"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Spell Use",
+          "reason": "Arcane spell-trigger and completion access includes offensive illusion magic."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Invisibility / Spell Use",
+          "reason": "Repeated invisibility and broad illusion-item access add meaningful infiltration utility."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Shadowy Mist Form",
+          "reason": "The Slayer can repeatedly transform into an obscuring gaseous cloud."
+        }
+      ],
+      "playerSummary": "A shadow assassin with repeated invisibility, broad access to illusion items and a supernatural mist form.",
+      "tradeoff": "Medium armour, shields and several talents are lost, and much of the magical breadth depends on consumable or triggered items.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:toxic-sniper",
+      "name": "Toxic Sniper",
+      "parentClassId": "slayer",
+      "sourceCitationText": "People of the Wastes pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Toxic%20Sniper",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {
+        "resource-management": "medium"
+      },
+      "factOverrides": {
+        "has-firearms": true,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Weapon and Armor Proficiency / Sharpshooter’s Study",
+          "reason": "Martial weapons and melee studied-target bonuses are lost in favour of firearms."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Toxic Shots / Precise Toxin",
+          "reason": "Limited poisoned ammunition receives increased save DCs and can trade sneak damage for still higher DCs."
+        },
+        {
+          "field": "factOverrides.has-firearms",
+          "section": "Scrapper’s Gun / Toxic Grit",
+          "reason": "The archetype gains a battered firearm, Gunsmithing and grit support."
+        }
+      ],
+      "playerSummary": "A firearm assassin who delivers strengthened poisons through carefully prepared toxic shots.",
+      "tradeoff": "Martial versatility and many Slayer talents are sacrificed for firearm, ammunition and poison dependence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:turncoat",
+      "name": "Turncoat",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Heroes of the Darklands pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Turncoat",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Double Speak / Sudden Betrayal",
+          "reason": "Bluff substitutes for diplomacy and established trust becomes a devastating combat opening."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Dubious Recognition",
+          "reason": "Scaling Sense Motive identifies lies and attempts to exploit the party."
+        }
+      ],
+      "playerSummary": "A social deceiver who detects treachery, talks through lies and weaponises an opponent’s trust.",
+      "tradeoff": "Tracking and quarry are lost for abilities that depend on conversation, attitude and betrayal opportunities.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:vanguard",
+      "name": "Vanguard",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Advanced Class Guide pg. 121",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Vanguard",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "battlefield commander",
+          "evidenceSection": "Vanguard",
+          "evidenceText": "The source explicitly describes Vanguards as battlefield commanders and capable officers."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Tactician / Vanguard’s Bond",
+          "reason": "Teamwork feats and studied-target bonuses are actively granted to nearby allies."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Vanguard’s Bond",
+          "reason": "Allies receive a direct combat bonus against the selected target."
+        }
+      ],
+      "playerSummary": "A battlefield commander who shares teamwork feats and studied-target bonuses with nearby allies.",
+      "tradeoff": "Tracking and early personal talents are exchanged for limited-use group coordination.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:velvet-blade",
+      "name": "Velvet Blade",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Ultimate Intrigue pg. 70",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Velvet%20Blade",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "knowledge-investigation": "core",
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "court assassin",
+          "evidenceSection": "Velvet Blade",
+          "evidenceText": "The source explicitly presents well-connected killers who infiltrate nobles and hire themselves out professionally."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Studied Socialite",
+          "reason": "Studied-target bonuses move from combat into Bluff, Diplomacy, Disguise, Intimidate and Sense Motive."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Courtly Graces",
+          "reason": "Noble lineages and social intelligence receive scaling support."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Courtly Graces / Studied Socialite",
+          "reason": "Track and wilderness combat study are redirected toward aristocratic social infiltration."
+        }
+      ],
+      "playerSummary": "A court assassin who infiltrates aristocratic society, appears harmless and turns trust into a lethal opening.",
+      "tradeoff": "Studied target no longer improves attacks or damage, and medium armour, shields and wilderness tracking are reduced.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:witch-killer",
+      "name": "Witch Killer",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Horror Adventures pg. 67",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Witch%20Killer",
+      "capabilityOverrides": {
+        "offensive-magic": "available",
+        "anti-magic-disruption": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "limited"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Burn the Witch",
+          "reason": "Limited spell-like effects turn a caster’s victims against the arcane enemy."
+        },
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Superstitious / Lingering Thrust",
+          "reason": "Spell sunder options, stronger concentration disruption and anti-arcane saves make magical interference central."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Class Skills / Scent Magic",
+          "reason": "Arcana, Spellcraft and at-will arcane detection support locating and identifying magic."
+        }
+      ],
+      "playerSummary": "A dedicated hunter of arcane casters who scents magic, interrupts spells and adopts anti-magic rage powers.",
+      "tradeoff": "Studied-target flexibility and ranger combat styles are narrowed around arcane enemies.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "slayer:woodland-sniper",
+      "name": "Woodland Sniper",
+      "parentClassId": "slayer",
+      "sourceCitationText": "Ultimate Wilderness pg. 87",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Slayer%20Woodland%20Sniper",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Ranged Sneak Attack",
+          "reason": "Sneak attack becomes exclusively ranged, removing a defining melee damage engine."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Tree Climber / Branchwalking",
+          "reason": "Tree movement develops into a full climb speed and canopy traversal."
+        }
+      ],
+      "playerSummary": "A forest guardian who snipes from trees, extends ranged sneak attack and moves freely through the canopy.",
+      "tradeoff": "Sneak attack can never be delivered in melee, and several benefits require trees and elevated cover.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

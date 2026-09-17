@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "levelBand": "whole-career-1-20",
+  "notes": [
+    "Slayer parent profile for the first complete class-by-class expansion."
+  ],
+  "profiles": [
+    {
+      "id": "slayer",
+      "name": "Slayer",
+      "sourceCitationText": "Advanced Class Guide pg. 53",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Slayer",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "core",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "available",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "core"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [
+          "wilderness"
+        ],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "ranged weapon"
+        ]
+      },
+      "constraints": [],
+      "enemySpecializations": {
+        "user-chosen creature type": "core"
+      },
+      "enemySpecializationEvidence": {
+        "user-chosen creature type": {
+          "feature": "Studied Target",
+          "reason": "The Slayer can study any encountered opponent and gains scaling attack, damage, skill and ability-DC benefits against that chosen target."
+        }
+      },
+      "calibrationRole": "Flexible martial hunter combining studied-target offence, sneak attack, talents, stealth and tracking."
+    }
+  ]
+}

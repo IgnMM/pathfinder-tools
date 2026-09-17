@@ -22,6 +22,7 @@ const classes = [
 ];
 
 const newlyAddedClassIds = new Set(['barbarian-unchained', 'rogue-unchained', 'slayer', 'summoner-unchained']);
+const legitimatelyEmptyClassIds = new Set(['barbarian-unchained', 'rogue-unchained']);
 
 function decodeHtml(value = '') {
   const named = {amp: '&', quot: '"', apos: "'", lt: '<', gt: '>', nbsp: ' '};
@@ -95,6 +96,16 @@ function parseArchetypeRows(html, parentClassId, parentClassName) {
   return rows;
 }
 
+async function fetchArchetypeIndex(id, name, attempts = 4) {
+  const url = `https://aonprd.com/Archetypes.aspx?Class=${encodeURIComponent(name)}`;
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    const archetypes = parseArchetypeRows(await fetchText(url), id, name);
+    if (archetypes.length || legitimatelyEmptyClassIds.has(id)) return {url, archetypes};
+    await new Promise(resolve => setTimeout(resolve, attempt * 750));
+  }
+  throw new Error(`AoN returned an empty archetype index for ${name}`);
+}
+
 function parseDetail(html) {
   const sourceMatch = html.match(/<b>Source<\/b>\s*<a[^>]*><i>([\s\S]*?)<\/i><\/a>/i);
   const bodyMatch = html.match(/<span id="MainContent_DataListTypes_LabelName_0">([\s\S]*?)<\/span>/i);
@@ -108,18 +119,16 @@ function parseDetail(html) {
   };
 }
 
-const classProfiles = (await Promise.all(['01', '02', '03'].map(async batch =>
+const classProfiles = (await Promise.all(['01', '02', '03', '04'].map(async batch =>
   JSON.parse(await fs.readFile(path.join(repo, 'assets/find-your-class/v2', `class-profiles-batch-${batch}.json`), 'utf8')).profiles
 ))).flat();
 const valuedClassIds = new Set(classProfiles.map(item => item.id));
 const valuedArchetypeIds = new Set((await Promise.all(Array.from({length: 10}, async (_, index) =>
   JSON.parse(await fs.readFile(path.join(repo, 'assets/find-your-class/v2', `archetype-profiles-pilot-${String(index + 1).padStart(2, '0')}.json`), 'utf8')).profiles
-))).flat().map(item => item.id));
+))).flat().concat(JSON.parse(await fs.readFile(path.join(repo, 'assets/find-your-class/v2/archetype-profiles-slayer.json'), 'utf8')).profiles).map(item => item.id));
 
 const classResults = await mapLimit(classes, 6, async ([id, name]) => {
-  const url = `https://aonprd.com/Archetypes.aspx?Class=${encodeURIComponent(name)}`;
-  const html = await fetchText(url);
-  const archetypes = parseArchetypeRows(html, id, name);
+  const {archetypes} = await fetchArchetypeIndex(id, name);
   process.stdout.write(`${name}: ${archetypes.length}\n`);
   return {id, name, entityType: 'class', aonUrl: `https://aonprd.com/ClassDisplay.aspx?ItemName=${encodeURIComponent(name)}`, archetypes};
 });

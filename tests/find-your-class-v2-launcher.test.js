@@ -17,9 +17,10 @@ test('find-your-class-v2/index.html loads the v2 scripts, not the v1 ones', () =
   assert.ok(!/src="\.\.\/assets\/find-your-class\/(loader|matcher|concept-parser)\.js"/.test(pageHtml), 'must not accidentally load a v1 script');
 });
 
-test('find-your-class-v2/index.html resolves all 40 class profiles + all 10 archetype pilot batches into one profile set at bootstrap', () => {
-  for (let i = 1; i <= 3; i++) assert.match(pageHtml, new RegExp(`class-profiles-batch-0${i}\\.json`));
+test('find-your-class-v2/index.html resolves all class profiles and archetype batches into one profile set at bootstrap', () => {
+  for (let i = 1; i <= 4; i++) assert.match(pageHtml, new RegExp(`class-profiles-batch-0${i}\\.json`));
   for (let i = 1; i <= 10; i++) assert.match(pageHtml, new RegExp(`archetype-profiles-pilot-${String(i).padStart(2, '0')}\\.json`));
+  assert.match(pageHtml, /archetype-profiles-slayer\.json/);
   assert.match(pageHtml, /resolveAllProfiles\(classProfiles, archetypeOverrides\)/);
 });
 
