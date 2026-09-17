@@ -497,6 +497,33 @@ const PROFILES = [
     playerSummary: 'A magic-item and lore specialist who always takes 10 on Use Magic Device, Knowledge (arcana), and Spellcraft, finds writing-based traps like a rogue, borrows spells from any class list, and eventually attunes permanently to a favored magic item to use his own caster level with it.',
     tradeoff: 'Entry requires Magical Aptitude, any item creation feat, Knowledge (arcana)/Spellcraft/Use Magic Device 5 ranks, and 2nd-level spells, and he is built around identifying and empowering magic items rather than frontline combat.',
   }),
+  author('argent-dramaturge', {
+    c: {'offensive-magic': 'available', 'debuffing-enemies': 'core', 'support-buffing': 'core', 'social-influence': 'available', 'healing-recovery': 'available'},
+    p: {'build-complexity': 'high', 'play-complexity': 'medium', 'attribute-demands': 'medium', 'equipment-dependence': 'low', 'resource-management': 'low', versatility: 'medium'},
+    f: {'has-spellcasting': true},
+    identity: {magicIdentity: ['arcane'], castingMethod: ['mixed'], castingExtent: ['partial'], spiritualThemes: ['none'], elementThemes: ['none'], professionIdentity: ['performer'], primaryDelivery: ['spellcasting']},
+    professionIdentity: ['performer'],
+    playerSummary: 'A Kintargan bardic performer who wields the magical "Song of Silver" to treat allies\' weapons as silver, ward off fear and charm, block fiendish teleportation, and eventually revive a dying ally with breath of life or banish an evil outsider through a righteous chord.',
+    tradeoff: 'Entry requires Skill Focus (Perform), Knowledge (arcana)/Knowledge (history)/Perform (sing)/Spellcraft ranks, and a sonic or language-dependent 2nd-level spell, and her performance is entirely audible-only, so silence or deafness shuts it down.',
+  }),
+  author('asavir', {
+    c: {'melee-combat': 'core', 'combat-mobility': 'core', 'tactical-leadership': 'available', 'battlefield-control': 'available', 'social-influence': 'available'},
+    p: {'build-complexity': 'medium', 'play-complexity': 'medium', 'attribute-demands': 'medium', 'equipment-dependence': 'high', 'resource-management': 'low', versatility: 'low'},
+    f: {'has-mount': true, 'controls-additional-entity': true},
+    identity: {magicIdentity: ['none'], castingMethod: ['none'], castingExtent: ['none'], spiritualThemes: ['none'], elementThemes: ['none'], professionIdentity: ['cavalry rider'], primaryDelivery: ['melee weapon']},
+    professionIdentity: ['cavalry rider'],
+    playerSummary: 'An Al-Zabriti cavalry warrior whose genie-blessed horse companion grows steadily more supernatural -- gaining mind-affecting and fear resistance, extra speed, fire resistance, and a trample attack -- while she knocks down foes with a ground-shaking charge and rallies allies with camaraderie.',
+    tradeoff: 'Entry requires base attack bonus +4, the Mounted Combat feat, and Handle Animal/Ride 5 ranks, and nearly every high-level ability only functions while mounted on her bonded horse.',
+  }),
+  author('ashavic-dancer', {
+    c: {'offensive-magic': 'available', 'debuffing-enemies': 'core', 'support-buffing': 'available', 'healing-recovery': 'available', 'social-influence': 'available'},
+    p: {'build-complexity': 'high', 'play-complexity': 'medium', 'attribute-demands': 'medium', 'equipment-dependence': 'low', 'resource-management': 'low', versatility: 'medium'},
+    f: {'has-spellcasting': true, 'requires-alignment': true, 'requires-deity': true},
+    identity: {magicIdentity: ['divine'], castingMethod: ['mixed'], castingExtent: ['partial'], spiritualThemes: ['deity'], elementThemes: ['none'], professionIdentity: ['performer'], primaryDelivery: ['spellcasting']},
+    constraints: [{type: 'alignment', kind: 'requirement', summary: 'An Ashavic dancer must be neutral good or chaotic good.', evidenceSection: 'Alignment'}, {type: 'deity', kind: 'requirement', summary: 'An Ashavic dancer must worship the empyreal lord Ashava.', evidenceSection: 'Deity'}],
+    playerSummary: 'A moonlit dancer devoted to Ashava who unravels undead and haunts with a visual-only performance, sickens or staggers undead with dazzling steps, breaks possession and compulsion effects, and eventually lures the dead back into their graves with searing damage.',
+    tradeoff: 'Entry requires neutral good or chaotic good alignment, worship of Ashava, the Ghost Whisperer feat, Knowledge (religion)/Perform (dance) ranks, and 2nd-level spells, and her performance is entirely visual-only, so blindness or darkness shuts it down.',
+  }),
 ];
 
 const seen = new Set(PROFILES.map(p => p.id));
