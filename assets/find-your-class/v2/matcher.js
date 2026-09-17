@@ -317,6 +317,13 @@
     return watch.slice(0, 2);
   }
 
+  function summaryFor(p) {
+    if (p.playerSummary) return p.playerSummary;
+    if (p.entityType === 'class-path') return `${p.name} is a class path.`;
+    if (p.entityType === 'prestige-class') return `${p.name} is a prestige class.`;
+    return `${p.name} is a ${capitalize(p.classId)} archetype.`;
+  }
+
   function buildResult(candidate, role, criteriaIndex) {
     const p = candidate.profile;
     return {
@@ -326,10 +333,11 @@
       classId: p.classId,
       title: p.name,
       parentLabel: p.entityType === 'archetype' ? capitalize(p.classId) : null,
-      summary: p.entityType === 'class-path' ? (p.playerSummary || `${p.name} is a class path.`) : (p.playerSummary || `${p.name} is a ${capitalize(p.classId)} archetype.`),
+      summary: summaryFor(p),
       whyItFits: buildWhyItFits(candidate, criteriaIndex),
       watchFor: buildWatchFor(candidate),
       requirements: candidate.eligibility.disclosures.map(d => d.rule),
+      requirementsText: p.entityType === 'prestige-class' ? (p.requirementsText || null) : null,
       fitBand: fitBandFor(candidate, role),
       sourceUrl: p.sourceUrl,
     };
@@ -337,19 +345,39 @@
 
   function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
 
+  function isPrestigeClass(profile) { return profile.entityType === 'prestige-class'; }
+
+  // A prestige class is never one of the four starting-path roles (it can't
+  // be played from level 1) -- it's surfaced separately as a single
+  // "worth studying next" tip, and only when the fit is strong. Reuses the
+  // same 0.72 threshold fitBandFor already treats as "best-fit", so the tip
+  // only appears on a genuinely close match, never a token one.
+  const PRESTIGE_TIP_FIT_THRESHOLD = 0.72;
+
+  function buildPrestigeTip(profiles, request, criteriaIndex) {
+    const prestigeProfiles = profiles.filter(isPrestigeClass);
+    if (!prestigeProfiles.length) return null;
+    const ranked = rankCandidates(prestigeProfiles, request);
+    const best = ranked.find(r => r.eligibility.status !== 'ineligible');
+    if (!best || best.overallFit < PRESTIGE_TIP_FIT_THRESHOLD) return null;
+    return buildResult(best, 'prestige-tip', criteriaIndex);
+  }
+
   function matchProfiles(request, profiles, criteriaIndex, options) {
-    const ranked = rankCandidates(profiles, request);
+    const mainPool = profiles.filter(p => !isPrestigeClass(p));
+    const ranked = rankCandidates(mainPool, request);
     const roles = selectRoles(ranked, request, (options && options.maxResults) || 4);
     const recommendations = roles.map(c => buildResult(c, c.role, criteriaIndex));
     const bestFit = ranked.find(r => r.eligibility.status !== 'ineligible');
     const confidence = !bestFit ? 'low' : bestFit.overallFit >= 0.72 ? 'high' : bestFit.overallFit >= FIT_FLOOR ? 'medium' : 'low';
-    return { recommendations, confidence, _internal: { ranked } };
+    const prestigeTip = buildPrestigeTip(profiles, request, criteriaIndex);
+    return { recommendations, confidence, prestigeTip, _internal: { ranked } };
   }
 
   return {
     scoreCandidate, scoreCandidateManual, evaluateEligibility, rankCandidates, selectRoles, matchProfiles,
     capabilityFit, manualCapabilityFit, practicalFit, factFit, importanceWeight, constraintId,
-    CAPABILITY_VALUE_RANK,
+    CAPABILITY_VALUE_RANK, isPrestigeClass, PRESTIGE_TIP_FIT_THRESHOLD,
   };
 }));
 

@@ -481,6 +481,20 @@
       </article>`;
     }
 
+    function prestigeTipCard(tip) {
+      if (!tip) return '';
+      return `<aside class="fycPrestigeTip" aria-labelledby="fycPrestigeTipHeading">
+        <p class="fycPrestigeTipLabel">✦ Evolve your character</p>
+        <p class="fycResultType">Prestige class</p>
+        <h2 id="fycPrestigeTipHeading">${escapeHtml(tip.title)}</h2>
+        <p class="fycResultSummary">${escapeHtml(tip.summary)}</p>
+        ${tip.whyItFits.length ? `<div class="fycWhy"><h3>Why it fits</h3><ul>${tip.whyItFits.map(w => `<li>${escapeHtml(w)}</li>`).join('')}</ul></div>` : ''}
+        ${tip.requirementsText ? `<div class="fycWatch"><h3>How to qualify</h3><p>${escapeHtml(tip.requirementsText)}</p></div>` : ''}
+        ${tip.watchFor.length ? `<div class="fycWatch"><h3>Watch for</h3><ul>${tip.watchFor.map(w => `<li>${escapeHtml(w)}</li>`).join('')}</ul></div>` : ''}
+        <div class="fycResultActions"><a class="fycSecondary" href="${escapeHtml(tip.sourceUrl || '#')}" target="_blank" rel="noopener">View rules source</a></div>
+      </aside>`;
+    }
+
     function renderResults() {
       const rex = state.lastResult;
       if (!rex || !rex.recommendations.length) {
@@ -494,6 +508,7 @@
         <h1 id="fycHeading">Paths worth exploring</h1>
         <p class="fycSupport">These are starting points, not verdicts. Change any preference and the shortlist will update.</p>
         <div class="fycResults">${rex.recommendations.map(recommendationCard).join('')}</div>
+        ${prestigeTipCard(rex.prestigeTip)}
         <div class="fycActions">
           <button type="button" class="fycSecondary" data-action="back-to-previous">Adjust my answers</button>
           <button type="button" class="fycQuiet" data-action="start-over">Start over</button>

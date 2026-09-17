@@ -16,8 +16,10 @@ const archetypeOverrides = Array.from({ length: 10 }, (_, i) => `archetype-profi
   .flatMap(f => readJson(f).profiles).filter(p => !['alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric','druid','fighter','gunslinger','hunter','inquisitor','investigator','kineticist','magus','medium','mesmerist','monk','monk-unchained','ninja','occultist','oracle','paladin','psychic','ranger','rogue','samurai','shaman','shifter','skald','sorcerer','spiritualist','summoner','swashbuckler','vigilante','warpriest','witch','wizard'].includes(p.parentClassId))
   .concat(...['slayer','summoner-unchained','alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric','druid','fighter','gunslinger','hunter','inquisitor','investigator','kineticist','magus','medium','mesmerist','monk','monk-unchained','ninja','occultist','oracle','paladin','psychic','ranger','rogue','samurai','shaman','shifter','skald','sorcerer','spiritualist','summoner','swashbuckler','vigilante','warpriest','witch','wizard'].map(id => readJson(`archetype-profiles-${id}.json`).profiles));
 
+const prestigeProfiles = readJson('prestige-profiles.json').profiles;
+
 const criteriaIndex = V2.indexCriteria(criteriaDoc);
-const profiles = V2.resolveAllProfiles(classProfiles, archetypeOverrides);
+const profiles = V2.resolveAllProfiles(classProfiles, archetypeOverrides, prestigeProfiles);
 
 function req(overrides) {
   return Object.assign({ schemaVersion: 2, capabilityPreferences: {}, practicalPreferences: {}, factPreferences: {}, identityPreferences: {}, gateAnswers: {} }, overrides);
@@ -199,4 +201,63 @@ test('no player-facing recommendation text leaks raw criterion ids, ordinal jarg
   assert.ok(!/melee-combat|personal-durability/.test(text), 'must not leak raw criterion ids');
   assert.ok(!/\bcore\b|\bavailable\b|\babsent\b/.test(text), 'must not leak the raw ordinal vocabulary');
   assert.ok(!/overallFit|\d\.\d{2,}/.test(text), 'must not leak raw fit numbers');
+});
+
+// =====================================================================
+// Prestige-class tips: a prestige class is never a starting-path role
+// (best-overall/different-approach/more-approachable/unexpected-fit) since
+// it can't be played from level 1 -- instead it surfaces as a single
+// separate "worth studying next" tip, and only on a strong (>=0.72) fit.
+// =====================================================================
+
+test('prestige classes never appear among the four main recommendations, for any request', () => {
+  for (const request of [
+    req({ capabilityPreferences: { 'melee-combat': { desiredLevel: 'core', importance: 9 } } }),
+    req({ capabilityPreferences: { 'offensive-magic': { desiredLevel: 'core', importance: 9 }, 'stealth-subterfuge': { desiredLevel: 'core', importance: 8 } } }),
+    req({ identityPreferences: { magicIdentity: { mode: 'require', values: ['arcane'] } } }),
+  ]) {
+    const result = Matcher.matchProfiles(request, profiles, criteriaIndex, { maxResults: 4 });
+    assert.ok(result.recommendations.every(r => r.entityType !== 'prestige-class'), 'a prestige class leaked into the main recommendations');
+  }
+});
+
+test('a prestige class with a strong, eligible fit surfaces as prestigeTip, with entityType "prestige-class" and no parentLabel', () => {
+  const loremaster = profiles.find(p => p.id === 'prestige:loremaster');
+  assert.ok(loremaster, 'prestige:loremaster must exist in the resolved pool');
+  // Build a request that scores strongly against loremaster's own real
+  // capabilities/identity, so the >=0.72 threshold is met honestly rather
+  // than gamed with a mocked profile.
+  const strongCaps = Object.entries(loremaster.capabilities).filter(([, v]) => v === 'core').slice(0, 3);
+  assert.ok(strongCaps.length >= 2, 'loremaster fixture assumption: needs at least 2 core capabilities to build a strong request');
+  const capabilityPreferences = {};
+  for (const [id] of strongCaps) capabilityPreferences[id] = { desiredLevel: 'core', importance: 10 };
+  const request = req({ capabilityPreferences });
+  const result = Matcher.matchProfiles(request, profiles, criteriaIndex, { maxResults: 4 });
+  assert.ok(result.prestigeTip, 'expected a prestige tip for a request built from the profile\'s own core capabilities');
+  assert.equal(result.prestigeTip.entityType, 'prestige-class');
+  assert.equal(result.prestigeTip.parentLabel, null);
+  assert.equal(result.prestigeTip.role, 'prestige-tip');
+});
+
+test('prestigeTip is absent (not just empty) when no request preferences are set', () => {
+  const result = Matcher.matchProfiles(req({}), profiles, criteriaIndex, { maxResults: 4 });
+  assert.equal(result.prestigeTip, null);
+});
+
+test('prestigeTip is null when the best-fitting prestige class is ineligible (fails a required gate)', () => {
+  const request = req({ identityPreferences: { magicIdentity: { mode: 'require', values: ['__no-such-magic-identity__'] } } });
+  const result = Matcher.matchProfiles(request, profiles, criteriaIndex, { maxResults: 4 });
+  assert.equal(result.prestigeTip, null);
+});
+
+test('prestigeTip carries the prestige class\'s real requirementsText for "how to qualify" display', () => {
+  const loremaster = profiles.find(p => p.id === 'prestige:loremaster');
+  const strongCaps = Object.entries(loremaster.capabilities).filter(([, v]) => v === 'core').slice(0, 3);
+  const capabilityPreferences = {};
+  for (const [id] of strongCaps) capabilityPreferences[id] = { desiredLevel: 'core', importance: 10 };
+  const result = Matcher.matchProfiles(req({ capabilityPreferences }), profiles, criteriaIndex, { maxResults: 4 });
+  if (result.prestigeTip && result.prestigeTip.id === 'prestige:loremaster') {
+    assert.equal(result.prestigeTip.requirementsText, loremaster.requirementsText);
+    assert.ok(result.prestigeTip.requirementsText.length > 0);
+  }
 });
