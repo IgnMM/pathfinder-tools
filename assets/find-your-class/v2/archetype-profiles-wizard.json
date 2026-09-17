@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Wizard parent value.",
+  "profiles": [
+    {
+      "id": "wizard:absalom-arcanamirium-crafter",
+      "name": "Absalom: Arcanamirium Crafter",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Inner Sea Primer pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Absalom%20%20Arcanamirium%20Crafter",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "item crafter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Absalom / Associated School / Replacement Power / Metacharge",
+          "reason": "The archetype’s Absalom / Associated School / Replacement Power / Metacharge package materially changes practical expertise from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "One trained by the Arcanamirium, a college specializing in the universalist school of magic and the art of crafting magical items.",
+      "tradeoff": "It replaces or alters Hand of the Apprentice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:arcane-bomber",
+      "name": "Arcane Bomber",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Ultimate Combat pg. 75",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Arcane%20Bomber",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-bombs": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Bomb / Spellblast Bombs / School of the Bomb",
+          "reason": "The archetype’s Bomb / Spellblast Bombs / School of the Bomb package materially changes ranged combat from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "To many wizards, the experimentation of the alchemist seems quaint, if not dangerous or frightening. A few wizards take up the secrets of the bomb, however, fusing alchemy with their already considerable magical power.",
+      "tradeoff": "It replaces or alters Arcane Bond; Cantrips; Arcane School; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:arcane-physician",
+      "name": "Arcane Physician",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Healer's Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Arcane%20Physician",
+      "capabilityOverrides": {
+        "healing-recovery": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "physician",
+          "evidenceSection": "Medicinal Alchemy / Brew Potion",
+          "evidenceText": "The named archetype explicitly practises medicine through alchemical healing items and potion construction."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Medicinal Alchemy / Brew Potion",
+          "reason": "The archetype’s Medicinal Alchemy / Brew Potion package materially changes healing recovery from the Wizard baseline."
+        },
+        {
+          "field": "professionIdentity",
+          "section": "Medicinal Alchemy / Brew Potion",
+          "reason": "Medicinal Alchemy / Brew Potion supports the explicit professional identity without changing the Wizard’s already-core knowledge role."
+        }
+      ],
+      "playerSummary": "Arcane physicians use their scholarly knowledge and arcane mastery to achieve incredible feats of medicine.",
+      "tradeoff": "It replaces or alters Arcane School; Scribe Scroll; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:arcane-warden",
+      "name": "Arcane Warden",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Blood of the Ancients pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Arcane%20Warden",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Universal Magic / Class Skills / Ready for Anything / Generous Touch",
+          "reason": "The archetype’s Universal Magic / Class Skills / Ready for Anything / Generous Touch package materially changes protecting allies from the Wizard baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Universal Magic / Class Skills / Ready for Anything / Generous Touch",
+          "reason": "The archetype’s Universal Magic / Class Skills / Ready for Anything / Generous Touch package materially changes wilderness affinity from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Arcane wardens are wizards who specialize in the discovery or generation of places of safety and refuge.",
+      "tradeoff": "It replaces or alters Arcane School; Class Skills; Scribe Scroll; Bonus Feats; Hand of the Apprentice; Metamagic Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:bonded-wizard",
+      "name": "Bonded Wizard",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Cohorts and Companions pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Bonded%20Wizard",
+      "capabilityOverrides": {
+        "personal-durability": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Arcane Bond / Hidden Bond / Bonded Force / Reshape Bond",
+          "reason": "The archetype’s Arcane Bond / Hidden Bond / Bonded Force / Reshape Bond package materially changes personal durability from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Many wizards form an arcane bond with an item, but for some this bond becomes a powerful mystic union.",
+      "tradeoff": "It replaces or alters Scribe Scroll; 5th, 10th, and 15th-level Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:cheliax-egorian-academy-infernal-binder",
+      "name": "Cheliax: Egorian Academy Infernal Binder",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Inner Sea Primer pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Cheliax%20%20Egorian%20Academy%20Infernal%20Binder",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "An infernal binder must be lawful evil, lawful neutral, neutral evil, or neutral.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Cheliax / Associated School / Suggested Opposition Schools / Alignment",
+          "reason": "Cheliax / Associated School / Suggested Opposition Schools / Alignment defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "A wizard trained by the prestigious Egorian Academy, best known for its Infernal Binding program in the school of conjuration.",
+      "tradeoff": "It replaces or alters Acid Dart, Dimensional Steps; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:chronomancer",
+      "name": "Chronomancer",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Legacy of the First World pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Chronomancer",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Temporal Pool / Forewarned / Rewind / Accelerate",
+          "reason": "The archetype’s Temporal Pool / Forewarned / Rewind / Accelerate package materially changes protecting allies from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Rare arcane scholars known as chronomancers demonstrate the ability to shift themselves in short bursts between the past, future, and alternate presents.",
+      "tradeoff": "It replaces or alters Arcane Bond; 10th, 15th, 20th-level Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:clocksmith",
+      "name": "Clocksmith",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Construct Handbook pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Clocksmith",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "constructor"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Clockwork Bond / Clockwork Expertise / Craft Construct / Familiar Tinkering",
+          "reason": "The archetype’s Clockwork Bond / Clockwork Expertise / Craft Construct / Familiar Tinkering package materially changes practical expertise from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Clocksmiths are oddities among wizard communities, pursuing the study and creation of clockwork constructs to near obsession",
+      "tradeoff": "It replaces or alters Arcane Bond; Arcane School; Scribe Scroll; Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:cruoromancer",
+      "name": "Cruoromancer",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Advanced Race Guide pg. 98",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Cruoromancer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Dhampir characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Blood Infusion / Focused Infusion / Sickening Infusion / Blood Command",
+          "reason": "Blood Infusion / Focused Infusion / Sickening Infusion / Blood Command defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "A cruoromancer infuses his necromantic magic with the power of his unique mixture of living blood and undead ichor.",
+      "tradeoff": "It replaces or alters Arcane Bond; 5th, 10th, 15th, 20th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:elder-mythos-scholar",
+      "name": "Elder Mythos Scholar",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Horror Adventures pg. 74",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Elder%20Mythos%20Scholar",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "occult investigator",
+          "evidenceSection": "Talisman of Revealing",
+          "evidenceText": "The archetype explicitly hunts and identifies Elder Mythos creatures and their effects."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "professionIdentity",
+          "section": "Arcane Bond / Eldritch Knowledge / Eldritch Grimoire  / Talisman of Revealing",
+          "reason": "Arcane Bond / Eldritch Knowledge / Eldritch Grimoire  / Talisman of Revealing supports the explicit professional identity without changing the Wizard’s already-core knowledge role."
+        }
+      ],
+      "playerSummary": "Elder Mythos scholars risk their sanity to seek knowledge of alien and awful entities from beyond the stars.",
+      "tradeoff": "It replaces or alters Arcane Bond; 1st, 8th-level Arcane School Ability; Spellbook; Scribe Scroll; 5th, 10th-level Bonus feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:exploiter-wizard",
+      "name": "Exploiter Wizard",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Advanced Class Guide pg. 133",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Exploiter%20Wizard",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Arcane Reservoir / Exploiter Exploit",
+          "reason": "The archetype’s Arcane Reservoir / Exploiter Exploit package materially changes practical expertise from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Contrary to traditional wizardly study, an exploiter wizard forgoes the tried and true methods of arcane focus and arcane schools for the exploits favored by an arcanist.",
+      "tradeoff": "It replaces or alters Arcane Bond; Arcane School; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:familiar-adept",
+      "name": "Familiar Adept",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Familiar Folio pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Familiar%20Adept",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Diminished Expertise / School Familiar / Familiar Spells / Focused School",
+          "reason": "Diminished Expertise / School Familiar / Familiar Spells / Focused School defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Many wizards employ familiars to assist them, but only a few have unlocked the true power of their school of magic through the familiar itself.",
+      "tradeoff": "It replaces or alters Scribe Scroll; 5th and 10th-level Bonus Feats; Arcane Bond; Spellbooks; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:first-world-caller",
+      "name": "First World Caller",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Heroes from the Fringe pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20First%20World%20Caller",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "fey"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Fey Familiar / Fey Summoner / Warp Reality",
+          "reason": "Fey Familiar / Fey Summoner / Warp Reality defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Some wizards, typically First World gnomes, have mystical ties with the First World, the primordial home of the fey",
+      "tradeoff": "It replaces or alters Arcane Bond; Arcane School; Scribe Scroll; 10th, 15th-level Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:hallowed-necromancer",
+      "name": "Hallowed Necromancer",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Horror Adventures pg. 74",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Hallowed%20Necromancer",
+      "capabilityOverrides": {
+        "healing-recovery": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "code-of-conduct",
+          "kind": "commitment",
+          "summary": "A hallowed necromancer must specialize in necromancy and swears never to create undead.",
+          "evidenceSection": "Arcane School"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Arcane School / Turn Undead / Positive Touch / Death Bane",
+          "reason": "The archetype’s Arcane School / Turn Undead / Positive Touch / Death Bane package materially changes healing recovery from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Many wizards study necromancy to create undead, but some study the same arts to purge the stain of undeath.",
+      "tradeoff": "It replaces or alters Arcane School; Spells; Power Over Undead; Grave Touch; Scribe Scroll; 5th, 10th, 15th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:instructor",
+      "name": "Instructor",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Cohorts and Companions pg. 31",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Instructor",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "teacher"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Apprentice / Trained Teamwork",
+          "reason": "The archetype’s Apprentice / Trained Teamwork package materially changes tactical leadership from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Whether serving as staff at a formal school of magic or simply acting as a wandering teacher, an instructor has an apprentice who trades service to the instructor for lessons in magic.",
+      "tradeoff": "It replaces or alters Arcane Bond; 5th, 10th, 15th, and 20th-level Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:pact-wizard-ff",
+      "name": "Pact Wizard (FF)",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Familiar Folio pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Pact%20Wizard%20(FF)",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "patron",
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "patron-oath-order",
+          "kind": "commitment",
+          "summary": "A pact wizard enters a bargain with an extraplanar patron of one outsider subtype; grossly abusing the familiar or acting against the patron’s alignment costs all archetype benefits until atonement.",
+          "evidenceSection": "Pact"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Familiar / Pact Focus / Pact / Aura",
+          "reason": "Familiar / Pact Focus / Pact / Aura defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Some wizards make bargains with beings from other realms in order to gain arcane power. These pact wizards have unparalleled access to extraplanar allies, but these bonds never come without strings attached.",
+      "tradeoff": "It replaces or alters Arcane Bond; Arcane School; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:pact-wizard-hhh",
+      "name": "Pact Wizard (HHH)",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Haunted Heroes Handbook pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Pact%20Wizard%20(HHH)",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "patron"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "patron-oath-order",
+          "kind": "commitment",
+          "summary": "A pact wizard forges a bargain with an otherworldly patron and gains an oracle curse at 5th level as the price of the patron’s power.",
+          "evidenceSection": "Great Power, Greater Expense"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Patron Spells",
+          "reason": "Patron Spells defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Wizards who seek mastery of arcane power without tedious study and monotonous research.",
+      "tradeoff": "It replaces or alters Spellcasting; Scribe Scroll; 5th, 10th, 15th, and 20th level Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:poleiheira-adherent",
+      "name": "Poleiheira Adherent",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Blood of the Ancients pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Poleiheira%20Adherent",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "explorer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Bonded Book / Great Odyssey / Mount",
+          "reason": "The archetype’s Bonded Book / Great Odyssey / Mount package materially changes practical expertise from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Poleiheira adherents are wizards who wish to emulate the explorations and discoveries of Arustun and partake in great odysseys as they seek to imitate his achievements.",
+      "tradeoff": "It replaces or alters Arcane Bond; Arcane School; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:primalist",
+      "name": "Primalist",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Inner Sea Magic pg. 37",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Primalist",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Primal Magic / Enhance Primal Magic Event / Primal Surge",
+          "reason": "The archetype’s Primal Magic / Enhance Primal Magic Event / Primal Surge package materially changes practical expertise from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "A primalist is a wizard who has spent a considerable amount of time studying the chaos that is primal magic.",
+      "tradeoff": "It replaces or alters Arcane Bond, 5th-level Bonus Feat, 10th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:qadira-mage-of-the-veil",
+      "name": "Qadira: Mage of the Veil",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Inner Sea Primer pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Qadira%20%20Mage%20of%20the%20Veil",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "spy"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Qadira / Associated School / Requirements / Class Skills",
+          "reason": "The archetype’s Qadira / Associated School / Requirements / Class Skills package materially changes stealth subterfuge from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Rather than controlling the elements or transforming the environment, mages of the veil focus on much more subtle magic.",
+      "tradeoff": "It replaces or alters Blinding Ray, Invisibility Field; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:runesage",
+      "name": "Runesage",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Adventurer's Guide pg. 58",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Runesage",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Runic Focus",
+          "reason": "The archetype’s Runic Focus package materially changes practical expertise from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Runesages draw upon the mystic energies of ancient Thassilon.",
+      "tradeoff": "It replaces or alters Arcane Bond; Arcane School; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:scroll-scholar",
+      "name": "Scroll Scholar",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Pathfinder Society Field Guide pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Scroll%20Scholar",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "scholar",
+          "evidenceSection": "Diligent Student / Secrets Revealed",
+          "evidenceText": "The archetype explicitly develops multiple fields of scholarship and language and identification expertise."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "professionIdentity",
+          "section": "Diligent Student / Secrets Revealed / Flash of Insight",
+          "reason": "Diligent Student / Secrets Revealed / Flash of Insight supports the explicit professional identity without changing the Wizard’s already-core knowledge role."
+        }
+      ],
+      "playerSummary": "Those who trade some of their potential to better understand ancient texts and scrolls can become learned scroll scholars.",
+      "tradeoff": "It replaces or alters Diviner's Fortune (diviner) or Hand of the Apprentice (universalist), 5th-level Bonus Feat, 4th-level spell slot; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:scrollmaster",
+      "name": "Scrollmaster",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Ultimate Magic pg. 89",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Scrollmaster",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "improvised weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Scroll Blade / Scroll Shield / Improved Scroll Casting",
+          "reason": "The archetype’s Scroll Blade / Scroll Shield / Improved Scroll Casting package materially changes melee combat from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "To some wizards, a scroll is not just a written form of a spell, it is a physical weapon meant to be used in combat like a sword or a shield.",
+      "tradeoff": "It replaces or alters Arcane Bond; 10th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:shadowcaster",
+      "name": "Shadowcaster",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Inner Sea Magic pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Shadowcaster",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Shadow Spells / Shadowsight / Shadowy Specialization",
+          "reason": "Shadow Spells / Shadowsight / Shadowy Specialization defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Trained in the dark mysteries of Nidal's Umbral Court, the shadowcaster harnesses the power of shadows to bolster their spellcasting.",
+      "tradeoff": "It replaces or alters Arcane Bond; 5th-level Bonus Feat; 10th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:siege-mage",
+      "name": "Siege Mage",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Ultimate Combat pg. 75",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Siege%20Mage",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Siege Engineer / Siege Engine Bond / Empower Siege Engine / Siege School",
+          "reason": "The archetype’s Siege Engineer / Siege Engine Bond / Empower Siege Engine / Siege School package materially changes ranged combat from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "The siege mage combines his arcane mastery with a supernatural link to siege engines.",
+      "tradeoff": "It replaces or alters Scribe Scroll; Arcane Bond; Cantrips; Arcane School; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:spell-sage",
+      "name": "Spell Sage",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Advanced Class Guide pg. 133",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Spell%20Sage",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Focused Spells / Spell Study",
+          "reason": "The archetype’s Focused Spells / Spell Study package materially changes practical expertise from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "A spell sage has mastered spells of all types, and is able to increase the effectiveness of his own spells and eventually even cast spells from other classes’ spell lists.",
+      "tradeoff": "It replaces or alters Arcane Bond; Arcane School; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:spellbinder",
+      "name": "Spellbinder",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Advanced Race Guide pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Spellbinder",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Elf characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Spell Bond / Discoveries",
+          "reason": "Spell Bond / Discoveries defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "A spellbinder is an elven wizard who forges an arcane bond between himself and one or more wizard spells.",
+      "tradeoff": "It replaces or alters Arcane Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:spellslinger",
+      "name": "Spellslinger",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Ultimate Combat pg. 75",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Spellslinger",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high",
+        "versatility": "medium"
+      },
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "One or two firearms become arcane guns used to deliver and enhance spells.",
+          "evidenceSection": "Arcane Gun"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Arcane Gun / Gunsmith / Mage Bullets / School of the Gun",
+          "reason": "The archetype’s Arcane Gun / Gunsmith / Mage Bullets / School of the Gun package materially changes ranged combat from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "While few contest the seductive allure of commanding arcane and occult powers, there are those wizards who become obsessed with the natural mysteries of black powder.",
+      "tradeoff": "It replaces or alters Arcane Bond; Scribe Scroll; Cantrips; Arcane School; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:spirit-binder",
+      "name": "Spirit Binder",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Familiar Folio pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Spirit%20Binder",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "ancestors"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Soulbound Familiar / Arcane School / Lost Talents",
+          "reason": "Soulbound Familiar / Arcane School / Lost Talents defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "While most wizards learn their arts through gradual study, spirit binders have made a sudden arcane breakthrough due to the traumatic experience of losing a loved one.",
+      "tradeoff": "It replaces or alters Arcane Bond; Arcane School; Scribe Scroll; Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:spirit-whisperer",
+      "name": "Spirit Whisperer",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Advanced Class Guide pg. 133",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Spirit%20Whisperer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Arcane Bond / Spirit Link / Spirit Hex",
+          "reason": "Arcane Bond / Spirit Link / Spirit Hex defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Spirit whisperers are a breed apart among wizards, and are often mistaken for witches.",
+      "tradeoff": "It replaces or alters Arcane Bond; Spellbooks; Arcane School; Bonus Feats; 20th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:sword-binder",
+      "name": "Sword Binder",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Arcane Anthology pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Sword%20Binder",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "ranged-combat": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Arcane Bond / Sword of the Mage / Telekinetic Sword",
+          "reason": "The archetype’s Arcane Bond / Sword of the Mage / Telekinetic Sword package materially changes melee combat from the Wizard baseline."
+        },
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Arcane Bond / Sword of the Mage / Telekinetic Sword",
+          "reason": "The archetype’s Arcane Bond / Sword of the Mage / Telekinetic Sword package materially changes ranged combat from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Sword binders follow a tradition of martial wizards who often worked with the Church of Aroden and the crowns of Taldor and then Cheliax.",
+      "tradeoff": "It replaces or alters Arcane Bond; Arcane School; Bonus School Spell Slots; 10th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:thassilonian-specialist",
+      "name": "Thassilonian Specialist",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Inner Sea Magic pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Thassilonian%20Specialist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "domain-choice",
+          "kind": "requirement",
+          "summary": "A Thassilonian specialist must choose one Thassilonian school (tied to a Sin) at 1st level, which cannot be changed and carries two fixed prohibited schools.",
+          "evidenceSection": "Thassilonian Magic"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Benefits / Restrictions / Thassilonian Magic / Envy",
+          "reason": "Benefits / Restrictions / Thassilonian Magic / Envy defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Specialist in a Thassilonian school of magic, this specialist sacrifices his connection with two schools in order to greatly strengthen his chosen specialty.",
+      "tradeoff": "It replaces or alters Lose access to two schools of magic; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:undead-master",
+      "name": "Undead Master",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Horror Adventures pg. 75",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Undead%20Master",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": false
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "An undead master must be evil, or he can still use his powers but can’t progress any further as a wizard.",
+          "evidenceSection": "Necromantic Focus"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Necromantic Focus / Necropolitan / Corpse Bond / Command Undead",
+          "reason": "Necromantic Focus / Necropolitan / Corpse Bond / Command Undead defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Undead masters have great power over undeath.",
+      "tradeoff": "It replaces or alters Alignment; Arcane School; Arcane Bond; Scribe Scroll; 5th, 10th, 15th, 20th-level Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:wind-listener",
+      "name": "Wind Listener",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Advanced Race Guide pg. 158",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Wind%20Listener",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Sylph characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Arcane School / Spontaneous Divination / Abjuration Sense",
+          "reason": "The archetype’s Class Skills / Arcane School / Spontaneous Divination / Abjuration Sense package materially changes stealth subterfuge from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "The wind listener takes a sylph’s natural curiosity to the extreme, enhancing his natural skill at subterfuge and eavesdropping with potent arcane magic.",
+      "tradeoff": "It replaces or alters Class Skills; Arcane School; Arcane Bond; 5th, 10th, 15th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "wizard:worldseeker",
+      "name": "Worldseeker",
+      "parentClassId": "wizard",
+      "sourceCitationText": "Planar Adventures pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard%20Worldseeker",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "planar"
+        ],
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Walk the Planes / Planar Adaptation / Planar Associates / Planar Redoubt",
+          "reason": "Walk the Planes / Planar Adaptation / Planar Associates / Planar Redoubt defines the material change from the Wizard baseline."
+        }
+      ],
+      "playerSummary": "Worldseekers are wizards who travel to all corners of the Great Beyond.",
+      "tradeoff": "It replaces or alters Scribe Scroll; 6th/8th-level School Ability; Arcane Bond; 5th, 15th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}
