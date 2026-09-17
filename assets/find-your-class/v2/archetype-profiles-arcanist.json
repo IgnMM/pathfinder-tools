@@ -1,0 +1,403 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Arcanist parent value.",
+  "profiles": [
+    {
+      "id": "arcanist:aeromancer",
+      "name": "Aeromancer",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Blood of the Ancients pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Aeromancer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "air"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Air Mastery / Wind’s Embrace / Rebuking Gale",
+          "reason": "Air Mastery / Wind’s Embrace / Rebuking Gale defines the material change from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "While the practice of aeromancy is rare, some arcanists today are able to rival the aerial mastery of the ancient Shory aeromancers.",
+      "tradeoff": "It replaces or alters 1st, 5th, 11th-level Arcane Exploit; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:arcane-tinkerer",
+      "name": "Arcane Tinkerer",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Construct Handbook pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Arcane%20Tinkerer",
+      "capabilityOverrides": {
+        "practical-expertise": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Manipulate Construct / Break Magic Immunity",
+          "reason": "The archetype’s Manipulate Construct / Break Magic Immunity package materially changes practical expertise from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "Arcane tinkerers use their knowledge and understanding of magic to disrupt or even destroy constructs",
+      "tradeoff": "It replaces or alters 1st, 5th, 11th-level Arcanist Exploit; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:blade-adept",
+      "name": "Blade Adept",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Guide pg. 76",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Blade%20Adept",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Sword Bond / Sentient Sword / Adept Exploits / Eldritch Blade",
+          "reason": "The archetype’s Sword Bond / Sentient Sword / Adept Exploits / Eldritch Blade package materially changes melee combat from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "A small number of arcanists learn to use blades as part of their spellcasting and in combat.",
+      "tradeoff": "It replaces or alters 1st, 3rd, and 9th-level Arcanist Exploits; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:blood-arcanist",
+      "name": "Blood Arcanist",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Guide pg. 77",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Blood%20Arcanist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bloodline",
+          "reason": "Bloodline defines the material change from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "Though most arcanists possess only a rudimentary innate arcane gift, the blood arcanist has the full power of a bloodline to draw upon.",
+      "tradeoff": "It replaces or alters 1st, 3rd, 9th, and 15th-level Arcanist Exploits; Magical Supremacy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:brown-fur-transmuter",
+      "name": "Brown-Fur Transmuter",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Guide pg. 77",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Brown-Fur%20Transmuter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Powerful Change / Share Transmutation / Transmutation Supremacy",
+          "reason": "Powerful Change / Share Transmutation / Transmutation Supremacy defines the material change from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "Frequently called “brown-furs,” these transmutation-focused arcanists are known for transforming themselves into animals.",
+      "tradeoff": "It replaces or alters 3rd and 9th-level Arcanist Exploits; Magical Supremacy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:eldritch-font",
+      "name": "Eldritch Font",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Guide pg. 77",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Eldritch%20Font",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Font of Power / Eldritch Surge / Improved Surge / Greater Surge",
+          "reason": "Font of Power / Eldritch Surge / Improved Surge / Greater Surge defines the material change from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "For some arcanists, the power bubbling up from within is nearly too much to contain.",
+      "tradeoff": "It replaces or alters 3rd, 7th, and 13th-level Arcanist Exploits; Magical Supremacy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:elemental-master",
+      "name": "Elemental Master",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Guide pg. 78",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Elemental%20Master",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Elemental Focus / Elemental Attack / Powerful Exploit / Greater Elemental Attack",
+          "reason": "Elemental Focus / Elemental Attack / Powerful Exploit / Greater Elemental Attack defines the material change from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "Arcanists with an affinity for elemental forces sometimes focus on one and display its power in everything they do.",
+      "tradeoff": "It replaces or alters 1st, 3rd, 9th, 11th, and 15th-level Arcanist Exploits; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:harrowed-society-student",
+      "name": "Harrowed Society Student",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Occult Origins pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Harrowed%20Society%20Student",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Psychic Reader / Harrow Reservoir / Divine the Mysteries / Trump Card",
+          "reason": "Psychic Reader / Harrow Reservoir / Divine the Mysteries / Trump Card defines the material change from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "Based out of Varisia’s Twilight Academy, the secretive Harrowed Society focuses its efforts on the intellectual study of the region’s supernatural quirks and hidden history, and embraces the use of the harrow deck to examine the world’s occult mysteries.",
+      "tradeoff": "It replaces or alters 1st and 9th-level Arcanist Exploits; Consume Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:magaambyan-initiate",
+      "name": "Magaambyan Initiate",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Adventurer's Guide pg. 122",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Magaambyan%20Initiate",
+      "capabilityOverrides": {
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Alignment / Aura of Good / Halcyon Spell Lore / Spell Mastery",
+          "reason": "The archetype’s Alignment / Aura of Good / Halcyon Spell Lore / Spell Mastery package materially changes wilderness affinity from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "Aspiring students of the Magaambya often spend decades researching arcane magic while learning to follow in the footsteps of the academy’s founder, Old-Mage Jatembe.",
+      "tradeoff": "It replaces or alters Alignment; 1st, 5th, 9th, 17th-level Arcanist Exploit; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:occultist",
+      "name": "Occultist",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Guide pg. 78",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Occultist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Planar Spells / Conjurer’s Focus / Planar Contact / Perfect Summoner",
+          "reason": "Planar Spells / Conjurer’s Focus / Planar Contact / Perfect Summoner defines the material change from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "Not all arcanists peer inward to discern the deepest secrets of magic. Some look outward, connecting with extraplanar creatures and bartering for secrets, power, and favor.",
+      "tradeoff": "It replaces or alters 1st and 7th-level Arcanist Exploits; Magical Supremacy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:school-savant",
+      "name": "School Savant",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Guide pg. 78",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20School%20Savant",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "School Focus",
+          "reason": "School Focus defines the material change from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "Some arcanists specialize in a school of magic and trade flexibility for focus.",
+      "tradeoff": "It replaces or alters 1st, 3rd, and 7th-level Arcanist Exploits; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:spell-specialist",
+      "name": "Spell Specialist",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Guide pg. 78",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Spell%20Specialist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Signature Spells / Dismiss / Spell Bender / Spellwarp",
+          "reason": "Signature Spells / Dismiss / Spell Bender / Spellwarp defines the material change from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "Where most arcanists are broad in their study of magic, a spell specialist has her power focused in a few spells.",
+      "tradeoff": "It replaces or alters 1st, 7th, 13th, and 19th-level Arcanist Exploits; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:twilight-sage",
+      "name": "Twilight Sage",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Origins pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Twilight%20Sage",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Consume Life / Necromantic Focus / Twilight Barrier / Twilight Transfer",
+          "reason": "Consume Life / Necromantic Focus / Twilight Barrier / Twilight Transfer defines the material change from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "The twilight sages of Geb carry out experiments to solve the ultimate puzzle and unlock the secrets of life and death. While the twilight sages generally aren’t actively malicious, most are willing to perform human experimentation in pursuit of knowledge with little regard for the casualties.",
+      "tradeoff": "It replaces or alters Consume Spells; Spells; 1st and 11th-level Arcanist Exploits; Magical Supremacy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:unlettered-arcanist",
+      "name": "Unlettered Arcanist",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Guide pg. 79",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Unlettered%20Arcanist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Familiar / Witch Spells",
+          "reason": "Familiar / Witch Spells defines the material change from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "Some arcanists store their spells as whispered secrets within familiars instead of on paper.",
+      "tradeoff": "It replaces or alters Spellbooks; Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "arcanist:white-mage",
+      "name": "White Mage",
+      "parentClassId": "arcanist",
+      "sourceCitationText": "Advanced Class Guide pg. 79",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20White%20Mage",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-healing": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Spontaneous Healing / Greater Exploit / Fast Healing",
+          "reason": "The archetype’s Spontaneous Healing / Greater Exploit / Fast Healing package materially changes healing recovery from the Arcanist baseline."
+        }
+      ],
+      "playerSummary": "A white mage is an arcanist touched by a divine power and gifted with the ability to heal others.",
+      "tradeoff": "It replaces or alters 1st and 9th-level Arcanist Exploits; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

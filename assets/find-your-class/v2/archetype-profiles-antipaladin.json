@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Antipaladin parent value.",
+  "profiles": [
+    {
+      "id": "antipaladin:blighted-myrmidon",
+      "name": "Blighted Myrmidon",
+      "parentClassId": "antipaladin",
+      "sourceCitationText": "Ultimate Wilderness pg. 91",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Blighted%20Myrmidon",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Smite Nature / Corrupted Companion / Feed on Decay / Aura of Decay",
+          "reason": "The archetype’s Smite Nature / Corrupted Companion / Feed on Decay / Aura of Decay package materially changes battlefield control from the Antipaladin baseline."
+        }
+      ],
+      "playerSummary": "Blighted myrmidons carry the seed of rot in their black hearts and sap life from the natural world.",
+      "tradeoff": "It replaces or alters Smite Good; Fiendish Boon; 10th-level use of Smite Good; Aura of Vengeance; 15th-level Cruelty; Unholy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "antipaladin:dread-vanguard",
+      "name": "Dread Vanguard",
+      "parentClassId": "antipaladin",
+      "sourceCitationText": "Champions of Corruption pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Dread%20Vanguard",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Beacon of Evil / Dark Emissary",
+          "reason": "The archetype’s Beacon of Evil / Dark Emissary package materially changes tactical leadership from the Antipaladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Beacon of Evil / Dark Emissary",
+          "reason": "The archetype’s Beacon of Evil / Dark Emissary package materially changes support buffing from the Antipaladin baseline."
+        }
+      ],
+      "playerSummary": "Some antipaladins serve or ally themselves with villains who are bent on earthly conquest.",
+      "tradeoff": "It replaces or alters Spells; Aura of Sin; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "antipaladin:fearmonger",
+      "name": "Fearmonger",
+      "parentClassId": "antipaladin",
+      "sourceCitationText": "Monster Codex pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Fearmonger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Feed on Fear / Frightening Cruelty / Panicked",
+          "reason": "Feed on Fear / Frightening Cruelty / Panicked defines the material change from the Antipaladin baseline."
+        }
+      ],
+      "playerSummary": "The fearmonger wants to do more than cause pain, misery, and confusion. He wishes to spread fear among his foes and infect entire populations with it.",
+      "tradeoff": "It replaces or alters Touch of Corruption; Cruelty; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "antipaladin:insinuator",
+      "name": "Insinuator",
+      "parentClassId": "antipaladin",
+      "sourceCitationText": "Agents of Evil pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Insinuator",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Alignment / Code of Conduct / Invocation / Detect Balance",
+          "reason": "The archetype’s Alignment / Code of Conduct / Invocation / Detect Balance package materially changes social influence from the Antipaladin baseline."
+        }
+      ],
+      "playerSummary": "Between the selfless nobility of paladins and the chaotic menace of antipaladins, there exists a path of dedicated self-interest.",
+      "tradeoff": "It replaces or alters Code of Conduct; Aura of Evil; Detect Good; Smite Good; Touch of Corruption; Aura of Cowardice; Plague Bringer; Cruelty; Channel Negative Energy; Spells; Fiendish Boon; Aura of Despair; Aura of Vengeance; Aura of Sin; Aura of Depravity; Unholy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "antipaladin:iron-tyrant",
+      "name": "Iron Tyrant",
+      "parentClassId": "antipaladin",
+      "sourceCitationText": "Armor Master's Handbook pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Iron%20Tyrant",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core",
+        "defensive-protective-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Iron Fist / Bonus Feats / Unstoppable / Fiendish Bond",
+          "reason": "The archetype’s Iron Fist / Bonus Feats / Unstoppable / Fiendish Bond package materially changes combat manoeuvres from the Antipaladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Iron Fist / Bonus Feats / Unstoppable / Fiendish Bond",
+          "reason": "The archetype’s Iron Fist / Bonus Feats / Unstoppable / Fiendish Bond package materially changes defensive protective magic from the Antipaladin baseline."
+        }
+      ],
+      "playerSummary": "Iron tyrants seek the strength to rule over domains as unfettered despots, and depend on their armor as protection against those they have not yet cowed.",
+      "tradeoff": "It replaces or alters Touch of Corruption; Cruelty; Channel Negative Energy; Fiendish Boon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "antipaladin:knight-of-the-sepulcher",
+      "name": "Knight of the Sepulcher",
+      "parentClassId": "antipaladin",
+      "sourceCitationText": "Ultimate Combat pg. 64",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Knight%20of%20the%20Sepulcher",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Touch of the Crypt / Fortitude of the Crypt / Cloak of the Crypt / Will of the Crypt",
+          "reason": "The archetype’s Touch of the Crypt / Fortitude of the Crypt / Cloak of the Crypt / Will of the Crypt package materially changes transformation shapeshifting from the Antipaladin baseline."
+        }
+      ],
+      "playerSummary": "Not content with the antipaladin’s mere corruption of the soul, the knight of the sepulcher sacrifices mortality along with morality.",
+      "tradeoff": "It replaces or alters Fiendish Boon; Aura of Despair; 10th-level Smite Good use; Aura of Vengeance; Aura of Sin; Cruetly; Aura of Depravity; Unholy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "antipaladin:rough-rampager",
+      "name": "Rough Rampager",
+      "parentClassId": "antipaladin",
+      "sourceCitationText": "Inner Sea Combat pg. 43",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Rough%20Rampager",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Aura of Blood / Aura of Putrefaction / Aura of Quietus",
+          "reason": "The archetype’s Aura of Blood / Aura of Putrefaction / Aura of Quietus package materially changes combat manoeuvres from the Antipaladin baseline."
+        }
+      ],
+      "playerSummary": "Rough rampagers venerate Rovagug, reveling in the destruction the dark god represents.",
+      "tradeoff": "It replaces or alters Aura of Cowardice; Aura of Despair; Aura of Sin; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "antipaladin:seal-breaker",
+      "name": "Seal-Breaker",
+      "parentClassId": "antipaladin",
+      "sourceCitationText": "Inner Sea Combat pg. 43",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Seal-Breaker",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Aura of the Grave / Corpse Rider / Aura of Death / Aura of Rebirth",
+          "reason": "The archetype’s Aura of the Grave / Corpse Rider / Aura of Death / Aura of Rebirth package materially changes anti magic disruption from the Antipaladin baseline."
+        }
+      ],
+      "playerSummary": "Seal-breakers are dedicated to the Whispering Tyrant and have tasked themselves with finding and destroying the seals that bind him within Gallowspire.",
+      "tradeoff": "It replaces or alters Aura of Cowardice; Fiendish Boon; Aura of Despair; Aura of Vengeance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "antipaladin:tyrant",
+      "name": "Tyrant",
+      "parentClassId": "antipaladin",
+      "sourceCitationText": "Ultimate Intrigue pg. 64",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Tyrant",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Tyrant’s Code / Class Skills / Diabolic Boon",
+          "reason": "The archetype’s Tyrant’s Code / Class Skills / Diabolic Boon package materially changes tactical leadership from the Antipaladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Tyrant’s Code / Class Skills / Diabolic Boon",
+          "reason": "The archetype’s Tyrant’s Code / Class Skills / Diabolic Boon package materially changes protecting allies from the Antipaladin baseline."
+        }
+      ],
+      "playerSummary": "Tyrants are manipulative and lawful antipaladins, chess masters who arrange things behind the scenes to ensure that whatever happens, evil always wins, and the tyrant along with it.",
+      "tradeoff": "It replaces or alters Code of Conduct; Class Skills; Fiendish Boon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

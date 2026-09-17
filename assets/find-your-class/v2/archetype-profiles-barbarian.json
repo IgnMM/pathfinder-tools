@@ -1,0 +1,1172 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Barbarian parent value.",
+  "profiles": [
+    {
+      "id": "barbarian:armored-hulk",
+      "name": "Armored Hulk",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Combat pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Armored%20Hulk",
+      "capabilityOverrides": {
+        "combat-mobility": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Weapon and Armor Proficiency / Indomitable Stance / Armored Swiftness / Resilience of Steel",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Indomitable Stance / Armored Swiftness / Resilience of Steel package materially changes combat mobility from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Some barbarians disdain the hides and leather used as armor by most of their kin. Instead they master the heaviest of armors, even those created by more civilized people, to gain greater protection and stability in battle.",
+      "tradeoff": "It replaces or alters Fast Movement; Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:beastkin-berserker",
+      "name": "Beastkin Berserker",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Heroes of the Darklands pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Beastkin%20Berserker",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Savage Rapport / Feral Transformation",
+          "reason": "The archetype’s Savage Rapport / Feral Transformation package materially changes transformation shapeshifting from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "While some barbarians take on bestial aspects in their rages, the beastkin berserker descends so deeply into primal fury that she actually transforms into an animal.",
+      "tradeoff": "It replaces or alters Fast Movement; 4th, 8th, 12th-level Rage Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:breaker",
+      "name": "Breaker",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Player's Guide pg. 78",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Breaker",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Destructive / Battle Scavenger / Rage Powers",
+          "reason": "The archetype’s Destructive / Battle Scavenger / Rage Powers package materially changes combat manoeuvres from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Breakers find the need to destroy their surroundings.",
+      "tradeoff": "It replaces or alters Fast Movement; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:brutal-pugilist",
+      "name": "Brutal Pugilist",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Player's Guide pg. 78",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Brutal%20Pugilist",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Savage Grapple / Pit Fighter / Improved Savage Grapple / Rage Powers",
+          "reason": "The archetype’s Savage Grapple / Pit Fighter / Improved Savage Grapple / Rage Powers package materially changes combat manoeuvres from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Some barbarians focus on using their bare hands to tear their opponents limb from limb.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:brutish-swamper",
+      "name": "Brutish Swamper",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Wilderness pg. 37",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Brutish%20Swamper",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Swamp Skills / Marsh March / Home / Stubborn",
+          "reason": "The archetype’s Swamp Skills / Marsh March / Home / Stubborn package materially changes wilderness affinity from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "The hardy and insular denizens of the swamp produce warriors of narrow focus and great strength.",
+      "tradeoff": "It replaces or alters Skills; Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; Trap Sense; 6th-level Rage Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:cave-dweller",
+      "name": "Cave Dweller",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Wilderness pg. 37",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Cave%20Dweller",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Skills / Tight Tunnels / Tunnel Vision / Sun Walker",
+          "reason": "Skills / Tight Tunnels / Tunnel Vision / Sun Walker defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Unused to the light of the sun, cave dwellers use their subterranean expertise to protect their clans from the manifold dangers of deep caverns and tunnels.",
+      "tradeoff": "It replaces or alters Skills; Fast Movement; Trap Sense; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:deepwater-rager",
+      "name": "Deepwater Rager",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Legacy of the First World pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Deepwater%20Rager",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Strong Lungs / Spiraling Charge / Disorienting Grapple / Crushing Grapple",
+          "reason": "Strong Lungs / Spiraling Charge / Disorienting Grapple / Crushing Grapple defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Deepwater ragers bellow ferociously as they charge their enemies, tackling them into the raging seas.",
+      "tradeoff": "It replaces or alters Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; Indomitable Will; Tireless Rage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:dreadnought",
+      "name": "Dreadnought",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Horror Adventures pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Dreadnought",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Dead Calm / Stead Gait / Fearless Killer / Instant Dispassion",
+          "reason": "Dead Calm / Stead Gait / Fearless Killer / Instant Dispassion defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Unstoppable and fearless, the dreadnought turns the terror of her enemies into violent physical power.",
+      "tradeoff": "It replaces or alters Rage; Fast Movement; Indomitable Will; Tireless Rage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:drunken-brute",
+      "name": "Drunken Brute",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Player's Guide pg. 78",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Drunken%20Brute",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Raging Drunk / Rage Powers",
+          "reason": "Raging Drunk / Rage Powers defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Drunken brutes use potent liquor to fuel their rage and grant them additional powers.",
+      "tradeoff": "It replaces or alters Fast Movement; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:drunken-rager",
+      "name": "Drunken Rager",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Alchemy Manual pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Drunken%20Rager",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Drunken Rage / Staggering Evasion / Tolerance / Improved Staggering Evasion",
+          "reason": "Drunken Rage / Staggering Evasion / Tolerance / Improved Staggering Evasion defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "These hotheaded, hard-drinking ruffians and brawlers are as dangerous in the midst of combat as they are in a tavern, and they wouldn’t be caught dead without a libation for either occasion.",
+      "tradeoff": "It replaces or alters Fast Movement; Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; 12th-level Rage Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:elemental-kin",
+      "name": "Elemental Kin",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Player's Guide pg. 78",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Elemental%20Kin",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Elemental Fury / Rage Powers",
+          "reason": "Elemental Fury / Rage Powers defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Some barbarian tribes have strong ties to the elemental forces of nature.",
+      "tradeoff": "It replaces or alters Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:fearsome-defender",
+      "name": "Fearsome Defender",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Horror Adventures pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Fearsome%20Defender",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Intractable / Off the Leash / Silent Threat / Bloodlust",
+          "reason": "The archetype’s Intractable / Off the Leash / Silent Threat / Bloodlust package materially changes protecting allies from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "These savage slaves feel little pain and exist only to rain terror down on the enemies of their pitiless masters.",
+      "tradeoff": "It replaces or alters Fast Movement; Uncanny Dodge; Trapsense; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:feral-gnasher",
+      "name": "Feral Gnasher",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Race Guide pg. 116",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Feral%20Gnasher",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Goblin characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Weapon and Armor Proficiency / Savage Bite / Impromptu Armament / Lockjaw",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Savage Bite / Impromptu Armament / Lockjaw package materially changes combat manoeuvres from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Feral gnashers grow up in the wild, either raised by animals or scraping by on their own, and soon learn to fend for themselves.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Fast Movement; 2nd-level Rage Power; Trap Sense 1-5; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:flesheater",
+      "name": "Flesheater",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Occult Adventures pg. 114",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Flesheater",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Rage / One Flesh / Unbound Rage / Feast",
+          "reason": "The archetype’s Rage / One Flesh / Unbound Rage / Feast package materially changes transformation shapeshifting from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "A flesheater eats flesh to create a spiritual bond between herself and the consumed creature, allowing her to take on aspects of the creature that served as the meal.",
+      "tradeoff": "It replaces or alters Rage; 2nd, 8th, and 14th-level Rage Powers; Greater Rage; Mighty Rage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:geminate-invoker",
+      "name": "Geminate Invoker",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Adventurer's Guide pg. 166",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Geminate%20Invoker",
+      "capabilityOverrides": {
+        "summoning-companions": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Contemplative / Trance / Haunt Channeler / Spirit Conduit",
+          "reason": "The archetype’s Contemplative / Trance / Haunt Channeler / Spirit Conduit package materially changes summoning companions from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Geminate invokers are barbarians who use Rivethun traditions to invite spirits into their bodies.",
+      "tradeoff": "It replaces or alters Alignment; Class Skills; Rage; Trap Sense; 4th, 8th, 12th-level Rage Powers; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:giant-stalker",
+      "name": "Giant Stalker",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Adventurer's Guide pg. 130",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Giant%20Stalker",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Harangue Giant / Smell Giants / Giant Baiter / Giant Stalker Rage Powers",
+          "reason": "Harangue Giant / Smell Giants / Giant Baiter / Giant Stalker Rage Powers defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Giant stalkers are followers of the Mammoth Lords who have trained since childhood to spot and track giants.",
+      "tradeoff": "It replaces or alters Rage; Uncanny Dodge; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:hateful-rager",
+      "name": "Hateful Rager",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Race Guide pg. 54",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Hateful%20Rager",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Half-Orc characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Reduced Rage / Favored Enemy / Feed the Rage / Amplified by Hate",
+          "reason": "The archetype’s Reduced Rage / Favored Enemy / Feed the Rage / Amplified by Hate package materially changes debuffing enemies from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "From a young age, many half-orcs are treated cruelly, bullied, ridiculed, and made outcasts. While some hide their shame, others foster a deep, burning hatred that they channel into a raw fury and unleash against their enemies.",
+      "tradeoff": "It replaces or alters Rage; 2nd, 8th, 14th, 20th-level Rage Powers; Uncanny Dodge; Trap Sense +3; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:hurler",
+      "name": "Hurler",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Player's Guide pg. 78",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Hurler",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Skilled Thrower / Rage Powers",
+          "reason": "The archetype’s Skilled Thrower / Rage Powers package materially changes ranged combat from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "The hurler becomes skilled at throwing objects at their foes before closing in for the kill.",
+      "tradeoff": "It replaces or alters Fast Movement; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:invulnerable-rager",
+      "name": "Invulnerable Rager",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Player's Guide pg. 79",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Invulnerable%20Rager",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Invulnerability / Extreme Endurance / Rage Powers",
+          "reason": "Invulnerability / Extreme Endurance / Rage Powers defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Some barbarians learn to take whatever comes their way, shrugging off mortal wounds with ease.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Improved Uncanny Dodge; Damage Reduction; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:jungle-rager",
+      "name": "Jungle Rager",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Inner Sea Combat pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Jungle%20Rager",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Home Ground Advantage / Jungle Endurance / Home Ground Supremacy / Damage Reduction",
+          "reason": "The archetype’s Home Ground Advantage / Jungle Endurance / Home Ground Supremacy / Damage Reduction package materially changes wilderness affinity from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "A jungle rager can disappear from sight, strike from hiding, and use the environment to shield herself from harm.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:mad-dog",
+      "name": "Mad Dog",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Animal Archive pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Mad%20Dog",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "War Beast / Pack Tactics / Rage / Ferocious Fetch",
+          "reason": "The archetype’s War Beast / Pack Tactics / Rage / Ferocious Fetch package materially changes summoning companions from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Though named for the wild savages who fight alongside rabid dogs, mad dogs employ all manner of beasts as their battle brethren.",
+      "tradeoff": "It replaces or alters 2nd, 6th, 10th, 14th, 18th-level Rage Powers; Rage; Uncanny Dodge; Improved Uncanny Dodge; Damage Reduction; Indomitable Will; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:mooncursed",
+      "name": "Mooncursed",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Horror Adventures pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Mooncursed",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Race / Shifting Rage / Hybrid Rage / Greater Shifting Rage",
+          "reason": "The archetype’s Race / Shifting Rage / Hybrid Rage / Greater Shifting Rage package materially changes transformation shapeshifting from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Some barbarians exhibit an unusual form of lycanthropy powered by their fury. Such a character transforms willfully but can maintain her animal or hybrid forms only while raging.",
+      "tradeoff": "It replaces or alters Race; Rage; Improved Uncanny Dodge; Greater Rage; Mighty Rage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:mounted-fury",
+      "name": "Mounted Fury",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Player's Guide pg. 79",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Mounted%20Fury",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Fast Rider / Bestial Mount / Rage Powers",
+          "reason": "Fast Rider / Bestial Mount / Rage Powers defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Many barbarian tribes are masters of the horse, teaching their members how to ride from a young age.",
+      "tradeoff": "It replaces or alters Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:numerian-liberator",
+      "name": "Numerian Liberator",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "People of the River pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Numerian%20Liberator",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skill / Hard Hitter / Disruptor / Hide from Constructs",
+          "reason": "Class Skill / Hard Hitter / Disruptor / Hide from Constructs defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "While many native Kellids oppose the Technic League and its espousal of foul alien artifacts, the most stalwart and staunchly dedicated of these technophobic traditionalists refer to themselves as Numerian liberators.",
+      "tradeoff": "It replaces or alters Class Skills; Uncanny Dodge; Improved Uncanny Dodge; Indomitable Will; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:pack-hunter",
+      "name": "Pack Hunter",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Wilderness pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Pack%20Hunter",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Bonus Feats / In and Out / Sympathetic Rage / Rage Powers",
+          "reason": "The archetype’s Bonus Feats / In and Out / Sympathetic Rage / Rage Powers package materially changes tactical leadership from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Pack hunter barbarians team up to hunt dangerous prey to feed, to protect their camps, and as a rite of passage.",
+      "tradeoff": "It replaces or alters Rage Powers; Trap Sense; 6th-level Rage Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:pack-rager",
+      "name": "Pack Rager",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Monster Codex pg. 92",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Pack%20Rager",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "support-buffing": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Bonus Feat / Raging Tactician",
+          "reason": "The archetype’s Bonus Feat / Raging Tactician package materially changes tactical leadership from the Barbarian baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Bonus Feat / Raging Tactician",
+          "reason": "The archetype’s Bonus Feat / Raging Tactician package materially changes support buffing from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Barbarian rages can be a thing of savage beauty, exhibiting a lethal grace. While such uncontrolled displays of carnage often disregard group tactics, there are those barbarians whose rages inspire and spur on their allies during the ferocious dance of death.",
+      "tradeoff": "It replaces or alters 2nd, 6th, 10th, 14th, and 18th-level Rage Powers; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:primal-hunter",
+      "name": "Primal Hunter",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ranged Tactics Toolbox pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Primal%20Hunter",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Exceptional Pull / Focused Rage / Rage Powers",
+          "reason": "The archetype’s Exceptional Pull / Focused Rage / Rage Powers package materially changes ranged combat from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Rather than exploding with anger, primal hunters focus their rage to strike distant targets.",
+      "tradeoff": "It replaces or alters Fast Movement; Rage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:raging-cannibal",
+      "name": "Raging Cannibal",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Wilderness pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Raging%20Cannibal",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Animal Fury / Consume Vigor / Intimidating Gouge / Feed from Fury",
+          "reason": "Animal Fury / Consume Vigor / Intimidating Gouge / Feed from Fury defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "While savagery is not inherently evil, some barbaric cultures thrive on depravity and welcome the act of feeding on their own kind.",
+      "tradeoff": "It replaces or alters 2nd-level Rage Power; Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:savage-barbarian",
+      "name": "Savage Barbarian",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Player's Guide pg. 79",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Savage%20Barbarian",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Naked Courage / Natural Toughness / Rage Powers",
+          "reason": "Naked Courage / Natural Toughness / Rage Powers defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "The savage barbarian learns to avoid blows and toughen up their skin.",
+      "tradeoff": "It replaces or alters Trap Sense; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:savage-technologist",
+      "name": "Savage Technologist",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Technology Guide pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Savage%20Technologist",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Class skills / Weapon and Armor Proficiency / Rage / Sword and Gun",
+          "reason": "The archetype’s Class skills / Weapon and Armor Proficiency / Rage / Sword and Gun package materially changes ranged combat from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Savage technologists exhort Kellids to rise up against the depredations of the Technic League. But rather than rejecting technology, they wield the League’s own weapons against it.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon/Armor Proficiencies; Rage; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:scarred-rager",
+      "name": "Scarred Rager",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Combat pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Scarred%20Rager",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Terrifying Visage / Tolerance / Scarification / Improved Tolerance",
+          "reason": "Terrifying Visage / Tolerance / Scarification / Improved Tolerance defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "The scarred rager believes each wound tells the tales of her prowess and bravery.",
+      "tradeoff": "It replaces or alters Fast Movement; Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:sea-reaver",
+      "name": "Sea Reaver",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Combat pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Sea%20Reaver",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Marine Terror / Eyes of the Storm / Savage Sailor",
+          "reason": "Weapon and Armor Proficiency / Marine Terror / Eyes of the Storm / Savage Sailor defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Some sea reavers are no more than hunters of the open sea, while others are raiders striking fear into coastal settlements within reach of the sea reavers’ longships.",
+      "tradeoff": "It replaces or alters Fast Movement; Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:sharptooth",
+      "name": "Sharptooth",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Wilderness pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Sharptooth",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Swim Like a Fish / Scent of Blood / Ocean Breath / Blood in the Water",
+          "reason": "Swim Like a Fish / Scent of Blood / Ocean Breath / Blood in the Water defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Coastal hunters and agents of the ocean’s rage, sharptooth barbarians emulate the greatest predators of the sea.",
+      "tradeoff": "It replaces or alters Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; Trap Sense; 6th and 12th-level Rage Powers; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:shoanti-burn-rider",
+      "name": "Shoanti Burn Rider",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Inner Sea Combat pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Shoanti%20Burn%20Rider",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Flame Runner / Cinder Sight / Cinder Dance / Mount",
+          "reason": "Flame Runner / Cinder Sight / Cinder Dance / Mount defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "The Shoanti tribes who live in the Cinderlands have turned the deadly emberstorms that plague the region into a rite of passage. A few who survive the experience begin to embrace the adrenaline and surge of joy that comes from dancing along the edge of a whirling firestorm. These thrill-seekers are known as burn riders, and their exploits are celebrated by all Shoanti.",
+      "tradeoff": "It replaces or alters Fast Movement; Uncanny Dodge; Trap Sense; 4th, 8th, 12th, 16th-level Rage Powers; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:superstitious",
+      "name": "Superstitious",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Player's Guide pg. 79",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Superstitious",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Sixth Sense / Keen Senses / Rage Powers",
+          "reason": "The archetype’s Sixth Sense / Keen Senses / Rage Powers package materially changes anti magic disruption from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "The superstitious barbarian is naturally distrusting, developing keen senses to protect themselves from harm.",
+      "tradeoff": "It replaces or alters Trap Sense; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:titan-mauler",
+      "name": "Titan Mauler",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Combat pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Titan%20Mauler",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Big Game Hunter / Jotungrip / Massive Weapons / Evade Reach",
+          "reason": "The archetype’s Big Game Hunter / Jotungrip / Massive Weapons / Evade Reach package materially changes combat manoeuvres from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "In lands overrun by giants, dragons, and other hulking beasts, entire fellowships of barbarians hone tactics and traditions with one purpose—to bring low these massive foes.",
+      "tradeoff": "It replaces or alters Fast Movement; Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; Indomitable Will; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:totem-warrior",
+      "name": "Totem Warrior",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Advanced Player's Guide pg. 79",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Totem%20Warrior",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Rage Powers",
+          "reason": "Rage Powers defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "The totem warrior has a special totem that is the patron of her tribe.",
+      "tradeoff": "It replaces or alters None; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:true-primitive",
+      "name": "True Primitive",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Combat pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20True%20Primitive",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Illiteracy / Favored Terrain / Trophy Fetish",
+          "reason": "Weapon and Armor Proficiency / Illiteracy / Favored Terrain / Trophy Fetish defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Isolated and xenophobic tribes that dwell in areas untouched by civilization often see anything from cities and organized settlements as strange, dangerous, and decadent.",
+      "tradeoff": "It replaces or alters Fast Movement; Trap Sense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:untamed-rager",
+      "name": "Untamed Rager",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Dirty Tactics Toolbox pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Untamed%20Rager",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Despicable Tactics / Feral Appearance / Deplorable Tactics / Dishonorable",
+          "reason": "The archetype’s Despicable Tactics / Feral Appearance / Deplorable Tactics / Dishonorable package materially changes combat manoeuvres from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "There are no rules in the wild. Some barbarians enter combat with only victory in mind and do anything in their power to achieve it.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:urban-barbarian",
+      "name": "Urban Barbarian",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Combat pg. 31",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Urban%20Barbarian",
+      "capabilityOverrides": {
+        "wilderness-affinity": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Weapon and Armor Proficiency / Skills / Crowd Control / Controlled Rage",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Skills / Crowd Control / Controlled Rage package materially changes wilderness affinity from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Every barbarian knows that city life can soften the spirit and the body, but some barbarians take on the trappings and ways of their adoptive homes and bend their savage powers to its challenges.",
+      "tradeoff": "It replaces or alters Fast Movement; Rage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:wild-rager",
+      "name": "Wild Rager",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Combat pg. 31",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Wild%20Rager",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Uncontrolled Rage / Wild Fighting / Rage Conversion / Rage Powers",
+          "reason": "Uncontrolled Rage / Wild Fighting / Rage Conversion / Rage Powers defines the material change from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Rages are barely controlled, but there are those who wholly give in to their more savage side, letting their rages take them to a confusing and uncontrolled place of terrible savagery.",
+      "tradeoff": "It replaces or alters Rage; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "barbarian:wildborn",
+      "name": "Wildborn",
+      "parentClassId": "barbarian",
+      "sourceCitationText": "Ultimate Wilderness pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Wildborn",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Weapon and Armor Proficiencies / Illiteracy / Live Off the Land / Bonus Feats",
+          "reason": "The archetype’s Weapon and Armor Proficiencies / Illiteracy / Live Off the Land / Bonus Feats package materially changes wilderness affinity from the Barbarian baseline."
+        }
+      ],
+      "playerSummary": "Some barbarians are born or bred outside the reach of civilization. These wildborn fight and survive without ever seeing a forge or worked stone, and only dare a trip into the city when no other option is available.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Trap Sense; Rage Powers; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

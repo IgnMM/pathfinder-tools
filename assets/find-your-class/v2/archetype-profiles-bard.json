@@ -1,0 +1,2039 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Bard parent value.",
+  "profiles": [
+    {
+      "id": "bard:animal-speaker",
+      "name": "Animal Speaker",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Magic pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Animal%20Speaker",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Animal Friend / Nature’s Speaker / Bardic Performance / Soothing Performance",
+          "reason": "The archetype’s Animal Friend / Nature’s Speaker / Bardic Performance / Soothing Performance package materially changes summoning companions from the Bard baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Animal Friend / Nature’s Speaker / Bardic Performance / Soothing Performance",
+          "reason": "The archetype’s Animal Friend / Nature’s Speaker / Bardic Performance / Soothing Performance package materially changes wilderness affinity from the Bard baseline."
+        }
+      ],
+      "playerSummary": "An animal speaker focuses not on the ears and minds of humans, but on the creatures of the wild and those in the underbellies of cities.",
+      "tradeoff": "It replaces or alters Fascinate; Well-Versed; Inspire Competence; Suggestion; Mass Suggestion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:arcane-duelist",
+      "name": "Arcane Duelist",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Player's Guide pg. 80",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Arcane%20Duelist",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Arcane Strike / Bardic Performance / Rallying Cry / Bladethirst",
+          "reason": "The archetype’s Arcane Strike / Bardic Performance / Rallying Cry / Bladethirst package materially changes melee combat from the Bard baseline."
+        }
+      ],
+      "playerSummary": "A master of the martial applications of steel and spell, the arcane duelist blends both into a lethal combination.",
+      "tradeoff": "It replaces or alters Countersong; Suggestion; Mass Suggestion; Versatile Performance; Well-Versed; Lore Master; Jack of all Trades; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:arcane-healer",
+      "name": "Arcane Healer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Faiths and Philosophies pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Arcane%20Healer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Channel Energy / Inspiring Healing",
+          "reason": "Channel Energy / Inspiring Healing defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Though bards may have different reasons for wanting to heal the sick and injured, both out of pure altruism and in order to keep adventuring companions safe, the ability to heal also makes it much easier for a bard to pose as a cleric or other divine healer, opening the door for a wide array of swindles and scams.",
+      "tradeoff": "It replaces or alters Versatile Performance; Loremaster; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:archaeologist",
+      "name": "Archaeologist",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Combat pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Archaeologist",
+      "capabilityOverrides": {
+        "tactical-leadership": "absent",
+        "support-buffing": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Bardic Performance / Archaeologist’s Luck / Clever Explorer / Uncanny Dodge",
+          "reason": "The archetype’s Bardic Performance / Archaeologist’s Luck / Clever Explorer / Uncanny Dodge package materially changes tactical leadership from the Bard baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Bardic Performance / Archaeologist’s Luck / Clever Explorer / Uncanny Dodge",
+          "reason": "The archetype’s Bardic Performance / Archaeologist’s Luck / Clever Explorer / Uncanny Dodge package materially changes support buffing from the Bard baseline."
+        }
+      ],
+      "playerSummary": "No stodgy researcher, this archaeologist meets his research head-on in the field.",
+      "tradeoff": "It replaces or alters Bardic Performance; Versatile Performance; Well-Versed; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:archivist",
+      "name": "Archivist",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Player's Guide pg. 80",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Archivist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Naturalist / Lamentable Belaborment / Pedantic Lecture",
+          "reason": "Bardic Performance / Naturalist / Lamentable Belaborment / Pedantic Lecture defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Some bards greatly prefer academic pursuits to the drama (and sometimes melodrama) of their artistic brethren.",
+      "tradeoff": "It replaces or alters Inspire Courage; Suggestion; Mass Suggestion; Versatile Performance; Well-Versed; Lore Master; Jack of all Trades; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:argent-voice",
+      "name": "Argent Voice",
+      "parentClassId": "bard",
+      "sourceCitationText": "Adventurer's Guide pg. 174",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Argent%20Voice",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Limning Verse / Shattering Crescendo / Devilbane Refrain",
+          "reason": "Bardic Performance / Limning Verse / Shattering Crescendo / Devilbane Refrain defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Argent voices are agents of the Silver Ravens that dedicate themselves to the study of the magical performance are known as the \"Song of Silver\".",
+      "tradeoff": "It replaces or alters Fascinate; Dirge of Doom; Frightening Tune; Versatile Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:arrowsong-minstrel",
+      "name": "Arrowsong Minstrel",
+      "parentClassId": "bard",
+      "sourceCitationText": "Arcane Anthology pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Arrowsong%20Minstrel",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon Proficiency / Diminished Spellcasting / Arcane Archery / Precise Minstrel",
+          "reason": "The archetype’s Weapon Proficiency / Diminished Spellcasting / Arcane Archery / Precise Minstrel package materially changes ranged combat from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Arrowsong minstrels combine the elven traditions of archery, song, and spellcasting into a seamless harmony of dazzling magical effects.",
+      "tradeoff": "It replaces or alters Weapon Proficiency; Spellcasting; Bardic Knowledge; Dirge of Doom; Distraction; Fascinate; Inspire Competence; Lore Master; Soothing Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:averaka-arbiter",
+      "name": "Averaka Arbiter",
+      "parentClassId": "bard",
+      "sourceCitationText": "Bastards of Golarion pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Averaka%20Arbiter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Inspire Teamwork / Ritual of Reconciliation / Versatile Teamwork",
+          "reason": "Bardic Performance / Inspire Teamwork / Ritual of Reconciliation / Versatile Teamwork defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Some Averakan bards make it their mission to unify their fellow half-orcs, and are equally skilled at helping allies defeat common enemies and at building a new civilization that reflects their unique identity.",
+      "tradeoff": "It replaces or alters Inspire Competence; Dirge of Doom; Versatile Performance; Well-Versed; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:brazen-deceiver",
+      "name": "Brazen Deceiver",
+      "parentClassId": "bard",
+      "sourceCitationText": "Adventurer's Guide pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Brazen%20Deceiver",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Deceptive Tale / Shameless Scoundrel / Blatant Subtlety / Invoke Vyriavaxus",
+          "reason": "Deceptive Tale / Shameless Scoundrel / Blatant Subtlety / Invoke Vyriavaxus defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Where other thieves use stealth or intimidation to achieve their goals, the brazen deceiver depends on lies backed by powerful shadow magic.",
+      "tradeoff": "It replaces or alters Countersong; Distraction; Bardic Knowledge; Well-Versed; Versatile Performance; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:buccaneer",
+      "name": "Buccaneer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Pirates of the Inner Sea pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Buccaneer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Hilt Bash / Song of Surrender / Knock Out / Mass Song of Surrender",
+          "reason": "Hilt Bash / Song of Surrender / Knock Out / Mass Song of Surrender defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "A buccaneer is a pirate who specializes in raiding ships and port towns, but who leaves his victims alive whenever possible.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Suggestion; Lore Master; Mass Suggestion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:busker",
+      "name": "Busker",
+      "parentClassId": "bard",
+      "sourceCitationText": "Heroes of the Streets pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Busker",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Busker Stunts / Quick Hands / Patter",
+          "reason": "Bardic Performance / Busker Stunts / Quick Hands / Patter defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "A busker uses his dazzling physical stunts to get by on his own in the city streets.",
+      "tradeoff": "It replaces or alters Bardic Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:celebrity",
+      "name": "Celebrity",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Magic pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Celebrity",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Famous / Bardic Performance / Gather Crowd / Shining Star",
+          "reason": "Famous / Bardic Performance / Gather Crowd / Shining Star defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Known for being known, a celebrity bard is a master of performance who captures the imagination and attention of his audience.",
+      "tradeoff": "It replaces or alters Inspire Courage; Lore Master; Dirge of Doom; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:chelish-diva",
+      "name": "Chelish Diva",
+      "parentClassId": "bard",
+      "sourceCitationText": "Inner Sea Magic pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Chelish%20Diva",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Famous / Prima Donna / Costume Proficiency / Bardic Performance",
+          "reason": "Famous / Prima Donna / Costume Proficiency / Bardic Performance defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "In their pursuit of glory, a Chelish diva seeks to prove themselves better than any upstart actor, dancer, or chorus member through magic and discipline.",
+      "tradeoff": "It replaces or alters Bardic Knowledge, Well-Versed, Lore Master, Inspire Competence, Dirge of Doom; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:chronicler-of-worlds",
+      "name": "Chronicler of Worlds",
+      "parentClassId": "bard",
+      "sourceCitationText": "Planar Adventures pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Chronicler%20of%20Worlds",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Wanderer’s Insight / Planar Lore / Bardic Performance / Quintessence Infusion",
+          "reason": "Wanderer’s Insight / Planar Lore / Bardic Performance / Quintessence Infusion defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "A chronicler of worlds forsakes morality in service of understanding; she is both warrior and mystic, scholar and soldier.",
+      "tradeoff": "It replaces or alters Key Ability Score; Alignment; Bardic Knowledge; Inspire Greatness; Inspire Heroics; Well-Versed; Versatile Performance;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:court-bard",
+      "name": "Court Bard",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Player's Guide pg. 81",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Court%20Bard",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Satire / Mockery / Glorious Epic",
+          "reason": "Bardic Performance / Satire / Mockery / Glorious Epic defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The court bard takes up the role of resplendent proclaimer and artist-in-residence at the hand of nobility, royalty, and the well-moneyed elite who aspire to join their ranks.",
+      "tradeoff": "It replaces or alters Inspire Courage; Inspire Competence; Dirge of Doom; Frightening Tune; Bardic Knowledge; Lore Master; Jack of all Trades; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:court-fool",
+      "name": "Court Fool",
+      "parentClassId": "bard",
+      "sourceCitationText": "Heroes of the High Court pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Court%20Fool",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Buffoonery / Bardic Performance / Distracting Motley / Defuse Tension",
+          "reason": "Buffoonery / Bardic Performance / Distracting Motley / Defuse Tension defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The court fool holds up an unflattering mirror to those in charge or speaks truths, however veiled, that no one else can safely utter.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Countersong; Inspire Competence; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:cultivator",
+      "name": "Cultivator",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Wilderness pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Cultivator",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Plant Magic / Verdant Voice / Song of Growth",
+          "reason": "Class Skills / Plant Magic / Verdant Voice / Song of Growth defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Cultivators use music to promote plant growth and influence the behavior of plants both naturally and supernaturally.",
+      "tradeoff": "It replaces or alters Class Skills; Spells; Bardic Knowledge; Countersong; Well-Versed; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:daredevil",
+      "name": "Daredevil",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Combat pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Daredevil",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Agile / Bardic Performance / Derring-do / Canny Foe",
+          "reason": "The archetype’s Agile / Bardic Performance / Derring-do / Canny Foe package materially changes melee combat from the Bard baseline."
+        }
+      ],
+      "playerSummary": "As quick at wordplay as at swordplay, daredevils are dashing heroes, inspiring their allies to match their clever repartee and acrobatic feats.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Inspire Courage; Versatile Performance; Well-Versed; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:dawnflower-dervish",
+      "name": "Dawnflower Dervish",
+      "parentClassId": "bard",
+      "sourceCitationText": "Inner Sea Magic pg. 34",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dawnflower%20Dervish",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Weapon and Armor Proficiency / Deity / Battle Dance / Dervish Dance",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Deity / Battle Dance / Dervish Dance package materially changes melee combat from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Many bards of Sarenrae's faith hone their skills with dance and scimitar to become dervish dancers.",
+      "tradeoff": "It replaces or alters Bardic Performance, Bardic Knowledge, Lore Master, Dirge of Doom; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:demagogue",
+      "name": "Demagogue",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Magic pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Demagogue",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Famous / Bardic Performance / Gather Crowd / Incite Violence",
+          "reason": "Famous / Bardic Performance / Gather Crowd / Incite Violence defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Not content with providing amusing and occasionally instructive performances, the demagogue seeks to inflame and ignite his audience.",
+      "tradeoff": "It replaces or alters Inspire Courage +1; Lore Master; Suggestion; Mass Suggestion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:dervish-dancer",
+      "name": "Dervish Dancer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Combat pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dervish%20Dancer",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Weapon and Armor Proficiency / Battle Dance / Rain of Blows / Razor’s Kiss",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Battle Dance / Rain of Blows / Razor’s Kiss package materially changes melee combat from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Not all bards inspire others with their performances. Dervish dancers enter a near-mystical trance that allows them to push their bodies beyond normal limits.",
+      "tradeoff": "It replaces or alters Suggestion; Mass Suggestion; Dirge of Doom; Frightening Performance; Bardic Knowledge; Lore Master; Versatile Performance; Soothing Performance; Deadly Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:detective",
+      "name": "Detective",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Player's Guide pg. 81",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Detective",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Careful Teamwork / True Confession / Show Yourselves",
+          "reason": "Bardic Performance / Careful Teamwork / True Confession / Show Yourselves defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Piecing together clues and catching the guilty with sheer cleverness, the detective is skilled at divining the truth.",
+      "tradeoff": "It replaces or alters Inspire Courage; Inspire Greatness; Inspire Heroics; Bardic Knowledge; Well-Versed; Versatile Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:dirge-bard",
+      "name": "Dirge Bard",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Magic pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dirge%20Bard",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Dance of the Dead / Haunted Eyes / Secrets of the Grave",
+          "reason": "Bardic Performance / Dance of the Dead / Haunted Eyes / Secrets of the Grave defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "A composer of sonorous laments for the dead and elaborate requiems for those lost yet long remembered, dirge bards master musical tools and tropes that must appeal to the ears and hearts of both the living and the dead.",
+      "tradeoff": "It replaces or alters Jack of all Trades; Well-Versed; Versatile Performance; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:disciple-of-the-forked-tongue",
+      "name": "Disciple of the Forked Tongue",
+      "parentClassId": "bard",
+      "sourceCitationText": "Potions and Poisons pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Disciple%20of%20the%20Forked%20Tongue",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Discordant Spiral / Venomous Whispers / Serpent of the Mind",
+          "reason": "Bardic Performance / Discordant Spiral / Venomous Whispers / Serpent of the Mind defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "(Vishkanya) Studied in venomous words as well as venomous blood, a disciple of the forked tongue knows just the right phrase to slowly poison the soul.",
+      "tradeoff": "It replaces or alters Inspire Courage; Inspire Greatness; Versatile Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:dragon-herald",
+      "name": "Dragon Herald",
+      "parentClassId": "bard",
+      "sourceCitationText": "Kobolds of Golarion pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dragon%20Herald",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Kobold characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Dragon Patron / Coat of Arms / Dragon Voice",
+          "reason": "Weapon and Armor Proficiency / Dragon Patron / Coat of Arms / Dragon Voice defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Dragon heralds are messengers and evangelists of true dragonkind. They carry the word of their dragon patrons far and wide, whether that’s a message of peace or a declaration of war.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Bardic Knowledge; Countersong; Fascinate; Inspire Competence; Soothing Performance; Inspire Heroics; Lore Master; Jack-of-all-Trades; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:dragon-yapper",
+      "name": "Dragon Yapper",
+      "parentClassId": "bard",
+      "sourceCitationText": "Monster Codex pg. 128",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dragon%20Yapper",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Kobold characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Yapping Song / Frightful Song / Versatile Performance",
+          "reason": "Bardic Performance / Yapping Song / Frightful Song / Versatile Performance defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Kobolds’ yammering songs distract opponents in combat, hindering their ability to attack.",
+      "tradeoff": "It replaces or alters Fascinate; Dirge of Doom; Versatile Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:duettist",
+      "name": "Duettist",
+      "parentClassId": "bard",
+      "sourceCitationText": "Familiar Folio pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Duettist",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Diminished Competency / Familiar / Versatile Familiar / Performing Familiar",
+          "reason": "The archetype’s Diminished Competency / Familiar / Versatile Familiar / Performing Familiar package materially changes summoning companions from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Whether singing a delicate duo with a nightingale or slipping coins from purses while a trained monkey distracts the crowd, the duettist blends his bond to his familiar with his natural talent for performance to create amazing effects.",
+      "tradeoff": "It replaces or alters Well-Versed; Jack-of-all-Trades; Bardic Knowledge; Versatile Performance; Lore Master; Dirge of Doom; Frightening Tune; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:dwarven-scholar",
+      "name": "Dwarven Scholar",
+      "parentClassId": "bard",
+      "sourceCitationText": "Blood of the Ancients pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dwarven%20Scholar",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Studied Insight / Dwarven Training / Bardic Performance",
+          "reason": "Weapon and Armor Proficiency / Studied Insight / Dwarven Training / Bardic Performance defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "A dwarven scholar researches the lineage of the kings of the old dwarven empires and learns their ancient tactics.",
+      "tradeoff": "It replaces or alters Key Ability Score; Weapon and Armor Proficiencies; Versatile Performance; Inspire Courage; Suggestion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:faith-singer",
+      "name": "Faith Singer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Healer's Handbook pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Faith%20Singer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Faithful / Devout Spell Knowledge",
+          "reason": "Faithful / Devout Spell Knowledge defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Faith singers show their faith in their deity with songs or other appropriate performances.",
+      "tradeoff": "It replaces or alters Deity; Versatile Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:fey-courtier",
+      "name": "Fey Courtier",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Wilderness pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Fey%20Courtier",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Scorn of the Wilds / Stone Dance / Fey Contacts",
+          "reason": "Bardic Performance / Scorn of the Wilds / Stone Dance / Fey Contacts defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "(Gathlain) Fey who associate with courts often become bards skilled at navigating the inhuman societies of the trackless wilds.",
+      "tradeoff": "It replaces or alters Dirge of Doom; Frightening Tune; Inspire Heroics; Versatile Performance: Inspire Competence; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:fey-prankster",
+      "name": "Fey Prankster",
+      "parentClassId": "bard",
+      "sourceCitationText": "Legacy of the First World pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Fey%20Prankster",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Mischievous Talent / Bardic Performance / Song of Clumsiness / Incite Unreliability",
+          "reason": "Mischievous Talent / Bardic Performance / Song of Clumsiness / Incite Unreliability defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Sly and mischievous like the Lantern King himself, fey pranksters learn supernatural tricks that can cause their victims to suffer mishaps and accidents.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Countersong; Inspire Courage; Dirge of Doom; Well-Versed; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:filidh",
+      "name": "Filidh",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Wilderness pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Filidh",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Armor and Weapon Proficiency / Natural Magic / Nature’s Song / Echoes of Nature’s Song",
+          "reason": "Armor and Weapon Proficiency / Natural Magic / Nature’s Song / Echoes of Nature’s Song defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "By tapping into the world’s natural music, specialized bards known as filidhs are able to see not only the tapestry of life but divine portents of the future from the rhythm of all life’s song.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Spellcasting; Inspire Courage; Suggestion; Dirge of Doom; Inspire Heroics; Deadly Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:first-world-minstrel",
+      "name": "First World Minstrel",
+      "parentClassId": "bard",
+      "sourceCitationText": "Legacy of the First World pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20First%20World%20Minstrel",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Fey Magic / Wild Empathy / Bardic Performance / Echoes of the First World",
+          "reason": "Fey Magic / Wild Empathy / Bardic Performance / Echoes of the First World defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The First World minstrel's performances channel the mysterious powers of the First World.",
+      "tradeoff": "It replaces or alters Spell List; Bardic Knowledge; Inspire Courage; Dirge of Doom; Well-Versed; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:flame-dancer",
+      "name": "Flame Dancer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Class Guide pg. 81",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Flame%20Dancer",
+      "capabilityOverrides": {
+        "offensive-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Bardic Performance / Fire Dance / Song of the Fiery Gaze / Fire Break",
+          "reason": "The archetype’s Bardic Performance / Fire Dance / Song of the Fiery Gaze / Fire Break package materially changes offensive magic from the Bard baseline."
+        }
+      ],
+      "playerSummary": "A flame dancer studies the movements of fire, adding its grace to his repertoire.",
+      "tradeoff": "It replaces or alters Countersong; Inspire Competence; Suggestion; Dirge of Doom; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:flamesinger",
+      "name": "Flamesinger",
+      "parentClassId": "bard",
+      "sourceCitationText": "Elemental Master's Handbook pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Flamesinger",
+      "capabilityOverrides": {
+        "offensive-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Fire Music / Bardic Performance / Blazing Blades / Wildfire",
+          "reason": "The archetype’s Fire Music / Bardic Performance / Blazing Blades / Wildfire package materially changes offensive magic from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The flamesinger finds inspiration in the mesmerizing beauty of fire.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Lore Master; Inspire Courage; Versatile Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:fortune-teller",
+      "name": "Fortune-Teller",
+      "parentClassId": "bard",
+      "sourceCitationText": "Villain Codex pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Fortune-Teller",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Fortune-Teller’s Divinations / Oracular Performance / Fortune-Teller’s Acumen / Bardic Performance",
+          "reason": "Fortune-Teller’s Divinations / Oracular Performance / Fortune-Teller’s Acumen / Bardic Performance defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Instead of using song and dance, a fortune-teller influences people by divining their fate.",
+      "tradeoff": "It replaces or alters Spell List; Bardic Performance; Countersong; Distraction; Well-Versed; Dirge of Doom; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:geisha",
+      "name": "Geisha",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Magic pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Geisha",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Tea Ceremony / Geisha Knowledge / Scribe Scroll",
+          "reason": "Weapon and Armor Proficiency / Tea Ceremony / Geisha Knowledge / Scribe Scroll defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Specially trained entertainers called geisha are praised for their appearance and skill at conversation, music, dancing, singing, poetry, and calligraphy.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Bardic Knowledge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:hatharat-agent",
+      "name": "Hatharat Agent",
+      "parentClassId": "bard",
+      "sourceCitationText": "Qadira, Jewel of the East pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Hatharat%20Agent",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Called Favor / Informed Persuasion / Bardic Performance / Master of Manipulation",
+          "reason": "Called Favor / Informed Persuasion / Bardic Performance / Master of Manipulation defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Although the Hatharat employs all manner of specialists, bards who take up the role of agent are among its most infamous and widespread.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Well-Versed; Dirge of Doom; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:hoaxer",
+      "name": "Hoaxer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Black Markets pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Hoaxer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Counterfeiter / Bardic Performance / Bad Deal / Buyer Beware",
+          "reason": "Counterfeiter / Bardic Performance / Bad Deal / Buyer Beware defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Hoaxers specialize in creating valuable-looking counterfeits and infusing these false treasures with dangerous magic to make their marks more vulnerable to future swindles.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Inspire Courage; Inspire Competence; Inspire Greatness; Countersong; Distraction; Inspire Greatness; Versatile Performance; Well-Versed; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:impervious-messenger",
+      "name": "Impervious Messenger",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Intrigue pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Impervious%20Messenger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Chant of Perfect Recall / Song of Subterfuge / Unbroken Stride",
+          "reason": "Bardic Performance / Chant of Perfect Recall / Song of Subterfuge / Unbroken Stride defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The impervious messenger is capable of harnessing the unique qualities of bardic magic to keep, transport, and communicate the most precious of secrets and messages.",
+      "tradeoff": "It replaces or alters Fascinate; Suggestion; Mass Suggestion; Dirge of Doom; Frightening Tune; Bardic Knowledge; Well-Versed; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:juggler",
+      "name": "Juggler",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ranged Tactics Toolbox pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Juggler",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon and Armor Proficiencies / Fast Reactions / Combat Juggling / Evasion",
+          "reason": "The archetype’s Weapon and Armor Proficiencies / Fast Reactions / Combat Juggling / Evasion package materially changes ranged combat from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Jugglers are masters of manipulating objects, most famously by keeping multiple objects in the air simultaneously.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Bardic Knowledge; Lore Master; Versatile Performance; Well-Versed; Soothing Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:lotus-geisha",
+      "name": "Lotus Geisha",
+      "parentClassId": "bard",
+      "sourceCitationText": "Dragon Empires Primer pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Lotus%20Geisha",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon Proficiency / Enrapturing Performance / Bonus Feats",
+          "reason": "Weapon Proficiency / Enrapturing Performance / Bonus Feats defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The lotus geisha of Minkai are renowned for their powers of seduction.",
+      "tradeoff": "It replaces or alters Different Weapon Proficiencies; Well-Versed; Bardic Knowledge; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:luring-piper",
+      "name": "Luring Piper",
+      "parentClassId": "bard",
+      "sourceCitationText": "Monster Hunter's Handbook pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Luring%20Piper",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Fey Secrets / Luring Presentation / Bardic Performance",
+          "reason": "Class Skills / Fey Secrets / Luring Presentation / Bardic Performance defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Some bards have an exceptional ability to use their musical performances to entrance the world’s wilder creatures.",
+      "tradeoff": "It replaces or alters Class Skills; Bardic Knowledge; Dirge of Doom; Soothing Performance; Well-Versed; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:magician",
+      "name": "Magician",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Player's Guide pg. 82",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Magician",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Dweomercraft / Spell Suppression / Metamagic Mastery",
+          "reason": "Bardic Performance / Dweomercraft / Spell Suppression / Metamagic Mastery defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "A magician dabbles in performance, but sees it as a means to tap into universal energies and channel them.",
+      "tradeoff": "It replaces or alters Inspire Courage; Dirge of Doom; Frightening Tune; Bardic Knowledge; Countersong; Well-Versed; Versatile Performance; Lore Master; Jack of all Trades; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:masked-performer",
+      "name": "Masked Performer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Intrigue pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Masked%20Performer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Dual Identity / Bardic Performance / Seamless Guise / Exaggerated Pose",
+          "reason": "Dual Identity / Bardic Performance / Seamless Guise / Exaggerated Pose defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The masked performer takes on the persona represented by the likeness she wears.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Countersong; Inspire Competence; Surggestion; Mass Suggestion; Versatile Performance; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:mute-musician",
+      "name": "Mute Musician",
+      "parentClassId": "bard",
+      "sourceCitationText": "Horror Realms pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Mute%20Musician",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Mute / Eschew Materials / Bardic Performance / Symphony of Silence",
+          "reason": "Mute / Eschew Materials / Bardic Performance / Symphony of Silence defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "A mute musician forswears speech for the unnatural songs and thunderous silences of the depths of space.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Inspire Competence; Frightening Tune; Inspire Heroics; Mass Suggestion; Versatile Performance; Well-Versed; Jack-of-All-Trades; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:negotiator",
+      "name": "Negotiator",
+      "parentClassId": "bard",
+      "sourceCitationText": "Champions of Balance pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Negotiator",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Hard Bargainer / Bardic Performance / Counterargument / Fast Talk",
+          "reason": "Hard Bargainer / Bardic Performance / Counterargument / Fast Talk defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Negotiators are those bards who take the skills of a performer and apply them to the realms of business and law.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Bardic Performance; Versatile Performance; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:phrenologist",
+      "name": "Phrenologist",
+      "parentClassId": "bard",
+      "sourceCitationText": "Occult Adventures pg. 114",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Phrenologist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Phrenological Knowledge / Skull-Versed / Phrenological Savant / Bardic Performance",
+          "reason": "Phrenological Knowledge / Skull-Versed / Phrenological Savant / Bardic Performance defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The phrenologist is an expert at reading creatures’ skulls, and he learns to use this knowledge to his benefit.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Well-Versed; Jack-of-all-Trades; Inspire Courage; Inspire Competence; Fascinate; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:pitax-academy-of-grand-arts",
+      "name": "Pitax: Academy of Grand Arts",
+      "parentClassId": "bard",
+      "sourceCitationText": "Guide to the River Kingdoms pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Pitax%20%20Academy%20of%20Grand%20Arts",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Pitax / Focused Performance",
+          "reason": "Pitax / Focused Performance defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Those who have successfully mastered the strict curriculum of the Academy of Grand Arts.",
+      "tradeoff": "It replaces or alters Versatile Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:plant-speaker",
+      "name": "Plant Speaker",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Wilderness pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Plant%20Speaker",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "wood"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Vine Leshy characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Bardic Performance / Leshy Speaker / Plant Speech / Mystical Allegory",
+          "reason": "The archetype’s Bardic Performance / Leshy Speaker / Plant Speech / Mystical Allegory package materially changes wilderness affinity from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Plant speakers build upon their racial plantspeech ability and their storytelling tendencies to create an art form full of deep metaphors and allegory rather than specific details and facts.",
+      "tradeoff": "It replaces or alters Inspire Greatness; Bardic Knowledge; Well-Versed; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:prankster",
+      "name": "Prankster",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Race Guide pg. 35",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Prankster",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Gnome characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Mock / Punchline / Mass Punchline",
+          "reason": "Bardic Performance / Mock / Punchline / Mass Punchline defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The prankster sees humor as the highest form or art, and pranks as the highest form of humor.",
+      "tradeoff": "It replaces or alters Fascinate; Suggestion; Mass Suggestion; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:provocateur",
+      "name": "Provocateur",
+      "parentClassId": "bard",
+      "sourceCitationText": "Inner Sea Intrigue pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Provocateur",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Provocateur / Calumny / Damning Performance",
+          "reason": "Provocateur / Calumny / Damning Performance defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Provocateurs are bards who use their art to make controversial political statements, undermine enemies’ reputations, and upset the status quo on a large scale.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; 2nd-level Versatile Performance; Suggestion, Mass Suggestion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:ringleader-ag",
+      "name": "Ringleader (AG)",
+      "parentClassId": "bard",
+      "sourceCitationText": "Adventurer's Guide pg. 33",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Ringleader%20(AG)",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Cunning Plan / Never Lose Face / Sinister Mien / Countless Contingencies",
+          "reason": "Cunning Plan / Never Lose Face / Sinister Mien / Countless Contingencies defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Ringleaders are specialists who oversee large operations in which trouble could strike at any moment and any place.",
+      "tradeoff": "It replaces or alters Bardic Performance; Well-Versed; Versatile Performance; Suggestion; Mass Suggestion; Soothing Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:ringleader-ui",
+      "name": "Ringleader (UI)",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Intrigue pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Ringleader%20(UI)",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Inspire Competence / Inspired Plan / Hidden Plans",
+          "reason": "Bardic Performance / Inspire Competence / Inspired Plan / Hidden Plans defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Ringleaders are adept in getting the most out of their allies, and they excel at planning for unexpected complications in advance.",
+      "tradeoff": "It replaces or alters Inspire Competence; Dirge of Doom; Frightening Tune; Versatile Performance; Well-Versed; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:sandman",
+      "name": "Sandman",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Player's Guide pg. 82",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Sandman",
+      "capabilityOverrides": {
+        "tactical-leadership": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Bardic Performance / Stealspell / Slumber Song / Dramatic Subtext",
+          "reason": "The archetype’s Bardic Performance / Stealspell / Slumber Song / Dramatic Subtext package materially changes tactical leadership from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Combining performance with stealth, trickery, and guile, the sandman uses cleverness to keep others off-balance.",
+      "tradeoff": "It replaces or alters Inspire Courage; Suggestion; Inspire Greatness; Inspire Heroics; Mass Suggestion; Deadly Performance; Bardic Knowledge; Versatile Performance; Inspire Competence; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:savage-skald",
+      "name": "Savage Skald",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Player's Guide pg. 84",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Savage%20Skald",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Bardic Performance / Inspiring Blow / Incite Rage / Song of the Fallen",
+          "reason": "The archetype’s Bardic Performance / Inspiring Blow / Incite Rage / Song of the Fallen package materially changes melee combat from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Far from civilization, furious tribes have their own war-singers, work-chanters, and lore-keepers, savaging enemies with song and sword alike.",
+      "tradeoff": "It replaces or alters Fascinate; Suggestion; Jack of all Trades; Soothing Performance; Mass Suggestion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:sea-singer",
+      "name": "Sea Singer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Player's Guide pg. 84",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Sea%20Singer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Sea Shanty / Still Water / Whistle the Wind",
+          "reason": "Bardic Performance / Sea Shanty / Still Water / Whistle the Wind defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The sea singer calls the blue waters his home, and is much in demand among sea captains wishing good fortune for their crew and hull as they ply the tradewinds far and wide.",
+      "tradeoff": "It replaces or alters Countersong; Inspire Competence; Suggestion; Mass Suggestion; Bardic Knowledge; Versatile Performance; Well-Versed; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:shadow-puppeteer",
+      "name": "Shadow Puppeteer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Race Guide pg. 210",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Shadow%20Puppeteer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Wayang characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Shadow Servant / Shadow Puppets",
+          "reason": "Bardic Performance / Shadow Servant / Shadow Puppets defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "A shadow puppeteer invokes amazing and terrifying shadow puppet shows, producing supernatural effects by creating and manipulating shadow.",
+      "tradeoff": "It replaces or alters Inspire Courage; Inspire Competence; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:silver-balladeer",
+      "name": "Silver Balladeer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Occult Adventures pg. 115",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Silver%20Balladeer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Bardic Performance / Break Curse / Holy Vibration",
+          "reason": "Alignment / Bardic Performance / Break Curse / Holy Vibration defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The bright purity of silver makes beautiful music, and its vibrations are also anathema to unnatural creatures. Some bards use a mixture of silver-stringed instruments and esoteric knowledge to battle the dark forces of the world.",
+      "tradeoff": "It replaces or alters Alignment; Suggestion; Inspire Greatness; Mass Suggestion; Well-Versed; 2nd-level Versatile Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:solacer",
+      "name": "Solacer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Healer's Handbook pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Solacer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Learned Physician / Inspire Tenacity / Creative Treatment",
+          "reason": "Class Skills / Learned Physician / Inspire Tenacity / Creative Treatment defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Solacers are experts in the healing arts as well as creators of performances that console the distraught, rally the stricken, raise spirits, and vanquish sorrow.",
+      "tradeoff": "It replaces or alters Class Skills; Bardic Knowledge; Lore Master; Countersong; Versatile Performance; Jack-of-All-Trades; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:songhealer",
+      "name": "Songhealer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Magic pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Songhealer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Enhance Healing / Bardic Performance / Healing Performance / Funereal Ballad",
+          "reason": "Enhance Healing / Bardic Performance / Healing Performance / Funereal Ballad defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The songhealer brings peace and surcease of pain, calming wild emotions and providing a balm for the wounded body.",
+      "tradeoff": "It replaces or alters Versatile Performance; Frightening Tune; Deadly Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:sorrowsoul",
+      "name": "Sorrowsoul",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Intrigue pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Sorrowsoul",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Lyric Sorrow / Darkness Denied / Spurn Harm",
+          "reason": "Lyric Sorrow / Darkness Denied / Spurn Harm defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "While most bards, on occasion, sing mournful tunes or craft elegies that depict the deepest sadness or the most profound suffering, the sorrowsoul has known tragedy and loss on a level so intimate, he has bound it to his soul.",
+      "tradeoff": "It replaces or alters Soothing Perfrmance; Versatile Performance; Well-Versed; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:sound-striker",
+      "name": "Sound Striker",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Magic pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Sound%20Striker",
+      "capabilityOverrides": {
+        "offensive-magic": "core",
+        "area-multi-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Bardic Performance / Wordstrike / Weird Words",
+          "reason": "The archetype’s Bardic Performance / Wordstrike / Weird Words package materially changes offensive magic from the Bard baseline."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Bardic Performance / Wordstrike / Weird Words",
+          "reason": "The archetype’s Bardic Performance / Wordstrike / Weird Words package materially changes area multi target damage from the Bard baseline."
+        }
+      ],
+      "playerSummary": "They say that words can cut deeper than any blade, and the sound striker proves this true.",
+      "tradeoff": "It replaces or alters Inspire Competence; Suggestion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:speaker-of-the-palatine-eye",
+      "name": "Speaker of the Palatine Eye",
+      "parentClassId": "bard",
+      "sourceCitationText": "Heroes of Golarion pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Speaker%20of%20the%20Palatine%20Eye",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Angelic Grace / Spells / Corpse Speaker / Keen Ritualist",
+          "reason": "Angelic Grace / Spells / Corpse Speaker / Keen Ritualist defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "speaker of the Palatine Eye influences others using his occult knowledge rather than the boisterous enthusiasm of most bards.",
+      "tradeoff": "It replaces or alters Class Skills; Spells; Countersong; Jack-of-all-Trades; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:stonesinger",
+      "name": "Stonesinger",
+      "parentClassId": "bard",
+      "sourceCitationText": "Heroes of the Darklands pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Stonesinger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "earth"
+        ],
+        "environmentThemes": [
+          "underground"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Earth Magic / Stone Song / Tremor / Quake",
+          "reason": "Earth Magic / Stone Song / Tremor / Quake defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Stonesingers are rare bards capable of vocalizing their bardic performances through subsonic harmonies, allowing their performances to carry as subtle vibrations through stone, rather than through the air.",
+      "tradeoff": "It replaces or alters Spellcasting; Bardic Performance; Countersong; Dirge of Doom; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:street-performer",
+      "name": "Street Performer",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Player's Guide pg. 85",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Street%20Performer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Disappearing Act / Harmless Performer / Madcap Prank",
+          "reason": "Bardic Performance / Disappearing Act / Harmless Performer / Madcap Prank defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Whether acrobat, troubadour, or thespian, the street performer mixes with the masses, singing for his supper.",
+      "tradeoff": "It replaces or alters Inspire Courage; Inspire Competence; Inspire Greatness; Inspire Heroics; Countersong; Bardic Knowledge; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:studious-librarian",
+      "name": "Studious Librarian",
+      "parentClassId": "bard",
+      "sourceCitationText": "Inner Sea Intrigue pg. 46",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Studious%20Librarian",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Scribe Scroll / Comparative Arcane Studies / Critical Research Focus / Perfect Recollection",
+          "reason": "Scribe Scroll / Comparative Arcane Studies / Critical Research Focus / Perfect Recollection defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Studious librarians are bards that have studied long in great libraries of the Inner Sea region.",
+      "tradeoff": "It replaces or alters Distraction; Suggestion; Jack-of-All-Trades; Dirge of Doom; Mass Suggestion; Deadly Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:thundercaller",
+      "name": "Thundercaller",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Wilderness pg. 41",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Thundercaller",
+      "capabilityOverrides": {
+        "offensive-magic": "core",
+        "area-multi-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "electricity"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Bound to the Land / Bardic Performance / Thunder Call / Incite Rage",
+          "reason": "The archetype’s Bound to the Land / Bardic Performance / Thunder Call / Incite Rage package materially changes offensive magic from the Bard baseline."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Bound to the Land / Bardic Performance / Thunder Call / Incite Rage",
+          "reason": "The archetype’s Bound to the Land / Bardic Performance / Thunder Call / Incite Rage package materially changes area multi target damage from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Thundercallers bear the knowledge of the ancients, wielding it like a weapon to protect the land for which they care so deeply.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Inspire Competence; Suggestion; Mass Suggestion; Dirge of Doom; Frightening Tune; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:voice-of-brigh",
+      "name": "Voice of Brigh",
+      "parentClassId": "bard",
+      "sourceCitationText": "Construct Handbook pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Voice%20of%20Brigh",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Brigh’s Knowledge / Bardic Performance / Brigh’s Soothing / Brigh’s Anger",
+          "reason": "Brigh’s Knowledge / Bardic Performance / Brigh’s Soothing / Brigh’s Anger defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The Whisper in Bronze sometimes sends inspiration to her favorite followers in the form of music",
+      "tradeoff": "It replaces or alters Fascinate; Dirge of Doom; Soothing Performance; Frightening Tune; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:voice-of-the-wild",
+      "name": "Voice of the Wild",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Class Guide pg. 81",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Voice%20of%20the%20Wild",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Wild Knowledge / Nature Magic / Bardic Performance / Song of the Wild",
+          "reason": "The archetype’s Wild Knowledge / Nature Magic / Bardic Performance / Song of the Wild package materially changes wilderness affinity from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Most bards are inspired by the art of civilization, yet the voice of the wild’s muse is the grandeur and beauty of nature.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Countersong; Versatile Performance; Jack-of-all-Trades; Inspire Competence; Dirge of Doom; Inspire Heroics; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:wasteland-chronicler",
+      "name": "Wasteland Chronicler",
+      "parentClassId": "bard",
+      "sourceCitationText": "People of the Wastes pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Wasteland%20Chronicler",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Wasteland Knowledge / Wasteland Specialist",
+          "reason": "The archetype’s Wasteland Knowledge / Wasteland Specialist package materially changes wilderness affinity from the Bard baseline."
+        }
+      ],
+      "playerSummary": "Wasteland chroniclers explore the farthest reaches of desolate wastelands, seeking to unlock the mysteries found there and meet the inhabitants of such regions",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Inspire Competence; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:watersinger",
+      "name": "Watersinger",
+      "parentClassId": "bard",
+      "sourceCitationText": "Advanced Race Guide pg. 176",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Watersinger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "water"
+        ],
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Undine characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bardic Performance / Watersong / Waterstrike / Lifewater",
+          "reason": "Bardic Performance / Watersong / Waterstrike / Lifewater defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The watersinger’s song reaches from the depths of his soul into the elemental waters from which life first sprang.",
+      "tradeoff": "It replaces or alters Fascinate, Suggestion, Mass Suggestion, Inspire Competence, 5th-level Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bard:wit",
+      "name": "Wit",
+      "parentClassId": "bard",
+      "sourceCitationText": "Ultimate Intrigue pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Wit",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Way with Words / Counterargument / Bardic Performance / Cutting Remark",
+          "reason": "Way with Words / Counterargument / Bardic Performance / Cutting Remark defines the material change from the Bard baseline."
+        }
+      ],
+      "playerSummary": "The wit is a master of clever repartee and verbal dueling, moving through noble courts like a fish through water.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Inspire Competence; Dirge of Doom; Frightening Tune; Versatile Performance; Lore Master; Jack-of-All-Trades; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

@@ -134,7 +134,7 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
   }
   const container = document.getElementById('app');
   try {
-    const [criteriaDoc, model, batch1, batch2, batch3, batch4, batch5, batch6, pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10, slayerArchetypes, unchainedSummonerArchetypes, alchemistArchetypes] = await Promise.all([
+    const [criteriaDoc, model, batch1, batch2, batch3, batch4, batch5, batch6, pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10, slayerArchetypes, unchainedSummonerArchetypes, alchemistArchetypes, antipaladinArchetypes, arcanistArchetypes, barbarianArchetypes, bardArchetypes] = await Promise.all([
       getJson('criteria.json'),
       getJson('classification-model.json'),
       getJson('class-profiles-batch-01.json'),
@@ -156,11 +156,15 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
       getJson('archetype-profiles-slayer.json'),
       getJson('archetype-profiles-summoner-unchained.json'),
       getJson('archetype-profiles-alchemist.json'),
+      getJson('archetype-profiles-antipaladin.json'),
+      getJson('archetype-profiles-arcanist.json'),
+      getJson('archetype-profiles-barbarian.json'),
+      getJson('archetype-profiles-bard.json'),
     ]);
     const classProfiles = [batch1, batch2, batch3, batch4, batch5, batch6].flatMap(b => b.profiles);
     const pilotArchetypes = [pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10]
-      .flatMap(b => b.profiles).filter(profile => profile.parentClassId !== 'alchemist');
-    const archetypeOverrides = pilotArchetypes.concat(slayerArchetypes.profiles, unchainedSummonerArchetypes.profiles, alchemistArchetypes.profiles);
+      .flatMap(b => b.profiles).filter(profile => !['alchemist','antipaladin','arcanist','barbarian','bard'].includes(profile.parentClassId));
+    const archetypeOverrides = pilotArchetypes.concat(slayerArchetypes.profiles, unchainedSummonerArchetypes.profiles, alchemistArchetypes.profiles, antipaladinArchetypes.profiles, arcanistArchetypes.profiles, barbarianArchetypes.profiles, bardArchetypes.profiles);
     const profiles = window.PFFindYourClassV2.resolveAllProfiles(classProfiles, archetypeOverrides);
     window.PFFindYourClassAppV2.mount(container, { criteriaDoc: criteriaDoc, model: model, profiles: profiles });
   } catch (e) {

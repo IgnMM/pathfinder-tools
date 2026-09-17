@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T10:24:52.136Z",
+  "generatedAt": "2026-09-17T10:41:55.144Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
@@ -8,9 +8,9 @@
     "archetypes": 1275,
     "entities": 1319,
     "valuedClasses": 44,
-    "valuedArchetypes": 194,
+    "valuedArchetypes": 323,
     "pendingClasses": 0,
-    "pendingArchetypes": 1081,
+    "pendingArchetypes": 952,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -1075,7 +1075,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Blighted%20Myrmidon",
       "replaces": "Smite Good; Fiendish Boon; 10th-level use of Smite Good; Aura of Vengeance; 15th-level Cruelty; Unholy Champion",
       "aonSummary": "Blighted myrmidons carry the seed of rot in their black hearts and sap life from the natural world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "antipaladin:dread-vanguard",
@@ -1086,7 +1086,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Dread%20Vanguard",
       "replaces": "Spells; Aura of Sin",
       "aonSummary": "Some antipaladins serve or ally themselves with villains who are bent on earthly conquest.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "antipaladin:fearmonger",
@@ -1108,7 +1108,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Insinuator",
       "replaces": "Code of Conduct; Aura of Evil; Detect Good; Smite Good; Touch of Corruption; Aura of Cowardice; Plague Bringer; Cruelty; Channel Negative Energy; Spells; Fiendish Boon; Aura of Despair; Aura of Vengeance; Aura of Sin; Aura of Depravity; Unholy Champion",
       "aonSummary": "Between the selfless nobility of paladins and the chaotic menace of antipaladins, there exists a path of dedicated self-interest.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "antipaladin:iron-tyrant",
@@ -1130,7 +1130,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Knight%20of%20the%20Sepulcher",
       "replaces": "Fiendish Boon; Aura of Despair; 10th-level Smite Good use; Aura of Vengeance; Aura of Sin; Cruetly; Aura of Depravity; Unholy Champion",
       "aonSummary": "Not content with the antipaladin’s mere corruption of the soul, the knight of the sepulcher sacrifices mortality along with morality.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "antipaladin:rough-rampager",
@@ -1141,7 +1141,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Rough%20Rampager",
       "replaces": "Aura of Cowardice; Aura of Despair; Aura of Sin",
       "aonSummary": "Rough rampagers venerate Rovagug, reveling in the destruction the dark god represents.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "antipaladin:seal-breaker",
@@ -1152,7 +1152,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Seal-Breaker",
       "replaces": "Aura of Cowardice; Fiendish Boon; Aura of Despair; Aura of Vengeance",
       "aonSummary": "Seal-breakers are dedicated to the Whispering Tyrant and have tasked themselves with finding and destroying the seals that bind him within Gallowspire.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "antipaladin:tyrant",
@@ -1163,7 +1163,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin%20Tyrant",
       "replaces": "Code of Conduct; Class Skills; Fiendish Boon",
       "aonSummary": "Tyrants are manipulative and lawful antipaladins, chess masters who arrange things behind the scenes to ensure that whatever happens, evil always wins, and the tyrant along with it.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:aeromancer",
@@ -1174,7 +1174,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Aeromancer",
       "replaces": "1st, 5th, 11th-level Arcane Exploit",
       "aonSummary": "While the practice of aeromancy is rare, some arcanists today are able to rival the aerial mastery of the ancient Shory aeromancers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:arcane-tinkerer",
@@ -1185,7 +1185,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Arcane%20Tinkerer",
       "replaces": "1st, 5th, 11th-level Arcanist Exploit",
       "aonSummary": "Arcane tinkerers use their knowledge and understanding of magic to disrupt or even destroy constructs",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:blade-adept",
@@ -1196,7 +1196,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Blade%20Adept",
       "replaces": "1st, 3rd, and 9th-level Arcanist Exploits",
       "aonSummary": "A small number of arcanists learn to use blades as part of their spellcasting and in combat.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:blood-arcanist",
@@ -1207,7 +1207,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Blood%20Arcanist",
       "replaces": "1st, 3rd, 9th, and 15th-level Arcanist Exploits; Magical Supremacy",
       "aonSummary": "Though most arcanists possess only a rudimentary innate arcane gift, the blood arcanist has the full power of a bloodline to draw upon.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:brown-fur-transmuter",
@@ -1229,7 +1229,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Eldritch%20Font",
       "replaces": "3rd, 7th, and 13th-level Arcanist Exploits; Magical Supremacy",
       "aonSummary": "For some arcanists, the power bubbling up from within is nearly too much to contain.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:elemental-master",
@@ -1240,7 +1240,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Elemental%20Master",
       "replaces": "1st, 3rd, 9th, 11th, and 15th-level Arcanist Exploits",
       "aonSummary": "Arcanists with an affinity for elemental forces sometimes focus on one and display its power in everything they do.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:harrowed-society-student",
@@ -1251,7 +1251,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Harrowed%20Society%20Student",
       "replaces": "1st and 9th-level Arcanist Exploits; Consume Spells",
       "aonSummary": "Based out of Varisia’s Twilight Academy, the secretive Harrowed Society focuses its efforts on the intellectual study of the region’s supernatural quirks and hidden history, and embraces the use of the harrow deck to examine the world’s occult mysteries.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:magaambyan-initiate",
@@ -1262,7 +1262,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Magaambyan%20Initiate",
       "replaces": "Alignment; 1st, 5th, 9th, 17th-level Arcanist Exploit",
       "aonSummary": "Aspiring students of the Magaambya often spend decades researching arcane magic while learning to follow in the footsteps of the academy’s founder, Old-Mage Jatembe.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:occultist",
@@ -1273,7 +1273,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Occultist",
       "replaces": "1st and 7th-level Arcanist Exploits; Magical Supremacy",
       "aonSummary": "Not all arcanists peer inward to discern the deepest secrets of magic. Some look outward, connecting with extraplanar creatures and bartering for secrets, power, and favor.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:school-savant",
@@ -1284,7 +1284,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20School%20Savant",
       "replaces": "1st, 3rd, and 7th-level Arcanist Exploits",
       "aonSummary": "Some arcanists specialize in a school of magic and trade flexibility for focus.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:spell-specialist",
@@ -1295,7 +1295,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Spell%20Specialist",
       "replaces": "1st, 7th, 13th, and 19th-level Arcanist Exploits",
       "aonSummary": "Where most arcanists are broad in their study of magic, a spell specialist has her power focused in a few spells.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:twilight-sage",
@@ -1306,7 +1306,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Twilight%20Sage",
       "replaces": "Consume Spells; Spells; 1st and 11th-level Arcanist Exploits; Magical Supremacy",
       "aonSummary": "The twilight sages of Geb carry out experiments to solve the ultimate puzzle and unlock the secrets of life and death. While the twilight sages generally aren’t actively malicious, most are willing to perform human experimentation in pursuit of knowledge with little regard for the casualties.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:unlettered-arcanist",
@@ -1317,7 +1317,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist%20Unlettered%20Arcanist",
       "replaces": "Spellbooks; Spells",
       "aonSummary": "Some arcanists store their spells as whispered secrets within familiars instead of on paper.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "arcanist:white-mage",
@@ -1339,7 +1339,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Armored%20Hulk",
       "replaces": "Fast Movement; Uncanny Dodge; Trap Sense; Improved Uncanny Dodge",
       "aonSummary": "Some barbarians disdain the hides and leather used as armor by most of their kin. Instead they master the heaviest of armors, even those created by more civilized people, to gain greater protection and stability in battle.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:beastkin-berserker",
@@ -1350,7 +1350,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Beastkin%20Berserker",
       "replaces": "Fast Movement; 4th, 8th, 12th-level Rage Power",
       "aonSummary": "While some barbarians take on bestial aspects in their rages, the beastkin berserker descends so deeply into primal fury that she actually transforms into an animal.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:breaker",
@@ -1361,7 +1361,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Breaker",
       "replaces": "Fast Movement; Trap Sense",
       "aonSummary": "Breakers find the need to destroy their surroundings.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:brutal-pugilist",
@@ -1372,7 +1372,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Brutal%20Pugilist",
       "replaces": "Uncanny Dodge; Trap Sense; Improved Uncanny Dodge",
       "aonSummary": "Some barbarians focus on using their bare hands to tear their opponents limb from limb.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:brutish-swamper",
@@ -1383,7 +1383,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Brutish%20Swamper",
       "replaces": "Skills; Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; Trap Sense; 6th-level Rage Power",
       "aonSummary": "The hardy and insular denizens of the swamp produce warriors of narrow focus and great strength.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:cave-dweller",
@@ -1394,7 +1394,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Cave%20Dweller",
       "replaces": "Skills; Fast Movement; Trap Sense; Damage Reduction",
       "aonSummary": "Unused to the light of the sun, cave dwellers use their subterranean expertise to protect their clans from the manifold dangers of deep caverns and tunnels.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:deepwater-rager",
@@ -1405,7 +1405,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Deepwater%20Rager",
       "replaces": "Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; Indomitable Will; Tireless Rage",
       "aonSummary": "Deepwater ragers bellow ferociously as they charge their enemies, tackling them into the raging seas.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:dreadnought",
@@ -1416,7 +1416,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Dreadnought",
       "replaces": "Rage; Fast Movement; Indomitable Will; Tireless Rage",
       "aonSummary": "Unstoppable and fearless, the dreadnought turns the terror of her enemies into violent physical power.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:drunken-brute",
@@ -1427,7 +1427,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Drunken%20Brute",
       "replaces": "Fast Movement",
       "aonSummary": "Drunken brutes use potent liquor to fuel their rage and grant them additional powers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:drunken-rager",
@@ -1438,7 +1438,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Drunken%20Rager",
       "replaces": "Fast Movement; Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; 12th-level Rage Power",
       "aonSummary": "These hotheaded, hard-drinking ruffians and brawlers are as dangerous in the midst of combat as they are in a tavern, and they wouldn’t be caught dead without a libation for either occasion.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:elemental-kin",
@@ -1449,7 +1449,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Elemental%20Kin",
       "replaces": "Trap Sense",
       "aonSummary": "Some barbarian tribes have strong ties to the elemental forces of nature.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:fearsome-defender",
@@ -1460,7 +1460,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Fearsome%20Defender",
       "replaces": "Fast Movement; Uncanny Dodge; Trapsense; Improved Uncanny Dodge",
       "aonSummary": "These savage slaves feel little pain and exist only to rain terror down on the enemies of their pitiless masters.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:feral-gnasher",
@@ -1471,7 +1471,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Feral%20Gnasher",
       "replaces": "Weapon/Armor Proficiency; Fast Movement; 2nd-level Rage Power; Trap Sense 1-5; Improved Uncanny Dodge",
       "aonSummary": "(Goblin Only) Feral gnashers grow up in the wild, either raised by animals or scraping by on their own, and soon learn to fend for themselves.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:flesheater",
@@ -1482,7 +1482,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Flesheater",
       "replaces": "Rage; 2nd, 8th, and 14th-level Rage Powers; Greater Rage; Mighty Rage",
       "aonSummary": "A flesheater eats flesh to create a spiritual bond between herself and the consumed creature, allowing her to take on aspects of the creature that served as the meal.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:geminate-invoker",
@@ -1493,7 +1493,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Geminate%20Invoker",
       "replaces": "Alignment; Class Skills; Rage; Trap Sense; 4th, 8th, 12th-level Rage Powers",
       "aonSummary": "Geminate invokers are barbarians who use Rivethun traditions to invite spirits into their bodies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:giant-stalker",
@@ -1504,7 +1504,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Giant%20Stalker",
       "replaces": "Rage; Uncanny Dodge; Trap Sense",
       "aonSummary": "Giant stalkers are followers of the Mammoth Lords who have trained since childhood to spot and track giants.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:hateful-rager",
@@ -1515,7 +1515,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Hateful%20Rager",
       "replaces": "Rage; 2nd, 8th, 14th, 20th-level Rage Powers; Uncanny Dodge; Trap Sense +3",
       "aonSummary": "(Half-Orc Only) From a young age, many half-orcs are treated cruelly, bullied, ridiculed, and made outcasts. While some hide their shame, others foster a deep, burning hatred that they channel into a raw fury and unleash against their enemies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:hurler",
@@ -1526,7 +1526,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Hurler",
       "replaces": "Fast Movement",
       "aonSummary": "The hurler becomes skilled at throwing objects at their foes before closing in for the kill.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:invulnerable-rager",
@@ -1537,7 +1537,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Invulnerable%20Rager",
       "replaces": "Uncanny Dodge; Improved Uncanny Dodge; Damage Reduction; Trap Sense",
       "aonSummary": "Some barbarians learn to take whatever comes their way, shrugging off mortal wounds with ease.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:jungle-rager",
@@ -1548,7 +1548,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Jungle%20Rager",
       "replaces": "Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; Damage Reduction",
       "aonSummary": "A jungle rager can disappear from sight, strike from hiding, and use the environment to shield herself from harm.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:mad-dog",
@@ -1570,7 +1570,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Mooncursed",
       "replaces": "Race; Rage; Improved Uncanny Dodge; Greater Rage; Mighty Rage",
       "aonSummary": "Some barbarians exhibit an unusual form of lycanthropy powered by their fury. Such a character transforms willfully but can maintain her animal or hybrid forms only while raging.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:mounted-fury",
@@ -1581,7 +1581,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Mounted%20Fury",
       "replaces": "Fast Movement; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Many barbarian tribes are masters of the horse, teaching their members how to ride from a young age.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:numerian-liberator",
@@ -1592,7 +1592,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Numerian%20Liberator",
       "replaces": "Class Skills; Uncanny Dodge; Improved Uncanny Dodge; Indomitable Will",
       "aonSummary": "While many native Kellids oppose the Technic League and its espousal of foul alien artifacts, the most stalwart and staunchly dedicated of these technophobic traditionalists refer to themselves as Numerian liberators.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:pack-hunter",
@@ -1603,7 +1603,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Pack%20Hunter",
       "replaces": "Rage Powers; Trap Sense; 6th-level Rage Power",
       "aonSummary": "Pack hunter barbarians team up to hunt dangerous prey to feed, to protect their camps, and as a rite of passage.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:pack-rager",
@@ -1614,7 +1614,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Pack%20Rager",
       "replaces": "2nd, 6th, 10th, 14th, and 18th-level Rage Powers; Damage Reduction",
       "aonSummary": "Barbarian rages can be a thing of savage beauty, exhibiting a lethal grace. While such uncontrolled displays of carnage often disregard group tactics, there are those barbarians whose rages inspire and spur on their allies during the ferocious dance of death.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:primal-hunter",
@@ -1625,7 +1625,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Primal%20Hunter",
       "replaces": "Fast Movement; Rage",
       "aonSummary": "Rather than exploding with anger, primal hunters focus their rage to strike distant targets.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:raging-cannibal",
@@ -1636,7 +1636,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Raging%20Cannibal",
       "replaces": "2nd-level Rage Power; Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; Damage Reduction",
       "aonSummary": "While savagery is not inherently evil, some barbaric cultures thrive on depravity and welcome the act of feeding on their own kind.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:savage-barbarian",
@@ -1647,7 +1647,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Savage%20Barbarian",
       "replaces": "Trap Sense; Damage Reduction",
       "aonSummary": "The savage barbarian learns to avoid blows and toughen up their skin.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:savage-technologist",
@@ -1658,7 +1658,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Savage%20Technologist",
       "replaces": "Class Skills; Weapon/Armor Proficiencies; Rage; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Savage technologists exhort Kellids to rise up against the depredations of the Technic League. But rather than rejecting technology, they wield the League’s own weapons against it.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:scarred-rager",
@@ -1669,7 +1669,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Scarred%20Rager",
       "replaces": "Fast Movement; Uncanny Dodge; Trap Sense; Improved Uncanny Dodge",
       "aonSummary": "The scarred rager believes each wound tells the tales of her prowess and bravery.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:sea-reaver",
@@ -1680,7 +1680,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Sea%20Reaver",
       "replaces": "Fast Movement; Uncanny Dodge; Trap Sense; Improved Uncanny Dodge",
       "aonSummary": "Some sea reavers are no more than hunters of the open sea, while others are raiders striking fear into coastal settlements within reach of the sea reavers’ longships.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:sharptooth",
@@ -1691,7 +1691,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Sharptooth",
       "replaces": "Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; Trap Sense; 6th and 12th-level Rage Powers",
       "aonSummary": "Coastal hunters and agents of the ocean’s rage, sharptooth barbarians emulate the greatest predators of the sea.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:shoanti-burn-rider",
@@ -1702,7 +1702,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Shoanti%20Burn%20Rider",
       "replaces": "Fast Movement; Uncanny Dodge; Trap Sense; 4th, 8th, 12th, 16th-level Rage Powers; Improved Uncanny Dodge",
       "aonSummary": "The Shoanti tribes who live in the Cinderlands have turned the deadly emberstorms that plague the region into a rite of passage. A few who survive the experience begin to embrace the adrenaline and surge of joy that comes from dancing along the edge of a whirling firestorm. These thrill-seekers are known as burn riders, and their exploits are celebrated by all Shoanti.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:superstitious",
@@ -1713,7 +1713,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Superstitious",
       "replaces": "Trap Sense; Damage Reduction",
       "aonSummary": "The superstitious barbarian is naturally distrusting, developing keen senses to protect themselves from harm.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:titan-mauler",
@@ -1735,7 +1735,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Totem%20Warrior",
       "replaces": "None",
       "aonSummary": "The totem warrior has a special totem that is the patron of her tribe.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:true-primitive",
@@ -1746,7 +1746,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20True%20Primitive",
       "replaces": "Fast Movement; Trap Sense",
       "aonSummary": "Isolated and xenophobic tribes that dwell in areas untouched by civilization often see anything from cities and organized settlements as strange, dangerous, and decadent.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:untamed-rager",
@@ -1757,7 +1757,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Untamed%20Rager",
       "replaces": "Uncanny Dodge; Trap Sense; Improved Uncanny Dodge; Damage Reduction",
       "aonSummary": "There are no rules in the wild. Some barbarians enter combat with only victory in mind and do anything in their power to achieve it.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:urban-barbarian",
@@ -1768,7 +1768,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Urban%20Barbarian",
       "replaces": "Fast Movement; Rage",
       "aonSummary": "Every barbarian knows that city life can soften the spirit and the body, but some barbarians take on the trappings and ways of their adoptive homes and bend their savage powers to its challenges.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:wild-rager",
@@ -1779,7 +1779,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Wild%20Rager",
       "replaces": "Rage; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "Rages are barely controlled, but there are those who wholly give in to their more savage side, letting their rages take them to a confusing and uncontrolled place of terrible savagery.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "barbarian:wildborn",
@@ -1790,7 +1790,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian%20Wildborn",
       "replaces": "Weapon/Armor Proficiencies; Trap Sense; Rage Powers; Damage Reduction",
       "aonSummary": "Some barbarians are born or bred outside the reach of civilization. These wildborn fight and survive without ever seeing a forge or worked stone, and only dare a trip into the city when no other option is available.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:animal-speaker",
@@ -1801,7 +1801,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Animal%20Speaker",
       "replaces": "Fascinate; Well-Versed; Inspire Competence; Suggestion; Mass Suggestion",
       "aonSummary": "An animal speaker focuses not on the ears and minds of humans, but on the creatures of the wild and those in the underbellies of cities.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:arcane-duelist",
@@ -1812,7 +1812,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Arcane%20Duelist",
       "replaces": "Countersong; Suggestion; Mass Suggestion; Versatile Performance; Well-Versed; Lore Master; Jack of all Trades",
       "aonSummary": "A master of the martial applications of steel and spell, the arcane duelist blends both into a lethal combination.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:arcane-healer",
@@ -1845,7 +1845,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Archivist",
       "replaces": "Inspire Courage; Suggestion; Mass Suggestion; Versatile Performance; Well-Versed; Lore Master; Jack of all Trades",
       "aonSummary": "Some bards greatly prefer academic pursuits to the drama (and sometimes melodrama) of their artistic brethren.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:argent-voice",
@@ -1856,7 +1856,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Argent%20Voice",
       "replaces": "Fascinate; Dirge of Doom; Frightening Tune; Versatile Performance",
       "aonSummary": "Argent voices are agents of the Silver Ravens that dedicate themselves to the study of the magical performance are known as the \"Song of Silver\".",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:arrowsong-minstrel",
@@ -1867,7 +1867,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Arrowsong%20Minstrel",
       "replaces": "Weapon Proficiency; Spellcasting; Bardic Knowledge; Dirge of Doom; Distraction; Fascinate; Inspire Competence; Lore Master; Soothing Performance",
       "aonSummary": "Arrowsong minstrels combine the elven traditions of archery, song, and spellcasting into a seamless harmony of dazzling magical effects.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:averaka-arbiter",
@@ -1878,7 +1878,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Averaka%20Arbiter",
       "replaces": "Inspire Competence; Dirge of Doom; Versatile Performance; Well-Versed",
       "aonSummary": "Some Averakan bards make it their mission to unify their fellow half-orcs, and are equally skilled at helping allies defeat common enemies and at building a new civilization that reflects their unique identity.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:brazen-deceiver",
@@ -1889,7 +1889,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Brazen%20Deceiver",
       "replaces": "Countersong; Distraction; Bardic Knowledge; Well-Versed; Versatile Performance; Lore Master",
       "aonSummary": "Where other thieves use stealth or intimidation to achieve their goals, the brazen deceiver depends on lies backed by powerful shadow magic.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:buccaneer",
@@ -1900,7 +1900,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Buccaneer",
       "replaces": "Bardic Knowledge; Suggestion; Lore Master; Mass Suggestion",
       "aonSummary": "A buccaneer is a pirate who specializes in raiding ships and port towns, but who leaves his victims alive whenever possible.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:busker",
@@ -1911,7 +1911,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Busker",
       "replaces": "Bardic Performance",
       "aonSummary": "A busker uses his dazzling physical stunts to get by on his own in the city streets.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:celebrity",
@@ -1922,7 +1922,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Celebrity",
       "replaces": "Inspire Courage; Lore Master; Dirge of Doom",
       "aonSummary": "Known for being known, a celebrity bard is a master of performance who captures the imagination and attention of his audience.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:chelish-diva",
@@ -1933,7 +1933,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Chelish%20Diva",
       "replaces": "Bardic Knowledge, Well-Versed, Lore Master, Inspire Competence, Dirge of Doom",
       "aonSummary": "In their pursuit of glory, a Chelish diva seeks to prove themselves better than any upstart actor, dancer, or chorus member through magic and discipline.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:chronicler-of-worlds",
@@ -1944,7 +1944,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Chronicler%20of%20Worlds",
       "replaces": "Key Ability Score; Alignment; Bardic Knowledge; Inspire Greatness; Inspire Heroics; Well-Versed; Versatile Performance;",
       "aonSummary": "A chronicler of worlds forsakes morality in service of understanding; she is both warrior and mystic, scholar and soldier.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:court-bard",
@@ -1955,7 +1955,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Court%20Bard",
       "replaces": "Inspire Courage; Inspire Competence; Dirge of Doom; Frightening Tune; Bardic Knowledge; Lore Master; Jack of all Trades",
       "aonSummary": "The court bard takes up the role of resplendent proclaimer and artist-in-residence at the hand of nobility, royalty, and the well-moneyed elite who aspire to join their ranks.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:court-fool",
@@ -1966,7 +1966,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Court%20Fool",
       "replaces": "Bardic Knowledge; Countersong; Inspire Competence; Lore Master",
       "aonSummary": "The court fool holds up an unflattering mirror to those in charge or speaks truths, however veiled, that no one else can safely utter.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:cultivator",
@@ -1977,7 +1977,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Cultivator",
       "replaces": "Class Skills; Spells; Bardic Knowledge; Countersong; Well-Versed; Lore Master",
       "aonSummary": "Cultivators use music to promote plant growth and influence the behavior of plants both naturally and supernaturally.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:daredevil",
@@ -1988,7 +1988,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Daredevil",
       "replaces": "Bardic Knowledge; Inspire Courage; Versatile Performance; Well-Versed; Lore Master",
       "aonSummary": "As quick at wordplay as at swordplay, daredevils are dashing heroes, inspiring their allies to match their clever repartee and acrobatic feats.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:dawnflower-dervish",
@@ -1999,7 +1999,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dawnflower%20Dervish",
       "replaces": "Bardic Performance, Bardic Knowledge, Lore Master, Dirge of Doom",
       "aonSummary": "Many bards of Sarenrae's faith hone their skills with dance and scimitar to become dervish dancers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:demagogue",
@@ -2010,7 +2010,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Demagogue",
       "replaces": "Inspire Courage +1; Lore Master; Suggestion; Mass Suggestion",
       "aonSummary": "Not content with providing amusing and occasionally instructive performances, the demagogue seeks to inflame and ignite his audience.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:dervish-dancer",
@@ -2021,7 +2021,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dervish%20Dancer",
       "replaces": "Suggestion; Mass Suggestion; Dirge of Doom; Frightening Performance; Bardic Knowledge; Lore Master; Versatile Performance; Soothing Performance; Deadly Performance",
       "aonSummary": "Not all bards inspire others with their performances. Dervish dancers enter a near-mystical trance that allows them to push their bodies beyond normal limits.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:detective",
@@ -2043,7 +2043,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dirge%20Bard",
       "replaces": "Jack of all Trades; Well-Versed; Versatile Performance; Lore Master",
       "aonSummary": "A composer of sonorous laments for the dead and elaborate requiems for those lost yet long remembered, dirge bards master musical tools and tropes that must appeal to the ears and hearts of both the living and the dead.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:disciple-of-the-forked-tongue",
@@ -2054,7 +2054,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Disciple%20of%20the%20Forked%20Tongue",
       "replaces": "Inspire Courage; Inspire Greatness; Versatile Performance",
       "aonSummary": "(Vishkanya) Studied in venomous words as well as venomous blood, a disciple of the forked tongue knows just the right phrase to slowly poison the soul.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:dragon-herald",
@@ -2065,7 +2065,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dragon%20Herald",
       "replaces": "Weapon/Armor Proficiency; Bardic Knowledge; Countersong; Fascinate; Inspire Competence; Soothing Performance; Inspire Heroics; Lore Master; Jack-of-all-Trades",
       "aonSummary": "(Kobold Only) Dragon heralds are messengers and evangelists of true dragonkind. They carry the word of their dragon patrons far and wide, whether that’s a message of peace or a declaration of war.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:dragon-yapper",
@@ -2076,7 +2076,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dragon%20Yapper",
       "replaces": "Fascinate; Dirge of Doom; Versatile Performance",
       "aonSummary": "(Kobold Only) Kobolds’ yammering songs distract opponents in combat, hindering their ability to attack.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:duettist",
@@ -2087,7 +2087,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Duettist",
       "replaces": "Well-Versed; Jack-of-all-Trades; Bardic Knowledge; Versatile Performance; Lore Master; Dirge of Doom; Frightening Tune",
       "aonSummary": "Whether singing a delicate duo with a nightingale or slipping coins from purses while a trained monkey distracts the crowd, the duettist blends his bond to his familiar with his natural talent for performance to create amazing effects.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:dwarven-scholar",
@@ -2098,7 +2098,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Dwarven%20Scholar",
       "replaces": "Key Ability Score; Weapon and Armor Proficiencies; Versatile Performance; Inspire Courage; Suggestion",
       "aonSummary": "A dwarven scholar researches the lineage of the kings of the old dwarven empires and learns their ancient tactics.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:faith-singer",
@@ -2109,7 +2109,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Faith%20Singer",
       "replaces": "Deity; Versatile Performance",
       "aonSummary": "Faith singers show their faith in their deity with songs or other appropriate performances.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:fey-courtier",
@@ -2120,7 +2120,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Fey%20Courtier",
       "replaces": "Dirge of Doom; Frightening Tune; Inspire Heroics; Versatile Performance: Inspire Competence",
       "aonSummary": "(Gathlain) Fey who associate with courts often become bards skilled at navigating the inhuman societies of the trackless wilds.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:fey-prankster",
@@ -2131,7 +2131,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Fey%20Prankster",
       "replaces": "Bardic Knowledge; Countersong; Inspire Courage; Dirge of Doom; Well-Versed; Lore Master",
       "aonSummary": "Sly and mischievous like the Lantern King himself, fey pranksters learn supernatural tricks that can cause their victims to suffer mishaps and accidents.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:filidh",
@@ -2142,7 +2142,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Filidh",
       "replaces": "Weapon/Armor Proficiencies; Spellcasting; Inspire Courage; Suggestion; Dirge of Doom; Inspire Heroics; Deadly Performance",
       "aonSummary": "By tapping into the world’s natural music, specialized bards known as filidhs are able to see not only the tapestry of life but divine portents of the future from the rhythm of all life’s song.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:first-world-minstrel",
@@ -2153,7 +2153,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20First%20World%20Minstrel",
       "replaces": "Spell List; Bardic Knowledge; Inspire Courage; Dirge of Doom; Well-Versed",
       "aonSummary": "The First World minstrel's performances channel the mysterious powers of the First World.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:flame-dancer",
@@ -2164,7 +2164,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Flame%20Dancer",
       "replaces": "Countersong; Inspire Competence; Suggestion; Dirge of Doom",
       "aonSummary": "A flame dancer studies the movements of fire, adding its grace to his repertoire.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:flamesinger",
@@ -2175,7 +2175,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Flamesinger",
       "replaces": "Bardic Knowledge; Lore Master; Inspire Courage; Versatile Performance",
       "aonSummary": "The flamesinger finds inspiration in the mesmerizing beauty of fire.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:fortune-teller",
@@ -2186,7 +2186,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Fortune-Teller",
       "replaces": "Spell List; Bardic Performance; Countersong; Distraction; Well-Versed; Dirge of Doom",
       "aonSummary": "Instead of using song and dance, a fortune-teller influences people by divining their fate.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:geisha",
@@ -2197,7 +2197,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Geisha",
       "replaces": "Weapon/Armor Proficiencies; Bardic Knowledge",
       "aonSummary": "Specially trained entertainers called geisha are praised for their appearance and skill at conversation, music, dancing, singing, poetry, and calligraphy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:hatharat-agent",
@@ -2208,7 +2208,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Hatharat%20Agent",
       "replaces": "Bardic Knowledge; Well-Versed; Dirge of Doom",
       "aonSummary": "Although the Hatharat employs all manner of specialists, bards who take up the role of agent are among its most infamous and widespread.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:hoaxer",
@@ -2219,7 +2219,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Hoaxer",
       "replaces": "Bardic Knowledge; Inspire Courage; Inspire Competence; Inspire Greatness; Countersong; Distraction; Inspire Greatness; Versatile Performance; Well-Versed; Lore Master",
       "aonSummary": "Hoaxers specialize in creating valuable-looking counterfeits and infusing these false treasures with dangerous magic to make their marks more vulnerable to future swindles.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:impervious-messenger",
@@ -2230,7 +2230,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Impervious%20Messenger",
       "replaces": "Fascinate; Suggestion; Mass Suggestion; Dirge of Doom; Frightening Tune; Bardic Knowledge; Well-Versed",
       "aonSummary": "The impervious messenger is capable of harnessing the unique qualities of bardic magic to keep, transport, and communicate the most precious of secrets and messages.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:juggler",
@@ -2241,7 +2241,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Juggler",
       "replaces": "Weapon/Armor Proficiencies; Bardic Knowledge; Lore Master; Versatile Performance; Well-Versed; Soothing Performance",
       "aonSummary": "Jugglers are masters of manipulating objects, most famously by keeping multiple objects in the air simultaneously.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:lotus-geisha",
@@ -2252,7 +2252,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Lotus%20Geisha",
       "replaces": "Different Weapon Proficiencies; Well-Versed; Bardic Knowledge; Lore Master",
       "aonSummary": "The lotus geisha of Minkai are renowned for their powers of seduction.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:luring-piper",
@@ -2263,7 +2263,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Luring%20Piper",
       "replaces": "Class Skills; Bardic Knowledge; Dirge of Doom; Soothing Performance; Well-Versed",
       "aonSummary": "Some bards have an exceptional ability to use their musical performances to entrance the world’s wilder creatures.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:magician",
@@ -2274,7 +2274,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Magician",
       "replaces": "Inspire Courage; Dirge of Doom; Frightening Tune; Bardic Knowledge; Countersong; Well-Versed; Versatile Performance; Lore Master; Jack of all Trades",
       "aonSummary": "A magician dabbles in performance, but sees it as a means to tap into universal energies and channel them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:masked-performer",
@@ -2285,7 +2285,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Masked%20Performer",
       "replaces": "Bardic Knowledge; Countersong; Inspire Competence; Surggestion; Mass Suggestion; Versatile Performance; Lore Master",
       "aonSummary": "The masked performer takes on the persona represented by the likeness she wears.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:mute-musician",
@@ -2296,7 +2296,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Mute%20Musician",
       "replaces": "Bardic Knowledge; Inspire Competence; Frightening Tune; Inspire Heroics; Mass Suggestion; Versatile Performance; Well-Versed; Jack-of-All-Trades",
       "aonSummary": "A mute musician forswears speech for the unnatural songs and thunderous silences of the depths of space.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:negotiator",
@@ -2307,7 +2307,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Negotiator",
       "replaces": "Bardic Knowledge; Bardic Performance; Versatile Performance; Lore Master",
       "aonSummary": "Negotiators are those bards who take the skills of a performer and apply them to the realms of business and law.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:phrenologist",
@@ -2318,7 +2318,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Phrenologist",
       "replaces": "Bardic Knowledge; Well-Versed; Jack-of-all-Trades; Inspire Courage; Inspire Competence; Fascinate",
       "aonSummary": "The phrenologist is an expert at reading creatures’ skulls, and he learns to use this knowledge to his benefit.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:pitax-academy-of-grand-arts",
@@ -2329,7 +2329,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Pitax%20%20Academy%20of%20Grand%20Arts",
       "replaces": "Versatile Performance",
       "aonSummary": "Those who have successfully mastered the strict curriculum of the Academy of Grand Arts.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:plant-speaker",
@@ -2340,7 +2340,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Plant%20Speaker",
       "replaces": "Inspire Greatness; Bardic Knowledge; Well-Versed; Lore Master",
       "aonSummary": "(Vine Leshy only) Plant speakers build upon their racial plantspeech ability and their storytelling tendencies to create an art form full of deep metaphors and allegory rather than specific details and facts.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:prankster",
@@ -2351,7 +2351,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Prankster",
       "replaces": "Fascinate; Suggestion; Mass Suggestion; Lore Master",
       "aonSummary": "(Gnome Only) The prankster sees humor as the highest form or art, and pranks as the highest form of humor.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:provocateur",
@@ -2362,7 +2362,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Provocateur",
       "replaces": "Bardic Knowledge; 2nd-level Versatile Performance; Suggestion, Mass Suggestion",
       "aonSummary": "Provocateurs are bards who use their art to make controversial political statements, undermine enemies’ reputations, and upset the status quo on a large scale.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:ringleader-ag",
@@ -2373,7 +2373,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Ringleader%20(AG)",
       "replaces": "Bardic Performance; Well-Versed; Versatile Performance; Suggestion; Mass Suggestion; Soothing Performance",
       "aonSummary": "Ringleaders are specialists who oversee large operations in which trouble could strike at any moment and any place.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:ringleader-ui",
@@ -2384,7 +2384,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Ringleader%20(UI)",
       "replaces": "Inspire Competence; Dirge of Doom; Frightening Tune; Versatile Performance; Well-Versed; Lore Master",
       "aonSummary": "Ringleaders are adept in getting the most out of their allies, and they excel at planning for unexpected complications in advance.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:sandman",
@@ -2395,7 +2395,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Sandman",
       "replaces": "Inspire Courage; Suggestion; Inspire Greatness; Inspire Heroics; Mass Suggestion; Deadly Performance; Bardic Knowledge; Versatile Performance; Inspire Competence; Lore Master",
       "aonSummary": "Combining performance with stealth, trickery, and guile, the sandman uses cleverness to keep others off-balance.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:savage-skald",
@@ -2406,7 +2406,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Savage%20Skald",
       "replaces": "Fascinate; Suggestion; Jack of all Trades; Soothing Performance; Mass Suggestion",
       "aonSummary": "Far from civilization, furious tribes have their own war-singers, work-chanters, and lore-keepers, savaging enemies with song and sword alike.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:sea-singer",
@@ -2417,7 +2417,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Sea%20Singer",
       "replaces": "Countersong; Inspire Competence; Suggestion; Mass Suggestion; Bardic Knowledge; Versatile Performance; Well-Versed",
       "aonSummary": "The sea singer calls the blue waters his home, and is much in demand among sea captains wishing good fortune for their crew and hull as they ply the tradewinds far and wide.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:shadow-puppeteer",
@@ -2428,7 +2428,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Shadow%20Puppeteer",
       "replaces": "Inspire Courage; Inspire Competence",
       "aonSummary": "(Wayang Only) A shadow puppeteer invokes amazing and terrifying shadow puppet shows, producing supernatural effects by creating and manipulating shadow.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:silver-balladeer",
@@ -2439,7 +2439,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Silver%20Balladeer",
       "replaces": "Alignment; Suggestion; Inspire Greatness; Mass Suggestion; Well-Versed; 2nd-level Versatile Performance",
       "aonSummary": "The bright purity of silver makes beautiful music, and its vibrations are also anathema to unnatural creatures. Some bards use a mixture of silver-stringed instruments and esoteric knowledge to battle the dark forces of the world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:solacer",
@@ -2450,7 +2450,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Solacer",
       "replaces": "Class Skills; Bardic Knowledge; Lore Master; Countersong; Versatile Performance; Jack-of-All-Trades",
       "aonSummary": "Solacers are experts in the healing arts as well as creators of performances that console the distraught, rally the stricken, raise spirits, and vanquish sorrow.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:songhealer",
@@ -2461,7 +2461,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Songhealer",
       "replaces": "Versatile Performance; Frightening Tune; Deadly Performance",
       "aonSummary": "The songhealer brings peace and surcease of pain, calming wild emotions and providing a balm for the wounded body.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:sorrowsoul",
@@ -2472,7 +2472,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Sorrowsoul",
       "replaces": "Soothing Perfrmance; Versatile Performance; Well-Versed; Lore Master",
       "aonSummary": "While most bards, on occasion, sing mournful tunes or craft elegies that depict the deepest sadness or the most profound suffering, the sorrowsoul has known tragedy and loss on a level so intimate, he has bound it to his soul.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:sound-striker",
@@ -2483,7 +2483,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Sound%20Striker",
       "replaces": "Inspire Competence; Suggestion",
       "aonSummary": "They say that words can cut deeper than any blade, and the sound striker proves this true.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:speaker-of-the-palatine-eye",
@@ -2494,7 +2494,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Speaker%20of%20the%20Palatine%20Eye",
       "replaces": "Class Skills; Spells; Countersong; Jack-of-all-Trades",
       "aonSummary": "speaker of the Palatine Eye influences others using his occult knowledge rather than the boisterous enthusiasm of most bards.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:stonesinger",
@@ -2505,7 +2505,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Stonesinger",
       "replaces": "Spellcasting; Bardic Performance; Countersong; Dirge of Doom",
       "aonSummary": "Stonesingers are rare bards capable of vocalizing their bardic performances through subsonic harmonies, allowing their performances to carry as subtle vibrations through stone, rather than through the air.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:street-performer",
@@ -2527,7 +2527,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Studious%20Librarian",
       "replaces": "Distraction; Suggestion; Jack-of-All-Trades; Dirge of Doom; Mass Suggestion; Deadly Performance",
       "aonSummary": "Studious librarians are bards that have studied long in great libraries of the Inner Sea region.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:thundercaller",
@@ -2538,7 +2538,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Thundercaller",
       "replaces": "Bardic Knowledge; Inspire Competence; Suggestion; Mass Suggestion; Dirge of Doom; Frightening Tune",
       "aonSummary": "Thundercallers bear the knowledge of the ancients, wielding it like a weapon to protect the land for which they care so deeply.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:voice-of-brigh",
@@ -2549,7 +2549,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Voice%20of%20Brigh",
       "replaces": "Fascinate; Dirge of Doom; Soothing Performance; Frightening Tune",
       "aonSummary": "The Whisper in Bronze sometimes sends inspiration to her favorite followers in the form of music",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:voice-of-the-wild",
@@ -2560,7 +2560,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Voice%20of%20the%20Wild",
       "replaces": "Bardic Knowledge; Countersong; Versatile Performance; Jack-of-all-Trades; Inspire Competence; Dirge of Doom; Inspire Heroics",
       "aonSummary": "Most bards are inspired by the art of civilization, yet the voice of the wild’s muse is the grandeur and beauty of nature.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:wasteland-chronicler",
@@ -2571,7 +2571,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Wasteland%20Chronicler",
       "replaces": "Bardic Knowledge; Inspire Competence",
       "aonSummary": "Wasteland chroniclers explore the farthest reaches of desolate wastelands, seeking to unlock the mysteries found there and meet the inhabitants of such regions",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:watersinger",
@@ -2582,7 +2582,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Watersinger",
       "replaces": "Fascinate, Suggestion, Mass Suggestion, Inspire Competence, 5th-level Lore Master",
       "aonSummary": "(Undine Only) The watersinger’s song reaches from the depths of his soul into the elemental waters from which life first sprang.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bard:wit",
@@ -2593,7 +2593,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bard%20Wit",
       "replaces": "Bardic Knowledge; Inspire Competence; Dirge of Doom; Frightening Tune; Versatile Performance; Lore Master; Jack-of-All-Trades",
       "aonSummary": "The wit is a master of clever repartee and verbal dueling, moving through noble courts like a fish through water.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:ancestral-harbinger",
