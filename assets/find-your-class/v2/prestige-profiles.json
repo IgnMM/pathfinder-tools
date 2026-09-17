@@ -4503,6 +4503,307 @@
       "playerSummary": "A psychic gish who blends martial mastery with occult power -- stacking bonus combat feats, enchanting her own armor and weapons on the fly with her mind, teleporting short distances at will, and even summoning a phantom duplicate of herself to flank an enemy.",
       "tradeoff": "Entry requires base attack bonus +5 and either the kinetic blast class feature or 1st-level psychic spells, and her own spellcasting or kinetic blast progression only advances at the reduced rate of a prestige class.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:hellknight-signifer",
+      "name": "Hellknight Signifer",
+      "sourceCitationText": "Adventurer's Guide pg. 92",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Hellknight%20Signifer",
+      "requirementsText": "To qualify to become a Hellknight signifer, a character must fulfill all of the following criteria.\nAlignment: Any lawful.\nArmor Proficiency: Proficient with medium armor.\nFeats: Arcane Armor Training or Warrior PriestUM.\nSkills: Intimidate 2 ranks, Knowledge (planes) 5 ranks, Spellcraft 5 ranks.\nSpells: Able to cast 3rd-level spells.\nSpecial: The character must slay a devil with Hit Dice greater than his character level. This victory must be witnessed by a Hellknight.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "other"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "lawbringer"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Hellknight signifer must be any lawful.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A Hellknight signifer must slay a devil with more Hit Dice than his own character level, witnessed by a Hellknight, and joins a Hellknight order at 1st level.",
+          "evidenceSection": "Special / Order"
+        }
+      ],
+      "professionIdentity": [
+        "lawbringer"
+      ],
+      "playerSummary": "A masked spellcasting enforcer of a Hellknight order who radiates a cleric-strength aura of law, gains unnerving gaze powers to read a target's spells, alignment, or true nature, and eventually becomes a nigh-unshakeable telepathic harbinger immune to blindness and darkness.",
+      "tradeoff": "Entry requires any lawful alignment, medium armor proficiency, Arcane Armor Training or Warrior Priest, Intimidate/Knowledge (planes)/Spellcraft ranks, 3rd-level spells, and proof of having slain a devil witnessed by a Hellknight, and every gaze ability requires wearing his signifer mask.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:mortal-usher",
+      "name": "Mortal Usher",
+      "sourceCitationText": "Pathfinder #144: Midwives to Death pg. 76",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Mortal%20Usher",
+      "requirementsText": "To qualify to become a mortal usher, a character must fulfill all the following criteria.\nAlignment: Any neutral.\nSkills: Knowledge (planes) 6 ranks, Knowledge (religion) 6 ranks.\nSpecial: A mortal usher must befriend a psychopomp or perform a deed of great significance in defense of the natural order of life and death. Undead creatures can never become mortal ushers, and a mortal usher who becomes undead immediately loses the benefits of all class features granted by this class except for mortal talents.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "undead"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "psychopomp agent"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A mortal usher must be any neutral.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A mortal usher must befriend a psychopomp or perform a deed of great significance in defense of the natural order of life and death; undead can never become mortal ushers.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "psychopomp agent"
+      ],
+      "playerSummary": "A living agent of the psychopomps who deals bonus reaping damage that is positive energy against the undead or negative energy against the living, keeps advancing an earlier spellcasting class through Mortal Talents, and eventually gains flight, cold resistance, and immunity to death effects.",
+      "tradeoff": "Entry requires any neutral alignment, Knowledge (planes)/Knowledge (religion) ranks, and proof of befriending a psychopomp or a deed defending the natural order, and becoming undead strips away all class features except mortal talents.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:pathfinder-savant",
+      "name": "Pathfinder Savant",
+      "sourceCitationText": "Adventurer's Guide pg. 140",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Pathfinder%20Savant",
+      "requirementsText": "To qualify to become a Pathfinder savant, a character must fulfill the following criteria.\nFeats: Magical Aptitude, any one item crafting feat.\nSkills: Knowledge (arcana) 5 ranks, Spellcraft 5 ranks, Use Magic Device 5 ranks.\nSpecial: Ability to cast 2nd-level spells.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "absent",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "scholar",
+          "artificer"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        "scholar",
+        "artificer"
+      ],
+      "playerSummary": "A magic-item and lore specialist who always takes 10 on Use Magic Device, Knowledge (arcana), and Spellcraft, finds writing-based traps like a rogue, borrows spells from any class list, and eventually attunes permanently to a favored magic item to use his own caster level with it.",
+      "tradeoff": "Entry requires Magical Aptitude, any item creation feat, Knowledge (arcana)/Spellcraft/Use Magic Device 5 ranks, and 2nd-level spells, and he is built around identifying and empowering magic items rather than frontline combat.",
+      "reviewStatus": "reviewed"
     }
   ]
 }

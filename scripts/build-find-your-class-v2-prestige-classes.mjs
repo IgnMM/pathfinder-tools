@@ -468,6 +468,35 @@ const PROFILES = [
     playerSummary: 'A psychic gish who blends martial mastery with occult power -- stacking bonus combat feats, enchanting her own armor and weapons on the fly with her mind, teleporting short distances at will, and even summoning a phantom duplicate of herself to flank an enemy.',
     tradeoff: 'Entry requires base attack bonus +5 and either the kinetic blast class feature or 1st-level psychic spells, and her own spellcasting or kinetic blast progression only advances at the reduced rate of a prestige class.',
   }),
+  author('hellknight-signifer', {
+    c: {'offensive-magic': 'available', 'utility-magic': 'core', 'knowledge-investigation': 'core', 'social-influence': 'available', 'personal-durability': 'available'},
+    p: {'build-complexity': 'high', 'play-complexity': 'medium', 'attribute-demands': 'high', 'equipment-dependence': 'medium', 'resource-management': 'low', versatility: 'medium'},
+    f: {'has-spellcasting': true, 'requires-alignment': true},
+    identity: {magicIdentity: ['other'], castingMethod: ['mixed'], castingExtent: ['partial'], spiritualThemes: ['other'], elementThemes: ['none'], professionIdentity: ['lawbringer'], primaryDelivery: ['spellcasting']},
+    constraints: [{type: 'alignment', kind: 'requirement', summary: 'A Hellknight signifer must be any lawful.', evidenceSection: 'Alignment'}, {type: 'organization', kind: 'requirement', summary: 'A Hellknight signifer must slay a devil with more Hit Dice than his own character level, witnessed by a Hellknight, and joins a Hellknight order at 1st level.', evidenceSection: 'Special / Order'}],
+    professionIdentity: ['lawbringer'],
+    playerSummary: 'A masked spellcasting enforcer of a Hellknight order who radiates a cleric-strength aura of law, gains unnerving gaze powers to read a target\'s spells, alignment, or true nature, and eventually becomes a nigh-unshakeable telepathic harbinger immune to blindness and darkness.',
+    tradeoff: 'Entry requires any lawful alignment, medium armor proficiency, Arcane Armor Training or Warrior Priest, Intimidate/Knowledge (planes)/Spellcraft ranks, 3rd-level spells, and proof of having slain a devil witnessed by a Hellknight, and every gaze ability requires wearing his signifer mask.',
+  }),
+  author('mortal-usher', {
+    c: {'melee-combat': 'core', 'single-target-damage': 'core', 'combat-mobility': 'available', 'personal-durability': 'available', 'social-influence': 'available'},
+    p: {'build-complexity': 'medium', 'play-complexity': 'medium', 'attribute-demands': 'medium', 'equipment-dependence': 'medium', 'resource-management': 'low', versatility: 'medium'},
+    f: {'requires-alignment': true},
+    identity: {magicIdentity: ['none'], castingMethod: ['none'], castingExtent: ['none'], spiritualThemes: ['undead'], elementThemes: ['none'], professionIdentity: ['psychopomp agent'], primaryDelivery: ['melee weapon']},
+    constraints: [{type: 'alignment', kind: 'requirement', summary: 'A mortal usher must be any neutral.', evidenceSection: 'Alignment'}, {type: 'organization', kind: 'requirement', summary: 'A mortal usher must befriend a psychopomp or perform a deed of great significance in defense of the natural order of life and death; undead can never become mortal ushers.', evidenceSection: 'Special'}],
+    professionIdentity: ['psychopomp agent'],
+    playerSummary: 'A living agent of the psychopomps who deals bonus reaping damage that is positive energy against the undead or negative energy against the living, keeps advancing an earlier spellcasting class through Mortal Talents, and eventually gains flight, cold resistance, and immunity to death effects.',
+    tradeoff: 'Entry requires any neutral alignment, Knowledge (planes)/Knowledge (religion) ranks, and proof of befriending a psychopomp or a deed defending the natural order, and becoming undead strips away all class features except mortal talents.',
+  }),
+  author('pathfinder-savant', {
+    c: {'knowledge-investigation': 'core', 'utility-magic': 'available', 'offensive-magic': 'available', 'practical-expertise': 'core'},
+    p: {'build-complexity': 'high', 'play-complexity': 'medium', 'attribute-demands': 'high', 'equipment-dependence': 'medium', 'resource-management': 'low', versatility: 'high'},
+    f: {'has-spellcasting': true, 'has-profession-identity': true},
+    identity: {magicIdentity: ['arcane'], castingMethod: ['mixed'], castingExtent: ['partial'], spiritualThemes: ['none'], elementThemes: ['none'], professionIdentity: ['scholar', 'artificer'], primaryDelivery: ['spellcasting']},
+    professionIdentity: ['scholar', 'artificer'],
+    playerSummary: 'A magic-item and lore specialist who always takes 10 on Use Magic Device, Knowledge (arcana), and Spellcraft, finds writing-based traps like a rogue, borrows spells from any class list, and eventually attunes permanently to a favored magic item to use his own caster level with it.',
+    tradeoff: 'Entry requires Magical Aptitude, any item creation feat, Knowledge (arcana)/Spellcraft/Use Magic Device 5 ranks, and 2nd-level spells, and he is built around identifying and empowering magic items rather than frontline combat.',
+  }),
 ];
 
 const seen = new Set(PROFILES.map(p => p.id));
