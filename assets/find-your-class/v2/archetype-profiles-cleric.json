@@ -1,0 +1,1035 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Cleric parent value.",
+  "profiles": [
+    {
+      "id": "cleric:angelfire-apostle",
+      "name": "Angelfire Apostle",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Healer's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Angelfire%20Apostle",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Armor Proficiency / Diminished Spellcasting / Extra Channel / Channel Angelfire",
+          "reason": "Armor Proficiency / Diminished Spellcasting / Extra Channel / Channel Angelfire defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Angelfire apostles use the powers of good to avoid violence when possible and cleanse both maladies and evil creatures with blinding flames.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Spellcasting; Alignment; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:appeaser",
+      "name": "Appeaser",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Agents of Evil pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Appeaser",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Aura / Channel Utility / Divine Apologist / Mollified Domain",
+          "reason": "Aura / Channel Utility / Divine Apologist / Mollified Domain defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "A rare few seek the power of dark forces for brighter ends by focusing on the utilitarian aspects of a god’s portfolio, appeasing their deities through high praise and glorifying their chosen gods’ unaligned aspects.",
+      "tradeoff": "It replaces or alters Aura; Channel Energy; Alignment; Spells; Domains; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:asmodean-advocate",
+      "name": "Asmodean Advocate",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Dirty Tactics Toolbox pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Asmodean%20Advocate",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "advocate"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Pact-Bound / Serpent / Devil in the Details / Shoulder Devil",
+          "reason": "The archetype’s Pact-Bound / Serpent / Devil in the Details / Shoulder Devil package materially changes social influence from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "For the faithful of Asmodeus, the words used in a negotiation or contract matter more than their intent.",
+      "tradeoff": "It replaces or alters Domains; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:blossoming-light",
+      "name": "Blossoming Light",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Adventurer's Guide pg. 112",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Blossoming%20Light",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "radiance"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Promise of Faith / Promise of Purity / Luminous Font",
+          "reason": "Promise of Faith / Promise of Purity / Luminous Font defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Blossoming lights are clerics who take their pursuit of purity and light to extremes.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Alignment; Channel Energy; Domains; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:cardinal",
+      "name": "Cardinal",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Ultimate Intrigue pg. 64",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Cardinal",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "politician"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Armor Proficiency / Political Skill",
+          "reason": "The archetype’s Armor Proficiency / Political Skill package materially changes social influence from the Cleric baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Armor Proficiency / Political Skill",
+          "reason": "The archetype’s Armor Proficiency / Political Skill package materially changes practical expertise from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Cardinals wield significant political power, engaging in the game of intrigue on behalf of their churches",
+      "tradeoff": "It replaces or alters Armor Proficieny; Spontaneous Casting; Domain; Class Skills; Skill Ranks; Base Attack Bonus; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:channeler-of-the-unknown",
+      "name": "Channeler of the Unknown",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Antihero's Handbook pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Channeler%20of%20the%20Unknown",
+      "capabilityOverrides": {
+        "support-buffing": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": false
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "unknown force"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Spells / Unknown Aura / Channel Entropy / Power of the Unknown",
+          "reason": "The archetype’s Spells / Unknown Aura / Channel Entropy / Power of the Unknown package materially changes support buffing from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "(Ex-cleric archetype) Channelers of the unknown are those faithless clerics who channel the power of an unknown entity or force of the universe",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiency; Spells; Aura; Channel Energy; Domains; Spontaneous Casting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:cloistered-cleric",
+      "name": "Cloistered Cleric",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Ultimate Magic pg. 31",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Cloistered%20Cleric",
+      "capabilityOverrides": {
+        "melee-combat": "absent"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Weapon and Armor Proficiency / Class Skills / Skill Ranks per Level / Diminished Spellcasting",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Class Skills / Skill Ranks per Level / Diminished Spellcasting package materially changes melee combat from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Cloistered clerics typically live in a temple and rarely interact with the outside world. They are bookish and well learned in the lore of the faith, paying less attention to its magical and martial aspects.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Domains; Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:crashing-wave",
+      "name": "Crashing Wave",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Blood of the Sea pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Crashing%20Wave",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "water"
+        ],
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Sworn to the Sea / Speech of the Sea / Balanced Channel / Spontaneous Casting",
+          "reason": "Sworn to the Sea / Speech of the Sea / Balanced Channel / Spontaneous Casting defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Clerics who live in or near the sea sometimes embrace the watery aspect of Gozreh over the deity’s other dimensions and take the title of crashing wave; such clerics understand the tempestuousness and cruelty of the sea, but also its generosity and bounty",
+      "tradeoff": "It replaces or alters Deity; Bonus Languages; Channel Energy; Spontaneous Casting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:crusader",
+      "name": "Crusader",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Ultimate Combat pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Crusader",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Diminished Spellcasting / Bonus Feat / Legion’s Blessing",
+          "reason": "The archetype’s Diminished Spellcasting / Bonus Feat / Legion’s Blessing package materially changes melee combat from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Crusaders serve the militant arm of a church, ready to stand guard over the religion’s holy places and to be its swift, avenging arm against those who resist its truth.",
+      "tradeoff": "It replaces or alters Domains; Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:demonic-apostle",
+      "name": "Demonic Apostle",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Advanced Race Guide pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Demonic%20Apostle",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Drow characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Demonic Magic / Demonic Familiar / Demonic Channel",
+          "reason": "Demonic Magic / Demonic Familiar / Demonic Channel defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Demon worship is common among the drow, and so are ranks of demonic apostles, who gain magical insight from their dark lords and crush their chaotic masters’ enemies by channeling demonic energy.",
+      "tradeoff": "It replaces or alters Domains; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:divine-paragon",
+      "name": "Divine Paragon",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Divine Anthology pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Divine%20Paragon",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Devoted Domain / Divine Brand",
+          "reason": "Devoted Domain / Divine Brand defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Divine paragons strive to emulate their god’s ideals as closely as possible.",
+      "tradeoff": "It replaces or alters Domain; Aura; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:divine-scourge",
+      "name": "Divine Scourge",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Magic Tactics Toolbox pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Divine%20Scourge",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Curser / Divine Hexes",
+          "reason": "Curser / Divine Hexes defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Divine scourges take on the role of dealing out unique punishments on behalf of their deities, taking pleasure in carrying out their sacrosanct duties.",
+      "tradeoff": "It replaces or alters Domains; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:divine-strategist",
+      "name": "Divine Strategist",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Ultimate Combat pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Divine%20Strategist",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "strategist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Domains / Master Tactician / Caster Support / Tactical Expertise",
+          "reason": "The archetype’s Domains / Master Tactician / Caster Support / Tactical Expertise package materially changes tactical leadership from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "The divine strategist leads the armies of the faithful, not from the front lines but through her clever strategy and tactical acumen.",
+      "tradeoff": "It replaces or alters Domains; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:ecclesitheurge",
+      "name": "Ecclesitheurge",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Advanced Class Guide pg. 91",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Ecclesitheurge",
+      "capabilityOverrides": {
+        "melee-combat": "absent"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Weapon and Armor Proficiency / Ecclesitheurge’s Vow / Blessing of the Faithful / Domain Mastery",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Ecclesitheurge’s Vow / Blessing of the Faithful / Domain Mastery package materially changes melee combat from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Eschewing physical armor for protection via the strength of his faith, an ecclesitheurge focuses on the miracles his deity bestows and the breadth of that deity’s dominion.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Domain; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:elder-mythos-cultist",
+      "name": "Elder Mythos Cultist",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Horror Adventures pg. 48",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Elder%20Mythos%20Cultist",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Alignment / Deities / Domain / Forbidden Knowledge",
+          "reason": "The archetype’s Alignment / Deities / Domain / Forbidden Knowledge package materially changes social influence from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Typically grasping, secretive, and thoroughly mad, Elder Mythos cultists open their bodies and minds to horrifying realities not meant for the sane as they strive to prepare the world for the eventual return of their alien masters.",
+      "tradeoff": "It replaces or alters Alignment; Domains; Channel Energy; Spontaneous Casting; 5th, 11th, and 19th-level Channel Energy increase; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:evangelist",
+      "name": "Evangelist",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Ultimate Combat pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Evangelist",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Single-Minded / Public Speaker / Sermonic Performance / Spontaneous Casting",
+          "reason": "The archetype’s Single-Minded / Public Speaker / Sermonic Performance / Spontaneous Casting package materially changes tactical leadership from the Cleric baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Single-Minded / Public Speaker / Sermonic Performance / Spontaneous Casting",
+          "reason": "The archetype’s Single-Minded / Public Speaker / Sermonic Performance / Spontaneous Casting package materially changes social influence from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "The evangelist is the voice of her religion in the world.",
+      "tradeoff": "It replaces or alters Domains; Channel Energy; Spontaneous Casting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:fiendish-vessel",
+      "name": "Fiendish Vessel",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Advanced Race Guide pg. 170",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Fiendish%20Vessel",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Tiefling characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Domains / Channel Evil / Fiendish Familiar",
+          "reason": "Alignment / Domains / Channel Evil / Fiendish Familiar defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Fiendish vessels, through their fiendish heritage, share an innate connection with their patron, and that connection grants them understanding and power.",
+      "tradeoff": "It replaces or alters Domains; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:forgemaster",
+      "name": "Forgemaster",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Advanced Race Guide pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Forgemaster",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "crafter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Dwarf characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Artificer / Steel Spells / Divine Smith / Runeforger",
+          "reason": "The archetype’s Artificer / Steel Spells / Divine Smith / Runeforger package materially changes practical expertise from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Forgemasters are priestly dwarves who are ritual casters and expert enchanters, able to produce their rune-graven armaments with astonishing speed.",
+      "tradeoff": "It replaces or alters Domains; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:foundation-of-faith",
+      "name": "Foundation of Faith",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Elemental Master's Handbook pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Foundation%20of%20Faith",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Channel Energy / Bastion / Granite Focus / Rooted Vitality",
+          "reason": "Channel Energy / Bastion / Granite Focus / Rooted Vitality defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Whether aiding the faithful or defending against the depredations of unbelievers, a foundation of faith is unshakable in her convictions.",
+      "tradeoff": "It replaces or alters Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:herald-caller",
+      "name": "Herald Caller",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Monster Summoner's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Herald%20Caller",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Skill Ranks per Level / Dedicated Summoner / Call Heralds / Divine Heralds",
+          "reason": "Skill Ranks per Level / Dedicated Summoner / Call Heralds / Divine Heralds defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Unlike warpriests or paladins, who charge headlong into battle in the name of their patron deities, herald callers are adept at calling powerful outsiders to aid their brethren in battle.",
+      "tradeoff": "It replaces or alters Class Skills; Domains; Armor Proficiencies;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:hidden-priest",
+      "name": "Hidden Priest",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Inner Sea Magic pg. 35",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Hidden%20Priest",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "False Arcanist / Unseen Devotion",
+          "reason": "The archetype’s False Arcanist / Unseen Devotion package materially changes stealth subterfuge from the Cleric baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "False Arcanist / Unseen Devotion",
+          "reason": "The archetype’s False Arcanist / Unseen Devotion package materially changes social influence from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "When practicing their religion is outlawed, the hidden priest learns to hide their true nature and practice magic in secret.",
+      "tradeoff": "It replaces or alters 1st-level Domain Power, 8th-level Domain Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:idealist",
+      "name": "Idealist",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Planar Adventures pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Idealist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Planar Bond / Abaddon / Abyss / Astral",
+          "reason": "Planar Bond / Abaddon / Abyss / Astral defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Idealist clerics are personifications of belief, each embracing the purest ideal of his deity’s realm.",
+      "tradeoff": "It replaces or alters Spontaneous Casting; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:iron-priest",
+      "name": "Iron Priest",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Technology Guide pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Iron%20Priest",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "technologist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Class Skills / Channel Energy / Spontaneous Casting",
+          "reason": "The archetype’s Class Skills / Channel Energy / Spontaneous Casting package materially changes practical expertise from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Iron priests preach of the messengers from beyond the stars, envoys of the divine brought to Golarion in a falling star.",
+      "tradeoff": "It replaces or alters Class Skills; Channel Energy; Spellcasting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:lawspeaker",
+      "name": "Lawspeaker",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Blood of the Ancients pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Lawspeaker",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "judge"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Alignment / Divine Judgment / Circumvent Obfuscation",
+          "reason": "The archetype’s Alignment / Divine Judgment / Circumvent Obfuscation package materially changes social influence from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Lawspeakers spread their philosophy of certain and unwavering justice throughout the Inner Sea region.",
+      "tradeoff": "It replaces or alters Alignment; Domains; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:mendevian-priest",
+      "name": "Mendevian Priest",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Inner Sea Magic pg. 36",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Mendevian%20Priest",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Weapon and Armor Proficiency / Diminished Spellcasting / Demonic Knowledge / Teamwork Feat",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Diminished Spellcasting / Demonic Knowledge / Teamwork Feat package materially changes tactical leadership from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Crusade-minded clerics of Iomedae, Gorum, and other churches come to Mendev to learn battlefield tactics and the weaknesses of demons.",
+      "tradeoff": "It replaces or alters Domains; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:merciful-healer",
+      "name": "Merciful Healer",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Ultimate Combat pg. 41",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Merciful%20Healer",
+      "capabilityOverrides": {
+        "offensive-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Willing Healer / Channel Energy / Combat Medic / Merciful Healing",
+          "reason": "The archetype’s Willing Healer / Channel Energy / Combat Medic / Merciful Healing package materially changes offensive magic from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "The merciful healer is a master of battlefield revivification, sustaining and restoring allies to keep them in the fight.",
+      "tradeoff": "It replaces or alters Domains; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:roaming-exorcist",
+      "name": "Roaming Exorcist",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Undead Slayer's Handbook pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Roaming%20Exorcist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "exorcist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Skill Ranks per Level / Dedicated Wanderer / Unseen Revealed / Spirit Sleuth",
+          "reason": "Skill Ranks per Level / Dedicated Wanderer / Unseen Revealed / Spirit Sleuth defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "The roaming exorcist travels far and wide to root out possessions, hauntings, and hidden evils. The roaming exorcist extracts unruly spirits from not only victims of possession, but also haunted sites and accursed items.",
+      "tradeoff": "It replaces or alters Skill Ranks; Weapon/Armor Proficiencies; Domains; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:sacred-attendant",
+      "name": "Sacred Attendant",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Healer's Handbook pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Sacred%20Attendant",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Channel Beauty / Domains / Nimble / Nurture Grace",
+          "reason": "The archetype’s Channel Beauty / Domains / Nimble / Nurture Grace package materially changes social influence from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Sacred attendants bring out the varied beauty in everyone they help, and they typically worship deities of beauty, love, and sex.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Channel Energy; Domains; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:scroll-scholar",
+      "name": "Scroll Scholar",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Pathfinder Society Field Guide pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Scroll%20Scholar",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "scholar"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Diligent Student / Secrets Revealed / Flash of Insight",
+          "reason": "The archetype’s Diligent Student / Secrets Revealed / Flash of Insight package materially changes practical expertise from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Those who trade some of their potential to better understand ancient texts and scrolls can become learned scroll scholars.",
+      "tradeoff": "It replaces or alters 1st Level Domain Power, Channel Energy 5th level increase, 4th-level spell slot; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:separatist",
+      "name": "Separatist",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Ultimate Magic pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Separatist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Forbidden Rites",
+          "reason": "Weapon and Armor Proficiency / Forbidden Rites defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "A radical cleric, unsatisfied with the orthodoxy of her deity’s teachings, forges her own path of defiant divine expression.",
+      "tradeoff": "It replaces or alters Domains; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:stoic-caregiver",
+      "name": "Stoic Caregiver",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Healer's Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Stoic%20Caregiver",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Positive Channeler / Domains / Midwife Training / Fated Cures",
+          "reason": "Positive Channeler / Domains / Midwife Training / Fated Cures defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Stoic caregivers are champions of life in defiance of untimely death as well as undeath.",
+      "tradeoff": "It replaces or alters Channel Energy; Domains;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:theologian",
+      "name": "Theologian",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Ultimate Magic pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Theologian",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Focused Domain / Domain Secret",
+          "reason": "Focused Domain / Domain Secret defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "A theologian is an expert on one particular area of her religion",
+      "tradeoff": "It replaces or alters Domains; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:triadic-priest",
+      "name": "Triadic Priest",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Blood of the Coven pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Triadic%20Priest",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Triadic Bond / Bonded Channeler / Bonded Domain / Bonded Power",
+          "reason": "The archetype’s Triadic Bond / Bonded Channeler / Bonded Domain / Bonded Power package materially changes tactical leadership from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "Power comes not just from communion with one’s deity, but also from the formation of divine triumvirates. At the head of these groups are triadic priests.",
+      "tradeoff": "It replaces or alters Domains; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:undead-lord",
+      "name": "Undead Lord",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Ultimate Magic pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Undead%20Lord",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Death Magic / Corpse Companion / Bonus Feats / Unlife Healer",
+          "reason": "Death Magic / Corpse Companion / Bonus Feats / Unlife Healer defines the material change from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "An undead lord is a cleric focused on using necromancy to control undead.",
+      "tradeoff": "It replaces or alters Domains; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cleric:varisian-pilgrim",
+      "name": "Varisian Pilgrim",
+      "parentClassId": "cleric",
+      "sourceCitationText": "Inner Sea Magic pg. 42",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Varisian%20Pilgrim",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "traveller"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Fortunate Road / Caravan Bond / Blessing of the Harrow",
+          "reason": "The archetype’s Fortunate Road / Caravan Bond / Blessing of the Harrow package materially changes combat mobility from the Cleric baseline."
+        }
+      ],
+      "playerSummary": "While most clerics are associated with a particular temple, adventuring clerics spend much of their time away from their favored place of worship, and there are those who worship primarily on the road and during the journey.",
+      "tradeoff": "It replaces or alters Altered Domain Abilities; Medium Armor/Shield Proficiency; 8th-level Domain Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

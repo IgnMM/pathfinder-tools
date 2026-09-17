@@ -134,7 +134,7 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
   }
   const container = document.getElementById('app');
   try {
-    const [criteriaDoc, model, batch1, batch2, batch3, batch4, batch5, batch6, pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10, slayerArchetypes, unchainedSummonerArchetypes, alchemistArchetypes, antipaladinArchetypes, arcanistArchetypes, barbarianArchetypes, bardArchetypes] = await Promise.all([
+    const [criteriaDoc, model, batch1, batch2, batch3, batch4, batch5, batch6, pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10, slayerArchetypes, unchainedSummonerArchetypes, alchemistArchetypes, antipaladinArchetypes, arcanistArchetypes, barbarianArchetypes, bardArchetypes, bloodragerArchetypes, brawlerArchetypes, cavalierArchetypes, clericArchetypes] = await Promise.all([
       getJson('criteria.json'),
       getJson('classification-model.json'),
       getJson('class-profiles-batch-01.json'),
@@ -160,11 +160,15 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
       getJson('archetype-profiles-arcanist.json'),
       getJson('archetype-profiles-barbarian.json'),
       getJson('archetype-profiles-bard.json'),
+      getJson('archetype-profiles-bloodrager.json'),
+      getJson('archetype-profiles-brawler.json'),
+      getJson('archetype-profiles-cavalier.json'),
+      getJson('archetype-profiles-cleric.json'),
     ]);
     const classProfiles = [batch1, batch2, batch3, batch4, batch5, batch6].flatMap(b => b.profiles);
     const pilotArchetypes = [pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10]
-      .flatMap(b => b.profiles).filter(profile => !['alchemist','antipaladin','arcanist','barbarian','bard'].includes(profile.parentClassId));
-    const archetypeOverrides = pilotArchetypes.concat(slayerArchetypes.profiles, unchainedSummonerArchetypes.profiles, alchemistArchetypes.profiles, antipaladinArchetypes.profiles, arcanistArchetypes.profiles, barbarianArchetypes.profiles, bardArchetypes.profiles);
+      .flatMap(b => b.profiles).filter(profile => !['alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric'].includes(profile.parentClassId));
+    const archetypeOverrides = pilotArchetypes.concat(slayerArchetypes.profiles, unchainedSummonerArchetypes.profiles, alchemistArchetypes.profiles, antipaladinArchetypes.profiles, arcanistArchetypes.profiles, barbarianArchetypes.profiles, bardArchetypes.profiles, bloodragerArchetypes.profiles, brawlerArchetypes.profiles, cavalierArchetypes.profiles, clericArchetypes.profiles);
     const profiles = window.PFFindYourClassV2.resolveAllProfiles(classProfiles, archetypeOverrides);
     window.PFFindYourClassAppV2.mount(container, { criteriaDoc: criteriaDoc, model: model, profiles: profiles });
   } catch (e) {

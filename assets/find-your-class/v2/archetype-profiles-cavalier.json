@@ -1,0 +1,1185 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Cavalier parent value.",
+  "profiles": [
+    {
+      "id": "cavalier:beast-rider",
+      "name": "Beast Rider",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Combat pg. 36",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Beast%20Rider",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "exotic mount"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Armor Proficiency / Exotic Mount",
+          "reason": "Armor Proficiency / Exotic Mount defines the material change from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Where some cavaliers are simply skilled with horses or well-trained knights, the beast rider spends his life in constant pursuit of the most perfect mount, forming bonds with greater, more powerful, and more exotic creatures.",
+      "tradeoff": "It replaces or alters Mount; Expert Trainer; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:castellan",
+      "name": "Castellan",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Melee Tactics Toolbox pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Castellan",
+      "capabilityOverrides": {
+        "combat-mobility": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Castle Defender / Castle Lore / Guard Companion / Mighty Defense",
+          "reason": "The archetype’s Castle Defender / Castle Lore / Guard Companion / Mighty Defense package materially changes combat mobility from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "A castellan is a cavalier who dedicates himself to the defense of a castle or walled city.",
+      "tradeoff": "It replaces or alters Mount; Cavalier’s Charge; Expert Trainer; Mighty Charge; Demanding Challenge; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:charger",
+      "name": "Charger",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Inner Sea Monster Codex pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Charger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Centaur characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Prerequisite / Class Skills / Weapon and Armor Proficiency / Natural Mount",
+          "reason": "Prerequisite / Class Skills / Weapon and Armor Proficiency / Natural Mount defines the material change from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "No warrior better epitomizes the centaur’s devastating martial power than the charger.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon/Armor Proficiencies; Mount; Cavalier’s Charge; Expert Trainer; Mighty Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:circuit-judge",
+      "name": "Circuit Judge",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Path of the Hellknight pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Circuit%20Judge",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core",
+        "tactical-leadership": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "judge"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Circuit / Sentence / Double Jeopardy",
+          "reason": "The archetype’s Circuit / Sentence / Double Jeopardy package materially changes knowledge investigation from the Cavalier baseline."
+        },
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Circuit / Sentence / Double Jeopardy",
+          "reason": "The archetype’s Circuit / Sentence / Double Jeopardy package materially changes tactical leadership from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "A circuit judge claims a specific region, becoming an expert in the local laws and, perhaps, becoming a fearsome executioner.",
+      "tradeoff": "It replaces or alters Tactician; Greater Tactician; Master Tactician; Challenge; Demanding Challenge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:constable",
+      "name": "Constable",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Heroes of the Streets pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Constable",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core",
+        "combat-mobility": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ],
+        "professionIdentity": [
+          "constable"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Class Skills / Apprehend / Squad Commander / Quick Interrogator",
+          "reason": "The archetype’s Class Skills / Apprehend / Squad Commander / Quick Interrogator package materially changes knowledge investigation from the Cavalier baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Class Skills / Apprehend / Squad Commander / Quick Interrogator",
+          "reason": "The archetype’s Class Skills / Apprehend / Squad Commander / Quick Interrogator package materially changes combat mobility from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Constables keep order in the narrow streets and dark alleys of settlements.",
+      "tradeoff": "It replaces or alters Class Skills; Mount; Cavalier’s Charge; Expert Trainer; Banner; Mighty Charge; Supreme Charge; Greater Banner; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:courtly-knight",
+      "name": "Courtly Knight",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Intrigue pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Courtly%20Knight",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "courtier"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Social Presence / Imperious Attitude / Grand Boast",
+          "reason": "Social Presence / Imperious Attitude / Grand Boast defines the material change from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "These courtly knights are equally at home in a duel with words or swords.",
+      "tradeoff": "It replaces or alters Tactician; Greater Tactician; Master Tactician; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:daring-champion",
+      "name": "Daring Champion",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Advanced Class Guide pg. 90",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Daring%20Champion",
+      "capabilityOverrides": {
+        "summoning-companions": "absent"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "medium"
+      },
+      "factOverrides": {
+        "has-mount": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Weapon and Armor Proficiency / Champion’s Finesse / Nimble / Panache and Deeds",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Champion’s Finesse / Nimble / Panache and Deeds package materially changes summoning companions from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "While many cavaliers are the champions of old fighting forms, some younger, more daring cavaliers mix a martial style influenced by the lighter armored and more flamboyant swashbuckler forms with the dedication of cavalier orders.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Mount; Cavalier’s Charge; Expert Trainer; Mighty Charge; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:daring-general",
+      "name": "Daring General",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Intrigue pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Daring%20General",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Aides-de-Camp / Groom / Squire / Standard Bearer",
+          "reason": "The archetype’s Aides-de-Camp / Groom / Squire / Standard Bearer package materially changes support buffing from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Those cavaliers most gifted at command often become daring generals.",
+      "tradeoff": "It replaces or alters 6th, 12th, 18th-level Bonus Feats; Demanding Challenge; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:disciple-of-the-pike",
+      "name": "Disciple of the Pike",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Monster Hunter's Handbook pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Disciple%20of%20the%20Pike",
+      "capabilityOverrides": {
+        "summoning-companions": "absent",
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Bigger They Are / Pike Charge / Monster Hunter / Weapon Training",
+          "reason": "The archetype’s Bigger They Are / Pike Charge / Monster Hunter / Weapon Training package materially changes summoning companions from the Cavalier baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Bigger They Are / Pike Charge / Monster Hunter / Weapon Training",
+          "reason": "The archetype’s Bigger They Are / Pike Charge / Monster Hunter / Weapon Training package materially changes combat manoeuvres from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "The Hellknight Order of the Pike are renowned monster hunters, taking on large game using ancient weapon arts combined with modern equipment.",
+      "tradeoff": "It replaces or alters Mount; Cavalier's Charge; Expert Trainer; Banner; Greater Banner; Mighty Charge; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:drakerider",
+      "name": "Drakerider",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Legacy of Dragons pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Drakerider",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "drake companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Drake Mount / Approved Order",
+          "reason": "Drake Mount / Approved Order defines the material change from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "While many cavaliers dream of riding a dragon into battle, drakeriders come to learn that the reality involves far more effort than they had expected.",
+      "tradeoff": "It replaces or alters Mount; Tactcian; Expert Trainer; Banner; Greater Tactician; Greater Banner; Master Tactician;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:emissary",
+      "name": "Emissary",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Combat pg. 36",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Emissary",
+      "capabilityOverrides": {
+        "tactical-leadership": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Armor Proficiency / Bonus Feats / In or Out of the Saddle / Battlefield Agility",
+          "reason": "The archetype’s Armor Proficiency / Bonus Feats / In or Out of the Saddle / Battlefield Agility package materially changes tactical leadership from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Some cavaliers focus more on speed and mobility than they do on the raw power of the mounted charge.",
+      "tradeoff": "It replaces or alters Tactician; Banner; Greater Tactician; Greater Banner; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:esquire",
+      "name": "Esquire",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Cohorts and Companions pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Esquire",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "follower"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Aide-De-Camp / Teamwork / Shared Challenge / Banner",
+          "reason": "Aide-De-Camp / Teamwork / Shared Challenge / Banner defines the material change from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "The esquire is a roving knight who acquires the services of a faithful follower—an aide-de-camp—who serves as the esquire’s assistant, spear carrier, and guard.",
+      "tradeoff": "It replaces or alters Mount; Cavalier’s Charge; Expert Trainer; Banner; Mighty Charge; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:fell-rider",
+      "name": "Fell Rider",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Advanced Race Guide pg. 122",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Fell%20Rider",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "monstrous mount"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Hobgoblin characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Brute Steed / Rampage / Dread Rider / Fell Presence",
+          "reason": "The archetype’s Brute Steed / Rampage / Dread Rider / Fell Presence package materially changes debuffing enemies from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "The fell rider rides a bestial steed, a mount mastered by him alone. He tramples his enemies down, leaving twisted bodies in his wake, and fear rides with him.",
+      "tradeoff": "It replaces or alters Mount; Cavalier’s Charge; Expert Trainer; Banner; Mighty Charge; Greater Banner; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:first-mother-s-fang",
+      "name": "First Mother's Fang",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Blood of the Beast pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20First%20Mother%27s%20Fang",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "governor"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Weapon and Armor Proficiency / Serpent Mount / Honored Warrior",
+          "reason": "Class Skills / Weapon and Armor Proficiency / Serpent Mount / Honored Warrior defines the material change from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "A first mother’s fang acts as a servant of his nation, a skilled general and tactician in times of war and a noble governor during times of peace.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon Proficiencies; Mount; Order; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:gallant",
+      "name": "Gallant",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Heroes of the High Court pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Gallant",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Code of Gallantry / Symbol of Inspiration / Symbol of Resilience",
+          "reason": "The archetype’s Code of Gallantry / Symbol of Inspiration / Symbol of Resilience package materially changes support buffing from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Gallants embody the virtues of honor, generosity, and civility. Their personal symbol serves as an inspiration to others in a courtly setting as much as on a battlefield.",
+      "tradeoff": "It replaces or alters Order; Banner; Greater Banner; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:gendarme",
+      "name": "Gendarme",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Combat pg. 37",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Gendarme",
+      "capabilityOverrides": {
+        "tactical-leadership": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Bonus Feats / Transfixing Charge",
+          "reason": "The archetype’s Bonus Feats / Transfixing Charge package materially changes tactical leadership from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "The gendarme cares less for the finer points of tactical precision than he does for the exhilaration of the charge: the rush of wind through the visor of his helmet, the feel of his couched lance, the satisfying shriek of armor giving way before his weapon’s force as the point drives past metal into his foes.",
+      "tradeoff": "It replaces or alters Tactician; Greater Tactician; Master Tactician; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:ghost-rider",
+      "name": "Ghost Rider",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Occult Adventures pg. 117",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Ghost%20Rider",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ],
+        "primaryDelivery": [
+          "phantasmal mount"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Ghost Mount / Ghost Mount Starting Statistics / Frightful Gaze / Fearless",
+          "reason": "The archetype’s Ghost Mount / Ghost Mount Starting Statistics / Frightful Gaze / Fearless package materially changes anti magic disruption from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Ghost riders are conflicted warriors who use the powers of the phantasmal dead even while seeking out and banishing the corruption of undeath from plagued communities.",
+      "tradeoff": "It replaces or alters Mount; Tactician; Greater Tactician; Master Tactician; Cavalier’s Charge; Expert Trainer; Banner; Mighty Charge; Greater Banner; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:green-knight",
+      "name": "Green Knight",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Wilderness pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Green%20Knight",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Beast Tongue / Implacable Knight / Nature’s Servant / Ferocious",
+          "reason": "The archetype’s Beast Tongue / Implacable Knight / Nature’s Servant / Ferocious package materially changes wilderness affinity from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Some knights serve nature itself and can be found protecting unspoiled natural places or serving fey beings.",
+      "tradeoff": "It replaces or alters Tactician; Mount; Order; Cavalier’s Charge; Expert Trainer; Banner; Greater Tactician; Mighty Charge; Greater Banner; Master Tactician; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:herald-squire",
+      "name": "Herald Squire",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Knights of the Inner Sea pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Herald%20Squire",
+      "capabilityOverrides": {
+        "practical-expertise": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "scout"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Introduction / Fleet of Foot / Transcend Language",
+          "reason": "The archetype’s Introduction / Fleet of Foot / Transcend Language package materially changes practical expertise from the Cavalier baseline."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Introduction / Fleet of Foot / Transcend Language",
+          "reason": "The archetype’s Introduction / Fleet of Foot / Transcend Language package materially changes knowledge investigation from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "The herald squire is the eyes and ears of a traveling knight.",
+      "tradeoff": "It replaces or alters Tactician; 2nd-level Order Ability; Cavalier's Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:honor-guard",
+      "name": "Honor Guard",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Combat pg. 37",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Honor%20Guard",
+      "capabilityOverrides": {
+        "combat-mobility": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Sworn Defense / Intercept / Warding Charge / Defensive Challenge",
+          "reason": "The archetype’s Sworn Defense / Intercept / Warding Charge / Defensive Challenge package materially changes combat mobility from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Certain cavaliers are trained not as advance combatants, but as loyal guards, standing as firm defenders in the face of threats to their chosen charge.",
+      "tradeoff": "It replaces or alters Challenge; Cavalier’s Charge; Mighty Charge; Demanding Challenge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:hooded-knight",
+      "name": "Hooded Knight",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Legacy of the First World pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Hooded%20Knight",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Feytouched Mount / Hero of the Roads / Champion of the Roads",
+          "reason": "Class Skills / Feytouched Mount / Hero of the Roads / Champion of the Roads defines the material change from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Some cavaliers wander the lonely roads of the world—any world, including the First World—protecting travelers and acting as their honor guard.",
+      "tradeoff": "It replaces or alters Class Skills; Mount; Tactician; Greater Tactician; Master Tactician; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:huntmaster",
+      "name": "Huntmaster",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Animal Archive pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Huntmaster",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": false,
+        "has-animal-companion": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "animal pack"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Weapon and Armor Proficiency / Bestial Challenge / Hunting Pack",
+          "reason": "The archetype’s Class Skills / Weapon and Armor Proficiency / Bestial Challenge / Hunting Pack package materially changes wilderness affinity from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Huntmasters train the beasts favored by lordly castes into swift and deadly trackers.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Challenge; Mount; Tactician; Greater Tactician; Master Tactician; Cavalier’s Charge; Expert Trainer; Banner; Bonus Feats; Mighty Charge; Greater Banner; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:hussar",
+      "name": "Hussar",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Intrigue pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Hussar",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "equipment-dependence": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Armor Proficiency / Agile Warrior / Fast Mount / Skillful Rider",
+          "reason": "Armor Proficiency / Agile Warrior / Fast Mount / Skillful Rider defines the material change from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Agile and maneuverable cavalry, hussars make up for their relatively light armor with their speed and cunning.",
+      "tradeoff": "It replaces or alters Armor Proficiencies; Class Skills; Tactician; Banner; Greater Banner; 6th, 12th, 18th-level Bonus Feats; Greater Tactician; Master Tactician; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:knight-of-arnisant",
+      "name": "Knight of Arnisant",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Armor Master's Handbook pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Knight%20of%20Arnisant",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "defensive-protective-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Shield Expertise / Deflective Shield / Heraldic Banner / Soul Shield",
+          "reason": "The archetype’s Shield Expertise / Deflective Shield / Heraldic Banner / Soul Shield package materially changes anti magic disruption from the Cavalier baseline."
+        },
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Shield Expertise / Deflective Shield / Heraldic Banner / Soul Shield",
+          "reason": "The archetype’s Shield Expertise / Deflective Shield / Heraldic Banner / Soul Shield package materially changes defensive protective magic from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "The cavaliers known as knights of Arnisant revere the famous general who was crucial in the defeat of the Whispering Tyrant, the powerful wizard-king. Knights of Arnisant call upon Arnisant to grant them protection from evil magic, just as the Shield of Aroden protected him.",
+      "tradeoff": "It replaces or alters Tactician; Expert Trainer; Banner; Greater Tactician; Demanding Challenge; Greater Tactician; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:luring-cavalier",
+      "name": "Luring Cavalier",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Combat pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Luring%20Cavalier",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Far Challenge / Careful Aim / Infuriating Aim / Versatile Challenge",
+          "reason": "The archetype’s Far Challenge / Careful Aim / Infuriating Aim / Versatile Challenge package materially changes battlefield control from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Those who study the perfection of strategy and tactics know that picking the battlefield can grant advantages that only overwhelming numbers of allies can eclipse.",
+      "tradeoff": "It replaces or alters Challenge; Cavalier’s Charge; Mighty Charge; Demanding Challenge; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:musketeer",
+      "name": "Musketeer",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Combat pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Musketeer",
+      "capabilityOverrides": {
+        "ranged-combat": "core",
+        "summoning-companions": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": false,
+        "has-firearms": true,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon and Armor Proficiency / Gifted Firearm / Swift Powder",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Gifted Firearm / Swift Powder package materially changes ranged combat from the Cavalier baseline."
+        },
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Weapon and Armor Proficiency / Gifted Firearm / Swift Powder",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Gifted Firearm / Swift Powder package materially changes summoning companions from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Some cavaliers are entrusted by their masters with the care and use of expensive and powerful oddities—firearms.",
+      "tradeoff": "It replaces or alters Mount; Expert Trainer; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:oceanrider",
+      "name": "Oceanrider",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Aquatic Adventures pg. 53",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Oceanrider",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "primaryDelivery": [
+          "aquatic mount"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Armor Proficiency / Aquatic Mount",
+          "reason": "The archetype’s Armor Proficiency / Aquatic Mount package materially changes wilderness affinity from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Oceanriders are underwater cavaliers who ride dolphins, orcas, or seahorses.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Mount; Expert Trainer; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:qabarat-outrider",
+      "name": "Qabarat Outrider",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "People of the Stars pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Qabarat%20Outrider",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "psychic"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to Lashunta characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Armor Proficiency / Combat Expertise / Maneuver Tactics / Mindlink",
+          "reason": "The archetype’s Armor Proficiency / Combat Expertise / Maneuver Tactics / Mindlink package materially changes support buffing from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "The war colleges of the Castrovelian city-state of Qabarat produce a distinctive breed of cavalier known as the Qabarat outrider. In defense of the lashunta city-states, outriders lead small units of regular troops, the members of which can link minds with one another to form bonds in battle few can match.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Tactician; Greater Tactician; Master Tactician; Banner; Greater Banner; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:qadiran-horselord",
+      "name": "Qadiran Horselord",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Adventurer's Guide pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Qadiran%20Horselord",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Mount / Desert Wind / Desert Mastery",
+          "reason": "Weapon and Armor Proficiency / Mount / Desert Wind / Desert Mastery defines the material change from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Much like the breed of horses they ride, Qadiran horselords pride themselves on their mobility and endurance.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiency; Mount; Tactician; Cavalier's Charge; 6th-level Bonus Feat; Greater Tactician; Master Tactician; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:saurian-champion",
+      "name": "Saurian Champion",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Wilderness pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Saurian%20Champion",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "dinosaur companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Weapon and Armor Proficiency / Savage Combatant / Titanic Challenge",
+          "reason": "The archetype’s Class Skills / Weapon and Armor Proficiency / Savage Combatant / Titanic Challenge package materially changes wilderness affinity from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "These primeval cavaliers idolize dinosaurs as apex predators and value them as powerful, oversized mounts.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon/Armor Proficiencies; Challenge; Order; Cavalier’s Mount; Tactician; Greater Tactician; Master Tactician; Banner; Greater Banner; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:sister-in-arms",
+      "name": "Sister-in-Arms",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Adventurer's Guide pg. 83",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Sister-in-Arms",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Halfhearted Challenge / Maiden’s Order / Devoted Defender / Maiden’s Loyalty",
+          "reason": "The archetype’s Halfhearted Challenge / Maiden’s Order / Devoted Defender / Maiden’s Loyalty package materially changes support buffing from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Some of the most charismatic Gray Maidens combine their devotion to their sisters with the intense tactical training they received, learning to perfectly direct their companions and inspiring them to survive and emerge victorious.",
+      "tradeoff": "It replaces or alters Challenge; Order; Mount; Cavalier's Charge; Expert Trainer; Mighty Charge; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:spellscar-drifter",
+      "name": "Spellscar Drifter",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Inner Sea Combat pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Spellscar%20Drifter",
+      "capabilityOverrides": {
+        "ranged-combat": "core",
+        "tactical-leadership": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon and Armor Proficiency / Have Gun / Daring Deeds / Worn Banner",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Have Gun / Daring Deeds / Worn Banner package materially changes ranged combat from the Cavalier baseline."
+        },
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Weapon and Armor Proficiency / Have Gun / Daring Deeds / Worn Banner",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Have Gun / Daring Deeds / Worn Banner package materially changes tactical leadership from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Spellscar drifters are self-reliant and always keep their firearms loaded—in the Spellscar Desert, a rider with a slow draw doesn’t live long.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Tactician; Cavalier’s Charge; Banner Cavalier; Bonus Feats; Greater Tactician; Mighty Charge; Demanding Challenge; Master Tactician; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:standard-bearer",
+      "name": "Standard Bearer",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Combat pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Standard%20Bearer",
+      "capabilityOverrides": {
+        "support-buffing": "core",
+        "combat-mobility": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Banner / Mount / Banner of Solace / Awesome Pennon",
+          "reason": "The archetype’s Banner / Mount / Banner of Solace / Awesome Pennon package materially changes support buffing from the Cavalier baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Banner / Mount / Banner of Solace / Awesome Pennon",
+          "reason": "The archetype’s Banner / Mount / Banner of Solace / Awesome Pennon package materially changes combat mobility from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Some cavaliers prefer to stand away from the fray, their banners a beacon shining brightly over the battlefield, rallying their troops to victory.",
+      "tradeoff": "It replaces or alters Mount; Banner; Mighty Charge; Supreme Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:strategist",
+      "name": "Strategist",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Ultimate Combat pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Strategist",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Tactician / Drill Instructor / Tactical Advantage / Strategic Supremacy",
+          "reason": "The archetype’s Tactician / Drill Instructor / Tactical Advantage / Strategic Supremacy package materially changes support buffing from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Some cavaliers make a lifelong mission out of their exceptional ability to direct troops on the battlefield, combining tactical insight with a preternatural skill at improving the teamwork of their allies in order to win the day.",
+      "tradeoff": "It replaces or alters Expert Trainer; Greater Banner; 18th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:verdivant",
+      "name": "Verdivant",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Wilderness Origins pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Verdivant",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core",
+        "transformation-shapeshifting": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "wood"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Plant Mount / Effloresce / Shieldvines / Floatflower",
+          "reason": "The archetype’s Plant Mount / Effloresce / Shieldvines / Floatflower package materially changes wilderness affinity from the Cavalier baseline."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Plant Mount / Effloresce / Shieldvines / Floatflower",
+          "reason": "The archetype’s Plant Mount / Effloresce / Shieldvines / Floatflower package materially changes transformation shapeshifting from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Some vine leshys’ spirits are vibrant enough to project this animus beyond their own bodies",
+      "tradeoff": "It replaces or alters Expert Trainer; Tactician; Banner; Greater Tactician; Greater Banner; Master Tactician; Bonus Feats; Cavalier's Charge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:vermin-tamer",
+      "name": "Vermin Tamer",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Heroes of the Darklands pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Vermin%20Tamer",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ],
+        "primaryDelivery": [
+          "vermin mount"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Darklands Mount / Stuck in the Saddle / Disorienting Challenge",
+          "reason": "The archetype’s Darklands Mount / Stuck in the Saddle / Disorienting Challenge package materially changes wilderness affinity from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Due to the strange terrain, the lack of sunlight, and numerous other hazards, keeping a traditional mount in the Darklands can prove difficult. Cavaliers native to or traveling the region may choose to tame local creatures instead.",
+      "tradeoff": "It replaces or alters Mount; Expert Trainer; Demanding Challenge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "cavalier:wave-rider",
+      "name": "Wave Rider",
+      "parentClassId": "cavalier",
+      "sourceCitationText": "Inner Sea Combat pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Wave%20Rider",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "primaryDelivery": [
+          "aquatic mount"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Weapon and Armor Proficiency / Seafaring Companion",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Seafaring Companion package materially changes wilderness affinity from the Cavalier baseline."
+        }
+      ],
+      "playerSummary": "Throughout the Inner Sea region, wave riders patrol harbors, keeping them safe from dangerous sea creatures and watching for smugglers. The most famous of these is the hippocampus-riding Sea Cavalry of Absalom.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Mount; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

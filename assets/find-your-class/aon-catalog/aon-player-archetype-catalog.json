@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T10:41:55.144Z",
+  "generatedAt": "2026-09-17T11:17:06.732Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
@@ -8,9 +8,9 @@
     "archetypes": 1275,
     "entities": 1319,
     "valuedClasses": 44,
-    "valuedArchetypes": 323,
+    "valuedArchetypes": 424,
     "pendingClasses": 0,
-    "pendingArchetypes": 952,
+    "pendingArchetypes": 851,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -2604,7 +2604,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Ancestral%20Harbinger",
       "replaces": "Uncanny Dodge; Improved Uncanny Dodge; 6th, 12th, and 18th-level Bloodline Feats",
       "aonSummary": "While all bloodragers tap into their bloodlines to fuel the arcane energies they use in battle, some have the ability to call directly to the spirits of their ancestors to aid them, summoning spirits to fight for them or inspire their allies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:blood-conduit",
@@ -2615,7 +2615,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Blood%20Conduit",
       "replaces": "Fast Movement; Bloodline Feats; Uncanny Dodge; Improved Uncanny Dodge; Indomitable Will",
       "aonSummary": "Blood conduits learn to channel their arcane might directly through their flesh, without the need for mystical words or gestures.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:bloodrider",
@@ -2637,7 +2637,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Bloody-Knuckled%20Rowdy",
       "replaces": "Damage Reduction; Spellcasting; Fast Movement; Uncanny Dodge; Improved Uncanny Dodge",
       "aonSummary": "The bloody-knuckled rowdy focuses on tricks and maneuvers that are quick and effective, duplicating combat styles from professional brawlers, street thugs, and even trapped animals.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:crossblooded-rager",
@@ -2648,7 +2648,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Crossblooded%20Rager",
       "replaces": "Bonus Feats; Bonus Spells; Bloodline Powers; Saving Throws",
       "aonSummary": "While most bloodragers manifest only one bloodline, there are some that, through some quirk of heredity or the conjunction of other powers, manifest two.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:enlightened-bloodrager",
@@ -2659,7 +2659,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Enlightened%20Bloodrager",
       "replaces": "Spellcasting; 1st, 4th-level Bloodline Power; Bloodrage; Bonus Spells; 7th, 13th, 19th-level Damage Reduction",
       "aonSummary": "Troubled by overwhelming rage and mystic forces beyond their comprehension, bloodragers have been traveling to the Magaambya for generations, seeking the peace and enlightenment promised by students of Old-Mage Jatembe.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:greenrager",
@@ -2670,7 +2670,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Greenrager",
       "replaces": "Blood Sanctuary; 6th and 9th-level Bloodline Feats",
       "aonSummary": "Typically, nature finds its greatest harmony with divine magic, but sometimes a connection with the natural world manifest itself through the arcane current in the veins of the bloodragers called greenragers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:hag-riven",
@@ -2681,7 +2681,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Hag-Riven",
       "replaces": "Weapon/Armor Proficiencies; Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; Damage Reduction",
       "aonSummary": "All changelings have the potential to transform into hags, but the process is a slow one, requiring several nights to complete. When left incomplete—by virtue of a wily changeling’s escape or her mother’s death—the creature is scarred and saturated in arcane power.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:id-rager",
@@ -2692,7 +2692,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Id%20Rager",
       "replaces": "Bloodline; Bloodline Spells; Bloodline Powers; Spellcasting; Eschew Materials; Bloodline Feats",
       "aonSummary": "An id rager lacks a supernatural taint to his blood, instead drawing power from pure emotion.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:metamagic-rager",
@@ -2703,7 +2703,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Metamagic%20Rager",
       "replaces": "Improved Uncanny Dodge",
       "aonSummary": "While metamagic is difficult for many bloodragers to utilize, a talented few are able to channel their bloodrage in ways that push their spells to impressive ends.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:primalist",
@@ -2714,7 +2714,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Primalist",
       "replaces": "Bloodline",
       "aonSummary": "While bloodrage powers come from the very essence of a bloodrager’s being and are often strict and immutable, some bloodragers tap into ancient traditions and primitive wisdom to enhance their rages with something more primal.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:prowler-at-world-s-end",
@@ -2725,7 +2725,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Prowler%20at%20World%27s%20End",
       "replaces": "Bloodline Powers; 9th, 12th, 15th-level Bloodline Feats; Greater Bloodrage; Mighty Bloodrage",
       "aonSummary": "Many catfolk bloodragers capable of communing with the ancient spirits of creation take on the burden of protecting the world from the sinister forces that exist at the world’s fringes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:rageshaper",
@@ -2747,7 +2747,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Spelleater",
       "replaces": "Uncanny Dodge; Improved Uncanny Dodge; Damage Reduction",
       "aonSummary": "Where other bloodragers learn to avoid or shrug off minor damage of all sorts, spelleaters tap into the power of their bloodline in order to heal damage as it comes, and can even cannibalize their own magical energy to heal more damage and continue taking the fight to the enemy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:steelblood",
@@ -2758,7 +2758,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Steelblood",
       "replaces": "Armor Proficiency; Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; Damage Reduction",
       "aonSummary": "Most bloodragers prefer light armor, but some learn the secret of using heavy armors.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:symbol-striker",
@@ -2769,7 +2769,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Symbol%20Striker",
       "replaces": "Class Skills; Fast Movement; 6th, 9th, 12th, 18th-level Bloodline Feats;",
       "aonSummary": "Symbol strikers are unique form of rune-wielding berserker spellcasters whose tradition originates from Dongun Hold, a Sky Citadel in Alkenstar",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:untouchable-rager",
@@ -2780,7 +2780,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Untouchable%20Rager",
       "replaces": "Spells; Blood Casting; Eschew Materials; Bloodline Spells",
       "aonSummary": "While most bloodragers are known for their inexplicable ability to focus their bloodline into a horrifying mix of martial terror and spellcasting fury, from time to time a bloodrager’s bloodline acts differently.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "bloodrager:urban-bloodrager",
@@ -2791,7 +2791,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Urban%20Bloodrager",
       "replaces": "Class Skills; Weapon/Armor Proficiencies; Bloodrage; Blood Sanctuary; Damage Reduction",
       "aonSummary": "Like the urban barbarian, the urban bloodrager has learned to control her rage in so-called polite society.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:battle-dancer",
@@ -2802,7 +2802,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Battle%20Dancer",
       "replaces": "Class Skills; Armor Proficiencies; Brawler's Cunning; Brawler's Flurry; AC Bonus; Knockout",
       "aonSummary": "Battle dancers practice a martial art that emphasizes constant motion",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:bouncer",
@@ -2813,7 +2813,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Bouncer",
       "replaces": "Martial Flexibility; 2nd-level Bonus Feat; Close Weapon Mastery",
       "aonSummary": "Some taverns employ bouncers to keep out undesirables or for when their customers get too rowdy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:constructed-pugilist",
@@ -2824,7 +2824,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Constructed%20Pugilist",
       "replaces": "Class Skills; Martial Flexibility; Bonus Combat Feats",
       "aonSummary": "Brawlers that develop combat skills that use their prostheses so they always have a weapon at hand",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:exemplar",
@@ -2835,7 +2835,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Exemplar",
       "replaces": "Unarmed Strike; Close Weapon Mastery; Maneuver Training; AC Bonus; Brawler’s Strike",
       "aonSummary": "A versatile soldier who inspires her companions with her fighting prowess, an exemplar is at home on the front lines of battles anywhere.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:feral-striker",
@@ -2846,7 +2846,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Feral%20Striker",
       "replaces": "Martial Flexibility",
       "aonSummary": "A feral striker taps into a reservoir of druidic power hidden inside herself, allowing her to take animalistic characteristics.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:hinyasi",
@@ -2868,7 +2868,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Living%20Avalanche",
       "replaces": "2nd and 5th-level Bonus Feats; Maneuver Training; AC Bonus; Awesome Blow; Improved Awesome Blow",
       "aonSummary": "When a living avalanche is on the move, no one can stand in her way.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:mutagenic-mauler",
@@ -2879,7 +2879,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Mutagenic%20Mauler",
       "replaces": "Martial Flexibility; AC Bonus",
       "aonSummary": "Not content with perfecting her body with natural methods, a mutagenic mauler resorts to alchemy to unlock the primal beast within.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:shield-champion",
@@ -2901,7 +2901,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Snakebite%20Striker",
       "replaces": "Class Skills; Martial Flexibility; 3rd, 7th, 11th, and 19th-level Maneuver Training",
       "aonSummary": "With her lightning quickness and guile, a snakebite striker keeps her foes’ attention focused on her, because any one of her feints might be an actual attack.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:steel-breaker",
@@ -2912,7 +2912,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Steel-Breaker",
       "replaces": "Class Skills; Brawler’s Strike; Maneuver Training",
       "aonSummary": "The steel-breaker studies destruction and practices it as an art form.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:strangler",
@@ -2923,7 +2923,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Strangler",
       "replaces": "Class Skills; Brawler’s Flurry; AC Bonus; Knockout; Awesome Blow; Improved Awesome Blow",
       "aonSummary": "A strangler is trained to choke the life out of her victims with her vise-like grip.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:strong-side-boxer",
@@ -2934,7 +2934,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Strong-Side%20Boxer",
       "replaces": "AC Bonus; Maneuver Training; Close Weapon Mastery",
       "aonSummary": "A strong-side boxer employs a unique fighting style that incorporates a rope or cord wound around her hand.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:turfer",
@@ -2945,7 +2945,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Turfer",
       "replaces": "Maneuver Training; Knockout",
       "aonSummary": "A turfer has a mastery over particular types of terrain.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:ulfen-beast-wrestler",
@@ -2956,7 +2956,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Ulfen%20Beast-Wrestler",
       "replaces": "Maneuver Training; AC Bonus",
       "aonSummary": "For these mighty grapplers, wrestling normal opponents has lost its challenge—they seek greater targets for glory.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:venomfist",
@@ -2967,7 +2967,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Venomfist",
       "replaces": "Unarmed Strike; Knockout; Close Weapon Mastery",
       "aonSummary": "Thanks to alchemical experiments and rigorous study of venomous creatures, a venomfist has toxic unarmed strikes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:verdant-grappler",
@@ -2978,7 +2978,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Verdant%20Grappler",
       "replaces": "2nd and 11th-level Bonus Feats; Maneuver Training; Close Weapon Mastery",
       "aonSummary": "By accepting spirits of nature into her soul, a verdant grappler can entangle her foes with tangled undergrowth.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:wild-child",
@@ -2989,7 +2989,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Wild%20Child",
       "replaces": "Class Skills; 2nd, 5th, 8th, 11th, 14th, 17th, and 20th-level Bonus Combat Feats; Close Weapon Mastery; Maneuver Training",
       "aonSummary": "The wild child works with his sworn animal friend to conquer the challenges that lay before them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "brawler:winding-path-renegade",
@@ -3000,7 +3000,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Winding%20Path%20Renegade",
       "replaces": "2nd, 8th, 14th-level Bonus Feat; AC Bonus",
       "aonSummary": "Winding path renegades studied at the Houses of Perfection in Jalmeray, but while they grasped the mechanical aspects of the forms, they lacked the mental discipline required by the masters of the school.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:beast-rider",
@@ -3022,7 +3022,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Castellan",
       "replaces": "Mount; Cavalier’s Charge; Expert Trainer; Mighty Charge; Demanding Challenge; Supreme Charge",
       "aonSummary": "A castellan is a cavalier who dedicates himself to the defense of a castle or walled city.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:charger",
@@ -3033,7 +3033,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Charger",
       "replaces": "Class Skills; Weapon/Armor Proficiencies; Mount; Cavalier’s Charge; Expert Trainer; Mighty Charge",
       "aonSummary": "(Centaur Only) No warrior better epitomizes the centaur’s devastating martial power than the charger.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:circuit-judge",
@@ -3044,7 +3044,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Circuit%20Judge",
       "replaces": "Tactician; Greater Tactician; Master Tactician; Challenge; Demanding Challenge",
       "aonSummary": "A circuit judge claims a specific region, becoming an expert in the local laws and, perhaps, becoming a fearsome executioner.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:constable",
@@ -3055,7 +3055,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Constable",
       "replaces": "Class Skills; Mount; Cavalier’s Charge; Expert Trainer; Banner; Mighty Charge; Supreme Charge; Greater Banner",
       "aonSummary": "Constables keep order in the narrow streets and dark alleys of settlements.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:courtly-knight",
@@ -3066,7 +3066,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Courtly%20Knight",
       "replaces": "Tactician; Greater Tactician; Master Tactician",
       "aonSummary": "These courtly knights are equally at home in a duel with words or swords.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:daring-champion",
@@ -3077,7 +3077,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Daring%20Champion",
       "replaces": "Weapon/Armor Proficiencies; Mount; Cavalier’s Charge; Expert Trainer; Mighty Charge; Supreme Charge",
       "aonSummary": "While many cavaliers are the champions of old fighting forms, some younger, more daring cavaliers mix a martial style influenced by the lighter armored and more flamboyant swashbuckler forms with the dedication of cavalier orders.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:daring-general",
@@ -3088,7 +3088,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Daring%20General",
       "replaces": "6th, 12th, 18th-level Bonus Feats; Demanding Challenge; Supreme Charge",
       "aonSummary": "Those cavaliers most gifted at command often become daring generals.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:disciple-of-the-pike",
@@ -3099,7 +3099,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Disciple%20of%20the%20Pike",
       "replaces": "Mount; Cavalier's Charge; Expert Trainer; Banner; Greater Banner; Mighty Charge; Supreme Charge",
       "aonSummary": "The Hellknight Order of the Pike are renowned monster hunters, taking on large game using ancient weapon arts combined with modern equipment.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:drakerider",
@@ -3110,7 +3110,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Drakerider",
       "replaces": "Mount; Tactcian; Expert Trainer; Banner; Greater Tactician; Greater Banner; Master Tactician;",
       "aonSummary": "While many cavaliers dream of riding a dragon into battle, drakeriders come to learn that the reality involves far more effort than they had expected.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:emissary",
@@ -3121,7 +3121,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Emissary",
       "replaces": "Tactician; Banner; Greater Tactician; Greater Banner; Supreme Charge",
       "aonSummary": "Some cavaliers focus more on speed and mobility than they do on the raw power of the mounted charge.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:esquire",
@@ -3132,7 +3132,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Esquire",
       "replaces": "Mount; Cavalier’s Charge; Expert Trainer; Banner; Mighty Charge; Supreme Charge",
       "aonSummary": "The esquire is a roving knight who acquires the services of a faithful follower—an aide-de-camp—who serves as the esquire’s assistant, spear carrier, and guard.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:fell-rider",
@@ -3143,7 +3143,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Fell%20Rider",
       "replaces": "Mount; Cavalier’s Charge; Expert Trainer; Banner; Mighty Charge; Greater Banner; Supreme Charge",
       "aonSummary": "(Hobgoblin Only) The fell rider rides a bestial steed, a mount mastered by him alone. He tramples his enemies down, leaving twisted bodies in his wake, and fear rides with him.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:first-mother-s-fang",
@@ -3154,7 +3154,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20First%20Mother%27s%20Fang",
       "replaces": "Class Skills; Weapon Proficiencies; Mount; Order",
       "aonSummary": "A first mother’s fang acts as a servant of his nation, a skilled general and tactician in times of war and a noble governor during times of peace.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:gallant",
@@ -3165,7 +3165,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Gallant",
       "replaces": "Order; Banner; Greater Banner",
       "aonSummary": "Gallants embody the virtues of honor, generosity, and civility. Their personal symbol serves as an inspiration to others in a courtly setting as much as on a battlefield.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:gendarme",
@@ -3176,7 +3176,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Gendarme",
       "replaces": "Tactician; Greater Tactician; Master Tactician; Supreme Charge",
       "aonSummary": "The gendarme cares less for the finer points of tactical precision than he does for the exhilaration of the charge: the rush of wind through the visor of his helmet, the feel of his couched lance, the satisfying shriek of armor giving way before his weapon’s force as the point drives past metal into his foes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:ghost-rider",
@@ -3187,7 +3187,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Ghost%20Rider",
       "replaces": "Mount; Tactician; Greater Tactician; Master Tactician; Cavalier’s Charge; Expert Trainer; Banner; Mighty Charge; Greater Banner",
       "aonSummary": "Ghost riders are conflicted warriors who use the powers of the phantasmal dead even while seeking out and banishing the corruption of undeath from plagued communities.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:green-knight",
@@ -3198,7 +3198,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Green%20Knight",
       "replaces": "Tactician; Mount; Order; Cavalier’s Charge; Expert Trainer; Banner; Greater Tactician; Mighty Charge; Greater Banner; Master Tactician; Supreme Charge",
       "aonSummary": "Some knights serve nature itself and can be found protecting unspoiled natural places or serving fey beings.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:herald-squire",
@@ -3209,7 +3209,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Herald%20Squire",
       "replaces": "Tactician; 2nd-level Order Ability; Cavalier's Charge",
       "aonSummary": "The herald squire is the eyes and ears of a traveling knight.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:honor-guard",
@@ -3220,7 +3220,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Honor%20Guard",
       "replaces": "Challenge; Cavalier’s Charge; Mighty Charge; Demanding Challenge",
       "aonSummary": "Certain cavaliers are trained not as advance combatants, but as loyal guards, standing as firm defenders in the face of threats to their chosen charge.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:hooded-knight",
@@ -3231,7 +3231,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Hooded%20Knight",
       "replaces": "Class Skills; Mount; Tactician; Greater Tactician; Master Tactician",
       "aonSummary": "Some cavaliers wander the lonely roads of the world—any world, including the First World—protecting travelers and acting as their honor guard.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:huntmaster",
@@ -3242,7 +3242,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Huntmaster",
       "replaces": "Weapon/Armor Proficiency; Challenge; Mount; Tactician; Greater Tactician; Master Tactician; Cavalier’s Charge; Expert Trainer; Banner; Bonus Feats; Mighty Charge; Greater Banner; Supreme Charge",
       "aonSummary": "Huntmasters train the beasts favored by lordly castes into swift and deadly trackers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:hussar",
@@ -3253,7 +3253,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Hussar",
       "replaces": "Armor Proficiencies; Class Skills; Tactician; Banner; Greater Banner; 6th, 12th, 18th-level Bonus Feats; Greater Tactician; Master Tactician",
       "aonSummary": "Agile and maneuverable cavalry, hussars make up for their relatively light armor with their speed and cunning.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:knight-of-arnisant",
@@ -3264,7 +3264,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Knight%20of%20Arnisant",
       "replaces": "Tactician; Expert Trainer; Banner; Greater Tactician; Demanding Challenge; Greater Tactician",
       "aonSummary": "The cavaliers known as knights of Arnisant revere the famous general who was crucial in the defeat of the Whispering Tyrant, the powerful wizard-king. Knights of Arnisant call upon Arnisant to grant them protection from evil magic, just as the Shield of Aroden protected him.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:luring-cavalier",
@@ -3275,7 +3275,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Luring%20Cavalier",
       "replaces": "Challenge; Cavalier’s Charge; Mighty Charge; Demanding Challenge; Supreme Charge",
       "aonSummary": "Those who study the perfection of strategy and tactics know that picking the battlefield can grant advantages that only overwhelming numbers of allies can eclipse.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:musketeer",
@@ -3297,7 +3297,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Oceanrider",
       "replaces": "Armor Proficiency; Mount; Expert Trainer",
       "aonSummary": "Oceanriders are underwater cavaliers who ride dolphins, orcas, or seahorses.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:qabarat-outrider",
@@ -3308,7 +3308,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Qabarat%20Outrider",
       "replaces": "Armor Proficiency; Tactician; Greater Tactician; Master Tactician; Banner; Greater Banner",
       "aonSummary": "(Lashunta Only) The war colleges of the Castrovelian city-state of Qabarat produce a distinctive breed of cavalier known as the Qabarat outrider. In defense of the lashunta city-states, outriders lead small units of regular troops, the members of which can link minds with one another to form bonds in battle few can match.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:qadiran-horselord",
@@ -3319,7 +3319,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Qadiran%20Horselord",
       "replaces": "Weapon and Armor Proficiency; Mount; Tactician; Cavalier's Charge; 6th-level Bonus Feat; Greater Tactician; Master Tactician",
       "aonSummary": "Much like the breed of horses they ride, Qadiran horselords pride themselves on their mobility and endurance.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:saurian-champion",
@@ -3330,7 +3330,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Saurian%20Champion",
       "replaces": "Class Skills; Weapon/Armor Proficiencies; Challenge; Order; Cavalier’s Mount; Tactician; Greater Tactician; Master Tactician; Banner; Greater Banner",
       "aonSummary": "These primeval cavaliers idolize dinosaurs as apex predators and value them as powerful, oversized mounts.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:sister-in-arms",
@@ -3341,7 +3341,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Sister-in-Arms",
       "replaces": "Challenge; Order; Mount; Cavalier's Charge; Expert Trainer; Mighty Charge; Supreme Charge",
       "aonSummary": "Some of the most charismatic Gray Maidens combine their devotion to their sisters with the intense tactical training they received, learning to perfectly direct their companions and inspiring them to survive and emerge victorious.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:spellscar-drifter",
@@ -3352,7 +3352,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Spellscar%20Drifter",
       "replaces": "Weapon/Armor Proficiency; Tactician; Cavalier’s Charge; Banner Cavalier; Bonus Feats; Greater Tactician; Mighty Charge; Demanding Challenge; Master Tactician; Supreme Charge",
       "aonSummary": "Spellscar drifters are self-reliant and always keep their firearms loaded—in the Spellscar Desert, a rider with a slow draw doesn’t live long.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:standard-bearer",
@@ -3363,7 +3363,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Standard%20Bearer",
       "replaces": "Mount; Banner; Mighty Charge; Supreme Charge",
       "aonSummary": "Some cavaliers prefer to stand away from the fray, their banners a beacon shining brightly over the battlefield, rallying their troops to victory.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:strategist",
@@ -3374,7 +3374,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Strategist",
       "replaces": "Expert Trainer; Greater Banner; 18th-level Bonus Feat",
       "aonSummary": "Some cavaliers make a lifelong mission out of their exceptional ability to direct troops on the battlefield, combining tactical insight with a preternatural skill at improving the teamwork of their allies in order to win the day.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:verdivant",
@@ -3385,7 +3385,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Verdivant",
       "replaces": "Expert Trainer; Tactician; Banner; Greater Tactician; Greater Banner; Master Tactician; Bonus Feats; Cavalier's Charge",
       "aonSummary": "Some vine leshys’ spirits are vibrant enough to project this animus beyond their own bodies",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:vermin-tamer",
@@ -3396,7 +3396,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Vermin%20Tamer",
       "replaces": "Mount; Expert Trainer; Demanding Challenge",
       "aonSummary": "Due to the strange terrain, the lack of sunlight, and numerous other hazards, keeping a traditional mount in the Darklands can prove difficult. Cavaliers native to or traveling the region may choose to tame local creatures instead.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cavalier:wave-rider",
@@ -3407,7 +3407,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier%20Wave%20Rider",
       "replaces": "Weapon/Armor Proficiency; Mount",
       "aonSummary": "Throughout the Inner Sea region, wave riders patrol harbors, keeping them safe from dangerous sea creatures and watching for smugglers. The most famous of these is the hippocampus-riding Sea Cavalry of Absalom.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:angelfire-apostle",
@@ -3418,7 +3418,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Angelfire%20Apostle",
       "replaces": "Armor Proficiency; Spellcasting; Alignment; Channel Energy",
       "aonSummary": "Angelfire apostles use the powers of good to avoid violence when possible and cleanse both maladies and evil creatures with blinding flames.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:appeaser",
@@ -3429,7 +3429,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Appeaser",
       "replaces": "Aura; Channel Energy; Alignment; Spells; Domains",
       "aonSummary": "A rare few seek the power of dark forces for brighter ends by focusing on the utilitarian aspects of a god’s portfolio, appeasing their deities through high praise and glorifying their chosen gods’ unaligned aspects.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:asmodean-advocate",
@@ -3440,7 +3440,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Asmodean%20Advocate",
       "replaces": "Domains",
       "aonSummary": "For the faithful of Asmodeus, the words used in a negotiation or contract matter more than their intent.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:blossoming-light",
@@ -3451,7 +3451,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Blossoming%20Light",
       "replaces": "Armor Proficiency; Alignment; Channel Energy; Domains",
       "aonSummary": "Blossoming lights are clerics who take their pursuit of purity and light to extremes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:cardinal",
@@ -3462,7 +3462,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Cardinal",
       "replaces": "Armor Proficieny; Spontaneous Casting; Domain; Class Skills; Skill Ranks; Base Attack Bonus",
       "aonSummary": "Cardinals wield significant political power, engaging in the game of intrigue on behalf of their churches",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:channeler-of-the-unknown",
@@ -3473,7 +3473,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Channeler%20of%20the%20Unknown",
       "replaces": "Weapon and Armor Proficiency; Spells; Aura; Channel Energy; Domains; Spontaneous Casting",
       "aonSummary": "(Ex-cleric archetype) Channelers of the unknown are those faithless clerics who channel the power of an unknown entity or force of the universe",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:cloistered-cleric",
@@ -3484,7 +3484,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Cloistered%20Cleric",
       "replaces": "Weapon/Armor Proficiencies; Domains; Spells",
       "aonSummary": "Cloistered clerics typically live in a temple and rarely interact with the outside world. They are bookish and well learned in the lore of the faith, paying less attention to its magical and martial aspects.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:crashing-wave",
@@ -3495,7 +3495,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Crashing%20Wave",
       "replaces": "Deity; Bonus Languages; Channel Energy; Spontaneous Casting",
       "aonSummary": "Clerics who live in or near the sea sometimes embrace the watery aspect of Gozreh over the deity’s other dimensions and take the title of crashing wave; such clerics understand the tempestuousness and cruelty of the sea, but also its generosity and bounty",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:crusader",
@@ -3506,7 +3506,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Crusader",
       "replaces": "Domains; Spells",
       "aonSummary": "Crusaders serve the militant arm of a church, ready to stand guard over the religion’s holy places and to be its swift, avenging arm against those who resist its truth.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:demonic-apostle",
@@ -3517,7 +3517,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Demonic%20Apostle",
       "replaces": "Domains; Channel Energy",
       "aonSummary": "(Drow Only) Demon worship is common among the drow, and so are ranks of demonic apostles, who gain magical insight from their dark lords and crush their chaotic masters’ enemies by channeling demonic energy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:divine-paragon",
@@ -3528,7 +3528,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Divine%20Paragon",
       "replaces": "Domain; Aura",
       "aonSummary": "Divine paragons strive to emulate their god’s ideals as closely as possible.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:divine-scourge",
@@ -3539,7 +3539,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Divine%20Scourge",
       "replaces": "Domains; Channel Energy",
       "aonSummary": "Divine scourges take on the role of dealing out unique punishments on behalf of their deities, taking pleasure in carrying out their sacrosanct duties.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:divine-strategist",
@@ -3550,7 +3550,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Divine%20Strategist",
       "replaces": "Domains; Channel Energy",
       "aonSummary": "The divine strategist leads the armies of the faithful, not from the front lines but through her clever strategy and tactical acumen.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:ecclesitheurge",
@@ -3561,7 +3561,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Ecclesitheurge",
       "replaces": "Weapon/Armor Proficiencies; Domain; Channel Energy",
       "aonSummary": "Eschewing physical armor for protection via the strength of his faith, an ecclesitheurge focuses on the miracles his deity bestows and the breadth of that deity’s dominion.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:elder-mythos-cultist",
@@ -3572,7 +3572,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Elder%20Mythos%20Cultist",
       "replaces": "Alignment; Domains; Channel Energy; Spontaneous Casting; 5th, 11th, and 19th-level Channel Energy increase",
       "aonSummary": "Typically grasping, secretive, and thoroughly mad, Elder Mythos cultists open their bodies and minds to horrifying realities not meant for the sane as they strive to prepare the world for the eventual return of their alien masters.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:evangelist",
@@ -3583,7 +3583,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Evangelist",
       "replaces": "Domains; Channel Energy; Spontaneous Casting",
       "aonSummary": "The evangelist is the voice of her religion in the world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:fiendish-vessel",
@@ -3594,7 +3594,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Fiendish%20Vessel",
       "replaces": "Domains; Channel Energy",
       "aonSummary": "(Tiefling Only) Fiendish vessels, through their fiendish heritage, share an innate connection with their patron, and that connection grants them understanding and power.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:forgemaster",
@@ -3605,7 +3605,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Forgemaster",
       "replaces": "Domains; Channel Energy",
       "aonSummary": "(Dwarf Only) Forgemasters are priestly dwarves who are ritual casters and expert enchanters, able to produce their rune-graven armaments with astonishing speed.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:foundation-of-faith",
@@ -3616,7 +3616,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Foundation%20of%20Faith",
       "replaces": "Channel Energy",
       "aonSummary": "Whether aiding the faithful or defending against the depredations of unbelievers, a foundation of faith is unshakable in her convictions.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:herald-caller",
@@ -3627,7 +3627,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Herald%20Caller",
       "replaces": "Class Skills; Domains; Armor Proficiencies;",
       "aonSummary": "Unlike warpriests or paladins, who charge headlong into battle in the name of their patron deities, herald callers are adept at calling powerful outsiders to aid their brethren in battle.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:hidden-priest",
@@ -3638,7 +3638,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Hidden%20Priest",
       "replaces": "1st-level Domain Power, 8th-level Domain Power",
       "aonSummary": "When practicing their religion is outlawed, the hidden priest learns to hide their true nature and practice magic in secret.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:idealist",
@@ -3649,7 +3649,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Idealist",
       "replaces": "Spontaneous Casting; Channel Energy",
       "aonSummary": "Idealist clerics are personifications of belief, each embracing the purest ideal of his deity’s realm.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:iron-priest",
@@ -3660,7 +3660,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Iron%20Priest",
       "replaces": "Class Skills; Channel Energy; Spellcasting",
       "aonSummary": "Iron priests preach of the messengers from beyond the stars, envoys of the divine brought to Golarion in a falling star.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:lawspeaker",
@@ -3671,7 +3671,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Lawspeaker",
       "replaces": "Alignment; Domains",
       "aonSummary": "Lawspeakers spread their philosophy of certain and unwavering justice throughout the Inner Sea region.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:mendevian-priest",
@@ -3682,7 +3682,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Mendevian%20Priest",
       "replaces": "Domains",
       "aonSummary": "Crusade-minded clerics of Iomedae, Gorum, and other churches come to Mendev to learn battlefield tactics and the weaknesses of demons.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:merciful-healer",
@@ -3704,7 +3704,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Roaming%20Exorcist",
       "replaces": "Skill Ranks; Weapon/Armor Proficiencies; Domains; Channel Energy",
       "aonSummary": "The roaming exorcist travels far and wide to root out possessions, hauntings, and hidden evils. The roaming exorcist extracts unruly spirits from not only victims of possession, but also haunted sites and accursed items.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:sacred-attendant",
@@ -3715,7 +3715,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Sacred%20Attendant",
       "replaces": "Armor Proficiency; Channel Energy; Domains",
       "aonSummary": "Sacred attendants bring out the varied beauty in everyone they help, and they typically worship deities of beauty, love, and sex.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:scroll-scholar",
@@ -3726,7 +3726,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Scroll%20Scholar",
       "replaces": "1st Level Domain Power, Channel Energy 5th level increase, 4th-level spell slot",
       "aonSummary": "Those who trade some of their potential to better understand ancient texts and scrolls can become learned scroll scholars.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:separatist",
@@ -3737,7 +3737,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Separatist",
       "replaces": "Domains",
       "aonSummary": "A radical cleric, unsatisfied with the orthodoxy of her deity’s teachings, forges her own path of defiant divine expression.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:stoic-caregiver",
@@ -3748,7 +3748,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Stoic%20Caregiver",
       "replaces": "Channel Energy; Domains;",
       "aonSummary": "Stoic caregivers are champions of life in defiance of untimely death as well as undeath.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:theologian",
@@ -3759,7 +3759,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Theologian",
       "replaces": "Domains",
       "aonSummary": "A theologian is an expert on one particular area of her religion",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:triadic-priest",
@@ -3770,7 +3770,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Triadic%20Priest",
       "replaces": "Domains",
       "aonSummary": "Power comes not just from communion with one’s deity, but also from the formation of divine triumvirates. At the head of these groups are triadic priests.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "cleric:undead-lord",
@@ -3792,7 +3792,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric%20Varisian%20Pilgrim",
       "replaces": "Altered Domain Abilities; Medium Armor/Shield Proficiency; 8th-level Domain Power",
       "aonSummary": "While most clerics are associated with a particular temple, adventuring clerics spend much of their time away from their favored place of worship, and there are those who worship primarily on the road and during the journey.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "druid:aerie-protector",

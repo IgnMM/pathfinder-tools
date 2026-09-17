@@ -1,0 +1,591 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Brawler parent value.",
+  "profiles": [
+    {
+      "id": "brawler:battle-dancer",
+      "name": "Battle Dancer",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Martial Arts Handbook pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Battle%20Dancer",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Class Skills / Armor Proficiency / Dancer’s Cunning / Rolling Flurry",
+          "reason": "The archetype’s Class Skills / Armor Proficiency / Dancer’s Cunning / Rolling Flurry package materially changes combat mobility from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "Battle dancers practice a martial art that emphasizes constant motion",
+      "tradeoff": "It replaces or alters Class Skills; Armor Proficiencies; Brawler's Cunning; Brawler's Flurry; AC Bonus; Knockout; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:bouncer",
+      "name": "Bouncer",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Inner Sea Taverns pg. 58",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Bouncer",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "bouncer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Crowd Control / Lesser Flexibility / Drunk Handler / Drunk Knockout",
+          "reason": "The archetype’s Crowd Control / Lesser Flexibility / Drunk Handler / Drunk Knockout package materially changes social influence from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "Some taverns employ bouncers to keep out undesirables or for when their customers get too rowdy.",
+      "tradeoff": "It replaces or alters Martial Flexibility; 2nd-level Bonus Feat; Close Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:constructed-pugilist",
+      "name": "Constructed Pugilist",
+      "parentClassId": "brawler",
+      "sourceCitationText": "People of the Wastes pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Constructed%20Pugilist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "prosthetic weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Constructed Limb / Limb Modification / Flex Limb",
+          "reason": "Class Skills / Constructed Limb / Limb Modification / Flex Limb defines the material change from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "Brawlers that develop combat skills that use their prostheses so they always have a weapon at hand",
+      "tradeoff": "It replaces or alters Class Skills; Martial Flexibility; Bonus Combat Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:exemplar",
+      "name": "Exemplar",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Advanced Class Guide pg. 86",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Exemplar",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Call to Arms / Inspiring Prowess / Field Instruction",
+          "reason": "The archetype’s Call to Arms / Inspiring Prowess / Field Instruction package materially changes tactical leadership from the Brawler baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Call to Arms / Inspiring Prowess / Field Instruction",
+          "reason": "The archetype’s Call to Arms / Inspiring Prowess / Field Instruction package materially changes support buffing from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "A versatile soldier who inspires her companions with her fighting prowess, an exemplar is at home on the front lines of battles anywhere.",
+      "tradeoff": "It replaces or alters Unarmed Strike; Close Weapon Mastery; Maneuver Training; AC Bonus; Brawler’s Strike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:feral-striker",
+      "name": "Feral Striker",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Ultimate Wilderness pg. 42",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Feral%20Striker",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core",
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Feral Aspect",
+          "reason": "The archetype’s Feral Aspect package materially changes transformation shapeshifting from the Brawler baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Feral Aspect",
+          "reason": "The archetype’s Feral Aspect package materially changes wilderness affinity from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "A feral striker taps into a reservoir of druidic power hidden inside herself, allowing her to take animalistic characteristics.",
+      "tradeoff": "It replaces or alters Martial Flexibility; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:hinyasi",
+      "name": "Hinyasi",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Blood of the Ancients pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Hinyasi",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "improvised weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Humble Beginnings / Improvisation Training / Improvised Maneuver / Improvisation Mastery",
+          "reason": "Humble Beginnings / Improvisation Training / Improvised Maneuver / Improvisation Mastery defines the material change from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "The hinyasi's martial traditions are centered on the use of farming tools and on other improvised weapons.",
+      "tradeoff": "It replaces or alters Armor Proficiencies; 2nd-level Bonus Feat; Knockout; Close Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:living-avalanche",
+      "name": "Living Avalanche",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Ultimate Wilderness pg. 42",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Living%20Avalanche",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Earth Discipline / Landslide / Unyielding / Avalanche",
+          "reason": "The archetype’s Earth Discipline / Landslide / Unyielding / Avalanche package materially changes battlefield control from the Brawler baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Earth Discipline / Landslide / Unyielding / Avalanche",
+          "reason": "The archetype’s Earth Discipline / Landslide / Unyielding / Avalanche package materially changes combat mobility from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "When a living avalanche is on the move, no one can stand in her way.",
+      "tradeoff": "It replaces or alters 2nd and 5th-level Bonus Feats; Maneuver Training; AC Bonus; Awesome Blow; Improved Awesome Blow; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:mutagenic-mauler",
+      "name": "Mutagenic Mauler",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Advanced Class Guide pg. 86",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Mutagenic%20Mauler",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "alchemist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Mutagen / Beastmorph",
+          "reason": "The archetype’s Mutagen / Beastmorph package materially changes transformation shapeshifting from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "Not content with perfecting her body with natural methods, a mutagenic mauler resorts to alchemy to unlock the primal beast within.",
+      "tradeoff": "It replaces or alters Martial Flexibility; AC Bonus; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:shield-champion",
+      "name": "Shield Champion",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Advanced Class Guide pg. 86",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Shield%20Champion",
+      "capabilityOverrides": {
+        "ranged-combat": "core",
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "shield"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon and Armor Proficiency / Throw Shield / Champion Defense / Returning Shield",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Throw Shield / Champion Defense / Returning Shield package materially changes ranged combat from the Brawler baseline."
+        },
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Weapon and Armor Proficiency / Throw Shield / Champion Defense / Returning Shield",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Throw Shield / Champion Defense / Returning Shield package materially changes protecting allies from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "Stalwart in battle, a shield champion has perfected an entire martial discipline relying on only her hand-to-hand fighting skills and her ever-present shield.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; 3rd, 7th, 11th, 15th, and 19th-level Maneuver Training; Brawler’s Strike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:snakebite-striker",
+      "name": "Snakebite Striker",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Advanced Class Guide pg. 88",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Snakebite%20Striker",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Sneak Attack / Snake Feint / Opportunist",
+          "reason": "The archetype’s Class Skills / Sneak Attack / Snake Feint / Opportunist package materially changes stealth subterfuge from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "With her lightning quickness and guile, a snakebite striker keeps her foes’ attention focused on her, because any one of her feints might be an actual attack.",
+      "tradeoff": "It replaces or alters Class Skills; Martial Flexibility; 3rd, 7th, 11th, and 19th-level Maneuver Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:steel-breaker",
+      "name": "Steel-Breaker",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Advanced Class Guide pg. 88",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Steel-Breaker",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Class Skills / Exploit Weakness / Sunder Training",
+          "reason": "The archetype’s Class Skills / Exploit Weakness / Sunder Training package materially changes anti magic disruption from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "The steel-breaker studies destruction and practices it as an art form.",
+      "tradeoff": "It replaces or alters Class Skills; Brawler’s Strike; Maneuver Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:strangler",
+      "name": "Strangler",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Advanced Class Guide pg. 88",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Strangler",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Strangle / Practiced Strangler / Sleeper Hold",
+          "reason": "The archetype’s Class Skills / Strangle / Practiced Strangler / Sleeper Hold package materially changes stealth subterfuge from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "A strangler is trained to choke the life out of her victims with her vise-like grip.",
+      "tradeoff": "It replaces or alters Class Skills; Brawler’s Flurry; AC Bonus; Knockout; Awesome Blow; Improved Awesome Blow; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:strong-side-boxer",
+      "name": "Strong-Side Boxer",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Martial Arts Handbook pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Strong-Side%20Boxer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "close weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Shield-Hand / Strong-Side Fist / Lead Leg",
+          "reason": "Shield-Hand / Strong-Side Fist / Lead Leg defines the material change from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "A strong-side boxer employs a unique fighting style that incorporates a rope or cord wound around her hand.",
+      "tradeoff": "It replaces or alters AC Bonus; Maneuver Training; Close Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:turfer",
+      "name": "Turfer",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Ultimate Wilderness pg. 42",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Turfer",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Favored Turf / Terrain Mastery",
+          "reason": "The archetype’s Favored Turf / Terrain Mastery package materially changes wilderness affinity from the Brawler baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Favored Turf / Terrain Mastery",
+          "reason": "The archetype’s Favored Turf / Terrain Mastery package materially changes battlefield control from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "A turfer has a mastery over particular types of terrain.",
+      "tradeoff": "It replaces or alters Maneuver Training; Knockout; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:ulfen-beast-wrestler",
+      "name": "Ulfen Beast-Wrestler",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Advanced Class Origins pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Ulfen%20Beast-Wrestler",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Beast Training / Beast Defenses",
+          "reason": "Beast Training / Beast Defenses defines the material change from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "For these mighty grapplers, wrestling normal opponents has lost its challenge—they seek greater targets for glory.",
+      "tradeoff": "It replaces or alters Maneuver Training; AC Bonus; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:venomfist",
+      "name": "Venomfist",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Ultimate Wilderness pg. 43",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Venomfist",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Venomous Strike",
+          "reason": "The archetype’s Venomous Strike package materially changes debuffing enemies from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "Thanks to alchemical experiments and rigorous study of venomous creatures, a venomfist has toxic unarmed strikes.",
+      "tradeoff": "It replaces or alters Unarmed Strike; Knockout; Close Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:verdant-grappler",
+      "name": "Verdant Grappler",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Ultimate Wilderness pg. 43",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Verdant%20Grappler",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Green Grasp / Thorny Embrace / Phytological Anatomy",
+          "reason": "The archetype’s Green Grasp / Thorny Embrace / Phytological Anatomy package materially changes battlefield control from the Brawler baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Green Grasp / Thorny Embrace / Phytological Anatomy",
+          "reason": "The archetype’s Green Grasp / Thorny Embrace / Phytological Anatomy package materially changes wilderness affinity from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "By accepting spirits of nature into her soul, a verdant grappler can entangle her foes with tangled undergrowth.",
+      "tradeoff": "It replaces or alters 2nd and 11th-level Bonus Feats; Maneuver Training; Close Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:wild-child",
+      "name": "Wild Child",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Advanced Class Guide pg. 89",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Wild%20Child",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Class Skills / Animal Companion / Hunter’s Tricks / Maneuver Training",
+          "reason": "The archetype’s Class Skills / Animal Companion / Hunter’s Tricks / Maneuver Training package materially changes summoning companions from the Brawler baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Animal Companion / Hunter’s Tricks / Maneuver Training",
+          "reason": "The archetype’s Class Skills / Animal Companion / Hunter’s Tricks / Maneuver Training package materially changes wilderness affinity from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "The wild child works with his sworn animal friend to conquer the challenges that lay before them.",
+      "tradeoff": "It replaces or alters Class Skills; 2nd, 5th, 8th, 11th, 14th, 17th, and 20th-level Bonus Combat Feats; Close Weapon Mastery; Maneuver Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "brawler:winding-path-renegade",
+      "name": "Winding Path Renegade",
+      "parentClassId": "brawler",
+      "sourceCitationText": "Adventurer's Guide pg. 105",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler%20Winding%20Path%20Renegade",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "School Focus / Mystery of Unblinking Flame / Mystery of Unfolding Wind / Mystery of Untwisting Iron",
+          "reason": "School Focus / Mystery of Unblinking Flame / Mystery of Unfolding Wind / Mystery of Untwisting Iron defines the material change from the Brawler baseline."
+        }
+      ],
+      "playerSummary": "Winding path renegades studied at the Houses of Perfection in Jalmeray, but while they grasped the mechanical aspects of the forms, they lacked the mental discipline required by the masters of the school.",
+      "tradeoff": "It replaces or alters 2nd, 8th, 14th-level Bonus Feat; AC Bonus; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

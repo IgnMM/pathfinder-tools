@@ -1,0 +1,589 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Bloodrager parent value.",
+  "profiles": [
+    {
+      "id": "bloodrager:ancestral-harbinger",
+      "name": "Ancestral Harbinger",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Monster Summoner's Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Ancestral%20Harbinger",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Spirit Guardian / Spirit Servants",
+          "reason": "The archetype’s Spirit Guardian / Spirit Servants package materially changes summoning companions from the Bloodrager baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Spirit Guardian / Spirit Servants",
+          "reason": "The archetype’s Spirit Guardian / Spirit Servants package materially changes support buffing from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "While all bloodragers tap into their bloodlines to fuel the arcane energies they use in battle, some have the ability to call directly to the spirits of their ancestors to aid them, summoning spirits to fight for them or inspire their allies.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Improved Uncanny Dodge; 6th, 12th, and 18th-level Bloodline Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:blood-conduit",
+      "name": "Blood Conduit",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 82",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Blood%20Conduit",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Contact Specialist / Spell Conduit / Reflexive Conduit",
+          "reason": "The archetype’s Contact Specialist / Spell Conduit / Reflexive Conduit package materially changes combat manoeuvres from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "Blood conduits learn to channel their arcane might directly through their flesh, without the need for mystical words or gestures.",
+      "tradeoff": "It replaces or alters Fast Movement; Bloodline Feats; Uncanny Dodge; Improved Uncanny Dodge; Indomitable Will; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:bloodrider",
+      "name": "Bloodrider",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 82",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Bloodrider",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Fast Rider / Feral Mount / Blood Bond",
+          "reason": "The archetype’s Fast Rider / Feral Mount / Blood Bond package materially changes combat mobility from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "In the world’s wild lands, a mount is an advantage in both everyday life and the dealing of death",
+      "tradeoff": "It replaces or alters Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; 9th-level Bloodline Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:bloody-knuckled-rowdy",
+      "name": "Bloody-Knuckled Rowdy",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Melee Tactics Toolbox pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Bloody-Knuckled%20Rowdy",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core",
+        "offensive-magic": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Bloody Knuckles / Reduced Spells Known / Pugilist / Combat Style Student",
+          "reason": "The archetype’s Bloody Knuckles / Reduced Spells Known / Pugilist / Combat Style Student package materially changes combat manoeuvres from the Bloodrager baseline."
+        },
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Bloody Knuckles / Reduced Spells Known / Pugilist / Combat Style Student",
+          "reason": "The archetype’s Bloody Knuckles / Reduced Spells Known / Pugilist / Combat Style Student package materially changes offensive magic from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "The bloody-knuckled rowdy focuses on tricks and maneuvers that are quick and effective, duplicating combat styles from professional brawlers, street thugs, and even trapped animals.",
+      "tradeoff": "It replaces or alters Damage Reduction; Spellcasting; Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:crossblooded-rager",
+      "name": "Crossblooded Rager",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 83",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Crossblooded%20Rager",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bonus Feats / Bonus Spells / For example / Bloodline Powers",
+          "reason": "Bonus Feats / Bonus Spells / For example / Bloodline Powers defines the material change from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "While most bloodragers manifest only one bloodline, there are some that, through some quirk of heredity or the conjunction of other powers, manifest two.",
+      "tradeoff": "It replaces or alters Bonus Feats; Bonus Spells; Bloodline Powers; Saving Throws; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:enlightened-bloodrager",
+      "name": "Enlightened Bloodrager",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Adventurer's Guide pg. 120",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Enlightened%20Bloodrager",
+      "capabilityOverrides": {
+        "support-buffing": "core",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Enlightened Spellcasting / Enlightened Bloodrage / Bloodline Feat / Bloodline Powers",
+          "reason": "The archetype’s Enlightened Spellcasting / Enlightened Bloodrage / Bloodline Feat / Bloodline Powers package materially changes support buffing from the Bloodrager baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Enlightened Spellcasting / Enlightened Bloodrage / Bloodline Feat / Bloodline Powers",
+          "reason": "The archetype’s Enlightened Spellcasting / Enlightened Bloodrage / Bloodline Feat / Bloodline Powers package materially changes wilderness affinity from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "Troubled by overwhelming rage and mystic forces beyond their comprehension, bloodragers have been traveling to the Magaambya for generations, seeking the peace and enlightenment promised by students of Old-Mage Jatembe.",
+      "tradeoff": "It replaces or alters Spellcasting; 1st, 4th-level Bloodline Power; Bloodrage; Bonus Spells; 7th, 13th, 19th-level Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:greenrager",
+      "name": "Greenrager",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 83",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Greenrager",
+      "capabilityOverrides": {
+        "summoning-companions": "available",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Unfettered Fury / Summoning Rager / Furious Summoning",
+          "reason": "The archetype’s Unfettered Fury / Summoning Rager / Furious Summoning package materially changes summoning companions from the Bloodrager baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Unfettered Fury / Summoning Rager / Furious Summoning",
+          "reason": "The archetype’s Unfettered Fury / Summoning Rager / Furious Summoning package materially changes wilderness affinity from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "Typically, nature finds its greatest harmony with divine magic, but sometimes a connection with the natural world manifest itself through the arcane current in the veins of the bloodragers called greenragers.",
+      "tradeoff": "It replaces or alters Blood Sanctuary; 6th and 9th-level Bloodline Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:hag-riven",
+      "name": "Hag-Riven",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Blood of the Coven pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Hag-Riven",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Arcane Influence / Claws of the Hag / Sorcerous Claws / Scarred Hide",
+          "reason": "The archetype’s Arcane Influence / Claws of the Hag / Sorcerous Claws / Scarred Hide package materially changes transformation shapeshifting from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "All changelings have the potential to transform into hags, but the process is a slow one, requiring several nights to complete. When left incomplete—by virtue of a wily changeling’s escape or her mother’s death—the creature is scarred and saturated in arcane power.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:id-rager",
+      "name": "Id Rager",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Occult Origins pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Id%20Rager",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Atavistic Avatar / Anger / Dedication / Despair",
+          "reason": "The archetype’s Atavistic Avatar / Anger / Dedication / Despair package materially changes debuffing enemies from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "An id rager lacks a supernatural taint to his blood, instead drawing power from pure emotion.",
+      "tradeoff": "It replaces or alters Bloodline; Bloodline Spells; Bloodline Powers; Spellcasting; Eschew Materials; Bloodline Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:metamagic-rager",
+      "name": "Metamagic Rager",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 83",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Metamagic%20Rager",
+      "capabilityOverrides": {
+        "offensive-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Meta-Rage",
+          "reason": "The archetype’s Meta-Rage package materially changes offensive magic from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "While metamagic is difficult for many bloodragers to utilize, a talented few are able to channel their bloodrage in ways that push their spells to impressive ends.",
+      "tradeoff": "It replaces or alters Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:primalist",
+      "name": "Primalist",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 84",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Primalist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Primal Choices",
+          "reason": "Primal Choices defines the material change from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "While bloodrage powers come from the very essence of a bloodrager’s being and are often strict and immutable, some bloodragers tap into ancient traditions and primitive wisdom to enhance their rages with something more primal.",
+      "tradeoff": "It replaces or alters Bloodline; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:prowler-at-world-s-end",
+      "name": "Prowler at World's End",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Blood of the Beast pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Prowler%20at%20World%27s%20End",
+      "capabilityOverrides": {
+        "summoning-companions": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Bloodline / Spirit / Bloodline Powers ",
+          "reason": "The archetype’s Bloodline / Spirit / Bloodline Powers  package materially changes summoning companions from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "Many catfolk bloodragers capable of communing with the ancient spirits of creation take on the burden of protecting the world from the sinister forces that exist at the world’s fringes.",
+      "tradeoff": "It replaces or alters Bloodline Powers; 9th, 12th, 15th-level Bloodline Feats; Greater Bloodrage; Mighty Bloodrage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:rageshaper",
+      "name": "Rageshaper",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 84",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Rageshaper",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Bestial Aspect / Furious Transformation",
+          "reason": "The archetype’s Bestial Aspect / Furious Transformation package materially changes transformation shapeshifting from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "All bloodragers blend the unpredictable surge of arcane power with the savage fury of battle lust. For most, their rage is a conduit for the eldritch power locked in their heritage, but for a rageshaper, the latent magical energies in his blood bring about physical transformations and facilitate the blending of arcana and aggression into a deadly synthesis that few other barbarians (or even other bloodragers) can match.",
+      "tradeoff": "It replaces or alters Blood Sanctuary; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:spelleater",
+      "name": "Spelleater",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 85",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Spelleater",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-healing": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Blood of Life / Spell Eating",
+          "reason": "The archetype’s Blood of Life / Spell Eating package materially changes healing recovery from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "Where other bloodragers learn to avoid or shrug off minor damage of all sorts, spelleaters tap into the power of their bloodline in order to heal damage as it comes, and can even cannibalize their own magical energy to heal more damage and continue taking the fight to the enemy.",
+      "tradeoff": "It replaces or alters Uncanny Dodge; Improved Uncanny Dodge; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:steelblood",
+      "name": "Steelblood",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 85",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Steelblood",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Indomitable Stance / Armored Swiftness / Armor Training",
+          "reason": "Weapon and Armor Proficiency / Indomitable Stance / Armored Swiftness / Armor Training defines the material change from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "Most bloodragers prefer light armor, but some learn the secret of using heavy armors.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Fast Movement; Uncanny Dodge; Improved Uncanny Dodge; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:symbol-striker",
+      "name": "Symbol Striker",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Heroes from the Fringe pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Symbol%20Striker",
+      "capabilityOverrides": {
+        "battlefield-control": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "rune warrior"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Skills / Rune Training / Weapon Rune / Rune Trap",
+          "reason": "The archetype’s Skills / Rune Training / Weapon Rune / Rune Trap package materially changes battlefield control from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "Symbol strikers are unique form of rune-wielding berserker spellcasters whose tradition originates from Dongun Hold, a Sky Citadel in Alkenstar",
+      "tradeoff": "It replaces or alters Class Skills; Fast Movement; 6th, 9th, 12th, 18th-level Bloodline Feats;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:untouchable-rager",
+      "name": "Untouchable Rager",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Advanced Class Guide pg. 85",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Untouchable%20Rager",
+      "capabilityOverrides": {
+        "offensive-magic": "absent",
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Raging Resistance / Resistance Control",
+          "reason": "The archetype’s Raging Resistance / Resistance Control package materially changes offensive magic from the Bloodrager baseline."
+        },
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Raging Resistance / Resistance Control",
+          "reason": "The archetype’s Raging Resistance / Resistance Control package materially changes anti magic disruption from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "While most bloodragers are known for their inexplicable ability to focus their bloodline into a horrifying mix of martial terror and spellcasting fury, from time to time a bloodrager’s bloodline acts differently.",
+      "tradeoff": "It replaces or alters Spells; Blood Casting; Eschew Materials; Bloodline Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "bloodrager:urban-bloodrager",
+      "name": "Urban Bloodrager",
+      "parentClassId": "bloodrager",
+      "sourceCitationText": "Heroes of the Streets pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager%20Urban%20Bloodrager",
+      "capabilityOverrides": {
+        "wilderness-affinity": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Weapon and Armor Proficiency / Controlled Bloodrage / Restrained Magic",
+          "reason": "The archetype’s Class Skills / Weapon and Armor Proficiency / Controlled Bloodrage / Restrained Magic package materially changes wilderness affinity from the Bloodrager baseline."
+        }
+      ],
+      "playerSummary": "Like the urban barbarian, the urban bloodrager has learned to control her rage in so-called polite society.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon/Armor Proficiencies; Bloodrage; Blood Sanctuary; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}
