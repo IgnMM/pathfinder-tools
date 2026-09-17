@@ -1941,6 +1941,586 @@
       "playerSummary": "A battlefield commander who turns inspiring words into hard mechanical bonuses -- issuing one of thirteen different rallying commands to buff allies’ attacks, saves, healing or mobility, layering bardic performance and cavalier banner/tactician tricks into an ever-growing suite of team-wide support.",
       "tradeoff": "Entry requires base attack bonus +4 plus the challenge and inspire courage class features already in hand (meaning a cavalier/bard-adjacent multiclass), Diplomacy/Intimidate/Perform (oratory)/Profession (soldier) ranks, and only one inspiring command can run at a time until 10th level.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:harrower",
+      "name": "Harrower",
+      "sourceCitationText": "Inner Sea World Guide pg. 276",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Harrower",
+      "requirementsText": "To qualify to become a harrower, a character must fulfill all the following criteria.\nAlignment: Must be chaotic, evil, good, or lawful (cannot be true neutral). Most harrowers represent alignment extremes: lawful good, chaotic good, lawful evil, or chaotic evil.\nFeats: Harrowed.\nSkills: Knowledge (arcana or religion) 5 ranks, Perform (any) 5 ranks.\nSpecial: Ability to cast 3rd-level spells. Must be able to cast at least three divination spells.\nSpecial: Must own a Harrow deck.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "core",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A harrower cannot be true neutral -- she must be chaotic, evil, good, or lawful.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "Nearly every signature ability requires owning and drawing from a Harrow deck.",
+          "evidenceSection": "Harrow Casting"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A fortune-teller spellcaster who draws cards from a Harrow deck to randomly but powerfully enhance her spells -- boosting damage, DCs, spell resistance penetration or self-healing depending on which suits come up -- and can hurl a spectral deck of force-damage cards at a single enemy.",
+      "tradeoff": "Entry requires the Harrowed feat, Knowledge and Perform ranks, 3rd-level spells with at least three divination spells known, a Harrow deck of her own, and a non-true-neutral alignment, and her most powerful abilities depend on the luck of the draw.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:divine-scion",
+      "name": "Divine Scion",
+      "sourceCitationText": "Inner Sea Magic pg. 46",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Divine%20Scion",
+      "requirementsText": "To qualify to become a divine scion, a character must fulfill all the following criteria.\nFeats: Iron Will, Weapon Focus (deity’s favored weapon)\nSkills: Knowledge (planes) 5 ranks, Knowledge (religion) 5 ranks, Spellcraft 5 ranks.\nSpells: Able to cast divine spells.\nDeity: Must have a patron deity.\nAlignment: Must be identical to patron deity’s.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A divine scion must have a patron deity, and her alignment must be identical to that deity’s.",
+          "evidenceSection": "Deity / Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A living avatar of her deity’s will who channels one chosen domain ever more purely -- healing herself whenever she casts a domain spell, gaining a domain-specific spell-like ability and skill bonus, and growing increasingly deadly, resistant and terrifying to creatures of an opposing alignment.",
+      "tradeoff": "Entry requires Iron Will, Weapon Focus with her deity’s favored weapon, Knowledge (planes)/Knowledge (religion)/Spellcraft ranks, a patron deity whose alignment exactly matches her own, and her own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:champion-of-irori",
+      "name": "Champion of Irori",
+      "sourceCitationText": "Paths of Prestige pg. 16",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Champion%20of%20Irori",
+      "requirementsText": "To qualify to become a champion of Irori, a character must fulfill all of the following criteria.\nAlignment: Lawful good.\nDeity: Must worship Irori.\nSkills: Knowledge (religion) 5 ranks, 5 ranks total in Linguistics or other Knowledge skills.\nSpecial: Smite evil class feature, still mind class feature.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": true,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A champion of Irori must be lawful good and worship Irori.",
+          "evidenceSection": "Alignment / Deity"
+        },
+        {
+          "type": "code-of-conduct",
+          "kind": "commitment",
+          "summary": "A champion of Irori loses all class features if he willingly commits an evil act, and must avoid debts and loans and may not recruit or keep any cohort, follower, animal companion, familiar, or special mount.",
+          "evidenceSection": "Code of Conduct"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A lawful-good monk-paladin hybrid devoted to Irori who fights barehanded with escalating smites -- cleaving through chaotic and evil foes with sweeping and eventually whirlwind unarmed strikes, shielding allies from area attacks, and perfecting a single devastating touch attack.",
+      "tradeoff": "Entry requires lawful good alignment, worship of Irori, the smite evil and still mind class features already in hand (meaning a paladin/monk-adjacent multiclass), and a strict code of conduct that forbids debts, loans, and any cohort, follower, companion, familiar or mount.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:evangelist",
+      "name": "Evangelist",
+      "sourceCitationText": "Inner Sea Gods pg. 198",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Evangelist",
+      "requirementsText": "To qualify to become an evangelist, a character must fulfill all of the following criteria.\nAlignment: Within one step of chosen deity.\nDeity: Must worship a single, specific deity. While any worshiper of any deity can become an evangelist, the unique focus of each faith inspires individuals of different backgrounds to aspire to this path within that faith. Below are examples of the class types most likely to become evangelists in each of the major faiths of the Inner Sea region.\nAbadar: Alchemist, cavalier, inquisitor, monk, wizard\nAsmodeus: Cavalier, magus, monk, rogue, summoner\nCalistria: Bard, ranger, rogue, sorcerer, witch\nCayden Cailean: Alchemist, bard, fighter, magus, rogue\nDesna: Bard, magus, ranger, rogue, sorcerer\nErastil: Barbarian, druid, fighter, ranger, wizard\nGorum: Barbarian, cavalier, fighter, magus, sorcerer\nGozreh: Barbarian, druid, ranger, summoner, witch\nIomedae: Bard, cavalier, monk, paladin, ranger, wizard\nIrori: Alchemist, bard, inquisitor, monk, wizard\nLamashtu: Alchemist, barbarian, sorcerer, summoner, witch\nNethys: Alchemist, magus, sorcerer, summoner, wizard\nNorgorber: Alchemist, fighter, magus, rogue, sorcerer\nPharasma: Fighter, inquisitor, oracle, sorcerer, witch\nRovagug: Barbarian, druid, fighter, sorcerer, summoner\nSarenrae: Cavalier, druid, inquisitor, sorcerer, wizard\nShelyn: Bard, fighter, rogue, sorcerer, summoner\nTorag: Alchemist, cavalier, fighter, monk, wizard\nUrgathoa: Magus, rogue, witch, wizard\nZon-Kuthon: Inquisitor, monk, rogue, summoner, witch\nFeat: Deific Obedience\nSpecial: Any one of the following: base attack bonus +5, 5 ranks in any skill other than Knowledge (religion), or ability to cast 3rd-level spells.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": []
+      },
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "An evangelist must worship a single specific deity within one step of her own alignment, and must perform a daily obedience to maintain the class’s abilities (including those from her aligned class).",
+          "evidenceSection": "Obedience / Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A remarkably flexible devotee who keeps advancing whatever class she already practiced before answering her deity’s call -- gaining divine boons, an untrained knack for nearly any skill, and eventually a temporary spiritual form with flight, gills, or a natural weapon.",
+      "tradeoff": "Entry requires the Deific Obedience feat, a specific patron deity within one step of her own alignment, and one of base attack bonus +5/5 skill ranks/3rd-level spellcasting, and every ability depends on performing a daily obedience ritual to that deity.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:exalted",
+      "name": "Exalted",
+      "sourceCitationText": "Inner Sea Gods pg. 200",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Exalted",
+      "requirementsText": "To qualify to become an exalted, a character must fulfill all of the following criteria.\nAlignment: Same as chosen deity.\nDeity: Must worship a single, specific deity.\nFeats: Deific Obedience, Skill Focus (Knowledge [religion]).\nSkills: Diplomacy 5 ranks, Knowledge (religion) 5 ranks.\nSpells: Ability to cast 3rd-level divine spells.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "An exalted must worship a single specific deity and share that deity’s exact alignment, and must perform a daily obedience to maintain the class’s abilities.",
+          "evidenceSection": "Obedience / Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A living embodiment of her faith who deepens her divine spellcasting with deity-specific boons, gains a whole extra domain’s worth of spell-like abilities, permanent protection and at-will detection against her faith’s opposed alignment, and at the pinnacle can duplicate near-miraculous spells or petition her deity directly.",
+      "tradeoff": "Entry requires the Deific Obedience and Skill Focus (Knowledge [religion]) feats, Diplomacy/Knowledge (religion) ranks, 3rd-level divine spells, and an alignment identical to her chosen deity’s, and her own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:genie-binder",
+      "name": "Genie Binder",
+      "sourceCitationText": "Elemental Master's Handbook pg. 26",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Genie%20Binder",
+      "requirementsText": "To qualify to become a genie binder, a character must fulfill the following criteria.\nAlignment: Any nongood. Feats: Persuasive, Spell Focus (conjuration).\nSkills: Diplomacy 4 ranks, Knowledge (nobility) 4 ranks, Knowledge (planes) 11 ranks.\nSpecial: Able to cast either planar ally or planar binding, or able to cast summon monster VI as a spell-like ability.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A genie binder must be nongood.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "bloodline-choice",
+          "kind": "commitment",
+          "summary": "At 1st level a genie binder must permanently choose between binding a genie-subtype eidolon or pursuing continued spellcasting power -- the choice can never be changed.",
+          "evidenceSection": "Genie Mastery"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A conjurer specializing in binding and negotiating with genies -- marking creatures and surfaces with elemental seals that charm genies, grant allies elemental resistance, or trap enemies in an elemental blast, while choosing once and forever between commanding a genie-blooded eidolon or deepening her own spellcasting.",
+      "tradeoff": "Entry requires a nongood alignment, the Persuasive and Spell Focus (conjuration) feats, heavy Knowledge (planes) investment, and access to planar ally, planar binding, or summon monster VI already, and the class caps out at only 5 levels with a permanent, irreversible choice made at 1st level.",
+      "reviewStatus": "reviewed"
     }
   ]
 }
