@@ -207,6 +207,30 @@ const PROFILES = [
     playerSummary: 'An alchemist who embraces a second, monstrous personality -- transforming into a mutagenic alter ego (with its own alignment) to fight with bombs and brutal melee attacks, customizing that form with mutations like draconic resistances, growth, or evasion.',
     tradeoff: 'Entry requires the ability to create 3rd-level extracts plus the mutagen class feature and the feral or infuse mutagen discovery, and the mutagenic form can be forced on the chymist against her will by a critical hit or a failed Fortitude save.',
   }),
+  author('mammoth-rider', {
+    c: {'melee-combat': 'core', 'single-target-damage': 'core', 'personal-durability': 'core', 'battlefield-control': 'available', 'debuffing-enemies': 'available', 'summoning-companions': 'core', 'wilderness-affinity': 'available'},
+    p: {'build-complexity': 'medium', 'play-complexity': 'medium', 'attribute-demands': 'medium', 'equipment-dependence': 'medium', 'resource-management': 'low', versatility: 'low'},
+    f: {'has-animal-companion': true, 'has-mount': true, 'controls-additional-entity': true},
+    identity: {magicIdentity: ['none'], castingMethod: ['none'], castingExtent: ['none'], spiritualThemes: ['none'], elementThemes: ['none'], primaryDelivery: ['melee weapon', 'companion']},
+    playerSummary: 'A mounted warrior who transforms her already-formidable animal companion into a Huge, battle-hardened juggernaut -- fighting astride it, combining their strength into devastating charges, and eventually becoming immune to fear, fatigue and stunning.',
+    tradeoff: 'Entry requires base attack bonus +6, heavy Handle Animal/Ride/Survival investment, and an animal companion (or companion-equivalent mount) with at least 6 Hit Dice already in hand, and nearly every ability requires staying mounted.',
+  }),
+  author('nature-warden', {
+    c: {'personal-durability': 'available', 'combat-mobility': 'available', 'defensive-protective-magic': 'available', 'utility-magic': 'available', 'summoning-companions': 'core', 'practical-expertise': 'available', 'wilderness-affinity': 'core'},
+    p: {'build-complexity': 'high', 'play-complexity': 'high', 'attribute-demands': 'high', 'equipment-dependence': 'low', 'resource-management': 'medium', versatility: 'high'},
+    f: {'has-spellcasting': true, 'has-animal-companion': true, 'controls-additional-entity': true},
+    identity: {magicIdentity: ['divine'], castingMethod: ['mixed'], castingExtent: ['partial'], environmentThemes: ['wilderness'], spiritualThemes: ['nature'], elementThemes: ['none'], primaryDelivery: ['companion', 'spellcasting']},
+    playerSummary: 'A wilderness guardian who deepens an already-strong bond with her animal companion into something nearly unbreakable -- sharing terrain mastery and magic resistance with it, granting it silver or cold iron natural weapons, and eventually able to scry on it or ritually revive it from death.',
+    tradeoff: 'Entry requires base attack bonus +4, an animal companion, favored terrain, wild empathy and 2nd-level divine spells already in hand, and its own spellcasting only advances at the reduced rate of a prestige class.',
+  }),
+  author('battle-herald', {
+    c: {'tactical-leadership': 'core', 'protecting-allies': 'core', 'support-buffing': 'core', 'healing-recovery': 'available', 'social-influence': 'available'},
+    p: {'build-complexity': 'high', 'play-complexity': 'high', 'attribute-demands': 'medium', 'equipment-dependence': 'low', 'resource-management': 'medium', versatility: 'medium'},
+    f: {},
+    identity: {magicIdentity: ['none'], castingMethod: ['none'], castingExtent: ['none'], spiritualThemes: ['none'], elementThemes: ['none'], professionIdentity: ['commander'], primaryDelivery: ['melee weapon']},
+    playerSummary: 'A battlefield commander who turns inspiring words into hard mechanical bonuses -- issuing one of thirteen different rallying commands to buff allies’ attacks, saves, healing or mobility, layering bardic performance and cavalier banner/tactician tricks into an ever-growing suite of team-wide support.',
+    tradeoff: 'Entry requires base attack bonus +4 plus the challenge and inspire courage class features already in hand (meaning a cavalier/bard-adjacent multiclass), Diplomacy/Intimidate/Perform (oratory)/Profession (soldier) ranks, and only one inspiring command can run at a time until 10th level.',
+  }),
 ];
 
 const seen = new Set(PROFILES.map(p => p.id));

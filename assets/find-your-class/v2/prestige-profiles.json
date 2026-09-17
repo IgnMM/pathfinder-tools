@@ -1674,6 +1674,273 @@
       "playerSummary": "An alchemist who embraces a second, monstrous personality -- transforming into a mutagenic alter ego (with its own alignment) to fight with bombs and brutal melee attacks, customizing that form with mutations like draconic resistances, growth, or evasion.",
       "tradeoff": "Entry requires the ability to create 3rd-level extracts plus the mutagen class feature and the feral or infuse mutagen discovery, and the mutagenic form can be forced on the chymist against her will by a critical hit or a failed Fortitude save.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:mammoth-rider",
+      "name": "Mammoth Rider",
+      "sourceCitationText": "Adventurer's Guide pg. 128",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Mammoth%20Rider",
+      "requirementsText": "To qualify to become a mammoth rider, a character must fulfill the following criteria.\nBase Attack Bonus: +6.\nSkills: Handle Animal 9 ranks, Ride 9 ranks, Survival 5 ranks.\nSpecial: Animal companion (or mount from a class feature that progresses as an animal companion) with at least 6 Hit Dice.",
+      "hitDie": "d12",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "absent",
+        "battlefield-control": "available",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "available"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": true,
+        "has-familiar": false,
+        "has-mount": true,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A mounted warrior who transforms her already-formidable animal companion into a Huge, battle-hardened juggernaut -- fighting astride it, combining their strength into devastating charges, and eventually becoming immune to fear, fatigue and stunning.",
+      "tradeoff": "Entry requires base attack bonus +6, heavy Handle Animal/Ride/Survival investment, and an animal companion (or companion-equivalent mount) with at least 6 Hit Dice already in hand, and nearly every ability requires staying mounted.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:nature-warden",
+      "name": "Nature Warden",
+      "sourceCitationText": "Advanced Player's Guide pg. 272",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Nature%20Warden",
+      "requirementsText": "To qualify to become a nature warden, a character must fulfill all the following criteria.\nBase Attack Bonus: +4.\nSpecial: Animal companion class feature*, favored terrain class feature, wild empathy class feature.\nSkills: Handle Animal 5 ranks, Knowledge (geography) 5 ranks, Knowledge (nature) 5 ranks, Survival 5 ranks.\nSpells: Able to cast 2nd-level divine spells.\n* An oracle of nature's bonded mount ability counts as an animal companion class ability for the purpose of this prestige class.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "available",
+        "utility-magic": "available",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "core"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": true,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [
+          "wilderness"
+        ],
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "companion",
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A wilderness guardian who deepens an already-strong bond with her animal companion into something nearly unbreakable -- sharing terrain mastery and magic resistance with it, granting it silver or cold iron natural weapons, and eventually able to scry on it or ritually revive it from death.",
+      "tradeoff": "Entry requires base attack bonus +4, an animal companion, favored terrain, wild empathy and 2nd-level divine spells already in hand, and its own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:battle-herald",
+      "name": "Battle Herald",
+      "sourceCitationText": "Advanced Player's Guide pg. 260",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Battle%20Herald",
+      "requirementsText": "To qualify to become a battle herald, a character must fulfill all the following criteria.\nBase Attack Bonus: +4.\nSpecial: Challenge and inspire courage class features.\nSkills: Diplomacy 5 ranks, Intimidate 5 ranks, Perform (oratory) 5 ranks, Profession (soldier) 2 ranks.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "core",
+        "personal-durability": "absent",
+        "protecting-allies": "core",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "core",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "commander"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A battlefield commander who turns inspiring words into hard mechanical bonuses -- issuing one of thirteen different rallying commands to buff allies’ attacks, saves, healing or mobility, layering bardic performance and cavalier banner/tactician tricks into an ever-growing suite of team-wide support.",
+      "tradeoff": "Entry requires base attack bonus +4 plus the challenge and inspire courage class features already in hand (meaning a cavalier/bard-adjacent multiclass), Diplomacy/Intimidate/Perform (oratory)/Profession (soldier) ranks, and only one inspiring command can run at a time until 10th level.",
+      "reviewStatus": "reviewed"
     }
   ]
 }
