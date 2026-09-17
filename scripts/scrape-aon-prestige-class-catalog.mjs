@@ -114,7 +114,17 @@ const detailed = await mapLimit(indexRecords, 5, async (item, index) => {
   return {...item, ...detail};
 });
 
+const curatedPath = path.join(repo, 'assets', 'find-your-class', 'v2', 'prestige-profiles.json');
+let curatedIds = new Set();
+try {
+  curatedIds = new Set(JSON.parse(await fs.readFile(curatedPath, 'utf8')).profiles.map(item => item.id));
+} catch {
+  // no curated file yet -- everything stays pending
+}
+for (const item of detailed) item.valuationStatus = curatedIds.has(item.id) ? 'valued' : 'pending';
+
 const generatedAt = new Date().toISOString();
+const valuedCount = detailed.filter(item => item.valuationStatus === 'valued').length;
 const catalogue = {
   schemaVersion: 1,
   generatedAt,
@@ -122,7 +132,7 @@ const catalogue = {
   sourceUrl: indexUrl,
   scope: 'Official Pathfinder 1e prestige classes exposed by the AoN Prestige Classes index.',
   recommendationPolicy: 'Optional future path only; show at most 1-3 when fit is exceptional and entry requirements are compatible.',
-  counts: {prestigeClasses: detailed.length, valued: 0, pending: detailed.length},
+  counts: {prestigeClasses: detailed.length, valued: valuedCount, pending: detailed.length - valuedCount},
   prestigeClasses: detailed.map(({sourceText, ...item}) => item)
 };
 

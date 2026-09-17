@@ -1,0 +1,744 @@
+{
+  "schemaVersion": 1,
+  "status": "reviewed",
+  "inheritanceRule": "Every prestige class is a standalone, fully-authored profile -- no parent class to inherit from.",
+  "profiles": [
+    {
+      "id": "prestige:arcane-archer",
+      "name": "Arcane Archer",
+      "sourceCitationText": "PRPG Core Rulebook pg. 374",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Arcane%20Archer",
+      "requirementsText": "To qualify to become an arcane archer, a character must fulfill all the following criteria.\nBase Attack Bonus: +6.\nFeats: Point-Blank Shot, Precise Shot, Weapon Focus (longbow or shortbow).\nSpells: Ability to cast 1st-level arcane spells.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "core",
+        "offensive-magic": "available",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A ranged-combat specialist who fuses archery with continued arcane spellcasting, imbuing arrows with magic to strike past cover, deal elemental damage, and eventually deliver a save-or-die shot.",
+      "tradeoff": "Entry requires a steep feat chain (Point-Blank Shot, Precise Shot, Weapon Focus with a bow) plus base attack bonus +6 and 1st-level arcane spells, and its own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:arcane-trickster",
+      "name": "Arcane Trickster",
+      "sourceCitationText": "PRPG Core Rulebook pg. 376",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Arcane%20Trickster",
+      "requirementsText": "To qualify to become an arcane trickster, a character must fulfill all of the following criteria.\nAlignment: Any nonlawful.\nSkills: Disable Device 4 ranks, Escape Artist 4 ranks, Knowledge (arcana) 4 ranks.\nSpells: Ability to cast mage hand and at least one arcane spell of 2nd level or higher.\nSpecial: Sneak attack +2d6.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "available",
+        "offensive-magic": "available",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "ranged weapon",
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "An arcane trickster must be nonlawful.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A rogue-mage hybrid whose magic reinforces its thievery -- delivering Disable Device and Sleight of Hand at range, stacking sneak attack onto damage spells, and turning invisible at will by 9th level.",
+      "tradeoff": "Entry demands a nonlawful alignment, Disable Device/Escape Artist/Knowledge (arcana) ranks, an existing arcane spellcasting class and sneak attack +2d6 already in hand, and its own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:assassin",
+      "name": "Assassin",
+      "sourceCitationText": "PRPG Core Rulebook pg. 378",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Assassin",
+      "requirementsText": "To qualify to become an assassin, a character must fulfill all the following criteria.\nAlignment: Any evil.\nSkills: Disguise 2 ranks, Stealth 5 ranks.\nSpecial: The character must kill someone for no other reason than to become an assassin.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "An assassin must be evil, and must have killed someone for no other reason than to join the class.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A cold, methodical killer built around the death attack -- study a target for 3 rounds, then land a melee sneak attack that can outright kill or paralyze, backed by poison use, uncanny dodge and eventual invisibility-adjacent stealth.",
+      "tradeoff": "Entry requires an evil alignment, Disguise/Stealth ranks, and killing someone specifically to join the class, and the class has no ranged options and only light armor proficiency.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:dragon-disciple",
+      "name": "Dragon Disciple",
+      "sourceCitationText": "PRPG Core Rulebook pg. 380",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Dragon%20Disciple",
+      "requirementsText": "To qualify to become a dragon disciple, a character must fulfill all the following criteria.\nRace: Any nondragon.\nSkills: Knowledge (arcana) 5 ranks.\nLanguages: Draconic.\nSpellcasting: Ability to cast 1st-level arcane spells without preparation. If the character has sorcerer levels, he must have the draconic bloodline. If the character gains levels of sorcerer after taking this class, he must take the draconic bloodline.",
+      "hitDie": "d12",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "core",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": true,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting",
+          "natural attacks"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "bloodline-choice",
+          "kind": "commitment",
+          "summary": "A dragon disciple must select (or already have) the draconic sorcerer bloodline and a specific dragon type; a sorcerer who gains levels after joining this class must take the draconic bloodline.",
+          "evidenceSection": "Spellcasting / Blood of Dragons"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A spellcaster who channels draconic bloodline power into physical toughness and offense -- gaining claws and a bite, a breath weapon, thickening natural armor, and eventually the ability to transform fully into a dragon.",
+      "tradeoff": "Entry requires a nondragon race, Knowledge (arcana) 5 ranks, Draconic, and spontaneous 1st-level arcane spells (with a sorcerer’s bloodline locked to draconic), and its own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:duelist",
+      "name": "Duelist",
+      "sourceCitationText": "PRPG Core Rulebook pg. 382",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Duelist",
+      "requirementsText": "To qualify to become a duelist, a character must fulfill all the following criteria.\nBase Attack Bonus: +6.\nSkills: Acrobatics 2 ranks, Perform 2 ranks.\nFeats: Dodge, Mobility, Weapon Finesse.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "available",
+        "battlefield-control": "absent",
+        "combat-mobility": "core",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Canny Defense, Enhanced Mobility, Grace and precise strike all require light or no armor and no shield, and precise strike/crippling critical require a light or one-handed piercing weapon.",
+          "evidenceSection": "Canny Defense / Precise Strike"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A light-armored melee duelist who turns Intelligence and swift footwork into a wall of defense, parrying and riposting incoming blows while striking precisely with a piercing weapon.",
+      "tradeoff": "Entry requires base attack bonus +6, Acrobatics/Perform ranks, and Dodge/Mobility/Weapon Finesse already in hand, and nearly every signature ability only functions in light or no armor with a light or one-handed piercing weapon.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:eldritch-knight",
+      "name": "Eldritch Knight",
+      "sourceCitationText": "PRPG Core Rulebook pg. 384",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Eldritch%20Knight",
+      "requirementsText": "To qualify to become an eldritch knight, a character must fulfill all the following criteria.\nWeapon Proficiency: Must be proficient with all martial weapons.\nSpells: Able to cast 3rd-level arcane spells.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "available",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "available",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "medium",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A martial-arcane hybrid who wades into melee in full armor and spellcasting alike -- gaining bonus combat feats, sustained spell progression, and eventually a free swift-action spell whenever a critical hit lands.",
+      "tradeoff": "Entry requires proficiency with all martial weapons and the ability to cast 3rd-level arcane spells, and its own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:horizon-walker",
+      "name": "Horizon Walker",
+      "sourceCitationText": "Advanced Player's Guide pg. 265",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Horizon%20Walker",
+      "requirementsText": "To qualify to become a horizon walker, a character must fulfill all the following criteria.\nSkills: Knowledge (geography) 6 ranks.\nFeats: Endurance.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "available",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "absent",
+        "combat-mobility": "core",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "available",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "core"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "limited"
+        ],
+        "environmentThemes": [
+          "wilderness",
+          "planar"
+        ],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A wilderness specialist who becomes the master of chosen terrains -- gaining ranger-style favored terrain bonuses, passive elemental resistances and skill bonuses per terrain, and increasingly powerful terrain-specific spell-like abilities.",
+      "tradeoff": "Entry only requires Knowledge (geography) 6 ranks and the Endurance feat, but its terrain-by-terrain abilities are numerous to track and largely useless outside a matching or mastered environment until the 10th-level capstone.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:loremaster",
+      "name": "Loremaster",
+      "sourceCitationText": "PRPG Core Rulebook pg. 385",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Loremaster",
+      "requirementsText": "To qualify to become a loremaster, a character must fulfill all the following criteria.\nSkills: Knowledge (any two) 7 ranks in each.\nFeats: Any three metamagic or item creation feats, plus Skill Focus (Knowledge [any individual Knowledge skill]).\nSpells: Able to cast seven different divination spells, one of which must be 3rd level or higher.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "absent",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "low",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "scholar",
+          "evidenceSection": "Lore / Secret",
+          "evidenceText": "The class is explicitly built around accumulating knowledge, secrets and scholarly mastery."
+        }
+      ],
+      "playerSummary": "A scholarly spellcaster who turns broad knowledge into flexible power -- choosing from a menu of secrets (bonus feats, save bonuses, skill mastery, extra spells), identifying magic items at a glance, and eventually casting legend lore or analyze dweomer once per day for free.",
+      "tradeoff": "Entry requires 7 ranks each in two Knowledge skills, three metamagic or item-creation feats plus Skill Focus (Knowledge), and the ability to cast seven different divination spells, and its own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

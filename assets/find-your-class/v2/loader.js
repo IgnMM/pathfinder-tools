@@ -158,10 +158,42 @@
     return clone;
   }
 
-  // Resolves every class (as a class-path profile) plus every archetype
-  // override (as a resolved archetype profile) into one flat array, the
-  // shape the matcher operates on.
-  function resolveAllProfiles(classProfiles, archetypeOverrides) {
+  // A prestige class has no single parent (it's entered from many different
+  // base classes/multiclass combinations), so unlike an archetype it is
+  // always fully self-authored -- same capabilities/practical/facts/identity
+  // shape as a class-path (validateClassProfile applies unchanged), but with
+  // entityType 'prestige-class' and its own entry-requirements text carried
+  // through for the UI/matcher to surface (a base class has no equivalent
+  // gate; a prestige class always does).
+  function resolvePrestigeProfile(profile) {
+    return {
+      id: profile.id,
+      entityType: 'prestige-class',
+      name: profile.name,
+      parentClassId: null,
+      classId: profile.id,
+      sourceCitationText: profile.sourceCitationText,
+      sourceUrl: profile.sourceUrl,
+      requirementsText: profile.requirementsText || null,
+      hitDie: profile.hitDie || null,
+      capabilities: { ...profile.capabilities },
+      practical: { ...profile.practical },
+      facts: { ...profile.facts },
+      identity: cloneIdentity(profile.identity),
+      enemySpecializations: { ...(profile.enemySpecializations || {}) },
+      constraints: (profile.constraints || []).slice(),
+      playerSummary: profile.playerSummary || null,
+      tradeoff: profile.tradeoff || null,
+      professionIdentity: profile.professionIdentity || [],
+    };
+  }
+
+  // Resolves every class (as a class-path profile), every archetype override
+  // (as a resolved archetype profile) and every prestige class (as a
+  // standalone prestige-class profile) into one flat array, the shape the
+  // matcher operates on. prestigeProfiles is optional so existing callers
+  // that only know about classes/archetypes keep working unchanged.
+  function resolveAllProfiles(classProfiles, archetypeOverrides, prestigeProfiles) {
     const classById = new Map(classProfiles.map(c => [c.id, c]));
     const profiles = classProfiles.map(c => resolveEffectiveProfile(c, null));
     for (const override of archetypeOverrides) {
@@ -169,6 +201,7 @@
       if (!parent) throw new ValidationError(`unknown parentClassId "${override.parentClassId}"`, `archetype:${override.id}`);
       profiles.push(resolveEffectiveProfile(parent, override));
     }
+    for (const prestige of (prestigeProfiles || [])) profiles.push(resolvePrestigeProfile(prestige));
     return profiles;
   }
 
@@ -176,7 +209,7 @@
     CAPABILITY_SCALE, CAPABILITY_RANK, PRACTICAL_SCALE, PRACTICAL_RANK,
     indexCriteria, indexPractical,
     validateClassProfile, validateArchetypeProfile,
-    resolveEffectiveProfile, resolveAllProfiles,
+    resolveEffectiveProfile, resolvePrestigeProfile, resolveAllProfiles,
     ValidationError,
   };
 }));
