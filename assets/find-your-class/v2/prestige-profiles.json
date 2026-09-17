@@ -8685,6 +8685,1010 @@
       "playerSummary": "A thrill-seeking Pathfinder ruin-delver who disarms and bypasses traps with rogue-like ease, moves through difficult terrain at full speed, delays a just-triggered trap’s activation, and eventually cheats death once per day by dropping to -1 hit points instead of dying outright.",
       "tradeoff": "Entry requires Acrobatics/Disable Device/Knowledge (history)/Perception ranks and proof of recovering and presenting a historically significant object to a Pathfinder Lodge, and his kit is built almost entirely around traps, exploration, and survival rather than direct combat output.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:pathfinder-field-agent",
+      "name": "Pathfinder Field Agent",
+      "sourceCitationText": "Pathfinder Society Primer pg. 18",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Pathfinder%20Field%20Agent",
+      "requirementsText": "To qualify to become a Pathfinder field agent, a character\r must fulfill all the following criteria.\nFeats: Skill Focus (any).\nSkills: Knowledge (any) 5 ranks, Linguistics 1 rank,\r Perception 1 rank.\nSpecial: Must be an active member of the Pathfinder\r Society and own a wayfinder.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "available",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "low",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "explorer"
+        ],
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A Pathfinder field agent must be an active member of the Pathfinder Society and own a wayfinder.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "explorer"
+      ],
+      "playerSummary": "A versatile Pathfinder Society explorer who picks Pathfinder training freely from a wide menu -- trapfinding, rogue talents, extra spellcasting, sneak attack, superior Knowledge recall -- while steadily upgrading a signature wayfinder with new magical tricks like daylight, silence, or hidden compartments.",
+      "tradeoff": "Entry requires Skill Focus (any), Knowledge (any) 5 ranks, Linguistics/Perception 1 rank, and active Pathfinder Society membership with an owned wayfinder, and her signature wayfinder upgrades only function on an unmodified standard wayfinder.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:prophet-of-kalistrade",
+      "name": "Prophet of Kalistrade",
+      "sourceCitationText": "Paths of Prestige pg. 42",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Prophet%20of%20Kalistrade",
+      "requirementsText": "To qualify to become a prophet of Kalistrade, a character must fulfill all of the following criteria.\nAlignment: Lawful neutral.\nSkills: Knowledge (local) 5 ranks, Profession (merchant) 5 ranks, Sense Motive 2 ranks.\nSpecial: Must follow the Prophecies of Kalistrade.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "core",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "high",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": true,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "merchant"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A prophet of Kalistrade must be lawful neutral and follow the strict dietary and sexual prohibitions of the Prophecies of Kalistrade, losing all class features if he violates them.",
+          "evidenceSection": "Alignment / Ex-Prophets of Kalistrade"
+        }
+      ],
+      "professionIdentity": [
+        "merchant"
+      ],
+      "playerSummary": "A lawful neutral Drumite merchant-prophet who casts a small selection of divination and enchantment spells, can burn gold to cast known spells beyond his daily limit, gains AC and save bonuses for wearing enough decorative wealth, and eventually hides a chest of goods on the Ethereal Plane.",
+      "tradeoff": "Entry requires lawful neutral alignment, Knowledge (local)/Profession (merchant) 5 ranks, Sense Motive 2 ranks, and following the Prophecies of Kalistrade’s strict dietary and sexual restrictions, and several of his best abilities require spending large sums of real gold that vanish forever.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:pure-legion-enforcer",
+      "name": "Pure Legion Enforcer",
+      "sourceCitationText": "Inner Sea Combat pg. 32",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Pure%20Legion%20Enforcer",
+      "requirementsText": "To qualify to become a Pure Legion enforcer, a character must fulfill all of the following criteria.\nAlignment: Any lawful.\nDeity: Cannot worship a deity.\nFeats: Godless HealingISWG.\nSkills: Knowledge (religion) 5 ranks, Sense Motive 4 ranks.\nSpecial: Cannot cast divine spells.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "available",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "investigator"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Pure Legion enforcer must be any lawful and cannot worship a deity or cast divine spells.",
+          "evidenceSection": "Alignment / Deity / Special"
+        }
+      ],
+      "professionIdentity": [
+        "investigator"
+      ],
+      "playerSummary": "A lawful, godless Rahadoumi zealot who detects and identifies divine magic and paraphernalia at will, demoralizes worshipers of a specific deity, disrupts a divine spellcaster’s connection to their god on a critical hit, and eventually gains spell resistance specifically against divine magic.",
+      "tradeoff": "Entry requires any lawful alignment, the Godless Healing feat, Knowledge (religion)/Sense Motive ranks, and an inability to worship any deity or cast divine spells, and nearly every class feature is aimed narrowly at divine spellcasters and religious targets rather than combat generally.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:riftwarden",
+      "name": "Riftwarden",
+      "sourceCitationText": "Paths of Prestige pg. 46",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Riftwarden",
+      "requirementsText": "To qualify to become a Riftwarden, a character must fulfill all of the following criteria.\nAlignment: Any nonevil.\nFeats: Spell Focus (abjuration), Spell Penetration.\nSkills: Knowledge (planes) 5 ranks.\nSpecial: Able to speak Abyssal and Infernal.\nSpells: Able to cast magic circle against evil as a spell or spell-like ability.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "core",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Riftwarden must be any nonevil.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [
+        "planar guardian"
+      ],
+      "playerSummary": "A nonevil planar guardian who counterspells summon spells and teleportation effects on the fly, channels baneful energy against extraplanar creatures, gains a customizable set of favored-enemy-style bonuses against planes and outsider subtypes, and eventually redirects and damages any creature teleporting nearby.",
+      "tradeoff": "Entry requires any nonevil alignment, Spell Focus (abjuration), Spell Penetration, Knowledge (planes) 5 ranks, Abyssal and Infernal, and the ability to cast magic circle against evil, and her whole kit is built around countering summoning and teleportation rather than general combat.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:rivethun-emissary",
+      "name": "Rivethun Emissary",
+      "sourceCitationText": "Adventurer's Guide pg. 164",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Rivethun%20Emissary",
+      "requirementsText": "To qualify to become a Rivethun emissary, a character must fulfill the following criteria.\nFeats: Iron Will, Spirit Beacon.\nSkills: Diplomacy 5 ranks, Knowledge (religion) 5 ranks.\nSpecial: Must have a familiar or spirit animal.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": true,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "spirits"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A Rivethun emissary must have a familiar or spirit animal and belongs to a rare, secretive dwarven tradition considered an abomination by many other dwarves.",
+          "evidenceSection": "Special / Flavor text"
+        }
+      ],
+      "professionIdentity": [
+        "shaman"
+      ],
+      "playerSummary": "A rare dwarven spirit-bonded mystic who fuses her spirit animal with a summoned outsider to create a powerful animus companion, detects undead, fey, and outsiders, substitutes Wisdom for a physical ability score in a pinch, and eventually communes with her animus for a single answered question.",
+      "tradeoff": "Entry requires Iron Will, the Spirit Beacon feat, Diplomacy/Knowledge (religion) 5 ranks, and an existing familiar or spirit animal, and her signature animus ability requires staying within 30 feet of her spirit animal and is limited to a small number of daily uses.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:rose-warden",
+      "name": "Rose Warden",
+      "sourceCitationText": "Paths of the Righteous pg. 20",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Rose%20Warden",
+      "requirementsText": "To qualify to become a rose warden, a character must fulfill all of the following criteria.\nAlignment: Chaotic good.\nDeity: Must worship Milani.\nSkills: Disguise 5 ranks, Stealth 5 ranks.\nFeats: Iron Will.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "available",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "core",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "revolutionary"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A rose warden must be chaotic good.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A rose warden must worship Milani.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "revolutionary"
+      ],
+      "playerSummary": "A chaotic good revolutionary of Milani who moves freely through crowds while gaining a growing rogue-style sneak attack, picks rogue talents and insurgent techniques like holy-aligned weapon thorns or teleporting through narrow gaps, and eventually smites lawful or evil foes with extra sneak attack damage and a staggering blow.",
+      "tradeoff": "Entry requires chaotic good alignment, worship of Milani, Disguise/Stealth 5 ranks, and Iron Will, and most of her signature bonuses (street sentinel, voice of the masses) only function in urban or crowded settings.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:runeguard",
+      "name": "Runeguard",
+      "sourceCitationText": "Paths of the Righteous pg. 22",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Runeguard",
+      "requirementsText": "To qualify to become a runeguard, a character must fulfill all of the following criteria.\nAlignment: Lawful good, neutral good, or chaotic good.\nDeity: Must worship Soralyon.\nSkills: Linguistics 5 ranks, Spellcraft 5 ranks.\nFeats: Scribe Scroll.\nLanguage: Thassilonian.\nSpells: Able to cast 3rd-level spells.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "core",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A runeguard must be lawful good, neutral good, or chaotic good.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A runeguard must worship Soralyon.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "rune scholar"
+      ],
+      "playerSummary": "A good-aligned Thassilonian rune scholar of Soralyon who masters virtuous runes -- transferring spells by touch, doubling healing, granting insight bonuses through aid another, or forging telepathic bonds -- and boosts the save DCs of glyph, symbol, and language-dependent spells she casts.",
+      "tradeoff": "Entry requires a good alignment, worship of Soralyon, Linguistics/Spellcraft 5 ranks, Scribe Scroll, Thassilonian, and 3rd-level spells, and every virtuous rune costs an attack-of-opportunity-provoking standard action and a limited number of daily uses shared across all seven runes.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:sacred-sentinel",
+      "name": "Sacred Sentinel",
+      "sourceCitationText": "Paths of the Righteous pg. 24",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Sacred%20Sentinel",
+      "requirementsText": "To qualify to become a sacred sentinel, a character must fulfill all the following criteria.\nBase Attack Bonus: +6.\nAlignment: Lawful good.\nDeity: Must worship Torag.\nFeats: Endurance, Toughness.\nSpecial: Proficiency with light, medium, and heavy armor and all shields (other than tower shields).",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "core",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": true,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "holy knight"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A sacred sentinel must be lawful good and follows the paladin’s code of Torag, losing all class features for 24 hours if she violates it.",
+          "evidenceSection": "Code of Torag"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A sacred sentinel must worship Torag.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "holy knight"
+      ],
+      "playerSummary": "A lawful good dwarven defender of Torag who grants nearby allies a growing CMD and stabilization bonus, heals by touch at range through her protective aura, tempers healed allies with bonus AC and saves, and eventually clings to life for one extra round when killed while protecting her charges.",
+      "tradeoff": "Entry requires lawful good alignment, worship of Torag, base attack bonus +6, Endurance, Toughness, and proficiency with heavy armor and shields, and nearly every ability only functions while her strategic protection aura is active and allies stay close by.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:sanguine-angel",
+      "name": "Sanguine Angel",
+      "sourceCitationText": "Adventurer's Guide pg. 80",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Sanguine%20Angel",
+      "requirementsText": "To qualify to become a sanguine angel, a character must fulfill the following criteria.\nAlignment: Lawful evil, lawful neutral, or neutral evil.\nArmor Proficiency: Proficient with heavy armor.\nBase Attack Bonus: +5.\nFeats: Improved Shield Bash, Iron Will, Weapon Focus (longsword).\nGender: Female.\nLanguage: Infernal.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "soldier"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A sanguine angel must be lawful evil, lawful neutral, or neutral evil.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A sanguine angel must be a female member of the Erinyes Company, a Chelish military unit.",
+          "evidenceSection": "Special / Flavor text"
+        }
+      ],
+      "professionIdentity": [
+        "soldier"
+      ],
+      "playerSummary": "A ruthless female sword-and-shield soldier of Cheliax’s Erinyes Company who picks combat disciplines like bull-rush charges or ally-swapping footwork, gains a bonus against Intimidate, later pierces illusions with true seeing and dominates a target once per day, and finally transforms into a winged infernal outsider.",
+      "tradeoff": "Entry requires lawful-or-evil-neutral alignment, female gender, heavy armor proficiency, base attack bonus +5, Improved Shield Bash, Iron Will, Weapon Focus (longsword), and Infernal, and several capstone abilities only function while wielding a longsword and shield or wearing specific Gray Maiden plate armor.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:scar-seeker",
+      "name": "Scar Seeker",
+      "sourceCitationText": "Paths of the Righteous pg. 26",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Scar%20Seeker",
+      "requirementsText": "To qualify to become a scar seeker, a character must fulfill all of the following criteria.\nBase Attack Bonus: +5.\nAlignment: Lawful good or neutral good.\nDeity: Must worship Vildeis.\nSkills: Heal 3 ranks, Intimidate 3 ranks, Knowledge (religion) 3 ranks.\nFeats: Toughness.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "core",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "self-scarred martyr"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A scar seeker must be lawful good or neutral good.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A scar seeker must worship Vildeis.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "self-scarred martyr"
+      ],
+      "playerSummary": "A good-aligned scarification devotee of Vildeis who unlocks a growing menu of enduring scars -- a vicious weapon buff, doubled lay on hands healing at self-cost, damage reduction, or sharing an ally’s damage -- and can push past his daily limit by taking real Hit-Dice-scaled damage, eventually sacrificing himself for allies in a final act.",
+      "tradeoff": "Entry requires a good alignment, worship of Vildeis, base attack bonus +5, Toughness, and Heal/Intimidate/Knowledge (religion) ranks, and his signature painful purification ability lets him exceed his daily uses only by taking real damage that only a full night’s rest can heal.",
+      "reviewStatus": "reviewed"
     }
   ]
 }
