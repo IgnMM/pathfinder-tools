@@ -1,0 +1,1748 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Monk parent value.",
+  "profiles": [
+    {
+      "id": "monk:black-asp",
+      "name": "Black Asp",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Intrigue pg. 67",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Black%20Asp",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "assassin"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Black Asp’s Path / Forbidden Powers / Black Asp Venom / Empty Mind",
+          "reason": "The archetype’s Black Asp’s Path / Forbidden Powers / Black Asp Venom / Empty Mind package materially changes stealth subterfuge from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The black asps are a sinister order of monks who train as assassins and infiltrators with no need for weapons to achieve their goals.",
+      "tradeoff": "It replaces or alters Stunning Fist; Still Mind; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:brazen-disciple",
+      "name": "Brazen Disciple",
+      "parentClassId": "monk",
+      "sourceCitationText": "Adventurer's Guide pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Brazen%20Disciple",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Class Skills / Feinting Flurry / Bonus Feats / Efreeti’s Guile",
+          "reason": "The archetype’s Class Skills / Feinting Flurry / Bonus Feats / Efreeti’s Guile package materially changes debuffing enemies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Brazen disciples use deception in their fighting style, and many go a step further, incorporating fire and smoke both mundane and magical.",
+      "tradeoff": "It replaces or alters Class Skills; 1st, 6th-level Bonus Feats; Still Mind; Abundant Step; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:disciple-of-wholeness",
+      "name": "Disciple of Wholeness",
+      "parentClassId": "monk",
+      "sourceCitationText": "Healer's Handbook pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Disciple%20of%20Wholeness",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-healing": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "healer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Healing Ki / Hone Body / Greater Hone Body / Hone Soul",
+          "reason": "The archetype’s Healing Ki / Hone Body / Greater Hone Body / Hone Soul package materially changes healing recovery from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Disciples of wholeness train to bring themselves and others closer to physical and spiritual perfection.",
+      "tradeoff": "It replaces or alters Ki Pool; Purity of Body; Diamond Body; Diamond Soul; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:drunken-master",
+      "name": "Drunken Master",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Player's Guide pg. 110",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Drunken%20Master",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "drunken master"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Drunken Ki / Drunken Strength / Drunken Courage / Drunken Resilience",
+          "reason": "Drunken Ki / Drunken Strength / Drunken Courage / Drunken Resilience defines the material change from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The drunken master finds perfection through excess.",
+      "tradeoff": "It replaces or alters Still Mind; Purity of Body; Diamond Body; Diamond Soul; Empty Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:elemental-monk",
+      "name": "Elemental Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Disciple's Doctrine pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Elemental%20Monk",
+      "capabilityOverrides": {
+        "offensive-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "mixed"
+        ],
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Alignment / Elemental Strike / Genie Style / Elemental Precision",
+          "reason": "The archetype’s Alignment / Elemental Strike / Genie Style / Elemental Precision package materially changes offensive magic from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Elemental monks draw inspiration from genies to create their fighting style. Their adaptability and versatility make them capable of serving as emissaries of elemental balance.",
+      "tradeoff": "It replaces or alters Alignment; Stunning Fist; Bonus Feats; Evasion; Purity of Body; Diamond Body; Ki Pool; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:far-strike-monk",
+      "name": "Far Strike Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ranged Tactics Toolbox pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Far%20Strike%20Monk",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon and Armor Proficiency / Flurry of Blows / Bonus Feats / Fast Thrower",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Flurry of Blows / Bonus Feats / Fast Thrower package materially changes ranged combat from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Far strike monks are masters of thrown weapons, from shuriken to throwing axes to spears.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Flurry of Blows; Bonus Feats; Stunning Fist; Still Mind; Purity of Body; Diamond Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:flowing-monk",
+      "name": "Flowing Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Combat pg. 58",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Flowing%20Monk",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Bonus Feat / Redirection / Unbalancing Counter / Flowing Dodge",
+          "reason": "The archetype’s Bonus Feat / Redirection / Unbalancing Counter / Flowing Dodge package materially changes battlefield control from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The flowing monk is the wind and the river. He knows how the world flows, and forces his enemies to flow with it.",
+      "tradeoff": "It replaces or alters Stunning Fist; 2nd-level Bonus Feat; Fast Movement; Purity of Body; Diamond Body; Quivering Palm; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:gray-disciple",
+      "name": "Gray Disciple",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Race Guide pg. 187",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Gray%20Disciple",
+      "capabilityOverrides": {
+        "combat-mobility": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Duergar characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Fade from Sight / Gray Heart / Born in Darkness / Earth Glide",
+          "reason": "The archetype’s Fade from Sight / Gray Heart / Born in Darkness / Earth Glide package materially changes combat mobility from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The gray disciple contemplates the inner voice of duergar magic and the silent eternity of stone, mastering these dual mysteries and combining them to deadly effect.",
+      "tradeoff": "It replaces or alters Slow Fall; Still Mind; High Jump; 6th-level Bonus Feat; Wholeness of Body; Abundant Step; Quivering Palm; Tongue of the Sun and Moon; Empty Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:hamatulatsu-master",
+      "name": "Hamatulatsu Master",
+      "parentClassId": "monk",
+      "sourceCitationText": "Inner Sea Combat pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Hamatulatsu%20Master",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Alignment / Bonus Feats / Stunning Fist / Ki Pool",
+          "reason": "The archetype’s Alignment / Bonus Feats / Stunning Fist / Ki Pool package materially changes debuffing enemies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Once part of the Sisterhood of Eiseth, the Sisterhood of the Golden Erinyes is an order of female monks dedicated to emulating the painful strikes of the barbed devil, leaving targets alive but permanently scarred and broken by pain—a method called hamatulatsu.",
+      "tradeoff": "It replaces or alters Bonus Feats; Stunning Fist; Ki Pool; Purity of Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:harrow-warden",
+      "name": "Harrow Warden",
+      "parentClassId": "monk",
+      "sourceCitationText": "The Harrow Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Harrow%20Warden",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Weapon and Armor Proficiency / Idiot Strike / Mute Hag Stance / Big Sky Stance",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Idiot Strike / Mute Hag Stance / Big Sky Stance package materially changes debuffing enemies from the Monk baseline."
+        },
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Weapon and Armor Proficiency / Idiot Strike / Mute Hag Stance / Big Sky Stance",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Idiot Strike / Mute Hag Stance / Big Sky Stance package materially changes protecting allies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Some who study the mysteries of the harrow do so to restore lost knowledge and pride to the Varisian people. The harrow warden fulfills this role as she seeks to bring her mind and body into alignment, and she protects her people by invoking the folklore that has guided them for so long. In mastering her own place in fate, a harrow warden learns how to misalign the destinies of others.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Stunning Fist; Improved Evasion; Diamond Body; Quivering Palm; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:hellcat",
+      "name": "Hellcat",
+      "parentClassId": "monk",
+      "sourceCitationText": "Villain Codex pg. 92",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Hellcat",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Alignment / Class Skills / Weapon Proficiency / Bonus Feat",
+          "reason": "The archetype’s Alignment / Class Skills / Weapon Proficiency / Bonus Feat package materially changes debuffing enemies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Monks of the hellcat sect follow the teachings of Asmodeus or another infernal power.",
+      "tradeoff": "It replaces or alters Alignment; Class Skills; Weapon Proficiencies; Bonus Feats; Stunning Fist; Fast Movement; Evasion; Purity of Body; Improved Evasion; Slow Fall; Still Mind; Ki Pool; Wholeness of Body; Diamond Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:hungry-ghost-monk",
+      "name": "Hungry Ghost Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Player's Guide pg. 110",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Hungry%20Ghost%20Monk",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead",
+          "spirits"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Punishing Kick / Steal Ki / Life Funnel / Life from a Stone",
+          "reason": "The archetype’s Punishing Kick / Steal Ki / Life Funnel / Life from a Stone package materially changes anti magic disruption from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The hungry ghost monk looks to spirits that prey upon the living as models of perfection.",
+      "tradeoff": "It replaces or alters Stunning Fist; Purity of Body; Wholeness of Body; Diamond Body; Diamond Soul; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:invested-regent",
+      "name": "Invested Regent",
+      "parentClassId": "monk",
+      "sourceCitationText": "Heroes of the High Court pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Invested%20Regent",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "defensive-protective-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "divine spark"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Investiture / Vested Power / Vested Powers / Requirements",
+          "reason": "The archetype’s Investiture / Vested Power / Vested Powers / Requirements package materially changes social influence from the Monk baseline."
+        },
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Investiture / Vested Power / Vested Powers / Requirements",
+          "reason": "The archetype’s Investiture / Vested Power / Vested Powers / Requirements package materially changes defensive protective magic from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The invested regent can harness a divine spark to perform superhuman stunts, influence others, and escape injury.",
+      "tradeoff": "It replaces or alters 1st-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:ironskin-monk",
+      "name": "Ironskin Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Race Guide pg. 122",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Ironskin%20Monk",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Hobgoblin characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Iron Skin / Bonus Feat / Resilience / Ki Pool",
+          "reason": "Iron Skin / Bonus Feat / Resilience / Ki Pool defines the material change from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Through discipline and training, an ironskin monk hardens his body to withstand punishing blows.",
+      "tradeoff": "It replaces or alters Monk’s AC; Bonus Feats; Evasion; Ki Speed Increase; High Jump; Fast Movement; Slow Fall; Improved Evasion; Tongue of the Sun and Moon; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:karmic-monk",
+      "name": "Karmic Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Occult Adventures pg. 122",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Karmic%20Monk",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Alignment / Class Skills / Karmic Strike / Balanced Mind",
+          "reason": "The archetype’s Alignment / Class Skills / Karmic Strike / Balanced Mind package materially changes debuffing enemies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "A karmic monk contemplates the myriad harmonies that guide existence. He learns to use the disharmony in others against them, and to alter his own inner harmonies to exploit weaknesses in his opponents’ defenses.",
+      "tradeoff": "It replaces or alters Alignment; Class Skills; Stunning Fist; Still Mind; 7th and 10th-level Ki Pool Abilities; Improved Evasion; Slow Fall; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:kata-master",
+      "name": "Kata Master",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Class Guide pg. 105",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Kata%20Master",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "performer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Panache / Menacing Swordplay / Ki Pool / Targeted Strike",
+          "reason": "The archetype’s Panache / Menacing Swordplay / Ki Pool / Targeted Strike package materially changes social influence from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The kata master takes the visual aspect of his martial art to its logical extreme, harnessing her flowing movements and skilled maneuvers as a psychological weapon against her enemies.",
+      "tradeoff": "It replaces or alters Stunning Fist; Still Mind; Ki Pool; Wholeness of Body; Quivering Palm; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:ki-mystic",
+      "name": "Ki Mystic",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Player's Guide pg. 111",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Ki%20Mystic",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "scholar"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Ki Mystic / Mystic Insight / Mystic Visions / Mystic Prescience",
+          "reason": "The archetype’s Ki Mystic / Mystic Insight / Mystic Visions / Mystic Prescience package materially changes knowledge investigation from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The ki mystic believes that violence is sometimes necessary, but knowing and understanding is the true root of perfection.",
+      "tradeoff": "It replaces or alters Still Mind; Purity of Body; Diamond Body; Diamond Soul; Empty Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:lifting-hand",
+      "name": "Lifting Hand",
+      "parentClassId": "monk",
+      "sourceCitationText": "Martial Arts Handbook pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Lifting%20Hand",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Savage Toss / Bonus Feats / Joint Lock / Counter-Throw",
+          "reason": "The archetype’s Savage Toss / Bonus Feats / Joint Lock / Counter-Throw package materially changes battlefield control from the Monk baseline."
+        }
+      ],
+      "playerSummary": "When facing a master of the lifting hand, an enemy is likely to find itself sailing through the air or locked in a tortuous compliance hold.",
+      "tradeoff": "It replaces or alters Stunning Fist; Bonus Feats; Abundant Step; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:maneuver-master",
+      "name": "Maneuver Master",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Combat pg. 58",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Maneuver%20Master",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Bonus Feat / Flurry of Maneuvers / Maneuver Defense / Reliable Maneuver",
+          "reason": "The archetype’s Bonus Feat / Flurry of Maneuvers / Maneuver Defense / Reliable Maneuver package materially changes battlefield control from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The maneuver master specializes in more complicated moves than simple damage-dealing strikes.",
+      "tradeoff": "It replaces or alters Flurry of Blows; Still Mind; Slow Fall; Purity of Body; Diamond Body; Quivering Palm; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:martial-artist",
+      "name": "Martial Artist",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Combat pg. 59",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Martial%20Artist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "martial artist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Pain Points / Martial Arts Master / Exploit Weakness",
+          "reason": "Alignment / Pain Points / Martial Arts Master / Exploit Weakness defines the material change from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The martial artist pursues a mastery of pure martial arts without the monastic traditions. He is a master of form, but lacks the ability to harness his ki.",
+      "tradeoff": "It replaces or alters Still Mind; Slow Fall; Ki Pool; Purity of Body; Diamond Body; Perfect Self; Wholeness of Body; Timeless Body; Tongue of Sun and Moon; Abundant Step; Diamond Soul; Empty Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:master-of-many-styles",
+      "name": "Master of Many Styles",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Combat pg. 59",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Master%20of%20Many%20Styles",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bonus Feat / Fuse Style / Perfect Style",
+          "reason": "Bonus Feat / Fuse Style / Perfect Style defines the material change from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The master of many styles is a collector. For every move, he seeks a counter. For every style, he has a riposte.",
+      "tradeoff": "It replaces or alters Bonus Feats; Flurry of Blows; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:menhir-guardian",
+      "name": "Menhir Guardian",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Wilderness pg. 64",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Menhir%20Guardian",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "professionIdentity": [
+          "sacred-site guardian"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Alignment / Weapon and Armor Proficiency / Claws / Wild Flurry",
+          "reason": "The archetype’s Alignment / Weapon and Armor Proficiency / Claws / Wild Flurry package materially changes protecting allies from the Monk baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Alignment / Weapon and Armor Proficiency / Claws / Wild Flurry",
+          "reason": "The archetype’s Alignment / Weapon and Armor Proficiency / Claws / Wild Flurry package materially changes wilderness affinity from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Menhir guardians are ascetic protectors of sacred druidic sites, less concerned with structure and maintaining internal order than they are with preserving the natural balance of the world.",
+      "tradeoff": "It replaces or alters Alignment; Weapon/Armor Proficiencies; Unarmed Strike; Ki Pool; Flurry of Blows; Stunning Fist; High Jump; Quivering Palm; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:monk-of-the-empty-hand",
+      "name": "Monk of the Empty Hand",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Player's Guide pg. 111",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Empty%20Hand",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "improvised weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Weapon and Armor Proficiency / Flurry of Blows / Bonus Feat / Versatile Improvisation",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Flurry of Blows / Bonus Feat / Versatile Improvisation package materially changes practical expertise from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The monk of the empty hand eschews normal weapons in favor of whatever is lying around—rocks, chair legs, flagons of ale, even a simple quill pen all become deadly weapons in the hands of such a monk.",
+      "tradeoff": "It replaces or alters Monk Weapon Proficiencies; Still Mind; Purity of Body; Diamond Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:monk-of-the-four-winds",
+      "name": "Monk of the Four Winds",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Player's Guide pg. 112",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Four%20Winds",
+      "capabilityOverrides": {
+        "offensive-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "mixed"
+        ],
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Elemental Fist / Slow Time / Aspect Master / Aspect of the Carp",
+          "reason": "The archetype’s Elemental Fist / Slow Time / Aspect Master / Aspect of the Carp package materially changes offensive magic from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The monk of the four winds is connected to the natural world in a way few other creatures—even other monks—can hope to match.",
+      "tradeoff": "It replaces or alters Stunning Fist; Abundant Step; Timeless Body; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:monk-of-the-healing-hand",
+      "name": "Monk of the Healing Hand",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Player's Guide pg. 113",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Healing%20Hand",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-healing": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "healer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Ancient Healing Hand / Ki Sacrifice / True Sacrifice",
+          "reason": "The archetype’s Ancient Healing Hand / Ki Sacrifice / True Sacrifice package materially changes healing recovery from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Monks of the healing hand seek perfection through helping others.",
+      "tradeoff": "It replaces or alters Wholeness of Body; Diamond Body; Quivering Palm; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:monk-of-the-lotus",
+      "name": "Monk of the Lotus",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Player's Guide pg. 114",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Lotus",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Touch of Serenity / Touch of Surrender / Touch of Peace / Learned Master",
+          "reason": "The archetype’s Touch of Serenity / Touch of Surrender / Touch of Peace / Learned Master package materially changes social influence from the Monk baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Touch of Serenity / Touch of Surrender / Touch of Peace / Learned Master",
+          "reason": "The archetype’s Touch of Serenity / Touch of Surrender / Touch of Peace / Learned Master package materially changes debuffing enemies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "While a monk of the lotus realizes that combat cannot always be avoided—and is more than capable in a fight—he understands that all creatures are connected, and to harm another is to harm the self.",
+      "tradeoff": "It replaces or alters Stunning Fist; Abundant Step; Quivering Palm; Tongue of the Sun and the Moon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:monk-of-the-mantis",
+      "name": "Monk of the Mantis",
+      "parentClassId": "monk",
+      "sourceCitationText": "Dirty Tactics Toolbox pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Mantis",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Pressuring Strikes / Debilitating Blows / Disabling Palm",
+          "reason": "The archetype’s Pressuring Strikes / Debilitating Blows / Disabling Palm package materially changes debuffing enemies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "A body contains many points where the flesh, mind, and spirit coincide. A monk of the mantis is skilled at manipulating these points.",
+      "tradeoff": "It replaces or alters 2nd, 6th, 10th, 14th, and 18th-level Bonus Feats; Wholeness of Body; Diamond Body; Diamond Soul; Quivering Palm; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:monk-of-the-sacred-mountain",
+      "name": "Monk of the Sacred Mountain",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Player's Guide pg. 114",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Sacred%20Mountain",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Iron Monk / Bastion Stance / Iron Limb Defense / Adamantine Monk",
+          "reason": "Iron Monk / Bastion Stance / Iron Limb Defense / Adamantine Monk defines the material change from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The monk of the sacred mountain finds strength and power in the earth beneath his feet.",
+      "tradeoff": "It replaces or alters Evasion; Slow Fall; High Jump; Improved Evasion; Tongue of the Sun and the Moon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:monk-of-the-seven-forms",
+      "name": "Monk of the Seven Forms",
+      "parentClassId": "monk",
+      "sourceCitationText": "Inner Sea Combat pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Seven%20Forms",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bonus Feats / Lightning Finish / Endurance / Sirocco Fury",
+          "reason": "Bonus Feats / Lightning Finish / Endurance / Sirocco Fury defines the material change from the Monk baseline."
+        }
+      ],
+      "playerSummary": "In their place, the monks of the isolated sanctuary now teach a style featuring lightning-fast strikes that mimic both dervish dances and the searing winds of the arid desert, favoring mobility and endurance.",
+      "tradeoff": "It replaces or alters Bonus Feats; Stunning Fist; Maneuver Training; Abundant Step; Quivering Palm; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:nimble-guardian",
+      "name": "Nimble Guardian",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Race Guide pg. 92",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Nimble%20Guardian",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Catfolk characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Defensive Aid / Nimble Reflexes / Defensive Mastery / Guardian Feline",
+          "reason": "The archetype’s Defensive Aid / Nimble Reflexes / Defensive Mastery / Guardian Feline package materially changes protecting allies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Some catfolk monks dedicate their graceful prowess to the defense of others, especially those dedicated to a similar ethos or who prove themselves as stalwart allies of the monk’s cause.",
+      "tradeoff": "It replaces or alters Evasion; Still Mind; Purity of Body; Wholeness of Body; Improved Evasion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:nornkith",
+      "name": "Nornkith",
+      "parentClassId": "monk",
+      "sourceCitationText": "Legacy of the First World pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Nornkith",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "fate"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Conviction of Fate / Forewarned / Shears / Resist Death’s Lure",
+          "reason": "The archetype’s Conviction of Fate / Forewarned / Shears / Resist Death’s Lure package materially changes knowledge investigation from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Nornkith hone their bodies and minds to follow the branching threefold paths of fate.",
+      "tradeoff": "It replaces or alters Key Ability Score; Stunning Fist; 1st-, 10th-level Bonus Feat; Purity of Body; Diamond Soul; Quivering Palm; Empty Body; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:ouat",
+      "name": "Ouat",
+      "parentClassId": "monk",
+      "sourceCitationText": "Inner Sea Combat pg. 41",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Ouat",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "desert"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Dwarf characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Awaken Divinity / Spurn Tradition / Know the Unseen Disciples",
+          "reason": "The archetype’s Awaken Divinity / Spurn Tradition / Know the Unseen Disciples package materially changes wilderness affinity from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The ascetic, desert-dwelling dwarves known as the Ouat have eschewed dwarven traditions, whose unchanging rigidity, they believe, shackles their people to the past and inhibits self-improvement.",
+      "tradeoff": "It replaces or alters Greed, Hatred, Defensive Training, Stonecunning, Weapon Familiarity (Dwarven Racial Traits); Stunning Fist; Wholeness of Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:perfect-scholar",
+      "name": "Perfect Scholar",
+      "parentClassId": "monk",
+      "sourceCitationText": "Inner Sea Intrigue pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Perfect%20Scholar",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "scholar"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Class Skills / Lore / Learn from Failure / Eye of the Sun and Moon",
+          "reason": "The archetype’s Class Skills / Lore / Learn from Failure / Eye of the Sun and Moon package materially changes knowledge investigation from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Perfect scholars, often worshipers of Irori, hone their minds and bodies through the accumulation of knowledge",
+      "tradeoff": "It replaces or alters Class Skills; Still Mind; Slow Fall; Tongue of the Sun and Moon; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:qinggong-monk",
+      "name": "Qinggong Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Magic pg. 51",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Qinggong%20Monk",
+      "capabilityOverrides": {
+        "offensive-magic": "core",
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {
+        "resource-management": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Ki Power / Feats / Monk Abilities / Spells",
+          "reason": "The archetype’s Ki Power / Feats / Monk Abilities / Spells package materially changes offensive magic from the Monk baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Ki Power / Feats / Monk Abilities / Spells",
+          "reason": "The archetype’s Ki Power / Feats / Monk Abilities / Spells package materially changes utility magic from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The qinggong monk is a master of her ki, using it to perform superhuman stunts or even blast opponents with supernatural energy.",
+      "tradeoff": "It replaces or alters Slow Fall; High Jump; Wholeness of Body; Diamond Body; Abundant Step; Diamond Soul; Quivering Palm; Timeless Body; Tongue of the Sun and Moon; Empty Body; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:sage-counselor",
+      "name": "Sage Counselor",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Intrigue pg. 67",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Sage%20Counselor",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "teacher"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Cunning Fist / Feinting Flurry / Deceptive Ki",
+          "reason": "The archetype’s Class Skills / Cunning Fist / Feinting Flurry / Deceptive Ki package materially changes social influence from the Monk baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Class Skills / Cunning Fist / Feinting Flurry / Deceptive Ki",
+          "reason": "The archetype’s Class Skills / Cunning Fist / Feinting Flurry / Deceptive Ki package materially changes support buffing from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Sage counselors are ascetics and mystics who leave the confines of the monastery walls to advise secular people about spiritual truths and to seek knowledge of the outside world.",
+      "tradeoff": "It replaces or alters Class Skills; 1st, 2nd, 6th, 10th-level Bonus Feat; Ki Pool abilities; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:scaled-fist",
+      "name": "Scaled Fist",
+      "parentClassId": "monk",
+      "sourceCitationText": "Legacy of Dragons pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Scaled%20Fist",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Bonus Feats",
+          "reason": "The archetype’s Bonus Feats package materially changes social influence from the Monk baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Bonus Feats",
+          "reason": "The archetype’s Bonus Feats package materially changes debuffing enemies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Scaled fists eschew passive introspection in favor of unshakable confidence.\nSteeped in traditions that trace their origins to the warrior-monks who trained under the tutelage of draconic masters in Tian Xia, scaled fists eschew passive introspection in favor of unshakable confidence. Scaled fists learn to combine brutal intimidation with the brazen ferocity of an ancient wyrm to devastate their foes.",
+      "tradeoff": "It replaces or alters Bonus Feats; Still Mind; Maneuver Training; Quivering Palm; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:scarred-monk",
+      "name": "Scarred Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Horror Realms pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Scarred%20Monk",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Mortifications / Armor of Scars / Blood Eagle / Contortionist",
+          "reason": "The archetype’s Mortifications / Armor of Scars / Blood Eagle / Contortionist package materially changes debuffing enemies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "For monks who seek the truth hidden in pain, the practice of mortifications of the flesh helps to achieve enlightenment and acquire disturbing powers.",
+      "tradeoff": "It replaces or alters Ki Pool; High Jump; Wholeness of Body; Abundant Step, Empty Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:sensei",
+      "name": "Sensei",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Combat pg. 60",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Sensei",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "teacher"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Skills / Advice / Insightful Strike / Mystic Wisdom",
+          "reason": "The archetype’s Skills / Advice / Insightful Strike / Mystic Wisdom package materially changes social influence from the Monk baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Skills / Advice / Insightful Strike / Mystic Wisdom",
+          "reason": "The archetype’s Skills / Advice / Insightful Strike / Mystic Wisdom package materially changes support buffing from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The sensei is a revered teacher who imparts lessons on the oneness of mind, body, and spirit, along with occasional correction that is subtle and swift.",
+      "tradeoff": "It replaces or alters Flurry of Blows; Fast Movement; Improved Evasion; Evasion; 2nd, 6th, 12th, 18th-level Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:serpent-fire-adept",
+      "name": "Serpent-Fire Adept",
+      "parentClassId": "monk",
+      "sourceCitationText": "Occult Origins pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Serpent-Fire%20Adept",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "chakras"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Class Skills / Chakra Training / Chakra Expertise / Light Spirit",
+          "reason": "The archetype’s Class Skills / Chakra Training / Chakra Expertise / Light Spirit package materially changes support buffing from the Monk baseline."
+        }
+      ],
+      "playerSummary": "A serpent-fire adept embraces the secrets of her chakras and mastery of their energetic flow.",
+      "tradeoff": "It replaces or alters Class Skills; Stunning Fist; 1st, 2nd, 6th, 10th, 14th, and 18th-level Bonus Feats; Slow Fall; High Jump; Wholeness of Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:sin-monk",
+      "name": "Sin Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Antihero's Handbook pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Sin%20Monk",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Well of Sin / Envy / Gluttony / Greed",
+          "reason": "The archetype’s Well of Sin / Envy / Gluttony / Greed package materially changes debuffing enemies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Martial experts who have allowed such passions to lead them astray may find themselves gaining powers drawn from their newly embraced sins.",
+      "tradeoff": "It replaces or alters Ki Pool; High Jump; Wholeness of Body; Abundant Step; Empty Body; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:softstrike-monk",
+      "name": "Softstrike Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Martial Arts Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Softstrike%20Monk",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Weapon Proficiency / Feather Touch / Nonlethal Strikes / Tenet of Life",
+          "reason": "The archetype’s Weapon Proficiency / Feather Touch / Nonlethal Strikes / Tenet of Life package materially changes debuffing enemies from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Softstrike monks employ a nonlethal but effective form of combat.",
+      "tradeoff": "It replaces or alters Weapon Proficiency; Unarmed Strike; 6th, 10th-level Bonus Feats; Wholeness of Body; Quivering Palm; Empty Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:sohei",
+      "name": "Sohei",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Combat pg. 60",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Sohei",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Skills / Weapon and Armor Proficiency / Bonus Feats / Devoted Guardian",
+          "reason": "The archetype’s Skills / Weapon and Armor Proficiency / Bonus Feats / Devoted Guardian package materially changes tactical leadership from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The sohei are masters of the horse and the hunt.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Stunning Fist; Fast Movement; Increased Unarmed Damage; Slow Fall; Abundant Step; Purity of Body; Diamond Body; Quivering Palm; Timeless Body; Tongue of Sun and Moon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:soul-shepherd",
+      "name": "Soul Shepherd",
+      "parentClassId": "monk",
+      "sourceCitationText": "Pathfinder #139: The Dead Roads pg. 65",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Soul%20Shepherd",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead",
+          "spirits"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Calming Strike / Otherworldly Resilience / Spirit Sense / Yamaraj's Judgment",
+          "reason": "The archetype’s Calming Strike / Otherworldly Resilience / Spirit Sense / Yamaraj's Judgment package materially changes anti magic disruption from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Whether studying at the feet of psychopomps or merely imitating the creatures' philosophy and methods, soul shepherds believe in safeguarding the Cycle of Souls.",
+      "tradeoff": "It replaces or alters Stunning Fist; Evasion; Improved Evasion; Abundant Step; Quivering Palm; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:spirit-master",
+      "name": "Spirit Master",
+      "parentClassId": "monk",
+      "sourceCitationText": "Undead Slayer's Handbook pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Spirit%20Master",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead",
+          "spirits"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Resilient Soul / Spirit Combat / Diamond Spirit / Spirit Burst",
+          "reason": "The archetype’s Resilient Soul / Spirit Combat / Diamond Spirit / Spirit Burst package materially changes anti magic disruption from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Spirit masters are monks who specialize in combating the undead, laying their corpses to rest, and sending their souls to final judgment.",
+      "tradeoff": "It replaces or alters Still Mind; Maneuver Training; Purity of Body; Wholeness of Body; Quivering Palm; Empty Body; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:student-of-stone",
+      "name": "Student of Stone",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Race Guide pg. 146",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Student%20of%20Stone",
+      "capabilityOverrides": {
+        "combat-mobility": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Oread characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Hard as Stone / Strength of Stone / Bonus Feat / Bones of Stone",
+          "reason": "The archetype’s Hard as Stone / Strength of Stone / Bonus Feat / Bones of Stone package materially changes combat mobility from the Monk baseline."
+        }
+      ],
+      "playerSummary": "By following the path of the stone, students of stone give up much of monks’ mobility in favor of sheer resilience.",
+      "tradeoff": "It replaces or alters Evasion; Fast Movement; Bonus Feat; High Jump; Improved Evasion; Abundant Step; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:terra-cotta-monk",
+      "name": "Terra-Cotta Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Dungeoneer's Handbook pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Terra-Cotta%20Monk",
+      "capabilityOverrides": {
+        "combat-mobility": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Class Skills / Trap Intuition / Stone Grip / Trap Dodge",
+          "reason": "The archetype’s Class Skills / Trap Intuition / Stone Grip / Trap Dodge package materially changes combat mobility from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Possessing a natural affinity for all things earthen, terracotta monks are experts at turning the stone around them against their enemies.",
+      "tradeoff": "It replaces or alters Class Skills; Evasion; High Jump; Improved Evasion; Abundant Step; Quivering Palm; Empty Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:tetori",
+      "name": "Tetori",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Combat pg. 61",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Tetori",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Bonus Feat / Graceful Grappler / Counter-Grapple / Break Free",
+          "reason": "The archetype’s Bonus Feat / Graceful Grappler / Counter-Grapple / Break Free package materially changes battlefield control from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The style of the tetori is that of the majestic wrestler—a warrior with a dizzying array of grabs, holds, and locks with which to bewilder and incapacitate his foes.",
+      "tradeoff": "It replaces or alters Bonus Feats; Flurry of Blows; Slow Fall; High Jump; Abundant Step; Improved Evasion; Timeless Body; Tongue of Sun and Moon; Diamond Soul; Empty Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:treetop-monk",
+      "name": "Treetop Monk",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Race Guide pg. 206",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Treetop%20Monk",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "forest"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Vanara characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Branch Runner / Wood Affinity / Freedom of Movement",
+          "reason": "The archetype’s Branch Runner / Wood Affinity / Freedom of Movement package materially changes wilderness affinity from the Monk baseline."
+        }
+      ],
+      "playerSummary": "While many vanaras follow traditional monastic training and traditions, others learn to blend exotic combat and the mysterious forces of ki with the natural world, allowing them to move through trees and overgrowth to deliver devastating attacks.",
+      "tradeoff": "It replaces or alters Still Mind; Purity of Body; Abundant Step; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:underfoot-adept",
+      "name": "Underfoot Adept",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Race Guide pg. 65",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Underfoot%20Adept",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Halfling characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Underfoot Grace / Underfoot Trip / Improved Underfoot Grace",
+          "reason": "The archetype’s Underfoot Grace / Underfoot Trip / Improved Underfoot Grace package materially changes battlefield control from the Monk baseline."
+        }
+      ],
+      "playerSummary": "An underfoot adept turns his diminutive stature and unorthodox footwork into a powerful weapon.",
+      "tradeoff": "It replaces or alters 1st-level Bonus Feat; Stunning Fist; High Jump; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:wanderer",
+      "name": "Wanderer",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Race Guide pg. 76",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Wanderer",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "teacher"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Human characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Far Traveler / Long Walk / Light Step",
+          "reason": "The archetype’s Class Skills / Far Traveler / Long Walk / Light Step package materially changes social influence from the Monk baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Class Skills / Far Traveler / Long Walk / Light Step",
+          "reason": "The archetype’s Class Skills / Far Traveler / Long Walk / Light Step package materially changes support buffing from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Some monks wander the world in humility to learn and to share wisdom and philosophy from their teachers with those they meet, often aiding those who are in need.",
+      "tradeoff": "It replaces or alters Class Skills; 1st-level Bonus Feat; Still Mind; Slow Fall; High Jump; Wholeness of Body; Abundant Step; Diamond Soul; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:wasteland-meditant",
+      "name": "Wasteland Meditant",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Wilderness pg. 64",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Wasteland%20Meditant",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "desert"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Dehydrating Strike / Vigor / Desert Strider / Improved Vigor",
+          "reason": "The archetype’s Dehydrating Strike / Vigor / Desert Strider / Improved Vigor package materially changes wilderness affinity from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Some monks journey to remote and isolated corners of the world to find serenity and a heightened sense of awareness.",
+      "tradeoff": "It replaces or alters Stunning Fist; Evasion; Slow Fall; Improved Evasion; Quivering Palm; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:water-dancer",
+      "name": "Water Dancer",
+      "parentClassId": "monk",
+      "sourceCitationText": "Ultimate Wilderness pg. 65",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Water%20Dancer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Elemental Focus / Nereid’s Grace / Unarmed Strike / Burn",
+          "reason": "Elemental Focus / Nereid’s Grace / Unarmed Strike / Burn defines the material change from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Water dancers derive their martial training from ancient nereid traditions jealously guarded by these enigmatic fey.",
+      "tradeoff": "It replaces or alters Flurry of Blows; Stunning Fist; Quivering Palm; 1st, 2nd, 6th, 10th, 14th, and 18th-level Bonus Feats; Unarmed Strike; Evasion; Slow Fall; Improved Evasion; Abundant Step; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:weapon-adept",
+      "name": "Weapon Adept",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Player's Guide pg. 114",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Weapon%20Adept",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Perfect Strike / Way of the Weapon Master / Evasion / Uncanny Initiative",
+          "reason": "Perfect Strike / Way of the Weapon Master / Evasion / Uncanny Initiative defines the material change from the Monk baseline."
+        }
+      ],
+      "playerSummary": "While all monks train in both unarmed combat and with weapons, the weapon adept seeks to become one with his weapons, transforming them into perfect extensions of his own body.",
+      "tradeoff": "It replaces or alters Stunning Fist; Evasion; Improved Evasion; Timeless Body; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:wildcat",
+      "name": "Wildcat",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Class Guide pg. 105",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Wildcat",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Ready for Anything / Brawler Maneuver Training / Improvised Weapon Mastery / Bonus Feat",
+          "reason": "The archetype’s Ready for Anything / Brawler Maneuver Training / Improvised Weapon Mastery / Bonus Feat package materially changes battlefield control from the Monk baseline."
+        }
+      ],
+      "playerSummary": "A wildcat is a student of the school of hard knocks, who dedicates himself to learning how to take down foes by any means necessary.",
+      "tradeoff": "It replaces or alters Still Mind; Ki Pool; High Jump; Slow Fall; Improved Evasion; Abundant Step; Diamond Soul; Empty Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:windstep-master",
+      "name": "Windstep Master",
+      "parentClassId": "monk",
+      "sourceCitationText": "Elemental Master's Handbook pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Windstep%20Master",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Hurricane Punch / Wind Step / Swift Ki",
+          "reason": "Hurricane Punch / Wind Step / Swift Ki defines the material change from the Monk baseline."
+        }
+      ],
+      "playerSummary": "Most monks are agile and fleet of foot, but few can rival a windstep master’s lightness of step.",
+      "tradeoff": "It replaces or alters Stunning Fist; Slow Fall; Ki Pool; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk:zen-archer",
+      "name": "Zen Archer",
+      "parentClassId": "monk",
+      "sourceCitationText": "Advanced Player's Guide pg. 115",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Zen%20Archer",
+      "capabilityOverrides": {
+        "ranged-combat": "core",
+        "melee-combat": "available"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon and Armor Proficiency / Flurry of Blows / Bonus Feats / Perfect Strike",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Flurry of Blows / Bonus Feats / Perfect Strike package materially changes ranged combat from the Monk baseline."
+        },
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Weapon and Armor Proficiency / Flurry of Blows / Bonus Feats / Perfect Strike",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Flurry of Blows / Bonus Feats / Perfect Strike package materially changes melee combat from the Monk baseline."
+        }
+      ],
+      "playerSummary": "The zen archer takes a weapon most other monks eschew and seeks perfection in the pull of a taut bowstring, the flex of a bow’s limbs, and the flight of an arrow fired true.",
+      "tradeoff": "It replaces or alters Stunning Fist; Evasion; Maneuver Training; Still Mind; Purity of Body; Improved Evasion; Diamond Body; Tongue of the Sun and the Moon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

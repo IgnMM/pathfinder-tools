@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T14:24:36.967Z",
+  "generatedAt": "2026-09-17T14:59:08.427Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
@@ -8,9 +8,9 @@
     "archetypes": 1275,
     "entities": 1319,
     "valuedClasses": 44,
-    "valuedArchetypes": 667,
+    "valuedArchetypes": 796,
     "pendingClasses": 0,
-    "pendingArchetypes": 608,
+    "pendingArchetypes": 479,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -6674,7 +6674,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Aquakinetcist",
       "replaces": "Elemental Focus; Expanded Element; Basic Hydrokinesis; 2nd, 6th-levle Utility Wild Talent; Elemental Defense",
       "aonSummary": "While all hydrokineticists have the ability to control water, aquakineticists’ powers are tied to their determination to explore the world beneath the waves.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:arakineticist",
@@ -6685,7 +6685,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Arakineticist",
       "replaces": "4th, 6th, 8th, and 13th-level Utility Wild Talents",
       "aonSummary": "Those of strong will who live under a dark curse long enough might learn to control and channel the corrupt energy afflicting them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:blightburner",
@@ -6696,7 +6696,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Blightburner",
       "replaces": "Elemental Focus; Basic Geokinesis; 2nd-level Utility Power; Elemental Overflow; Flesh of Stone; Gather Power; Internal Buffer",
       "aonSummary": "Darklands geokineticists sometimes exhibit supernatural powers associated with blightburn crystals. Blightburner kineticists harness this radioactivity in pyrotechnic displays, an unusual feat for those connected to the element of earth.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:blighted-defiler",
@@ -6707,7 +6707,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Blighted%20Defiler",
       "replaces": "Alignment; Gather Power; Key Ability Score; Internal Buffer; Elemental Defense; Omnikinesis",
       "aonSummary": "A few kineticists have developed the ability to steal the life force from the surrounding land in order to infuse themselves with unnatural strength beyond their bodies’ normal capabilities.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:blood-kineticist",
@@ -6718,7 +6718,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Blood%20Kineticist",
       "replaces": "1st, 5th, 9th, and 11th-level Infusions; 6th and 8th-level Utility Wild Talent; Expanded Element; Omnikinesis",
       "aonSummary": "To a blood kineticist, the water in a creature’s blood is just like any other sort, and she uses that knowledge to brutal ends.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:cinderlands-adept",
@@ -6729,7 +6729,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Cinderlands%20Adept",
       "replaces": "Class Skills; Elemental Focus; Expanded Element; Gather Power; 1st-level Infusion; 4th, 8th, 12th-level Utility Wild Talent",
       "aonSummary": "These kineticists are skilled riders, able to wield both weapons and fire with deadly skill.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:dark-elementalist",
@@ -6740,7 +6740,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Dark%20Elementalist",
       "replaces": "Alignment; Key Ability Score; Burn; Elemental Overflow; Internal Buffer",
       "aonSummary": "Dark elementalists are loathe to suffer the consequences of channeling their power and study the darkest esoteric energies of the planes to use souls to fuel their occult might.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:elemental-annihilator",
@@ -6751,7 +6751,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Elemental%20Annihilator",
       "replaces": "1st, 3rd, 5th, and 9th-level Infusions; all utility wild talents",
       "aonSummary": "For some kineticists, nothing in life is as sweet as destruction and pain. Elemental annihilators pursue only uses of their powers that harm others.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:elemental-ascetic",
@@ -6762,7 +6762,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Elemental%20Ascetic",
       "replaces": "Kinetic Blast; Elemental Overflow; Wild Talents; Elemental Defense; 5th, 9th, 13th-level Infusions",
       "aonSummary": "Combining the elemental powers of a kineticist with the rigid physical discipline of a monk, an elemental ascetic channels his powers through his body to enhance himself in combat.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:elemental-purist",
@@ -6773,7 +6773,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Elemental%20Purist",
       "replaces": "Internal Buffer; Expanded Elements; 11th, 19th-level Infusion; Omnikinesis",
       "aonSummary": "An elemental purist spurns all elements that are not her own, for utter devotion can allow one to accomplish even seemingly impossible heroics.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:elysiokineticist",
@@ -6784,7 +6784,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Elysiokineticist",
       "replaces": "Elemental Focus; Class Skills; Expanded Element; Basic Phytokinesis, 1st-level Infusion; Flesh of Wood",
       "aonSummary": "Similar to how phytokineticists draw their power from the First World, elysiokineticists trace their abilities to the riotous wilderness of the plane known as Elysium",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:ioun-kineticist",
@@ -6795,7 +6795,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Ioun%20Kineticist",
       "replaces": "Elemental Focus; Basic Telekinesis; Internal Buffer; Elemental Overflow",
       "aonSummary": "Some aetherkineticists dedicate themselves to unlocking ioun stones’ cosmic secrets and seemingly limitless potential.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:kinetic-chirurgeon",
@@ -6828,7 +6828,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Leshykineticist",
       "replaces": "Element; Expanded Element; 6th, 10th-level Utility Wild Talents; Maximize Metakinesis; Basic Phytokinesis; Internal Buffer; Omnikinesis",
       "aonSummary": "(Vine Leshy only) Of all those who pursue the path of a kineticist, only leshykineticists are both made of plant matter and born of nature spirits. These curious creatures wield ancient powers unknown to any other kineticists.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:overwhelming-soul",
@@ -6839,7 +6839,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Overwhelming%20Soul",
       "replaces": "Class Skills; Wild Talents; Burn; Internal Buffer; Elemental Overflow",
       "aonSummary": "Some kineticists have such a powerful personality that they can seize control of their element with their minds alone, without endangering their bodies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:psammokinetic",
@@ -6850,7 +6850,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Psammokinetic",
       "replaces": "Alignment; Elemental Focus, Elemental Overflow; Expanded Element",
       "aonSummary": "Psammokinetics are ascetic kineticists who consider the harsh nature of the burning deserts of Osirion to be a tempering fire that can purify all their imperfections.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:psychokineticist",
@@ -6861,7 +6861,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Psychokineticist",
       "replaces": "Key Ability Score; Burn; Elemental Overflow",
       "aonSummary": "Psychokineticists channel elemental power through their minds rather than their bodies and while this energy ravages their minds, it unleashes power locked in their ruptured emotions.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:terrakineticist",
@@ -6872,7 +6872,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Terrakineticist",
       "replaces": "Elemental Focus; Kinetic Blast; Elemental Defense; Expanded Element; Omnikinesis",
       "aonSummary": "Terrakineticists have a stunted ability that allows them to access the Elemental Planes, but they’ve learned how to turn this limited talent into an incredible strength by tapping into the ambient elemental nature of the land surrounding them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:armored-battlemage",
@@ -6894,7 +6894,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Beastblade",
       "replaces": "3rd-level Magus Arcana; Spell Recall; Knowledge Pool; Improved Spell Recall",
       "aonSummary": "Beastblade magi work in tandem with their familiars, using spell, steel, and claw to clear the battlefield of foes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:bladebound",
@@ -6916,7 +6916,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Card%20Caster",
       "replaces": "Arcane Pool; Spellstrike; 3rd-level Arcana",
       "aonSummary": "The card caster is an ancient, martial offshoot of the traditional harrower, learning to not only draw power from the harrow, but also to invest each card with deadly power.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:deep-marshal",
@@ -6927,7 +6927,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Deep%20Marshal",
       "replaces": "Armor Proficiencies; Medium Armor; Heavy Armor; Spellcasting; Arcane Pool; Spell Combat; Spellstrike; 3rd-level Magus Arcana",
       "aonSummary": "Largely unseen by visitors, the deep marshals have survived into the modern era as keepers, protectors, and repairers of the myriad of stony passages that travel around, through, and under the Five Kings Mountains.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:eldritch-archer",
@@ -6960,7 +6960,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Elemental%20Knight",
       "replaces": "Spell Recall",
       "aonSummary": "(Suli Only) Elemental knights are born with elemental energies surging through their blood and discover the secret of reconciling and focusing this primal power into the arcane.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:esoteric",
@@ -6971,7 +6971,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Esoteric",
       "replaces": "Weapon/Armor Proficiency; Spellcasting; Arcane Pool; Spellstrike; Spell Recall; Bonus Feats; Medium Armor; Heavy Armor; Improved Spell Recall",
       "aonSummary": "Esoterics are drawn to the mysticism of the occult and spend their lives delving into forgotten texts and forbidden tomes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:fiend-flayer",
@@ -6982,7 +6982,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Fiend%20Flayer",
       "replaces": "None",
       "aonSummary": "(Tiefling Only) Some tiefling magi can tap the dark energy of their fiendish blood to enhance their arcane and combat talents.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:greensting-slayer",
@@ -6993,7 +6993,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Greensting%20Slayer",
       "replaces": "Arcane Pool; Medium Armor; Heavy Armor",
       "aonSummary": "The blending of martial prowess with elven magic has long been a staple of the Blackash Training Grounds in Erages. More than a few who study at Erages Academy follow this path because of the promises of wealth that the city’s criminal element makes toward practiced brawlers and smugglers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:hexbreaker",
@@ -7004,7 +7004,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Hexbreaker",
       "replaces": "Spell Recall; Improved Spell Recall",
       "aonSummary": "Hexbreakers—sometimes called witch-hammers for their proclivity toward warhammers—have borne witness to the damage of unrestrained arcane power and hone their own arcane arts to battle such abuse.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:hexcrafter",
@@ -7026,7 +7026,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Iron-Ring%20Striker",
       "replaces": "Weapon Proficiency; Arcane Pool; Spellstrike; 5th-level Bonus Feat; Medium Armor; Heavy Armor; Knowledge Pool; Counterstrike",
       "aonSummary": "Practitioners of this martial art, powered by arcane magic, wear an iron ring on the finger of one hand.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:jistkan-artificer",
@@ -7037,7 +7037,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Jistkan%20Artificer",
       "replaces": "Spells; Arcane Pool; Cantrips; 3rd-level Magus Arcana; Spellstrike",
       "aonSummary": "As part of studying the secret methods the original Jistkan artificers used to build golems, these magi graft construct parts onto their own arms.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:kapenia-dancer",
@@ -7048,7 +7048,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Kapenia%20Dancer",
       "replaces": "Weapon/Armor Proficiencies; Diminished Spellcasting",
       "aonSummary": "The kapenia dancer laces their deadly scarves with powerful magic.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:kensai",
@@ -7059,7 +7059,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Kensai",
       "replaces": "Weapon/Armor Proficiency; Spells; Spell Recall; Knowledge Pool; Medium Armor; 9th-level Arcana; Improved Spell Recall; Heavy Armor; True Magus",
       "aonSummary": "A kensai spends his life focusing his training and meditation into a rapturous perfection of the use of a single weapon, which is usually but not always a sword, channeling his arcane might through it in a dizzying and deadly dance beyond the abilities of even the greatest of mundane warriors.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:magic-warrior",
@@ -7070,7 +7070,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Magic%20Warrior",
       "replaces": "Class Skills; 3rd-level Magus Arcana; Improved Spell Combat; Greater Spell Combat; Greater Spell Access",
       "aonSummary": "Trained in a tradition stretching back to Old-Mage Jatembe’s Ten Magic Warriors, magic warriors renounce their identities to master magical might and serve as champions of culture and learning across the Mwangi Expanse and beyond.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:mindblade",
@@ -7081,7 +7081,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Mindblade",
       "replaces": "Spellcasting; Arcane Pool; Spell Recall; Knowledge Pool; Improved Spell Recall; Greater Spell Combat; Greater Spell Access; Medium Armor; Improved Spell Combat; Heavy Armor",
       "aonSummary": "A mindblade blends psychic talent and martial skill to lethal effect. By forming weapons with her mind, she always has the right tool for any situation.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:myrmidarch",
@@ -7092,7 +7092,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Myrmidarch",
       "replaces": "Spells; Spell Recall; Improved Spell Recall; 6th, 12th, 18th-level Magus Arcana; Knowledge Pool; Improved Spell Combat; Greater Spell Combat; True Magus",
       "aonSummary": "The myrmidarch is a skilled specialist, using magic to supplement and augment his martial mastery.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:nature-bonded-magus",
@@ -7103,7 +7103,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Nature-Bonded%20Magus",
       "replaces": "Arcane Pool; Spell Recall; Knowledge Pool; Improved Spell Recall",
       "aonSummary": "A nature-bonded magus synergizes arcane magic and the divine magic traditions of druids into a deadly synthesis.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:puppetmaster",
@@ -7114,7 +7114,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Puppetmaster",
       "replaces": "Skills; Knowledge Pool; Greater Spell Access; Arcane Pool; Spell Combat; Improved Spell Combat; Greater Spell Combat; Spellstrike; Fighter Training; Counterstrike; Medium Armor; Heavy Armor; True Magus",
       "aonSummary": "Puppetmasters focus on using charm and illusion spells to control the senses of those for whom they perform.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:sigilus",
@@ -7125,7 +7125,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Sigilus",
       "replaces": "Spellstrike; Medium Armor; Heavy Armor",
       "aonSummary": "A sigilus manipulates the discoveries of wizards and other more sagacious Cyphermages, using those findings to create special sigils that allow her to transfer spell effects into different objects for later use.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:skirnir",
@@ -7136,7 +7136,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Skirnir",
       "replaces": "Spells; Spell Combat; Spell Recall; Knowledge Pool; Improved Spell Combat; Greater Spell Combat; Greater Spell Access; Counterstrike",
       "aonSummary": "Sometimes called a shield-vassal or shieldmaiden, the skirnir has learned to infuse his power into his shield.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:sorrowblade",
@@ -7147,7 +7147,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Sorrowblade",
       "replaces": "3rd, 12th-level Magus Arcana; Speed Weapon Property",
       "aonSummary": "A magus who has suffered greatly over the course ofher life can learn to channel that misery into her weapon and inflict it on others.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:soul-forger",
@@ -7158,7 +7158,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Soul%20Forger",
       "replaces": "Spells; Knowledge Pool; Spell Recall; Improved Spell Recall; Counterstrike; Greater Spell Access",
       "aonSummary": "The soul forger has learned the skill of infusing the raw magical essence of his soul into armaments of surpassing power, combining the mystic arts with the arts of war in a unity of steely perfection.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:spell-dancer",
@@ -7169,7 +7169,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Spell%20Dancer",
       "replaces": "Arcane Pool; 5th-level Bonus Feat; Medium Armor; Heavy Armor",
       "aonSummary": "(Elf Only) Many elven magi do not consider themselves masters of a blend of martial and magical talents, but rather a sub-category of wizards who study the effect of physical movement and techniques upon spellcasting ability.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:spell-trapper",
@@ -7180,7 +7180,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Spell%20Trapper",
       "replaces": "Class Skills; Spell Recall; Fighter Training",
       "aonSummary": "Spell trappers forsake much of their arcane skill and martial knowledge in exchange for the ability to conjure magical traps to hinder their foes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:spellblade",
@@ -7191,7 +7191,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Spellblade",
       "replaces": "Spellstrike",
       "aonSummary": "A spellblade magus can manifest a ghostly blade of force that can be used as an off-hand weapon.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:spire-defender",
@@ -7202,7 +7202,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Spire%20Defender",
       "replaces": "Weapon/Armor Proficiencies; Spell Recall",
       "aonSummary": "Magi who train themselves to accompany sages and archaeologists venturing into the Mordant Spire become spire defenders.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "magus:staff-magus",
@@ -7213,7 +7213,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Staff%20Magus",
       "replaces": "Weapon/Armor Proficiencies; Medium Armor; Heavy Armor; Fighter Training",
       "aonSummary": "While most magi use a one-handed weapon as their melee implement of choice, one group of magi uses the quarterstaff instead.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:fiend-keeper",
@@ -7224,7 +7224,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Fiend%20Keeper",
       "replaces": "Alignment; Spirit; Haunt Channeler; Location Channel; Connection Channel; Ask the Spirits",
       "aonSummary": "Fiend keepers serve as a vessel to contain one of the world’s evil spirits so that it cannot inflict further harm.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:kami-medium",
@@ -7235,7 +7235,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Kami%20Medium",
       "replaces": "Spirit; Taboo; Spellcasting; Haunt Channeler; Location Channel; Connection Channel; Ask the Spirits; Astral Journey",
       "aonSummary": "Some mediums channel the power of nature spirits called kami rather than the spirits of legend.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:medium-of-the-master",
@@ -7246,7 +7246,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Medium%20of%20the%20Master",
       "replaces": "Class Skills; Armor Proficiency; Spirit; Spirit Surge; Spirit Power (Lesser): Shared Seance; Spirit Power (Intermediate); Trance of Three; Spirit Power (Supreme)",
       "aonSummary": "A medium of the master forgoes a connection with most spirits to form a bond with the spirits of great martial artists.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:nexian-channeler",
@@ -7257,7 +7257,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Nexian%20Channeler",
       "replaces": "Spirit; Knacks; Taboo; Haunt Channeler; Location Channel; Connection Channel; Propitiation; Ask the Spirits; Astral Journey; Trance of Three; Spacious Soul; Spirit Mastery; Astral Beacon",
       "aonSummary": "The archmage Nex long ago created an astral reflection of himself from which he can draw additional power. This echo now serves as an appropriate spirit for well-trained mediums to channel.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:outer-channeler",
@@ -7268,7 +7268,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Outer%20Channeler",
       "replaces": "Spirit; Taboo; Haunt Channeler; Connection Channel; Location Channel; Ask the Spirits; Astral Journey",
       "aonSummary": "Outer channelers invite extraplanar entities to inhabit them, allowing the likes of angels and demons to use them as vessels in exchange for power.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:reanimated-medium",
@@ -7290,7 +7290,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Relic%20Channeler",
       "replaces": "Spirit; Haunt Channeler; Location Channel; Connection Channel",
       "aonSummary": "A relic channeler carries relics of legend around with her.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:rivethun-spirit-channeler",
@@ -7301,7 +7301,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Rivethun%20Spirit%20Channeler",
       "replaces": "Spellcasting; Spirit; Spirit Bonus; Spirit Surge; Taboo; Connection Channel",
       "aonSummary": "Rivethun spirit channelers are mediums who practice the ancient dwarven philosophy of the rivethun, which teaches that power lies in the connection between physical bodies and immaterial souls.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:spirit-dancer",
@@ -7323,7 +7323,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Spirit%20Eater",
       "replaces": "Haunt Channeler; Location Channel; Connection Channel",
       "aonSummary": "Guardians of their communities, spirit eaters absorb the dead to channel their power and serve as a line of defense against all manner of incorporeal yokai.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:storm-dreamer",
@@ -7334,7 +7334,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Storm%20Dreamer",
       "replaces": "Spirit Surge; Haunt Channeler; Location Channel; Connection Channel",
       "aonSummary": "Storm dreamers serve the Storm Kindlers by communing with their mystical predecessors. They serve as spiritual advisors for the organization, and are valued for the lore and wisdom they gain during their trances.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:storyteller",
@@ -7345,7 +7345,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Storyteller",
       "replaces": "Spirit; Spirit Bonus; Spirit Surge; Shared Seance; Taboo; Haunt Channeler; Propitiation; Trance of Three; Connection Channel; Spirit Mastery; Astral Beacon",
       "aonSummary": "While all mediums connect to legendary spirits, storyteller mediums take their obsession with legends to the extreme, suffusing their lives with epic tales at the cost of some of their spiritual power.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:uda-wendo",
@@ -7356,7 +7356,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Uda%20Wendo",
       "replaces": "Class Skills; Spirit; Shared Seance; Haunt Channeler; Location Channel; Connection Channel",
       "aonSummary": "Uda wendo are powerful mediums who are sensitive to the presence and desires of the wendo, powerful and mysterious entities that walk Golarion while shaping fate and guiding destiny.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:vessel-of-the-failed",
@@ -7367,7 +7367,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Vessel%20of%20the%20Failed",
       "replaces": "Spirit; Spirit Mastery; Spirit Surge; Taboo",
       "aonSummary": "A vessel of the failed channels the spirits of those who attempted the Test of the Starstone but failed; these spirits grant the medium abilities wrought from the spirits’ ultimate shortcomings.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "medium:voice-of-the-void",
@@ -7378,7 +7378,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Voice%20of%20the%20Void",
       "replaces": "Spirit; Taboo; Haunt Channeler",
       "aonSummary": "Some mediums delve deeply into the spirit world and make contact with entities that exist outside the boundaries of the sane multiverse.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:aromaphile",
@@ -7389,7 +7389,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Aromaphile",
       "replaces": "Hypnotic Stare; Painful Stare; Towering Ego; Bold Stare; Touch Treatment; Mental Potency",
       "aonSummary": "(Ghoran only) Rather than employ the baleful glares of the typical mesmerist, aromaphiles hypnotize others using an array of sickeningly sweet scents developed from their unique ghoran physiology.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:autohypnotist",
@@ -7400,7 +7400,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Autohypnotist",
       "replaces": "Hypnotic Stare; Mental Potency",
       "aonSummary": "An autohypnotist has incredibly powerful psychic abilities that he can’t entirely control.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:chart-caster",
@@ -7411,7 +7411,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Chart%20Caster",
       "replaces": "Class Skills; Mesmerist Tricks; Manifold Tricks; Touch Treatment",
       "aonSummary": "Lirgeni astrologists would divine their futures by consulting star charts, but some had no talent for astrology and simply faked their results. When prophecy died with Aroden, a few Lirgeni survivors continued with this “reliable” method.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:cult-master",
@@ -7433,7 +7433,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Dreamstalker",
       "replaces": "Painful Stare; 1st-level Mesmerist Trick; Towering Ego; Touch Treatment; Manifold Tricks; Glib Lie",
       "aonSummary": "Many mesmerists concentrate their studies on conscious, rational thought, but dreamstalkers instead delve into the unleashed unconscious mind that wanders free in dreams.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:enigma",
@@ -7444,7 +7444,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Enigma",
       "replaces": "Hypnotic Stare; Consummate Liar; Painful Stare; Touch Treatment; Manifold Tricks; Glib Lie; Rule Minds",
       "aonSummary": "An enigma spends his life dedicated to developing psychic abilities that allow him to operate unnoticed.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:eyebiter",
@@ -7455,7 +7455,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Eyebiter",
       "replaces": "Consummate Liar; 1st-level Mesmerist Trick; Touch Treatment; Mental Potency; Glib Lie",
       "aonSummary": "An eyebiter’s eyes become so infused with psychic might that they can leave the eyebiter’s body and move about on their own.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:fey-trickster",
@@ -7466,7 +7466,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Fey%20Trickster",
       "replaces": "Class Skills; Spellcasting; Towering Ego; Touch Treatment; Rule Minds",
       "aonSummary": "Most mesmerists draw psychic power from the Astral Plane, but a few gain their powers in an unusual way: from a brush with the fey.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:gaslighter",
@@ -7477,7 +7477,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Gaslighter",
       "replaces": "Alignment; Consummate Liar; Touch Treatment; Painful Stare;",
       "aonSummary": "A gaslighter takes joy in others’ suffering, delighting in driving them to madness.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:hate-monger",
@@ -7488,7 +7488,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Hate-Monger",
       "replaces": "Alignment; Consummate Liar; Touch Treatment; Mental Potency; Manifold Tricks; 7th-level Bold Stare; Glib Lie",
       "aonSummary": "Hate-mongers are xenophobic and judgmental rabblerousers who whip up mobs against enemies real or imagined.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:material-manipulator",
@@ -7499,7 +7499,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Material%20Manipulator",
       "replaces": "Spellcasting; Consummate Liar; 2nd-level Mesmerist Trick; Manifold Tricks; Touch Treatment; Rules Minds",
       "aonSummary": "Rather than waste time limiting himself to ruling minds, a material manipulator forces his whims upon reality and uses his magic to ensure that those around him comply with his demands.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:mindwyrm-mesmer",
@@ -7510,7 +7510,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Mindwyrm%20Mesmer",
       "replaces": "Consummate Liar; Painful Stare",
       "aonSummary": "Mindwyrm mesmers emulate the confidence, swagger, and fear inspired by dragons to bully and browbeat others into obedience.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:projectionist",
@@ -7521,7 +7521,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Projectionist",
       "replaces": "Spellcasting; 4th-level Mesmerist Trick; Mental Potency",
       "aonSummary": "Not content to simply command others from afar, a projectionist is able to use his mesmerizing powers to utterly dominate other creatures and objects by projecting his spirit from his body.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:spirit-walker",
@@ -7532,7 +7532,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Spirit%20Walker",
       "replaces": "Spells; Consummate Liar; Mental Potency; 3rd, 6th, 10th, and 14th-level Touch Treatments; Rule Minds",
       "aonSummary": "Some mesmerists specialize in dominating and controlling undead rather than the living.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:thought-eater",
@@ -7543,7 +7543,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Thought%20Eater",
       "replaces": "Consummate Liar; Towering Ego; Touch Treatment; Rule Minds",
       "aonSummary": "Mesmerists that learn to pierce deep into the minds of their victims are known as thought eaters, dangerous individuals capable of devouring thoughts and assuming the knowledge those notions represent for themselves.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:toxitician",
@@ -7554,7 +7554,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Toxitician",
       "replaces": "Consummate Liar; Hypnotic Stare; Painful Stare; Bold Stare; Touch Treatment; Glib Lie",
       "aonSummary": "Toxiticians forgo the mesmerist’s stare, instead combining their psychic power with their alchemical knowledge to craft injections that torment their foes and bolster themselves and their allies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:umbral-mesmerist",
@@ -7565,7 +7565,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Umbral%20Mesmerist",
       "replaces": "Spellcasting; 1st, 4th, 8th, 12th, 16th, and 20th-level Mesmerist Tricks; Towering Ego; Mental Potency",
       "aonSummary": "Trained in secret, umbral mesmerists are clandestine weapons who spend years learning how to shape terrifying creatures from the inky darkness in which they revel.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:vexing-daredevil",
@@ -7587,7 +7587,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Vexing%20Trickster",
       "replaces": "Consumate Liar, Touch Treatment",
       "aonSummary": "Vexing tricksters indulge in the various hijinks their power enables.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:vizier",
@@ -7598,7 +7598,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Vizier",
       "replaces": "Consummate Liar; 3rd-level Bold Stare; Towering Ego; Mental Potency",
       "aonSummary": "While many mesmerists focus on beguiling their foes or taking overt control of others with their mental powers, viziers carve out a subtler niche for themselves as advisors.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "mesmerist:vox",
@@ -7609,7 +7609,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Vox",
       "replaces": "Spellcasting; Towering Ego; 10th-level Mesmerist Trick; Touch Treatment; Hypnotic Stare",
       "aonSummary": "Most mesmerists practice their mental manipulation through their entrancing gaze, but others have learned to practice their skill through the lilt and intonation of their voice.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:black-asp",
@@ -7620,7 +7620,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Black%20Asp",
       "replaces": "Stunning Fist; Still Mind",
       "aonSummary": "The black asps are a sinister order of monks who train as assassins and infiltrators with no need for weapons to achieve their goals.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:brazen-disciple",
@@ -7631,7 +7631,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Brazen%20Disciple",
       "replaces": "Class Skills; 1st, 6th-level Bonus Feats; Still Mind; Abundant Step; Perfect Self",
       "aonSummary": "Brazen disciples use deception in their fighting style, and many go a step further, incorporating fire and smoke both mundane and magical.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:disciple-of-wholeness",
@@ -7642,7 +7642,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Disciple%20of%20Wholeness",
       "replaces": "Ki Pool; Purity of Body; Diamond Body; Diamond Soul",
       "aonSummary": "Disciples of wholeness train to bring themselves and others closer to physical and spiritual perfection.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:drunken-master",
@@ -7653,7 +7653,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Drunken%20Master",
       "replaces": "Still Mind; Purity of Body; Diamond Body; Diamond Soul; Empty Body",
       "aonSummary": "The drunken master finds perfection through excess.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:elemental-monk",
@@ -7664,7 +7664,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Elemental%20Monk",
       "replaces": "Alignment; Stunning Fist; Bonus Feats; Evasion; Purity of Body; Diamond Body; Ki Pool",
       "aonSummary": "Elemental monks draw inspiration from genies to create their fighting style. Their adaptability and versatility make them capable of serving as emissaries of elemental balance.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:far-strike-monk",
@@ -7675,7 +7675,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Far%20Strike%20Monk",
       "replaces": "Weapon/Armor Proficiencies; Flurry of Blows; Bonus Feats; Stunning Fist; Still Mind; Purity of Body; Diamond Body",
       "aonSummary": "Far strike monks are masters of thrown weapons, from shuriken to throwing axes to spears.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:flowing-monk",
@@ -7686,7 +7686,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Flowing%20Monk",
       "replaces": "Stunning Fist; 2nd-level Bonus Feat; Fast Movement; Purity of Body; Diamond Body; Quivering Palm",
       "aonSummary": "The flowing monk is the wind and the river. He knows how the world flows, and forces his enemies to flow with it.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:gray-disciple",
@@ -7697,7 +7697,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Gray%20Disciple",
       "replaces": "Slow Fall; Still Mind; High Jump; 6th-level Bonus Feat; Wholeness of Body; Abundant Step; Quivering Palm; Tongue of the Sun and Moon; Empty Body",
       "aonSummary": "(Duergar Only) The gray disciple contemplates the inner voice of duergar magic and the silent eternity of stone, mastering these dual mysteries and combining them to deadly effect.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:hamatulatsu-master",
@@ -7708,7 +7708,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Hamatulatsu%20Master",
       "replaces": "Bonus Feats; Stunning Fist; Ki Pool; Purity of Body",
       "aonSummary": "Once part of the Sisterhood of Eiseth, the Sisterhood of the Golden Erinyes is an order of female monks dedicated to emulating the painful strikes of the barbed devil, leaving targets alive but permanently scarred and broken by pain—a method called hamatulatsu.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:harrow-warden",
@@ -7719,7 +7719,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Harrow%20Warden",
       "replaces": "Weapon/Armor Proficiencies; Stunning Fist; Improved Evasion; Diamond Body; Quivering Palm",
       "aonSummary": "Some who study the mysteries of the harrow do so to restore lost knowledge and pride to the Varisian people. The harrow warden fulfills this role as she seeks to bring her mind and body into alignment, and she protects her people by invoking the folklore that has guided them for so long. In mastering her own place in fate, a harrow warden learns how to misalign the destinies of others.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:hellcat",
@@ -7730,7 +7730,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Hellcat",
       "replaces": "Alignment; Class Skills; Weapon Proficiencies; Bonus Feats; Stunning Fist; Fast Movement; Evasion; Purity of Body; Improved Evasion; Slow Fall; Still Mind; Ki Pool; Wholeness of Body; Diamond Body",
       "aonSummary": "Monks of the hellcat sect follow the teachings of Asmodeus or another infernal power.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:hungry-ghost-monk",
@@ -7741,7 +7741,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Hungry%20Ghost%20Monk",
       "replaces": "Stunning Fist; Purity of Body; Wholeness of Body; Diamond Body; Diamond Soul",
       "aonSummary": "The hungry ghost monk looks to spirits that prey upon the living as models of perfection.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:invested-regent",
@@ -7752,7 +7752,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Invested%20Regent",
       "replaces": "1st-level Bonus Feat",
       "aonSummary": "The invested regent can harness a divine spark to perform superhuman stunts, influence others, and escape injury.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:ironskin-monk",
@@ -7763,7 +7763,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Ironskin%20Monk",
       "replaces": "Monk’s AC; Bonus Feats; Evasion; Ki Speed Increase; High Jump; Fast Movement; Slow Fall; Improved Evasion; Tongue of the Sun and Moon; Perfect Self",
       "aonSummary": "(Hobgoblin Only) Through discipline and training, an ironskin monk hardens his body to withstand punishing blows.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:karmic-monk",
@@ -7774,7 +7774,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Karmic%20Monk",
       "replaces": "Alignment; Class Skills; Stunning Fist; Still Mind; 7th and 10th-level Ki Pool Abilities; Improved Evasion; Slow Fall; Perfect Self",
       "aonSummary": "A karmic monk contemplates the myriad harmonies that guide existence. He learns to use the disharmony in others against them, and to alter his own inner harmonies to exploit weaknesses in his opponents’ defenses.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:kata-master",
@@ -7785,7 +7785,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Kata%20Master",
       "replaces": "Stunning Fist; Still Mind; Ki Pool; Wholeness of Body; Quivering Palm",
       "aonSummary": "The kata master takes the visual aspect of his martial art to its logical extreme, harnessing her flowing movements and skilled maneuvers as a psychological weapon against her enemies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:ki-mystic",
@@ -7796,7 +7796,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Ki%20Mystic",
       "replaces": "Still Mind; Purity of Body; Diamond Body; Diamond Soul; Empty Body",
       "aonSummary": "The ki mystic believes that violence is sometimes necessary, but knowing and understanding is the true root of perfection.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:lifting-hand",
@@ -7807,7 +7807,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Lifting%20Hand",
       "replaces": "Stunning Fist; Bonus Feats; Abundant Step",
       "aonSummary": "When facing a master of the lifting hand, an enemy is likely to find itself sailing through the air or locked in a tortuous compliance hold.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:maneuver-master",
@@ -7818,7 +7818,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Maneuver%20Master",
       "replaces": "Flurry of Blows; Still Mind; Slow Fall; Purity of Body; Diamond Body; Quivering Palm",
       "aonSummary": "The maneuver master specializes in more complicated moves than simple damage-dealing strikes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:martial-artist",
@@ -7829,7 +7829,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Martial%20Artist",
       "replaces": "Still Mind; Slow Fall; Ki Pool; Purity of Body; Diamond Body; Perfect Self; Wholeness of Body; Timeless Body; Tongue of Sun and Moon; Abundant Step; Diamond Soul; Empty Body",
       "aonSummary": "The martial artist pursues a mastery of pure martial arts without the monastic traditions. He is a master of form, but lacks the ability to harness his ki.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:master-of-many-styles",
@@ -7840,7 +7840,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Master%20of%20Many%20Styles",
       "replaces": "Bonus Feats; Flurry of Blows; Perfect Self",
       "aonSummary": "The master of many styles is a collector. For every move, he seeks a counter. For every style, he has a riposte.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:menhir-guardian",
@@ -7851,7 +7851,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Menhir%20Guardian",
       "replaces": "Alignment; Weapon/Armor Proficiencies; Unarmed Strike; Ki Pool; Flurry of Blows; Stunning Fist; High Jump; Quivering Palm",
       "aonSummary": "Menhir guardians are ascetic protectors of sacred druidic sites, less concerned with structure and maintaining internal order than they are with preserving the natural balance of the world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:monk-of-the-empty-hand",
@@ -7862,7 +7862,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Empty%20Hand",
       "replaces": "Monk Weapon Proficiencies; Still Mind; Purity of Body; Diamond Body",
       "aonSummary": "The monk of the empty hand eschews normal weapons in favor of whatever is lying around—rocks, chair legs, flagons of ale, even a simple quill pen all become deadly weapons in the hands of such a monk.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:monk-of-the-four-winds",
@@ -7873,7 +7873,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Four%20Winds",
       "replaces": "Stunning Fist; Abundant Step; Timeless Body; Perfect Self",
       "aonSummary": "The monk of the four winds is connected to the natural world in a way few other creatures—even other monks—can hope to match.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:monk-of-the-healing-hand",
@@ -7884,7 +7884,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Healing%20Hand",
       "replaces": "Wholeness of Body; Diamond Body; Quivering Palm; Perfect Self",
       "aonSummary": "Monks of the healing hand seek perfection through helping others.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:monk-of-the-lotus",
@@ -7895,7 +7895,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Lotus",
       "replaces": "Stunning Fist; Abundant Step; Quivering Palm; Tongue of the Sun and the Moon",
       "aonSummary": "While a monk of the lotus realizes that combat cannot always be avoided—and is more than capable in a fight—he understands that all creatures are connected, and to harm another is to harm the self.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:monk-of-the-mantis",
@@ -7906,7 +7906,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Mantis",
       "replaces": "2nd, 6th, 10th, 14th, and 18th-level Bonus Feats; Wholeness of Body; Diamond Body; Diamond Soul; Quivering Palm",
       "aonSummary": "A body contains many points where the flesh, mind, and spirit coincide. A monk of the mantis is skilled at manipulating these points.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:monk-of-the-sacred-mountain",
@@ -7917,7 +7917,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Sacred%20Mountain",
       "replaces": "Evasion; Slow Fall; High Jump; Improved Evasion; Tongue of the Sun and the Moon",
       "aonSummary": "The monk of the sacred mountain finds strength and power in the earth beneath his feet.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:monk-of-the-seven-forms",
@@ -7928,7 +7928,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Monk%20of%20the%20Seven%20Forms",
       "replaces": "Bonus Feats; Stunning Fist; Maneuver Training; Abundant Step; Quivering Palm",
       "aonSummary": "In their place, the monks of the isolated sanctuary now teach a style featuring lightning-fast strikes that mimic both dervish dances and the searing winds of the arid desert, favoring mobility and endurance.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:nimble-guardian",
@@ -7939,7 +7939,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Nimble%20Guardian",
       "replaces": "Evasion; Still Mind; Purity of Body; Wholeness of Body; Improved Evasion",
       "aonSummary": "(Catfolk Only) Some catfolk monks dedicate their graceful prowess to the defense of others, especially those dedicated to a similar ethos or who prove themselves as stalwart allies of the monk’s cause.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:nornkith",
@@ -7950,7 +7950,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Nornkith",
       "replaces": "Key Ability Score; Stunning Fist; 1st-, 10th-level Bonus Feat; Purity of Body; Diamond Soul; Quivering Palm; Empty Body; Perfect Self",
       "aonSummary": "Nornkith hone their bodies and minds to follow the branching threefold paths of fate.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:ouat",
@@ -7961,7 +7961,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Ouat",
       "replaces": "Greed, Hatred, Defensive Training, Stonecunning, Weapon Familiarity (Dwarven Racial Traits); Stunning Fist; Wholeness of Body",
       "aonSummary": "(Dwarf Only) The ascetic, desert-dwelling dwarves known as the Ouat have eschewed dwarven traditions, whose unchanging rigidity, they believe, shackles their people to the past and inhibits self-improvement.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:perfect-scholar",
@@ -7972,7 +7972,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Perfect%20Scholar",
       "replaces": "Class Skills; Still Mind; Slow Fall; Tongue of the Sun and Moon; Perfect Self",
       "aonSummary": "Perfect scholars, often worshipers of Irori, hone their minds and bodies through the accumulation of knowledge",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:qinggong-monk",
@@ -7983,7 +7983,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Qinggong%20Monk",
       "replaces": "Slow Fall; High Jump; Wholeness of Body; Diamond Body; Abundant Step; Diamond Soul; Quivering Palm; Timeless Body; Tongue of the Sun and Moon; Empty Body; Perfect Self",
       "aonSummary": "The qinggong monk is a master of her ki, using it to perform superhuman stunts or even blast opponents with supernatural energy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:sage-counselor",
@@ -7994,7 +7994,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Sage%20Counselor",
       "replaces": "Class Skills; 1st, 2nd, 6th, 10th-level Bonus Feat; Ki Pool abilities",
       "aonSummary": "Sage counselors are ascetics and mystics who leave the confines of the monastery walls to advise secular people about spiritual truths and to seek knowledge of the outside world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:scaled-fist",
@@ -8005,7 +8005,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Scaled%20Fist",
       "replaces": "Bonus Feats; Still Mind; Maneuver Training; Quivering Palm",
       "aonSummary": "Scaled fists eschew passive introspection in favor of unshakable confidence.\nSteeped in traditions that trace their origins to the warrior-monks who trained under the tutelage of draconic masters in Tian Xia, scaled fists eschew passive introspection in favor of unshakable confidence. Scaled fists learn to combine brutal intimidation with the brazen ferocity of an ancient wyrm to devastate their foes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:scarred-monk",
@@ -8016,7 +8016,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Scarred%20Monk",
       "replaces": "Ki Pool; High Jump; Wholeness of Body; Abundant Step, Empty Body",
       "aonSummary": "For monks who seek the truth hidden in pain, the practice of mortifications of the flesh helps to achieve enlightenment and acquire disturbing powers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:sensei",
@@ -8027,7 +8027,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Sensei",
       "replaces": "Flurry of Blows; Fast Movement; Improved Evasion; Evasion; 2nd, 6th, 12th, 18th-level Bonus Feats",
       "aonSummary": "The sensei is a revered teacher who imparts lessons on the oneness of mind, body, and spirit, along with occasional correction that is subtle and swift.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:serpent-fire-adept",
@@ -8038,7 +8038,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Serpent-Fire%20Adept",
       "replaces": "Class Skills; Stunning Fist; 1st, 2nd, 6th, 10th, 14th, and 18th-level Bonus Feats; Slow Fall; High Jump; Wholeness of Body",
       "aonSummary": "A serpent-fire adept embraces the secrets of her chakras and mastery of their energetic flow.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:sin-monk",
@@ -8049,7 +8049,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Sin%20Monk",
       "replaces": "Ki Pool; High Jump; Wholeness of Body; Abundant Step; Empty Body; Perfect Self",
       "aonSummary": "(Ex-monk archetype) Martial experts who have allowed such passions to lead them astray may find themselves gaining powers drawn from their newly embraced sins.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:softstrike-monk",
@@ -8060,7 +8060,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Softstrike%20Monk",
       "replaces": "Weapon Proficiency; Unarmed Strike; 6th, 10th-level Bonus Feats; Wholeness of Body; Quivering Palm; Empty Body",
       "aonSummary": "Softstrike monks employ a nonlethal but effective form of combat.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:sohei",
@@ -8071,7 +8071,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Sohei",
       "replaces": "Weapon/Armor Proficiency; Stunning Fist; Fast Movement; Increased Unarmed Damage; Slow Fall; Abundant Step; Purity of Body; Diamond Body; Quivering Palm; Timeless Body; Tongue of Sun and Moon",
       "aonSummary": "The sohei are masters of the horse and the hunt.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:soul-shepherd",
@@ -8082,7 +8082,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Soul%20Shepherd",
       "replaces": "Stunning Fist; Evasion; Improved Evasion; Abundant Step; Quivering Palm",
       "aonSummary": "Whether studying at the feet of psychopomps or merely imitating the creatures' philosophy and methods, soul shepherds believe in safeguarding the Cycle of Souls.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:spirit-master",
@@ -8093,7 +8093,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Spirit%20Master",
       "replaces": "Still Mind; Maneuver Training; Purity of Body; Wholeness of Body; Quivering Palm; Empty Body; Perfect Self",
       "aonSummary": "Spirit masters are monks who specialize in combating the undead, laying their corpses to rest, and sending their souls to final judgment.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:student-of-stone",
@@ -8104,7 +8104,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Student%20of%20Stone",
       "replaces": "Evasion; Fast Movement; Bonus Feat; High Jump; Improved Evasion; Abundant Step",
       "aonSummary": "(Oread Only) By following the path of the stone, students of stone give up much of monks’ mobility in favor of sheer resilience.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:terra-cotta-monk",
@@ -8115,7 +8115,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Terra-Cotta%20Monk",
       "replaces": "Class Skills; Evasion; High Jump; Improved Evasion; Abundant Step; Quivering Palm; Empty Body",
       "aonSummary": "Possessing a natural affinity for all things earthen, terracotta monks are experts at turning the stone around them against their enemies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:tetori",
@@ -8137,7 +8137,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Treetop%20Monk",
       "replaces": "Still Mind; Purity of Body; Abundant Step",
       "aonSummary": "(Vanara Only) While many vanaras follow traditional monastic training and traditions, others learn to blend exotic combat and the mysterious forces of ki with the natural world, allowing them to move through trees and overgrowth to deliver devastating attacks.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:underfoot-adept",
@@ -8148,7 +8148,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Underfoot%20Adept",
       "replaces": "1st-level Bonus Feat; Stunning Fist; High Jump",
       "aonSummary": "(Halfling Only) An underfoot adept turns his diminutive stature and unorthodox footwork into a powerful weapon.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:wanderer",
@@ -8159,7 +8159,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Wanderer",
       "replaces": "Class Skills; 1st-level Bonus Feat; Still Mind; Slow Fall; High Jump; Wholeness of Body; Abundant Step; Diamond Soul",
       "aonSummary": "(Human Only) Some monks wander the world in humility to learn and to share wisdom and philosophy from their teachers with those they meet, often aiding those who are in need.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:wasteland-meditant",
@@ -8170,7 +8170,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Wasteland%20Meditant",
       "replaces": "Stunning Fist; Evasion; Slow Fall; Improved Evasion; Quivering Palm",
       "aonSummary": "Some monks journey to remote and isolated corners of the world to find serenity and a heightened sense of awareness.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:water-dancer",
@@ -8181,7 +8181,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Water%20Dancer",
       "replaces": "Flurry of Blows; Stunning Fist; Quivering Palm; 1st, 2nd, 6th, 10th, 14th, and 18th-level Bonus Feats; Unarmed Strike; Evasion; Slow Fall; Improved Evasion; Abundant Step",
       "aonSummary": "Water dancers derive their martial training from ancient nereid traditions jealously guarded by these enigmatic fey.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:weapon-adept",
@@ -8192,7 +8192,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Weapon%20Adept",
       "replaces": "Stunning Fist; Evasion; Improved Evasion; Timeless Body; Perfect Self",
       "aonSummary": "While all monks train in both unarmed combat and with weapons, the weapon adept seeks to become one with his weapons, transforming them into perfect extensions of his own body.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:wildcat",
@@ -8203,7 +8203,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Wildcat",
       "replaces": "Still Mind; Ki Pool; High Jump; Slow Fall; Improved Evasion; Abundant Step; Diamond Soul; Empty Body",
       "aonSummary": "A wildcat is a student of the school of hard knocks, who dedicates himself to learning how to take down foes by any means necessary.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:windstep-master",
@@ -8214,7 +8214,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20Windstep%20Master",
       "replaces": "Stunning Fist; Slow Fall; Ki Pool",
       "aonSummary": "Most monks are agile and fleet of foot, but few can rival a windstep master’s lightness of step.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "monk:zen-archer",

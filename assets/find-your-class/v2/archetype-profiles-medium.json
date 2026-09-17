@@ -1,0 +1,473 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Medium parent value.",
+  "profiles": [
+    {
+      "id": "medium:fiend-keeper",
+      "name": "Fiend Keeper",
+      "parentClassId": "medium",
+      "sourceCitationText": "Blood of the Beast pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Fiend%20Keeper",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Alignment / Evil Spirit / Dark Communion / Dark Power",
+          "reason": "The archetype’s Alignment / Evil Spirit / Dark Communion / Dark Power package materially changes anti magic disruption from the Medium baseline."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Alignment / Evil Spirit / Dark Communion / Dark Power",
+          "reason": "The archetype’s Alignment / Evil Spirit / Dark Communion / Dark Power package materially changes personal durability from the Medium baseline."
+        }
+      ],
+      "playerSummary": "Fiend keepers serve as a vessel to contain one of the world’s evil spirits so that it cannot inflict further harm.",
+      "tradeoff": "It replaces or alters Alignment; Spirit; Haunt Channeler; Location Channel; Connection Channel; Ask the Spirits; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:kami-medium",
+      "name": "Kami Medium",
+      "parentClassId": "medium",
+      "sourceCitationText": "Occult Adventures pg. 92",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Kami%20Medium",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Kami Channeler / Natural Taboo / Ofuda / Shikigami",
+          "reason": "The archetype’s Kami Channeler / Natural Taboo / Ofuda / Shikigami package materially changes wilderness affinity from the Medium baseline."
+        }
+      ],
+      "playerSummary": "Some mediums channel the power of nature spirits called kami rather than the spirits of legend.",
+      "tradeoff": "It replaces or alters Spirit; Taboo; Spellcasting; Haunt Channeler; Location Channel; Connection Channel; Ask the Spirits; Astral Journey; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:medium-of-the-master",
+      "name": "Medium of the Master",
+      "parentClassId": "medium",
+      "sourceCitationText": "Martial Arts Handbook pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Medium%20of%20the%20Master",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Class Skills / Armor Proficiency / Unarmed Strike / Dedicated Spirit",
+          "reason": "The archetype’s Class Skills / Armor Proficiency / Unarmed Strike / Dedicated Spirit package materially changes melee combat from the Medium baseline."
+        }
+      ],
+      "playerSummary": "A medium of the master forgoes a connection with most spirits to form a bond with the spirits of great martial artists.",
+      "tradeoff": "It replaces or alters Class Skills; Armor Proficiency; Spirit; Spirit Surge; Spirit Power (Lesser): Shared Seance; Spirit Power (Intermediate); Trance of Three; Spirit Power (Supreme); those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:nexian-channeler",
+      "name": "Nexian Channeler",
+      "parentClassId": "medium",
+      "sourceCitationText": "Occult Origins pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Nexian%20Channeler",
+      "capabilityOverrides": {
+        "offensive-magic": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Legend of Nex / Third Eye / Impossible Eye / Third Eye Mastery",
+          "reason": "The archetype’s Legend of Nex / Third Eye / Impossible Eye / Third Eye Mastery package materially changes offensive magic from the Medium baseline."
+        }
+      ],
+      "playerSummary": "The archmage Nex long ago created an astral reflection of himself from which he can draw additional power. This echo now serves as an appropriate spirit for well-trained mediums to channel.",
+      "tradeoff": "It replaces or alters Spirit; Knacks; Taboo; Haunt Channeler; Location Channel; Connection Channel; Propitiation; Ask the Spirits; Astral Journey; Trance of Three; Spacious Soul; Spirit Mastery; Astral Beacon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:outer-channeler",
+      "name": "Outer Channeler",
+      "parentClassId": "medium",
+      "sourceCitationText": "Psychic Anthology pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Outer%20Channeler",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Outsider Invocation / Taboo / Shared Seance / Servitor",
+          "reason": "Outsider Invocation / Taboo / Shared Seance / Servitor defines the material change from the Medium baseline."
+        }
+      ],
+      "playerSummary": "Outer channelers invite extraplanar entities to inhabit them, allowing the likes of angels and demons to use them as vessels in exchange for power.",
+      "tradeoff": "It replaces or alters Spirit; Taboo; Haunt Channeler; Connection Channel; Location Channel; Ask the Spirits; Astral Journey; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:reanimated-medium",
+      "name": "Reanimated Medium",
+      "parentClassId": "medium",
+      "sourceCitationText": "Occult Adventures pg. 93",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Reanimated%20Medium",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "curse-or-drawback",
+          "kind": "commitment",
+          "summary": "At zero influence the body enters a helpless, deathlike coma for 24 hours.",
+          "evidenceSection": "Channel Self"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Channel Self / Nothing Is Taboo / Ease Passage / Lingering Spirit",
+          "reason": "The archetype’s Channel Self / Nothing Is Taboo / Ease Passage / Lingering Spirit package materially changes personal durability from the Medium baseline."
+        }
+      ],
+      "playerSummary": "Sometimes a departed soul destined for legend gains a second chance at life by possessing his own revived body.",
+      "tradeoff": "It replaces or alters Spirit; Taboo; Haunt Channeler; Location Channel; Connection Channel; Spacious Soul; Astral Beacon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:relic-channeler",
+      "name": "Relic Channeler",
+      "parentClassId": "medium",
+      "sourceCitationText": "Occult Adventures pg. 93",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Relic%20Channeler",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "relic"
+        ],
+        "professionIdentity": [
+          "relic bearer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Relics / Powerful Bond / Object Reading / Apport Relic",
+          "reason": "Relics / Powerful Bond / Object Reading / Apport Relic defines the material change from the Medium baseline."
+        }
+      ],
+      "playerSummary": "A relic channeler carries relics of legend around with her.",
+      "tradeoff": "It replaces or alters Spirit; Haunt Channeler; Location Channel; Connection Channel; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:rivethun-spirit-channeler",
+      "name": "Rivethun Spirit Channeler",
+      "parentClassId": "medium",
+      "sourceCitationText": "Haunted Heroes Handbook pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Rivethun%20Spirit%20Channeler",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Mind and Soul / Spiritual Invocation / Spiritual Parley / Wrangle Condition",
+          "reason": "The archetype’s Mind and Soul / Spiritual Invocation / Spiritual Parley / Wrangle Condition package materially changes support buffing from the Medium baseline."
+        }
+      ],
+      "playerSummary": "Rivethun spirit channelers are mediums who practice the ancient dwarven philosophy of the rivethun, which teaches that power lies in the connection between physical bodies and immaterial souls.",
+      "tradeoff": "It replaces or alters Spellcasting; Spirit; Spirit Bonus; Spirit Surge; Taboo; Connection Channel; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:spirit-dancer",
+      "name": "Spirit Dancer",
+      "parentClassId": "medium",
+      "sourceCitationText": "Occult Adventures pg. 94",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Spirit%20Dancer",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "spirit dancer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Spirit Dance / Nothing Is Taboo / Spirit Aura / Spirit Troika",
+          "reason": "The archetype’s Spirit Dance / Nothing Is Taboo / Spirit Aura / Spirit Troika package materially changes tactical leadership from the Medium baseline."
+        }
+      ],
+      "playerSummary": "A spirit dancer enacts an exuberant dance to the spirits, accepting many roles in the shifting dance and changing dance partners quickly.",
+      "tradeoff": "It replaces or alters Spirit; Spirit Bonus; Spirit Surge; Taboo; Shared Seance; Trance of Three; Spacious Soul; Astral Beacon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:spirit-eater",
+      "name": "Spirit Eater",
+      "parentClassId": "medium",
+      "sourceCitationText": "Heroes of Golarion pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Spirit%20Eater",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ],
+        "professionIdentity": [
+          "community guardian"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Ectoplasmic Strikes / Consume Spirit",
+          "reason": "The archetype’s Ectoplasmic Strikes / Consume Spirit package materially changes anti magic disruption from the Medium baseline."
+        },
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Ectoplasmic Strikes / Consume Spirit",
+          "reason": "The archetype’s Ectoplasmic Strikes / Consume Spirit package materially changes protecting allies from the Medium baseline."
+        }
+      ],
+      "playerSummary": "Guardians of their communities, spirit eaters absorb the dead to channel their power and serve as a line of defense against all manner of incorporeal yokai.",
+      "tradeoff": "It replaces or alters Haunt Channeler; Location Channel; Connection Channel; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:storm-dreamer",
+      "name": "Storm Dreamer",
+      "parentClassId": "medium",
+      "sourceCitationText": "Adventurer's Guide pg. 182",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Storm%20Dreamer",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "air"
+        ],
+        "professionIdentity": [
+          "spiritual advisor"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Gozreh’s Domain / Storm Trance / Dream Storm / Storm Seer",
+          "reason": "The archetype’s Gozreh’s Domain / Storm Trance / Dream Storm / Storm Seer package materially changes social influence from the Medium baseline."
+        }
+      ],
+      "playerSummary": "Storm dreamers serve the Storm Kindlers by communing with their mystical predecessors. They serve as spiritual advisors for the organization, and are valued for the lore and wisdom they gain during their trances.",
+      "tradeoff": "It replaces or alters Spirit Surge; Haunt Channeler; Location Channel; Connection Channel; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:storyteller",
+      "name": "Storyteller",
+      "parentClassId": "medium",
+      "sourceCitationText": "Occult Adventures pg. 95",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Storyteller",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "storyteller"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Diminished Spirits / Knowledge of Tales / Versatile Surge / Storyteller’s Performance",
+          "reason": "The archetype’s Diminished Spirits / Knowledge of Tales / Versatile Surge / Storyteller’s Performance package materially changes social influence from the Medium baseline."
+        }
+      ],
+      "playerSummary": "While all mediums connect to legendary spirits, storyteller mediums take their obsession with legends to the extreme, suffusing their lives with epic tales at the cost of some of their spiritual power.",
+      "tradeoff": "It replaces or alters Spirit; Spirit Bonus; Spirit Surge; Shared Seance; Taboo; Haunt Channeler; Propitiation; Trance of Three; Connection Channel; Spirit Mastery; Astral Beacon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:uda-wendo",
+      "name": "Uda Wendo",
+      "parentClassId": "medium",
+      "sourceCitationText": "Haunted Heroes Handbook pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Uda%20Wendo",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Archetype Features",
+          "reason": "Archetype Features defines the material change from the Medium baseline."
+        }
+      ],
+      "playerSummary": "Uda wendo are powerful mediums who are sensitive to the presence and desires of the wendo, powerful and mysterious entities that walk Golarion while shaping fate and guiding destiny.",
+      "tradeoff": "It replaces or alters Class Skills; Spirit; Shared Seance; Haunt Channeler; Location Channel; Connection Channel; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:vessel-of-the-failed",
+      "name": "Vessel of the Failed",
+      "parentClassId": "medium",
+      "sourceCitationText": "Disciple's Doctrine pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Vessel%20of%20the%20Failed",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Will of the Failed / Reckless Surge / Heroic Exceptions / Spiritual Swan Song",
+          "reason": "The archetype’s Will of the Failed / Reckless Surge / Heroic Exceptions / Spiritual Swan Song package materially changes debuffing enemies from the Medium baseline."
+        }
+      ],
+      "playerSummary": "A vessel of the failed channels the spirits of those who attempted the Test of the Starstone but failed; these spirits grant the medium abilities wrought from the spirits’ ultimate shortcomings.",
+      "tradeoff": "It replaces or alters Spirit; Spirit Mastery; Spirit Surge; Taboo; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "medium:voice-of-the-void",
+      "name": "Voice of the Void",
+      "parentClassId": "medium",
+      "sourceCitationText": "Villain Codex pg. 212",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Medium%20Voice%20of%20the%20Void",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Emissary / Surge of the Void / Blasphemy / Void Channeler",
+          "reason": "The archetype’s Emissary / Surge of the Void / Blasphemy / Void Channeler package materially changes debuffing enemies from the Medium baseline."
+        }
+      ],
+      "playerSummary": "Some mediums delve deeply into the spirit world and make contact with entities that exist outside the boundaries of the sane multiverse.",
+      "tradeoff": "It replaces or alters Spirit; Taboo; Haunt Channeler; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

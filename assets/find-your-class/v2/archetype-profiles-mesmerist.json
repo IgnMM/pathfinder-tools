@@ -1,0 +1,688 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Mesmerist parent value.",
+  "profiles": [
+    {
+      "id": "mesmerist:aromaphile",
+      "name": "Aromaphile",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Ultimate Wilderness pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Aromaphile",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "primaryDelivery": [
+          "scent"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Ghoran characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Hypnotic Aroma / Debilitating Aroma / Aromatic Manipulation",
+          "reason": "Hypnotic Aroma / Debilitating Aroma / Aromatic Manipulation defines the material change from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Rather than employ the baleful glares of the typical mesmerist, aromaphiles hypnotize others using an array of sickeningly sweet scents developed from their unique ghoran physiology.",
+      "tradeoff": "It replaces or alters Hypnotic Stare; Painful Stare; Towering Ego; Bold Stare; Touch Treatment; Mental Potency; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:autohypnotist",
+      "name": "Autohypnotist",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Psychic Anthology pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Autohypnotist",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Autohypnosis / Wide Stare",
+          "reason": "The archetype’s Autohypnosis / Wide Stare package materially changes personal durability from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "An autohypnotist has incredibly powerful psychic abilities that he can’t entirely control.",
+      "tradeoff": "It replaces or alters Hypnotic Stare; Mental Potency; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:chart-caster",
+      "name": "Chart Caster",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Blood of the Ancients pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Chart%20Caster",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "false astrologer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Class Skills / Subject of the Stars / Feign Destiny",
+          "reason": "The archetype’s Class Skills / Subject of the Stars / Feign Destiny package materially changes knowledge investigation from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Lirgeni astrologists would divine their futures by consulting star charts, but some had no talent for astrology and simply faked their results. When prophecy died with Aroden, a few Lirgeni survivors continued with this “reliable” method.",
+      "tradeoff": "It replaces or alters Class Skills; Mesmerist Tricks; Manifold Tricks; Touch Treatment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:cult-master",
+      "name": "Cult Master",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Occult Adventures pg. 96",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Cult%20Master",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "support-buffing": "core",
+        "summoning-companions": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true,
+        "has-profession-identity": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "cult leader"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Insidious Personality / Fanatical Stare / Cult Tricks / Double",
+          "reason": "The archetype’s Insidious Personality / Fanatical Stare / Cult Tricks / Double package materially changes tactical leadership from the Mesmerist baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Insidious Personality / Fanatical Stare / Cult Tricks / Double",
+          "reason": "The archetype’s Insidious Personality / Fanatical Stare / Cult Tricks / Double package materially changes support buffing from the Mesmerist baseline."
+        },
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Insidious Personality / Fanatical Stare / Cult Tricks / Double",
+          "reason": "The archetype’s Insidious Personality / Fanatical Stare / Cult Tricks / Double package materially changes summoning companions from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "The leaders of some cults are simply charlatans, bathing in the adulation of their followers. Others believe themselves to be truly in touch with an unknown power, bringing their unique messages to those willing to follow and obey them.",
+      "tradeoff": "It replaces or alters Consummate Liar; Painful Stare; Mesmerist Tricks; 3rd, 6th, and 14th-level Touch Treatments; 7th-level Bold Stare; Masterful Tricks; Rule Minds; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:dreamstalker",
+      "name": "Dreamstalker",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Horror Adventures pg. 60",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Dreamstalker",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dreams"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Dreams of Pain / Somnomancer / Sleepless / Touch of Night",
+          "reason": "The archetype’s Dreams of Pain / Somnomancer / Sleepless / Touch of Night package materially changes stealth subterfuge from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Many mesmerists concentrate their studies on conscious, rational thought, but dreamstalkers instead delve into the unleashed unconscious mind that wanders free in dreams.",
+      "tradeoff": "It replaces or alters Painful Stare; 1st-level Mesmerist Trick; Towering Ego; Touch Treatment; Manifold Tricks; Glib Lie; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:enigma",
+      "name": "Enigma",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Ultimate Intrigue pg. 36",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Enigma",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Solipsism / Veiled Steps / Enigmatic Stare / Transfer Affliction",
+          "reason": "The archetype’s Solipsism / Veiled Steps / Enigmatic Stare / Transfer Affliction package materially changes stealth subterfuge from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "An enigma spends his life dedicated to developing psychic abilities that allow him to operate unnoticed.",
+      "tradeoff": "It replaces or alters Hypnotic Stare; Consummate Liar; Painful Stare; Touch Treatment; Manifold Tricks; Glib Lie; Rule Minds; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:eyebiter",
+      "name": "Eyebiter",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Ultimate Intrigue pg. 36",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Eyebiter",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "detached eyes"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Eyeball Familiar / Ocular Occlusion / Clouded Vision / Cause or Cure Blindness",
+          "reason": "The archetype’s Eyeball Familiar / Ocular Occlusion / Clouded Vision / Cause or Cure Blindness package materially changes knowledge investigation from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "An eyebiter’s eyes become so infused with psychic might that they can leave the eyebiter’s body and move about on their own.",
+      "tradeoff": "It replaces or alters Consummate Liar; 1st-level Mesmerist Trick; Touch Treatment; Mental Potency; Glib Lie; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:fey-trickster",
+      "name": "Fey Trickster",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Ultimate Intrigue pg. 37",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Fey%20Trickster",
+      "capabilityOverrides": {
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Nature’s Lure / Feytouched / Fey Veil",
+          "reason": "The archetype’s Class Skills / Nature’s Lure / Feytouched / Fey Veil package materially changes wilderness affinity from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Most mesmerists draw psychic power from the Astral Plane, but a few gain their powers in an unusual way: from a brush with the fey.",
+      "tradeoff": "It replaces or alters Class Skills; Spellcasting; Towering Ego; Touch Treatment; Rule Minds; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:gaslighter",
+      "name": "Gaslighter",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Horror Adventures pg. 60",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Gaslighter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "psychological tormentor"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Consummate Cruelty / Horrid Mask / Phantasmal Force",
+          "reason": "Alignment / Consummate Cruelty / Horrid Mask / Phantasmal Force defines the material change from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "A gaslighter takes joy in others’ suffering, delighting in driving them to madness.",
+      "tradeoff": "It replaces or alters Alignment; Consummate Liar; Touch Treatment; Painful Stare;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:hate-monger",
+      "name": "Hate-Monger",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Horror Adventures pg. 61",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Hate-Monger",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "rabble-rouser"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Alignment / Mental Manipulator / Insidious Hatred / Xenophobe",
+          "reason": "The archetype’s Alignment / Mental Manipulator / Insidious Hatred / Xenophobe package materially changes tactical leadership from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Hate-mongers are xenophobic and judgmental rabblerousers who whip up mobs against enemies real or imagined.",
+      "tradeoff": "It replaces or alters Alignment; Consummate Liar; Touch Treatment; Mental Potency; Manifold Tricks; 7th-level Bold Stare; Glib Lie; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:material-manipulator",
+      "name": "Material Manipulator",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Psychic Anthology pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Material%20Manipulator",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Manipulator Spells / Revision",
+          "reason": "The archetype’s Manipulator Spells / Revision package materially changes battlefield control from the Mesmerist baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Manipulator Spells / Revision",
+          "reason": "The archetype’s Manipulator Spells / Revision package materially changes utility magic from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Rather than waste time limiting himself to ruling minds, a material manipulator forces his whims upon reality and uses his magic to ensure that those around him comply with his demands.",
+      "tradeoff": "It replaces or alters Spellcasting; Consummate Liar; 2nd-level Mesmerist Trick; Manifold Tricks; Touch Treatment; Rules Minds; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:mindwyrm-mesmer",
+      "name": "Mindwyrm Mesmer",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Legacy of Dragons pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Mindwyrm%20Mesmer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Phantasmagorical Breath / Draconic Trick / Threatening Mien / Masterful Draconic Trick",
+          "reason": "Phantasmagorical Breath / Draconic Trick / Threatening Mien / Masterful Draconic Trick defines the material change from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Mindwyrm mesmers emulate the confidence, swagger, and fear inspired by dragons to bully and browbeat others into obedience.",
+      "tradeoff": "It replaces or alters Consummate Liar; Painful Stare; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:projectionist",
+      "name": "Projectionist",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Psychic Anthology pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Projectionist",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Spells / Implant Consciousness / Hidden Presence",
+          "reason": "The archetype’s Spells / Implant Consciousness / Hidden Presence package materially changes transformation shapeshifting from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Not content to simply command others from afar, a projectionist is able to use his mesmerizing powers to utterly dominate other creatures and objects by projecting his spirit from his body.",
+      "tradeoff": "It replaces or alters Spellcasting; 4th-level Mesmerist Trick; Mental Potency; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:spirit-walker",
+      "name": "Spirit Walker",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Occult Adventures pg. 97",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Spirit%20Walker",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Spells / Undead Inception / Continued Animation / Command Undead",
+          "reason": "The archetype’s Spells / Undead Inception / Continued Animation / Command Undead package materially changes summoning companions from the Mesmerist baseline."
+        },
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Spells / Undead Inception / Continued Animation / Command Undead",
+          "reason": "The archetype’s Spells / Undead Inception / Continued Animation / Command Undead package materially changes anti magic disruption from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Some mesmerists specialize in dominating and controlling undead rather than the living.",
+      "tradeoff": "It replaces or alters Spells; Consummate Liar; Mental Potency; 3rd, 6th, 10th, and 14th-level Touch Treatments; Rule Minds; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:thought-eater",
+      "name": "Thought Eater",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Ultimate Intrigue pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Thought%20Eater",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Assume Identity / Assume Morality / Assume Knowledge / Consume Identity",
+          "reason": "The archetype’s Assume Identity / Assume Morality / Assume Knowledge / Consume Identity package materially changes knowledge investigation from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Mesmerists that learn to pierce deep into the minds of their victims are known as thought eaters, dangerous individuals capable of devouring thoughts and assuming the knowledge those notions represent for themselves.",
+      "tradeoff": "It replaces or alters Consummate Liar; Towering Ego; Touch Treatment; Rule Minds; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:toxitician",
+      "name": "Toxitician",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Occult Adventures pg. 98",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Toxitician",
+      "capabilityOverrides": {
+        "support-buffing": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "alchemist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Deft Fingers / Injections / Painful Injection / Injection Improvement",
+          "reason": "The archetype’s Deft Fingers / Injections / Painful Injection / Injection Improvement package materially changes support buffing from the Mesmerist baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Deft Fingers / Injections / Painful Injection / Injection Improvement",
+          "reason": "The archetype’s Deft Fingers / Injections / Painful Injection / Injection Improvement package materially changes practical expertise from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Toxiticians forgo the mesmerist’s stare, instead combining their psychic power with their alchemical knowledge to craft injections that torment their foes and bolster themselves and their allies.",
+      "tradeoff": "It replaces or alters Consummate Liar; Hypnotic Stare; Painful Stare; Bold Stare; Touch Treatment; Glib Lie; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:umbral-mesmerist",
+      "name": "Umbral Mesmerist",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Occult Realms pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Umbral%20Mesmerist",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Diminished Spellcasting / Shadow Summoning / Umbral Solipsism / Ephemeral Stare",
+          "reason": "The archetype’s Diminished Spellcasting / Shadow Summoning / Umbral Solipsism / Ephemeral Stare package materially changes summoning companions from the Mesmerist baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Diminished Spellcasting / Shadow Summoning / Umbral Solipsism / Ephemeral Stare",
+          "reason": "The archetype’s Diminished Spellcasting / Shadow Summoning / Umbral Solipsism / Ephemeral Stare package materially changes stealth subterfuge from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Trained in secret, umbral mesmerists are clandestine weapons who spend years learning how to shape terrifying creatures from the inky darkness in which they revel.",
+      "tradeoff": "It replaces or alters Spellcasting; 1st, 4th, 8th, 12th, 16th, and 20th-level Mesmerist Tricks; Towering Ego; Mental Potency; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:vexing-daredevil",
+      "name": "Vexing Daredevil",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Occult Adventures pg. 98",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Vexing%20Daredevil",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "combat-mobility": "core",
+        "combat-manoeuvres": "available"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Class Skills / Martial Weapon Proficiency / Bonus Feats / Dazzling Feint",
+          "reason": "The archetype’s Class Skills / Martial Weapon Proficiency / Bonus Feats / Dazzling Feint package materially changes melee combat from the Mesmerist baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Class Skills / Martial Weapon Proficiency / Bonus Feats / Dazzling Feint",
+          "reason": "The archetype’s Class Skills / Martial Weapon Proficiency / Bonus Feats / Dazzling Feint package materially changes combat mobility from the Mesmerist baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Class Skills / Martial Weapon Proficiency / Bonus Feats / Dazzling Feint",
+          "reason": "The archetype’s Class Skills / Martial Weapon Proficiency / Bonus Feats / Dazzling Feint package materially changes combat manoeuvres from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Vexing daredevils train their psychic powers for combat, specializing in momentarily blinding and confusing their foes with sudden feints and tricks.",
+      "tradeoff": "It replaces or alters Class Skills; 1st-level Mesmerist Trick; Touch Treatment; Bold Stare; Glib Tongue; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:vexing-trickster",
+      "name": "Vexing Trickster",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Psychic Anthology pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Vexing%20Trickster",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Consummate Trickster / Trickster’s Ego / Bonus Feat / Manifold Hijinks",
+          "reason": "The archetype’s Consummate Trickster / Trickster’s Ego / Bonus Feat / Manifold Hijinks package materially changes stealth subterfuge from the Mesmerist baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Consummate Trickster / Trickster’s Ego / Bonus Feat / Manifold Hijinks",
+          "reason": "The archetype’s Consummate Trickster / Trickster’s Ego / Bonus Feat / Manifold Hijinks package materially changes practical expertise from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Vexing tricksters indulge in the various hijinks their power enables.",
+      "tradeoff": "It replaces or alters Consumate Liar, Touch Treatment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:vizier",
+      "name": "Vizier",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Ultimate Intrigue pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Vizier",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "advisor"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Insidious Influence / Power Behind the Throne",
+          "reason": "The archetype’s Insidious Influence / Power Behind the Throne package materially changes support buffing from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "While many mesmerists focus on beguiling their foes or taking overt control of others with their mental powers, viziers carve out a subtler niche for themselves as advisors.",
+      "tradeoff": "It replaces or alters Consummate Liar; 3rd-level Bold Stare; Towering Ego; Mental Potency; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "mesmerist:vox",
+      "name": "Vox",
+      "parentClassId": "mesmerist",
+      "sourceCitationText": "Ultimate Intrigue pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Mesmerist%20Vox",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "voice"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Spells / Compelling Voice / Wounding Words / Subsonic Strike",
+          "reason": "Spells / Compelling Voice / Wounding Words / Subsonic Strike defines the material change from the Mesmerist baseline."
+        }
+      ],
+      "playerSummary": "Most mesmerists practice their mental manipulation through their entrancing gaze, but others have learned to practice their skill through the lilt and intonation of their voice.",
+      "tradeoff": "It replaces or alters Spellcasting; Towering Ego; 10th-level Mesmerist Trick; Touch Treatment; Hypnotic Stare; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

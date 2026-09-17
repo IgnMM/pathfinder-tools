@@ -1,0 +1,699 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Kineticist parent value.",
+  "profiles": [
+    {
+      "id": "kineticist:aquakinetcist",
+      "name": "Aquakinetcist",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Aquatic Adventures pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Aquakinetcist",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "water"
+        ],
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Aquatic Focus / Basis Aquakinesis / Call of the Deep / Ocean’s Caress",
+          "reason": "The archetype’s Aquatic Focus / Basis Aquakinesis / Call of the Deep / Ocean’s Caress package materially changes wilderness affinity from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "While all hydrokineticists have the ability to control water, aquakineticists’ powers are tied to their determination to explore the world beneath the waves.",
+      "tradeoff": "It replaces or alters Elemental Focus; Expanded Element; Basic Hydrokinesis; 2nd, 6th-levle Utility Wild Talent; Elemental Defense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:arakineticist",
+      "name": "Arakineticist",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Blood of the Coven pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Arakineticist",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Living Curse / Accursed Shadow / Curse Spinner / Accursed Infusion",
+          "reason": "The archetype’s Living Curse / Accursed Shadow / Curse Spinner / Accursed Infusion package materially changes debuffing enemies from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "Those of strong will who live under a dark curse long enough might learn to control and channel the corrupt energy afflicting them.",
+      "tradeoff": "It replaces or alters 4th, 6th, 8th, and 13th-level Utility Wild Talents; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:blightburner",
+      "name": "Blightburner",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Heroes of the Darklands pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Blightburner",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "earth",
+          "fire"
+        ],
+        "environmentThemes": [
+          "underground"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Earth Focus / Blightburn Manipulation / Radiation Absorption / Blightburn Aura",
+          "reason": "The archetype’s Earth Focus / Blightburn Manipulation / Radiation Absorption / Blightburn Aura package materially changes debuffing enemies from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "Darklands geokineticists sometimes exhibit supernatural powers associated with blightburn crystals. Blightburner kineticists harness this radioactivity in pyrotechnic displays, an unusual feat for those connected to the element of earth.",
+      "tradeoff": "It replaces or alters Elemental Focus; Basic Geokinesis; 2nd-level Utility Power; Elemental Overflow; Flesh of Stone; Gather Power; Internal Buffer; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:blighted-defiler",
+      "name": "Blighted Defiler",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Ultimate Wilderness pg. 62",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Blighted%20Defiler",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "decay"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Alignment / Steal Power / Elemental Might / Life Buffer",
+          "reason": "The archetype’s Alignment / Steal Power / Elemental Might / Life Buffer package materially changes debuffing enemies from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "A few kineticists have developed the ability to steal the life force from the surrounding land in order to infuse themselves with unnatural strength beyond their bodies’ normal capabilities.",
+      "tradeoff": "It replaces or alters Alignment; Gather Power; Key Ability Score; Internal Buffer; Elemental Defense; Omnikinesis; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:blood-kineticist",
+      "name": "Blood Kineticist",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Occult Adventures pg. 88",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Blood%20Kineticist",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "water"
+        ],
+        "professionIdentity": [
+          "blood controller"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Blood Focus / Wrack / Bleeding Infusion / Blood Tell",
+          "reason": "The archetype’s Blood Focus / Wrack / Bleeding Infusion / Blood Tell package materially changes debuffing enemies from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "To a blood kineticist, the water in a creature’s blood is just like any other sort, and she uses that knowledge to brutal ends.",
+      "tradeoff": "It replaces or alters 1st, 5th, 9th, and 11th-level Infusions; 6th and 8th-level Utility Wild Talent; Expanded Element; Omnikinesis; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:cinderlands-adept",
+      "name": "Cinderlands Adept",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Wilderness Origins pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Cinderlands%20Adept",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ],
+        "primaryDelivery": [
+          "melee weapon",
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Class Skills / Fire Focus / Galloping Siphon / Mount",
+          "reason": "The archetype’s Class Skills / Fire Focus / Galloping Siphon / Mount package materially changes melee combat from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "These kineticists are skilled riders, able to wield both weapons and fire with deadly skill.",
+      "tradeoff": "It replaces or alters Class Skills; Elemental Focus; Expanded Element; Gather Power; 1st-level Infusion; 4th, 8th, 12th-level Utility Wild Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:dark-elementalist",
+      "name": "Dark Elementalist",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Horror Adventures pg. 56",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Dark%20Elementalist",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "souls",
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Alignment / Dark Studies / Soul Power",
+          "reason": "The archetype’s Alignment / Dark Studies / Soul Power package materially changes anti magic disruption from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "Dark elementalists are loathe to suffer the consequences of channeling their power and study the darkest esoteric energies of the planes to use souls to fuel their occult might.",
+      "tradeoff": "It replaces or alters Alignment; Key Ability Score; Burn; Elemental Overflow; Internal Buffer; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:elemental-annihilator",
+      "name": "Elemental Annihilator",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Occult Adventures pg. 89",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Elemental%20Annihilator",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Devastating Infusion / Dampened Versatility / Bonus Feats / Increased Range",
+          "reason": "Devastating Infusion / Dampened Versatility / Bonus Feats / Increased Range defines the material change from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "For some kineticists, nothing in life is as sweet as destruction and pain. Elemental annihilators pursue only uses of their powers that harm others.",
+      "tradeoff": "It replaces or alters 1st, 3rd, 5th, and 9th-level Infusions; all utility wild talents; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:elemental-ascetic",
+      "name": "Elemental Ascetic",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Occult Adventures pg. 90",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Elemental%20Ascetic",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Elemental Flurry / Elemental Wisdom / AC Bonus / Powerful Fist",
+          "reason": "The archetype’s Elemental Flurry / Elemental Wisdom / AC Bonus / Powerful Fist package materially changes melee combat from the Kineticist baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Elemental Flurry / Elemental Wisdom / AC Bonus / Powerful Fist",
+          "reason": "The archetype’s Elemental Flurry / Elemental Wisdom / AC Bonus / Powerful Fist package materially changes combat manoeuvres from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "Combining the elemental powers of a kineticist with the rigid physical discipline of a monk, an elemental ascetic channels his powers through his body to enhance himself in combat.",
+      "tradeoff": "It replaces or alters Kinetic Blast; Elemental Overflow; Wild Talents; Elemental Defense; 5th, 9th, 13th-level Infusions; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:elemental-purist",
+      "name": "Elemental Purist",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Planes of Power pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Elemental%20Purist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "elemental specialist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Limited Buffer / Elemental Impossibility / Elemental Apocalypse",
+          "reason": "Limited Buffer / Elemental Impossibility / Elemental Apocalypse defines the material change from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "An elemental purist spurns all elements that are not her own, for utter devotion can allow one to accomplish even seemingly impossible heroics.",
+      "tradeoff": "It replaces or alters Internal Buffer; Expanded Elements; 11th, 19th-level Infusion; Omnikinesis; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:elysiokineticist",
+      "name": "Elysiokineticist",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "People of the Wastes pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Elysiokineticist",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders",
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Elysium’s Soul / Basic Elysiokinesis / Elysian Infusion / Elysian Aura",
+          "reason": "The archetype’s Elysium’s Soul / Basic Elysiokinesis / Elysian Infusion / Elysian Aura package materially changes wilderness affinity from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "Similar to how phytokineticists draw their power from the First World, elysiokineticists trace their abilities to the riotous wilderness of the plane known as Elysium",
+      "tradeoff": "It replaces or alters Elemental Focus; Class Skills; Expanded Element; Basic Phytokinesis, 1st-level Infusion; Flesh of Wood; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:ioun-kineticist",
+      "name": "Ioun Kineticist",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Blood of the Ancients pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Ioun%20Kineticist",
+      "capabilityOverrides": {
+        "utility-magic": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "ioun scholar"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Ioun Focus / Ioun Cloud / Basic Iounkinesis / Ioun Buffer",
+          "reason": "The archetype’s Ioun Focus / Ioun Cloud / Basic Iounkinesis / Ioun Buffer package materially changes utility magic from the Kineticist baseline."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Ioun Focus / Ioun Cloud / Basic Iounkinesis / Ioun Buffer",
+          "reason": "The archetype’s Ioun Focus / Ioun Cloud / Basic Iounkinesis / Ioun Buffer package materially changes knowledge investigation from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "Some aetherkineticists dedicate themselves to unlocking ioun stones’ cosmic secrets and seemingly limitless potential.",
+      "tradeoff": "It replaces or alters Elemental Focus; Basic Telekinesis; Internal Buffer; Elemental Overflow; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:kinetic-chirurgeon",
+      "name": "Kinetic Chirurgeon",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Occult Adventures pg. 90",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Kinetic%20Chirurgeon",
+      "capabilityOverrides": {
+        "healing-recovery": "core",
+        "offensive-magic": "available",
+        "area-multi-target-damage": "absent",
+        "battlefield-control": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "healer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "element-choice",
+          "kind": "commitment",
+          "summary": "Aether or water must be selected as the primary element.",
+          "evidenceSection": "Kinetic Chirurgery"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Kinetic Chirurgery / Metahealer / Healing Buffer",
+          "reason": "The archetype’s Kinetic Chirurgery / Metahealer / Healing Buffer package materially changes healing recovery from the Kineticist baseline."
+        },
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Kinetic Chirurgery / Metahealer / Healing Buffer",
+          "reason": "The archetype’s Kinetic Chirurgery / Metahealer / Healing Buffer package materially changes offensive magic from the Kineticist baseline."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Kinetic Chirurgery / Metahealer / Healing Buffer",
+          "reason": "The archetype’s Kinetic Chirurgery / Metahealer / Healing Buffer package materially changes area multi target damage from the Kineticist baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Kinetic Chirurgery / Metahealer / Healing Buffer",
+          "reason": "The archetype’s Kinetic Chirurgery / Metahealer / Healing Buffer package materially changes battlefield control from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "While any hydrokineticist or telekineticist can learn the rudiments of healing, some kineticists are virtuosos of the curative arts.",
+      "tradeoff": "It replaces or alters Infusions; Metakinesis; Infusion Specialization; Internal Buffer; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:kinetic-knight",
+      "name": "Kinetic Knight",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Psychic Anthology pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Kinetic%20Knight",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "area-multi-target-damage": "available",
+        "social-influence": "available",
+        "stealth-subterfuge": "absent"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Several defences require heavy armour and an attuned shield.",
+          "evidenceSection": "Elemental Bastion"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Courtly / Elemental Blade / Kinetic Warrior / Elemental Bastion",
+          "reason": "The archetype’s Courtly / Elemental Blade / Kinetic Warrior / Elemental Bastion package materially changes melee combat from the Kineticist baseline."
+        },
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Courtly / Elemental Blade / Kinetic Warrior / Elemental Bastion",
+          "reason": "The archetype’s Courtly / Elemental Blade / Kinetic Warrior / Elemental Bastion package materially changes ranged combat from the Kineticist baseline."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Courtly / Elemental Blade / Kinetic Warrior / Elemental Bastion",
+          "reason": "The archetype’s Courtly / Elemental Blade / Kinetic Warrior / Elemental Bastion package materially changes area multi target damage from the Kineticist baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Courtly / Elemental Blade / Kinetic Warrior / Elemental Bastion",
+          "reason": "The archetype’s Courtly / Elemental Blade / Kinetic Warrior / Elemental Bastion package materially changes social influence from the Kineticist baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Courtly / Elemental Blade / Kinetic Warrior / Elemental Bastion",
+          "reason": "The archetype’s Courtly / Elemental Blade / Kinetic Warrior / Elemental Bastion package materially changes stealth subterfuge from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "A kinetic knight dons armor and wields a blade of elemental energy.",
+      "tradeoff": "It replaces or alters Class Skills; Kinetic Blast; Infusions; Metakinesis; Metakinetic Master; 3rd-level Infusion; Supercharge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:leshykineticist",
+      "name": "Leshykineticist",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Ultimate Wilderness pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Leshykineticist",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "wood"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Vine Leshy characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Leshy Element / Basic Leshykinesis / Photosynthetic Buffer / Green Rebirth",
+          "reason": "The archetype’s Leshy Element / Basic Leshykinesis / Photosynthetic Buffer / Green Rebirth package materially changes wilderness affinity from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "Of all those who pursue the path of a kineticist, only leshykineticists are both made of plant matter and born of nature spirits. These curious creatures wield ancient powers unknown to any other kineticists.",
+      "tradeoff": "It replaces or alters Element; Expanded Element; 6th, 10th-level Utility Wild Talents; Maximize Metakinesis; Basic Phytokinesis; Internal Buffer; Omnikinesis; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:overwhelming-soul",
+      "name": "Overwhelming Soul",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Occult Adventures pg. 91",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Overwhelming%20Soul",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {
+        "attribute-demands": "high",
+        "resource-management": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Mind Over Matter / Mental Prowess / Overwhelming Power",
+          "reason": "The archetype’s Mind Over Matter / Mental Prowess / Overwhelming Power package materially changes social influence from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "Some kineticists have such a powerful personality that they can seize control of their element with their minds alone, without endangering their bodies.",
+      "tradeoff": "It replaces or alters Class Skills; Wild Talents; Burn; Internal Buffer; Elemental Overflow; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:psammokinetic",
+      "name": "Psammokinetic",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Heroes from the Fringe pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Psammokinetic",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "desert"
+        ],
+        "elementThemes": [
+          "earth",
+          "fire"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Burning Winds / Ki Pool / Sand Element",
+          "reason": "Alignment / Burning Winds / Ki Pool / Sand Element defines the material change from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "Psammokinetics are ascetic kineticists who consider the harsh nature of the burning deserts of Osirion to be a tempering fire that can purify all their imperfections.",
+      "tradeoff": "It replaces or alters Alignment; Elemental Focus, Elemental Overflow; Expanded Element; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:psychokineticist",
+      "name": "Psychokineticist",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Horror Adventures pg. 56",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Psychokineticist",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {
+        "attribute-demands": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Emotional Intensity / Mind Burn / Mental Overflow",
+          "reason": "The archetype’s Emotional Intensity / Mind Burn / Mental Overflow package materially changes debuffing enemies from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "Psychokineticists channel elemental power through their minds rather than their bodies and while this energy ravages their minds, it unleashes power locked in their ruptured emotions.",
+      "tradeoff": "It replaces or alters Key Ability Score; Burn; Elemental Overflow; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "kineticist:terrakineticist",
+      "name": "Terrakineticist",
+      "parentClassId": "kineticist",
+      "sourceCitationText": "Ultimate Wilderness pg. 63",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Kineticist%20Terrakineticist",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Terrakinesis / Terrakinetic Defense / Expanded Terrakinesis / Omniterrakinesis",
+          "reason": "The archetype’s Terrakinesis / Terrakinetic Defense / Expanded Terrakinesis / Omniterrakinesis package materially changes wilderness affinity from the Kineticist baseline."
+        }
+      ],
+      "playerSummary": "Terrakineticists have a stunted ability that allows them to access the Elemental Planes, but they’ve learned how to turn this limited talent into an incredible strength by tapping into the ambient elemental nature of the land surrounding them.",
+      "tradeoff": "It replaces or alters Elemental Focus; Kinetic Blast; Elemental Defense; Expanded Element; Omnikinesis; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

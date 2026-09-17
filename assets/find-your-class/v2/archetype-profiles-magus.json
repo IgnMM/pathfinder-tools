@@ -1,0 +1,1074 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Magus parent value.",
+  "profiles": [
+    {
+      "id": "magus:armored-battlemage",
+      "name": "Armored Battlemage",
+      "parentClassId": "magus",
+      "sourceCitationText": "Armor Master's Handbook pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Armored%20Battlemage",
+      "capabilityOverrides": {
+        "personal-durability": "core",
+        "defensive-protective-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "heavy armor"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Medium Armor / Arcane Pool / Armor Training / Heavy Armor",
+          "reason": "The archetype’s Medium Armor / Arcane Pool / Armor Training / Heavy Armor package materially changes personal durability from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Medium Armor / Arcane Pool / Armor Training / Heavy Armor",
+          "reason": "The archetype’s Medium Armor / Arcane Pool / Armor Training / Heavy Armor package materially changes defensive protective magic from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Armored battlemages learn to move and cast spells in even the most restrictive armors, and have developed new methods to magically enhance their armor.",
+      "tradeoff": "It replaces or alters Spell Combat; Arcane Pool; 3rd, 18th-level Magus Arcana; Improved Spell Combat; Greater Spell Combat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:beastblade",
+      "name": "Beastblade",
+      "parentClassId": "magus",
+      "sourceCitationText": "Familiar Folio pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Beastblade",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "tactical-leadership": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Familiar / Tandem Touch / Familiar Pool / Familiar Spellstrike",
+          "reason": "The archetype’s Familiar / Tandem Touch / Familiar Pool / Familiar Spellstrike package materially changes summoning companions from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Familiar / Tandem Touch / Familiar Pool / Familiar Spellstrike",
+          "reason": "The archetype’s Familiar / Tandem Touch / Familiar Pool / Familiar Spellstrike package materially changes tactical leadership from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Beastblade magi work in tandem with their familiars, using spell, steel, and claw to clear the battlefield of foes.",
+      "tradeoff": "It replaces or alters 3rd-level Magus Arcana; Spell Recall; Knowledge Pool; Improved Spell Recall; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:bladebound",
+      "name": "Bladebound",
+      "parentClassId": "magus",
+      "sourceCitationText": "Ultimate Magic pg. 47",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Bladebound",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "sentient weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "A sentient black blade has its own mission, Ego and potential conflicts with its wielder.",
+          "evidenceSection": "Black Blades / Black Blade Basics"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Black Blade / Magus Arcana / Black Blade Basics / Intelligence",
+          "reason": "Black Blade / Magus Arcana / Black Blade Basics / Intelligence defines the material change from the Magus baseline."
+        }
+      ],
+      "playerSummary": "A select group of magi are called to carry a black blade—a sentient weapon of often unknown and possibly unknowable purpose.",
+      "tradeoff": "It replaces or alters Arcane Pool; 3rd-level Magus Arcana; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:card-caster",
+      "name": "Card Caster",
+      "parentClassId": "magus",
+      "sourceCitationText": "The Harrow Handbook pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Card%20Caster",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ],
+        "primaryDelivery": [
+          "thrown weapon"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Deadly Dealer / Arcane Pool Focus / Harrowed Spellstrike / Role Dealer",
+          "reason": "The archetype’s Deadly Dealer / Arcane Pool Focus / Harrowed Spellstrike / Role Dealer package materially changes ranged combat from the Magus baseline."
+        }
+      ],
+      "playerSummary": "The card caster is an ancient, martial offshoot of the traditional harrower, learning to not only draw power from the harrow, but also to invest each card with deadly power.",
+      "tradeoff": "It replaces or alters Arcane Pool; Spellstrike; 3rd-level Arcana; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:deep-marshal",
+      "name": "Deep Marshal",
+      "parentClassId": "magus",
+      "sourceCitationText": "Arcane Anthology pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Deep%20Marshal",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ],
+        "professionIdentity": [
+          "marshal"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Weapon and Armor Proficiency / Deep Spellcasting / Bound by Tradition / Miner’s Focus",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Deep Spellcasting / Bound by Tradition / Miner’s Focus package materially changes protecting allies from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Weapon and Armor Proficiency / Deep Spellcasting / Bound by Tradition / Miner’s Focus",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Deep Spellcasting / Bound by Tradition / Miner’s Focus package materially changes practical expertise from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Largely unseen by visitors, the deep marshals have survived into the modern era as keepers, protectors, and repairers of the myriad of stony passages that travel around, through, and under the Five Kings Mountains.",
+      "tradeoff": "It replaces or alters Armor Proficiencies; Medium Armor; Heavy Armor; Spellcasting; Arcane Pool; Spell Combat; Spellstrike; 3rd-level Magus Arcana; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:eldritch-archer",
+      "name": "Eldritch Archer",
+      "parentClassId": "magus",
+      "sourceCitationText": "Heroes of the Streets pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Eldritch%20Archer",
+      "capabilityOverrides": {
+        "ranged-combat": "core",
+        "melee-combat": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "The arcane bond must be a ranged weapon.",
+          "evidenceSection": "Ranged Weapon Bond"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Class Skills / Arcane Pool / Ranged Weapon Bond / Ranged Spell Combat",
+          "reason": "The archetype’s Class Skills / Arcane Pool / Ranged Weapon Bond / Ranged Spell Combat package materially changes ranged combat from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Class Skills / Arcane Pool / Ranged Weapon Bond / Ranged Spell Combat",
+          "reason": "The archetype’s Class Skills / Arcane Pool / Ranged Weapon Bond / Ranged Spell Combat package materially changes melee combat from the Magus baseline."
+        }
+      ],
+      "playerSummary": "The eldritch archer rains magical attacks down on her foes from the city walls.",
+      "tradeoff": "It replaces or alters Class Skills; Arcane Pool; Spell Combat; Spellstrike; Counterstrike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:eldritch-scion",
+      "name": "Eldritch Scion",
+      "parentClassId": "magus",
+      "sourceCitationText": "Advanced Class Guide pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Eldritch%20Scion",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "castingMethod": [
+          "spontaneous"
+        ]
+      },
+      "identityRemoves": {
+        "castingMethod": [
+          "prepared"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Spells / Bloodline / Eldritch Pool / Spell Combat",
+          "reason": "Spells / Bloodline / Eldritch Pool / Spell Combat defines the material change from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Unlike typical magi, eldritch scions do not study tomes of magic or spend time learning to combine martial and magical skills. Rather, eldritch scions find that their spells and abilities come to them instinctively.",
+      "tradeoff": "It replaces or alters Spells; Spell Recall; Arcane Pool; Spell Combat; Knowledge Pool; Improved Spell Combat; Greater Spell Combat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:elemental-knight",
+      "name": "Elemental Knight",
+      "parentClassId": "magus",
+      "sourceCitationText": "Advanced Race Guide pg. 203",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Elemental%20Knight",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Suli characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Elemental Arcana / Assault Synergy / Energy Reflection / Energy Resistance Boost",
+          "reason": "Elemental Arcana / Assault Synergy / Energy Reflection / Energy Resistance Boost defines the material change from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Elemental knights are born with elemental energies surging through their blood and discover the secret of reconciling and focusing this primal power into the arcane.",
+      "tradeoff": "It replaces or alters Spell Recall; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:esoteric",
+      "name": "Esoteric",
+      "parentClassId": "magus",
+      "sourceCitationText": "Occult Adventures pg. 120",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Esoteric",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Weapon and Armor Proficiency / Diminished Spellcasting / Arcane Pool / Unarmed Strike",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Diminished Spellcasting / Arcane Pool / Unarmed Strike package materially changes knowledge investigation from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Esoterics are drawn to the mysticism of the occult and spend their lives delving into forgotten texts and forbidden tomes.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Spellcasting; Arcane Pool; Spellstrike; Spell Recall; Bonus Feats; Medium Armor; Heavy Armor; Improved Spell Recall; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:fiend-flayer",
+      "name": "Fiend Flayer",
+      "parentClassId": "magus",
+      "sourceCitationText": "Advanced Race Guide pg. 170",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Fiend%20Flayer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Tiefling characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Infernal Mortification / Magus Arcana / Fiendblade / Bypassing Strike",
+          "reason": "Infernal Mortification / Magus Arcana / Fiendblade / Bypassing Strike defines the material change from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Some tiefling magi can tap the dark energy of their fiendish blood to enhance their arcane and combat talents.",
+      "tradeoff": "It replaces or alters None; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:greensting-slayer",
+      "name": "Greensting Slayer",
+      "parentClassId": "magus",
+      "sourceCitationText": "Bastards of Golarion pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Greensting%20Slayer",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "criminal enforcer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Arcane Pool / Evasion / Improved Evasion / Magus Arcana",
+          "reason": "The archetype’s Arcane Pool / Evasion / Improved Evasion / Magus Arcana package materially changes stealth subterfuge from the Magus baseline."
+        }
+      ],
+      "playerSummary": "The blending of martial prowess with elven magic has long been a staple of the Blackash Training Grounds in Erages. More than a few who study at Erages Academy follow this path because of the promises of wealth that the city’s criminal element makes toward practiced brawlers and smugglers.",
+      "tradeoff": "It replaces or alters Arcane Pool; Medium Armor; Heavy Armor; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:hexbreaker",
+      "name": "Hexbreaker",
+      "parentClassId": "magus",
+      "sourceCitationText": "Blood of the Coven pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Hexbreaker",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "mage hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Repel Curse / Counter Curse / Hexbreaker Arcana / Improved Remove Curse",
+          "reason": "The archetype’s Repel Curse / Counter Curse / Hexbreaker Arcana / Improved Remove Curse package materially changes anti magic disruption from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Hexbreakers—sometimes called witch-hammers for their proclivity toward warhammers—have borne witness to the damage of unrestrained arcane power and hone their own arcane arts to battle such abuse.",
+      "tradeoff": "It replaces or alters Spell Recall; Improved Spell Recall; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:hexcrafter",
+      "name": "Hexcrafter",
+      "parentClassId": "magus",
+      "sourceCitationText": "Ultimate Magic pg. 48",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Hexcrafter",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Hex Magus / Hex Arcana / Accursed Strike / Spells",
+          "reason": "The archetype’s Hex Magus / Hex Arcana / Accursed Strike / Spells package materially changes debuffing enemies from the Magus baseline."
+        }
+      ],
+      "playerSummary": "A hexcrafter magus has uncovered the secret of using his arcane pool to recreate witch hexes.",
+      "tradeoff": "It replaces or alters Spell Recall; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:iron-ring-striker",
+      "name": "Iron-Ring Striker",
+      "parentClassId": "magus",
+      "sourceCitationText": "Martial Arts Handbook pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Iron-Ring%20Striker",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Weapon Proficiency / Diminished Spellcasting / Arcane Pool / Unarmed Spellstrike",
+          "reason": "The archetype’s Weapon Proficiency / Diminished Spellcasting / Arcane Pool / Unarmed Spellstrike package materially changes combat manoeuvres from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Practitioners of this martial art, powered by arcane magic, wear an iron ring on the finger of one hand.",
+      "tradeoff": "It replaces or alters Weapon Proficiency; Arcane Pool; Spellstrike; 5th-level Bonus Feat; Medium Armor; Heavy Armor; Knowledge Pool; Counterstrike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:jistkan-artificer",
+      "name": "Jistkan Artificer",
+      "parentClassId": "magus",
+      "sourceCitationText": "Blood of the Ancients pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Jistkan%20Artificer",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "prosthetic weapon"
+        ],
+        "professionIdentity": [
+          "artificer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Diminished Spellcasting / Golem Arm / Improved Unarmed Strike / Empowered Arm",
+          "reason": "The archetype’s Diminished Spellcasting / Golem Arm / Improved Unarmed Strike / Empowered Arm package materially changes practical expertise from the Magus baseline."
+        }
+      ],
+      "playerSummary": "As part of studying the secret methods the original Jistkan artificers used to build golems, these magi graft construct parts onto their own arms.",
+      "tradeoff": "It replaces or alters Spells; Arcane Pool; Cantrips; 3rd-level Magus Arcana; Spellstrike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:kapenia-dancer",
+      "name": "Kapenia Dancer",
+      "parentClassId": "magus",
+      "sourceCitationText": "Varisia, Birthplace of Legends pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Kapenia%20Dancer",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "scarf weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Weapon and Armor Proficiency / Diminished Spellcasting / Canny Defense / Weapon Focus",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Diminished Spellcasting / Canny Defense / Weapon Focus package materially changes combat mobility from the Magus baseline."
+        }
+      ],
+      "playerSummary": "The kapenia dancer laces their deadly scarves with powerful magic.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Diminished Spellcasting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:kensai",
+      "name": "Kensai",
+      "parentClassId": "magus",
+      "sourceCitationText": "Ultimate Combat pg. 55",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Kensai",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "single chosen weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Diminished Spellcasting / Canny Defense / Weapon Focus",
+          "reason": "Weapon and Armor Proficiency / Diminished Spellcasting / Canny Defense / Weapon Focus defines the material change from the Magus baseline."
+        }
+      ],
+      "playerSummary": "A kensai spends his life focusing his training and meditation into a rapturous perfection of the use of a single weapon, which is usually but not always a sword, channeling his arcane might through it in a dizzying and deadly dance beyond the abilities of even the greatest of mundane warriors.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Spells; Spell Recall; Knowledge Pool; Medium Armor; 9th-level Arcana; Improved Spell Recall; Heavy Armor; True Magus; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:magic-warrior",
+      "name": "Magic Warrior",
+      "parentClassId": "magus",
+      "sourceCitationText": "Adventurer's Guide pg. 123",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Magic%20Warrior",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "masked champion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Nameless Mask / Magic Warrior’s Aspect / Nameless Anonymity",
+          "reason": "The archetype’s Class Skills / Nameless Mask / Magic Warrior’s Aspect / Nameless Anonymity package materially changes wilderness affinity from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Class Skills / Nameless Mask / Magic Warrior’s Aspect / Nameless Anonymity",
+          "reason": "The archetype’s Class Skills / Nameless Mask / Magic Warrior’s Aspect / Nameless Anonymity package materially changes knowledge investigation from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Trained in a tradition stretching back to Old-Mage Jatembe’s Ten Magic Warriors, magic warriors renounce their identities to master magical might and serve as champions of culture and learning across the Mwangi Expanse and beyond.",
+      "tradeoff": "It replaces or alters Class Skills; 3rd-level Magus Arcana; Improved Spell Combat; Greater Spell Combat; Greater Spell Access; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:mindblade",
+      "name": "Mindblade",
+      "parentClassId": "magus",
+      "sourceCitationText": "Occult Adventures pg. 121",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Mindblade",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "psychic"
+        ],
+        "primaryDelivery": [
+          "conjured weapon"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "arcane"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Spells / Psychic Pool / Psychic Access / Dual Weapons",
+          "reason": "Spells / Psychic Pool / Psychic Access / Dual Weapons defines the material change from the Magus baseline."
+        }
+      ],
+      "playerSummary": "A mindblade blends psychic talent and martial skill to lethal effect. By forming weapons with her mind, she always has the right tool for any situation.",
+      "tradeoff": "It replaces or alters Spellcasting; Arcane Pool; Spell Recall; Knowledge Pool; Improved Spell Recall; Greater Spell Combat; Greater Spell Access; Medium Armor; Improved Spell Combat; Heavy Armor; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:myrmidarch",
+      "name": "Myrmidarch",
+      "parentClassId": "magus",
+      "sourceCitationText": "Ultimate Combat pg. 56",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Myrmidarch",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Diminished Spellcasting / Ranged Spellstrike / Weapon Training / Fighter Training",
+          "reason": "The archetype’s Diminished Spellcasting / Ranged Spellstrike / Weapon Training / Fighter Training package materially changes ranged combat from the Magus baseline."
+        }
+      ],
+      "playerSummary": "The myrmidarch is a skilled specialist, using magic to supplement and augment his martial mastery.",
+      "tradeoff": "It replaces or alters Spells; Spell Recall; Improved Spell Recall; 6th, 12th, 18th-level Magus Arcana; Knowledge Pool; Improved Spell Combat; Greater Spell Combat; True Magus; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:nature-bonded-magus",
+      "name": "Nature-Bonded Magus",
+      "parentClassId": "magus",
+      "sourceCitationText": "Ultimate Wilderness pg. 92",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Nature-Bonded%20Magus",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core",
+        "healing-recovery": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "divine",
+          "nature"
+        ],
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Natural Magic / Plant Familiar / Familiar Symbiosis / Woodland Stride",
+          "reason": "The archetype’s Natural Magic / Plant Familiar / Familiar Symbiosis / Woodland Stride package materially changes wilderness affinity from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Natural Magic / Plant Familiar / Familiar Symbiosis / Woodland Stride",
+          "reason": "The archetype’s Natural Magic / Plant Familiar / Familiar Symbiosis / Woodland Stride package materially changes healing recovery from the Magus baseline."
+        }
+      ],
+      "playerSummary": "A nature-bonded magus synergizes arcane magic and the divine magic traditions of druids into a deadly synthesis.",
+      "tradeoff": "It replaces or alters Arcane Pool; Spell Recall; Knowledge Pool; Improved Spell Recall; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:puppetmaster",
+      "name": "Puppetmaster",
+      "parentClassId": "magus",
+      "sourceCitationText": "Arcane Anthology pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Puppetmaster",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "performer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Skills / Spells / Arcane Pool / Puppet Combat",
+          "reason": "The archetype’s Skills / Spells / Arcane Pool / Puppet Combat package materially changes debuffing enemies from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Skills / Spells / Arcane Pool / Puppet Combat",
+          "reason": "The archetype’s Skills / Spells / Arcane Pool / Puppet Combat package materially changes social influence from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Puppetmasters focus on using charm and illusion spells to control the senses of those for whom they perform.",
+      "tradeoff": "It replaces or alters Skills; Knowledge Pool; Greater Spell Access; Arcane Pool; Spell Combat; Improved Spell Combat; Greater Spell Combat; Spellstrike; Fighter Training; Counterstrike; Medium Armor; Heavy Armor; True Magus; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:sigilus",
+      "name": "Sigilus",
+      "parentClassId": "magus",
+      "sourceCitationText": "Adventurer's Guide pg. 59",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Sigilus",
+      "capabilityOverrides": {
+        "utility-magic": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "rune crafter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Inscribe Rune / Inscribe Sihedron",
+          "reason": "The archetype’s Inscribe Rune / Inscribe Sihedron package materially changes utility magic from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Inscribe Rune / Inscribe Sihedron",
+          "reason": "The archetype’s Inscribe Rune / Inscribe Sihedron package materially changes practical expertise from the Magus baseline."
+        }
+      ],
+      "playerSummary": "A sigilus manipulates the discoveries of wizards and other more sagacious Cyphermages, using those findings to create special sigils that allow her to transfer spell effects into different objects for later use.",
+      "tradeoff": "It replaces or alters Spellstrike; Medium Armor; Heavy Armor; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:skirnir",
+      "name": "Skirnir",
+      "parentClassId": "magus",
+      "sourceCitationText": "Ultimate Combat pg. 56",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Skirnir",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "defensive-protective-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "shield"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Diminished Spellcasting / Arcane Bond / Arcane Pool / Sorcerous Shield",
+          "reason": "The archetype’s Diminished Spellcasting / Arcane Bond / Arcane Pool / Sorcerous Shield package materially changes protecting allies from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Diminished Spellcasting / Arcane Bond / Arcane Pool / Sorcerous Shield",
+          "reason": "The archetype’s Diminished Spellcasting / Arcane Bond / Arcane Pool / Sorcerous Shield package materially changes defensive protective magic from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Sometimes called a shield-vassal or shieldmaiden, the skirnir has learned to infuse his power into his shield.",
+      "tradeoff": "It replaces or alters Spells; Spell Combat; Spell Recall; Knowledge Pool; Improved Spell Combat; Greater Spell Combat; Greater Spell Access; Counterstrike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:sorrowblade",
+      "name": "Sorrowblade",
+      "parentClassId": "magus",
+      "sourceCitationText": "Pathfinder: Spiral of Bones #4 pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Sorrowblade",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "SorrowbladeSource Pathfinder / Despairing Strike / Cruel Weapon / Wretched Strike",
+          "reason": "The archetype’s SorrowbladeSource Pathfinder / Despairing Strike / Cruel Weapon / Wretched Strike package materially changes debuffing enemies from the Magus baseline."
+        }
+      ],
+      "playerSummary": "A magus who has suffered greatly over the course ofher life can learn to channel that misery into her weapon and inflict it on others.",
+      "tradeoff": "It replaces or alters 3rd, 12th-level Magus Arcana; Speed Weapon Property; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:soul-forger",
+      "name": "Soul Forger",
+      "parentClassId": "magus",
+      "sourceCitationText": "Ultimate Combat pg. 57",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Soul%20Forger",
+      "capabilityOverrides": {
+        "support-buffing": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "armament crafter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Diminished Spellcasting / Arcane Bond / Spell Combat / Spellstrike",
+          "reason": "The archetype’s Diminished Spellcasting / Arcane Bond / Spell Combat / Spellstrike package materially changes support buffing from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Diminished Spellcasting / Arcane Bond / Spell Combat / Spellstrike",
+          "reason": "The archetype’s Diminished Spellcasting / Arcane Bond / Spell Combat / Spellstrike package materially changes practical expertise from the Magus baseline."
+        }
+      ],
+      "playerSummary": "The soul forger has learned the skill of infusing the raw magical essence of his soul into armaments of surpassing power, combining the mystic arts with the arts of war in a unity of steely perfection.",
+      "tradeoff": "It replaces or alters Spells; Knowledge Pool; Spell Recall; Improved Spell Recall; Counterstrike; Greater Spell Access; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:spell-dancer",
+      "name": "Spell Dancer",
+      "parentClassId": "magus",
+      "sourceCitationText": "Advanced Race Guide pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Spell%20Dancer",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Elf characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Class Skills / Spell Dance / Arcane Movement / Dance of Avoidance",
+          "reason": "The archetype’s Class Skills / Spell Dance / Arcane Movement / Dance of Avoidance package materially changes combat mobility from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Many elven magi do not consider themselves masters of a blend of martial and magical talents, but rather a sub-category of wizards who study the effect of physical movement and techniques upon spellcasting ability.",
+      "tradeoff": "It replaces or alters Arcane Pool; 5th-level Bonus Feat; Medium Armor; Heavy Armor; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:spell-trapper",
+      "name": "Spell Trapper",
+      "parentClassId": "magus",
+      "sourceCitationText": "Magic Tactics Toolbox pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Spell%20Trapper",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "traps"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Class Skills / Diminished Arcana / Spell Traps / Distant Trapping",
+          "reason": "The archetype’s Class Skills / Diminished Arcana / Spell Traps / Distant Trapping package materially changes battlefield control from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Class Skills / Diminished Arcana / Spell Traps / Distant Trapping",
+          "reason": "The archetype’s Class Skills / Diminished Arcana / Spell Traps / Distant Trapping package materially changes practical expertise from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Spell trappers forsake much of their arcane skill and martial knowledge in exchange for the ability to conjure magical traps to hinder their foes.",
+      "tradeoff": "It replaces or alters Class Skills; Spell Recall; Fighter Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:spellblade",
+      "name": "Spellblade",
+      "parentClassId": "magus",
+      "sourceCitationText": "Ultimate Magic pg. 49",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Spellblade",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "dual weapons",
+          "conjured weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Force Athame / Spellblade Arcana / Pool-Sourced Athame / Spellblade Parry",
+          "reason": "Force Athame / Spellblade Arcana / Pool-Sourced Athame / Spellblade Parry defines the material change from the Magus baseline."
+        }
+      ],
+      "playerSummary": "A spellblade magus can manifest a ghostly blade of force that can be used as an off-hand weapon.",
+      "tradeoff": "It replaces or alters Spellstrike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:spire-defender",
+      "name": "Spire Defender",
+      "parentClassId": "magus",
+      "sourceCitationText": "Inner Sea Magic pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Spire%20Defender",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "expedition guardian"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Weapon Proficiency / Bonus Feats / Arcane Augmentation",
+          "reason": "The archetype’s Weapon Proficiency / Bonus Feats / Arcane Augmentation package materially changes protecting allies from the Magus baseline."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Weapon Proficiency / Bonus Feats / Arcane Augmentation",
+          "reason": "The archetype’s Weapon Proficiency / Bonus Feats / Arcane Augmentation package materially changes knowledge investigation from the Magus baseline."
+        }
+      ],
+      "playerSummary": "Magi who train themselves to accompany sages and archaeologists venturing into the Mordant Spire become spire defenders.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Spell Recall; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "magus:staff-magus",
+      "name": "Staff Magus",
+      "parentClassId": "magus",
+      "sourceCitationText": "Ultimate Magic pg. 49",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Magus%20Staff%20Magus",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "staff"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Weapon and Armor Proficiency / Quarterstaff Master / Quarterstaff Defense / Staff Weapon",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Quarterstaff Master / Quarterstaff Defense / Staff Weapon package materially changes combat manoeuvres from the Magus baseline."
+        }
+      ],
+      "playerSummary": "While most magi use a one-handed weapon as their melee implement of choice, one group of magi uses the quarterstaff instead.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Medium Armor; Heavy Armor; Fighter Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}
