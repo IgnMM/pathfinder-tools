@@ -1,0 +1,1304 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Witch parent value.",
+  "profiles": [
+    {
+      "id": "witch:alley-witch",
+      "name": "Alley Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Heroes of the Streets pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Alley%20Witch",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ],
+        "professionIdentity": [
+          "information broker"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Child of the Streets / Crowd Patron / Speak to the City / Hex Trader",
+          "reason": "The archetype’s Child of the Streets / Crowd Patron / Speak to the City / Hex Trader package materially changes support buffing from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Some witches find their spark of magic in the long, dark shadows and forgotten places within the city.",
+      "tradeoff": "It replaces or alters Familiar; 1st and 6th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:ashiftah",
+      "name": "Ashiftah",
+      "parentClassId": "witch",
+      "sourceCitationText": "Qadira, Jewel of the East pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Ashiftah",
+      "capabilityOverrides": {
+        "combat-mobility": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": false,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Protecting Veil / Ghostwalk / Deliver Touch Spells / Fog of War",
+          "reason": "The archetype’s Protecting Veil / Ghostwalk / Deliver Touch Spells / Fog of War package materially changes combat mobility from the Witch baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Protecting Veil / Ghostwalk / Deliver Touch Spells / Fog of War",
+          "reason": "The archetype’s Protecting Veil / Ghostwalk / Deliver Touch Spells / Fog of War package materially changes battlefield control from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Known in Taldane as a “battle witch,” an ashiftah drifts like a phantom among the enemy armies, calling down disaster upon their heads and weakening their resolve.",
+      "tradeoff": "It replaces or alters Familiar; 2nd, 6th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:beast-bonded",
+      "name": "Beast-Bonded",
+      "parentClassId": "witch",
+      "sourceCitationText": "Ultimate Magic pg. 83",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Beast-Bonded",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Transfer Feats / Enhanced Familiar / Familiar Form / Twin Soul",
+          "reason": "The archetype’s Transfer Feats / Enhanced Familiar / Familiar Form / Twin Soul package materially changes summoning companions from the Witch baseline."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Transfer Feats / Enhanced Familiar / Familiar Form / Twin Soul",
+          "reason": "The archetype’s Transfer Feats / Enhanced Familiar / Familiar Form / Twin Soul package materially changes transformation shapeshifting from the Witch baseline."
+        }
+      ],
+      "playerSummary": "While all witches are intimately tied to their familiars, a beast-bonded witch’s craft focuses specifically on her familiar bond and developing the relationship with her patron through her familiar.",
+      "tradeoff": "It replaces or alters 4th-level Hex; 8th-level Hex; 10th-level Major Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:bonded-witch",
+      "name": "Bonded Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Advanced Race Guide pg. 43",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Bonded%20Witch",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": false,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Half-Elf characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bonded Item / Amulet / Ring / Staff",
+          "reason": "Bonded Item / Amulet / Ring / Staff defines the material change from the Witch baseline."
+        }
+      ],
+      "playerSummary": "While all witches commune with the unknown, the blend of human ingenuity and adept learning mixed with elven blood gives some half-elves a unique conduit to channel the powers of the arcane.",
+      "tradeoff": "It replaces or alters Familiar; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:bouda",
+      "name": "Bouda",
+      "parentClassId": "witch",
+      "sourceCitationText": "Monster Codex pg. 92",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Bouda",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true,
+        "has-familiar": false,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A bouda must be evil, or she loses access to all archetype alternate class features until she atones.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Alignment / Fetish / Bouda’s Eye / Hyena Shape",
+          "reason": "The archetype’s Alignment / Fetish / Bouda’s Eye / Hyena Shape package materially changes transformation shapeshifting from the Witch baseline."
+        }
+      ],
+      "playerSummary": "These strange and often solitary witches have a strong connection to curses, the evil eye, and hyenas.",
+      "tradeoff": "It replaces or alters Alignment; Familiar; 1st-level Hex; 10-level Major Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:cartomancer",
+      "name": "Cartomancer",
+      "parentClassId": "witch",
+      "sourceCitationText": "The Harrow Handbook pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Cartomancer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": false,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Spell Deck / Deliver Touch Spells / Deadly Dealer / Hexes",
+          "reason": "Spell Deck / Deliver Touch Spells / Deadly Dealer / Hexes defines the material change from the Witch baseline."
+        }
+      ],
+      "playerSummary": "A witch who serves the spirits of the harrow in exchange for mystical power is known as a cartomancer.",
+      "tradeoff": "It replaces or alters Familiar; 2nd-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:coral-witch",
+      "name": "Coral Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Blood of the Sea pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Coral%20Witch",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Patron / Coral Familiar / Waves Spirit Hex / Immovability",
+          "reason": "The archetype’s Patron / Coral Familiar / Waves Spirit Hex / Immovability package materially changes wilderness affinity from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Coral witches use their magic to fashion familiars from living coral and emulate the unyielding tenacity of these durable marine organisms.",
+      "tradeoff": "It replaces or alters Patron; Familiar; 8th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:demon-sworn",
+      "name": "Demon-Sworn",
+      "parentClassId": "witch",
+      "sourceCitationText": "Heroes of the Darklands pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Demon-Sworn",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Demonic Pact / Cruel Hex / Manifest Pact",
+          "reason": "Demonic Pact / Cruel Hex / Manifest Pact defines the material change from the Witch baseline."
+        }
+      ],
+      "playerSummary": "In the depths of the Darklands, as well as similarly inhospitable locales on Golarion, many seek the succor of demons as a means of survival.",
+      "tradeoff": "It replaces or alters Patron Spells; 6th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:dimensional-occultist",
+      "name": "Dimensional Occultist",
+      "parentClassId": "witch",
+      "sourceCitationText": "Pathfinder Society Field Guide pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Dimensional%20Occultist",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "planar"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Patron / Dimensional Augmentation / Commune with Familiar / Dimensional Waypoints",
+          "reason": "The archetype’s Patron / Dimensional Augmentation / Commune with Familiar / Dimensional Waypoints package materially changes combat mobility from the Witch baseline."
+        }
+      ],
+      "playerSummary": "The dimensional occultist sacrifices some of her mastery over hexes in return for much increased planar lore.",
+      "tradeoff": "It replaces or alters 2nd-level Hex, 8th-level Hex, 12th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:dreamweaver",
+      "name": "Dreamweaver",
+      "parentClassId": "witch",
+      "sourceCitationText": "Advanced Race Guide pg. 185",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Dreamweaver",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Changeling characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Class Skills / Patron / Spells / Dream Spinner",
+          "reason": "The archetype’s Class Skills / Patron / Spells / Dream Spinner package materially changes battlefield control from the Witch baseline."
+        }
+      ],
+      "playerSummary": "A changeling dreamweaver draws upon her hag heritage to ply the dream realms in order to touch mortal minds and souls, for good or ill.",
+      "tradeoff": "It replaces or alters Class Skills; Patron Spells; 2nd, 6th, 10th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:flood-walker",
+      "name": "Flood Walker",
+      "parentClassId": "witch",
+      "sourceCitationText": "Ultimate Wilderness pg. 89",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Flood%20Walker",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A flood walker must be evil, and loses access to all archetype abilities (without regaining replaced abilities) if he becomes nonevil.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Alignment / Class Skills / Patron Spells / Gasping Breath Aura",
+          "reason": "The archetype’s Alignment / Class Skills / Patron Spells / Gasping Breath Aura package materially changes battlefield control from the Witch baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Alignment / Class Skills / Patron Spells / Gasping Breath Aura",
+          "reason": "The archetype’s Alignment / Class Skills / Patron Spells / Gasping Breath Aura package materially changes combat mobility from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Witches who dwell in floodplains or along the banks of predictably dangerous rivers can tap into the underlying potential of surging waters in order to enhance their eerie powers.",
+      "tradeoff": "It replaces or alters Alignment; Class Skills; 4th, 10th, 16th, 18th-level Patron Spells; 1st, 6th, 10th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:gingerbread-witch",
+      "name": "Gingerbread Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Horror Adventures pg. 72",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Gingerbread%20Witch",
+      "capabilityOverrides": {
+        "melee-combat": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Gingerbread Familiar / Cauldron Cook / Tricky Treats Hex / Confection Conjuring",
+          "reason": "The archetype’s Gingerbread Familiar / Cauldron Cook / Tricky Treats Hex / Confection Conjuring package materially changes melee combat from the Witch baseline."
+        }
+      ],
+      "playerSummary": "A sweet tooth lures the gingerbread witch’s victims to doom.",
+      "tradeoff": "It replaces or alters Familiar; 1st, 4th, 8th, 10th, 12th, 16th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:gravewalker",
+      "name": "Gravewalker",
+      "parentClassId": "witch",
+      "sourceCitationText": "Ultimate Magic pg. 84",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Gravewalker",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": false,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Spells / Spell Poppet / Deliver Touch Spells / Aura of Desecration",
+          "reason": "The archetype’s Spells / Spell Poppet / Deliver Touch Spells / Aura of Desecration package materially changes summoning companions from the Witch baseline."
+        },
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Spells / Spell Poppet / Deliver Touch Spells / Aura of Desecration",
+          "reason": "The archetype’s Spells / Spell Poppet / Deliver Touch Spells / Aura of Desecration package materially changes tactical leadership from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Having much in common with necromancers, the gravewalker is obsessed with the occult manipulations of the dead, particularly mindless undead such as zombies.",
+      "tradeoff": "It replaces or alters Patron Spells; Familiar; 1st-level Hex; 4th-level Hex; 8th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:hag-of-gyronna",
+      "name": "Hag of Gyronna",
+      "parentClassId": "witch",
+      "sourceCitationText": "People of the River pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Hag%20of%20Gyronna",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Patron / Spells / Curdle Thoughts / Sunder Hope",
+          "reason": "The archetype’s Patron / Spells / Curdle Thoughts / Sunder Hope package materially changes anti magic disruption from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Only female witches dare dedicate themselves to the Angry Hag, and those who do so are feared for their ability to bend minds and sow discord.",
+      "tradeoff": "It replaces or alters Patron; Spells; 2nd, 8th, 12th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:hagbound",
+      "name": "Hagbound",
+      "parentClassId": "witch",
+      "sourceCitationText": "Blood of the Coven pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Hagbound",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "patron-oath-order",
+          "kind": "commitment",
+          "summary": "A hagbound must take this archetype at 1st level, select one of nine specific patrons, can’t take levels in any class other than witch, and her alignment can never become good until she removes the hag’s hold on her soul.",
+          "evidenceSection": "Hagbound"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Hagbound / Hag’s Claws / Hunched Muscle / Vain Glamour",
+          "reason": "The archetype’s Hagbound / Hag’s Claws / Hunched Muscle / Vain Glamour package materially changes melee combat from the Witch baseline."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Hagbound / Hag’s Claws / Hunched Muscle / Vain Glamour",
+          "reason": "The archetype’s Hagbound / Hag’s Claws / Hunched Muscle / Vain Glamour package materially changes personal durability from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Whether a changeling in the process of succumbing to her mother’s call, a witch cursed by a hag to become her instrument of torment, a vain and petty witch overeager for power, or some other unfortunate soul, a hagbound witch finds its soul has been infected by a hag’s spite and powerful, corrupt arcane magic.",
+      "tradeoff": "It replaces or alters 1st, 2nd, 4th, 8th, 10th, 12th, 14th, and 20th--level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:havocker",
+      "name": "Havocker",
+      "parentClassId": "witch",
+      "sourceCitationText": "Magic Tactics Toolbox pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Havocker",
+      "capabilityOverrides": {
+        "single-target-damage": "core",
+        "debuffing-enemies": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "supernatural attack"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "element-choice",
+          "kind": "commitment",
+          "summary": "One kineticist element replaces the normal patron and determines blast and infusion access.",
+          "evidenceSection": "Patron Element"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.single-target-damage",
+          "section": "Patron Element / Infusion / Spellburn",
+          "reason": "The archetype’s Patron Element / Infusion / Spellburn package materially changes single target damage from the Witch baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Patron Element / Infusion / Spellburn",
+          "reason": "The archetype’s Patron Element / Infusion / Spellburn package materially changes debuffing enemies from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Although most witches are guided to subtle curses and debilitating hexes by their mysterious patrons, some are instead taught the secrets of harnessing raw, destructive elemental power.",
+      "tradeoff": "It replaces or alters Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:hedge-witch",
+      "name": "Hedge Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Ultimate Magic pg. 84",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Hedge%20Witch",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Patron / Spontaneous Healing / Empathic Healing / Hexes",
+          "reason": "The archetype’s Patron / Spontaneous Healing / Empathic Healing / Hexes package materially changes healing recovery from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Among witches, there are those who devote themselves to the care of others and restrict their practices to the healing arts.",
+      "tradeoff": "It replaces or alters 4th-level Hex; 8th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:herb-witch",
+      "name": "Herb Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Ultimate Wilderness pg. 89",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Herb%20Witch",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Patron Spells / Herb Lore / Hexes / Major Hexes",
+          "reason": "The archetype’s Patron Spells / Herb Lore / Hexes / Major Hexes package materially changes healing recovery from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Herb witches brew foul-tasting medicines, sweet poisons, and other concoctions from the untamed plants of the wild.",
+      "tradeoff": "It replaces or alters Patron; 1st, 2nd, 10th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:hex-channeler",
+      "name": "Hex Channeler",
+      "parentClassId": "witch",
+      "sourceCitationText": "Advanced Class Guide pg. 132",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Hex%20Channeler",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Channel Energy / Hexes / Major Hexes / Grand Hexes",
+          "reason": "The archetype’s Channel Energy / Hexes / Major Hexes / Grand Hexes package materially changes healing recovery from the Witch baseline."
+        }
+      ],
+      "playerSummary": "A hex channeler is a witch who devotes herself to either life—healing the wounded and destroying the undead—or death, slaying the living and aiding undead.",
+      "tradeoff": "It replaces or alters 2nd-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:invoker",
+      "name": "Invoker",
+      "parentClassId": "witch",
+      "sourceCitationText": "Haunted Heroes Handbook pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Invoker",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Invoke Patron / Bondage / Bridge / Crisis",
+          "reason": "The archetype’s Invoke Patron / Bondage / Bridge / Crisis package materially changes practical expertise from the Witch baseline."
+        }
+      ],
+      "playerSummary": "The invoker uses her familiar to summon facets of her mysterious patron directly into her body, enhancing her skills and granting her powerful abilities.",
+      "tradeoff": "It replaces or alters 1st, 8th, 10th, and 16th level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:jinx-witch",
+      "name": "Jinx Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Blood of the Beast pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Jinx%20Witch",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Class Skills / Spell Awareness / Jinx-Eating / Jinx-Gorging",
+          "reason": "The archetype’s Class Skills / Spell Awareness / Jinx-Eating / Jinx-Gorging package materially changes anti magic disruption from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Jinx witches specialize in calling down subtle misfortunes and deceiving enemies and allies alike. While they lack any ability to truly eliminate bad luck, they are uniquely gifted at making others believe otherwise.",
+      "tradeoff": "It replaces or alters Class Skills; 2nd, 6th, 10th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:ley-line-guardian",
+      "name": "Ley Line Guardian",
+      "parentClassId": "witch",
+      "sourceCitationText": "Occult Adventures pg. 125",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Ley%20Line%20Guardian",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "castingMethod": [
+          "spontaneous"
+        ]
+      },
+      "identityRemoves": {
+        "castingMethod": [
+          "prepared"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Ley Line Powered / Conduit Surge",
+          "reason": "Ley Line Powered / Conduit Surge defines the material change from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Some witches tap into the power of their patrons not through a special connection with a familiar, but rather directly through the vast network of ley lines that crosses the planes.",
+      "tradeoff": "It replaces or alters Spellcasting; Familiar; 1st and 8th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:medium",
+      "name": "Medium",
+      "parentClassId": "witch",
+      "sourceCitationText": "Undead Slayer's Handbook pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Medium",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Patron / Ectoplasmic Aptitude / Shared Subconscious / Soul Walker",
+          "reason": "Patron / Ectoplasmic Aptitude / Shared Subconscious / Soul Walker defines the material change from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Mediums tap into the spiritual power of those who have yet to find their final rest. Their ability to interact with these souls allows mediums to learn about the physical world through the experiences of those who came before them.",
+      "tradeoff": "It replaces or alters Patron; 2nd, 6th, 20th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:mirror-witch",
+      "name": "Mirror Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Villain Codex pg. 152",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Mirror%20Witch",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": false,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Patron Mirror / Hardness / Hit Points / Intelligence",
+          "reason": "Patron Mirror / Hardness / Hit Points / Intelligence defines the material change from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Mirror witches eschew animal familiars and isntead talk to their patrons via mirror magic",
+      "tradeoff": "It replaces or alters Familiar; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:mountain-witch",
+      "name": "Mountain Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Advanced Class Guide pg. 132",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Mountain%20Witch",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "mountains"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Spells / Stone Spirit Hex / Mountain Beast Empathy / Hexes",
+          "reason": "The archetype’s Spells / Stone Spirit Hex / Mountain Beast Empathy / Hexes package materially changes wilderness affinity from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Mountains can be sanctuaries for witches hunted by society. Here they form bonds with the spirits of the lofty reaches.",
+      "tradeoff": "It replaces or alters Spells; Hex; 2nd-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:nexian-spellspy",
+      "name": "Nexian Spellspy",
+      "parentClassId": "witch",
+      "sourceCitationText": "Inner Sea Intrigue pg. 43",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Nexian%20Spellspy",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "spy"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Nondetection / Infiltrating Vessel / Prepare Results / Hexes",
+          "reason": "The archetype’s Nondetection / Infiltrating Vessel / Prepare Results / Hexes package materially changes stealth subterfuge from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Nexian spellspies are witches who use their familiars and divining talents to spy on their rivals and protect themselves from similar intrusions.",
+      "tradeoff": "It replaces or alters Deliver Touch Spells; 4th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:pact-witch",
+      "name": "Pact Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Planar Adventures pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Pact%20Witch",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-alignment": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "environmentThemes": [
+          "planar"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A pact witch’s alignment must match that of his chosen Outer Plane, or he becomes an ex-pact witch and loses the archetype’s benefits until he atones.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Planar Pact / Planar Familiar",
+          "reason": "Alignment / Planar Pact / Planar Familiar defines the material change from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Though all witches forge bonds with mysterious powers known as patrons, a pact witch takes this bond to an extreme by forging an inexorable pact with the Outer Planes.",
+      "tradeoff": "It replaces or alters Alignment; Patron; Familar; 6th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:putrefactor",
+      "name": "Putrefactor",
+      "parentClassId": "witch",
+      "sourceCitationText": "Blood of the Coven pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Putrefactor",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A putrefactor must be chaotic.",
+          "evidenceSection": "Infestation of Entropy"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Infestation of Entropy / Disgorge Familiar / Verminous Blood / Putrefied Innards",
+          "reason": "The archetype’s Infestation of Entropy / Disgorge Familiar / Verminous Blood / Putrefied Innards package materially changes personal durability from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Some witches find their patrons while in the throes of despair and grief, when all they desire is to see the veneer of civilization peel back to reveal the filth and rot that underlies all things.",
+      "tradeoff": "It replaces or alters Familiar; Patron; 1st, 2nd, 4th, 6th, 10th, and 16th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:rhetorician",
+      "name": "Rhetorician",
+      "parentClassId": "witch",
+      "sourceCitationText": "Arcane Anthology pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Rhetorician",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Debater / Eldritch Glibness / Public Speaker",
+          "reason": "The archetype’s Debater / Eldritch Glibness / Public Speaker package materially changes social influence from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Rhetoricians feel driven to engage in debate, learn as much as they can about their potential foes, and seek ways to use information and quick talking to handle problems before resorting to raw violence.",
+      "tradeoff": "It replaces or alters 1st-level Hex; Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:scarred-witch-doctor",
+      "name": "Scarred Witch Doctor",
+      "parentClassId": "witch",
+      "sourceCitationText": "Advanced Race Guide pg. 140",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Scarred%20Witch%20Doctor",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": false,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Orc characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Fierce Intelligence / Hex Scar / Fetish Mask / Scarshield",
+          "reason": "Fierce Intelligence / Hex Scar / Fetish Mask / Scarshield defines the material change from the Witch baseline."
+        }
+      ],
+      "playerSummary": "The scarred witch doctor draws power from her ability to endure pain and suffering.",
+      "tradeoff": "It replaces or alters Spellcasting; Hexes; Familiar; 1st-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:sea-witch",
+      "name": "Sea Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Ultimate Magic pg. 85",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Sea%20Witch",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Patron / Spells / Know Direction / Sea Creature Empathy",
+          "reason": "The archetype’s Patron / Spells / Know Direction / Sea Creature Empathy package materially changes wilderness affinity from the Witch baseline."
+        }
+      ],
+      "playerSummary": "A sea witch’s affinities are tied to the vast oceans and the rolling waves.",
+      "tradeoff": "It replaces or alters Patron Spells; 1st-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:season-witch",
+      "name": "Season Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Ultimate Wilderness pg. 90",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Season%20Witch",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Season of the Witch / Hexes / Major Hexes / Grand Hexes",
+          "reason": "Season of the Witch / Hexes / Major Hexes / Grand Hexes defines the material change from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Season witches gain their power from the cyclical and mystical exchange of energy passed from one season of nature to another.",
+      "tradeoff": "It replaces or alters Patron; 1st-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:seducer",
+      "name": "Seducer",
+      "parentClassId": "witch",
+      "sourceCitationText": "Legacy of the First World pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Seducer",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Patron / Otherworldly Allure / Fey Charm / Seducer’s Kiss",
+          "reason": "The archetype’s Patron / Otherworldly Allure / Fey Charm / Seducer’s Kiss package materially changes social influence from the Witch baseline."
+        }
+      ],
+      "playerSummary": "These charismatic witches, often devotees of the Green Mother, rely on their otherworldly charms to achieve their aims.",
+      "tradeoff": "It replaces or alters Patron; Key Ability Score; 1st, 6th, 8th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:synergist",
+      "name": "Synergist",
+      "parentClassId": "witch",
+      "sourceCitationText": "Familiar Folio pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Synergist",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Symbiosis",
+          "reason": "The archetype’s Symbiosis package materially changes transformation shapeshifting from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Synergists gain the ability to combine their forms with their familiars’ in order to create something more powerful than either alone.",
+      "tradeoff": "It replaces or alters 1st, 8th, and 14th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:tatterdemalion",
+      "name": "Tatterdemalion",
+      "parentClassId": "witch",
+      "sourceCitationText": "Horror Adventures pg. 73",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Tatterdemalion",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Weapon Proficiency / Cantrips / Dancing Strings / Witchweaver",
+          "reason": "The archetype’s Weapon Proficiency / Cantrips / Dancing Strings / Witchweaver package materially changes battlefield control from the Witch baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Weapon Proficiency / Cantrips / Dancing Strings / Witchweaver",
+          "reason": "The archetype’s Weapon Proficiency / Cantrips / Dancing Strings / Witchweaver package materially changes combat mobility from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Some witches can bend the warp and weft of fabric and thread.",
+      "tradeoff": "It replaces or alters Weapon Proficiencies; Cantrips; 1st, 4th, 8th, 12th, 16th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:vellemancer",
+      "name": "Vellemancer",
+      "parentClassId": "witch",
+      "sourceCitationText": "Blood of the Coven pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Vellemancer",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A vellemancer must not be evil, or she loses access to all the unique abilities provided by this archetype.",
+          "evidenceSection": "Keen Counselor"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Keen Counselor / Invested Hex / Wishgranter / Expanded Wishgranter",
+          "reason": "The archetype’s Keen Counselor / Invested Hex / Wishgranter / Expanded Wishgranter package materially changes support buffing from the Witch baseline."
+        }
+      ],
+      "playerSummary": "While the popular stereotype envisions witches as wicked spellcasters sowing misery, many people turn to the arcane to heal others and better the world. The vellemancer is a guide, using her witchcraft to empower and teach others.",
+      "tradeoff": "It replaces or alters Class Skills; 2nd, 6th, and 8th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:veneficus-witch",
+      "name": "Veneficus Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "People of the River pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Veneficus%20Witch",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "poisoner"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Poisoner / Hexes / Major Hexes / Grand Hexes",
+          "reason": "The archetype’s Poisoner / Hexes / Major Hexes / Grand Hexes package materially changes practical expertise from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Veneficus witches specialize in poisons—brewing both magical and traditional concoctions, and applying them to weapons, traps or even her potent hexes.",
+      "tradeoff": "It replaces or alters 2nd and 10th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:venom-siphoner",
+      "name": "Venom Siphoner",
+      "parentClassId": "witch",
+      "sourceCitationText": "Potions and Poisons pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Venom%20Siphoner",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Poisonous Familiar / Venom Expert / Toxic Blood",
+          "reason": "Poisonous Familiar / Venom Expert / Toxic Blood defines the material change from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Witches are no strangers to poisons, using them alongside their various brews, curses, spells, and other tools of the trade.",
+      "tradeoff": "It replaces or alters 1st, 2nd, 6th-level Hex; Alertness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:white-haired-witch",
+      "name": "White-Haired Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Dragon Empires Primer pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20White-Haired%20Witch",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "White Hair / Constrict / Trip / Pull",
+          "reason": "The archetype’s White Hair / Constrict / Trip / Pull package materially changes melee combat from the Witch baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "White Hair / Constrict / Trip / Pull",
+          "reason": "The archetype’s White Hair / Constrict / Trip / Pull package materially changes combat manoeuvres from the Witch baseline."
+        }
+      ],
+      "playerSummary": "A white-haired witch concentrates her mysterious powers on improving her prowess in melee, using feats of agility and her prehensile hair to deal extreme damage.",
+      "tradeoff": "It replaces or alters Hex; Major Hex; Grand Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:winter-witch",
+      "name": "Winter Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Reign of Winter Player's Guide pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Winter%20Witch",
+      "capabilityOverrides": {
+        "personal-durability": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "cold"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Familiar / Cantrips / Patron / Ice Magic",
+          "reason": "The archetype’s Familiar / Cantrips / Patron / Ice Magic package materially changes personal durability from the Witch baseline."
+        }
+      ],
+      "playerSummary": "The descendents of Baba Yaga rule the frozen realm of Irrisen, and possess a unique power stemming from their otherworldly origin and their ties to cold magic.",
+      "tradeoff": "It replaces or alters Familiar; Patron; 4th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:witch-watcher",
+      "name": "Witch-Watcher",
+      "parentClassId": "witch",
+      "sourceCitationText": "Heroes of the High Court pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Witch-Watcher",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Diminished Spellcasting / Covenant Ally / Health / Safeguard",
+          "reason": "The archetype’s Diminished Spellcasting / Covenant Ally / Health / Safeguard package materially changes protecting allies from the Witch baseline."
+        }
+      ],
+      "playerSummary": "For reasons known only to them, witch-watchers offer protection to nobles across Golarion.",
+      "tradeoff": "It replaces or alters Spells per Day; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "witch:wyrm-witch",
+      "name": "Wyrm Witch",
+      "parentClassId": "witch",
+      "sourceCitationText": "Legacy of Dragons pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Witch%20Wyrm%20Witch",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": false,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Chromatic / Esoteric / Imperial / Metallic",
+          "reason": "Chromatic / Esoteric / Imperial / Metallic defines the material change from the Witch baseline."
+        }
+      ],
+      "playerSummary": "Some witch covens have learned to use treasure to access other draconic powers.",
+      "tradeoff": "It replaces or alters Patron; Familiar; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}
