@@ -1,0 +1,433 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Shifter parent value.",
+  "profiles": [
+    {
+      "id": "shifter:adaptive-shifter",
+      "name": "Adaptive Shifter",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Distant Realms pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Adaptive%20Shifter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Adaptive Claws / Reactive Aspect / Reactive Form / Adaptive Defense",
+          "reason": "Adaptive Claws / Reactive Aspect / Reactive Form / Adaptive Defense defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "Rather than emulate other animals entirely, some shifters learn to reshape their forms on the fly in response to a range of stimuli",
+      "tradeoff": "It replaces or alters Shifter Claws; Shifter Aspect; Chimeric Aspect; Greater Chimeric Aspect; Final Aspect; Wild Empathy; Track; Woodland Stride; Trackless Step; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:dragonblood-shifter",
+      "name": "Dragonblood Shifter",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Wilderness Origins pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Dragonblood%20Shifter",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Draconic Aspect / Wyrmshifter / Improved Wyrmshifter / Greater Wyrmshifter",
+          "reason": "The archetype’s Draconic Aspect / Wyrmshifter / Improved Wyrmshifter / Greater Wyrmshifter package materially changes area multi target damage from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "Dragonblood shifters draw upon the inherent strength and majesty of the true dragons, gaining a measure of their powers from their association.",
+      "tradeoff": "It replaces or alters Shifter Aspect; Wilder Shape; Chimeric Aspect; Greater Chimeric Aspect; Final Aspect; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:elementalist-shifter",
+      "name": "Elementalist Shifter",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Ultimate Wilderness pg. 78",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Elementalist%20Shifter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "mixed"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Languages / Elemental Aspect / Elemental Speech / Elemental Strike",
+          "reason": "Languages / Elemental Aspect / Elemental Speech / Elemental Strike defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "Rather than drawing power from bestial aspects, elementalist shifters channel power from the Inner Sphere and can take on powerful elemental forms at the cost of the greater diversity available to traditional shifters.",
+      "tradeoff": "It replaces or alters Languages; Shifter Aspect; Wild Empathy; Shifter Claws; Wild Shape; Chimeric Aspect; Greater Chimeric Aspect; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:feyform-shifter",
+      "name": "Feyform Shifter",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Wilderness Origins pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Feyform%20Shifter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "fey"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Fey Aspect / Fey Shape / Fey Shifter / Greater Fey Shifter",
+          "reason": "Fey Aspect / Fey Shape / Fey Shifter / Greater Fey Shifter defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "Feyform shifters are intimately linked to the First World, and can draw from it to gain otherworldly powers.",
+      "tradeoff": "It replaces or alters Shifter Aspect; Wild Shape; Chimeric Aspect; Greater Chimeric Aspect; Final Aspect; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:fiendflesh-shifter",
+      "name": "Fiendflesh Shifter",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Ultimate Wilderness pg. 80",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Fiendflesh%20Shifter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A fiendflesh shifter must be evil in alignment and loses all archetype powers if she becomes nonevil.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Infernal Claws / Fiendish Aspect / Fiendish Resilience",
+          "reason": "Alignment / Infernal Claws / Fiendish Aspect / Fiendish Resilience defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "By forging dark pacts with extraplanar forces, fiendflesh shifters invoke sinister powers to assume the strengths of daemons, demons, or devils.",
+      "tradeoff": "It replaces or alters Alignment; Shifter Claws; Wild Shape; Shifter Aspect; Defensive Instinct; Chimeric Aspect; Greater Chimeric Instinct; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:holy-beast",
+      "name": "Holy Beast",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Heroes of Golarion pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Holy%20Beast",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity",
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Beast’s Blessing / Blessed Claws / Divine Fury",
+          "reason": "Beast’s Blessing / Blessed Claws / Divine Fury defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "Holy beast shifters pledge to hunt down their deity’s enemies to earn that deity’s blessing.",
+      "tradeoff": "It replaces or alters Deity; Shifter Claws; Wild Empathy; Track; Woodland Stride; Trackless Step; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:leafshifter",
+      "name": "Leafshifter",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Ultimate Wilderness pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Leafshifter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "wood"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Ghoran characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Shifter’s Slam / Leafshifter’s Aspect / Assassin Vine / Brambles",
+          "reason": "Shifter’s Slam / Leafshifter’s Aspect / Assassin Vine / Brambles defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "Rather than assume aspects taken from the traits of natural animals, a leafshifter transforms into plant-animal hybrids that resemble living topiaries.",
+      "tradeoff": "It replaces or alters Shifter Claws; Shifter Aspect; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:oozemorph",
+      "name": "Oozemorph",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Ultimate Wilderness pg. 81",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Oozemorph",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "curse-or-drawback",
+          "kind": "commitment",
+          "summary": "The natural form is an amorphous ooze; humanoid form lasts limited hours and restricts equipment use.",
+          "evidenceSection": "Fluidic Body"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Compression / Fluidic Body / Morphic Weaponry",
+          "reason": "Weapon and Armor Proficiency / Compression / Fluidic Body / Morphic Weaponry defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "While most shifters are trained in druidic traditions that allow them to tap into animalistic powers, others look instead to the simplest forms of life for inspiration. Known as oozemorphs, these shifters focus on the ooze—a form of life as simple in construction as it is dangerous in combat.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiencies; Chimeric Form; Greater Chimeric Form; Wild Shape; Shifter Aspect; Shifter Claws; Wild Empathy; Defensive Instinct; Woodland Stride; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:rageshaper",
+      "name": "Rageshaper",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Ultimate Wilderness pg. 82",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Rageshaper",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-rage": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A rageshaper must be nonlawful; becoming lawful blocks further levels in the archetype (though prior abilities are kept).",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Devastating Form / Terrible Slam / Invulnerable Defenses",
+          "reason": "Alignment / Devastating Form / Terrible Slam / Invulnerable Defenses defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "The rageshaper is a destructive force of nature brought to bear—a wild and uncontrollable engine of annihilation fueled by wrath.",
+      "tradeoff": "It replaces or alters Alignment; Wild Shape; Shifter Aspect; Shifter Claws; Defensive Instinct; Chimeric Aspect; Greater Chimeric Aspect; Woodland Stride; Trackless Step; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:style-shifter",
+      "name": "Style Shifter",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Martial Arts Handbook pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Style%20Shifter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Armor Proficiency / Natural Strikes / Style Shifting / Style Mastery",
+          "reason": "Armor Proficiency / Natural Strikes / Style Shifting / Style Mastery defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "Style shifters have been able to perfect their combat techniques to the point where they can augment a combat style by partially transforming into the creature that inspired it.",
+      "tradeoff": "It replaces or alters Armor Proficiencies; Shifter Aspect; Chimeric Aspect; Greater Chimeric Aspect; Final Aspect; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:swarm-shifter",
+      "name": "Swarm Shifter",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Wilderness Origins pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Swarm%20Shifter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Vermin Aspect / Swarmer / Swarm Flow / Crawling",
+          "reason": "Vermin Aspect / Swarmer / Swarm Flow / Crawling defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "Swarm shifters channel the essence of the basest and most overlooked animals, vermin.",
+      "tradeoff": "It replaces or alters Wild Shape; Shifter Aspect; Chimeric Aspect; Greater Chimeric Aspect; Final Aspect; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:verdant-shifter",
+      "name": "Verdant Shifter",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Ultimate Wilderness pg. 83",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Verdant%20Shifter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "wood"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Speak with Plants / Verdant Body / Wild Armor / Plant Shape",
+          "reason": "Speak with Plants / Verdant Body / Wild Armor / Plant Shape defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "Verdant shifters have an affinity for plants rather than animals and gain a plantlike form that grows in power as they do.",
+      "tradeoff": "It replaces or alters Wild Empathy; Shifter Aspect; Defensive Instinct; Wild Shape; Chimeric Form; Greater Chimeric Form; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:weretouched",
+      "name": "Weretouched",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Ultimate Wilderness pg. 83",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Weretouched",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "form-choice",
+          "kind": "commitment",
+          "summary": "One lycanthropic animal aspect is selected permanently.",
+          "evidenceSection": "Lycanthrope Aspect"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Lycanthrope Aspect / Lycanthropic Empathy / Lycanthropic Wild Shape",
+          "reason": "Lycanthrope Aspect / Lycanthropic Empathy / Lycanthropic Wild Shape defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "Weretouched shifters are scions of lycanthropic forces, whether hereditary or supernaturally imposed. They can assume both animal and hybrid forms, as a lycanthrope does.",
+      "tradeoff": "It replaces or alters Shifter Aspect; Wild Empathy; Wild Shape; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shifter:wild-effigy",
+      "name": "Wild Effigy",
+      "parentClassId": "shifter",
+      "sourceCitationText": "Construct Handbook pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Wild%20Effigy",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Armor Plating / Heart of Earth / Stoneclaw Strike",
+          "reason": "Armor Plating / Heart of Earth / Stoneclaw Strike defines the material change from the Shifter baseline."
+        }
+      ],
+      "playerSummary": "A wild effigy still takes on the shapes of natural animals, but rather than transforming her body into flesh and muscle, she transforms into constructed effigies of her chosen aspects.",
+      "tradeoff": "It replaces or alters Wild Empathy; Track; Woodland Stride; Trackless Step; Defensive Instinct; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

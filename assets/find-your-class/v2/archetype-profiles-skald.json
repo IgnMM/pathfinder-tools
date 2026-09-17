@@ -1,0 +1,757 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Skald parent value.",
+  "profiles": [
+    {
+      "id": "skald:augur",
+      "name": "Augur",
+      "parentClassId": "skald",
+      "sourceCitationText": "Arcane Anthology pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Augur",
+      "capabilityOverrides": {
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Monster Insight / Signs and Portents / Predictive Strike",
+          "reason": "The archetype’s Monster Insight / Signs and Portents / Predictive Strike package materially changes utility magic from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Tales of Merivesta Olinchi are surprisingly common among the Bekyar of the Mwangi Expanse, who claim she spent some time studying their traditions and history.",
+      "tradeoff": "It replaces or alters Well-Versed; Versatile Performance; Spell Kenning; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:bacchanal",
+      "name": "Bacchanal",
+      "parentClassId": "skald",
+      "sourceCitationText": "Ultimate Wilderness pg. 84",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Bacchanal",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Fermented Fruit / Drunken Dancer / Raging Song / Maddening Dance",
+          "reason": "The archetype’s Fermented Fruit / Drunken Dancer / Raging Song / Maddening Dance package materially changes healing recovery from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Bacchanals are skalds who use ecstatic dancing and ribald songs to influence the primal instincts of listeners.",
+      "tradeoff": "It replaces or alters Scribe Scroll; Versatile Performance; Song of Marching; Dirge of Doom; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:battle-scion",
+      "name": "Battle Scion",
+      "parentClassId": "skald",
+      "sourceCitationText": "Ultimate Intrigue pg. 48",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Battle%20Scion",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "noble champion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Courtly Presence / Battle Prowess / Raging Song / Once and Future Scion",
+          "reason": "Courtly Presence / Battle Prowess / Raging Song / Once and Future Scion defines the material change from the Skald baseline."
+        }
+      ],
+      "playerSummary": "The battle scion possesses a unique mixture of courtly grace alongside martial and magical prowess.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Dirge of Doom; Song of the Fallen; Master Skald; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:bekyar-demon-dancer",
+      "name": "Bekyar Demon Dancer",
+      "parentClassId": "skald",
+      "sourceCitationText": "Advanced Class Origins pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Bekyar%20Demon%20Dancer",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Skills / Versatile Performance / Fiendish Maw / Abyssal Wrath",
+          "reason": "The archetype’s Skills / Versatile Performance / Fiendish Maw / Abyssal Wrath package materially changes debuffing enemies from the Skald baseline."
+        }
+      ],
+      "playerSummary": "While the twisted power of the demon-worshiping Bekyar’s skalds is great, it comes at a terrible price.",
+      "tradeoff": "It replaces or alters Skills; Versatile Performance; 3rd, 6th, and 9th-level Rage Powers; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:belkzen-war-drummer",
+      "name": "Belkzen War Drummer",
+      "parentClassId": "skald",
+      "sourceCitationText": "Advanced Class Origins pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Belkzen%20War%20Drummer",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Weapon Proficiency / Fearsome Mien / Deadly Rhythm / Weapon Master",
+          "reason": "The archetype’s Weapon Proficiency / Fearsome Mien / Deadly Rhythm / Weapon Master package materially changes battlefield control from the Skald baseline."
+        }
+      ],
+      "playerSummary": "These fierce drummers are equally adept at tapping out a driving rhythm and rapping enemies upside the head with the same massive clubs they use to beat the crude hidecovered drums they carry into battle.",
+      "tradeoff": "It replaces or alters Weapon Proficiencies; Bardic Knowledge; Scribe Scroll; Lore Master; 7th-level Versatile Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:boaster",
+      "name": "Boaster",
+      "parentClassId": "skald",
+      "sourceCitationText": "Ultimate Wilderness pg. 84",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Boaster",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Endurance / Raging Song / Song of Endurance / Song of Surmounting",
+          "reason": "The archetype’s Endurance / Raging Song / Song of Endurance / Song of Surmounting package materially changes personal durability from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Boasters use incredible tales and claims to challenge themselves and their allies to accomplish remarkable feats.",
+      "tradeoff": "It replaces or alters Scribe Scroll; Uncanny Dodge; Song of Marching; Lore Master; Song of the Fallen; Rage Powers; 6th-level Rage Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:bold-schemer",
+      "name": "Bold Schemer",
+      "parentClassId": "skald",
+      "sourceCitationText": "Ultimate Intrigue pg. 48",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Bold%20Schemer",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Skills / Skald of Twists and Turns / Bold Strategy",
+          "reason": "The archetype’s Skills / Skald of Twists and Turns / Bold Strategy package materially changes stealth subterfuge from the Skald baseline."
+        }
+      ],
+      "playerSummary": "The bold schemer combines wrath, wits, and daring to win battles and wars in unconventional ways, often through infiltration and deception.",
+      "tradeoff": "It replaces or alters Class Skills; Bardic Knowledge; Uncanny Dodge; Improved Uncanny Dodge; Damage Reduction; Dirge of Doom; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:court-poet",
+      "name": "Court Poet",
+      "parentClassId": "skald",
+      "sourceCitationText": "Heroes of the High Court pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Court%20Poet",
+      "capabilityOverrides": {
+        "melee-combat": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-rage": false
+      },
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Raging Song / Song of Inspiration / Handling the Crowd",
+          "reason": "The archetype’s Raging Song / Song of Inspiration / Handling the Crowd package materially changes melee combat from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Court poets elevate the skald’s love of history and poetry to an aristocratic ideal, captivating courts with complicated poetic traditions and inspiring others with their craft.",
+      "tradeoff": "It replaces or alters Inspired Rage; Song of Strength; Well-Versed; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:dragon-skald",
+      "name": "Dragon Skald",
+      "parentClassId": "skald",
+      "sourceCitationText": "Advanced Class Origins pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Dragon%20Skald",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Wind Whistler / Sea Legs / Fearless Raider / Raging Song",
+          "reason": "Wind Whistler / Sea Legs / Fearless Raider / Raging Song defines the material change from the Skald baseline."
+        }
+      ],
+      "playerSummary": "The Ulfen prize skalds on sea raids and linnorm hunts. Dragon skald performances involve song, whistling, or blowing mighty horns, and viking sailors often talk about having a skald along to whistle up a wind or sing away the mists on the morning of a momentous raid.",
+      "tradeoff": "It replaces or alters Scribe Scroll; Bardic Knowledge; Well-Versed; Song of Marching; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:elegist",
+      "name": "Elegist",
+      "parentClassId": "skald",
+      "sourceCitationText": "Pathfinder: Spiral of Bones #4 pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Elegist",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-rage": false
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "ElegistSource Pathfinder / Melancholic Apparition / Steady Hearted / Somber Damage Reduction",
+          "reason": "The archetype’s ElegistSource Pathfinder / Melancholic Apparition / Steady Hearted / Somber Damage Reduction package materially changes summoning companions from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Some skalds internalize the saddest and must mournful of stories, so much that they are able to manifest the emotions caused by these tales in physical form.",
+      "tradeoff": "It replaces or alters Raging Song; Rage Powers; Well-Versed; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:fated-champion",
+      "name": "Fated Champion",
+      "parentClassId": "skald",
+      "sourceCitationText": "Advanced Class Guide pg. 114",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Fated%20Champion",
+      "capabilityOverrides": {
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Watcher of the Weave / Far Seer / Shield of Foresight / Not This Day",
+          "reason": "The archetype’s Watcher of the Weave / Far Seer / Shield of Foresight / Not This Day package materially changes utility magic from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Among cultures where skalds are the keepers of lore and wisdom, there are those who learn to read the winds of fate and take up the mantle of the fated champion, knowing and embracing their destined paths with strength borne of conviction.",
+      "tradeoff": "It replaces or alters Well-Versed; Spell Kenning; Dirge of Doom; Master Skald; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:herald-of-the-horn",
+      "name": "Herald of the Horn",
+      "parentClassId": "skald",
+      "sourceCitationText": "Advanced Class Guide pg. 115",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Herald%20of%20the%20Horn",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Arcane Bond / Rousing Retort / Horn Call / Crumbling Blast",
+          "reason": "The archetype’s Arcane Bond / Rousing Retort / Horn Call / Crumbling Blast package materially changes area multi target damage from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Whether with the polished metal trumpet of a standing army or the crude curved animal horn of savage raiders, a herald of the horn sounds his raging song with thunderous blasts, which can bolster allies or shatter castle walls.",
+      "tradeoff": "It replaces or alters Scribe Scroll; 5th, 11th, and 17th-level Spell Kenning; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:hunt-caller",
+      "name": "Hunt Caller",
+      "parentClassId": "skald",
+      "sourceCitationText": "Ultimate Wilderness pg. 85",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Hunt%20Caller",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Raging Song / Song of the Senses / Call of the Wild / Wilderness Magic",
+          "reason": "The archetype’s Raging Song / Song of the Senses / Call of the Wild / Wilderness Magic package materially changes transformation shapeshifting from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Hunt callers are skalds whose songs draw their allies into the animal world.",
+      "tradeoff": "It replaces or alters Well-Versed; Song of Strength; Song of the Fallen; 6th, 18th-leve Rage Power; Spell Kenning; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:instigator",
+      "name": "Instigator",
+      "parentClassId": "skald",
+      "sourceCitationText": "Ultimate Intrigue pg. 49",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Instigator",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Raging Song / Song of Rabble-Rousing / Revolutionary Heart",
+          "reason": "The archetype’s Raging Song / Song of Rabble-Rousing / Revolutionary Heart package materially changes debuffing enemies from the Skald baseline."
+        }
+      ],
+      "playerSummary": "he instigator influences the will of the people, turning them toward his own purposes.",
+      "tradeoff": "It replaces or alters Spell Kenning; Dirge of Doom; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:red-tongue",
+      "name": "Red Tongue",
+      "parentClassId": "skald",
+      "sourceCitationText": "Blood of the Beast pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Red%20Tongue",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Great Orator / Seed of Discord / Rile / Rogue Talents",
+          "reason": "The archetype’s Great Orator / Seed of Discord / Rile / Rogue Talents package materially changes stealth subterfuge from the Skald baseline."
+        }
+      ],
+      "playerSummary": "The tengu tendency toward dramatic flourishes and rhetoric creates an environment in which political clubs led by hot-blooded firebrands—referred to as red tongues in polite company—dominate the political scene by swaying emotions in the moment and wielding magic in the shadows.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; 7th, 12th, 17th-level Versatile Performance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:serpent-herald",
+      "name": "Serpent Herald",
+      "parentClassId": "skald",
+      "sourceCitationText": "Legacy of the First World pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Serpent%20Herald",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Serpentine Rage / Serpent Shape / Rage Powers",
+          "reason": "The archetype’s Serpentine Rage / Serpent Shape / Rage Powers package materially changes debuffing enemies from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Warrior bands devoted to Ragadahn are often led by a serpent herald, whose deep roars shake the earth itself.",
+      "tradeoff": "It replaces or alters 3rd-level Rage Power; Spell Kenning; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:spell-warrior",
+      "name": "Spell Warrior",
+      "parentClassId": "skald",
+      "sourceCitationText": "Advanced Class Guide pg. 116",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Spell%20Warrior",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Improved Counterspell / Weapon Song / Enhance Weapons / Greater Counterspell",
+          "reason": "The archetype’s Improved Counterspell / Weapon Song / Enhance Weapons / Greater Counterspell package materially changes anti magic disruption from the Skald baseline."
+        }
+      ],
+      "playerSummary": "The spell warrior uses his arcane knowledge rather than his rage to turn the tide of battle in favor of himself and his allies.",
+      "tradeoff": "It replaces or alters Scribe Scroll; Inspired Rage; Spell Kenning; Dirge of Doom; Master Skald; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:sunsinger",
+      "name": "Sunsinger",
+      "parentClassId": "skald",
+      "sourceCitationText": "Qadira, Jewel of the East pg. 33",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Sunsinger",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A sunsinger must be lawful good, neutral good, or neutral, and must worship Sarenrae specifically.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Alignment / Pillar of Light / Channel Solar Energy",
+          "reason": "The archetype’s Alignment / Pillar of Light / Channel Solar Energy package materially changes healing recovery from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Qadiran sunsingers are particularly religious skalds of Sarenrae who call down their goddess’s glory to fill soldiers with fire.",
+      "tradeoff": "It replaces or alters Alignment; Song of Marching; Spell Kenning;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:totem-channeler",
+      "name": "Totem Channeler",
+      "parentClassId": "skald",
+      "sourceCitationText": "Disciple's Doctrine pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Totem%20Channeler",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Totemic Versatility / Tandem Totems / Totem’s Guidance",
+          "reason": "Totemic Versatility / Tandem Totems / Totem’s Guidance defines the material change from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Some Shoanti skalds discover deeper truths in their tribes’ totems. These skalds, known as totem channelers, learn how to share the totems’ gifts with their allies in the heat of battle.",
+      "tradeoff": "It replaces or alters Bardic Knowledge; Rage Powers; Spell Kenning; Damage Reduction; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:totemic-skald",
+      "name": "Totemic Skald",
+      "parentClassId": "skald",
+      "sourceCitationText": "Advanced Class Guide pg. 117",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Totemic%20Skald",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Totem / Song of the Beast / Totem Empathy / Wild Shape",
+          "reason": "The archetype’s Totem / Song of the Beast / Totem Empathy / Wild Shape package materially changes transformation shapeshifting from the Skald baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Totem / Song of the Beast / Totem Empathy / Wild Shape",
+          "reason": "The archetype’s Totem / Song of the Beast / Totem Empathy / Wild Shape package materially changes wilderness affinity from the Skald baseline."
+        }
+      ],
+      "playerSummary": "The totemic skald forms a close connection to an animal totem. Through the power of this mystical ally, the skald can change shapes, assuming its form as his own.",
+      "tradeoff": "It replaces or alters 3rd-level Rage Power; Uncanny Dodge; Improved Uncanny Dodge; Spell Kenning; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:twilight-speaker",
+      "name": "Twilight Speaker",
+      "parentClassId": "skald",
+      "sourceCitationText": "Heroes from the Fringe pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Twilight%20Speaker",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to elf characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Devout / Twilight Envoy / Raging Song / Inspired Devotion",
+          "reason": "Devout / Twilight Envoy / Raging Song / Inspired Devotion defines the material change from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Twilight speakers are elven skalds of Findeladlara who consider it a sacred duty to seek out and befriend non-elven communities",
+      "tradeoff": "It replaces or alters Alignment; Deity; Bardic Knowledge; Inspired Rage; Song of Strength; Dirge of Doom; Versatile Performance; Well-Versed; Lore Master; Master Skald; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:undying-word",
+      "name": "Undying Word",
+      "parentClassId": "skald",
+      "sourceCitationText": "People of the Wastes pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Undying%20Word",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Bonus Feat / Undying Song / Inspire Resilience / Song of Defiance",
+          "reason": "The archetype’s Bonus Feat / Undying Song / Inspire Resilience / Song of Defiance package materially changes personal durability from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Some who have survived the Mana Wastes cannot accept defeat, and those who have learned to speak the undying word can lend others the strength to endure",
+      "tradeoff": "It replaces or alters Scribe Scroll; Lore Master; Inspired Rage; Song of Strength; Dirge of Doom; Spell Kenning; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:urban-skald",
+      "name": "Urban Skald",
+      "parentClassId": "skald",
+      "sourceCitationText": "Heroes of the Streets pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Urban%20Skald",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Weapon and Armor Proficiency / Raging Song / Controlled Inspired Rage / Infuriating Mockery",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Raging Song / Controlled Inspired Rage / Infuriating Mockery package materially changes debuffing enemies from the Skald baseline."
+        }
+      ],
+      "playerSummary": "The urban skald finds that challenging and mocking foes is sometimes more effective than inspiring uncontrolled rage in a city.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Inspired Rage; Song of Marching; Damage Reduction; Dirge of Doom; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:war-painter",
+      "name": "War Painter",
+      "parentClassId": "skald",
+      "sourceCitationText": "Blood of the Beast pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20War%20Painter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Furious Paint / Thousand Totems / Arcane Flourish",
+          "reason": "Furious Paint / Thousand Totems / Arcane Flourish defines the material change from the Skald baseline."
+        }
+      ],
+      "playerSummary": "The gripplis of the Valashmai Jungle exhibit savage strength for their size—attributed in part to the frightful magical pigments applied to their skin by the tribes’ mystical lore keepers.",
+      "tradeoff": "It replaces or alters Raging Song; Spell Kenning; Lore Master; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:warlord",
+      "name": "Warlord",
+      "parentClassId": "skald",
+      "sourceCitationText": "Ultimate Intrigue pg. 49",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Warlord",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Intimidating Prowess / Unshakable / Raging Song / Fear Me",
+          "reason": "The archetype’s Intimidating Prowess / Unshakable / Raging Song / Fear Me package materially changes debuffing enemies from the Skald baseline."
+        }
+      ],
+      "playerSummary": "The warlord wields his force of personality like a weapon, intimidating his allies and ensuring that his followers heed his commands.",
+      "tradeoff": "It replaces or alters Scribe Scroll; Well-Versed; Spell Kenning; Lore Master; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "skald:wyrm-singer",
+      "name": "Wyrm Singer",
+      "parentClassId": "skald",
+      "sourceCitationText": "Legacy of Dragons pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Wyrm%20Singer",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Wyrm Song / Draconic Rage / Wyrm Saga / Breath Weapon",
+          "reason": "The archetype’s Wyrm Song / Draconic Rage / Wyrm Saga / Breath Weapon package materially changes area multi target damage from the Skald baseline."
+        }
+      ],
+      "playerSummary": "Wyrm singers spin fragments of the story of the ongoing struggle between noble Apsu and wicked Dahak.",
+      "tradeoff": "It replaces or alters Inspired Rage; Song of the Fallen; 12th-level rage power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

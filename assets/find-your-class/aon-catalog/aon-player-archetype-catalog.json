@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T16:18:00.922Z",
+  "generatedAt": "2026-09-17T16:24:05.623Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
@@ -8,9 +8,9 @@
     "archetypes": 1275,
     "entities": 1319,
     "valuedClasses": 44,
-    "valuedArchetypes": 1057,
+    "valuedArchetypes": 1093,
     "pendingClasses": 0,
-    "pendingArchetypes": 218,
+    "pendingArchetypes": 182,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -11360,7 +11360,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Adaptive%20Shifter",
       "replaces": "Shifter Claws; Shifter Aspect; Chimeric Aspect; Greater Chimeric Aspect; Final Aspect; Wild Empathy; Track; Woodland Stride; Trackless Step; Wild Shape",
       "aonSummary": "Rather than emulate other animals entirely, some shifters learn to reshape their forms on the fly in response to a range of stimuli",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "shifter:dragonblood-shifter",
@@ -11371,7 +11371,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Dragonblood%20Shifter",
       "replaces": "Shifter Aspect; Wilder Shape; Chimeric Aspect; Greater Chimeric Aspect; Final Aspect",
       "aonSummary": "Dragonblood shifters draw upon the inherent strength and majesty of the true dragons, gaining a measure of their powers from their association.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "shifter:elementalist-shifter",
@@ -11382,7 +11382,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Elementalist%20Shifter",
       "replaces": "Languages; Shifter Aspect; Wild Empathy; Shifter Claws; Wild Shape; Chimeric Aspect; Greater Chimeric Aspect",
       "aonSummary": "Rather than drawing power from bestial aspects, elementalist shifters channel power from the Inner Sphere and can take on powerful elemental forms at the cost of the greater diversity available to traditional shifters.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "shifter:feyform-shifter",
@@ -11393,7 +11393,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Feyform%20Shifter",
       "replaces": "Shifter Aspect; Wild Shape; Chimeric Aspect; Greater Chimeric Aspect; Final Aspect",
       "aonSummary": "Feyform shifters are intimately linked to the First World, and can draw from it to gain otherworldly powers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "shifter:fiendflesh-shifter",
@@ -11404,7 +11404,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Fiendflesh%20Shifter",
       "replaces": "Alignment; Shifter Claws; Wild Shape; Shifter Aspect; Defensive Instinct; Chimeric Aspect; Greater Chimeric Instinct",
       "aonSummary": "By forging dark pacts with extraplanar forces, fiendflesh shifters invoke sinister powers to assume the strengths of daemons, demons, or devils.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "shifter:holy-beast",
@@ -11415,7 +11415,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Holy%20Beast",
       "replaces": "Deity; Shifter Claws; Wild Empathy; Track; Woodland Stride; Trackless Step",
       "aonSummary": "Holy beast shifters pledge to hunt down their deity’s enemies to earn that deity’s blessing.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "shifter:leafshifter",
@@ -11426,7 +11426,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Leafshifter",
       "replaces": "Shifter Claws; Shifter Aspect",
       "aonSummary": "(Ghoran only) Rather than assume aspects taken from the traits of natural animals, a leafshifter transforms into plant-animal hybrids that resemble living topiaries.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "shifter:oozemorph",
@@ -11448,7 +11448,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Rageshaper",
       "replaces": "Alignment; Wild Shape; Shifter Aspect; Shifter Claws; Defensive Instinct; Chimeric Aspect; Greater Chimeric Aspect; Woodland Stride; Trackless Step",
       "aonSummary": "The rageshaper is a destructive force of nature brought to bear—a wild and uncontrollable engine of annihilation fueled by wrath.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "shifter:style-shifter",
@@ -11459,7 +11459,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Style%20Shifter",
       "replaces": "Armor Proficiencies; Shifter Aspect; Chimeric Aspect; Greater Chimeric Aspect; Final Aspect; Wild Shape",
       "aonSummary": "Style shifters have been able to perfect their combat techniques to the point where they can augment a combat style by partially transforming into the creature that inspired it.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "shifter:swarm-shifter",
@@ -11470,7 +11470,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Swarm%20Shifter",
       "replaces": "Wild Shape; Shifter Aspect; Chimeric Aspect; Greater Chimeric Aspect; Final Aspect",
       "aonSummary": "Swarm shifters channel the essence of the basest and most overlooked animals, vermin.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "shifter:verdant-shifter",
@@ -11481,7 +11481,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Verdant%20Shifter",
       "replaces": "Wild Empathy; Shifter Aspect; Defensive Instinct; Wild Shape; Chimeric Form; Greater Chimeric Form",
       "aonSummary": "Verdant shifters have an affinity for plants rather than animals and gain a plantlike form that grows in power as they do.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "shifter:weretouched",
@@ -11503,7 +11503,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shifter%20Wild%20Effigy",
       "replaces": "Wild Empathy; Track; Woodland Stride; Trackless Step; Defensive Instinct",
       "aonSummary": "A wild effigy still takes on the shapes of natural animals, but rather than transforming her body into flesh and muscle, she transforms into constructed effigies of her chosen aspects.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:augur",
@@ -11514,7 +11514,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Augur",
       "replaces": "Well-Versed; Versatile Performance; Spell Kenning",
       "aonSummary": "Tales of Merivesta Olinchi are surprisingly common among the Bekyar of the Mwangi Expanse, who claim she spent some time studying their traditions and history.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:bacchanal",
@@ -11525,7 +11525,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Bacchanal",
       "replaces": "Scribe Scroll; Versatile Performance; Song of Marching; Dirge of Doom",
       "aonSummary": "Bacchanals are skalds who use ecstatic dancing and ribald songs to influence the primal instincts of listeners.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:battle-scion",
@@ -11536,7 +11536,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Battle%20Scion",
       "replaces": "Bardic Knowledge; Dirge of Doom; Song of the Fallen; Master Skald",
       "aonSummary": "The battle scion possesses a unique mixture of courtly grace alongside martial and magical prowess.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:bekyar-demon-dancer",
@@ -11547,7 +11547,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Bekyar%20Demon%20Dancer",
       "replaces": "Skills; Versatile Performance; 3rd, 6th, and 9th-level Rage Powers",
       "aonSummary": "While the twisted power of the demon-worshiping Bekyar’s skalds is great, it comes at a terrible price.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:belkzen-war-drummer",
@@ -11558,7 +11558,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Belkzen%20War%20Drummer",
       "replaces": "Weapon Proficiencies; Bardic Knowledge; Scribe Scroll; Lore Master; 7th-level Versatile Performance",
       "aonSummary": "These fierce drummers are equally adept at tapping out a driving rhythm and rapping enemies upside the head with the same massive clubs they use to beat the crude hidecovered drums they carry into battle.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:boaster",
@@ -11569,7 +11569,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Boaster",
       "replaces": "Scribe Scroll; Uncanny Dodge; Song of Marching; Lore Master; Song of the Fallen; Rage Powers; 6th-level Rage Power",
       "aonSummary": "Boasters use incredible tales and claims to challenge themselves and their allies to accomplish remarkable feats.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:bold-schemer",
@@ -11580,7 +11580,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Bold%20Schemer",
       "replaces": "Class Skills; Bardic Knowledge; Uncanny Dodge; Improved Uncanny Dodge; Damage Reduction; Dirge of Doom",
       "aonSummary": "The bold schemer combines wrath, wits, and daring to win battles and wars in unconventional ways, often through infiltration and deception.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:court-poet",
@@ -11602,7 +11602,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Dragon%20Skald",
       "replaces": "Scribe Scroll; Bardic Knowledge; Well-Versed; Song of Marching",
       "aonSummary": "The Ulfen prize skalds on sea raids and linnorm hunts. Dragon skald performances involve song, whistling, or blowing mighty horns, and viking sailors often talk about having a skald along to whistle up a wind or sing away the mists on the morning of a momentous raid.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:elegist",
@@ -11613,7 +11613,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Elegist",
       "replaces": "Raging Song; Rage Powers; Well-Versed; Damage Reduction",
       "aonSummary": "Some skalds internalize the saddest and must mournful of stories, so much that they are able to manifest the emotions caused by these tales in physical form.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:fated-champion",
@@ -11624,7 +11624,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Fated%20Champion",
       "replaces": "Well-Versed; Spell Kenning; Dirge of Doom; Master Skald",
       "aonSummary": "Among cultures where skalds are the keepers of lore and wisdom, there are those who learn to read the winds of fate and take up the mantle of the fated champion, knowing and embracing their destined paths with strength borne of conviction.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:herald-of-the-horn",
@@ -11635,7 +11635,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Herald%20of%20the%20Horn",
       "replaces": "Scribe Scroll; 5th, 11th, and 17th-level Spell Kenning; Lore Master",
       "aonSummary": "Whether with the polished metal trumpet of a standing army or the crude curved animal horn of savage raiders, a herald of the horn sounds his raging song with thunderous blasts, which can bolster allies or shatter castle walls.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:hunt-caller",
@@ -11646,7 +11646,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Hunt%20Caller",
       "replaces": "Well-Versed; Song of Strength; Song of the Fallen; 6th, 18th-leve Rage Power; Spell Kenning",
       "aonSummary": "Hunt callers are skalds whose songs draw their allies into the animal world.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:instigator",
@@ -11657,7 +11657,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Instigator",
       "replaces": "Spell Kenning; Dirge of Doom; Lore Master",
       "aonSummary": "he instigator influences the will of the people, turning them toward his own purposes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:red-tongue",
@@ -11668,7 +11668,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Red%20Tongue",
       "replaces": "Bardic Knowledge; 7th, 12th, 17th-level Versatile Performance",
       "aonSummary": "The tengu tendency toward dramatic flourishes and rhetoric creates an environment in which political clubs led by hot-blooded firebrands—referred to as red tongues in polite company—dominate the political scene by swaying emotions in the moment and wielding magic in the shadows.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:serpent-herald",
@@ -11679,7 +11679,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Serpent%20Herald",
       "replaces": "3rd-level Rage Power; Spell Kenning",
       "aonSummary": "Warrior bands devoted to Ragadahn are often led by a serpent herald, whose deep roars shake the earth itself.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:spell-warrior",
@@ -11701,7 +11701,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Sunsinger",
       "replaces": "Alignment; Song of Marching; Spell Kenning;",
       "aonSummary": "Qadiran sunsingers are particularly religious skalds of Sarenrae who call down their goddess’s glory to fill soldiers with fire.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:totem-channeler",
@@ -11712,7 +11712,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Totem%20Channeler",
       "replaces": "Bardic Knowledge; Rage Powers; Spell Kenning; Damage Reduction",
       "aonSummary": "Some Shoanti skalds discover deeper truths in their tribes’ totems. These skalds, known as totem channelers, learn how to share the totems’ gifts with their allies in the heat of battle.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:totemic-skald",
@@ -11723,7 +11723,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Totemic%20Skald",
       "replaces": "3rd-level Rage Power; Uncanny Dodge; Improved Uncanny Dodge; Spell Kenning",
       "aonSummary": "The totemic skald forms a close connection to an animal totem. Through the power of this mystical ally, the skald can change shapes, assuming its form as his own.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:twilight-speaker",
@@ -11734,7 +11734,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Twilight%20Speaker",
       "replaces": "Alignment; Deity; Bardic Knowledge; Inspired Rage; Song of Strength; Dirge of Doom; Versatile Performance; Well-Versed; Lore Master; Master Skald",
       "aonSummary": "(Elf Only) Twilight speakers are elven skalds of Findeladlara who consider it a sacred duty to seek out and befriend non-elven communities",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:undying-word",
@@ -11745,7 +11745,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Undying%20Word",
       "replaces": "Scribe Scroll; Lore Master; Inspired Rage; Song of Strength; Dirge of Doom; Spell Kenning",
       "aonSummary": "Some who have survived the Mana Wastes cannot accept defeat, and those who have learned to speak the undying word can lend others the strength to endure",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:urban-skald",
@@ -11756,7 +11756,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Urban%20Skald",
       "replaces": "Weapon/Armor Proficiencies; Inspired Rage; Song of Marching; Damage Reduction; Dirge of Doom",
       "aonSummary": "The urban skald finds that challenging and mocking foes is sometimes more effective than inspiring uncontrolled rage in a city.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:war-painter",
@@ -11767,7 +11767,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20War%20Painter",
       "replaces": "Raging Song; Spell Kenning; Lore Master",
       "aonSummary": "The gripplis of the Valashmai Jungle exhibit savage strength for their size—attributed in part to the frightful magical pigments applied to their skin by the tribes’ mystical lore keepers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:warlord",
@@ -11778,7 +11778,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Warlord",
       "replaces": "Scribe Scroll; Well-Versed; Spell Kenning; Lore Master; Improved Uncanny Dodge",
       "aonSummary": "The warlord wields his force of personality like a weapon, intimidating his allies and ensuring that his followers heed his commands.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "skald:wyrm-singer",
@@ -11789,7 +11789,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Skald%20Wyrm%20Singer",
       "replaces": "Inspired Rage; Song of the Fallen; 12th-level rage power",
       "aonSummary": "Wyrm singers spin fragments of the story of the ongoing struggle between noble Apsu and wicked Dahak.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "slayer:ankou-s-shadow",
