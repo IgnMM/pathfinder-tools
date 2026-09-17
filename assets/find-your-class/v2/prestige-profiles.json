@@ -3081,6 +3081,568 @@
       "playerSummary": "A shield-bearing holy knight of Iomedae sworn to hunt undead and thwart the return of the Whispering Tyrant -- countering undead spellcasters with disruption and dispelling, growing an arsenal of shield and teamwork feats, and transfiguring gear into holy relics for one glorious minute at the peak of her power.",
       "tradeoff": "Entry requires proficiency with heavy armor, shields, and the longsword, worship of Iomedae specifically, and Knowledge (religion) ranks, and most of its scaling bonuses only apply against undead.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:razmiran-priest",
+      "name": "Razmiran Priest",
+      "sourceCitationText": "Paths of Prestige pg. 44",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Razmiran%20Priest",
+      "requirementsText": "To qualify to become a Razmiran priest, a character must fulfill all of the following criteria.\nAlignment: Any nongood.\nFeat: False Casting (Inner Sea Magic 10).\nSkills: Bluff 5 ranks, Use Magic Device 5 ranks.\nSpells: Able to cast 3rd-level arcane spells.\nSpecial: Must travel to Thronestep to undergo a special ritual whereby the character’s faith in Razmir will be tested.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "core",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "core",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Razmiran priest must be nongood.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "commitment",
+          "summary": "A would-be Razmiran priest must travel to Thronestep and undergo a special ritual testing his faith in Razmir.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "An arcane spellcaster who poses as a divine priest of the false god Razmir -- bluffing his way through cleric-style healing and channeling (delivered as temporary hit points at first, then real healing at the height of his power), backed by a genuinely unshakeable talent for lying.",
+      "tradeoff": "Entry requires a nongood alignment, the False Casting feat, Bluff/Use Magic Device ranks, 3rd-level arcane spells, and a secret ritual of faith undergone at Thronestep, and his own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:aldori-swordlord",
+      "name": "Aldori Swordlord",
+      "sourceCitationText": "Adventurer's Guide pg. 20",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Aldori%20Swordlord",
+      "requirementsText": "To qualify to become an Aldori swordlord, a character must fulfill the following criteria.\nFeats: Dazzling Display, Exotic Weapon Proficiency (Aldori dueling sword), Weapon Finesse, Weapon Focus (Aldori dueling sword).\nSkills: Acrobatics 3 ranks, Intimidate 5 ranks, Knowledge (nobility) 3 ranks, Sense Motive 3 ranks.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Nearly every signature ability only functions while wielding an Aldori dueling sword with nothing in the other hand.",
+          "evidenceSection": "Aldori Swordlord"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A master duelist of the Aldori tradition who fights with a signature dueling sword, finessing damage with Dexterity, parrying and shrugging off critical hits, and intimidating foes into losing their courage mid-fight.",
+      "tradeoff": "Entry requires Dazzling Display, Exotic Weapon Proficiency, Weapon Finesse and Weapon Focus all with the Aldori dueling sword plus Acrobatics/Intimidate/Knowledge (nobility)/Sense Motive ranks, and nearly every ability only works with that one specific weapon and an empty off-hand.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:arclord-of-nex",
+      "name": "Arclord of Nex",
+      "sourceCitationText": "Paths of Prestige pg. 6",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Arclord%20of%20Nex",
+      "requirementsText": "To qualify to become an Arclord of Nex, a character must fulfill all of the following criteria.\nFeats: Craft Construct, Craft Wondrous Item, Eye of the Arclord (The Inner Sea World Guide 286).\nSkills: Diplomacy 5 ranks, Knowledge (arcana) 5 ranks, Knowledge (engineering) 5 ranks, Spellcraft 5 ranks.\nSpecial: You must be able to cast arcane sight, and have at least two spells from every school of magic scribed in your spellbook.\nSpecial: Arcane school class feature. You must have the ability to use hand of the apprentice or a different arcane school power that you can use a number of times per day equal to 3 + your Intelligence modifier. For Arclord of Nex abilities that require you to expend a number of uses of hand of the apprentice, if you can’t use hand of the apprentice you can substitute an equivalent arcane school power you can use a number of times per day equal to 3 + your Intelligence modifier. If you do, you must expend one additional use.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "available",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "absent",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A scholar-mage in the tradition of the lost archmage Nex who masters magic across every school at once -- borrowing spell-like powers from schools outside his own specialty, crafting constructs and magic items at astonishing speed, and teleporting bound allies or creatures to his side at will.",
+      "tradeoff": "Entry requires Craft Construct, Craft Wondrous Item and the Eye of the Arclord feats, heavy skill investment, arcane sight, at least two spells from every school scribed in his spellbook, and an arcane school power like hand of the apprentice, and his own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:bloatmage",
+      "name": "Bloatmage",
+      "sourceCitationText": "City of Strangers pg. 60",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Bloatmage",
+      "requirementsText": "To qualify to become a bloatmage, a character must fulfill all the following criteria.\nFeats: Bloatmage Initiate, Spell Focus (any school).\nSpells: Able to cast 3rd-level arcane spells.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "high",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "curse-or-drawback",
+          "kind": "commitment",
+          "summary": "Pushing the blood pool too far sickens the bloatmage, and pushing it further triggers an uncontrollable murderous rage against friend and foe alike, ending with her dying at 0 blood points.",
+          "evidenceSection": "Blood Pool / Bloat"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "An arcanist who overloads her own bloodstream to fuel greater magic -- spending blood points to recall spent spells, growing grotesquely corpulent with natural armor, and at the height of her power drinking another sorcerer’s blood to temporarily wield an entire second bloodline’s powers.",
+      "tradeoff": "Entry requires the Bloatmage Initiate and Spell Focus feats plus 3rd-level arcane spells, and pushing her blood pool too hard risks sickening herself or flying into an uncontrollable, potentially fatal murderous rage.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:student-of-war",
+      "name": "Student of War",
+      "sourceCitationText": "Adventurer's Guide pg. 142",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Student%20of%20War",
+      "requirementsText": "To qualify to become a student of war, a character must fulfill the following criteria.\nBase Attack Bonus: +5.\nFeats: Combat Expertise, Dodge, Skill Focus (any one Knowledge skill).\nProficiency: Must be proficient with two martial weapons.\nSkills: Knowledge (any two) 4 ranks in each.\nSpecial: Must have succeeded at Knowledge checks against five distinct creatures prior to defeating them.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "absent",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A scholar-warrior who studies a foe with a Knowledge check before a fight, then applies that insight as a defensive, offensive, or maneuver-focused bonus -- eventually finding weak points that bypass damage reduction and even immunity to critical hits.",
+      "tradeoff": "Entry requires base attack bonus +5, Combat Expertise, Dodge and Skill Focus (Knowledge) already in hand, proficiency with two martial weapons, and proof of having out-thought five distinct creatures with Knowledge checks before ever defeating them in combat.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:pit-fighter",
+      "name": "Pit Fighter",
+      "sourceCitationText": "Paths of Prestige pg. 40",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Pit%20Fighter",
+      "requirementsText": "To qualify to become a pit fighter, a character must fulfill all of the following criteria.\nAlignment: Any nonlawful.\nFeats: Dazzling Display.\nSkills: Intimidate 5 ranks; Perform (act), Perform (comedy), or Perform (dance) 3 ranks.\nSpecial: Orc ferocity racial trait or the rage class feature.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "core",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "core",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": true,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A pit fighter must be nonlawful.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "A pit fighter must already have the orc ferocity racial trait or the rage class feature to qualify, and several of his best abilities depend on wielding a weapon with the performance quality in front of an audience.",
+          "evidenceSection": "Special / Arena Weapon Expertise"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A gladiator who turns a live crowd into a weapon -- performing combat for the audience’s reaction, chaining dirty tricks together to cripple foes, and raging harder the louder the crowd cheers for blood.",
+      "tradeoff": "Entry requires a nonlawful alignment, the Dazzling Display feat, Intimidate and a Perform skill already ranked up, and either orc ferocity or the rage class feature, and several of his signature abilities depend on having an audience and a weapon with the performance quality.",
+      "reviewStatus": "reviewed"
     }
   ]
 }
