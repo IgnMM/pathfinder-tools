@@ -552,6 +552,36 @@ const PROFILES = [
     playerSummary: 'A nihilistic demonologist who taints foes with destructive planar resonance to weaken their saves, strikes a pact with an evil outsider subtype for stronger summons, and eventually breaches planar wards and antimagic fields to call forth and empower evil outsiders even where summoning should be blocked.',
     tradeoff: 'Entry requires any non-good alignment, Augment Summoning, Spell Focus (conjuration), Knowledge (planes)/Spellcraft ranks, summon monster III, and fluency in Abyssal and Infernal, and her signature abilities all revolve around evil outsiders specifically rather than general combat power.',
   }),
+  author('brewkeeper', {
+    c: {'support-buffing': 'core', 'debuffing-enemies': 'available', 'utility-magic': 'core', 'healing-recovery': 'available'},
+    p: {'build-complexity': 'high', 'play-complexity': 'high', 'attribute-demands': 'medium', 'equipment-dependence': 'medium', 'resource-management': 'high', versatility: 'high'},
+    f: {'has-spellcasting': true, 'requires-deity': true, 'requires-alignment': true},
+    identity: {magicIdentity: ['arcane'], castingMethod: ['mixed'], castingExtent: ['partial'], spiritualThemes: ['deity'], elementThemes: ['none'], professionIdentity: ['brewer'], primaryDelivery: ['spellcasting']},
+    constraints: [{type: 'alignment', kind: 'requirement', summary: 'A brewkeeper must be neutral good or chaotic good.', evidenceSection: 'Alignment'}, {type: 'deity', kind: 'requirement', summary: 'A brewkeeper must worship Cayden Cailean.', evidenceSection: 'Deity'}],
+    professionIdentity: ['brewer'],
+    playerSummary: 'A devotee of Cayden Cailean who distills spells and extracts into drinkable draughts anyone can use, layers metamagic-like helpful homebrews onto her allies\' potions, and inflicts a growing menu of harmful conditions -- entangled, dazed, confused, nauseated -- through touch spells and splash weapons.',
+    tradeoff: 'Entry requires neutral good or chaotic good alignment, worship of Cayden Cailean, Craft (alchemy) or Profession (brewer) 5 ranks, Brew Potion, and 2nd-level spells or extracts, and her whole kit runs on a limited daily brew-point reservoir.',
+  }),
+  author('brightness-seeker', {
+    c: {'transformation-shapeshifting': 'core', 'knowledge-investigation': 'available', 'social-influence': 'available', 'wilderness-affinity': 'available'},
+    p: {'build-complexity': 'medium', 'play-complexity': 'medium', 'attribute-demands': 'low', 'equipment-dependence': 'low', 'resource-management': 'medium', versatility: 'medium'},
+    f: {'has-shapeshifting': true},
+    identity: {magicIdentity: ['nature'], castingMethod: ['spell-like'], castingExtent: ['none'], spiritualThemes: ['ancestors'], elementThemes: ['none'], professionIdentity: ['seer'], primaryDelivery: ['natural attacks']},
+    constraints: [{type: 'race', kind: 'requirement', summary: 'A Brightness Seeker must be an elf.', evidenceSection: 'Race'}],
+    professionIdentity: ['seer'],
+    playerSummary: 'An elven mystic who reconnects with her past-life incarnations -- granting lucky omens to herself or allies, manifesting animal traits like claws or wings, gaining wild shape, and eventually surviving death itself by reincarnating as an animal with her memories intact.',
+    tradeoff: 'Entry requires being an elf, the Iron Will feat, and heavy Spot/Survival/Knowledge (nature)/Knowledge (religion) investment, and the class caps out at only 5 levels, so it is a short capstone rather than a long-term path.',
+  }),
+  author('brother-of-the-seal', {
+    c: {'melee-combat': 'core', 'combat-manoeuvres': 'core', 'knowledge-investigation': 'available', 'anti-magic-disruption': 'available', 'debuffing-enemies': 'available'},
+    p: {'build-complexity': 'medium', 'play-complexity': 'medium', 'attribute-demands': 'medium', 'equipment-dependence': 'low', 'resource-management': 'medium', versatility: 'low'},
+    f: {},
+    identity: {magicIdentity: ['none'], castingMethod: ['none'], castingExtent: ['none'], spiritualThemes: ['none'], elementThemes: ['none'], professionIdentity: ['guardian'], primaryDelivery: ['unarmed']},
+    constraints: [{type: 'organization', kind: 'theme', summary: 'A Brother of the Seal is a member of the monastic order guarding the eldritch seal beneath Kaer Maga.', evidenceSection: 'Flavor text'}],
+    professionIdentity: ['guardian'],
+    playerSummary: 'A Kaer Magan monk-guardian who ignores hardness when smashing objects, dispels magical wards and glyphs with an unsealing touch, and knocks foes into obstacles or other creatures with an ever-more-devastating Awesome Blow, eventually shattering even stationary force effects.',
+    tradeoff: 'Entry requires any lawful alignment, Improved Unarmed Strike, Stunning Fist, Knowledge (arcana) 5 ranks, and the flurry of blows class feature, and his signature Awesome Blow and unsealing tricks both burn through his limited daily Stunning Fist/ki uses.',
+  }),
 ];
 
 const seen = new Set(PROFILES.map(p => p.id));
