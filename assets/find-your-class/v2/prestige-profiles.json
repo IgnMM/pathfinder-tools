@@ -739,6 +739,941 @@
       "playerSummary": "A scholarly spellcaster who turns broad knowledge into flexible power -- choosing from a menu of secrets (bonus feats, save bonuses, skill mastery, extra spells), identifying magic items at a glance, and eventually casting legend lore or analyze dweomer once per day for free.",
       "tradeoff": "Entry requires 7 ranks each in two Knowledge skills, three metamagic or item-creation feats plus Skill Focus (Knowledge), and the ability to cast seven different divination spells, and its own spellcasting only advances at the reduced rate of a prestige class.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:master-spy",
+      "name": "Master Spy",
+      "sourceCitationText": "Advanced Player's Guide pg. 270",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Master%20Spy",
+      "requirementsText": "To qualify to become a master spy, a character must fulfill all the following criteria.\nFeats: Deceitful, Iron Will.\nSkills: Bluff 7 ranks, Disguise 7 ranks, Perception 5 ranks, Sense Motive 5 ranks.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "available",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "core",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A master of identity and deception who fools truth-detecting magic, mind-reading and alignment-detection alike, backed by scaling sneak attack and an assassin-style death attack, culminating in the ability to fully assume another creature’s identity against divination.",
+      "tradeoff": "Entry requires the Deceitful and Iron Will feats plus heavy Bluff/Disguise/Perception/Sense Motive investment, and it has no combat features beyond sneak attack and a late death attack -- it lives or dies by never being caught.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:mystic-theurge",
+      "name": "Mystic Theurge",
+      "sourceCitationText": "PRPG Core Rulebook pg. 387",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Mystic%20Theurge",
+      "requirementsText": "To qualify to become a mystic theurge, a character must fulfill all the following criteria.\nSkills: Knowledge (arcana) 3 ranks, Knowledge (religion) 3 ranks.\nSpells: Able to cast 2nd-level divine spells and 2nd-level arcane spells.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "available",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "available",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane",
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "full"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "The archetypal dual-caster: someone who already juggles a full arcane and a full divine spellcasting class continues advancing BOTH simultaneously, eventually able to borrow spell slots between the two lists and cast one spell from each list as a single action.",
+      "tradeoff": "Entry requires already casting 2nd-level spells from both an arcane and a divine class plus Knowledge (arcana) and Knowledge (religion) ranks, and every level advances both spellcasting progressions at only the reduced prestige-class rate rather than a real class level in either.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:shadowdancer",
+      "name": "Shadowdancer",
+      "sourceCitationText": "PRPG Core Rulebook pg. 391",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Shadowdancer",
+      "requirementsText": "To qualify to become a shadowdancer, a character must fulfill all the following criteria.\nSkills: Stealth 5 ranks, Perform (dance) 2 ranks.\nFeats: Combat Reflexes, Dodge, Mobility.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "core",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "limited"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "undead"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A stealth specialist who lives in dim light -- hiding in plain sight, summoning an undead shadow companion, teleporting between shadows, and eventually gaining damage reduction and a blinding critical whenever the fight stays dim.",
+      "tradeoff": "Entry requires Combat Reflexes, Dodge and Mobility plus Stealth and Perform (dance) ranks, and its signature abilities (evasion, hide in plain sight, shadow jump, shadow master) only fully function in light or no armor and in dim light.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:stalwart-defender",
+      "name": "Stalwart Defender",
+      "sourceCitationText": "Advanced Player's Guide pg. 277",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Stalwart%20Defender",
+      "requirementsText": "To qualify to become a stalwart defender, a character must fulfill all the following criteria.\nBase Attack Bonus: +7.\nFeats: Dodge, Endurance, Toughness.\nSpecial: Proficiency with light and medium armor.",
+      "hitDie": "d12",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "available",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "medium",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Nearly every signature ability only functions while maintaining the immobile defensive stance, which prevents the defender from voluntarily moving until he ends it (and becomes fatigued afterward).",
+          "evidenceSection": "Defensive Stance"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "An immovable frontline anchor who enters a defensive stance for scaling AC, damage reduction, and Strength/Constitution boosts -- refusing to yield ground, intercepting attacks meant for allies, and unleashing one last devastating strike even at the brink of death.",
+      "tradeoff": "Entry requires base attack bonus +7 plus Dodge, Endurance and Toughness, and nearly every defining ability only works while locked into an immobile defensive stance with limited rounds per day, followed by fatigue when it ends.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:red-mantis-assassin",
+      "name": "Red Mantis Assassin",
+      "sourceCitationText": "Adventurer's Guide pg. 154",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Red%20Mantis%20Assassin",
+      "requirementsText": "To qualify to become a Red Mantis assassin, a character must fulfill the following criteria.\nAlignment: Lawful evil.\nFeats: Alertness, Exotic Weapon Proficiency (sawtooth sabre), Two-Weapon Fighting, Weapon Focus (sawtooth sabre).\nSkills: Intimidate 5 ranks, Perception 5 ranks, Stealth 5 ranks.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "available",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "core",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": true,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "limited"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Red Mantis assassin must be lawful evil.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Sabre Fighting and its bonus feats are built entirely around the sawtooth sabre, and Exotic Weapon Proficiency with it is an entry requirement.",
+          "evidenceSection": "Sabre Fighting"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A lawful evil order’s elite killer who fights with a signature sawtooth sabre, fascinates victims into a coup de grace with a prayer attack, and eventually transforms into a giant mantis that inflicts negative levels and disease-like bleed.",
+      "tradeoff": "Entry requires lawful evil alignment, Exotic Weapon Proficiency with the sawtooth sabre, Two-Weapon Fighting, and heavy Intimidate/Perception/Stealth investment, and nearly every combat feature is built around that one exotic weapon.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:hellknight",
+      "name": "Hellknight",
+      "sourceCitationText": "Adventurer's Guide pg. 90",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Hellknight",
+      "requirementsText": "To qualify to become a Hellknight, a character must fulfill the following criteria.\nAlignment: Any lawful.\nArmor Proficiency: Must be proficient with heavy armor.\nBase Attack Bonus: +5.\nSkills: Intimidate 5 ranks, Knowledge (planes) 2 ranks.\nSpecial: The character must slay a devil with Hit Dice greater than his character level. This victory must be witnessed by a Hellknight.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": true,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "limited"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "other"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "lawbringer"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Hellknight must be of any lawful alignment.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "commitment",
+          "summary": "A Hellknight must join a specific order at 1st level, which determines the disciplines available to him, and must have personally slain a devil greater in Hit Dice, witnessed by a Hellknight, to qualify.",
+          "evidenceSection": "Order"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A lawful knight-inquisitor clad in signature Hellknight plate, striking down chaos with paladin-like smites and auras, growing resistant to fear and charm magic, and gaining order-specific disciplines against the unlawful.",
+      "tradeoff": "Entry requires any lawful alignment, heavy armor proficiency, base attack bonus +5, and personally slaying a devil greater in Hit Dice while witnessed by a Hellknight, and most of its scaling bonuses are tied to wearing Hellknight-specific armor.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:pathfinder-chronicler",
+      "name": "Pathfinder Chronicler",
+      "sourceCitationText": "PRPG Core Rulebook pg. 388",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Pathfinder%20Chronicler",
+      "requirementsText": "To qualify to become a Pathfinder chronicler, a character must fulfill all the following criteria.\nSkills: Linguistics 3 ranks, Perform (oratory) 5 ranks, Profession (scribe) 5 ranks.\nSpecial: Must have authored or scribed something (other than a magical scroll or other device) for which another person (not a PC) paid at least 50 gp.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "available",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "core",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "core",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "available"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "scholar",
+          "evidenceSection": "Master Scribe / Bardic Knowledge",
+          "evidenceText": "The class is built around scribing, linguistics and knowledge as its entry requirement and central identity."
+        },
+        {
+          "value": "chronicler",
+          "evidenceSection": "Epic Tales / Whispering Campaign",
+          "evidenceText": "The class explicitly records and spreads accounts of deeds as its signature performance abilities."
+        }
+      ],
+      "playerSummary": "A scholar-adventurer who chronicles legendary deeds while actively creating them -- carrying bardic knowledge and performance, packing a bottomless satchel of mundane gear, spreading rumors that debuff or rally crowds, and eventually summoning spectral barbarian warbands to fight at her side.",
+      "tradeoff": "Entry requires Linguistics, Perform (oratory) and Profession (scribe) ranks plus having been professionally paid for written work, and its performance-based support relies on bardic-performance rounds shared with any other bard-like class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:holy-vindicator",
+      "name": "Holy Vindicator",
+      "sourceCitationText": "Advanced Player's Guide pg. 263",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Holy%20Vindicator",
+      "requirementsText": "To qualify to become a holy vindicator, a character must fulfill all the following criteria.\nBase Attack Bonus: +5.\nSpecial: Channel energy class feature.\nSkills: Knowledge (religion) 5 ranks.\nFeats: Alignment Channel or Elemental Channel.\nSpells: Able to cast 1st-level divine spells.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "core",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "medium",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A battle-cleric who bleeds for their faith -- channeling energy into a shield for AC, opening sacred or profane stigmata for scaling combat bonuses and fast self-healing, and unleashing doom, death knell or bestow curse the instant a critical hit lands.",
+      "tradeoff": "Entry requires base attack bonus +5, the channel energy class feature, Knowledge (religion) 5 ranks, Alignment Channel or Elemental Channel, and 1st-level divine spells, and its own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:rage-prophet",
+      "name": "Rage Prophet",
+      "sourceCitationText": "Advanced Player's Guide pg. 275",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Rage%20Prophet",
+      "requirementsText": "To qualify to become a rage prophet, a character must fulfill all the following criteria.\nBase Attack Bonus: +5.\nSpecial: Oracle's curse class feature, moment of clarity rage power.\nSkills: Knowledge (religion) 5 ranks.\nSpells: Able to cast 1st-level divine spells.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": true,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "spirits",
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A rage prophet must be nonlawful.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A barbarian/oracle hybrid who fuses rage with divine magic -- casting cure spells and personal-range spells mid-rage without breaking clarity, drawing on a spirit guide for extra spells and utility, and eventually extending rage by burning spell slots.",
+      "tradeoff": "Entry requires base attack bonus +5, the oracle’s curse class feature, the moment of clarity rage power, Knowledge (religion) 5 ranks, and 1st-level divine spells -- meaning it’s only reachable by an existing barbarian/oracle multiclass -- and its own spellcasting only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:master-chymist",
+      "name": "Master Chymist",
+      "sourceCitationText": "Advanced Player's Guide pg. 267",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Master%20Chymist",
+      "requirementsText": "To qualify to become a master chymist, a character must fulfill all the following criteria.\nSpells: Ability to create 3rd-level extracts.\nSpecial: Mutagen class feature, feral mutagen or infuse mutagen discovery.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "available",
+        "offensive-magic": "available",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "core",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": true,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": true,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "alchemical"
+        ],
+        "castingMethod": [
+          "extracts"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "natural attacks"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "curse-or-drawback",
+          "kind": "commitment",
+          "summary": "A master chymist’s mutagenic form has its own distinct alignment (different from her normal form) and can be forced on her involuntarily by a critical hit or a failed Fortitude save.",
+          "evidenceSection": "Mutagenic Form / Mutate"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "An alchemist who embraces a second, monstrous personality -- transforming into a mutagenic alter ego (with its own alignment) to fight with bombs and brutal melee attacks, customizing that form with mutations like draconic resistances, growth, or evasion.",
+      "tradeoff": "Entry requires the ability to create 3rd-level extracts plus the mutagen class feature and the feral or infuse mutagen discovery, and the mutagenic form can be forced on the chymist against her will by a critical hit or a failed Fortitude save.",
+      "reviewStatus": "reviewed"
     }
   ]
 }

@@ -42,14 +42,19 @@ test('resolveAllProfiles includes prestige classes alongside class-paths and arc
   assert.equal(new Set(all.map(p => p.id)).size, all.length);
 });
 
-test('alignment-gated prestige classes (assassin evil, arcane trickster nonlawful) are captured', () => {
+test('alignment-gated prestige classes (assassin evil, arcane trickster nonlawful, red mantis assassin LE, hellknight lawful, rage prophet nonlawful) are captured', () => {
   const m = new Map(prestige.map(p => [p.id, p]));
   assert.ok(m.get('prestige:assassin').constraints.some(c => c.type === 'alignment'));
   assert.equal(m.get('prestige:assassin').facts['requires-alignment'], true);
   assert.ok(m.get('prestige:arcane-trickster').constraints.some(c => c.type === 'alignment'));
+  assert.ok(m.get('prestige:red-mantis-assassin').constraints.some(c => c.type === 'alignment'));
+  assert.ok(m.get('prestige:hellknight').constraints.some(c => c.type === 'alignment'));
+  assert.ok(m.get('prestige:hellknight').constraints.some(c => c.type === 'organization'));
+  assert.ok(m.get('prestige:rage-prophet').constraints.some(c => c.type === 'alignment'));
+  assert.ok(m.get('prestige:master-chymist').constraints.some(c => c.type === 'curse-or-drawback'));
 });
 
-test('8/119 prestige classes are curated so far, 111 remain pending', () => {
-  assert.equal(prestige.length, 8);
+test('18/119 prestige classes are curated so far, 101 remain pending', () => {
+  assert.equal(prestige.length, 18);
   assert.equal(details.length, 119);
 });
