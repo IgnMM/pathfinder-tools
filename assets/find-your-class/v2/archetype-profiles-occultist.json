@@ -1,0 +1,739 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Occultist parent value.",
+  "profiles": [
+    {
+      "id": "occultist:ancestral-aspirant",
+      "name": "Ancestral Aspirant",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Ultimate Intrigue pg. 67",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Ancestral%20Aspirant",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "ancestors"
+        ],
+        "professionIdentity": [
+          "courtier"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Family Jewels / Emotional Reading / Courtly Contacts",
+          "reason": "The archetype’s Class Skills / Family Jewels / Emotional Reading / Courtly Contacts package materially changes social influence from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "It is common for a noble to possess a deep pride for his family’s past, but when such self-importance gives way to obsession, an ancestral aspirant is born.",
+      "tradeoff": "It replaces or alters Class Skills; Implements; Object Reading; Outside Contact; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:battle-host",
+      "name": "Battle Host",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Occult Adventures pg. 100",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Battle%20Host",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "soldier"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "A chosen weapon, armour or shield becomes the sole implement and central panoply bond.",
+          "evidenceSection": "Panoply Bond"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Class Skills / Weapon and Armor Proficiency / Panoply Bond / Battle Skill",
+          "reason": "The archetype’s Class Skills / Weapon and Armor Proficiency / Panoply Bond / Battle Skill package materially changes melee combat from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Class Skills / Weapon and Armor Proficiency / Panoply Bond / Battle Skill",
+          "reason": "The archetype’s Class Skills / Weapon and Armor Proficiency / Panoply Bond / Battle Skill package materially changes personal durability from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Well versed in military history, battlefield lore, and the occult, a battle host forms a supernatural bond with a chosen weapon, suit of armor, or shield, from which he can channel psychic energy to cast spells, conjure the spirit of the object’s former owner, increase his own physical might, and produce a number of other remarkable abilities.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon/Armor Proficiency; Implements; Mental Focus; Spellcasting; Implement Mastery; Magic Item Skill; Object Reading; Shift Focus; Magic Circles; Binding Circles; Fast Circles; Aura Sight; Outside Contact; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:construct-collector",
+      "name": "Construct Collector",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Construct Handbook pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Construct%20Collector",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "construct specialist"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Constructed Focus / Repower Construct",
+          "reason": "The archetype’s Constructed Focus / Repower Construct package materially changes summoning companions from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Constructed Focus / Repower Construct",
+          "reason": "The archetype’s Constructed Focus / Repower Construct package materially changes practical expertise from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Construct collectors draw out a construct's spiritual presence and use it to gain unlikely power in the battlefield.",
+      "tradeoff": "It replaces or alters 3rd, 9th, 15th-level Focus Power; Magic Circles; Outside Contact; Binding Circles; Fast Circles; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:curator",
+      "name": "Curator",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Adventurer's Guide pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Curator",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "curator"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Extensive Collection / Split Focus / Adaptable Powers / Relic Resistance",
+          "reason": "The archetype’s Extensive Collection / Split Focus / Adaptable Powers / Relic Resistance package materially changes anti magic disruption from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Most occultists acquire and study antiques at a steady pace, learning new techniques one at a time. A lucky few join wealthy organizations replete with relics or inherit undocumented vaults full of historical treasures, and dabble in a wide variety of implements while mastering few",
+      "tradeoff": "It replaces or alters Implements; 3rd-level Focus Power; Shift Focus; Outsider Contact; Magic Circles; Binding Circles; Fast Circles; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:esoteric-initiate",
+      "name": "Esoteric Initiate",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Disciple's Doctrine pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Esoteric%20Initiate",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "occult initiate"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Implements of the Palatine Eye / Symbolism",
+          "reason": "The archetype’s Implements of the Palatine Eye / Symbolism package materially changes support buffing from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "While most occultists learn to draw power from a variety of implements and objects, esoteric initiates have focused their study entirely on items of antiquity connected to the teachings of the Esoteric Order of the Palatine Eye, believing such items to be more powerful than mundane items.",
+      "tradeoff": "It replaces or alters Mental Focus; Implements; Shift Focus; Aura Sight; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:extemporaneous-channeler",
+      "name": "Extemporaneous Channeler",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Martial Arts Handbook pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Extemporaneous%20Channeler",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "improvised weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Weapon Proficiency / Improvisational Combatant / Fleeting Focus / Transformative Resonance",
+          "reason": "The archetype’s Weapon Proficiency / Improvisational Combatant / Fleeting Focus / Transformative Resonance package materially changes melee combat from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Weapon Proficiency / Improvisational Combatant / Fleeting Focus / Transformative Resonance",
+          "reason": "The archetype’s Weapon Proficiency / Improvisational Combatant / Fleeting Focus / Transformative Resonance package materially changes practical expertise from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Extemporaneous channelers study the power of transformation and use items in unintended ways to awaken their potential.",
+      "tradeoff": "It replaces or alters Weapon Proficiencies; Mental Focus; Shift Focus; Magic Circles; Outside Contact; Binding Circles; Fast Circles; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:geomancer",
+      "name": "Geomancer",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Ultimate Wilderness pg. 66",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Geomancer",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Geomantic Focus / Geomancy / Cold",
+          "reason": "The archetype’s Class Skills / Geomantic Focus / Geomancy / Cold package materially changes wilderness affinity from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Class Skills / Geomantic Focus / Geomancy / Cold",
+          "reason": "The archetype’s Class Skills / Geomantic Focus / Geomancy / Cold package materially changes battlefield control from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "A geomancer studies every type of land, deriving power from the differences between types of terrain.",
+      "tradeoff": "It replaces or alters Class Skills; Mental Focus; Implements; Magic Item Skill; Aura Sight; 7th and 13th-level Focus Powers; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:haunt-collector",
+      "name": "Haunt Collector",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Horror Adventures pg. 62",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Haunt%20Collector",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits",
+          "haunts"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Possessed Possessions / Hauntist / Spirit Speaker / Extricate Haunt",
+          "reason": "The archetype’s Possessed Possessions / Hauntist / Spirit Speaker / Extricate Haunt package materially changes anti magic disruption from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Possessed Possessions / Hauntist / Spirit Speaker / Extricate Haunt",
+          "reason": "The archetype’s Possessed Possessions / Hauntist / Spirit Speaker / Extricate Haunt package materially changes summoning companions from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Haunt collectors use items haunted by their former owners to create ghostly presences imbued with psychic power.",
+      "tradeoff": "It replaces or alters Implements; Aura Sight; Outside Contact; Magic Circles; Binding Circles; Fast Circles; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:naturalist",
+      "name": "Naturalist",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Ultimate Wilderness pg. 66",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Naturalist",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Natural Focus / Tree Talker / Reflect on the Land",
+          "reason": "The archetype’s Class Skills / Natural Focus / Tree Talker / Reflect on the Land package materially changes wilderness affinity from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Class Skills / Natural Focus / Tree Talker / Reflect on the Land",
+          "reason": "The archetype’s Class Skills / Natural Focus / Tree Talker / Reflect on the Land package materially changes transformation shapeshifting from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "A naturalist eschews the contact with outsiders that other occultists use as the core of their work. Instead, he attunes his mind to the natural spirits that exist everywhere, just out of sight for the unawakened mind.",
+      "tradeoff": "It replaces or alters Class Skills; Mental Focus; Magic Circles; Fast Circles; Outside Contact; Binding Circles; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:necroccultist",
+      "name": "Necroccultist",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Occult Adventures pg. 100",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Necroccultist",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Necromantic Bond / Deadspeaker / Ghostly Horde / Life Drain",
+          "reason": "The archetype’s Necromantic Bond / Deadspeaker / Ghostly Horde / Life Drain package materially changes summoning companions from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Necromantic Bond / Deadspeaker / Ghostly Horde / Life Drain",
+          "reason": "The archetype’s Necromantic Bond / Deadspeaker / Ghostly Horde / Life Drain package materially changes debuffing enemies from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Necroccultists’ fascination with death and the undead drives them to explore the forbidden necromantic arts as they search for secrets they can use to manipulate the natural cycle of life and death.",
+      "tradeoff": "It replaces or alters Implements; Implement Mastery; Object Reading; Aura Sight; Outside Contact; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:occult-historian",
+      "name": "Occult Historian",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Ultimate Wilderness pg. 67",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Occult%20Historian",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "historian"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Ruin Reading / Trap Sense / Crumbling Strike",
+          "reason": "The archetype’s Ruin Reading / Trap Sense / Crumbling Strike package materially changes practical expertise from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Many wilderness areas contain the remnants of ancient civilizations, with some waiting to be discovered and some held by fierce monsters or devious cults. An occult historian seeks these ruins not only for their esoteric artifacts but also to learn the structures’ secrets.",
+      "tradeoff": "It replaces or alters Object Reading; Aura Sight; 3rd-level Focus Power; Outside Contact 2, 3, and 4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:panoply-savant",
+      "name": "Panoply Savant",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Psychic Anthology pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Panoply%20Savant",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "panoply specialist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Panoply Specialization / Panoply Focus / Implement Specialist / Panoptic Harmony",
+          "reason": "The archetype’s Panoply Specialization / Panoply Focus / Implement Specialist / Panoptic Harmony package materially changes support buffing from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Some occultists specialize in a particular panoply, fully dedicating themselves to mastering the secrets of the psychic resonance of each of its component implements, as well as the way they interact with one another.",
+      "tradeoff": "It replaces or alters Shift Focus; Outside Contact; Magic Circles; Binding Circles; Fast Circles; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:planar-harmonizer",
+      "name": "Planar Harmonizer",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Plane-Hopper's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Planar%20Harmonizer",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders",
+          "planes"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Conductor / Planar Scholar / Harmonic Shield / Outside Messenger",
+          "reason": "The archetype’s Conductor / Planar Scholar / Harmonic Shield / Outside Messenger package materially changes anti magic disruption from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Conductor / Planar Scholar / Harmonic Shield / Outside Messenger",
+          "reason": "The archetype’s Conductor / Planar Scholar / Harmonic Shield / Outside Messenger package materially changes support buffing from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Planar harmonizers are masters of the planar symphony, forging bonds with tuning forks to unlock the true potential of these instruments",
+      "tradeoff": "It replaces or alters Implements; Implement Mastery; Magic Item Skill; Shift Focus; 5th, 7th-level Focus Power; Magic Circles; Aura Sight; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:psychodermist",
+      "name": "Psychodermist",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Monster Hunter's Handbook pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Psychodermist",
+      "capabilityOverrides": {
+        "single-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "trophy hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.single-target-damage",
+          "section": "Class Skills / Trophies / Monster Hunting Lore / Discern Death",
+          "reason": "The archetype’s Class Skills / Trophies / Monster Hunting Lore / Discern Death package materially changes single target damage from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Rather than tapping the psychic energy residing within esoteric items, psychodermists form supernatural bonds with trophies taken from creatures they have slain. Through these mementos, these occultists manifest not only their own magic, but also the unique powers of their fallen foes.",
+      "tradeoff": "It replaces or alters Class Skills; Implements; Magic Item Skill; Object Reading; Aura Sight; Outside Contact; Binding Circles; Fast Circles; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:reliquarian",
+      "name": "Reliquarian",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Occult Origins pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Reliquarian",
+      "capabilityOverrides": {
+        "healing-recovery": "core",
+        "defensive-protective-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "psychic",
+          "occult"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Faithful / Spells / Domain / Diminished Focus Power",
+          "reason": "The archetype’s Faithful / Spells / Domain / Diminished Focus Power package materially changes healing recovery from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Faithful / Spells / Domain / Diminished Focus Power",
+          "reason": "The archetype’s Faithful / Spells / Domain / Diminished Focus Power package materially changes defensive protective magic from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Not all occultists derive their power from psychic impressions left on objects. Some find faith first, and draw out the divine potential in religious relics.",
+      "tradeoff": "It replaces or alters Weapon Proficiencies; Spells; Focus Powers; Implements; Knacks; Mental Focus; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:secret-broker",
+      "name": "Secret Broker",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Ultimate Intrigue pg. 68",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Secret%20Broker",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "information broker"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Knowledge Is Power / Broker Secrets / Share Memory",
+          "reason": "The archetype’s Class Skills / Knowledge Is Power / Broker Secrets / Share Memory package materially changes social influence from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Knowledge Is Power / Broker Secrets / Share Memory",
+          "reason": "The archetype’s Class Skills / Knowledge Is Power / Broker Secrets / Share Memory package materially changes stealth subterfuge from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Whether as spymasters, extortionists, political fixers, or puppet masters, secret brokers use their talents with objects to gain information, then leverage that information for their own purposes.",
+      "tradeoff": "It replaces or alters Class Skills; Implements; Implement Mastery; Magic Item Skill; Shift Focus; Magic Circles; Binding Circles; Fast Circles; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:sha-ir",
+      "name": "Sha'ir",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Occult Adventures pg. 102",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Sha%27ir",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "genies",
+          "outsiders"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Jin / Augment Jin / Manifest Jin / Jin Spy",
+          "reason": "The archetype’s Jin / Augment Jin / Manifest Jin / Jin Spy package materially changes summoning companions from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Sha’irs delve into the occult not through power over objects but instead via their connection with minor servitor genies from the elemental planes.",
+      "tradeoff": "It replaces or alters Implements; Mental Focus; Spellcasting; Implement Mastery; Magic Item Skill; Object Reading; Aura Sight; Outside Contact; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:silksworn",
+      "name": "Silksworn",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Heroes of the High Court pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Silksworn",
+      "capabilityOverrides": {
+        "melee-combat": "absent",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ],
+        "professionIdentity": [
+          "courtier"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Class Skills / Spells / Implements / Cantrips",
+          "reason": "The archetype’s Class Skills / Spells / Implements / Cantrips package materially changes melee combat from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Spells / Implements / Cantrips",
+          "reason": "The archetype’s Class Skills / Spells / Implements / Cantrips package materially changes social influence from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Silksworn draw their power from wearing luxurious garments and can be found in many noble courts throughout Golarion",
+      "tradeoff": "It replaces or alters Spellcasting; Class Skills; Knacks; Implements; Weapon and Armor Proficiency; Outside Contact; Magic Circles; Binding Circles; Fast Circles; Implement Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:talisman-crafter",
+      "name": "Talisman Crafter",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Horror Adventures pg. 63",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Talisman%20Crafter",
+      "capabilityOverrides": {
+        "defensive-protective-magic": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "talisman crafter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Talismanic Implements / Spellbound Tailsman / Shared Talisman / Warding Seal",
+          "reason": "The archetype’s Talismanic Implements / Spellbound Tailsman / Shared Talisman / Warding Seal package materially changes defensive protective magic from the Occultist baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Talismanic Implements / Spellbound Tailsman / Shared Talisman / Warding Seal",
+          "reason": "The archetype’s Talismanic Implements / Spellbound Tailsman / Shared Talisman / Warding Seal package materially changes practical expertise from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Talisman crafters specialize- in the creation of seals, constructing master talismans to use as implements and inscribing wards with esoteric geometry.",
+      "tradeoff": "It replaces or alters Implements; Magic Item Skill; Object Reading; Shift Focus; Aura Sight; 5th, 17th-level Focus Powers; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "occultist:tome-eater",
+      "name": "Tome Eater",
+      "parentClassId": "occultist",
+      "sourceCitationText": "Occult Adventures pg. 102",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist%20Tome%20Eater",
+      "capabilityOverrides": {
+        "offensive-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "forbidden scholar"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Bonded Tome / Devour Books and Scrolls / Word Sense",
+          "reason": "The archetype’s Bonded Tome / Devour Books and Scrolls / Word Sense package materially changes offensive magic from the Occultist baseline."
+        }
+      ],
+      "playerSummary": "Tome eaters have learned how to tap into the latent psychic energy of the written word by physically devouring books and scrolls to create magical effects and gain mystical insights.",
+      "tradeoff": "It replaces or alters Implements; Mental Focus; Spellcasting; Implement Mastery; Shift Focus; 6th-level Implement; Magic Circles; Outside Contact; Binding Circles; Fast Circles; Aura Sight; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Ninja parent value.",
+  "profiles": [
+    {
+      "id": "ninja:frozen-shadow",
+      "name": "Frozen Shadow",
+      "parentClassId": "ninja",
+      "sourceCitationText": "Inner Sea Intrigue pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja%20Frozen%20Shadow",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "cold"
+        ],
+        "environmentThemes": [
+          "arctic"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Class Skills / Hardy Killer / Track Victim / Swift Tracker",
+          "reason": "The archetype’s Class Skills / Hardy Killer / Track Victim / Swift Tracker package materially changes personal durability from the Ninja baseline."
+        }
+      ],
+      "playerSummary": "Frozen shadows belong to a rare ninja clan operating in Avistan and they work as thieves, power brokers, and spies loosely guided by secretive masters with unknown agendas.",
+      "tradeoff": "It replaces or alters Class Skills; Ki Pool; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ninja:gunpowder-bombardier",
+      "name": "Gunpowder Bombardier",
+      "parentClassId": "ninja",
+      "sourceCitationText": "Heroes from the Fringe pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja%20Gunpowder%20Bombardier",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-bombs": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "supernatural attack"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Gunpowder Bomb / Explosive Impairment / Delayed Explosive",
+          "reason": "The archetype’s Gunpowder Bomb / Explosive Impairment / Delayed Explosive package materially changes area multi target damage from the Ninja baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Gunpowder Bomb / Explosive Impairment / Delayed Explosive",
+          "reason": "The archetype’s Gunpowder Bomb / Explosive Impairment / Delayed Explosive package materially changes battlefield control from the Ninja baseline."
+        }
+      ],
+      "playerSummary": "Ratfolk assassins and other ninjas with an affinity for gunpowder demonstrate masterful control of bombs, using the explosives to inflict major damage or impair their foes",
+      "tradeoff": "It replaces or alters Ki Pool; 2nd-level Ninja Trick; Uncanny Dodge; Improved Uncanny Dodge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ninja:hunting-serpent",
+      "name": "Hunting Serpent",
+      "parentClassId": "ninja",
+      "sourceCitationText": "Villain Codex pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja%20Hunting%20Serpent",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Relentless Pursuit / Death Mark / Certain Demise",
+          "reason": "The archetype’s Class Skills / Relentless Pursuit / Death Mark / Certain Demise package materially changes wilderness affinity from the Ninja baseline."
+        }
+      ],
+      "playerSummary": "Hunting serpents are specially trained killers to that hunt relentlessly and fight from the shadows.",
+      "tradeoff": "It replaces or alters Class Skills; No Trace; Uncanny Dodge; Improved Uncanny Dodge; 10th, 12th, 16th-level Ninja Trick; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ninja:mask-of-the-living-god",
+      "name": "Mask of the Living God",
+      "parentClassId": "ninja",
+      "sourceCitationText": "Disciple's Doctrine pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja%20Mask%20of%20the%20Living%20God",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "cult infiltrator"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Weapon and Armor Proficiencies / Mask / Undercover Faith / Expurgate",
+          "reason": "The archetype’s Weapon and Armor Proficiencies / Mask / Undercover Faith / Expurgate package materially changes social influence from the Ninja baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Weapon and Armor Proficiencies / Mask / Undercover Faith / Expurgate",
+          "reason": "The archetype’s Weapon and Armor Proficiencies / Mask / Undercover Faith / Expurgate package materially changes debuffing enemies from the Ninja baseline."
+        }
+      ],
+      "playerSummary": "When the Living God needs to silence the voices of those heretics who question too loudly, these enforcers are the tools he employs.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiency; Poison Use; Ki Pool; No Trace; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ninja:petal-ninja",
+      "name": "Petal Ninja",
+      "parentClassId": "ninja",
+      "sourceCitationText": "Wilderness Origins pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja%20Petal%20Ninja",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "wilderness"
+        ],
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Ghoran characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Class Skills / Blossom Shower / Burst of Blossoms / Sundial",
+          "reason": "The archetype’s Class Skills / Blossom Shower / Burst of Blossoms / Sundial package materially changes area multi target damage from the Ninja baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Class Skills / Blossom Shower / Burst of Blossoms / Sundial",
+          "reason": "The archetype’s Class Skills / Blossom Shower / Burst of Blossoms / Sundial package materially changes battlefield control from the Ninja baseline."
+        }
+      ],
+      "playerSummary": "Petal ninjas are a secretive clan of ghoran infiltrators, in touch with their plantlike nature to the point where they can change their forms, allowing them access into places that were previously impossible to reach.\nPetal ninja is an archetype available only to ghorans.",
+      "tradeoff": "It replaces or alters Class Skills; 2nd-level Ninja Trick; No Trace; Uncanny Dodge; Improved Uncanny Dodge; Light Steps; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

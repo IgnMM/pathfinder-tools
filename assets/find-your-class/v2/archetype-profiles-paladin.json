@@ -1,0 +1,1609 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Paladin parent value.",
+  "profiles": [
+    {
+      "id": "paladin:banishing-warden",
+      "name": "Banishing Warden",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Monster Hunter's Handbook pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Banishing%20Warden",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "professionIdentity": [
+          "banisher"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Smite Evil / Banishing Smite / Smiting Aura",
+          "reason": "Class Skills / Smite Evil / Banishing Smite / Smiting Aura defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "The banishing warden is an expert at fighting all types of evil outsiders and sending them back to their native planes.",
+      "tradeoff": "It replaces or alters Class Skills; 3rd-level Mercy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:champion-of-the-cascade",
+      "name": "Champion of the Cascade",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Wilderness Origins pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Champion%20of%20the%20Cascade",
+      "capabilityOverrides": {
+        "combat-mobility": "core",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "water"
+        ],
+        "environmentThemes": [
+          "river"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Armor Proficiency / Class Skills / Swiftsurge / Flowing Stride",
+          "reason": "The archetype’s Armor Proficiency / Class Skills / Swiftsurge / Flowing Stride package materially changes combat mobility from the Paladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Armor Proficiency / Class Skills / Swiftsurge / Flowing Stride",
+          "reason": "The archetype’s Armor Proficiency / Class Skills / Swiftsurge / Flowing Stride package materially changes wilderness affinity from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Champions of the cascade are paladins who defend the freedom and purity of waterways, protecting the very existence of the civilizations they belong to.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Class Skills; Divine Health; Mercy; Divine Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:chaos-knight",
+      "name": "Chaos Knight",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Plane-Hopper's Handbook pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Chaos%20Knight",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "chaos"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Ganzi characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Entropic Touch / Blessings of the Maelstrom / Aura of Chaos",
+          "reason": "The archetype’s Entropic Touch / Blessings of the Maelstrom / Aura of Chaos package materially changes debuffing enemies from the Paladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Entropic Touch / Blessings of the Maelstrom / Aura of Chaos",
+          "reason": "The archetype’s Entropic Touch / Blessings of the Maelstrom / Aura of Chaos package materially changes combat mobility from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Despite the entropic forces inherent in ganzis, some forgo a life of chaos, instead harnessing their heritage to enforce the power of law",
+      "tradeoff": "It replaces or alters Lay on Hands; Mercy; Aura of Faith; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:chosen-one",
+      "name": "Chosen One",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Familiar Folio pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Chosen%20One",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": true,
+        "has-mount": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Bondless / Divine Emissary / Religious Mentor / Delayed Grace",
+          "reason": "The archetype’s Bondless / Divine Emissary / Religious Mentor / Delayed Grace package materially changes summoning companions from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Most paladins train for years at a temple to attain a holy status, but rarely, an emissary of the divine appears to one of humble origins and calls her directly to the charge.",
+      "tradeoff": "It replaces or alters Divine Bond; Class Skills; Divine Grace; Smite Evil; Lay on Hands; Channel Positive Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:combat-healer-squire",
+      "name": "Combat Healer Squire",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Knights of the Inner Sea pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Combat%20Healer%20Squire",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "combat medic"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Careful Healer / Dress Wounds / Swift Healer",
+          "reason": "Careful Healer / Dress Wounds / Swift Healer defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "The combat healer squire is always ready with bandages and potions.",
+      "tradeoff": "It replaces or alters Detect Evil; Divine Grace; Divine Health; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:divine-defender",
+      "name": "Divine Defender",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Player's Guide pg. 116",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Divine%20Defender",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "guardian"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Shared Defense / Divine Bond",
+          "reason": "Shared Defense / Divine Bond defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Some paladins see themselves as the last line of defense between the teeming hordes of evil and the innocent folk trying to make a living in a harsh, unforgiving world.",
+      "tradeoff": "It replaces or alters Mercy; Divine Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:divine-guardian",
+      "name": "Divine Guardian",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Cohorts and Companions pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Divine%20Guardian",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {
+        "has-spellcasting": false
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "bodyguard"
+        ]
+      },
+      "identityRemoves": {
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Martial Focus / Divine Troth / Guarding Hands / Courageous Defense",
+          "reason": "Martial Focus / Divine Troth / Guarding Hands / Courageous Defense defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "The divine guardian devotes herself to the protection and guardianship of one creature at a time, be that her liege lord, an allied cleric, or an innocent facing overwhelming danger at the hands of evil.",
+      "tradeoff": "It replaces or alters Spellcasting; Detect Evil; Lay on Hands; Aura of Courage; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:divine-hunter",
+      "name": "Divine Hunter",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Ultimate Combat pg. 62",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Divine%20Hunter",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Precise Shot / Shared Precision / Divine Bond / Distant Mercy",
+          "reason": "The archetype’s Precise Shot / Shared Precision / Divine Bond / Distant Mercy package materially changes melee combat from the Paladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Precise Shot / Shared Precision / Divine Bond / Distant Mercy",
+          "reason": "The archetype’s Precise Shot / Shared Precision / Divine Bond / Distant Mercy package materially changes ranged combat from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "The divine hunter prefers to engage evil from afar, striking down her foes before they can threaten her allies.",
+      "tradeoff": "It replaces or alters Heavy Armor Proficiency; Aura of Courage; Divine Bond; 6th-level Mercy; Aura of Resolve; Aura of Justice; Aura of Righteousness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:dusk-knight",
+      "name": "Dusk Knight",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Blood of Shadows pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Dusk%20Knight",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "darkness"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Skills / Shadow Smite / Illuminating Zeal / Shadow’s Embrace",
+          "reason": "The archetype’s Skills / Shadow Smite / Illuminating Zeal / Shadow’s Embrace package materially changes stealth subterfuge from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Some paladins focus their training to combat the shadows and use darkness to their advantage.",
+      "tradeoff": "It replaces or alters Class Skills; Smite Evil; Channel Positive Energy; Divine Bond; Aura of Resolve; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:empyreal-knight",
+      "name": "Empyreal Knight",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Ultimate Combat pg. 62",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Empyreal%20Knight",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "celestials"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Voices of the Spheres / Celestial Heart / Celestial Ally / Divine Bond",
+          "reason": "The archetype’s Voices of the Spheres / Celestial Heart / Celestial Ally / Divine Bond package materially changes summoning companions from the Paladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Voices of the Spheres / Celestial Heart / Celestial Ally / Divine Bond",
+          "reason": "The archetype’s Voices of the Spheres / Celestial Heart / Celestial Ally / Divine Bond package materially changes transformation shapeshifting from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "The empyreal knight dedicates her life to serving the celestial beings that guide mortals in their struggle toward the light.",
+      "tradeoff": "It replaces or alters Divine Grace; Mercy; Lay on Hands; Channel Positive Energy; Divine Bond; Holy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:faithful-wanderer",
+      "name": "Faithful Wanderer",
+      "parentClassId": "paladin",
+      "sourceCitationText": "People of the Wastes pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Faithful%20Wanderer",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": false
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "wanderer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Wanderer’s Lore / Hidden Aura / Stalk Evil / Champion’s Bond",
+          "reason": "The archetype’s Wanderer’s Lore / Hidden Aura / Stalk Evil / Champion’s Bond package materially changes wilderness affinity from the Paladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Wanderer’s Lore / Hidden Aura / Stalk Evil / Champion’s Bond",
+          "reason": "The archetype’s Wanderer’s Lore / Hidden Aura / Stalk Evil / Champion’s Bond package materially changes combat mobility from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "A faithful wanderer is self-sufficient and unobtrusive and learns to pick her battles carefully, lest her mission end abruptly in a blaze of glory",
+      "tradeoff": "It replaces or alters Class Skills; Detect Evil; Aura of Good; Aura of Justice; Aura of Courage; Aura of Resolve; Aura of Faith; Aura of Righteousness; Smite Evil; Divine Bond; Holy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:forest-preserver",
+      "name": "Forest Preserver",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Ultimate Wilderness pg. 70",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Forest%20Preserver",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "forest"
+        ],
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Favored Terrain / Woodland Stride / Sacred Botany",
+          "reason": "The archetype’s Class Skills / Favored Terrain / Woodland Stride / Sacred Botany package materially changes wilderness affinity from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Forest preservers are sacred defenders of the woodlands and of the wild creatures and natural beauty within them.",
+      "tradeoff": "It replaces or alters Class Skills; Aura of Courage; Divine Health; Channel Positive Energy; Aura of Resolve; Aura of Justice; Aura of Faith; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:forgefather-s-seeker",
+      "name": "Forgefather's Seeker",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Construct Handbook pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Forgefather%27s%20Seeker",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "smith"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Torag Worshiper / Detect Construct / Smite Construct / Aura of Destruction",
+          "reason": "The archetype’s Torag Worshiper / Detect Construct / Smite Construct / Aura of Destruction package materially changes practical expertise from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Torag sends his seekers to locate constructs that are used for evil or that become uncontrollable",
+      "tradeoff": "It replaces or alters Deity; Detect Evil; Smite Evil; Aura of Justice; Aura of Faith; Holy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:ghost-hunter",
+      "name": "Ghost Hunter",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Occult Adventures pg. 123",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Ghost%20Hunter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead",
+          "spirits"
+        ],
+        "professionIdentity": [
+          "ghost hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Ghostly Smite / Exorcise Possession / Speak to the Restless",
+          "reason": "Ghostly Smite / Exorcise Possession / Speak to the Restless defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Ghost hunters devote their lives to eliminating malevolent spirits and putting them to rest.",
+      "tradeoff": "It replaces or alters Smite Evil; 6th and 9th-level Mercies; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:gray-paladin",
+      "name": "Gray Paladin",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Ultimate Intrigue pg. 69",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Gray%20Paladin",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-alignment": false
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "pragmatist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Class Skills / Weakened Grace / Code of Conduct",
+          "reason": "Alignment / Class Skills / Weakened Grace / Code of Conduct defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Gray paladins have discovered that in a world of intrigue, a strict code of honor hinders their options",
+      "tradeoff": "It replaces or alters Alignment Restriction; Code of Conduct; Aura of Good; Class Skills; Smite Evil; Divine Grace; Aura of Courage; Aura of Resolve; Aura of Rightousness; Divine Health; Channel Positive Energy; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:holy-guide",
+      "name": "Holy Guide",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Class Guide pg. 107",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Holy%20Guide",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "guide"
+        ],
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Favored Terrain / Teamwork Feat",
+          "reason": "The archetype’s Class Skills / Favored Terrain / Teamwork Feat package materially changes wilderness affinity from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "A holy guide believes that it’s his sacred calling to clear the roads of bandits between towns as well as to escort travelers to safety.",
+      "tradeoff": "It replaces or alters Class Skills; 3rd and 6th-level Mercies; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:holy-gun",
+      "name": "Holy Gun",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Ultimate Combat pg. 63",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Holy%20Gun",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "Divine bond must take the form of a firearm.",
+          "evidenceSection": "Divine Bond"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Weapon and Armor Proficiency / Have Gun / Divine Deed / Smiting Shot",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Have Gun / Divine Deed / Smiting Shot package materially changes melee combat from the Paladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon and Armor Proficiency / Have Gun / Divine Deed / Smiting Shot",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Have Gun / Divine Deed / Smiting Shot package materially changes ranged combat from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Not all paladins are knights in shining armor. Holy guns roam the world searching for evil. And where they find it, they put it down.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiency; Detect Evil; Smite Evil; Divine Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:holy-tactician",
+      "name": "Holy Tactician",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Ultimate Combat pg. 64",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Holy%20Tactician",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "tactician"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weal’s Champion / Tactical Acumen / Battlefield Presence / Guide the Battle",
+          "reason": "Weal’s Champion / Tactical Acumen / Battlefield Presence / Guide the Battle defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "The holy tactician inspires her allies on the field of battle.",
+      "tradeoff": "It replaces or alters Smite Evil; Divine Health; Divine Bond; Aura of Courage; Aura of Resolve; Aura of Justice; Holy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:hospitaler",
+      "name": "Hospitaler",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Player's Guide pg. 116",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Hospitaler",
+      "capabilityOverrides": {
+        "single-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "healer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.single-target-damage",
+          "section": "Smite Evil / Channel Positive Energy / Aura of Healing",
+          "reason": "The archetype’s Smite Evil / Channel Positive Energy / Aura of Healing package materially changes single target damage from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Paladins are known for their charity and for tending to the sick. The hospitaler takes to this calling above all others, spending much of her time healing the poor, and giving aid and succor to those in need.",
+      "tradeoff": "It replaces or alters Smite Evil; Channel Positive Energy; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:hunting-paladin",
+      "name": "Hunting Paladin",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Ultimate Wilderness pg. 70",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Hunting%20Paladin",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "hunter"
+        ],
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Weapon and Armor Proficiency / Hunt Evil / Detect Evil",
+          "reason": "The archetype’s Class Skills / Weapon and Armor Proficiency / Hunt Evil / Detect Evil package materially changes wilderness affinity from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Hunting paladins are tenacious trackers and stealthy stalkers in pursuit of evildoers.",
+      "tradeoff": "It replaces or alters Class Skills; Armor Proficiencies; Smite Evil; Detect Evil; Spells; Aura of Resolve; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:invigorator",
+      "name": "Invigorator",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Healer's Handbook pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Invigorator",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "inspirer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bestow Hope / Holy Fount / Champion of Life",
+          "reason": "Bestow Hope / Holy Fount / Champion of Life defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Invigorators devote themselves to keeping their allies bodily whole by bolstering their health and spirits.",
+      "tradeoff": "It replaces or alters Smite Evil; Aura of Justice; Holy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:iomedaen-enforcer",
+      "name": "Iomedaen Enforcer",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Divine Anthology pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Iomedaen%20Enforcer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "enforcer"
+        ],
+        "spiritualThemes": [
+          "Iomedae"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Detect Chaos / Smite Chaos / Aura of Order",
+          "reason": "Class Skills / Detect Chaos / Smite Chaos / Aura of Order defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Iomedaean enforcers have altered abilities that allow them to stand against the forces of chaos.",
+      "tradeoff": "It replaces or alters Class Skills; Detect Evil; Smite Evil; Aura of Faith; Aura of Righteousness; Holy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:iroran-paladin",
+      "name": "Iroran Paladin",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Inner Sea Combat pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Iroran%20Paladin",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true,
+        "has-mount": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ],
+        "spiritualThemes": [
+          "Irori"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Skills / Confident Defense / Unarmed Strike / Aura of Law",
+          "reason": "The archetype’s Skills / Confident Defense / Unarmed Strike / Aura of Law package materially changes combat manoeuvres from the Paladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Skills / Confident Defense / Unarmed Strike / Aura of Law",
+          "reason": "The archetype’s Skills / Confident Defense / Unarmed Strike / Aura of Law package materially changes practical expertise from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Iroran paladins meditate on self-perfection and train relentlessly, knowing that their example can inspire others to excel.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon/Armor Proficiency; Aura of Good; Detect Evil; Smite Evil; Aura of Courage; Channel Positive Energy; Divine Bond; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:knight-of-coins",
+      "name": "Knight of Coins",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Merchant's Manifest pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Knight%20of%20Coins",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "merchant knight"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Class Skills / Eye for Forgeries / Blessing of Prosperity / Blessings",
+          "reason": "The archetype’s Class Skills / Eye for Forgeries / Blessing of Prosperity / Blessings package materially changes practical expertise from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Knights of coins promote fair trade and stable commerce between cities and between nations.",
+      "tradeoff": "It replaces or alters Class Skills; Skill Ranks; Detect Evil; 3rd, 9th, 15th-level Mercy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:kraken-slayer",
+      "name": "Kraken Slayer",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Blood of the Sea pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Kraken%20Slayer",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "professionIdentity": [
+          "monster hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Smite Deepest Evil / Divine Immunity / Divine Bond / Aura of Elusion",
+          "reason": "The archetype’s Smite Deepest Evil / Divine Immunity / Divine Bond / Aura of Elusion package materially changes wilderness affinity from the Paladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Smite Deepest Evil / Divine Immunity / Divine Bond / Aura of Elusion",
+          "reason": "The archetype’s Smite Deepest Evil / Divine Immunity / Divine Bond / Aura of Elusion package materially changes combat mobility from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Triton kraken slayers oppose all underwater threats, but they especially target the tentacled monstrosities called krakens.",
+      "tradeoff": "It replaces or alters Smite Evil; Divine Health; Divine Bond; Aura of Faith; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:legate",
+      "name": "Legate",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Armor Master's Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Legate",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "diplomat"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Celestial Armor",
+          "reason": "Celestial Armor defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Though they hold to the same strict paladin code, legates present themselves not as armed crusaders, but as peaceful envoys and advisors, bringing wisdom garnered from the long, stable history of their nation.",
+      "tradeoff": "It replaces or alters Mercy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:martyr",
+      "name": "Martyr",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Horror Adventures pg. 64",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Martyr",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "martyr"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Stigmata / Aura Mastery / Aura of Health / Martyr's Mercy",
+          "reason": "Stigmata / Aura Mastery / Aura of Health / Martyr's Mercy defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Martyrs shoulder the blackest suffering of the world onto themselves in order to help others and inspiring their allies to achieve heights of valor rather than seeking the glory for themselves.",
+      "tradeoff": "It replaces or alters Smite Evil; Divine Grace; Aura of Courage; Aura of Resolve; Aura of Righteousness; Divine Health; Lay on Hands; Mercy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:mind-sword",
+      "name": "Mind Sword",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Occult Origins pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Mind%20Sword",
+      "capabilityOverrides": {
+        "offensive-magic": "available",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "psychic"
+        ],
+        "spiritualThemes": [
+          "mind"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Mind Arsenal / Touch Treatment / Spells",
+          "reason": "The archetype’s Mind Arsenal / Touch Treatment / Spells package materially changes offensive magic from the Paladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Mind Arsenal / Touch Treatment / Spells",
+          "reason": "The archetype’s Mind Arsenal / Touch Treatment / Spells package materially changes debuffing enemies from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Veterans of mystical battles against demons of the Worldwound, mind swords merge psychic and divine power, probing and cleansing minds while their telekinetic blades cleave demonic flesh.",
+      "tradeoff": "It replaces or alters Lay on Hands; Mercy; Channel Positive Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:pearl-seeker",
+      "name": "Pearl Seeker",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Aquatic Adventures pg. 54",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Pearl%20Seeker",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Armor Proficiency and Class Skills / Seek Impressions / Aquatic Domain / Vision Magic",
+          "reason": "The archetype’s Armor Proficiency and Class Skills / Seek Impressions / Aquatic Domain / Vision Magic package materially changes wilderness affinity from the Paladin baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Armor Proficiency and Class Skills / Seek Impressions / Aquatic Domain / Vision Magic",
+          "reason": "The archetype’s Armor Proficiency and Class Skills / Seek Impressions / Aquatic Domain / Vision Magic package materially changes combat mobility from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Some paladins are called to their faith by strange empathic visions and dreams that beckon them to the oceans and beyond.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Class Skills; Detect Evil; Aura of Courage; Aura of Resolve; Spells; Divine Bond; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:redeemer",
+      "name": "Redeemer",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Race Guide pg. 55",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Redeemer",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "redeemer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Half-Orc characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Merciful Smite / Monstrous Rapport / Pact of Peace / Aura of Mercy",
+          "reason": "The archetype’s Merciful Smite / Monstrous Rapport / Pact of Peace / Aura of Mercy package materially changes debuffing enemies from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "As most half-orcs are outcasts, a half-orc paladin recognizes that often those who are monstrous are not necessarily evil and that sometimes even those who are evil became that way because of circumstances and misfortune.",
+      "tradeoff": "It replaces or alters Smite Evil; Detect Evil; Aura of Resolve; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:sacred-servant",
+      "name": "Sacred Servant",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Player's Guide pg. 117",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Sacred%20Servant",
+      "capabilityOverrides": {
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "divine servant"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Smite Evil / Spells / Divine Bond / Call Celestial Ally",
+          "reason": "The archetype’s Smite Evil / Spells / Divine Bond / Call Celestial Ally package materially changes utility magic from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Paladins as a general rule, venerate the gods of good and purity, but some take this a step further, dedicating themselves to a specific deity and furthering the cause of the faith.",
+      "tradeoff": "It replaces or alters Smite Evil; Divine Bond; Aura of Resolve; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:sacred-shield",
+      "name": "Sacred Shield",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Ultimate Combat pg. 65",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Sacred%20Shield",
+      "capabilityOverrides": {
+        "single-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "shield guardian"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.single-target-damage",
+          "section": "Bastion of Good / Holy Shield / Divine Bond / Improved Bastion",
+          "reason": "The archetype’s Bastion of Good / Holy Shield / Divine Bond / Improved Bastion package materially changes single target damage from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "When faced by evil, the sacred shield reaches first not for a weapon, but for her trusty shield. With her faith, she can ward others from harm.",
+      "tradeoff": "It replaces or alters Smite Evil; Channel Positive Energy; Divine Bond; Aura of Justice; Holy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:scion-of-talmandor",
+      "name": "Scion of Talmandor",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Adventurer's Guide pg. 74",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Scion%20of%20Talmandor",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "celestials"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Scion’s Faith / Egalitarian / Bonded Eagle / Consensus",
+          "reason": "The archetype’s Scion’s Faith / Egalitarian / Bonded Eagle / Consensus package materially changes summoning companions from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "A scion of Talmandor serve by offering assistance to the oppressed and facilitating the peaceful transfer of power from the few to the many.",
+      "tradeoff": "It replaces or alters Class Skills; Divine Grace; Divine Bond; Aura of Resolve; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:shining-knight",
+      "name": "Shining Knight",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Player's Guide pg. 117",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Shining%20Knight",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "mounted combat"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Skilled Rider / Divine Bond / Knight’s Charge",
+          "reason": "The archetype’s Skilled Rider / Divine Bond / Knight’s Charge package materially changes combat mobility from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "While paladins often are seen mounted atop a loyal steed, the shining knight is the true symbol of mounted bravery.",
+      "tradeoff": "It replaces or alters Divine Health; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:silver-champion",
+      "name": "Silver Champion",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Legacy of Dragons pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Silver%20Champion",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Deity",
+          "reason": "The archetype’s Deity package materially changes summoning companions from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Drake-riding paladins who serve as priests of Apsu.",
+      "tradeoff": "It replaces or alters Divine Bond; Channel Energy; Aura of Justice; Aura of Righteousness; Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:soul-sentinel",
+      "name": "Soul Sentinel",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Horror Adventures pg. 65",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Soul%20Sentinel",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "souls"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Reprieve / Sacred Soul / Greater Reprieve",
+          "reason": "Reprieve / Sacred Soul / Greater Reprieve defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Soul sentinels use the strength of their resolve to stem the tide of corruption and insanity, as they believe that the greatest tragedy is a soul lost to evil when it was within their power to save it.",
+      "tradeoff": "It replaces or alters 6th, 12th-level Mercy; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:stonelord",
+      "name": "Stonelord",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Race Guide pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Stonelord",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": false,
+        "has-mount": false
+      },
+      "identityAdds": {
+        "elementThemes": [
+          "earth"
+        ],
+        "professionIdentity": [
+          "stone guardian"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Dwarf characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Stonestrike / Heartstone / Stoneblood / Defensive Stance",
+          "reason": "The archetype’s Stonestrike / Heartstone / Stoneblood / Defensive Stance package materially changes battlefield control from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "A stonelord is a devoted sentinel of dwarven enclaves, drawing the power of the earth and ancient stone to protect her people.",
+      "tradeoff": "It replaces or alters Smite Evil; Divine Grace; 3rd, 9th, 12th, 15th, 18th-level Mercies; Spells; Channel Positive Energy; Divine Bond; Aura of Justice; Holy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:sword-of-valor",
+      "name": "Sword of Valor",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Inner Sea Magic pg. 39",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Sword%20of%20Valor",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "duelist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Iomedae Worshiper / First Into Battle / Prayer of the Fourth Act / Worthy Enemy",
+          "reason": "Iomedae Worshiper / First Into Battle / Prayer of the Fourth Act / Worthy Enemy defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "A paladin who chooses to follow in Iomedae's footsteps can become a sword of valor.",
+      "tradeoff": "It replaces or alters Divine Grace; 6th-level Mercy; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:tempered-champion",
+      "name": "Tempered Champion",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Weapon Master's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Tempered%20Champion",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {
+        "has-spellcasting": false
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "weapon champion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Divine Weapon Specialization / Divine Bond",
+          "reason": "Divine Weapon Specialization / Divine Bond defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Tempered champions are trained in the Tempering Hall in Absalom to master their deities’ favored weapons.",
+      "tradeoff": "It replaces or alters Spellcasting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:temple-champion",
+      "name": "Temple Champion",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Class Guide pg. 107",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Temple%20Champion",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": false,
+        "has-mount": false
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "temple champion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Spells / Domain Granted Power / Blessing",
+          "reason": "Spells / Domain Granted Power / Blessing defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "A temple champion is a powerful warrior dedicated to a good or lawful deity. She thinks of herself primarily as a servant of her deity and secondarily as an agent of her deity’s church.",
+      "tradeoff": "It replaces or alters Spells; Divine Bond; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:tortured-crusader",
+      "name": "Tortured Crusader",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Horror Adventures pg. 65",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Tortured%20Crusader",
+      "capabilityOverrides": {
+        "social-influence": "available"
+      },
+      "practicalOverrides": {
+        "attribute-demands": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "solitary crusader"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Torment / Self-Sufficient / All is Darkness / Alone in the Dark",
+          "reason": "The archetype’s Torment / Self-Sufficient / All is Darkness / Alone in the Dark package materially changes social influence from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Though tortured crusaders may be beaten and battered, body, mind, and soul, they still somehow continue through torment and hardship. Despite setbacks and impossible odds, they shine like candles even in the darkest times",
+      "tradeoff": "It replaces or alters Key Ability Score; Skills; Detect Evil; Divine Grace; Smite Evil; Lay on Hands; Channel Energy; Divine Bond; Aura of Courage; Aura of Resolve; Aura of Faith; Aura of Righteousness; Aura of Justice ; Lay on Hands; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:tranquil-guardian",
+      "name": "Tranquil Guardian",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Race Guide pg. 86",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Tranquil%20Guardian",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "peacekeeper"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Aasimar characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Touch of Serenity / Serene Strike / Divine Bond / Aura of Calm",
+          "reason": "The archetype’s Touch of Serenity / Serene Strike / Divine Bond / Aura of Calm package materially changes debuffing enemies from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "A tranquil guardian is a missionary of peace and tranquility, a soothing voice of succor in a violent and dangerous world.",
+      "tradeoff": "It replaces or alters Smite Evil; Aura of Courage; Divine Bond; Aura of Resolve; Aura of Justice; Holy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:undead-scourge",
+      "name": "Undead Scourge",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Player's Guide pg. 117",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Undead%20Scourge",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ],
+        "professionIdentity": [
+          "undead hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Smite Evil / Aura of Life / Undead Annihilation",
+          "reason": "Smite Evil / Aura of Life / Undead Annihilation defines the material change from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Undead are an abomination in the eyes of the just and righteous. It is no surprise then that there are some paladins that dedicate themselves to wiping these unholy terrors from the world.",
+      "tradeoff": "It replaces or alters Aura of Resolve; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:vindictive-bastard",
+      "name": "Vindictive Bastard",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Antihero's Handbook pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Vindictive%20Bastard",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-code-of-conduct": false,
+        "requires-alignment": false,
+        "has-spellcasting": false,
+        "has-mount": false
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "fallen avenger"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "No Aura / Locate Ally / Vindictive Smite / Faded Grace",
+          "reason": "The archetype’s No Aura / Locate Ally / Vindictive Smite / Faded Grace package materially changes debuffing enemies from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "A vindictive bastard is a paladin that strikes out for retribution and revenge, far more interested in tearing down those who have harmed her or her companions than furthering a distant deity’s cause.",
+      "tradeoff": "It replaces or alters Aura; Detect Evil; Smite Evil; Divine Grace; Lay on Hands; Divine Health; Mercy; Channel Energy; Divine Bond; Aura of Justice; Aura of Faith; Aura of Righteousness; Holy Champion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:virtuous-bravo",
+      "name": "Virtuous Bravo",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Heroes of the High Court pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Virtuous%20Bravo",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": false,
+        "has-mount": false
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "swashbuckler"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Weapon and Armor Proficiency / Bravo’s Finesse / Bravo’s Smite / Nimble",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Bravo’s Finesse / Bravo’s Smite / Nimble package materially changes combat mobility from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Virtuous bravos rely on their wit and grace rather than might and strong armor.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Smite Evil; Mercy; Spellcasting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:warrior-of-the-holy-light",
+      "name": "Warrior of the Holy Light",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Advanced Player's Guide pg. 118",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Warrior%20of%20the%20Holy%20Light",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": false
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "light"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Power of Faith / Shining Light",
+          "reason": "The archetype’s Power of Faith / Shining Light package materially changes area multi target damage from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Some paladins use their gifts to focus on the holy light that shines within their souls.",
+      "tradeoff": "It replaces or alters Spellcasting; Aura of Faith; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "paladin:wilderness-warden",
+      "name": "Wilderness Warden",
+      "parentClassId": "paladin",
+      "sourceCitationText": "Ultimate Wilderness pg. 71",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Paladin%20Wilderness%20Warden",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "wilderness"
+        ],
+        "professionIdentity": [
+          "warden"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Natural Defense / Smite Evil / Aura of Comfort",
+          "reason": "The archetype’s Class Skills / Natural Defense / Smite Evil / Aura of Comfort package materially changes wilderness affinity from the Paladin baseline."
+        }
+      ],
+      "playerSummary": "Wilderness wardens are vigilant guardians of natural places of all kinds, from mountain peaks to tangled thickets.",
+      "tradeoff": "It replaces or alters Class Skills; Divine Grace; Smite Evil; Aura of Courage; 3rd, 9th, 15th-level Mercy; Spells; Aura of Resolve; Aura of Justice; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

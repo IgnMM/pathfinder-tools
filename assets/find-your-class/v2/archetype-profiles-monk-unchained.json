@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Monk (Unchained) parent value.",
+  "profiles": [
+    {
+      "id": "monk-unchained:black-asp",
+      "name": "Black Asp",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Ultimate Intrigue pg. 67",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Black%20Asp",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "assassin"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Black Asp’s Path / Forbidden Powers / Black Asp Venom / Empty Mind",
+          "reason": "The archetype’s Black Asp’s Path / Forbidden Powers / Black Asp Venom / Empty Mind package materially changes stealth subterfuge from the Monk (Unchained) baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Black Asp’s Path / Forbidden Powers / Black Asp Venom / Empty Mind",
+          "reason": "The archetype’s Black Asp’s Path / Forbidden Powers / Black Asp Venom / Empty Mind package materially changes debuffing enemies from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "The black asps are a sinister order of monks who train as assassins and infiltrators with no need for weapons to achieve their goals.",
+      "tradeoff": "It replaces or alters Stunning Fist; Still Mind; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:brazen-disciple",
+      "name": "Brazen Disciple",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Adventurer's Guide pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Brazen%20Disciple",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Class Skills / Feinting Flurry / Bonus Feat / Efreeti’s Guile",
+          "reason": "The archetype’s Class Skills / Feinting Flurry / Bonus Feat / Efreeti’s Guile package materially changes debuffing enemies from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "Brazen disciples use deception in their fighting style, and many go a step further, incorporating fire and smoke both mundane and magical.",
+      "tradeoff": "It replaces or alters Class Skills; 1st, 6th-level Bonus Feats; Still Mind; 12th-level Ki Power; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:disciple-of-wholeness",
+      "name": "Disciple of Wholeness",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Healer's Handbook pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Disciple%20of%20Wholeness",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-healing": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "healer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Healing Ki / Hone Body / Greater Hone Body / Hone Soul",
+          "reason": "The archetype’s Healing Ki / Hone Body / Greater Hone Body / Hone Soul package materially changes healing recovery from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "Disciples of wholeness train to bring themselves and others closer to physical and spiritual perfection.",
+      "tradeoff": "It replaces or alters Ki Pool; Purity of Body; 4th, 12th, 14th level Ki Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:elemental-monk",
+      "name": "Elemental Monk",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Disciple's Doctrine pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Elemental%20Monk",
+      "capabilityOverrides": {
+        "offensive-magic": "available",
+        "area-multi-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "mixed"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "The Monk must have a neutral component to alignment rather than follow the normal lawful restriction.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Alignment / Elemental Strike / Genie Style / Elemental Precision",
+          "reason": "The archetype’s Alignment / Elemental Strike / Genie Style / Elemental Precision package materially changes offensive magic from the Monk (Unchained) baseline."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Alignment / Elemental Strike / Genie Style / Elemental Precision",
+          "reason": "The archetype’s Alignment / Elemental Strike / Genie Style / Elemental Precision package materially changes area multi target damage from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "Elemental monks draw inspiration from genies to create their fighting style. Their adaptability and versatility make them capable of serving as emissaries of elemental balance.",
+      "tradeoff": "It replaces or alters Alignment; Stunning Fist; Bonus Feats; Evasion; Purity of Body; 10th-level Ki Power; Ki Pool; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:invested-regent",
+      "name": "Invested Regent",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Heroes of the High Court pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Invested%20Regent",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "defensive-protective-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "divine spark"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Investiture / Vested Power / Vested Powers / Requirements",
+          "reason": "The archetype’s Investiture / Vested Power / Vested Powers / Requirements package materially changes social influence from the Monk (Unchained) baseline."
+        },
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Investiture / Vested Power / Vested Powers / Requirements",
+          "reason": "The archetype’s Investiture / Vested Power / Vested Powers / Requirements package materially changes defensive protective magic from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "The invested regent can harness a divine spark to perform superhuman stunts, influence others, and escape injury.",
+      "tradeoff": "It replaces or alters 1st-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:lifting-hand",
+      "name": "Lifting Hand",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Martial Arts Handbook pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Lifting%20Hand",
+      "capabilityOverrides": {
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Savage Toss / Bonus Feats / Joint Lock / Counter-Throw",
+          "reason": "The archetype’s Savage Toss / Bonus Feats / Joint Lock / Counter-Throw package materially changes battlefield control from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "When facing a master of the lifting hand, an enemy is likely to find itself sailing through the air or locked in a tortuous compliance hold.",
+      "tradeoff": "It replaces or alters Stunning Fist; Bonus Feats; 12th-level Ki Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:monk-of-the-mantis",
+      "name": "Monk of the Mantis",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Dirty Tactics Toolbox pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Monk%20of%20the%20Mantis",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Pressuring Strikes / Debilitating Blows / Disabling Palm",
+          "reason": "The archetype’s Pressuring Strikes / Debilitating Blows / Disabling Palm package materially changes debuffing enemies from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "A body contains many points where the flesh, mind, and spirit coincide. A monk of the mantis is skilled at manipulating these points.",
+      "tradeoff": "It replaces or alters 2nd, 6th, 10th, 14th, and 18th-level Bonus Feats; 6th, 10th, 12th-level Ki Powers; Quivering Palm; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:perfect-scholar",
+      "name": "Perfect Scholar",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Inner Sea Intrigue pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Perfect%20Scholar",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "scholar"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Class Skills / Lore / Learn from Failure / Eye of the Sun and Moon",
+          "reason": "The archetype’s Class Skills / Lore / Learn from Failure / Eye of the Sun and Moon package materially changes knowledge investigation from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "Perfect scholars, often worshipers of Irori, hone their minds and bodies through the accumulation of knowledge",
+      "tradeoff": "It replaces or alters Class Skills; Still Mind; 4th-level Ki Power; Tongue of the Sun and Moon; Perfect Self; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:sage-counselor",
+      "name": "Sage Counselor",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Ultimate Intrigue pg. 67",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Sage%20Counselor",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "teacher"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Cunning Fist / Feinting Flurry / Deceptive Ki",
+          "reason": "The archetype’s Class Skills / Cunning Fist / Feinting Flurry / Deceptive Ki package materially changes social influence from the Monk (Unchained) baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Class Skills / Cunning Fist / Feinting Flurry / Deceptive Ki",
+          "reason": "The archetype’s Class Skills / Cunning Fist / Feinting Flurry / Deceptive Ki package materially changes support buffing from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "Sage counselors are ascetics and mystics who leave the confines of the monastery walls to advise secular people about spiritual truths and to seek knowledge of the outside world.",
+      "tradeoff": "It replaces or alters Class Skills; 1st, 2nd, 6th, 10th-level Bonus Feat; 4th-level Ki Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:scaled-fist",
+      "name": "Scaled Fist",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Legacy of Dragons pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Scaled%20Fist",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "mixed"
+        ],
+        "spiritualThemes": [
+          "dragons"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "patron-oath-order",
+          "kind": "commitment",
+          "summary": "A draconic exemplar and associated dragon type shape several class features.",
+          "evidenceSection": "Draconic Might"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Bonus Feats / Draconic Fury / Draconic Mettle",
+          "reason": "The archetype’s Bonus Feats / Draconic Fury / Draconic Mettle package materially changes area multi target damage from the Monk (Unchained) baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Bonus Feats / Draconic Fury / Draconic Mettle",
+          "reason": "The archetype’s Bonus Feats / Draconic Fury / Draconic Mettle package materially changes social influence from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "Scaled fists eschew passive introspection in favor of unshakable confidence.\nSteeped in traditions that trace their origins to the warrior-monks who trained under the tutelage of draconic masters in Tian Xia, scaled fists eschew passive introspection in favor of unshakable confidence. Scaled fists learn to combine brutal intimidation with the brazen ferocity of an ancient wyrm to devastate their foes.",
+      "tradeoff": "It replaces or alters Bonus Feats; Still Mind; 4th, 12th-level Ki Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:serpent-fire-adept",
+      "name": "Serpent-Fire Adept",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Occult Origins pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Serpent-Fire%20Adept",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "chakras"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Class Skills / Chakra Training / Chakra Expertise / Light Spirit",
+          "reason": "The archetype’s Class Skills / Chakra Training / Chakra Expertise / Light Spirit package materially changes support buffing from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "A serpent-fire adept embraces the secrets of her chakras and mastery of their energetic flow.",
+      "tradeoff": "It replaces or alters Class Skills; Stunning Fist; 1st, 2nd, 6th, 10th, 14th, and 18th-level Bonus Feats; 4th, 8th-level Ki Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:softstrike-monk",
+      "name": "Softstrike Monk",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Martial Arts Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Softstrike%20Monk",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "nonlethal combatant"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Weapon Proficiency / Feather Touch / Nonlethal Strikes / Tenet of Life",
+          "reason": "The archetype’s Weapon Proficiency / Feather Touch / Nonlethal Strikes / Tenet of Life package materially changes debuffing enemies from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "Softstrike monks employ a nonlethal but effective form of combat.",
+      "tradeoff": "It replaces or alters Weapon Proficiency; Unarmed Strike; 6th, 10th-level Bonus Feats; Wholeness of Body; Quivering Palm; Empty Body; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:soul-shepherd",
+      "name": "Soul Shepherd",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Pathfinder #139: The Dead Roads pg. 65",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Soul%20Shepherd",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead",
+          "spirits"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Calming Strike / Otherworldly Resilience / Spirit Sense / Yamaraj's Judgment",
+          "reason": "The archetype’s Calming Strike / Otherworldly Resilience / Spirit Sense / Yamaraj's Judgment package materially changes anti magic disruption from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "Whether studying at the feet of psychopomps or merely imitating the creatures' philosophy and methods, soul shepherds believe in safeguarding the Cycle of Souls.",
+      "tradeoff": "It replaces or alters Stunning Fist; Evasion; Improved Evasion; 12th, 16th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "monk-unchained:windstep-master",
+      "name": "Windstep Master",
+      "parentClassId": "monk-unchained",
+      "sourceCitationText": "Elemental Master's Handbook pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Monk%20(Unchained)%20Windstep%20Master",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "air"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Hurricane Punch / Wind Step / Swift Ki",
+          "reason": "Hurricane Punch / Wind Step / Swift Ki defines the material change from the Monk (Unchained) baseline."
+        }
+      ],
+      "playerSummary": "Most monks are agile and fleet of foot, but few can rival a windstep master’s lightness of step.",
+      "tradeoff": "It replaces or alters Stunning Fist; 4th-level Ki Power; Ki Pool; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}
