@@ -442,6 +442,32 @@ const PROFILES = [
     playerSummary: 'A master of occult rituals who makes the dangerous, unpredictable art of ritual magic reliable -- taking 10 on ritual skill checks, casting rituals faster or more safely, and eventually performing them solo without any secondary casters at all.',
     tradeoff: 'Entry requires Knowledge (arcana or history) 8 ranks, 3rd-level spells, membership in an occult-focused organization, and proof of having successfully led an occult ritual, and her own spellcasting only advances at the reduced rate of a prestige class.',
   }),
+  author('demoniac', {
+    c: {'offensive-magic': 'core', 'personal-durability': 'core', 'transformation-shapeshifting': 'core', 'summoning-companions': 'core', 'utility-magic': 'available'},
+    p: {'build-complexity': 'high', 'play-complexity': 'medium', 'attribute-demands': 'high', 'equipment-dependence': 'low', 'resource-management': 'medium', versatility: 'medium'},
+    f: {'has-spellcasting': true, 'has-shapeshifting': true, 'requires-alignment': true, 'requires-deity': true, 'controls-additional-entity': true},
+    identity: {magicIdentity: ['other'], castingMethod: ['mixed'], castingExtent: ['partial'], spiritualThemes: ['outsiders', 'deity'], elementThemes: ['none'], primaryDelivery: ['spellcasting']},
+    constraints: [{type: 'alignment', kind: 'requirement', summary: 'A demoniac must be chaotic evil.', evidenceSection: 'Alignment'}, {type: 'deity', kind: 'requirement', summary: 'A demoniac must worship a demon lord or nascent demon lord, and must perform a daily obedience to maintain her abilities.', evidenceSection: 'Special / Obedience'}],
+    playerSummary: 'A chaotic evil spellcaster who has already been traumatized by demonkind and now embraces that fate -- channeling a possessing demonic spirit for escalating power (at the cost of confusion once it fades), summoning demons to serve her, and eventually transforming her own body into a unique demon.',
+    tradeoff: 'Entry requires chaotic evil alignment, the Fiendish Obedience and Iron Will feats, heavy Intimidate/Knowledge (planes)/Spellcraft investment, Abyssal, proof of prior demonic trauma, and a demon lord patron maintained through daily obedience, and death sends her soul straight to the Abyss.',
+  }),
+  author('proctor', {
+    c: {'offensive-magic': 'available', 'defensive-protective-magic': 'core', 'personal-durability': 'available', 'summoning-companions': 'core', 'utility-magic': 'core', 'social-influence': 'available'},
+    p: {'build-complexity': 'high', 'play-complexity': 'medium', 'attribute-demands': 'high', 'equipment-dependence': 'low', 'resource-management': 'low', versatility: 'medium'},
+    f: {'has-spellcasting': true, 'requires-alignment': true, 'requires-deity': true, 'controls-additional-entity': true},
+    identity: {magicIdentity: ['other'], castingMethod: ['mixed'], castingExtent: ['partial'], spiritualThemes: ['outsiders', 'deity'], elementThemes: ['none'], primaryDelivery: ['spellcasting']},
+    constraints: [{type: 'alignment', kind: 'requirement', summary: 'A proctor must be any neutral.', evidenceSection: 'Alignment'}, {type: 'deity', kind: 'requirement', summary: 'A proctor must worship a monitor demigod, and must perform a daily obedience to maintain her abilities.', evidenceSection: 'Special / Obedience'}],
+    playerSummary: 'A steadfast devotee of a neutral monitor demigod who binds herself to an improved outsider familiar, summons monitors to her aid, and gains one of four distinct expressions of neutrality -- immunity to mental effects, spirit-sensing, semi-incorporeal defense, or unshakeable freedom of movement.',
+    tradeoff: 'Entry requires any-neutral alignment, the Alertness and Monitor Obedience feats, heavy Knowledge (planes)/Knowledge (religion) investment, two abjuration spells, proof of having refused power from a celestial or fiend, and a monitor demigod patron maintained through daily obedience.',
+  }),
+  author('esoteric-knight', {
+    c: {'melee-combat': 'core', 'offensive-magic': 'available', 'personal-durability': 'available', 'combat-mobility': 'available', 'practical-expertise': 'core', 'utility-magic': 'available'},
+    p: {'build-complexity': 'high', 'play-complexity': 'high', 'attribute-demands': 'high', 'equipment-dependence': 'medium', 'resource-management': 'medium', versatility: 'high'},
+    f: {'has-spellcasting': true},
+    identity: {magicIdentity: ['psychic'], castingMethod: ['mixed'], castingExtent: ['partial'], spiritualThemes: ['none'], elementThemes: ['none'], primaryDelivery: ['melee weapon', 'spellcasting']},
+    playerSummary: 'A psychic gish who blends martial mastery with occult power -- stacking bonus combat feats, enchanting her own armor and weapons on the fly with her mind, teleporting short distances at will, and even summoning a phantom duplicate of herself to flank an enemy.',
+    tradeoff: 'Entry requires base attack bonus +5 and either the kinetic blast class feature or 1st-level psychic spells, and her own spellcasting or kinetic blast progression only advances at the reduced rate of a prestige class.',
+  }),
 ];
 
 const seen = new Set(PROFILES.map(p => p.id));

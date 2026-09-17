@@ -4213,6 +4213,296 @@
       "playerSummary": "A master of occult rituals who makes the dangerous, unpredictable art of ritual magic reliable -- taking 10 on ritual skill checks, casting rituals faster or more safely, and eventually performing them solo without any secondary casters at all.",
       "tradeoff": "Entry requires Knowledge (arcana or history) 8 ranks, 3rd-level spells, membership in an occult-focused organization, and proof of having successfully led an occult ritual, and her own spellcasting only advances at the reduced rate of a prestige class.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:demoniac",
+      "name": "Demoniac",
+      "sourceCitationText": "Book of the Damned pg. 208",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Demoniac",
+      "requirementsText": "To qualify to become a demoniac, a character must fulfill all of the following criteria.\nAlignment: Chaotic evil.\nFeats: Fiendish Obedience, Iron Will.\nSkills: Intimidate 7 ranks, Knowledge (planes) 7 ranks, Spellcraft 7 ranks.\nLanguage: Abyssal.\nSpells: Ability to cast at least two enchantment spells of two different spell levels.\nSpecial: Must worship a demon lord or nascent demon lord; must have been mentally, physically, or spiritually traumatized by a demon—either being reduced to negative hit points by a demon’s physical attacks, taking a total of 10 or more points of ability damage or drain from a demon’s special attack (this total damage can be from multiple attacks as long as the total is 10 or more in all), or spending at least 1 day under a demon’s control (either via charm or compulsion effects or via demonic possession).",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "core",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": true,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "outsiders",
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A demoniac must be chaotic evil.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A demoniac must worship a demon lord or nascent demon lord, and must perform a daily obedience to maintain her abilities.",
+          "evidenceSection": "Special / Obedience"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A chaotic evil spellcaster who has already been traumatized by demonkind and now embraces that fate -- channeling a possessing demonic spirit for escalating power (at the cost of confusion once it fades), summoning demons to serve her, and eventually transforming her own body into a unique demon.",
+      "tradeoff": "Entry requires chaotic evil alignment, the Fiendish Obedience and Iron Will feats, heavy Intimidate/Knowledge (planes)/Spellcraft investment, Abyssal, proof of prior demonic trauma, and a demon lord patron maintained through daily obedience, and death sends her soul straight to the Abyss.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:proctor",
+      "name": "Proctor",
+      "sourceCitationText": "Concordance of Rivals pg. 44",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Proctor",
+      "requirementsText": "To qualify to become a proctor, a character must fulfill all of the following criteria.\nAlignment: Any neutral.\nFeats: Alertness, Monitor Obedience.\nSkills: Knowledge (planes) 7 ranks, Knowledge (religion) 7 ranks.\nSpells: Ability to cast at least two abjuration spells of two different spell levels.\nSpecial: Must worship a monitor demigod; must have met with a monitor of CR 5 or greater and declined an offer of assistance or power from a celestial or fiendish being of CR 10 or greater.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "core",
+        "utility-magic": "core",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "outsiders",
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A proctor must be any neutral.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A proctor must worship a monitor demigod, and must perform a daily obedience to maintain her abilities.",
+          "evidenceSection": "Special / Obedience"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A steadfast devotee of a neutral monitor demigod who binds herself to an improved outsider familiar, summons monitors to her aid, and gains one of four distinct expressions of neutrality -- immunity to mental effects, spirit-sensing, semi-incorporeal defense, or unshakeable freedom of movement.",
+      "tradeoff": "Entry requires any-neutral alignment, the Alertness and Monitor Obedience feats, heavy Knowledge (planes)/Knowledge (religion) investment, two abjuration spells, proof of having refused power from a celestial or fiend, and a monitor demigod patron maintained through daily obedience.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:esoteric-knight",
+      "name": "Esoteric Knight",
+      "sourceCitationText": "Chronicle of Legends pg. 10",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Esoteric%20Knight",
+      "requirementsText": "To qualify to become an esoteric knight, a character must fulfill all of the following criteria.\nBase Attack Bonus: +5.\nSpecial: Kinetic blast class feature or ability to cast 1st-level psychic spells.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "medium",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "psychic"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon",
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A psychic gish who blends martial mastery with occult power -- stacking bonus combat feats, enchanting her own armor and weapons on the fly with her mind, teleporting short distances at will, and even summoning a phantom duplicate of herself to flank an enemy.",
+      "tradeoff": "Entry requires base attack bonus +5 and either the kinetic blast class feature or 1st-level psychic spells, and her own spellcasting or kinetic blast progression only advances at the reduced rate of a prestige class.",
+      "reviewStatus": "reviewed"
     }
   ]
 }
