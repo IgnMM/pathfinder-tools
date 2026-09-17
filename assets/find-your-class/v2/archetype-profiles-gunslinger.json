@@ -1,0 +1,758 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Gunslinger parent value.",
+  "profiles": [
+    {
+      "id": "gunslinger:black-powder-vaulter",
+      "name": "Black Powder Vaulter",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Martial Arts Handbook pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Black%20Powder%20Vaulter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Deeds / Mobile Reload / Daring Vault / Shot on the Run",
+          "reason": "Deeds / Mobile Reload / Daring Vault / Shot on the Run defines the material change from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "Black powder vaulters like to get into the thick of the battle, maneuvering among the fray to find the most advantageous positions from which to kill their enemies.",
+      "tradeoff": "It replaces or alters Deadeye; Gunslinger's Dodge; Gunslinger Initiative; Startling Shot; Expert Loading; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:blatherskite",
+      "name": "Blatherskite",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Antihero's Handbook pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Blatherskite",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Deeds / Blatherskite’s Stagger / Blatherskite’s Initiative",
+          "reason": "The archetype’s Class Skills / Deeds / Blatherskite’s Stagger / Blatherskite’s Initiative package materially changes social influence from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "The blatherskate has an extraordinary talent for retreating from harm’s way and fooling his enemies into thinking he is weaker than he is.",
+      "tradeoff": "It replaces or alters Class Skills; Gunslinger's Dodge; Gunslinger Initiative; Pistol-Whip; Startling Shot; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:bolt-ace",
+      "name": "Bolt Ace",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Advanced Class Guide pg. 94",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Bolt%20Ace",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Crossbow Maven / Grit / Deeds / Sharp Shoot",
+          "reason": "Crossbow Maven / Grit / Deeds / Sharp Shoot defines the material change from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "While gunslingers are full of sound and fury, there is a class of gunslingers that never soil their hands with powder or feel the sting of gun smoke.",
+      "tradeoff": "It replaces or alters Weapon Proficiencies; Gunsmith; Grit; Deadeye; Quick Clear; Utility Shot; Startling Shot; Expert Loading; Lightning Reload; Menacing Shot; Gun Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:buccaneer",
+      "name": "Buccaneer",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Advanced Race Guide pg. 73",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Buccaneer",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "professionIdentity": [
+          "pirate"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Human characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Deeds / Seadog’s Gait / Pirate’s Jargon / Rope Swing",
+          "reason": "The archetype’s Deeds / Seadog’s Gait / Pirate’s Jargon / Rope Swing package materially changes social influence from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "Freebooters who cling to the convoluted codes that rule independent ships, the buccaneer is a gunslinger of the high seas.",
+      "tradeoff": "It replaces or alters Quick Clear Deed; Pistol Whip Deed; Dead Shot Deed; Lightning Reload Deed; Grit; Nimble; Gun Training 1,2, and 4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:bushwhacker",
+      "name": "Bushwhacker",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Advanced Race Guide pg. 134",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Bushwhacker",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Kobold characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Trembling Grit / Craven Deeds / Shifty Shot / Long Range Shifty Shot",
+          "reason": "The archetype’s Trembling Grit / Craven Deeds / Shifty Shot / Long Range Shifty Shot package materially changes stealth subterfuge from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "The bushwhacker specializes in the art of the ambush. For her, gunplay works best when it comes from a concealed position and is directed against a target that falls with the very first volley and is dead before the smoke clears.",
+      "tradeoff": "It replaces or alters Grit; Utility Shot Deed; Targeting Deed; 4th, 8th, 12th, 16th, 20th-level Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:commando",
+      "name": "Commando",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Ultimate Wilderness pg. 91",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Commando",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "commando"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Deeds / Trap Shot / Sniping Shot",
+          "reason": "The archetype’s Class Skills / Deeds / Trap Shot / Sniping Shot package materially changes wilderness affinity from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "Commandos are those rough and ready gunslingers who excel at hit-and-run tactics and leveraging their expertise in the wild against their enemies.",
+      "tradeoff": "It replaces or alters Class Skills; Utility Shot; Expert Loading; Lightning Reload; Slinger's Luck; 4th-level Bonus Feat; Gun Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:experimental-gunsmith",
+      "name": "Experimental Gunsmith",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Advanced Race Guide pg. 34",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Experimental%20Gunsmith",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "build-complexity": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "gunsmith"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Gnome characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Experimental Firearm / Innovations / Expanded Capacity / Expanded Chamber",
+          "reason": "Experimental Firearm / Innovations / Expanded Capacity / Expanded Chamber defines the material change from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "The experimental gunsmith is obsessed with creating the ultimate firearm, and is willing to take risks to work the kinks out of her design.",
+      "tradeoff": "It replaces or alters Gunsmith; Gunsmithing; Gun Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:firebrand",
+      "name": "Firebrand",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Elemental Master's Handbook pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Firebrand",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-bombs": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "explosives"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Gunsmith / Wild Card / Deeds / Dragon Fire",
+          "reason": "The archetype’s Gunsmith / Wild Card / Deeds / Dragon Fire package materially changes area multi target damage from the Gunslinger baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Gunsmith / Wild Card / Deeds / Dragon Fire",
+          "reason": "The archetype’s Gunsmith / Wild Card / Deeds / Dragon Fire package materially changes battlefield control from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "Where other gunslingers rely on precision shooting, the firebrand instead masters explosive ordnance.",
+      "tradeoff": "It replaces or alters Gunsmith; Grit; Deadeye; Dead Shot; Bonus Feats; Gun Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:graveslinger",
+      "name": "Graveslinger",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Pathfinder #139: The Dead Roads pg. 65",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Graveslinger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Deeds / Ghostbane Shot / Ectoplasmic Anchor / Undead Hunter",
+          "reason": "Deeds / Ghostbane Shot / Ectoplasmic Anchor / Undead Hunter defines the material change from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "Graveslingers craft signature bullets to hunt down wandering undead. With this infused ammunition, they can take on the most resilient spectral foes with ease.",
+      "tradeoff": "It replaces or alters Deadeye; Startling Shot; Bleeding Wound; Menacing Shot; 4th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:gulch-gunner",
+      "name": "Gulch Gunner",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Advanced Race Guide pg. 152",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Gulch%20Gunner",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ],
+        "professionIdentity": [
+          "mercenary"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Ratfolk characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Grit / Daring Adjacent Shot / Deeds",
+          "reason": "Class Skills / Grit / Daring Adjacent Shot / Deeds defines the material change from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "These gulch gunners often specialize in proficiency with a single pistol (easily handled in tight spaces) and wander from warren to warren selling their tunnel-shooting skills to the highest bidder.",
+      "tradeoff": "It replaces or alters Class Skills; Grit; Deadeye Deed; Pistol Whip Deed; Menacing Shot Deed; 9th, 13th, 17th-level Gun Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:gun-scavenger",
+      "name": "Gun Scavenger",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Inner Sea Combat pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Gun%20Scavenger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "salvager"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Gunsmith / Go By Feel / Deeds / Change Out",
+          "reason": "Gunsmith / Go By Feel / Deeds / Change Out defines the material change from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "A gun scavenger collects scraps, spare parts, and other components that might—if modified properly—give her firearm an extra edge.",
+      "tradeoff": "It replaces or alters Gunsmith; Quick Clear Deed; Targeting Deed; Nimble; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:gun-tank",
+      "name": "Gun Tank",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Ultimate Combat pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Gun%20Tank",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "heavy armor"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Armor Proficiency / Deeds / Gun Tank’s Resolve / Gun Tank’s Resilience",
+          "reason": "The archetype’s Armor Proficiency / Deeds / Gun Tank’s Resolve / Gun Tank’s Resilience package materially changes personal durability from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "Gunslingers usually don’t use heavy armor, but there are a few who use and modify their armor to protect themselves from both traditional weapons and gunfire.",
+      "tradeoff": "It replaces or alters Armor Proficiency; Gunslinger’s Dodge Deed; Evasive Deed; Nimble; Bonus Feats (4th level and every 4 levels after); those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:gunner-squire",
+      "name": "Gunner Squire",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Knights of the Inner Sea pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Gunner%20Squire",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "squire"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Deeds / Spotter / Side Arm / Safe Handling",
+          "reason": "The archetype’s Deeds / Spotter / Side Arm / Safe Handling package materially changes support buffing from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "The gunner squire is prepared to reload or repair her lord's firearms at a moment's notice.",
+      "tradeoff": "It replaces or alters Gunslinger's Dodge; Gunslinger Initiative; Nimble +1; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:maverick",
+      "name": "Maverick",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Ultimate Intrigue pg. 64",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Maverick",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "barroom gunfighter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Deeds",
+          "reason": "The archetype’s Deeds package materially changes melee combat from the Gunslinger baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Deeds",
+          "reason": "The archetype’s Deeds package materially changes social influence from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "Quick with her gun and no stranger to barroom brawls, a maverick can hold her own when bullets and punches start flying.",
+      "tradeoff": "It replaces or alters Dodge; Pistol Whip; Gunslinger Initiative; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:musket-master",
+      "name": "Musket Master",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Ultimate Combat pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Musket%20Master",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "two-handed firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon Proficiency / Gunsmith / Deeds / Steady Aim",
+          "reason": "Weapon Proficiency / Gunsmith / Deeds / Steady Aim defines the material change from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "Some gunslingers want a little more firepower and range. These are the musket masters; the best of these gunslingers can reload a musket with dazzling speed, potentially putting even their pistol-wielding brethren to shame.",
+      "tradeoff": "It replaces or alters Weapon Proficiency; Gunsmith; Gunslinger’s Dodge Deed; Utility Shot Deed; Gun Training 1-4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:mysterious-stranger",
+      "name": "Mysterious Stranger",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Ultimate Combat pg. 51",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Mysterious%20Stranger",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {
+        "attribute-demands": "high"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Grit / Deeds / Focused Aim / Clipping Shot",
+          "reason": "The archetype’s Grit / Deeds / Focused Aim / Clipping Shot package materially changes social influence from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "A few rare gunslingers seem to accomplish their chosen tasks purely through willpower and an unwillingness to ever give up.",
+      "tradeoff": "It replaces or alters Grit; Quick Clear Deed; Nimble; Gun Training 1; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:pistolero",
+      "name": "Pistolero",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Ultimate Combat pg. 51",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Pistolero",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "one-handed firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon Proficiency / Gunsmith / Deeds / Up Close and Deadly",
+          "reason": "Weapon Proficiency / Gunsmith / Deeds / Up Close and Deadly defines the material change from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "While most gunslingers have favorite firearms, there are those rare ones who choose to specialize in one-handed firearms exclusively.",
+      "tradeoff": "It replaces or alters Weapon Proficiency; Gunsmith; Deadeye Deed; Startling Shot Deed; Menacing Shot Deed; Gun Training 1-4; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:planar-rifter",
+      "name": "Planar Rifter",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Plane-Hopper's Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Planar%20Rifter",
+      "capabilityOverrides": {
+        "offensive-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "elementThemes": [
+          "mixed"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Infused Grit / Deeds / Infused Bullet / Planar Surge",
+          "reason": "The archetype’s Infused Grit / Deeds / Infused Bullet / Planar Surge package materially changes offensive magic from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "Planar rifters harvest pieces of the Outer Planes, absorbing some of the energy into themselves and condensing other portions of it into bullets they can fire from their guns",
+      "tradeoff": "It replaces or alters Grit; Deadeye; Dead Shot; Menacing Shot; Death's Shot; Nimble; Gun Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:scatter-gunner",
+      "name": "Scatter Gunner",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "People of the Wastes pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Scatter%20Gunner",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "scatter firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Scatter Specialist / Deeds / Scatter Artist / Overload",
+          "reason": "The archetype’s Scatter Specialist / Deeds / Scatter Artist / Overload package materially changes area multi target damage from the Gunslinger baseline."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Scatter Specialist / Deeds / Scatter Artist / Overload",
+          "reason": "The archetype’s Scatter Specialist / Deeds / Scatter Artist / Overload package materially changes battlefield control from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "Punishing firearms such as the blunderbuss and dragon pistol can lay waste to invaders in tight corridors, and the dwarves of Dongun Hold have pioneered masterful methods for making the most of these indiscriminate weapons",
+      "tradeoff": "It replaces or alters Gunsmith; Deadeye; Utility Shot; Dead Shot; Targeting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:siege-gunner",
+      "name": "Siege Gunner",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Inner Sea Combat pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Siege%20Gunner",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "siege weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Grit / Engineer Training / Deeds / Targeted Blast",
+          "reason": "The archetype’s Grit / Engineer Training / Deeds / Targeted Blast package materially changes area multi target damage from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "The Grand Duchy of Alkenstar has spawned all manner of firearm specialists, wielding small and large firearms alike. Siege gunners specialize in the very largest— cannons, bombards, and firedrakes.",
+      "tradeoff": "It replaces or alters Grit; Nimble; Deadeye; Gunslinger Initiative; Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:techslinger",
+      "name": "Techslinger",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Technology Guide pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Techslinger",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "technological weapon"
+        ],
+        "professionIdentity": [
+          "technologist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Deeds / Covet Charge / Reliable / Charge Recycling",
+          "reason": "Deeds / Covet Charge / Reliable / Charge Recycling defines the material change from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "Techslingers spurn unreliable gunpowder weapons in favor of high-tech armaments.",
+      "tradeoff": "It replaces or alters Deadeye; Quick Clear; Expert Loading; Gun Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:thronewarden",
+      "name": "Thronewarden",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Heroes of the High Court pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Thronewarden",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "sentinel"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Class Skills / Hair-Trigger Reflexes / Eye for Trouble / Deeds",
+          "reason": "The archetype’s Class Skills / Hair-Trigger Reflexes / Eye for Trouble / Deeds package materially changes protecting allies from the Gunslinger baseline."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Class Skills / Hair-Trigger Reflexes / Eye for Trouble / Deeds",
+          "reason": "The archetype’s Class Skills / Hair-Trigger Reflexes / Eye for Trouble / Deeds package materially changes knowledge investigation from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "As vigilant sentinels, thronewardens identify and head off trouble.",
+      "tradeoff": "It replaces or alters Class Skills; Nimble; 4th-level Bonus Feat; Startling Shot; Bleeding Wound; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gunslinger:wyrm-sniper",
+      "name": "Wyrm Sniper",
+      "parentClassId": "gunslinger",
+      "sourceCitationText": "Dragonslayer's Handbook pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Wyrm%20Sniper",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ],
+        "primaryDelivery": [
+          "siege weapon"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Artillery Proficiency / Deeds / Munitions Master",
+          "reason": "Class Skills / Artillery Proficiency / Deeds / Munitions Master defines the material change from the Gunslinger baseline."
+        }
+      ],
+      "playerSummary": "These long-shot artists are masters at taking down\r dragons with sharp shooting and light siege weaponry.",
+      "tradeoff": "It replaces or alters Class Skills; Starling Shot Deed; Lightning Reload Deed; Menacing Shot Deed; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

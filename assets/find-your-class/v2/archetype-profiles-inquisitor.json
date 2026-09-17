@@ -1,0 +1,1210 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Inquisitor parent value.",
+  "profiles": [
+    {
+      "id": "inquisitor:abolisher",
+      "name": "Abolisher",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Monster Hunter's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Abolisher",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "aberration hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Sworn to Purity / Revealing Gaze / Expose Aberration / Escape Corruption’s Grasp",
+          "reason": "The archetype’s Sworn to Purity / Revealing Gaze / Expose Aberration / Escape Corruption’s Grasp package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Abolishers are incorruptible inquisitors who weed out creatures of alien, unnatural origins, finding and exposing aberrations for what they are.",
+      "tradeoff": "It replaces or alters Domains; Stern Gaze; Detect Alignment; Discern Lies; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:cloaked-wolf",
+      "name": "Cloaked Wolf",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Intrigue pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Cloaked%20Wolf",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Lure Prey / Always Wary / Unleashed Fury",
+          "reason": "The archetype’s Class Skills / Lure Prey / Always Wary / Unleashed Fury package materially changes stealth subterfuge from the Inquisitor baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Lure Prey / Always Wary / Unleashed Fury",
+          "reason": "The archetype’s Class Skills / Lure Prey / Always Wary / Unleashed Fury package materially changes social influence from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Some inquisitors are adept at appearing harmless until they throw off their unassuming facades and take their enemies by surprise.",
+      "tradeoff": "It replaces or alters Class Skills; Stern Gaze; Cunning Initiative; Monster Lore; Solo Tactics; Teamwork Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:cold-iron-warden",
+      "name": "Cold Iron Warden",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Demon Hunter's Handbook pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Cold%20Iron%20Warden",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Track Teleportation / Abyssal Scourge / Favored Judgment / Bane",
+          "reason": "The archetype’s Track Teleportation / Abyssal Scourge / Favored Judgment / Bane package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "The natural enemies of demoniacs and other cultists of fiendish forces, cold iron wardens are inquisitors who dedicate their lives to eradicating the taint of demonkind from Golarion.",
+      "tradeoff": "It replaces or alters 3rd, 6th, 9th, 12th, 15th, 18th-level Teamwork Feats; Bane; Discern Lies; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:exarch",
+      "name": "Exarch",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Advanced Race Guide pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Exarch",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "orthodox authority"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Dwarf characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Spells / Inflexible Will / Detect Chaos / Fearsome Jurist",
+          "reason": "The archetype’s Spells / Inflexible Will / Detect Chaos / Fearsome Jurist package materially changes social influence from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "The gruff traditionalism of most dwarves finds its apex in those who adhere to a strict orthodoxy rooted in ancient principles and practices and who are not amenable whatsoever to change or innovation.",
+      "tradeoff": "It replaces or alters Monster Lore; Detect Alignment; Bane; Second Judgment; Greater Bane; Third Judgment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:exorcist",
+      "name": "Exorcist",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Magic pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Exorcist",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ],
+        "professionIdentity": [
+          "exorcist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Verdict of Exorcism / Verdict of Exile / Closed Mind / Verdict of Anathema",
+          "reason": "The archetype’s Verdict of Exorcism / Verdict of Exile / Closed Mind / Verdict of Anathema package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Some inquisitors, as they learn more about the threat of possession and the machinations of the planes, task themselves to expel possessing spirits and conniving outsiders from the world whenever possible.",
+      "tradeoff": "It replaces or alters Second Judgment; Third Judgment; Slayer; True Judgment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:expulsionist",
+      "name": "Expulsionist",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Haunted Heroes Handbook pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Expulsionist",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ],
+        "professionIdentity": [
+          "exorcist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Expulsionist Lore",
+          "reason": "The archetype’s Expulsionist Lore package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Expulsionists are inquisitors who seek to rid the material world of the corrupting influences of wicked spirits that twist mortals to their own ends.",
+      "tradeoff": "It replaces or alters Domain; Monster Lore; Discern Lies; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:faith-hunter",
+      "name": "Faith Hunter",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Intrigue pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Faith%20Hunter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Sworn Enemy / Enemy Revealed / Hateful Bane",
+          "reason": "Sworn Enemy / Enemy Revealed / Hateful Bane defines the material change from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Certain relentless inquisitors burn with special hatred for an enemy of specific convictions, and they stop at nothing when obsessively hunting these foes down.",
+      "tradeoff": "It replaces or alters Domain; Justice, Destruction Judgement; Detect Alignment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:green-faith-marshal",
+      "name": "Green Faith Marshal",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Wilderness pg. 141",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Green%20Faith%20Marshal",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "professionIdentity": [
+          "marshal"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Power of Nature / Wild Lore / Nature’s Ally / Wild Step",
+          "reason": "The archetype’s Power of Nature / Wild Lore / Nature’s Ally / Wild Step package materially changes wilderness affinity from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "The Green Faith marshal serves as a literal force of nature, hunting down and punishing those who have committed sins against nature through enslavement and mistreatment of animals or destruction of wild places.",
+      "tradeoff": "It replaces or alters Domain; Stern Gaze; Monster Lore; Discern Lies; Stalwart; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:heretic",
+      "name": "Heretic",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Magic pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Heretic",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": false
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "heretic"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Judgment / Escape / Lore of Escape / Hide Tracks",
+          "reason": "The archetype’s Judgment / Escape / Lore of Escape / Hide Tracks package materially changes stealth subterfuge from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "While all inquisitors hunt the enemies of the faith, sometimes, either through political maneuvering by her enemies or an unyielding tenacity that breaks her faith’s basic tenets, an inquisitor can find herself a heretic.",
+      "tradeoff": "It replaces or alters Monster Lore; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:hexenhammer",
+      "name": "Hexenhammer",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Horror Adventures pg. 52",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Hexenhammer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Withering Gaze / Pride and Penance / Cunning Mind / Hexcrafter",
+          "reason": "Withering Gaze / Pride and Penance / Cunning Mind / Hexcrafter defines the material change from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Hexenhammers learn to use the hexes and some spells of witches, but must pay the price for dealing with supernatural powers, as they slip ever closer to the evil they seek to destroy.",
+      "tradeoff": "It replaces or alters Monster Lore; Stern Gaze; Domain; Cunning Initiative; Teamwork Feats; Solo Tactics; Spellcasting; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:iconoclast",
+      "name": "Iconoclast",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Combat pg. 52",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Iconoclast",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "relic destroyer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Shake Effects / Detect Magic / Dispelling Attack / Negating Critical",
+          "reason": "The archetype’s Shake Effects / Detect Magic / Dispelling Attack / Negating Critical package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Some magic items are heretical by nature, enabling the unfaithful to spread wickedness. Iconoclasts seek out and remove such crutches, cleansing the taint these items exude.",
+      "tradeoff": "It replaces or alters Monster Lore; Detect Alignment; Discern Lies; Exploit Weakness; True Judgment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:immolator",
+      "name": "Immolator",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Advanced Race Guide pg. 128",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Immolator",
+      "capabilityOverrides": {
+        "offensive-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Ifrit characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Servant of the Flame / Judgment / Immolation / Burnt Offering",
+          "reason": "The archetype’s Servant of the Flame / Judgment / Immolation / Burnt Offering package materially changes offensive magic from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "The immolator puts her pyromaniacal urges to work in the service of a deity. She brings burning retribution down upon the enemies of her faith, consigning their souls to the sacrificial flames.",
+      "tradeoff": "It replaces or alters Smiting Judgment; Bane; Greater Bane; True Judgment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:infiltrator",
+      "name": "Infiltrator",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Magic pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Infiltrator",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ],
+        "professionIdentity": [
+          "infiltrator"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Misdirection / Guileful Lore / Forbidden Lore / Necessary Lies",
+          "reason": "The archetype’s Misdirection / Guileful Lore / Forbidden Lore / Necessary Lies package materially changes stealth subterfuge from the Inquisitor baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Misdirection / Guileful Lore / Forbidden Lore / Necessary Lies",
+          "reason": "The archetype’s Misdirection / Guileful Lore / Forbidden Lore / Necessary Lies package materially changes social influence from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "This inquisitor uses guile and deception to blend in among the enemies of the faith rather than confronting them head-on.",
+      "tradeoff": "It replaces or alters Stern Gaze; Monster Lore; Track; Discern Lies; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:keeper-of-construct",
+      "name": "Keeper of Construct",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "People of the Wastes pg. 27",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Keeper%20of%20Construct",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "construct hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Penetrating Blows / Construct Influence / Construct Lore / Wrest Control",
+          "reason": "The archetype’s Penetrating Blows / Construct Influence / Construct Lore / Wrest Control package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Some of Brigh’s inquisitors, and occasionally those who follow Torag, track down malicious construct crafters and fight renegade constructs with unrivaled expertise.",
+      "tradeoff": "It replaces or alters Domain; Stern Gaze; Monster Lore; Exploid Weakness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:keeper-of-the-current",
+      "name": "Keeper of the Current",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Blood of the Sea pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Keeper%20of%20the%20Current",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Underwater Hunter / Marine Magic / Rudderless Attack",
+          "reason": "The archetype’s Underwater Hunter / Marine Magic / Rudderless Attack package materially changes combat mobility from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Water-related deities all have organized churches beneath the waves that engage zealous followers to hunt down apostates and enemies. Regardless of their faith, these undersea zealots are known as keepers of the current.",
+      "tradeoff": "It replaces or alters Track; Spellcasting; Discern Lies; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:kinslayer",
+      "name": "Kinslayer",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Advanced Race Guide pg. 98",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Kinslayer",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Dhampir characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Judgment / Slayer’s Brand / Greater Brand / Branding Ray",
+          "reason": "The archetype’s Judgment / Slayer’s Brand / Greater Brand / Branding Ray package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Appalled and guilt-ridden by the horrific circumstances of her birth, a kinslayer dedicates herself to eradicating the very creatures whose blood flows within her veins.",
+      "tradeoff": "It replaces or alters Destruction Judgment; Teamwork Feats; Detect Alignment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:living-grimoire",
+      "name": "Living Grimoire",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Horror Adventures pg. 53",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Living%20Grimoire",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "sacred tome"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Holy Book / Spells / Sacred Word / Blessed Script",
+          "reason": "The archetype’s Holy Book / Spells / Sacred Word / Blessed Script package materially changes melee combat from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "The living grimoire literally wields the sacred word of his deity, using his holy tome to smite the foes of his god with divine might.",
+      "tradeoff": "It replaces or alters Monster Lore; Spellcasting; Cunning Initiative; Orisons; Judgement; Bane; Greater Bane; Second Judgement; Third Judgement; True Judgement; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:monster-tactician",
+      "name": "Monster Tactician",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Monster Summoner's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Monster%20Tactician",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Summon Monster / Summon Tactics",
+          "reason": "The archetype’s Summon Monster / Summon Tactics package materially changes tactical leadership from the Inquisitor baseline."
+        },
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Summon Monster / Summon Tactics",
+          "reason": "The archetype’s Summon Monster / Summon Tactics package materially changes summoning companions from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "While most inquisitors have learned to take advantage of the movements of their opponents and allies in combat, some instead summon creatures as a means of claiming strategic advantage, exploiting the mystic connection between themselves and their summoned creatures to impart a bit of their own tactical knowledge.",
+      "tradeoff": "It replaces or alters Judgment; Discern Lies; Second Judgment; Third Judgment; Slayer; True Judgment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:oathkeeper",
+      "name": "Oathkeeper",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Merchant's Manifest pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Oathkeeper",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-code-of-conduct": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "arbiter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Alignment / Class Skills / Divine Witness / Oathbreaker’s Scourge",
+          "reason": "The archetype’s Alignment / Class Skills / Divine Witness / Oathbreaker’s Scourge package materially changes social influence from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Oathkeepers formally oversee the creation of bargains and personally hunt down those who dare to violate them.",
+      "tradeoff": "It replaces or alters Alignment; Class Skills; Monster Lore; Track; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:preacher",
+      "name": "Preacher",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Magic pg. 46",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Preacher",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "preacher"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Determination / Aggression / Defense / Warning",
+          "reason": "The archetype’s Determination / Aggression / Defense / Warning package materially changes social influence from the Inquisitor baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Determination / Aggression / Defense / Warning",
+          "reason": "The archetype’s Determination / Aggression / Defense / Warning package materially changes support buffing from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Some inquisitors wander the land to spread the true word of their faith.",
+      "tradeoff": "It replaces or alters Solo Tactics; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:ravener-hunter",
+      "name": "Ravener Hunter",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Blood of the Beast pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Ravener%20Hunter",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Alignment / Charged by Nature / Holy Magic / Demon Hunter",
+          "reason": "The archetype’s Alignment / Charged by Nature / Holy Magic / Demon Hunter package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "For generations, the catfolk of Murraseth have viewed the cults of Angazhan with loathing and hatred, and they believe it is their sacred duty to hunt down the followers of the Ravener King and expel them from the Material Plane",
+      "tradeoff": "It replaces or alters Alignment; Domain; Spells; 3rd-level Teamwork Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:reaper-of-secrets",
+      "name": "Reaper of Secrets",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Dirty Tactics Toolbox pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Reaper%20of%20Secrets",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "assassin"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Bound by Secrecy / Deceitful Lore / Soul-Piercing Gaze / Mind-Game Tactics",
+          "reason": "The archetype’s Bound by Secrecy / Deceitful Lore / Soul-Piercing Gaze / Mind-Game Tactics package materially changes stealth subterfuge from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Masters of mind tricks and deception, these divine assassins track down and kill anyone who has forbidden knowledge about their faiths.",
+      "tradeoff": "It replaces or alters Monster Lore; Stern Gaze; Solo Tactics; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:relic-hunter",
+      "name": "Relic Hunter",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Occult Adventures pg. 119",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Relic%20Hunter",
+      "capabilityOverrides": {
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "relic hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Spells / Relics / Deific Focus",
+          "reason": "The archetype’s Spells / Relics / Deific Focus package materially changes utility magic from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Some inquisitors specialize in the use and recovery of long-lost relics of their faiths, drawing forth divine might from the recovered items in order to restore their sanctity and wield these artifacts against the enemies of their gods.",
+      "tradeoff": "It replaces or alters Spellcasting; Judgment; Domain; Bane; Greater Bane; Second Judgment; Third Judgment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:royal-accuser",
+      "name": "Royal Accuser",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Inner Sea Intrigue pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Royal%20Accuser",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ],
+        "professionIdentity": [
+          "royal investigator"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Meticulous Inspection / Detect Monsters and Secrets / Favored Enemy",
+          "reason": "The archetype’s Class Skills / Meticulous Inspection / Detect Monsters and Secrets / Favored Enemy package materially changes social influence from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Royal accusers serve the prince of Ustalav, cutting through the nation’s baroque politics and quietly facing its many threats.",
+      "tradeoff": "It replaces or alters Class Skills; Stern Gaze; Detect Alignment; Solo Tactics; Teamwork Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:sacred-huntsmaster",
+      "name": "Sacred Huntsmaster",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Advanced Class Guide pg. 99",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Sacred%20Huntsmaster",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Animal Companion / Hunter Tactics / Animal Focus / Improved Empathic Link",
+          "reason": "The archetype’s Animal Companion / Hunter Tactics / Animal Focus / Improved Empathic Link package materially changes summoning companions from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Some inquisitors create a strong bond with an animal companion, and they hunt and punish threats to the faith as an awe-inspiring duo.",
+      "tradeoff": "It replaces or alters Judgment; Solo Tactics; Second Judgment; Third Judgment; Slayer; True Judgment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:sanctified-slayer",
+      "name": "Sanctified Slayer",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Advanced Class Guide pg. 99",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Sanctified%20Slayer",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Studied Target / Sneak Attack / Talented Slayer",
+          "reason": "The archetype’s Studied Target / Sneak Attack / Talented Slayer package materially changes stealth subterfuge from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "While all inquisitors root out enemies of the faith, in many orders and churches there’s a select group of these religious hunters devoted to one goal, and one goal alone—to terminate the enemies of the faith wherever they can be found.",
+      "tradeoff": "It replaces or alters Judgment; Second Judgment; Third Judgment; Slayer; True Judgment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:secret-seeker",
+      "name": "Secret Seeker",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Intrigue pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Secret%20Seeker",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Occult Lore / Detect Mind / Seek Mind",
+          "reason": "The archetype’s Occult Lore / Detect Mind / Seek Mind package materially changes social influence from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Recognizing that torture is a poor method of securing truthful intelligence, secret seekers instead prefer magical means of inquiry.",
+      "tradeoff": "It replaces or alters Monster Lore; Bane; Greater Bane; Exploit Weakness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:sin-eater",
+      "name": "Sin Eater",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Magic pg. 46",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Sin%20Eater",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "redemption"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Eat Sin / Speak with Dead / Burden of Sin",
+          "reason": "Eat Sin / Speak with Dead / Burden of Sin defines the material change from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "There is a sect of inquisitors in some religions that believes it is not enough to hunt the enemies of the church—one must also devour those enemies’ sins.",
+      "tradeoff": "It replaces or alters Domain; 6th-level Teamwork Feat; Exploit Weakness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:spellbreaker",
+      "name": "Spellbreaker",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Combat pg. 52",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Spellbreaker",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "mage hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Strong-Willed / Defense against Magic / Foil Casting / Impervious",
+          "reason": "The archetype’s Strong-Willed / Defense against Magic / Foil Casting / Impervious package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "The world is full of dangerous magic, and many recoil in the face of such power. The spellbreaker, by contrast, learns to recognize and resist certain types of magic, wading through waves of magic to reach her foes.",
+      "tradeoff": "It replaces or alters Monster Lore; Bonus Teamwork Feats; Solo Tactics; Final Judgment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:suit-seeker",
+      "name": "Suit Seeker",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "The Harrow Handbook pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Suit%20Seeker",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Alignment / Class Skills / Domain / Improvised Array",
+          "reason": "The archetype’s Alignment / Class Skills / Domain / Improvised Array package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Though surrounded by meaning and tradition revered by most harrowers, the harrow is a tool that could be abused. Those inquisitors known as suit seekers take grave offense at the misuse of this ancient power, and dedicate their considerable skills to hunting and eliminating any who would abuse the harrow’s magic and the heritage it represents.",
+      "tradeoff": "It replaces or alters Class Skills; Domain; Judgment; Second Judgment; Third Judgment; Detect Alignment; True Judgment; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:sworn-of-the-eldest",
+      "name": "Sworn of the Eldest",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Wilderness Origins pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Sworn%20of%20the%20Eldest",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Whimsical Worship / Deity / Disarming Discernment / Feytongue",
+          "reason": "Whimsical Worship / Deity / Disarming Discernment / Feytongue defines the material change from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Although the Eldest rarely have adherents as other deities do, they still occasionally require mortal agents to advance their aims.",
+      "tradeoff": "It replaces or alters Deity; Domain; Monster Lore; Stern Gaze; Solo Tactics; Teamwork Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:tactical-leader",
+      "name": "Tactical Leader",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Intrigue pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Tactical%20Leader",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Leader’s Words / Tactician / Battle Acumen",
+          "reason": "The archetype’s Leader’s Words / Tactician / Battle Acumen package materially changes tactical leadership from the Inquisitor baseline."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Leader’s Words / Tactician / Battle Acumen",
+          "reason": "The archetype’s Leader’s Words / Tactician / Battle Acumen package materially changes support buffing from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Rather than pursuing their holy missions alone, some inquisitors see the inherent value of working with like-minded allies to accomplish mutual goals.",
+      "tradeoff": "It replaces or alters Stern Gaze; Solo Tactics; Teamwork Feats; Exploit Weakness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:traceless-operative",
+      "name": "Traceless Operative",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Intrigue pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Traceless%20Operative",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Conceal Evidence / Trackless / Uncanny Dodge / Improved Uncanny Dodge",
+          "reason": "The archetype’s Conceal Evidence / Trackless / Uncanny Dodge / Improved Uncanny Dodge package materially changes stealth subterfuge from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Traceless operatives practice subterfuge and careful preparation in order to accomplish their divine mandates.",
+      "tradeoff": "It replaces or alters Monster Lore; Stern Gaze; Track; Bane; Greater Bane; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:umbral-stalker",
+      "name": "Umbral Stalker",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Intrigue pg. 31",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Umbral%20Stalker",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Dark Descent / Judgment / Stalking",
+          "reason": "The archetype’s Class Skills / Dark Descent / Judgment / Stalking package materially changes stealth subterfuge from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "As a consummate lurker in the shadows, an umbral stalker observes the enemies of her faith and strikes before the unfortunate victims even know she is skulking nearby.",
+      "tradeoff": "It replaces or alters Class Skills; Domain; Justice Judgement; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:urban-infiltrator",
+      "name": "Urban Infiltrator",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Magic Tactics Toolbox pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Urban%20Infiltrator",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ],
+        "professionIdentity": [
+          "infiltrator"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Gifted Detective / A Thousand Faces",
+          "reason": "The archetype’s Class Skills / Gifted Detective / A Thousand Faces package materially changes stealth subterfuge from the Inquisitor baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Gifted Detective / A Thousand Faces",
+          "reason": "The archetype’s Class Skills / Gifted Detective / A Thousand Faces package materially changes social influence from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Masters of secretly gathering information to further their faith’s ends, urban infiltrators excel at operating within an unfriendly society or infiltrating an enemy cult.",
+      "tradeoff": "It replaces or alters Class Skills; Monster Lore; Stalwart; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:vampire-hunter",
+      "name": "Vampire Hunter",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Inner Sea Magic pg. 41",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Vampire%20Hunter",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Judgment / Purity / Smiting / Silversmith",
+          "reason": "The archetype’s Judgment / Purity / Smiting / Silversmith package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "The vampire hunter believes that the worst of undead are the ones with unnatural appetities for flesh and blood.",
+      "tradeoff": "It replaces or alters Altered Judgments (Purity, Smiting); Detect Alignment; Altered Bane; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:vigilant-defender",
+      "name": "Vigilant Defender",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Intrigue pg. 31",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Vigilant%20Defender",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "defensive-protective-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Shared Judgments / Protect the Faithful / Bolster the Wounded / True Vengeance",
+          "reason": "The archetype’s Shared Judgments / Protect the Faithful / Bolster the Wounded / True Vengeance package materially changes protecting allies from the Inquisitor baseline."
+        },
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Shared Judgments / Protect the Faithful / Bolster the Wounded / True Vengeance",
+          "reason": "The archetype’s Shared Judgments / Protect the Faithful / Bolster the Wounded / True Vengeance package materially changes defensive protective magic from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "Some inquisitors focus more on protecting those who share their faiths and their ideals than on actively hunting their enemies.",
+      "tradeoff": "It replaces or alters Judgement; Stern Gaze; Exploit Weakness; True Judgement; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "inquisitor:witch-hunter",
+      "name": "Witch Hunter",
+      "parentClassId": "inquisitor",
+      "sourceCitationText": "Ultimate Combat pg. 53",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Witch%20Hunter",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "mage hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Spell Sage / Knowledgeable Defense / Spell Scent / Witch’s Bane Judgment",
+          "reason": "The archetype’s Spell Sage / Knowledgeable Defense / Spell Scent / Witch’s Bane Judgment package materially changes anti magic disruption from the Inquisitor baseline."
+        }
+      ],
+      "playerSummary": "When pursuing justice for their faith, inquisitors sometimes hunt sorcerers, witches, wizards, and other practitioners of arcane magic—but especially witches, since their devotion to a patron is often seen as suspect by many religions.",
+      "tradeoff": "It replaces or alters Monster Lore; Detect Alignment; Discern Lies; True Judgment; Track; Exploit Weakness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

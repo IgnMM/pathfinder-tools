@@ -1,0 +1,772 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Hunter parent value.",
+  "profiles": [
+    {
+      "id": "hunter:aquatic-beastmaster",
+      "name": "Aquatic Beastmaster",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Blood of the Sea pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Aquatic%20Beastmaster",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "primaryDelivery": [
+          "aquatic companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Animal Focus / Crab / Dolphin / Eel",
+          "reason": "The archetype’s Animal Focus / Crab / Dolphin / Eel package materially changes combat mobility from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Hunters beneath the sea are just as committed as their surface-dwelling counterparts to working alongside their animal companions to eradicate threats.",
+      "tradeoff": "It replaces or alters Animal Focus; Wild Empathy; Improved Empathic Link; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:chameleon-adept",
+      "name": "Chameleon Adept",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Ultimate Wilderness pg. 52",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Chameleon%20Adept",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "disguised companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Skills / Shifting Companion / Terrain Chameleon / Savage Diplomacy",
+          "reason": "The archetype’s Skills / Shifting Companion / Terrain Chameleon / Savage Diplomacy package materially changes stealth subterfuge from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Skills / Shifting Companion / Terrain Chameleon / Savage Diplomacy",
+          "reason": "The archetype’s Skills / Shifting Companion / Terrain Chameleon / Savage Diplomacy package materially changes social influence from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Some hunters are masters of blending into every situation, even making their companions appear humanoid for brief periods of time.",
+      "tradeoff": "It replaces or alters Class Skills; Teamwork Feats; Hunter’s Tactics; Wild Empathy; Precise Companion; Woodland Stride; Raise Animal Companion; One with the Wild; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:colluding-scoundrel",
+      "name": "Colluding Scoundrel",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Antihero's Handbook pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Colluding%20Scoundrel",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "manipulator"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Scapegoat / Backstabber / Master Backstabber",
+          "reason": "The archetype’s Scapegoat / Backstabber / Master Backstabber package materially changes social influence from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Scapegoat / Backstabber / Master Backstabber",
+          "reason": "The archetype’s Scapegoat / Backstabber / Master Backstabber package materially changes debuffing enemies from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "The colluding scoundrel is a canny and conniving skirmisher, manipulating her enemies and leveraging her allies for her own benefit.",
+      "tradeoff": "It replaces or alters Animal Focus; Second Animal Focus; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:courtly-hunter",
+      "name": "Courtly Hunter",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Ultimate Intrigue pg. 64",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Courtly%20Hunter",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ],
+        "professionIdentity": [
+          "courtier"
+        ]
+      },
+      "identityRemoves": {
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Courtly Companion / Refined Focus / Beaver",
+          "reason": "The archetype’s Class Skills / Courtly Companion / Refined Focus / Beaver package materially changes social influence from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Courtly Companion / Refined Focus / Beaver",
+          "reason": "The archetype’s Class Skills / Courtly Companion / Refined Focus / Beaver package materially changes wilderness affinity from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "While most hunters find themselves at ease in the wildest parts of the world, courtly hunters instead make their homes in cultured urban environments.",
+      "tradeoff": "It replaces or alters Class Skills; Animal Companion; Animal Focus; Precise Companion; Hunter Tactics; Teamwork Feats; Bonus Tricks; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:divine-hunter",
+      "name": "Divine Hunter",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Advanced Class Guide pg. 95",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Divine%20Hunter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Class Skills / Domain / Otherworldly Companion",
+          "reason": "Alignment / Class Skills / Domain / Otherworldly Companion defines the material change from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "While most hunters heed the call of nature and fight to protect its bounty, some are inspired to serve a higher power.",
+      "tradeoff": "It replaces or alters Alignment; Class Skills; Teamwork Feats; Hunter Tactics; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:feral-hunter",
+      "name": "Feral Hunter",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Advanced Class Guide pg. 95",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Feral%20Hunter",
+      "capabilityOverrides": {
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": false,
+        "controls-additional-entity": false,
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Solitary / Feral Focus / Precise Summoned Animal / Wild Shape",
+          "reason": "The archetype’s Solitary / Feral Focus / Precise Summoned Animal / Wild Shape package materially changes summoning companions from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Solitary / Feral Focus / Precise Summoned Animal / Wild Shape",
+          "reason": "The archetype’s Solitary / Feral Focus / Precise Summoned Animal / Wild Shape package materially changes transformation shapeshifting from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "A feral hunter has forged a bond with nature that’s so strong that she doesn’t merely channel the aspects of animals— she actually becomes an animal herself.",
+      "tradeoff": "It replaces or alters Animal Companion; Animal Focus; Hunter Tactics; Speak with Master; Precise Companion; Bonus Tricks; Improved Empathic Link; Greater Empathic Link; Master of the Wild; Raise Animal Companion; 6th, 9th, 12th, 15th, and 18th-level Teamwork Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:feykiller",
+      "name": "Feykiller",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Legacy of the First World pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Feykiller",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "fey hunter"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Animal Focus / Crow / Goat / Mongoose",
+          "reason": "The archetype’s Animal Focus / Crow / Goat / Mongoose package materially changes anti magic disruption from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Animal Focus / Crow / Goat / Mongoose",
+          "reason": "The archetype’s Animal Focus / Crow / Goat / Mongoose package materially changes knowledge investigation from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Some hunters in fey-plagued regions are dedicated to tracking down and eradicating these threats.",
+      "tradeoff": "It replaces or alters Animal Focus; Wild Empathy; Speak with Master; Improed Empathic Link; One with the Wild; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:flood-flourisher",
+      "name": "Flood Flourisher",
+      "parentClassId": "hunter",
+      "sourceCitationText": "People of the Wastes pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Flood%20Flourisher",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "swamp"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Twin Hunters / Skilled Ambusher / Watery Stride / Water Striker",
+          "reason": "The archetype’s Twin Hunters / Skilled Ambusher / Watery Stride / Water Striker package materially changes battlefield control from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Twin Hunters / Skilled Ambusher / Watery Stride / Water Striker",
+          "reason": "The archetype’s Twin Hunters / Skilled Ambusher / Watery Stride / Water Striker package materially changes stealth subterfuge from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Well adapted to their drenched surroundings, flood flourishers coordinate deadly ambushes with their loyal animal companions by capitalizing on their mastery of the soggy terrain.",
+      "tradeoff": "It replaces or alters Hunter Tactics; Woodland Stride; Teamwork Feats; Swift Tracker; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:forester",
+      "name": "Forester",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Ultimate Wilderness pg. 52",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Forester",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "summoning-companions": "absent",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {
+        "play-complexity": "medium"
+      },
+      "factOverrides": {
+        "has-animal-companion": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Animal Focus / Favored Terrain / Bonus Feat / Tactician",
+          "reason": "The archetype’s Animal Focus / Favored Terrain / Bonus Feat / Tactician package materially changes tactical leadership from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Animal Focus / Favored Terrain / Bonus Feat / Tactician",
+          "reason": "The archetype’s Animal Focus / Favored Terrain / Bonus Feat / Tactician package materially changes summoning companions from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Animal Focus / Favored Terrain / Bonus Feat / Tactician",
+          "reason": "The archetype’s Animal Focus / Favored Terrain / Bonus Feat / Tactician package materially changes stealth subterfuge from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "While all hunters have a bond with the natural world, a forester has a stronger tie to her environment than to the animals within it.",
+      "tradeoff": "It replaces or alters Animal Focus; Animal Companion; Precise Companion; Hunter Tactics; Improved Empathic Link; Bonus Tricks; Raise Animal Companion; Speak with Master; Greater Empathic Link; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:packmaster",
+      "name": "Packmaster",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Advanced Class Guide pg. 96",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Packmaster",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "animal pack"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Pack Bond / Pack Focus / Teamwork Feat / Second Pack Focus",
+          "reason": "The archetype’s Pack Bond / Pack Focus / Teamwork Feat / Second Pack Focus package materially changes tactical leadership from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Some hunters form bonds with packs of well-trained creatures. Whether such a hunter is a northern berserker running with a pack of timber wolves or a savage warrior dashing through the jungle alongside her herd of dimetrodons, the packmaster revels in the thrill of the hunt and the glory of the kill.",
+      "tradeoff": "It replaces or alters Animal Companion; Animal Focus; Teamwork Feats; Second Animal Focus; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:patient-ambusher",
+      "name": "Patient Ambusher",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Ultimate Wilderness pg. 53",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Patient%20Ambusher",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "stealth-subterfuge": "core",
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "traps"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Class Skills / Trapfinding / Snare Trap / Additional Traps",
+          "reason": "The archetype’s Class Skills / Trapfinding / Snare Trap / Additional Traps package materially changes battlefield control from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Trapfinding / Snare Trap / Additional Traps",
+          "reason": "The archetype’s Class Skills / Trapfinding / Snare Trap / Additional Traps package materially changes stealth subterfuge from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Class Skills / Trapfinding / Snare Trap / Additional Traps",
+          "reason": "The archetype’s Class Skills / Trapfinding / Snare Trap / Additional Traps package materially changes practical expertise from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Wandering the wilds, some hunters eschew the bond of innate teamwork with their animal companions. Instead, these hunters master the creation and deployment of intricate ranger traps, often using themselves or their animal companions to lure foes into their snares.",
+      "tradeoff": "It replaces or alters Class Skills; Nature Training; Wild Empathy; Hunter Tactics; Teamwork Feats; Raise Animal Companion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:pelagic-hunter",
+      "name": "Pelagic Hunter",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Aquatic Adventures pg. 54",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Pelagic%20Hunter",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "primaryDelivery": [
+          "aquatic companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Pelagic Companion / Pelagic Focus / Aboleth / Cetus",
+          "reason": "The archetype’s Pelagic Companion / Pelagic Focus / Aboleth / Cetus package materially changes combat mobility from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Pelagic hunters form strong bonds that extend deep beneath the sea.",
+      "tradeoff": "It replaces or alters Animal Companion; Animal Focus; Woodland Stride; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:plant-master",
+      "name": "Plant Master",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Ultimate Wilderness pg. 53",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Plant%20Master",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "wood"
+        ],
+        "primaryDelivery": [
+          "plant companion"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Plant Companion / Plant Focus / Assassin Vine / Brambles",
+          "reason": "Plant Companion / Plant Focus / Assassin Vine / Brambles defines the material change from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Some hunters form a bond with plant life instead of an animal and take on those aspects instead.",
+      "tradeoff": "It replaces or alters Animal Companion; Animal Focus; Wild Empathy; One with the Wild; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:primal-companion-hunter",
+      "name": "Primal Companion Hunter",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Advanced Class Guide pg. 97",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Primal%20Companion%20Hunter",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "evolving companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Primal Transformation / Primal Surge / Primal Master",
+          "reason": "The archetype’s Primal Transformation / Primal Surge / Primal Master package materially changes transformation shapeshifting from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Most hunters are skilled at awakening the primal beasts inside themselves. However, some can instead activate the primal essence within their animal companion.",
+      "tradeoff": "It replaces or alters Animal Focus; Second Animal Focus; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:roof-runner",
+      "name": "Roof Runner",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Ultimate Intrigue pg. 65",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Roof%20Runner",
+      "capabilityOverrides": {
+        "combat-mobility": "core",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ],
+        "professionIdentity": [
+          "spy"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Skilled / Natural Leaper / Shingle Stride / Alley Ghost",
+          "reason": "The archetype’s Skilled / Natural Leaper / Shingle Stride / Alley Ghost package materially changes combat mobility from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Skilled / Natural Leaper / Shingle Stride / Alley Ghost",
+          "reason": "The archetype’s Skilled / Natural Leaper / Shingle Stride / Alley Ghost package materially changes stealth subterfuge from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Skilled / Natural Leaper / Shingle Stride / Alley Ghost",
+          "reason": "The archetype’s Skilled / Natural Leaper / Shingle Stride / Alley Ghost package materially changes wilderness affinity from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Roof runners are skilled ambushers, skirmishers, and spies who eschew heavier types of armor in order to remain light on their feet.",
+      "tradeoff": "It replaces or alters Class Skills; Armor Proficieny; Track; Woodland Stride; Swift Tracker; Master Hunter; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:scarab-stalker",
+      "name": "Scarab Stalker",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Ultimate Wilderness pg. 55",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Scarab%20Stalker",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "desert"
+        ],
+        "spiritualThemes": [
+          "ancient ruins"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Sacred Animal Focus / Bee / Cat / Cow",
+          "reason": "The archetype’s Sacred Animal Focus / Bee / Cat / Cow package materially changes knowledge investigation from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "The forgotten ruins in the desert sands have given rise to a breed of hunters who call upon the powers of the pyramids to protect and explore the ancient sites of their people.",
+      "tradeoff": "It replaces or alters Animal Focus; Woodland Stride; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:totem-bonded",
+      "name": "Totem-Bonded",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Adventurer's Guide pg. 131",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Totem-Bonded",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Primeval Companion / Shared Strength",
+          "reason": "The archetype’s Primeval Companion / Shared Strength package materially changes support buffing from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Totem-bonded are hunters who are able to form a true spiritual bond with the powerful fauna that dominate the wildlands.",
+      "tradeoff": "It replaces or alters Animal Companion; Animal Focus; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:treestrider",
+      "name": "Treestrider",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Ultimate Wilderness pg. 55",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Treestrider",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "forest"
+        ],
+        "primaryDelivery": [
+          "simian companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Animal Companion / Brachiation / Improved Unarmed Strike / Tree Stride",
+          "reason": "The archetype’s Animal Companion / Brachiation / Improved Unarmed Strike / Tree Stride package materially changes combat mobility from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Some hunters are masters of the wild. Whether raised by apes or having some other link with simian creatures, these hunters glide through the wilderness with ease.",
+      "tradeoff": "It replaces or alters Animal Companion; Animal Focus; Second Animal Focus; Precise Companion; Raise Animal Companion; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:uprooter-scout",
+      "name": "Uprooter Scout",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Advanced Class Origins pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Uprooter%20Scout",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "scout"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Lore of the Blight / Unnatural Stride / Demon’s End",
+          "reason": "The archetype’s Lore of the Blight / Unnatural Stride / Demon’s End package materially changes anti magic disruption from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Lore of the Blight / Unnatural Stride / Demon’s End",
+          "reason": "The archetype’s Lore of the Blight / Unnatural Stride / Demon’s End package materially changes stealth subterfuge from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "The Uprooters are an elite band of Kyonin elves skilled and brave enough to foray into the Tanglebriar and take the offensive in the fight against Treerazer.",
+      "tradeoff": "It replaces or alters Improved Empathic Link; Speak with Master; Greater Empathic Link; Raise Animal Companion; One with the Wild; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:urban-hunter",
+      "name": "Urban Hunter",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Heroes of the Streets pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Urban%20Hunter",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core",
+        "social-influence": "core",
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ],
+        "professionIdentity": [
+          "investigator"
+        ]
+      },
+      "identityRemoves": {
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Class Skills / Animal Companion / Captor / Animal Insight",
+          "reason": "The archetype’s Class Skills / Animal Companion / Captor / Animal Insight package materially changes knowledge investigation from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Animal Companion / Captor / Animal Insight",
+          "reason": "The archetype’s Class Skills / Animal Companion / Captor / Animal Insight package materially changes social influence from the Hunter baseline."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Animal Companion / Captor / Animal Insight",
+          "reason": "The archetype’s Class Skills / Animal Companion / Captor / Animal Insight package materially changes wilderness affinity from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "Urban hunters help guards track down and apprehend criminals or spies, find lost children and disaster victims, and protect animals from abuse in the city.",
+      "tradeoff": "It replaces or alters Class Skills; Animal Companion; Hunter Tactics; Teamwork Feat; Woodland Stride; One with the Wild; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "hunter:verminous-hunter",
+      "name": "Verminous Hunter",
+      "parentClassId": "hunter",
+      "sourceCitationText": "Advanced Class Guide pg. 98",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Verminous%20Hunter",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "vermin companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Vermin Companion / Vermin Empathy / Vermin Focus / Ant",
+          "reason": "Vermin Companion / Vermin Empathy / Vermin Focus / Ant defines the material change from the Hunter baseline."
+        }
+      ],
+      "playerSummary": "A verminous hunter calls on the ceaseless, single-minded dedication of vermin to hunt and overwhelm her prey.",
+      "tradeoff": "It replaces or alters Animal Companion; Wild Empathy; Animal Focus; Woodland Stride; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

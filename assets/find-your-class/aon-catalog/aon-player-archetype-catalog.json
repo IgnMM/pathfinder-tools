@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T11:25:43.392Z",
+  "generatedAt": "2026-09-17T14:24:36.967Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
@@ -8,9 +8,9 @@
     "archetypes": 1275,
     "entities": 1319,
     "valuedClasses": 44,
-    "valuedArchetypes": 556,
+    "valuedArchetypes": 667,
     "pendingClasses": 0,
-    "pendingArchetypes": 719,
+    "pendingArchetypes": 608,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -5365,7 +5365,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Black%20Powder%20Vaulter",
       "replaces": "Deadeye; Gunslinger's Dodge; Gunslinger Initiative; Startling Shot; Expert Loading",
       "aonSummary": "Black powder vaulters like to get into the thick of the battle, maneuvering among the fray to find the most advantageous positions from which to kill their enemies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:blatherskite",
@@ -5376,7 +5376,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Blatherskite",
       "replaces": "Class Skills; Gunslinger's Dodge; Gunslinger Initiative; Pistol-Whip; Startling Shot",
       "aonSummary": "The blatherskate has an extraordinary talent for retreating from harm’s way and fooling his enemies into thinking he is weaker than he is.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:bolt-ace",
@@ -5398,7 +5398,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Buccaneer",
       "replaces": "Quick Clear Deed; Pistol Whip Deed; Dead Shot Deed; Lightning Reload Deed; Grit; Nimble; Gun Training 1,2, and 4",
       "aonSummary": "(Human Only) Freebooters who cling to the convoluted codes that rule independent ships, the buccaneer is a gunslinger of the high seas.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:bushwhacker",
@@ -5409,7 +5409,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Bushwhacker",
       "replaces": "Grit; Utility Shot Deed; Targeting Deed; 4th, 8th, 12th, 16th, 20th-level Bonus Feats",
       "aonSummary": "(Kobold Only) The bushwhacker specializes in the art of the ambush. For her, gunplay works best when it comes from a concealed position and is directed against a target that falls with the very first volley and is dead before the smoke clears.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:commando",
@@ -5420,7 +5420,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Commando",
       "replaces": "Class Skills; Utility Shot; Expert Loading; Lightning Reload; Slinger's Luck; 4th-level Bonus Feat; Gun Training",
       "aonSummary": "Commandos are those rough and ready gunslingers who excel at hit-and-run tactics and leveraging their expertise in the wild against their enemies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:experimental-gunsmith",
@@ -5431,7 +5431,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Experimental%20Gunsmith",
       "replaces": "Gunsmith; Gunsmithing; Gun Training",
       "aonSummary": "(Gnome Only) The experimental gunsmith is obsessed with creating the ultimate firearm, and is willing to take risks to work the kinks out of her design.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:firebrand",
@@ -5442,7 +5442,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Firebrand",
       "replaces": "Gunsmith; Grit; Deadeye; Dead Shot; Bonus Feats; Gun Training",
       "aonSummary": "Where other gunslingers rely on precision shooting, the firebrand instead masters explosive ordnance.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:graveslinger",
@@ -5453,7 +5453,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Graveslinger",
       "replaces": "Deadeye; Startling Shot; Bleeding Wound; Menacing Shot; 4th-level Bonus Feat",
       "aonSummary": "Graveslingers craft signature bullets to hunt down wandering undead. With this infused ammunition, they can take on the most resilient spectral foes with ease.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:gulch-gunner",
@@ -5464,7 +5464,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Gulch%20Gunner",
       "replaces": "Class Skills; Grit; Deadeye Deed; Pistol Whip Deed; Menacing Shot Deed; 9th, 13th, 17th-level Gun Training",
       "aonSummary": "(Ratfolk Only) These gulch gunners often specialize in proficiency with a single pistol (easily handled in tight spaces) and wander from warren to warren selling their tunnel-shooting skills to the highest bidder.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:gun-scavenger",
@@ -5475,7 +5475,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Gun%20Scavenger",
       "replaces": "Gunsmith; Quick Clear Deed; Targeting Deed; Nimble",
       "aonSummary": "A gun scavenger collects scraps, spare parts, and other components that might—if modified properly—give her firearm an extra edge.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:gun-tank",
@@ -5497,7 +5497,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Gunner%20Squire",
       "replaces": "Gunslinger's Dodge; Gunslinger Initiative; Nimble +1",
       "aonSummary": "The gunner squire is prepared to reload or repair her lord's firearms at a moment's notice.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:maverick",
@@ -5508,7 +5508,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Maverick",
       "replaces": "Dodge; Pistol Whip; Gunslinger Initiative",
       "aonSummary": "Quick with her gun and no stranger to barroom brawls, a maverick can hold her own when bullets and punches start flying.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:musket-master",
@@ -5519,7 +5519,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Musket%20Master",
       "replaces": "Weapon Proficiency; Gunsmith; Gunslinger’s Dodge Deed; Utility Shot Deed; Gun Training 1-4",
       "aonSummary": "Some gunslingers want a little more firepower and range. These are the musket masters; the best of these gunslingers can reload a musket with dazzling speed, potentially putting even their pistol-wielding brethren to shame.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:mysterious-stranger",
@@ -5530,7 +5530,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Mysterious%20Stranger",
       "replaces": "Grit; Quick Clear Deed; Nimble; Gun Training 1",
       "aonSummary": "A few rare gunslingers seem to accomplish their chosen tasks purely through willpower and an unwillingness to ever give up.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:pistolero",
@@ -5541,7 +5541,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Pistolero",
       "replaces": "Weapon Proficiency; Gunsmith; Deadeye Deed; Startling Shot Deed; Menacing Shot Deed; Gun Training 1-4",
       "aonSummary": "While most gunslingers have favorite firearms, there are those rare ones who choose to specialize in one-handed firearms exclusively.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:planar-rifter",
@@ -5552,7 +5552,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Planar%20Rifter",
       "replaces": "Grit; Deadeye; Dead Shot; Menacing Shot; Death's Shot; Nimble; Gun Training",
       "aonSummary": "Planar rifters harvest pieces of the Outer Planes, absorbing some of the energy into themselves and condensing other portions of it into bullets they can fire from their guns",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:scatter-gunner",
@@ -5563,7 +5563,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Scatter%20Gunner",
       "replaces": "Gunsmith; Deadeye; Utility Shot; Dead Shot; Targeting",
       "aonSummary": "Punishing firearms such as the blunderbuss and dragon pistol can lay waste to invaders in tight corridors, and the dwarves of Dongun Hold have pioneered masterful methods for making the most of these indiscriminate weapons",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:siege-gunner",
@@ -5574,7 +5574,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Siege%20Gunner",
       "replaces": "Grit; Nimble; Deadeye; Gunslinger Initiative; Bonus Feats",
       "aonSummary": "The Grand Duchy of Alkenstar has spawned all manner of firearm specialists, wielding small and large firearms alike. Siege gunners specialize in the very largest— cannons, bombards, and firedrakes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:techslinger",
@@ -5585,7 +5585,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Techslinger",
       "replaces": "Deadeye; Quick Clear; Expert Loading; Gun Training",
       "aonSummary": "Techslingers spurn unreliable gunpowder weapons in favor of high-tech armaments.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:thronewarden",
@@ -5596,7 +5596,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Thronewarden",
       "replaces": "Class Skills; Nimble; 4th-level Bonus Feat; Startling Shot; Bleeding Wound",
       "aonSummary": "As vigilant sentinels, thronewardens identify and head off trouble.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "gunslinger:wyrm-sniper",
@@ -5607,7 +5607,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger%20Wyrm%20Sniper",
       "replaces": "Class Skills; Starling Shot Deed; Lightning Reload Deed; Menacing Shot Deed",
       "aonSummary": "These long-shot artists are masters at taking down\r dragons with sharp shooting and light siege weaponry.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:aquatic-beastmaster",
@@ -5618,7 +5618,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Aquatic%20Beastmaster",
       "replaces": "Animal Focus; Wild Empathy; Improved Empathic Link",
       "aonSummary": "Hunters beneath the sea are just as committed as their surface-dwelling counterparts to working alongside their animal companions to eradicate threats.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:chameleon-adept",
@@ -5629,7 +5629,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Chameleon%20Adept",
       "replaces": "Class Skills; Teamwork Feats; Hunter’s Tactics; Wild Empathy; Precise Companion; Woodland Stride; Raise Animal Companion; One with the Wild",
       "aonSummary": "Some hunters are masters of blending into every situation, even making their companions appear humanoid for brief periods of time.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:colluding-scoundrel",
@@ -5640,7 +5640,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Colluding%20Scoundrel",
       "replaces": "Animal Focus; Second Animal Focus; Master Hunter",
       "aonSummary": "The colluding scoundrel is a canny and conniving skirmisher, manipulating her enemies and leveraging her allies for her own benefit.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:courtly-hunter",
@@ -5651,7 +5651,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Courtly%20Hunter",
       "replaces": "Class Skills; Animal Companion; Animal Focus; Precise Companion; Hunter Tactics; Teamwork Feats; Bonus Tricks",
       "aonSummary": "While most hunters find themselves at ease in the wildest parts of the world, courtly hunters instead make their homes in cultured urban environments.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:divine-hunter",
@@ -5662,7 +5662,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Divine%20Hunter",
       "replaces": "Alignment; Class Skills; Teamwork Feats; Hunter Tactics",
       "aonSummary": "While most hunters heed the call of nature and fight to protect its bounty, some are inspired to serve a higher power.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:feral-hunter",
@@ -5673,7 +5673,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Feral%20Hunter",
       "replaces": "Animal Companion; Animal Focus; Hunter Tactics; Speak with Master; Precise Companion; Bonus Tricks; Improved Empathic Link; Greater Empathic Link; Master of the Wild; Raise Animal Companion; 6th, 9th, 12th, 15th, and 18th-level Teamwork Feats",
       "aonSummary": "A feral hunter has forged a bond with nature that’s so strong that she doesn’t merely channel the aspects of animals— she actually becomes an animal herself.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:feykiller",
@@ -5684,7 +5684,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Feykiller",
       "replaces": "Animal Focus; Wild Empathy; Speak with Master; Improed Empathic Link; One with the Wild",
       "aonSummary": "Some hunters in fey-plagued regions are dedicated to tracking down and eradicating these threats.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:flood-flourisher",
@@ -5695,7 +5695,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Flood%20Flourisher",
       "replaces": "Hunter Tactics; Woodland Stride; Teamwork Feats; Swift Tracker",
       "aonSummary": "Well adapted to their drenched surroundings, flood flourishers coordinate deadly ambushes with their loyal animal companions by capitalizing on their mastery of the soggy terrain.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:forester",
@@ -5717,7 +5717,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Packmaster",
       "replaces": "Animal Companion; Animal Focus; Teamwork Feats; Second Animal Focus; Master Hunter",
       "aonSummary": "Some hunters form bonds with packs of well-trained creatures. Whether such a hunter is a northern berserker running with a pack of timber wolves or a savage warrior dashing through the jungle alongside her herd of dimetrodons, the packmaster revels in the thrill of the hunt and the glory of the kill.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:patient-ambusher",
@@ -5728,7 +5728,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Patient%20Ambusher",
       "replaces": "Class Skills; Nature Training; Wild Empathy; Hunter Tactics; Teamwork Feats; Raise Animal Companion",
       "aonSummary": "Wandering the wilds, some hunters eschew the bond of innate teamwork with their animal companions. Instead, these hunters master the creation and deployment of intricate ranger traps, often using themselves or their animal companions to lure foes into their snares.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:pelagic-hunter",
@@ -5739,7 +5739,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Pelagic%20Hunter",
       "replaces": "Animal Companion; Animal Focus; Woodland Stride",
       "aonSummary": "Pelagic hunters form strong bonds that extend deep beneath the sea.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:plant-master",
@@ -5750,7 +5750,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Plant%20Master",
       "replaces": "Animal Companion; Animal Focus; Wild Empathy; One with the Wild; Master Hunter",
       "aonSummary": "Some hunters form a bond with plant life instead of an animal and take on those aspects instead.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:primal-companion-hunter",
@@ -5772,7 +5772,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Roof%20Runner",
       "replaces": "Class Skills; Armor Proficieny; Track; Woodland Stride; Swift Tracker; Master Hunter",
       "aonSummary": "Roof runners are skilled ambushers, skirmishers, and spies who eschew heavier types of armor in order to remain light on their feet.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:scarab-stalker",
@@ -5783,7 +5783,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Scarab%20Stalker",
       "replaces": "Animal Focus; Woodland Stride",
       "aonSummary": "The forgotten ruins in the desert sands have given rise to a breed of hunters who call upon the powers of the pyramids to protect and explore the ancient sites of their people.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:totem-bonded",
@@ -5794,7 +5794,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Totem-Bonded",
       "replaces": "Animal Companion; Animal Focus",
       "aonSummary": "Totem-bonded are hunters who are able to form a true spiritual bond with the powerful fauna that dominate the wildlands.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:treestrider",
@@ -5805,7 +5805,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Treestrider",
       "replaces": "Animal Companion; Animal Focus; Second Animal Focus; Precise Companion; Raise Animal Companion",
       "aonSummary": "Some hunters are masters of the wild. Whether raised by apes or having some other link with simian creatures, these hunters glide through the wilderness with ease.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:uprooter-scout",
@@ -5816,7 +5816,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Uprooter%20Scout",
       "replaces": "Improved Empathic Link; Speak with Master; Greater Empathic Link; Raise Animal Companion; One with the Wild",
       "aonSummary": "The Uprooters are an elite band of Kyonin elves skilled and brave enough to foray into the Tanglebriar and take the offensive in the fight against Treerazer.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:urban-hunter",
@@ -5827,7 +5827,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Urban%20Hunter",
       "replaces": "Class Skills; Animal Companion; Hunter Tactics; Teamwork Feat; Woodland Stride; One with the Wild",
       "aonSummary": "Urban hunters help guards track down and apprehend criminals or spies, find lost children and disaster victims, and protect animals from abuse in the city.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "hunter:verminous-hunter",
@@ -5838,7 +5838,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter%20Verminous%20Hunter",
       "replaces": "Animal Companion; Wild Empathy; Animal Focus; Woodland Stride",
       "aonSummary": "A verminous hunter calls on the ceaseless, single-minded dedication of vermin to hunt and overwhelm her prey.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:abolisher",
@@ -5849,7 +5849,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Abolisher",
       "replaces": "Domains; Stern Gaze; Detect Alignment; Discern Lies",
       "aonSummary": "Abolishers are incorruptible inquisitors who weed out creatures of alien, unnatural origins, finding and exposing aberrations for what they are.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:cloaked-wolf",
@@ -5860,7 +5860,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Cloaked%20Wolf",
       "replaces": "Class Skills; Stern Gaze; Cunning Initiative; Monster Lore; Solo Tactics; Teamwork Feats",
       "aonSummary": "Some inquisitors are adept at appearing harmless until they throw off their unassuming facades and take their enemies by surprise.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:cold-iron-warden",
@@ -5871,7 +5871,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Cold%20Iron%20Warden",
       "replaces": "3rd, 6th, 9th, 12th, 15th, 18th-level Teamwork Feats; Bane; Discern Lies",
       "aonSummary": "The natural enemies of demoniacs and other cultists of fiendish forces, cold iron wardens are inquisitors who dedicate their lives to eradicating the taint of demonkind from Golarion.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:exarch",
@@ -5882,7 +5882,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Exarch",
       "replaces": "Monster Lore; Detect Alignment; Bane; Second Judgment; Greater Bane; Third Judgment",
       "aonSummary": "(Dwarf Only) The gruff traditionalism of most dwarves finds its apex in those who adhere to a strict orthodoxy rooted in ancient principles and practices and who are not amenable whatsoever to change or innovation.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:exorcist",
@@ -5893,7 +5893,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Exorcist",
       "replaces": "Second Judgment; Third Judgment; Slayer; True Judgment",
       "aonSummary": "Some inquisitors, as they learn more about the threat of possession and the machinations of the planes, task themselves to expel possessing spirits and conniving outsiders from the world whenever possible.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:expulsionist",
@@ -5904,7 +5904,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Expulsionist",
       "replaces": "Domain; Monster Lore; Discern Lies",
       "aonSummary": "Expulsionists are inquisitors who seek to rid the material world of the corrupting influences of wicked spirits that twist mortals to their own ends.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:faith-hunter",
@@ -5915,7 +5915,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Faith%20Hunter",
       "replaces": "Domain; Justice, Destruction Judgement; Detect Alignment",
       "aonSummary": "Certain relentless inquisitors burn with special hatred for an enemy of specific convictions, and they stop at nothing when obsessively hunting these foes down.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:green-faith-marshal",
@@ -5926,7 +5926,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Green%20Faith%20Marshal",
       "replaces": "Domain; Stern Gaze; Monster Lore; Discern Lies; Stalwart",
       "aonSummary": "The Green Faith marshal serves as a literal force of nature, hunting down and punishing those who have committed sins against nature through enslavement and mistreatment of animals or destruction of wild places.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:heretic",
@@ -5937,7 +5937,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Heretic",
       "replaces": "Monster Lore",
       "aonSummary": "While all inquisitors hunt the enemies of the faith, sometimes, either through political maneuvering by her enemies or an unyielding tenacity that breaks her faith’s basic tenets, an inquisitor can find herself a heretic.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:hexenhammer",
@@ -5948,7 +5948,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Hexenhammer",
       "replaces": "Monster Lore; Stern Gaze; Domain; Cunning Initiative; Teamwork Feats; Solo Tactics; Spellcasting",
       "aonSummary": "Hexenhammers learn to use the hexes and some spells of witches, but must pay the price for dealing with supernatural powers, as they slip ever closer to the evil they seek to destroy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:iconoclast",
@@ -5959,7 +5959,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Iconoclast",
       "replaces": "Monster Lore; Detect Alignment; Discern Lies; Exploit Weakness; True Judgment",
       "aonSummary": "Some magic items are heretical by nature, enabling the unfaithful to spread wickedness. Iconoclasts seek out and remove such crutches, cleansing the taint these items exude.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:immolator",
@@ -5970,7 +5970,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Immolator",
       "replaces": "Smiting Judgment; Bane; Greater Bane; True Judgment",
       "aonSummary": "(Ifrit Only) The immolator puts her pyromaniacal urges to work in the service of a deity. She brings burning retribution down upon the enemies of her faith, consigning their souls to the sacrificial flames.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:infiltrator",
@@ -5981,7 +5981,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Infiltrator",
       "replaces": "Stern Gaze; Monster Lore; Track; Discern Lies",
       "aonSummary": "This inquisitor uses guile and deception to blend in among the enemies of the faith rather than confronting them head-on.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:keeper-of-construct",
@@ -5992,7 +5992,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Keeper%20of%20Construct",
       "replaces": "Domain; Stern Gaze; Monster Lore; Exploid Weakness",
       "aonSummary": "Some of Brigh’s inquisitors, and occasionally those who follow Torag, track down malicious construct crafters and fight renegade constructs with unrivaled expertise.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:keeper-of-the-current",
@@ -6003,7 +6003,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Keeper%20of%20the%20Current",
       "replaces": "Track; Spellcasting; Discern Lies",
       "aonSummary": "Water-related deities all have organized churches beneath the waves that engage zealous followers to hunt down apostates and enemies. Regardless of their faith, these undersea zealots are known as keepers of the current.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:kinslayer",
@@ -6014,7 +6014,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Kinslayer",
       "replaces": "Destruction Judgment; Teamwork Feats; Detect Alignment",
       "aonSummary": "(Dhampir Only) Appalled and guilt-ridden by the horrific circumstances of her birth, a kinslayer dedicates herself to eradicating the very creatures whose blood flows within her veins.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:living-grimoire",
@@ -6025,7 +6025,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Living%20Grimoire",
       "replaces": "Monster Lore; Spellcasting; Cunning Initiative; Orisons; Judgement; Bane; Greater Bane; Second Judgement; Third Judgement; True Judgement",
       "aonSummary": "The living grimoire literally wields the sacred word of his deity, using his holy tome to smite the foes of his god with divine might.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:monster-tactician",
@@ -6047,7 +6047,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Oathkeeper",
       "replaces": "Alignment; Class Skills; Monster Lore; Track",
       "aonSummary": "Oathkeepers formally oversee the creation of bargains and personally hunt down those who dare to violate them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:preacher",
@@ -6058,7 +6058,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Preacher",
       "replaces": "Solo Tactics",
       "aonSummary": "Some inquisitors wander the land to spread the true word of their faith.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:ravener-hunter",
@@ -6069,7 +6069,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Ravener%20Hunter",
       "replaces": "Alignment; Domain; Spells; 3rd-level Teamwork Feat",
       "aonSummary": "For generations, the catfolk of Murraseth have viewed the cults of Angazhan with loathing and hatred, and they believe it is their sacred duty to hunt down the followers of the Ravener King and expel them from the Material Plane",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:reaper-of-secrets",
@@ -6080,7 +6080,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Reaper%20of%20Secrets",
       "replaces": "Monster Lore; Stern Gaze; Solo Tactics",
       "aonSummary": "Masters of mind tricks and deception, these divine assassins track down and kill anyone who has forbidden knowledge about their faiths.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:relic-hunter",
@@ -6091,7 +6091,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Relic%20Hunter",
       "replaces": "Spellcasting; Judgment; Domain; Bane; Greater Bane; Second Judgment; Third Judgment",
       "aonSummary": "Some inquisitors specialize in the use and recovery of long-lost relics of their faiths, drawing forth divine might from the recovered items in order to restore their sanctity and wield these artifacts against the enemies of their gods.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:royal-accuser",
@@ -6102,7 +6102,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Royal%20Accuser",
       "replaces": "Class Skills; Stern Gaze; Detect Alignment; Solo Tactics; Teamwork Bonus Feats",
       "aonSummary": "Royal accusers serve the prince of Ustalav, cutting through the nation’s baroque politics and quietly facing its many threats.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:sacred-huntsmaster",
@@ -6113,7 +6113,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Sacred%20Huntsmaster",
       "replaces": "Judgment; Solo Tactics; Second Judgment; Third Judgment; Slayer; True Judgment",
       "aonSummary": "Some inquisitors create a strong bond with an animal companion, and they hunt and punish threats to the faith as an awe-inspiring duo.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:sanctified-slayer",
@@ -6135,7 +6135,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Secret%20Seeker",
       "replaces": "Monster Lore; Bane; Greater Bane; Exploit Weakness",
       "aonSummary": "Recognizing that torture is a poor method of securing truthful intelligence, secret seekers instead prefer magical means of inquiry.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:sin-eater",
@@ -6146,7 +6146,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Sin%20Eater",
       "replaces": "Domain; 6th-level Teamwork Feat; Exploit Weakness",
       "aonSummary": "There is a sect of inquisitors in some religions that believes it is not enough to hunt the enemies of the church—one must also devour those enemies’ sins.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:spellbreaker",
@@ -6157,7 +6157,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Spellbreaker",
       "replaces": "Monster Lore; Bonus Teamwork Feats; Solo Tactics; Final Judgment",
       "aonSummary": "The world is full of dangerous magic, and many recoil in the face of such power. The spellbreaker, by contrast, learns to recognize and resist certain types of magic, wading through waves of magic to reach her foes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:suit-seeker",
@@ -6168,7 +6168,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Suit%20Seeker",
       "replaces": "Class Skills; Domain; Judgment; Second Judgment; Third Judgment; Detect Alignment; True Judgment",
       "aonSummary": "Though surrounded by meaning and tradition revered by most harrowers, the harrow is a tool that could be abused. Those inquisitors known as suit seekers take grave offense at the misuse of this ancient power, and dedicate their considerable skills to hunting and eliminating any who would abuse the harrow’s magic and the heritage it represents.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:sworn-of-the-eldest",
@@ -6179,7 +6179,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Sworn%20of%20the%20Eldest",
       "replaces": "Deity; Domain; Monster Lore; Stern Gaze; Solo Tactics; Teamwork Feats",
       "aonSummary": "Although the Eldest rarely have adherents as other deities do, they still occasionally require mortal agents to advance their aims.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:tactical-leader",
@@ -6190,7 +6190,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Tactical%20Leader",
       "replaces": "Stern Gaze; Solo Tactics; Teamwork Feats; Exploit Weakness",
       "aonSummary": "Rather than pursuing their holy missions alone, some inquisitors see the inherent value of working with like-minded allies to accomplish mutual goals.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:traceless-operative",
@@ -6201,7 +6201,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Traceless%20Operative",
       "replaces": "Monster Lore; Stern Gaze; Track; Bane; Greater Bane",
       "aonSummary": "Traceless operatives practice subterfuge and careful preparation in order to accomplish their divine mandates.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:umbral-stalker",
@@ -6212,7 +6212,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Umbral%20Stalker",
       "replaces": "Class Skills; Domain; Justice Judgement",
       "aonSummary": "As a consummate lurker in the shadows, an umbral stalker observes the enemies of her faith and strikes before the unfortunate victims even know she is skulking nearby.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:urban-infiltrator",
@@ -6223,7 +6223,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Urban%20Infiltrator",
       "replaces": "Class Skills; Monster Lore; Stalwart",
       "aonSummary": "Masters of secretly gathering information to further their faith’s ends, urban infiltrators excel at operating within an unfriendly society or infiltrating an enemy cult.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:vampire-hunter",
@@ -6234,7 +6234,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Vampire%20Hunter",
       "replaces": "Altered Judgments (Purity, Smiting); Detect Alignment; Altered Bane",
       "aonSummary": "The vampire hunter believes that the worst of undead are the ones with unnatural appetities for flesh and blood.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:vigilant-defender",
@@ -6245,7 +6245,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Vigilant%20Defender",
       "replaces": "Judgement; Stern Gaze; Exploit Weakness; True Judgement",
       "aonSummary": "Some inquisitors focus more on protecting those who share their faiths and their ideals than on actively hunting their enemies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "inquisitor:witch-hunter",
@@ -6256,7 +6256,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor%20Witch%20Hunter",
       "replaces": "Monster Lore; Detect Alignment; Discern Lies; True Judgment; Track; Exploit Weakness",
       "aonSummary": "When pursuing justice for their faith, inquisitors sometimes hunt sorcerers, witches, wizards, and other practitioners of arcane magic—but especially witches, since their devotion to a patron is often seen as suspect by many religions.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:antiquarian",
@@ -6267,7 +6267,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Antiquarian",
       "replaces": "Alchemy; Poison Lore; Poison Resistance; Poison Immunity; Swift Alchemy",
       "aonSummary": "Antiquarians are collectors, explorers, and scholars who delve into ruined places in search of lost lore and artifacts.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:bonded-investigator",
@@ -6278,7 +6278,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Bonded%20Investigator",
       "replaces": "Poison Lore; Poison Resistance; Poison Immunity; 4th-level Studied Strike, 7th-level Investigator Talent",
       "aonSummary": "Bonded investigators use intelligent familiars to assist them in their investigations.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:cartographer",
@@ -6289,7 +6289,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Cartographer",
       "replaces": "Poison Lore; Poison Resistance; Keen Recollection; Swift Alchemy",
       "aonSummary": "Cartographers are eager trailblazers who explore uncharted terrain, study landmarks, and find new paths through the wilderness.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:cipher",
@@ -6300,7 +6300,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Cipher",
       "replaces": "Class Skills; Inspiration; Trapfinding; Poison Lore; Poison Resistance; Poison Immunity; Trap SenseSwift Alchemy; 3rd, 5th, 7th, 9th, 11th-level Investigator Talent; Studied Strike",
       "aonSummary": "A cipher trains himself to remain undetected and ignored in order to conduct his investigations without opposition or bothersome questions",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:conspirator",
@@ -6311,7 +6311,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Conspirator",
       "replaces": "Trapfinding; Inspiration; Trap Sense; 7th-level Investigator Talent",
       "aonSummary": "A conspirator uses his knowledge of investigations to make sure he avoids any investigations that his rivals perform.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:cryptid-scholar",
@@ -6322,7 +6322,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Cryptid%20Scholar",
       "replaces": "Poison Lore; Poison Resistance; Studied Combat; Studied Strike",
       "aonSummary": "Cryptid scholars research monsters that lurk secretly at the edge of civilization, developing a deep expertise regarding their anatomy, habits, and ecology.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:cult-hunter",
@@ -6333,7 +6333,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Cult%20Hunter",
       "replaces": "Trapfinding; Poison Resistance; Poison Immunity; Poison Lore; Trap Sense; Swift Alchemy; Studied Combat Studied Strike; 7th, 13th-level Investigator Talent",
       "aonSummary": "Cult hunters seek out heretical secret societies, purging their ideological taint and banishing summoned servants.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:dread-investigator",
@@ -6344,7 +6344,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Dread%20Investigator",
       "replaces": "Inspiration; Studied Combat; Studied Strike; Poison Lore; Poison Resistance; Poison Immunity; 7th, 13th, and 19th-level Talents",
       "aonSummary": "The dread investigator observes human behavior after the fact, honing their intuition by delving into the mysteries of death.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:empiricist",
@@ -6366,7 +6366,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Engineer",
       "replaces": "Trapfinding; Poison Lore; Poison Resistance; Trap Sense",
       "aonSummary": "A number of investigators use their vast knowledge to build machines that replicate the intricacies of the world",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:forensic-physician",
@@ -6388,7 +6388,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Gravedigger",
       "replaces": "Weapon and Armor Proficiency; Alchemy; Trapfinding; Trap Sense; Poison Resistance; Poison Immunity; Studied Combat; Studied Strike; Swift Alchemy",
       "aonSummary": "Gravediggers pursue long buried mysteries, figuratively and literally digging up the truth and finding answers to secrets only moldering corpses and dry bones can tell.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:guardian-of-immortality",
@@ -6399,7 +6399,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Guardian%20of%20Immortality",
       "replaces": "Poison Lore; Poison Resistance; 7th, 13th-level Investigator Talent; Poison Immunity",
       "aonSummary": "Guardians of immortality are Thuvian investigators charged with hunting down those who would attempt to steal or learn for themselves the secret to creating the sun orchid elixir.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:hallucinist",
@@ -6410,7 +6410,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Hallucinist",
       "replaces": "Trapfinding; Trap Sense; 3rd, 5th, 7th, 9th, 11th, 15th-level Investigator Talent; Poison Lore' Poison Resistance; Poison Immunity; Keen Recollection; Studied Combat",
       "aonSummary": "A hallucinist imbibes magical drugs to expand his mind into the psychedelic world, extending his awareness to things he could not normally perceive.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:holomog-demolitionist",
@@ -6421,7 +6421,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Holomog%20Demolitionist",
       "replaces": "Poison Lore; Poison Resistance; 3rd, 9th-level Investigator Talent; Studied Target",
       "aonSummary": "Holomog is an ancient nation built on even more ancient ruins. Its renowned civil engineers develop skills that allow them to take full advantage of their environments.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:infiltrator",
@@ -6432,7 +6432,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Infiltrator",
       "replaces": "Trapfinding; Poison Lore; Poison Resistance",
       "aonSummary": "An infiltrator specializes in investigating or disrupting groups from within.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:jinyiwei",
@@ -6443,7 +6443,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Jinyiwei",
       "replaces": "Inspiration; Alchemy; Trapfinding; Trap Sense; Swift Alchemy",
       "aonSummary": "Jinyiwei are a special task force of secret police whose mission is to root out, expose, and counteract their government’s existing wrongdoing.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:lamplighter",
@@ -6454,7 +6454,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Lamplighter",
       "replaces": "Class Skills; Poison Lore; Poison Resistance; Poison Immunity; Keen Recollection; Trap Sense",
       "aonSummary": "Lamplighters are investigators tasked with keeping the night streets safe and lit, and securing darkened areas against whatever dangers lurk in the shadows.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:lepidstadt-inspector",
@@ -6465,7 +6465,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Lepidstadt%20Inspector",
       "replaces": "Trapfinding; Trap Sense; Poison Resistance; Poison Immunity; Swift Alchemy; 5th-level Investigator Talent",
       "aonSummary": "The ability of investigators trained at the University of Lepidstadt to get to the bottom of a mystery is legendary, and troubled settlements throughout the region often send petitions to the university requesting the aid of a formally trained inspector when some mystery threatens the community as a whole.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:majordomo",
@@ -6476,7 +6476,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Majordomo",
       "replaces": "Trapfinding; Alchemy; Swift Alchemy; Trap Sense",
       "aonSummary": "In a world of intrigue where the loyalties of staff can be bought and sold, sometimes it takes the skills of an investigator to follow the byzantine paper trails and prevent embezzling and espionage within the estates of the elite.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:malice-binder",
@@ -6487,7 +6487,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Malice%20Binder",
       "replaces": "Inspiration; Trapfinding; Trap Sense; Alchemy; Poison Resistance; Poison Immunity",
       "aonSummary": "A lock of hair, a bit of blood, even a footprint is enough to grant a wily witch hunter an edge. Malice binders often rise from the ranks of the common folk rather than from wealthy nobles or the church. Their magic is old and crude, but devastatingly effective against those they hunt.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:mastermind",
@@ -6498,7 +6498,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Mastermind",
       "replaces": "Inspiration; Trapfinding; Trap Sense; Swift Alchemy; 9th-level Investigator Talent",
       "aonSummary": "Although some investigators use their honed senses and cunning insight for personal gain, no one excels at such endeavors like the mastermind.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:natural-philosopher",
@@ -6509,7 +6509,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Natural%20Philosopher",
       "replaces": "Weapon/Armor Proficiencies; Class Skills; Inspiration; Trapfinding; Alchemy; Trap Sense; 3rd-level Investigator Talent",
       "aonSummary": "Natural philosophers are scholars, explorers, and survivalists who feel at home in nature, seldom longing for the comforts of the city.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:portal-seeker",
@@ -6520,7 +6520,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Portal%20Seeker",
       "replaces": "Trapfinding; Poison Resistance; Poison Lore; Studied Strike; Poison Immunity",
       "aonSummary": "While most investigators seek answers to mundane mysteries, portal seekers chase more unusual enigmas: portals to other planes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:profiler",
@@ -6531,7 +6531,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Profiler",
       "replaces": "Trapfinding; Poison Lore; Trap Sense; Poison Resistance; Poison Immunity; Swift Alchemy; 7th-level Investigator Talent",
       "aonSummary": "Profilers understand the human psyche to an intense degree, allowing them to predict the criminals they hunt.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:psychic-detective",
@@ -6542,7 +6542,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Psychic%20Detective",
       "replaces": "Class Skills; Alchemy; Poison Lore; Poison Resistance; Swift Alchemy; Poison Immunity; 3rd-level Talent; Investigator Talents",
       "aonSummary": "A psychic detective supplements her keen insight with occult skill to unravel mysteries both ordinary and supernatural.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:questioner",
@@ -6553,7 +6553,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Questioner",
       "replaces": "Inspiration; Alchemy; Poison Lore",
       "aonSummary": "Dabblers in arcane magic and masters of stealth and guile, questioners are investigators who often find themselves mucking about in cases for less-than-savory clientele or that require an extra bit of subtlety.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:reckless-epicurean",
@@ -6564,7 +6564,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Reckless%20Epicurean",
       "replaces": "Trapfinding; 5th, 13th-level Investigator Talent",
       "aonSummary": "Whether an obsessive scientist, a healer determined to ensure the safety of her tinctures, or a seeker of new and interesting potions, a reckless epicurean’s body is saturated with experimental chemicals and magic.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:ruthless-agent",
@@ -6575,7 +6575,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Ruthless%20Agent",
       "replaces": "Alignment; Inspiration; Trapfinding; Trap Sense; Swift Alchemy; 11th, 17th-level Investigator Talents.",
       "aonSummary": "Ruthless agents are often called upon for their skills at extracting information by any means necessary.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:scavenger",
@@ -6586,7 +6586,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Scavenger",
       "replaces": "Alchemy; Inspiration; Poison Lore; Poison Resistance; Poison Immunity",
       "aonSummary": "Scavengers are masters of systems: how they fit together, why they work, and how to make the most of their parts.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:skeptic",
@@ -6597,7 +6597,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Skeptic",
       "replaces": "Trapfinding; Poison Resistance; Swift Alchemy; 7th level Investigator Talent",
       "aonSummary": "The skeptic accepts the existence of the occult world while challenging claims that the supernatural explains all of life’s problems.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:sleuth",
@@ -6608,7 +6608,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Sleuth",
       "replaces": "Alchemy; Swift Alchemy",
       "aonSummary": "A sleuth is an investigator who relies on good fortune and guile rather than alchemy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:spiritualist",
@@ -6619,7 +6619,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Spiritualist",
       "replaces": "Alchemy; Poison Lore; Poison Resistance; Trap Sense; Swift Alchemy; Poison Immunity",
       "aonSummary": "While most investigators look to the physical world to gain their knowledge, there are those who seek out knowledge beyond the pale.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:star-watcher",
@@ -6630,7 +6630,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Star%20Watcher",
       "replaces": "Weapon/Armor Proficiencies; Alchemy; Trapfinding; Trap Sense; Swift Alchemy",
       "aonSummary": "Star watchers study the movements and positions of the sun, the moon, and the stars, searching for secrets written in the sky.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:steel-hound",
@@ -6641,7 +6641,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Steel%20Hound",
       "replaces": "Weapon/Armor Proficiencies; Poison Lore; Swift Alchemy",
       "aonSummary": "Steel hounds are investigators who have taken to using firearms in place of the more mundane weapons their counterparts favor.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:tekritanin-arbiter",
@@ -6652,7 +6652,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Tekritanin%20Arbiter",
       "replaces": "Trapfinding; Poison Lore; Poison Resistance; Trap Sense",
       "aonSummary": "The Tekritanin League facilitated trade and settled disputes between a vast array of diverse cultures. The arbiters were the first line of diplomatic defense, solving problems before they could become disruptive.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "investigator:toxin-codexer",
@@ -6663,7 +6663,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Investigator%20Toxin%20Codexer",
       "replaces": "Alchemy; Trapfinding; 3rd-level Investigator Talent; Keen Recollection; Trap Sense",
       "aonSummary": "A toxin codexer meticulously seeks out new poisons and catalogs their effects, both those that are harmful and those that are potentially beneficial.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "kineticist:aquakinetcist",
