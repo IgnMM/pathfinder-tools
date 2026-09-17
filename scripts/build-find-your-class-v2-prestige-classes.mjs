@@ -524,6 +524,34 @@ const PROFILES = [
     playerSummary: 'A moonlit dancer devoted to Ashava who unravels undead and haunts with a visual-only performance, sickens or staggers undead with dazzling steps, breaks possession and compulsion effects, and eventually lures the dead back into their graves with searing damage.',
     tradeoff: 'Entry requires neutral good or chaotic good alignment, worship of Ashava, the Ghost Whisperer feat, Knowledge (religion)/Perform (dance) ranks, and 2nd-level spells, and her performance is entirely visual-only, so blindness or darkness shuts it down.',
   }),
+  author('balanced-scale-of-abadar', {
+    c: {'utility-magic': 'core', 'practical-expertise': 'core', 'combat-mobility': 'available', 'social-influence': 'available'},
+    p: {'build-complexity': 'medium', 'play-complexity': 'medium', 'attribute-demands': 'medium', 'equipment-dependence': 'low', 'resource-management': 'low', versatility: 'medium'},
+    f: {'has-spellcasting': true, 'requires-deity': true},
+    identity: {magicIdentity: ['divine'], castingMethod: ['mixed'], castingExtent: ['partial'], spiritualThemes: ['deity'], elementThemes: ['none'], professionIdentity: ['treasure hunter'], primaryDelivery: ['spellcasting']},
+    constraints: [{type: 'deity', kind: 'requirement', summary: 'A balanced scale of Abadar must worship Abadar.', evidenceSection: 'Deity'}],
+    professionIdentity: ['treasure hunter'],
+    playerSummary: 'An Abadaran tomb-raider who bypasses even magically warded locks, appraises treasure at a glance, conjures a temporary bag of holding, and summons a perfect copy of nearly any nonmagical or magical item straight from Abadar\'s First Vault, plus a once-daily emergency escape portal.',
+    tradeoff: 'Entry requires worship of Abadar, Appraise/Open Lock ranks, and 3rd-level divine spells, and every Vault-summoned item is obviously supernatural and vanishes again after a short time, making it unsuitable for permanent use or resale.',
+  }),
+  author('bellflower-tiller', {
+    c: {'stealth-subterfuge': 'core', 'tactical-leadership': 'core', 'wilderness-affinity': 'available', 'social-influence': 'available', 'single-target-damage': 'available'},
+    p: {'build-complexity': 'medium', 'play-complexity': 'medium', 'attribute-demands': 'medium', 'equipment-dependence': 'low', 'resource-management': 'low', versatility: 'medium'},
+    f: {'has-sneak-attack': true, 'requires-alignment': true},
+    identity: {magicIdentity: ['none'], castingMethod: ['none'], castingExtent: ['none'], spiritualThemes: ['none'], elementThemes: ['none'], professionIdentity: ['smuggler'], primaryDelivery: ['melee weapon']},
+    constraints: [{type: 'alignment', kind: 'requirement', summary: 'A Bellflower tiller must be chaotic good.', evidenceSection: 'Alignment'}],
+    professionIdentity: ['smuggler'],
+    playerSummary: 'A chaotic good abolitionist who guides a designated "crop" of escaped slaves through Cheliax, granting them faster overland travel, better aid-another bonuses, and a growing arsenal of teamwork feats, while gaining a trusted home community that shelters and heals the whole group.',
+    tradeoff: 'Entry requires chaotic good alignment, two teamwork feats, Disguise/Knowledge (local)/Stealth/Survival ranks, and either sneak attack +2d6 or two vigilante talents, and most of her best benefits require actively designating and staying within 30-60 feet of her crop.',
+  }),
+  author('blackfire-adept', {
+    c: {'offensive-magic': 'core', 'summoning-companions': 'core', 'debuffing-enemies': 'available', 'utility-magic': 'available'},
+    p: {'build-complexity': 'high', 'play-complexity': 'high', 'attribute-demands': 'high', 'equipment-dependence': 'low', 'resource-management': 'medium', versatility: 'medium'},
+    f: {'has-spellcasting': true, 'controls-additional-entity': true},
+    identity: {magicIdentity: ['arcane'], castingMethod: ['mixed'], castingExtent: ['partial'], spiritualThemes: ['outsiders'], elementThemes: ['none'], primaryDelivery: ['spellcasting']},
+    playerSummary: 'A nihilistic demonologist who taints foes with destructive planar resonance to weaken their saves, strikes a pact with an evil outsider subtype for stronger summons, and eventually breaches planar wards and antimagic fields to call forth and empower evil outsiders even where summoning should be blocked.',
+    tradeoff: 'Entry requires any non-good alignment, Augment Summoning, Spell Focus (conjuration), Knowledge (planes)/Spellcraft ranks, summon monster III, and fluency in Abyssal and Infernal, and her signature abilities all revolve around evil outsiders specifically rather than general combat power.',
+  }),
 ];
 
 const seen = new Set(PROFILES.map(p => p.id));

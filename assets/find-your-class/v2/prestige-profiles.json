@@ -5088,6 +5088,289 @@
       "playerSummary": "A moonlit dancer devoted to Ashava who unravels undead and haunts with a visual-only performance, sickens or staggers undead with dazzling steps, breaks possession and compulsion effects, and eventually lures the dead back into their graves with searing damage.",
       "tradeoff": "Entry requires neutral good or chaotic good alignment, worship of Ashava, the Ghost Whisperer feat, Knowledge (religion)/Perform (dance) ranks, and 2nd-level spells, and her performance is entirely visual-only, so blindness or darkness shuts it down.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:balanced-scale-of-abadar",
+      "name": "Balanced Scale of Abadar",
+      "sourceCitationText": "Dark Markets - A Guide to Katapesh pg. 54",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Balanced%20Scale%20of%20Abadar",
+      "requirementsText": "To qualify to become a balanced scale of Abadar, a character must fulfill all the following criteria.\nDeity: Abadar\nSkills: Appraise 4 ranks, Open Lock 4 ranks\nSpellcasting: Ability to cast 3rdlevel divine spells",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "treasure hunter"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A balanced scale of Abadar must worship Abadar.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "treasure hunter"
+      ],
+      "playerSummary": "An Abadaran tomb-raider who bypasses even magically warded locks, appraises treasure at a glance, conjures a temporary bag of holding, and summons a perfect copy of nearly any nonmagical or magical item straight from Abadar's First Vault, plus a once-daily emergency escape portal.",
+      "tradeoff": "Entry requires worship of Abadar, Appraise/Open Lock ranks, and 3rd-level divine spells, and every Vault-summoned item is obviously supernatural and vanishes again after a short time, making it unsuitable for permanent use or resale.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:bellflower-tiller",
+      "name": "Bellflower Tiller",
+      "sourceCitationText": "Adventurer's Guide pg. 40",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Bellflower%20Tiller",
+      "requirementsText": "To qualify to become a Bellflower tiller, a character must fulfill the following criteria.\nAlignment: Chaotic good.\nFeats: Any two teamwork feats (Pathfinder RPG Advanced Player’s Guide 150).\nSkills: Disguise 5 ranks, Knowledge (local) 3 ranks, Stealth 5 ranks, Survival 5 ranks.\nSpecial: Sneak attack +2d6 or any 2 vigilante talents.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "core",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "available"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "smuggler"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Bellflower tiller must be chaotic good.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [
+        "smuggler"
+      ],
+      "playerSummary": "A chaotic good abolitionist who guides a designated \"crop\" of escaped slaves through Cheliax, granting them faster overland travel, better aid-another bonuses, and a growing arsenal of teamwork feats, while gaining a trusted home community that shelters and heals the whole group.",
+      "tradeoff": "Entry requires chaotic good alignment, two teamwork feats, Disguise/Knowledge (local)/Stealth/Survival ranks, and either sneak attack +2d6 or two vigilante talents, and most of her best benefits require actively designating and staying within 30-60 feet of her crop.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:blackfire-adept",
+      "name": "Blackfire Adept",
+      "sourceCitationText": "Paths of Prestige pg. 12",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Blackfire%20Adept",
+      "requirementsText": "To qualify to become a Blackfire Adept, a character must fulfill all of the following criteria.\nAlignment: Any non-good.\nFeats: Augment Summoning, Spell Focus (conjuration).\nSkills: Knowledge (planes) 5 ranks, Spellcraft 5 ranks.\nSpells: Able to cast summon monster III as a spell or spell-like ability.\nSpecial: Able to speak Abyssal and Infernal.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "A nihilistic demonologist who taints foes with destructive planar resonance to weaken their saves, strikes a pact with an evil outsider subtype for stronger summons, and eventually breaches planar wards and antimagic fields to call forth and empower evil outsiders even where summoning should be blocked.",
+      "tradeoff": "Entry requires any non-good alignment, Augment Summoning, Spell Focus (conjuration), Knowledge (planes)/Spellcraft ranks, summon monster III, and fluency in Abyssal and Infernal, and her signature abilities all revolve around evil outsiders specifically rather than general combat power.",
+      "reviewStatus": "reviewed"
     }
   ]
 }
