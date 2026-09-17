@@ -7697,6 +7697,994 @@
       "playerSummary": "A nonlawful Inner Sea buccaneer who gains a growing rogue-style sneak attack and picks up a flexible menu of pirate tricks -- from a favored tavern where she drinks for free to lightning-fast quick appraisal, storm-savvy sailing, and combat tricks that trip or disarm sneak-attacked foes.",
       "tradeoff": "Entry requires any nonlawful alignment and Appraise/Profession (sailor)/Swim 5 ranks, and she gains no armor proficiency at all, so she stays lightly armored and reliant on Dexterity and precision damage.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:lantern-bearer",
+      "name": "Lantern Bearer",
+      "sourceCitationText": "Adventurer's Guide pg. 110",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Lantern%20Bearer",
+      "requirementsText": "To qualify to become a Lantern Bearer, a character must fulfill the following criteria.\nAlignment: Any good.\nBase Attack Bonus: +5.\nSkills: Knowledge (dungeoneering) 5 ranks, Knowledge (nature) 2 ranks, Survival 5 ranks. Weapon Proficiency: Must be proficient with the longbow (or composite longbow) and one martial melee weapon.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "core",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "available"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "scout"
+        ],
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Lantern Bearer must be any good.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [
+        "scout"
+      ],
+      "playerSummary": "A good-aligned elf-led anti-demon and anti-drow scout who gains a growing suite of light- and protection-themed spell-like abilities, a favored enemy, and cold-iron-treated weapons, eventually shrugging off entangling terrain, teleporting via elf gates, and bathing herself in a holy aura once per day.",
+      "tradeoff": "Entry requires a good alignment, base attack bonus +5, Knowledge (dungeoneering)/Survival 5 ranks, Knowledge (nature) 2 ranks, and proficiency with the longbow and a martial melee weapon, and most of her signature spell-like abilities are limited to a small number of uses per day even at high level.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:liberator",
+      "name": "Liberator",
+      "sourceCitationText": "Second Darkness Player's Guide pg. 22",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Liberator",
+      "requirementsText": "To qualify to become a liberator, a character must fulfill all the following criteria.\nAlignment: Any nonlawful.\nBase Attack Bonus: +5.\nSkills: Escape Artist 6 ranks, Open Lock 6 ranks.\nFeats: Improved Sunder, Power Attack, Stealthy.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "core",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "freedom fighter"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A liberator must be any nonlawful.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [
+        "freedom fighter"
+      ],
+      "playerSummary": "A nonlawful jailbreaker who inspires rescued captives with a rallying cry, silently breaks locks and shackles at a discount, sunders objects without noise, and eventually gains permanent freedom of movement she can share with others once per day.",
+      "tradeoff": "Entry requires any nonlawful alignment, base attack bonus +5, Escape Artist/Open Lock 6 ranks, and Improved Sunder, Power Attack, and Stealthy, and most of her defining tricks revolve narrowly around picking locks, breaking bindings, and sundering objects rather than raw combat power.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:lion-blade",
+      "name": "Lion Blade",
+      "sourceCitationText": "Inner Sea Intrigue pg. 36",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Lion%20Blade",
+      "requirementsText": "To qualify to become a Lion Blade, a character must fulfill all of the following criteria.\nAlignment: Any neutral.\nFeats: Deceitful, Improved Initiative, Skill Focus (Perform).\nSkills: Bluff 3 ranks, Disguise 5 ranks, Stealth 5 ranks, either Perform (sing) or Perform (act) 3 ranks.\nSpecial: Inspire competence bardic performance, servant of Taldor or the Sovereign Court affiliation, sneak attack +2d6.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "core",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "spy"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Lion Blade must be any neutral.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A Lion Blade must be a servant of Taldor or the Sovereign Court and trained in the secret Shadow Schools.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "spy"
+      ],
+      "playerSummary": "A neutral Taldan spy trained in the Shadow Schools who moves effortlessly through crowds, slows or immobilizes foes with a sneak attack, casts suggestion on a flat-footed target, and eventually resists mind-affecting and divination magic well enough to fake being affected by it.",
+      "tradeoff": "Entry requires any neutral alignment, Deceitful/Improved Initiative/Skill Focus (Perform), Bluff/Disguise/Stealth/Perform ranks, inspire competence, a Taldor/Sovereign Court affiliation, and sneak attack +2d6, and most of her signature abilities only work while surrounded by crowds or against unaware targets.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:living-monolith",
+      "name": "Living Monolith",
+      "sourceCitationText": "People of the Sands pg. 25",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Living%20Monolith",
+      "requirementsText": "To qualify to become a living monolith, a character must fulfill all of the following criteria.\nBase Attack Bonus: +5.\nFeats: Endurance, Iron Will.\nLanguages: Ancient Osiriani, Sphinx.\nSkills: Knowledge (engineering) 4 ranks, Knowledge (history) 4 ranks, Knowledge (religion) 2 ranks.\nSpecial: Must have a handcrafted stone scarab worth at least 1,000 gp created and bound to his forehead in a sacred ritual with at least one sphinx or living monolith present.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": true,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "other"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "ancestors"
+        ],
+        "elementThemes": [
+          "earth"
+        ],
+        "professionIdentity": [
+          "guardian"
+        ],
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A living monolith must have a handcrafted stone scarab worth at least 1,000 gp bound to his forehead in a sacred ritual with a sphinx or living monolith present.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "guardian"
+      ],
+      "playerSummary": "An Osirian tomb guardian bound to a stone scarab who grows into damage reduction, immunity to disease, and critical-hit fortification, enlarges himself with sacred power, and eventually becomes immortal, immune to petrification and energy drain, and able to melt into stone or commune with the dead.",
+      "tradeoff": "Entry requires base attack bonus +5, Endurance, Iron Will, Ancient Osiriani and Sphinx, Knowledge (engineering)/Knowledge (history)/Knowledge (religion) ranks, and a costly ritual binding a stone scarab to his forehead, and his best growth abilities depend on choosing a ka stone (mostly martial) or ib stone (spellcasting) at 1st level, a choice that cannot be changed.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:low-templar",
+      "name": "Low Templar",
+      "sourceCitationText": "Inner Sea World Guide pg. 280",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Low%20Templar",
+      "requirementsText": "To qualify to become a low templar, a character must fulfill all the following criteria.\nFeats: Mounted Combat, Weapon Focus (any martial weapon).\nSkills: Bluff 5 ranks, Knowledge (nobility or planes) 2 ranks, Ride 5 ranks.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "mercenary crusader"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        "mercenary crusader"
+      ],
+      "playerSummary": "A self-serving Worldwound crusader who fights demons well while chasing his own agenda -- gaining bonuses against chaotic evil outsiders, dirty tricks on critical hits, and a flexible alignment-masking loophole -- and eventually gains a bonded planar cohort matching whichever ethical path he ultimately chooses.",
+      "tradeoff": "Entry requires Mounted Combat, Weapon Focus (any martial weapon), and Bluff/Knowledge (nobility or planes)/Ride ranks, and his identity is built around moral compromise -- he must eventually pick a path of darkness or light and later damnation or redemption to unlock his best abilities.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:magaambyan-arcanist",
+      "name": "Magaambyan Arcanist",
+      "sourceCitationText": "Adventurer's Guide pg. 118",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Magaambyan%20Arcanist",
+      "requirementsText": "To qualify to become a Magaambyan arcanist, a character must fulfill the following criteria.\nAlignment: Any good.\nFeats: Scholar, Spell Mastery.\nSkills: Spellcraft 5 ranks, Knowledge (arcana) 5 ranks, Knowledge (nature) 5 ranks.\nSpells: Ability to prepare 3rd-level arcane spells.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "available",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "scholar"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Magaambyan arcanist must be any good.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [
+        "scholar"
+      ],
+      "playerSummary": "A good-aligned scholar of the Magaambya who translates druidic spells onto her arcane list, casts good-descriptor spells at higher caster level with extended durations, flexibly re-masters and re-slots spells throughout the day, and eventually redirects harmful effects from her allies onto herself.",
+      "tradeoff": "Entry requires a good alignment, Scholar and Spell Mastery, Spellcraft/Knowledge (arcana)/Knowledge (nature) 5 ranks, and the ability to prepare 3rd-level arcane spells, and nearly her entire kit revolves around the Spell Mastery feat and good-descriptor spells rather than raw arcane power.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:mystery-cultist",
+      "name": "Mystery Cultist",
+      "sourceCitationText": "Chronicle of the Righteous pg. 48",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Mystery%20Cultist",
+      "requirementsText": "To qualify to become a mystery cultist, a character must\r fulfill all of the following criteria:\nAlignment: Any good.\nFeats: Celestial Obedience (see page 5).\nLanguage: Celestial.\nSkills: Knowledge (religion) 7 ranks.\nSpecial: Must worship an empyreal lord.\nSpecial: Must have been spiritually awakened by the\r presence of a celestial being—either by being rescued\r from the brink of death by a willing good outsider of CR 5\r or greater or by being the recipient of a beneficial spell or\r effect from a celestial being of CR 10 or greater.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "outsiders",
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A mystery cultist must be any good, and loses all class features if she stops being good or goes against her patron’s will.",
+          "evidenceSection": "Alignment / Ex-Mystery Cultists"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A mystery cultist must worship an empyreal lord and perform a daily obedience to maintain her abilities.",
+          "evidenceSection": "Special / Obedience"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A devout worshiper of an empyreal lord who radiates a frightening aura of divine beauty, summons celestial allies, brands allies with a healing mark of light, and eventually enters a righteous fervor that boosts her attacks and caster level while granting damage reduction against evil.",
+      "tradeoff": "Entry requires a good alignment, the Celestial Obedience feat, Celestial, Knowledge (religion) 7 ranks, worship of an empyreal lord, and proof of a prior brush with a powerful celestial, and losing her alignment or defying her patron strips every class feature -- including enhanced spellcasting -- until she atones.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:noble-scion",
+      "name": "Noble Scion",
+      "sourceCitationText": "Paths of Prestige pg. 38",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Noble%20Scion",
+      "requirementsText": "To qualify to become a noble scion, a character must fulfill all of the following criteria.\nFeats: Noble Scion (The Inner Sea World Guide 288) or Skill Focus (any skill that’s a class skill for this prestige class).\nSkills: Bluff 2 ranks, Diplomacy 2 ranks, Knowledge (nobility) 5 ranks, Sense Motive 2 ranks.\nSpecial: Must have been granted noble rights, be part of the aristocracy, or have been born, married, or adopted into a noble family.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "available",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "core",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "low",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "noble"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A noble scion must have noble rights, be part of the aristocracy, or have been born, married, or adopted into a noble family.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "noble"
+      ],
+      "playerSummary": "A wealthy aristocrat who draws a growing gold stipend and a pool of favors and influence each week, recruits a cohort through bonus Leadership, picks region-flavored bonus feats and dilettante studies that dabble in spellcasting, sneak attack, or bardic performance, and eventually takes the best of two rolls on key social checks.",
+      "tradeoff": "Entry requires the Noble Scion feat or a relevant Skill Focus, Bluff/Diplomacy/Knowledge (nobility)/Sense Motive ranks, and genuine noble status by birth, marriage, adoption, or grant, and most of his resource-based abilities (stipend, influence pool, servitor) only function meaningfully in settlements of real size.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:pain-taster",
+      "name": "Pain Taster",
+      "sourceCitationText": "Occult Mysteries pg. 46",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Pain%20Taster",
+      "requirementsText": "To become a pain taster, a character must fulfill all the following criteria.\nFeats: Diehard, Endurance, Great Fortitude.\nSkills: Heal 5 ranks, Intimidate 5 ranks.\nAlignment: Any nongood.\nSpecial: The candidate must survive a special ritual designed to inure her to pain.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "core",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "high",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "torturer"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A pain taster must be any nongood.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "curse-or-drawback",
+          "kind": "requirement",
+          "summary": "A pain taster must survive a costly ritual designed to inure her to pain before gaining any levels, and must repeat a costly torture ritual to change her ongoing self-torture routine.",
+          "evidenceSection": "Special / Disciple of Pain"
+        }
+      ],
+      "professionIdentity": [
+        "torturer"
+      ],
+      "playerSummary": "A nongood self-torturer, often Kuthite, who takes a daily torture routine for a lasting ability-score boost, self-inflicts damage as a swift action for combat bonuses, wields a whip with growing sneak-attack-style cruelty, and builds up damage reduction as her body hardens against pain.",
+      "tradeoff": "Entry requires Diehard, Endurance, Great Fortitude, Heal/Intimidate 5 ranks, any nongood alignment, and surviving an initial pain ritual, and her signature masochism and disciple-of-pain abilities both cost real hit points or gold to activate and maintain.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:pathfinder-delver",
+      "name": "Pathfinder Delver",
+      "sourceCitationText": "Adventurer's Guide pg. 138",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Pathfinder%20Delver",
+      "requirementsText": "To qualify to become a Pathfinder delver, a character must fulfill the following criteria.\nSkills: Acrobatics 5 ranks, Disable Device 4 ranks, Knowledge (history) 4 ranks, Perception 5 ranks.\nSpecial: Must have recovered an object of historical significance from an ancient ruin or similar historic location. The nature of this object can vary, but it must be presented to a Pathfinder Lodge and be verified by an agent there. The object need not be handed over to the Society— in most cases, these objects are ancient magical items discovered in the course of adventuring and remain in the possession of the Pathfinder delver. Ioun stones are some of the more commonly presented items for this purpose.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "absent",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "tomb raider"
+        ],
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A Pathfinder delver must have recovered an object of historical significance from an ancient ruin and had it verified by an agent at a Pathfinder Lodge.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "tomb raider"
+      ],
+      "playerSummary": "A thrill-seeking Pathfinder ruin-delver who disarms and bypasses traps with rogue-like ease, moves through difficult terrain at full speed, delays a just-triggered trap’s activation, and eventually cheats death once per day by dropping to -1 hit points instead of dying outright.",
+      "tradeoff": "Entry requires Acrobatics/Disable Device/Knowledge (history)/Perception ranks and proof of recovering and presenting a historically significant object to a Pathfinder Lodge, and his kit is built almost entirely around traps, exploration, and survival rather than direct combat output.",
+      "reviewStatus": "reviewed"
     }
   ]
 }
