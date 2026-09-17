@@ -134,13 +134,14 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
   }
   const container = document.getElementById('app');
   try {
-    const [criteriaDoc, model, batch1, batch2, batch3, batch4, pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10, slayerArchetypes] = await Promise.all([
+    const [criteriaDoc, model, batch1, batch2, batch3, batch4, batch5, pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10, slayerArchetypes, unchainedSummonerArchetypes] = await Promise.all([
       getJson('criteria.json'),
       getJson('classification-model.json'),
       getJson('class-profiles-batch-01.json'),
       getJson('class-profiles-batch-02.json'),
       getJson('class-profiles-batch-03.json'),
       getJson('class-profiles-batch-04.json'),
+      getJson('class-profiles-batch-05.json'),
       getJson('archetype-profiles-pilot-01.json'),
       getJson('archetype-profiles-pilot-02.json'),
       getJson('archetype-profiles-pilot-03.json'),
@@ -152,9 +153,10 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
       getJson('archetype-profiles-pilot-09.json'),
       getJson('archetype-profiles-pilot-10.json'),
       getJson('archetype-profiles-slayer.json'),
+      getJson('archetype-profiles-summoner-unchained.json'),
     ]);
-    const classProfiles = [batch1, batch2, batch3, batch4].flatMap(b => b.profiles);
-    const archetypeOverrides = [pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10, slayerArchetypes].flatMap(b => b.profiles);
+    const classProfiles = [batch1, batch2, batch3, batch4, batch5].flatMap(b => b.profiles);
+    const archetypeOverrides = [pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10, slayerArchetypes, unchainedSummonerArchetypes].flatMap(b => b.profiles);
     const profiles = window.PFFindYourClassV2.resolveAllProfiles(classProfiles, archetypeOverrides);
     window.PFFindYourClassAppV2.mount(container, { criteriaDoc: criteriaDoc, model: model, profiles: profiles });
   } catch (e) {

@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved unchained Summoner parent value.",
+  "profiles": [
+    {
+      "id": "summoner-unchained:construct-caller",
+      "name": "Construct Caller",
+      "parentClassId": "summoner-unchained",
+      "sourceCitationText": "Construct Handbook pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Construct%20Caller",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "other"
+        ],
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "practicalOverrides.versatility",
+          "section": "Construct Eidolon / Planar Tinkering",
+          "reason": "The eidolon is locked to the inevitable subtype and all summon-monster uses are exchanged for additional evolution points."
+        }
+      ],
+      "playerSummary": "A planar tinkerer who gives up temporary summons to build a more heavily evolved construct-like inevitable eidolon.",
+      "tradeoff": "The eidolon gains five additional evolution points, but its subtype is fixed and the entire summon-monster spell-like progression is lost.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner-unchained:devil-binder",
+      "name": "Devil Binder",
+      "parentClassId": "summoner-unchained",
+      "sourceCitationText": "Adventurer's Guide pg. 94",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Devil%20Binder",
+      "capabilityOverrides": {
+        "offensive-magic": "core",
+        "debuffing-enemies": "core",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {
+        "requires-alignment": true
+      },
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Devil Binder must be lawful evil or lawful neutral.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "bonded-entity",
+          "kind": "requirement",
+          "summary": "The eidolon must have the devil subtype and accepts major martial limitations.",
+          "evidenceSection": "Infernal Binding"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Infernal Arcana / Infernal Affinity",
+          "reason": "The eidolon gains a full ladder of offensive spell-like abilities while the summoner gains infernal bloodline attacks."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Infernal Arcana",
+          "reason": "Suggestion, charm monster, dominate person and power word stun make magical disabling central."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Infernal Affinity",
+          "reason": "The summoner develops wings and progressively assumes infernal physical traits."
+        }
+      ],
+      "playerSummary": "A lawful binder who weakens a devil eidolon’s martial chassis in exchange for powerful infernal magic shared between master and servant.",
+      "tradeoff": "Alignment and eidolon subtype are locked, the eidolon loses attack progression, and normal summoning is replaced by limited spell-like abilities.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner-unchained:devil-impostor",
+      "name": "Devil Impostor",
+      "parentClassId": "summoner-unchained",
+      "sourceCitationText": "Agents of Evil pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Devil%20Impostor",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "stealth-subterfuge": "available",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Skills / Devil’s Tongue",
+          "reason": "Bluff and Intimidate become class skills and the eidolon can use its master’s social training."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Bond Alignment / Deceptive Eidolon",
+          "reason": "False alignment auras and a convincing devil disguise support sustained deception."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Fiendish Appearance",
+          "reason": "The summoner can dismiss the eidolon and assume its apparent devil form for hours."
+        }
+      ],
+      "playerSummary": "A deceiver who disguises any eidolon as a devil, falsifies infernal auras and can personally assume the eidolon’s form.",
+      "tradeoff": "Several protective bond features are exchanged for disguise and social deception, while summoned monsters are forced into the fiendish template.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner-unchained:fey-caller",
+      "name": "Fey Caller",
+      "parentClassId": "summoner-unchained",
+      "sourceCitationText": "Ultimate Intrigue pg. 71",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Fey%20Caller",
+      "capabilityOverrides": {
+        "social-influence": "core",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "wilderness"
+        ],
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Fey Eidolon",
+          "reason": "Broad social skills and charm, suggestion, illusion and disguise magic define the fey bond."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Nature’s Call / Fey Eidolon",
+          "reason": "Summon nature’s ally, Knowledge (nature), Survival and woodland stride replace planar generalism."
+        }
+      ],
+      "playerSummary": "A nature-oriented summoner who calls creatures from the summon nature’s ally list and bonds with a magically gifted fey eidolon.",
+      "tradeoff": "The eidolon subtype and temporary summon list become strongly fey-and-nature focused, reducing planar breadth.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner-unchained:god-caller",
+      "name": "God Caller",
+      "parentClassId": "summoner-unchained",
+      "sourceCitationText": "Inner Sea Intrigue pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20God%20Caller",
+      "capabilityOverrides": {
+        "support-buffing": "core",
+        "social-influence": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Guidance",
+          "reason": "The eidolon supplies guidance at will while close to the God Caller."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Divine Word / Overwhelming Presence",
+          "reason": "The eidolon amplifies Diplomacy and Intimidate and eventually commands groups supernaturally."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Divine Awareness",
+          "reason": "Repeated clairaudience/clairvoyance provides remote reconnaissance."
+        }
+      ],
+      "playerSummary": "A community leader whose semi-divine eidolon advises allies, strengthens social influence and eventually projects an overwhelming presence.",
+      "tradeoff": "The eidolon must remain unusually close to retain full hit points, and several personal/eidolon-sharing features are lost.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner-unchained:leshy-caller",
+      "name": "Leshy Caller",
+      "parentClassId": "summoner-unchained",
+      "sourceCitationText": "Ultimate Wilderness pg. 94",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Leshy%20Caller",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "wilderness"
+        ],
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "wood"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Leshy Eidolon / Summon Nature’s Ally",
+          "reason": "The eidolon changes plant form by environment and temporary summoning uses nature’s ally with added leshys."
+        }
+      ],
+      "playerSummary": "A First World summoner bonded to a plant-like leshy eidolon whose body and movement can adapt to the surrounding environment.",
+      "tradeoff": "The eidolon and summon list become nature-specific rather than offering the parent’s broad outsider themes.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner-unchained:soulbound-summoner",
+      "name": "Soulbound Summoner",
+      "parentClassId": "summoner-unchained",
+      "sourceCitationText": "Pathfinder #144: Midwives to Death pg. 83",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Soulbound%20Summoner",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "other"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "curse-or-drawback",
+          "kind": "commitment",
+          "summary": "The Summoner must select a permanent oracle curse reflecting the accidental soul bond.",
+          "evidenceSection": "Pactbond Curse"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "practicalOverrides.versatility",
+          "section": "Weakened Summoning / Soulbound Evolution",
+          "reason": "All summon-monster and gate spell-like abilities are lost to concentrate additional power and spell access in one eidolon."
+        }
+      ],
+      "playerSummary": "An accidental summoner whose eidolon lives within the psyche, bears the same alignment and grows far more adaptable through an intense soul bond.",
+      "tradeoff": "A permanent oracle curse applies and all temporary summoning is lost, concentrating almost the entire class identity in one eidolon.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner-unchained:storm-caller",
+      "name": "Storm Caller",
+      "parentClassId": "summoner-unchained",
+      "sourceCitationText": "Elemental Master's Handbook pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Storm%20Caller",
+      "capabilityOverrides": {
+        "offensive-magic": "core",
+        "area-multi-target-damage": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "air",
+          "electricity"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "mixed"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "requirement",
+          "summary": "The eidolon subtype must provide electricity resistance or immunity.",
+          "evidenceSection": "Stormy Eidolon"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Summon Storm’s Fury / Electrical Polarity",
+          "reason": "Scaling lightning bolts and a line of electricity between summoner and eidolon become signature attacks."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Summon Storm’s Fury / Electrical Polarity",
+          "reason": "Call-lightning bolts and the summoner-eidolon lightning line attack areas or multiple creatures."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Storm’s Wings",
+          "reason": "The Summoner progressively gains a permanent flight evolution."
+        }
+      ],
+      "playerSummary": "An air-and-electricity specialist who summons storm creatures, calls repeated lightning and eventually flies alongside the eidolon.",
+      "tradeoff": "The eidolon and summon list are tightly restricted by electricity themes, and several bond and teleportation features are replaced.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner-unchained:twinned-summoner",
+      "name": "Twinned Summoner",
+      "parentClassId": "summoner-unchained",
+      "sourceCitationText": "Legacy of the First World pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Twinned%20Summoner",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Teamwork Feats",
+          "reason": "Every teamwork feat gained by the Summoner is automatically granted to the eidolon."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Twinned Transposition",
+          "reason": "Master and eidolon can swap positions at range, eventually as a swift action."
+        }
+      ],
+      "playerSummary": "A Summoner whose humanoid eidolon appears as a twin, automatically shares teamwork feats and rapidly swaps places in battle.",
+      "tradeoff": "The eidolon’s form is restricted and several protective and merging abilities are exchanged for coordination and position-swapping.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

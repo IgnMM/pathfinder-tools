@@ -10,10 +10,10 @@ const V2 = require(path.join(dir, 'loader.js'));
 function readJson(rel) { return JSON.parse(fs.readFileSync(path.join(dir, rel), 'utf8')); }
 const criteriaDoc = readJson('criteria.json');
 const model = readJson('classification-model.json');
-const classProfiles = ['class-profiles-batch-01.json', 'class-profiles-batch-02.json', 'class-profiles-batch-03.json', 'class-profiles-batch-04.json']
+const classProfiles = ['class-profiles-batch-01.json', 'class-profiles-batch-02.json', 'class-profiles-batch-03.json', 'class-profiles-batch-04.json', 'class-profiles-batch-05.json']
   .flatMap(f => readJson(f).profiles);
 const archetypeOverrides = Array.from({ length: 10 }, (_, i) => `archetype-profiles-pilot-${String(i + 1).padStart(2, '0')}.json`)
-  .concat('archetype-profiles-slayer.json').flatMap(f => readJson(f).profiles);
+  .concat('archetype-profiles-slayer.json', 'archetype-profiles-summoner-unchained.json').flatMap(f => readJson(f).profiles);
 
 const criteriaIndex = V2.indexCriteria(criteriaDoc);
 const classById = new Map(classProfiles.map(c => [c.id, c]));
@@ -62,12 +62,12 @@ test('resolveEffectiveProfile applies identityAdds and identityRemoves correctly
   }
 });
 
-test('resolveAllProfiles produces 41 class-paths + 126 archetypes = 167 profiles, all with unique ids', () => {
+test('resolveAllProfiles produces 42 class-paths + 135 archetypes = 177 profiles, all with unique ids', () => {
   const all = V2.resolveAllProfiles(classProfiles, archetypeOverrides);
-  assert.equal(all.length, 167);
-  assert.equal(new Set(all.map(p => p.id)).size, 167);
-  assert.equal(all.filter(p => p.entityType === 'class-path').length, 41);
-  assert.equal(all.filter(p => p.entityType === 'archetype').length, 126);
+  assert.equal(all.length, 177);
+  assert.equal(new Set(all.map(p => p.id)).size, 177);
+  assert.equal(all.filter(p => p.entityType === 'class-path').length, 42);
+  assert.equal(all.filter(p => p.entityType === 'archetype').length, 135);
 });
 
 test('calibrationRole never leaks into resolveEffectiveProfile\'s playerSummary (regression: it is an internal field, and most real classes still hold the literal placeholder "Pending cross-class normalization.")', () => {

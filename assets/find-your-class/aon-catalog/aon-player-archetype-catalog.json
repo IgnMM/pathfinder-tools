@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T07:15:29.107Z",
+  "generatedAt": "2026-09-17T08:01:38.860Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
     "classes": 44,
     "archetypes": 1275,
     "entities": 1319,
-    "valuedClasses": 41,
-    "valuedArchetypes": 126,
-    "pendingClasses": 3,
-    "pendingArchetypes": 1149,
+    "valuedClasses": 42,
+    "valuedArchetypes": 135,
+    "pendingClasses": 2,
+    "pendingArchetypes": 1140,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -329,7 +329,7 @@
       "entityType": "class",
       "aonUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Summoner%20(Unchained)",
       "archetypeCount": 9,
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler",
@@ -12735,7 +12735,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Construct%20Caller",
       "replaces": "Subtype; Summon Monster",
       "aonSummary": "Construct callers use their mechanical and planar understandings to work planar energies as a tinkerer works parts",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner-unchained:devil-binder",
@@ -12746,7 +12746,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Devil%20Binder",
       "replaces": "Alignment; Summon Monster I; Bond Senses; Shield Ally; Maker's Call; Transposition; Greater Shield Ally; Merge Forms; Twin Eidolon; Devotion",
       "aonSummary": "A devil binder borrows extraplanar quintessence from her eidolon, gaining strange abilities for herself and evolving her eidolon’s magical powers.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner-unchained:devil-impostor",
@@ -12757,7 +12757,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Devil%20Impostor",
       "replaces": "Class Skills; Bond Senses; Eidolon; Summon Monster; Shield Ally; Greater Shield Ally; Transposition",
       "aonSummary": "Some summoners can’t abide the cruelty of devils, or simply can’t outwit them, but must appear to do so to get by in Cheliax, the Outer Planes, or similar areas of infernal influence. Rather than risk binding true devils, they reshape their eidolons into deceptive forms.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner-unchained:fey-caller",
@@ -12768,7 +12768,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Fey%20Caller",
       "replaces": "Class Skills; Summon Monster; Eidolon Subtype",
       "aonSummary": "Fey callers are summoners whose voices reach out into those strange faerie realms and call forth the fey who dwell there.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner-unchained:god-caller",
@@ -12779,7 +12779,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20God%20Caller",
       "replaces": "Class Skills; Life Link; Transposition; Aspect; Greater Aspect; Twin Eidolon",
       "aonSummary": "God callers follow a fractured tradition that originated in the now-lost nation of Sarkoris. They speak to an assortment of ancient divine powers to lead their communities and sometimes stir up reformations in faiths with ideals similar to their personal convictions.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner-unchained:leshy-caller",
@@ -12790,7 +12790,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Leshy%20Caller",
       "replaces": "Eidolon; Summon Monster",
       "aonSummary": "A leshy caller summons creatures from the First World and forges a bond with a leshy eidolon.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner-unchained:soulbound-summoner",
@@ -12801,7 +12801,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Soulbound%20Summoner",
       "replaces": "Eidolon; Life Link; Summon Monster",
       "aonSummary": "Soulbound summoners, as a rule, never set out to bind their soul to a dangerous and enigmatic power. Rather, they have found themselves unintentional masters of eidolons through incredible circumstances.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner-unchained:storm-caller",
@@ -12812,7 +12812,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Storm%20Caller",
       "replaces": "Eidolon; Summon Monster; Shield Ally; Greater Shield Ally; Maker's Call; Transposition",
       "aonSummary": "Many summoners beckon monsters from the Elemental Planes, but few are as specialized as storm callers, who channel the elemental energies of the Plane of Air.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner-unchained:twinned-summoner",
@@ -12823,7 +12823,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20(Unchained)%20Twinned%20Summoner",
       "replaces": "Shield Ally; Greater Shield Ally; Maker's Call; Transposition; Merge Forms",
       "aonSummary": "Reflecting the connected nature of Imbrex, a twinned summoner and his eidolon appear identical save for any obvious differences, such as evolutions or equipment.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:arrow-champion",

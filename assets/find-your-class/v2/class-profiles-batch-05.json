@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "levelBand": "whole-career-1-20",
+  "notes": [
+    "Unchained Summoner parent profile."
+  ],
+  "profiles": [
+    {
+      "id": "summoner-unchained",
+      "name": "Summoner (Unchained)",
+      "sourceCitationText": "Pathfinder Unchained pg. 25",
+      "sourceUrl": "https://aonprd.com/ClassDisplay.aspx?ItemName=Summoner%20(Unchained)",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "available",
+        "offensive-magic": "available",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "available",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "available",
+        "personal-durability": "available",
+        "protecting-allies": "available",
+        "battlefield-control": "available",
+        "combat-mobility": "available",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "available",
+        "support-buffing": "available",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "available",
+        "utility-magic": "available",
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "available",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": true
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "elementThemes": [
+          "mixed"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "companion",
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "calibrationRole": "Arcane spontaneous caster built around a tightly themed outsider eidolon and repeated summon-monster support."
+    }
+  ]
+}

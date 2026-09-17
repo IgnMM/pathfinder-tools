@@ -119,13 +119,16 @@ function parseDetail(html) {
   };
 }
 
-const classProfiles = (await Promise.all(['01', '02', '03', '04'].map(async batch =>
+const classProfiles = (await Promise.all(['01', '02', '03', '04', '05'].map(async batch =>
   JSON.parse(await fs.readFile(path.join(repo, 'assets/find-your-class/v2', `class-profiles-batch-${batch}.json`), 'utf8')).profiles
 ))).flat();
 const valuedClassIds = new Set(classProfiles.map(item => item.id));
 const valuedArchetypeIds = new Set((await Promise.all(Array.from({length: 10}, async (_, index) =>
   JSON.parse(await fs.readFile(path.join(repo, 'assets/find-your-class/v2', `archetype-profiles-pilot-${String(index + 1).padStart(2, '0')}.json`), 'utf8')).profiles
-))).flat().concat(JSON.parse(await fs.readFile(path.join(repo, 'assets/find-your-class/v2/archetype-profiles-slayer.json'), 'utf8')).profiles).map(item => item.id));
+))).flat().concat(
+  JSON.parse(await fs.readFile(path.join(repo, 'assets/find-your-class/v2/archetype-profiles-slayer.json'), 'utf8')).profiles,
+  JSON.parse(await fs.readFile(path.join(repo, 'assets/find-your-class/v2/archetype-profiles-summoner-unchained.json'), 'utf8')).profiles
+).map(item => item.id));
 
 const classResults = await mapLimit(classes, 6, async ([id, name]) => {
   const {archetypes} = await fetchArchetypeIndex(id, name);
