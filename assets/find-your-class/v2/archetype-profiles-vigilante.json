@@ -1,0 +1,989 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Vigilante parent value.",
+  "profiles": [
+    {
+      "id": "vigilante:agathiel",
+      "name": "Agathiel",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Spymaster's Handbook pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Agathiel",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "An agathiel’s social and vigilante identity alignments must both stay within one step of neutral good, or he gains a permanent negative level until they revert.",
+          "evidenceSection": "Immortal Commitment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Immortal Commitment / Bestial Identity / Agathion Blessing",
+          "reason": "The archetype’s Immortal Commitment / Bestial Identity / Agathion Blessing package materially changes transformation shapeshifting from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Agathiels surrender a portion of their immortal souls to Nirvana in exchange for a measure of animalistic might to aid them in their righteous crusades.",
+      "tradeoff": "It replaces or alters Dual Identity; Vigilante Specialization; 1st-level Social Talent; 6th-level Vigilante Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:anaphexia-thought-killer",
+      "name": "Anaphexia Thought-Killer",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Inner Sea Intrigue pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Anaphexia%20Thought-Killer",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Assuming the vigilante identity requires cutting out her own tongue (dealing damage and bleed) and leaves her unable to speak or cast spells until it regenerates.",
+          "evidenceSection": "Tongue Sacrifice"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Tongue Sacrifice / Monastic Communication / Silent to Magic / Thought-Scent",
+          "reason": "The archetype’s Tongue Sacrifice / Monastic Communication / Silent to Magic / Thought-Scent package materially changes knowledge investigation from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Anaphexia thought-killers cut out their own tongues to gain magical protection from exposure and hunt down secrets to steal before they can be spread",
+      "tradeoff": "It replaces or alters 2nd, 6th-level Social Talent; 7th, 15th-level Vigilante Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:avenging-beast",
+      "name": "Avenging Beast",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Wilderness pg. 96",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Avenging%20Beast",
+      "capabilityOverrides": {
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Skill Ranks per Level / Animal Mask / Spellcasting",
+          "reason": "The archetype’s Class Skills / Skill Ranks per Level / Animal Mask / Spellcasting package materially changes wilderness affinity from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Some vigilantes turn to natural traditions and supernatural forces to transform into beasts, unleashing a primal fury on their foes before returning to an ordinary guise.",
+      "tradeoff": "It replaces or alters Class Skills; Skill Ranks; Dual Identity; 4th, 7th, 10th ,14th, 16th-level Vigilante Talents; Vigilante Specialization; Startling Appearance; Frightening Appearance; Stunning Appearance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:bellflower-harvester",
+      "name": "Bellflower Harvester",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Adventurer's Guide pg. 42",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Bellflower%20Harvester",
+      "capabilityOverrides": {
+        "support-buffing": "core",
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Bellflower harvester’s vigilante identity must be within one step of chaotic good.",
+          "evidenceSection": "Rebellious Identity"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Rebellious Identity / Bellflower Crop / Crop Vigilance / Obsequious",
+          "reason": "The archetype’s Rebellious Identity / Bellflower Crop / Crop Vigilance / Obsequious package materially changes support buffing from the Vigilante baseline."
+        },
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Rebellious Identity / Bellflower Crop / Crop Vigilance / Obsequious",
+          "reason": "The archetype’s Rebellious Identity / Bellflower Crop / Crop Vigilance / Obsequious package materially changes tactical leadership from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Bellflower harvesters are the front-line operatives of the secretive Bellflower Network",
+      "tradeoff": "It replaces or alters Dual Identity; Vigilante Specialization; 1st-level Social Talent; 2nd-level Vigilante Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:brute",
+      "name": "Brute",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 54",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Brute",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A brute’s vigilante alignment must be chaotic, and his vigilante and social identities must stay within one step of each other.",
+          "evidenceSection": "Chaotic Vigilante"
+        },
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Mortal peril can force an involuntary, painful switch to the vigilante identity, and the brute risks attacking allies until he calms down or transforms back.",
+          "evidenceSection": "Brute Form"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Chaotic Vigilante / Brutish Fortitude / Weapon and Armor Proficiency / Brute Form",
+          "reason": "The archetype’s Chaotic Vigilante / Brutish Fortitude / Weapon and Armor Proficiency / Brute Form package materially changes personal durability from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Some vigilantes can transform into brutish versions of themselves, becoming larger, more terrifying in appearance, and far more formidable in combat—though at a price.",
+      "tradeoff": "It replaces or alters Alignment; Base Saving Throws; Weapon and Armor Proficiency; Vigilante Specialization; Vengeance Strike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:cabalist",
+      "name": "Cabalist",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 55",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Cabalist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": true,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "prepared"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Skill Ranks per Level / Weapon and Armor Proficiencies / Spellcasting",
+          "reason": "Class Skills / Skill Ranks per Level / Weapon and Armor Proficiencies / Spellcasting defines the material change from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Practice with blood sacrifices, necromancy, and shadow magic gives a cabalist a reputation as a sinister and dangerous vigilante.",
+      "tradeoff": "It replaces or alters Class Skills; Skill Ranks; Weapon and Armor Proficiency; 4th, 8th, 10th, 14th, 16th-level Vigilante Talent; Vigilante Specialization; Startling Appearance; Frightening Appearance; Stunning Appearance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:chu-ye-enforcer",
+      "name": "Chu Ye Enforcer",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Martial Arts Handbook pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Chu%20Ye%20Enforcer",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true,
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Chu Ye enforcer’s vigilante identity alignment must be non-good.",
+          "evidenceSection": "Yokai Heart"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Yokai Heart / Oni Mask / Steel Dictate / Deceitful Form",
+          "reason": "The archetype’s Yokai Heart / Oni Mask / Steel Dictate / Deceitful Form package materially changes transformation shapeshifting from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Donning terrifying masks, these vigilantes forsake their humanity to become more like the evil oni they mimic.",
+      "tradeoff": "It replaces or alters Dual Identity; 1st-level Social Talent; 4th, 6th, 12th, 14th, 18th-level Vigilante Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:darklantern",
+      "name": "Darklantern",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Heroes of the Darklands pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Darklantern",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core",
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "A darklantern must have the elf subtype.",
+          "evidenceSection": "Elven Ancestry"
+        },
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A darklantern’s vigilante identity must be chaotic evil.",
+          "evidenceSection": "Dark Identity"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Elven Ancestry / Dark Identity / Drow Magic / Drow Paragon",
+          "reason": "The archetype’s Elven Ancestry / Dark Identity / Drow Magic / Drow Paragon package materially changes transformation shapeshifting from the Vigilante baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Elven Ancestry / Dark Identity / Drow Magic / Drow Paragon",
+          "reason": "The archetype’s Elven Ancestry / Dark Identity / Drow Magic / Drow Paragon package materially changes utility magic from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Select members of the Lantern Bearers undergo a horrific ritual allowing them to temporarily experience the dark transformation into a drow, but at the cost of their sanity.",
+      "tradeoff": "It replaces or alters Creature Type; Dual Identity; 1st-level Social Talent; 4th-level Vigilante Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:dragonscale-loyalist",
+      "name": "Dragonscale Loyalist",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Heroes of the High Court pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Dragonscale%20Loyalist",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "courtier"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Ruby Courtier / Reflexive Reaction / False Allegiance / House Garess",
+          "reason": "The archetype’s Ruby Courtier / Reflexive Reaction / False Allegiance / House Garess package materially changes practical expertise from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Dragonscale loyalists serve the throne of Brevoy. When not acting as courtiers, these agents don fearsome draconic masks, becoming anonymous protectors of the king-regent’s rule.",
+      "tradeoff": "It replaces or alters 1st-level Social Talent; Unshakable; Startling Appearance; Frightening Appearance; Stunning Appearance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:experimenter",
+      "name": "Experimenter",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Horror Adventures pg. 70",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Experimenter",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core",
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Class Skills / Weapon and Armor Proficiency / Forbidden Science / Mutagenic Change",
+          "reason": "The archetype’s Class Skills / Weapon and Armor Proficiency / Forbidden Science / Mutagenic Change package materially changes knowledge investigation from the Vigilante baseline."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Class Skills / Weapon and Armor Proficiency / Forbidden Science / Mutagenic Change",
+          "reason": "The archetype’s Class Skills / Weapon and Armor Proficiency / Forbidden Science / Mutagenic Change package materially changes personal durability from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Some vigilantes adopt lives of secrecy to hide their strange experiments from public view.",
+      "tradeoff": "It replaces or alters Alignment; Vigilante Specialization; 1st-level Social Talent; Unshakable; Startling Appearance; Frightening Appearance; Stunning Appearance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:faceless-enforcer",
+      "name": "Faceless Enforcer",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Path of the Hellknight pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Faceless%20Enforcer",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Weapon and Armor Proficiencies / Dual Identity / Armored Juggernaut / Faceless Infiltrator",
+          "reason": "The archetype’s Weapon and Armor Proficiencies / Dual Identity / Armored Juggernaut / Faceless Infiltrator package materially changes personal durability from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Unyielding warriors, faceless enforcers lock their identities behind implacable helms.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiencies; Dual Identity; 2nd, 6th-level Vigilante Talent; 5th, 11th, 17th-level Social Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:ferocious-hunter",
+      "name": "Ferocious Hunter",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Heroes from the Fringe pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Ferocious%20Hunter",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "A ferocious hunter must present as human for his social identity and as a half-orc for his vigilante identity.",
+          "evidenceSection": "Hidden Heritage"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Hidden Heritage / Symbol of Pride / Spirit of Ferocity / Symbol of Mastery",
+          "reason": "The archetype’s Hidden Heritage / Symbol of Pride / Spirit of Ferocity / Symbol of Mastery package materially changes personal durability from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Some half-orcs have such distant orc ancestry that they have the ability to move through the world without experiencing the same discrimination many of their kin, yet many of these half-orcs still take great pride in their heritage and have a powerful desire to show the world that half-orcs are deserving of respect",
+      "tradeoff": "It replaces or alters Dual Identity; 2nd, 8th-level Vigilante Talent; Unshakable; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:gunmaster",
+      "name": "Gunmaster",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 57",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Gunmaster",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon and Armor Proficiencies / Gunmaster / Gunmaster Talents / Deadeye",
+          "reason": "The archetype’s Weapon and Armor Proficiencies / Gunmaster / Gunmaster Talents / Deadeye package materially changes ranged combat from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Gunmasters brandish firearms like extensions of their will, taking down their foes with deadly accuracy and skill.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiency; Vigilante Specialization; Unshakable; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:half-elf-double-scion",
+      "name": "Half-Elf Double Scion",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Heroes from the Fringe pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Half-Elf%20Double%20Scion",
+      "capabilityOverrides": {
+        "single-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "A half-elf double scion must be a half-elf, appearing as an elf in one identity and a human in the other.",
+          "evidenceSection": "Dual Heritage"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.single-target-damage",
+          "section": "Dual Heritage / Half-Elf Double Scion Talents / Elven Weapon Command / Arrogant Strike",
+          "reason": "The archetype’s Dual Heritage / Half-Elf Double Scion Talents / Elven Weapon Command / Arrogant Strike package materially changes single target damage from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "The deception of hiding their true heritage can take a toll on some half-elves, and some form alternate identities to let the suppressed side of their heritage be known.",
+      "tradeoff": "It replaces or alters Dual Identity; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:hangman",
+      "name": "Hangman",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Horror Adventures pg. 70",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Hangman",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Weapon and Armor Proficiency / Vigilante Specialization / Hangman's Noose / Bound to Truth",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Vigilante Specialization / Hangman's Noose / Bound to Truth package materially changes debuffing enemies from the Vigilante baseline."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Weapon and Armor Proficiency / Vigilante Specialization / Hangman's Noose / Bound to Truth",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Vigilante Specialization / Hangman's Noose / Bound to Truth package materially changes knowledge investigation from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Wherever the guilty walk free, the hangman brings judgment.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiencies; Vigilante Specialization; 2nd, 4th-level Vigilante Talent; Unshakable; Startling Appearance; Frightening Appearance; Stunning Appearance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:hidden-current",
+      "name": "Hidden Current",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Blood of the Sea pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Hidden%20Current",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "aquatic"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Guise of the Land Walker / Sea’s Return / Stealthy Swimmer",
+          "reason": "The archetype’s Guise of the Land Walker / Sea’s Return / Stealthy Swimmer package materially changes combat mobility from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "The hidden current operates above and below the sea.",
+      "tradeoff": "It replaces or alters 1st-level Social Talent; 2nd-level Vigilante Talent; Frightening Appearance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:imperial-agent",
+      "name": "Imperial Agent",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Blood of the Ancients pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Imperial%20Agent",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "spy"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Slander / Manipulative / False Flag",
+          "reason": "Slander / Manipulative / False Flag defines the material change from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Imperial agents are often the descendants of nobility and generals from Lung Wa, devoted to reuniting the empire by conquering Lung Wa’s successor states",
+      "tradeoff": "It replaces or alters 1st, 5th-level Social Talent; Unshakable; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:magical-child",
+      "name": "Magical Child",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 57",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Magical%20Child",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {
+        "resource-management": "high"
+      },
+      "factOverrides": {
+        "has-spellcasting": true,
+        "has-familiar": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Class Skills / Skill Ranks per Level / Weapon and Armor Proficiencies / Spellcasting",
+          "reason": "The archetype’s Class Skills / Skill Ranks per Level / Weapon and Armor Proficiencies / Spellcasting package materially changes summoning companions from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Some vigilantes, no matter their age, carry a spark of capricious whimsy under which flows a powerful current of magic and wonder.",
+      "tradeoff": "It replaces or alters Class Skills; Skill Ranks; Weapon and Armor Proficiency; 4th, 8th, 14th, 16th-level Vigilante Talents; Vigilante Specialization; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:masked-maiden",
+      "name": "Masked Maiden",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Adventurer's Guide pg. 82",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Masked%20Maiden",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "depends-on-specific-equipment": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Mortal peril while in the social identity can force an involuntary Will-save-gated switch to the vigilante identity, and a maiden compelled this way cannot switch back that day.",
+          "evidenceSection": "Imperfect Control"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Weapon and Armor Proficiency / Imperfect Control / Scars of the Past / Armor Training",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Imperfect Control / Scars of the Past / Armor Training package materially changes personal durability from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Masked maidens find themselves leading a double life: ordinary (albeit troubled) citizen by day, faceless warrior by night. In the most tragic cases, the identities entirely disassociate, with the maiden experiencing unexplained exhaustion and injuries upon awakening.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiencies; Dual Identity; Seamless Guise; 3rd, 7th, 11th, 15th, 19th-level Social Talents; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:mounted-fury",
+      "name": "Mounted Fury",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 58",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Mounted%20Fury",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "mount"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Class Skills / Thorough Change / Mount / Furious Charge",
+          "reason": "The archetype’s Class Skills / Thorough Change / Mount / Furious Charge package materially changes summoning companions from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Some vigilantes form special bonds with the creatures they use as steeds, considering these loyal and trusted mounts just as much heroes or antiheroes as they might be.",
+      "tradeoff": "It replaces or alters Class Skills; Vigilante Specialization; 6th, 12th-level Vigilante Talent; Vengeance Strike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:mutated-defender",
+      "name": "Mutated Defender",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "People of the Wastes pg. 9",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Mutated%20Defender",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Mutant Specialization / Mutant Talents / Mutant Blast / Mutant Evolution",
+          "reason": "The archetype’s Mutant Specialization / Mutant Talents / Mutant Blast / Mutant Evolution package materially changes transformation shapeshifting from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Occasionally a mutation takes hold of the body of a vigilante, but he learns to hide his maladies, usually through alchemical concoctions or magical concealment",
+      "tradeoff": "It replaces or alters Vigilante Specialization; Vigilante Talents; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:psychometrist",
+      "name": "Psychometrist",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 59",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Psychometrist",
+      "capabilityOverrides": {
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Class Skills / Occult Awareness / Implements and Focus Powers / Mental Focus",
+          "reason": "The archetype’s Class Skills / Occult Awareness / Implements and Focus Powers / Mental Focus package materially changes utility magic from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Psychometrists aren’t spellcasters; instead, they collect strange items or create their own uncanny gadgets that seem to only work for them.",
+      "tradeoff": "It replaces or alters Class Skills; 1st-level Social Talent; 2nd, 6th, 12th, 18th-level Vigilante Talent; Unshakable; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:serial-killer",
+      "name": "Serial Killer",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Horror Adventures pg. 71",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Serial%20Killer",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A serial killer’s vigilante identity must be evil.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Alignment / Vigilante Specialization / Thwart Pursuit / Studied Target",
+          "reason": "The archetype’s Alignment / Vigilante Specialization / Thwart Pursuit / Studied Target package materially changes debuffing enemies from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Some vigilantes adopt an innocent guise to cloak their acts of brutal murder.",
+      "tradeoff": "It replaces or alters Alignment; Vigilante Specialization; Unshakable; 4th, 6th, 12th, 14th-level Vigilante Talent; 7th, 9th, 19th-level Social Talent; Startling Appearance; Frighting Appearance; Stunning Appearance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:splintersoul",
+      "name": "Splintersoul",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Antihero's Handbook pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Splintersoul",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Splintered Identity / Sudden Change / Surprising Change",
+          "reason": "Splintered Identity / Sudden Change / Surprising Change defines the material change from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "A splintersoul pushes the boundaries of what it means to have two separate identities.",
+      "tradeoff": "It replaces or alters Dual Identity; Unshakable; 3rd, 7th-level Social Talents; Startling Appearance; Frightening Appearance; Stunning Appearance; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:teisatsu",
+      "name": "Teisatsu",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Spymaster's Handbook pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Teisatsu",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Infiltrator / Ki Pool / Teisatsu Talents",
+          "reason": "Weapon and Armor Proficiency / Infiltrator / Ki Pool / Teisatsu Talents defines the material change from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Teisatsu are specialized vigilantes who focus on infiltrating social scenes and high-society gatherings on behalf of the feuding lords of Minkai.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiency; Vigilante Specialization; 2nd-level Vigilante Talents; Vigilante Talents; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:warlock",
+      "name": "Warlock",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 60",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Warlock",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "prepared"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Skill Ranks per Level / Armor Proficiencies / Spellcasting",
+          "reason": "Class Skills / Skill Ranks per Level / Armor Proficiencies / Spellcasting defines the material change from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Practicing magic in secret, the warlock obscures her arcane scholarship from public view.",
+      "tradeoff": "It replaces or alters Class Skills; Skill Ranks; Armor Proficiency; 4th, 8th, 10th, 14th, 16th-level Vigilante Talent; Vigilante Specialization; Unshakable; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:wildsoul",
+      "name": "Wildsoul",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 61",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Wildsoul",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Natural Course / Arachnid / Shoot Webs / Web Specialist",
+          "reason": "The archetype’s Natural Course / Arachnid / Shoot Webs / Web Specialist package materially changes debuffing enemies from the Vigilante baseline."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Natural Course / Arachnid / Shoot Webs / Web Specialist",
+          "reason": "The archetype’s Natural Course / Arachnid / Shoot Webs / Web Specialist package materially changes combat mobility from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Within some vigilantes are incredible innate abilities that, although normally the domain of natural beasts, inexplicably aid them in fighting their enemies.",
+      "tradeoff": "It replaces or alters Vigilante Specialization; 2nd, 6th, 12th, 18th-level Vigilante Talent; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "vigilante:zealot",
+      "name": "Zealot",
+      "parentClassId": "vigilante",
+      "sourceCitationText": "Ultimate Intrigue pg. 62",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Vigilante%20Zealot",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-spellcasting": true,
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "spontaneous"
+        ],
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Skill Ranks per Level / Weapon Proficiencies / Spellcasting",
+          "reason": "Class Skills / Skill Ranks per Level / Weapon Proficiencies / Spellcasting defines the material change from the Vigilante baseline."
+        }
+      ],
+      "playerSummary": "Dedicated to a single deity, the zealot hunts the enemies of his faith in secret, often because his religion is outlawed or persecuted in the region.",
+      "tradeoff": "It replaces or alters Class Skills; Skill Ranks; Weapon Proficieny; 4th, 8th, 10th, 14th, 16th-level Vigilante Talent; Alignment; Vigilante Specialization;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

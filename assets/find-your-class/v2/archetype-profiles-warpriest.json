@@ -1,0 +1,626 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Warpriest parent value.",
+  "profiles": [
+    {
+      "id": "warpriest:calamity-caller",
+      "name": "Calamity Caller",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Heroes from the Fringe pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Calamity%20Caller",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "A calamity caller must be an elf.",
+          "evidenceSection": "Calamity Caller"
+        },
+        {
+          "type": "element-choice",
+          "kind": "requirement",
+          "summary": "A calamity caller must select the Earthquake, Flood, Tornado, or Wildfire blessing as one of his two blessings.",
+          "evidenceSection": "Catastrophic Blessing"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Catastrophic Blessing / Calamity / Acid Rain / Blizzard",
+          "reason": "The archetype’s Catastrophic Blessing / Calamity / Acid Rain / Blizzard package materially changes area multi target damage from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "While all elves feel a deep connection to nature, some elven priests take this bond further, using their link to call down the wrath of nature upon their enemies",
+      "tradeoff": "It replaces or alters Blessings; Focus Weapon; Sacred Weapon; Bonus Feats; Aspect of War; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:champion-of-the-faith",
+      "name": "Champion of the Faith",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Advanced Class Guide pg. 128",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Champion%20of%20the%20Faith",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A champion of the faith must select a chosen alignment (chaos, evil, good, or law) shared with his deity, and gains smite against creatures of the opposing alignment.",
+          "evidenceSection": "Chosen Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Chosen Alignment / Sacred Weapon / Detect Alignment / Smite",
+          "reason": "Chosen Alignment / Sacred Weapon / Detect Alignment / Smite defines the material change from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "Champions of the faith are crusaders who use the power of their divine patron to annihilate the faith’s enemies.",
+      "tradeoff": "It replaces or alters Sacred Weapon; 3rd-level Bonus Feat; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:cult-leader",
+      "name": "Cult Leader",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Advanced Class Guide pg. 128",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Cult%20Leader",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Skill Ranks per Level / Weapon and Armor Proficiency / Well-Hidden",
+          "reason": "The archetype’s Class Skills / Skill Ranks per Level / Weapon and Armor Proficiency / Well-Hidden package materially changes stealth subterfuge from the Warpriest baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Class Skills / Skill Ranks per Level / Weapon and Armor Proficiency / Well-Hidden",
+          "reason": "The archetype’s Class Skills / Skill Ranks per Level / Weapon and Armor Proficiency / Well-Hidden package materially changes debuffing enemies from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "Referred to as fanatics, lunatics, or obsessives, cultists see themselves as genuine devotees of their deity.",
+      "tradeoff": "It replaces or alters Class Skills; Skill Ranks; Weapon/Armor Proficiencies; Focus Weapon; 3rd, 9th, 12th, and 15th-level Bonus Feats; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:disenchanter",
+      "name": "Disenchanter",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Advanced Class Guide pg. 129",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Disenchanter",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Bonus Feats / Mystic Interference / Banish Enchantment",
+          "reason": "The archetype’s Bonus Feats / Mystic Interference / Banish Enchantment package materially changes anti magic disruption from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "While many warpriests focus on threats to the body, the disenchanter focuses on dangers to the mind and the soul.",
+      "tradeoff": "It replaces or alters Bonus Feats; Channel Energy; 6th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:divine-champion",
+      "name": "Divine Champion",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Divine Anthology pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Divine%20Champion",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "crusader"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Devotion / Obedient Champion / Know the Infidel / Fervent Boon",
+          "reason": "The archetype’s Devotion / Obedient Champion / Know the Infidel / Fervent Boon package materially changes knowledge investigation from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "Divine champions are unswervingly devoted to their causes, and specialize in bringing battle to the enemies of their faiths.",
+      "tradeoff": "It replaces or alters 3rd, 6th, 9th, 12th, 18th-level Bonus Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:divine-commander",
+      "name": "Divine Commander",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Advanced Class Guide pg. 129",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Divine%20Commander",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "mount"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Mount / Battle Tactician / Blessed Mount / Greater Battle Tactician",
+          "reason": "The archetype’s Mount / Battle Tactician / Blessed Mount / Greater Battle Tactician package materially changes summoning companions from the Warpriest baseline."
+        },
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Mount / Battle Tactician / Blessed Mount / Greater Battle Tactician",
+          "reason": "The archetype’s Mount / Battle Tactician / Blessed Mount / Greater Battle Tactician package materially changes tactical leadership from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "Some warpriests are called to lead great armies and face legions of foes. These divine commanders live for war and fight for glory.",
+      "tradeoff": "It replaces or alters Blessings; 3rd, 6th, 12th, and 15th-level Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:feral-champion",
+      "name": "Feral Champion",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Ultimate Wilderness pg. 97",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Feral%20Champion",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Feral Blessing / Sacred Claws / Wild Shape",
+          "reason": "The archetype’s Feral Blessing / Sacred Claws / Wild Shape package materially changes transformation shapeshifting from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "When a warpriest devotes himself to a god of the natural world, he is sometimes blessed with supernatural powers that allow him to evoke animalistic power and fury.",
+      "tradeoff": "It replaces or alters Blessings; Sacred Weapon; Sacred Armor; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:fist-of-the-godclaw",
+      "name": "Fist of the Godclaw",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Disciple's Doctrine pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Fist%20of%20the%20Godclaw",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "law"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A fist of the Godclaw must be lawful and worship Abadar, Asmodeus, Iomedae, Irori, Torag, or the shared pantheon known as the Godclaw.",
+          "evidenceSection": "Deities"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Deities / Blessings of the Godclaw / Detect Chaos",
+          "reason": "Alignment / Deities / Blessings of the Godclaw / Detect Chaos defines the material change from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "Devoted to the divine control of law above all else, these zealots seek to establish absolute order.",
+      "tradeoff": "It replaces or alters Alignment; Deities; Blessings; 3rd, 6th, 12th-level Bonus Feat; Aspect of War; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:forgepriest",
+      "name": "Forgepriest",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Advanced Class Guide pg. 130",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Forgepriest",
+      "capabilityOverrides": {
+        "practical-expertise": "core",
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "blacksmith"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Blessings / Smith’s Spells / Forge Mastery / Bonus Feats",
+          "reason": "The archetype’s Blessings / Smith’s Spells / Forge Mastery / Bonus Feats package materially changes practical expertise from the Warpriest baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Blessings / Smith’s Spells / Forge Mastery / Bonus Feats",
+          "reason": "The archetype’s Blessings / Smith’s Spells / Forge Mastery / Bonus Feats package materially changes utility magic from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "Armorers of exquisite skill, forgepriests take inspiration from their deity to produce the most perfect weapons and armor they can, the better to equip the armies of the faithful.",
+      "tradeoff": "It replaces or alters Blessings; Spells; Bonus Feats; 3rd and 6th-level Bonus Feats; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:jistkan-magistrate",
+      "name": "Jistkan Magistrate",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Blood of the Ancients pg. 15",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Jistkan%20Magistrate",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "element-choice",
+          "kind": "requirement",
+          "summary": "A Jistkan magistrate must worship a deity who grants the Air, Earth, Fire, or Water blessing and select that as his only blessing.",
+          "evidenceSection": "Elemental Binder"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Class Skills / Elemental Binder / Spontaneous Summons / Bonus Languages",
+          "reason": "The archetype’s Class Skills / Elemental Binder / Spontaneous Summons / Bonus Languages package materially changes summoning companions from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "Some warpriests study the ancient magic that the Jistkan magistrates used to bind elementals and make pacts with genies.",
+      "tradeoff": "It replaces or alters Class Skilss; Blessings; Spontaneous Casting; Bonus Languages; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:liberty-s-blade",
+      "name": "Liberty's Blade",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Advanced Class Origins pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Liberty%27s%20Blade",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "freedom"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A liberty’s blade must worship a good deity who grants the Liberation blessing, and must select it as her only blessing.",
+          "evidenceSection": "Freedom’s Focus"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Freedom’s Focus / Devilslayer / Channel Liberty / Shield Against Hellspawn",
+          "reason": "The archetype’s Freedom’s Focus / Devilslayer / Channel Liberty / Shield Against Hellspawn package materially changes debuffing enemies from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "There are some who find in the call to freedom something primal and spiritual, even more so than other Andorens.",
+      "tradeoff": "It replaces or alters Blessings; Sacred Weapon; Channel Energy; Sacred Armor; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:mantis-zealot",
+      "name": "Mantis Zealot",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Adventurer's Guide pg. 157",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Mantis%20Zealot",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A mantis zealot must worship Achaekek and be lawful evil, or he loses the archetype and becomes a normal warpriest.",
+          "evidenceSection": "Mantis Sworn"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Mantis Sworn / Weapon and Armor Proficiency / Sneak Attack / Sacred Reflexes",
+          "reason": "The archetype’s Mantis Sworn / Weapon and Armor Proficiency / Sneak Attack / Sacred Reflexes package materially changes stealth subterfuge from the Warpriest baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Mantis Sworn / Weapon and Armor Proficiency / Sneak Attack / Sacred Reflexes",
+          "reason": "The archetype’s Mantis Sworn / Weapon and Armor Proficiency / Sneak Attack / Sacred Reflexes package materially changes debuffing enemies from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "Among the Red Mantis worshipers of Achaekek, some hold such strong faith in their assassin god that they gain divine power.",
+      "tradeoff": "It replaces or alters Deity; Alignment; Weapon and Armor Proficiencies; Sacred Weapon; Sacred Armor; Aspect of War; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:molthuni-arsenal-chaplain",
+      "name": "Molthuni Arsenal Chaplain",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Weapon Master's Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Molthuni%20Arsenal%20Chaplain",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "war"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "War Blessing / Sacred Weapon / Weapon Training",
+          "reason": "The archetype’s War Blessing / Sacred Weapon / Weapon Training package materially changes tactical leadership from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "Molthuni arsenal chaplains are warpriests trained in the Arsenal District in Korholm. They bolster their nation’s military by focusing on the militant aspects of their gods.",
+      "tradeoff": "It replaces or alters Blessing; Sacred Armor; Sacred Weapon; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:proclaimer",
+      "name": "Proclaimer",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "People of the Wastes pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Proclaimer",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A proclaimer cannot be evil or worship an evil deity, and must choose cure spells for spontaneous casting.",
+          "evidenceSection": "Righteous Oath"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Righteous Oath / Cleanser of Evil / Zone of Sanctification",
+          "reason": "The archetype’s Righteous Oath / Cleanser of Evil / Zone of Sanctification package materially changes area multi target damage from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "A proclaimer rushes into Abyss-twisted wastes with nothing but his weapon in his hand and his faith in his heart, shouting his deity’s name to the skies",
+      "tradeoff": "It replaces or alters Alignment; Deity; Spellcasting; Fervor; Sacred Armor; Channel Energy; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:proselytizer",
+      "name": "Proselytizer",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Cohorts and Companions pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Proselytizer",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Weapon and Armor Proficiencies / Emotional Appeal / Sacred Subdual / Blessing of Conversion",
+          "reason": "The archetype’s Weapon and Armor Proficiencies / Emotional Appeal / Sacred Subdual / Blessing of Conversion package materially changes debuffing enemies from the Warpriest baseline."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Weapon and Armor Proficiencies / Emotional Appeal / Sacred Subdual / Blessing of Conversion",
+          "reason": "The archetype’s Weapon and Armor Proficiencies / Emotional Appeal / Sacred Subdual / Blessing of Conversion package materially changes social influence from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "The proselytizer is the perfect militant missionary. He seeks to win the hearts and lay claim to the souls of those he meets, and—failing that—spreads the word of his deity at the edge of the sword.",
+      "tradeoff": "It replaces or alters Weapon/Armor Proficiencies; Sacred Armor; 3rd-level Bonus Feat; Sacred Weapon; Blessings; Blessings (Major); those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:sacred-fist",
+      "name": "Sacred Fist",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Advanced Class Guide pg. 130",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Sacred%20Fist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "equipment-dependence": "low"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "AC and flurry benefits require remaining unarmoured, unshielded and lightly encumbered.",
+          "evidenceSection": "Weapon and Armor Proficiency / AC Bonus"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Weapon and Armor Proficiency / AC Bonus / Flurry of Blows",
+          "reason": "Class Skills / Weapon and Armor Proficiency / AC Bonus / Flurry of Blows defines the material change from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "Unlike many warpriests, sacred fists leave behind armor and shield and instead rely on their fists and whatever protection their deity bestows on them.",
+      "tradeoff": "It replaces or alters Class Skills; Weapon/Armor Proficiencies; Sacred Weapon; Focus Weapon; 3rd, 6th, 9th, 12th, and 18th-level Bonus Feats; Sacred Armor; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:shieldbearer",
+      "name": "Shieldbearer",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Armor Master's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Shieldbearer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Sacred weapon, sacred shield and altered channel energy all depend on carrying a shield.",
+          "evidenceSection": "Shield Adept / Channel Energy"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Shield Adept / Sacred Weapon / Sacred Shield / Channel Energy",
+          "reason": "Shield Adept / Sacred Weapon / Sacred Shield / Channel Energy defines the material change from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "Shieldbearers are divine warriors who stand on the front lines of battle, shoulder to shoulder with the soldiers of their people.",
+      "tradeoff": "It replaces or alters Focus Weapon; Sacred Weapon; Sacred Armor;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "warpriest:sixth-wing-bulwark",
+      "name": "Sixth Wing Bulwark",
+      "parentClassId": "warpriest",
+      "sourceCitationText": "Distant Realms pg. 32",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest%20Sixth%20Wing%20Bulwark",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A Sixth Wing bulwark must worship Ragathiel, or she loses this archetype and cannot regain it.",
+          "evidenceSection": "Sixth Wing Sworn"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Sixth Wing Sworn / Weapon and Armor Proficiency / Focus Shield / Sacred Shield",
+          "reason": "The archetype’s Sixth Wing Sworn / Weapon and Armor Proficiency / Focus Shield / Sacred Shield package materially changes protecting allies from the Warpriest baseline."
+        }
+      ],
+      "playerSummary": "The Sixth Wing bulwark are followers of Ragathiel that train to hold the line and defend against the incursion of evil forces, fortifying herself and her allies to stand strong in the face of any opposition, no matter how dire.",
+      "tradeoff": "It replaces or alters Armor Proficiencies; Focus Weapon; Sacred Weapon; Sacred Armor; 6-th, 12th-, 18th-level Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}
