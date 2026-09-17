@@ -18,7 +18,8 @@ function readJson(rel) { return JSON.parse(fs.readFileSync(path.join(dir, rel), 
 const classProfiles = ['class-profiles-batch-01.json', 'class-profiles-batch-02.json', 'class-profiles-batch-03.json', 'class-profiles-batch-04.json', 'class-profiles-batch-05.json', 'class-profiles-batch-06.json']
   .flatMap(f => readJson(f).profiles);
 const archetypeOverrides = Array.from({ length: 10 }, (_, i) => `archetype-profiles-pilot-${String(i + 1).padStart(2, '0')}.json`)
-  .concat('archetype-profiles-slayer.json', 'archetype-profiles-summoner-unchained.json').flatMap(f => readJson(f).profiles);
+  .flatMap(f => readJson(f).profiles).filter(p => p.parentClassId !== 'alchemist')
+  .concat(readJson('archetype-profiles-slayer.json').profiles, readJson('archetype-profiles-summoner-unchained.json').profiles, readJson('archetype-profiles-alchemist.json').profiles);
 const profiles = V2.resolveAllProfiles(classProfiles, archetypeOverrides);
 
 // A minimal but faithful mock of the real assets/valid-sources.js API --

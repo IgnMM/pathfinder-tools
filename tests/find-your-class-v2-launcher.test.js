@@ -22,6 +22,7 @@ test('find-your-class-v2/index.html resolves all class profiles and archetype ba
   for (let i = 1; i <= 10; i++) assert.match(pageHtml, new RegExp(`archetype-profiles-pilot-${String(i).padStart(2, '0')}\\.json`));
   assert.match(pageHtml, /archetype-profiles-slayer\.json/);
   assert.match(pageHtml, /archetype-profiles-summoner-unchained\.json/);
+  assert.match(pageHtml, /archetype-profiles-alchemist\.json/);
   assert.match(pageHtml, /resolveAllProfiles\(classProfiles, archetypeOverrides\)/);
 });
 

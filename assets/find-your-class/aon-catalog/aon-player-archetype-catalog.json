@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T10:11:26.523Z",
+  "generatedAt": "2026-09-17T10:24:52.136Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
@@ -8,9 +8,9 @@
     "archetypes": 1275,
     "entities": 1319,
     "valuedClasses": 44,
-    "valuedArchetypes": 135,
+    "valuedArchetypes": 194,
     "pendingClasses": 0,
-    "pendingArchetypes": 1140,
+    "pendingArchetypes": 1081,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -382,7 +382,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Aerochemist",
       "replaces": "Mutagen, Swift Poisoning; Persistent Mutagen; Poison Use; Swift Alchemy; Poison Resistance",
       "aonSummary": "Aerochemists use scraps of Shory’s magic in their concoctions to gain personal powers of flight.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:alchemical-sapper",
@@ -393,7 +393,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Alchemical%20Sapper",
       "replaces": "Class Skills; Bomb; Mutagen; Poison Resistance; Swift Alchemy; 6th-level Discovery; Poison Immunity",
       "aonSummary": "Alchemical sappers are trained to create explosives.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:alchemical-trapper",
@@ -404,7 +404,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Alchemical%20Trapper",
       "replaces": "2nd and 4th-level Discoveries",
       "aonSummary": "(Kobold Only) Because kobolds rely on traps to soften up enemies, kobold alchemists learn to turn bombs into traps.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:aquachymist",
@@ -415,7 +415,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Aquachymist",
       "replaces": "Class Skills; Bombs; 2nd-level Discovery",
       "aonSummary": "Aquachymists are those rare few alchemists of land-dwelling and aquatic races alike who strive to unlock new and fantastic secrets of alchemy that can be discovered only in the water’s depths.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:beastmorph",
@@ -437,7 +437,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Blazing%20Torchbearer",
       "replaces": "Brew Potion; Poison Use; 4th-level Discovery",
       "aonSummary": "The blazing torchbearer is especially adept at manipulating flames of all kinds.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:blightseeker",
@@ -448,7 +448,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Blightseeker",
       "replaces": "Bombs; 6th, 12th, 18th-level Discovery; Persistent Mutagen",
       "aonSummary": "Blightseekers are alchemists devoted to the study of fungi native to the Darklands.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:blood-alchemist",
@@ -459,7 +459,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Blood%20Alchemist",
       "replaces": "Alignment; Mutagen; Bombs",
       "aonSummary": "Most alchemists can transform matter and energy into other forms, but some wicked specialists realize that life itself is an energy that can greatly fuel their alchemy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:bogborn-alchemist",
@@ -470,7 +470,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Bogborn%20Alchemist",
       "replaces": "Class Skills; Throw Anything",
       "aonSummary": "(Grippli Only) Some grippli alchemists are particularly attuned to the swamps and the dangerous creatures that inhabit them; these serve as their laboratories and research subjects, respectively.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:bramble-brewer",
@@ -481,7 +481,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Bramble%20Brewer",
       "replaces": "2nd-level Discovery; Mutagen; Greater Mutagen; Grand Mutagen",
       "aonSummary": "(Half-Elf Only) Some half-elven alchemists merge human curiosity with their elven link to nature.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:chirurgeon",
@@ -503,7 +503,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Clone%20Master",
       "replaces": "Bomb; Poison Resistance +6; Poison Immunity",
       "aonSummary": "Clone masters practice duplicating existing creatures in order to better understand how to create new life.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:concocter",
@@ -514,7 +514,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Concocter",
       "replaces": "2nd, 4th, 6th-level Discovery; Swift Poisoning",
       "aonSummary": "Concocters are experts at combining sets of chemicals to create unique effects.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:construct-rider",
@@ -525,7 +525,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Construct%20Rider",
       "replaces": "Class Skills; Brew Potion; Mutagen; 4th-level Discovery; Extracts",
       "aonSummary": "A construct rider creates arcane devices to emulate and surpass weak flesh.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:crimson-chymist",
@@ -536,7 +536,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Crimson%20Chymist",
       "replaces": "Mutagen",
       "aonSummary": "Crimson chymists turn to the alchemical arts, infusing their bodies with the mutagenic essence of the Mantis God.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:cruorchymist",
@@ -547,7 +547,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Cruorchymist",
       "replaces": "Poison Use; Poison Resistance; Poison Immunity; Swift Poisoning; Mutagen; Brew Potion",
       "aonSummary": "Cruorchymists see their blood as just another tool for their experiments",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:crypt-breaker",
@@ -558,7 +558,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Crypt%20Breaker",
       "replaces": "Alchemist Bomb, Mutagen, Brew Potion, Persistent Mutagen",
       "aonSummary": "Crypt breakers use their powers of perception and alchemical adaptation to safely investigate the mysteries of the past.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:deep-bomber",
@@ -569,7 +569,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Deep%20Bomber",
       "replaces": "Poison Use; Swift Alchemy; Instant Alchemy; Swift Poisoning",
       "aonSummary": "(Svirfneblin Only) Consumed with keeping hidden from the horrors below the surface, svirfneblin use their racial proclivity for alchemy and their inherent talent for obfuscation to strike their enemies from the darkness and retreat unseen.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:dimensional-excavator",
@@ -580,7 +580,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Dimensional%20Excavator",
       "replaces": "4th-level Discovery",
       "aonSummary": "Dimensional excavators have discovered and recorded ways to cause their bombs to create minor tears in the fabric of reality, forming extradimensional pits to vex their foes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:dragonblood-chymist",
@@ -591,7 +591,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Dragonblood%20Chymist",
       "replaces": "Mutagen; 2nd, 12th, 16th-level discovery; Throw Anything; Poison Resistance; Poison Use; Swift Poisoning",
       "aonSummary": "The dragonblood chymist specializes in the reckless distillation of extracts and elixirs that allow them to experience the might of a dragon, however dangerous it might be\n.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:ectochymist",
@@ -602,7 +602,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Ectochymist",
       "replaces": "Class Skills; Bombs; Poison Resistance; Poison Use; Swift Poisoning; 8th-level Alchemist Discovery; Poison Immunity",
       "aonSummary": "Ectochymists study the effects of alchemy on soul and spirit, focusing on fighting ghosts and other incorporeal creatures.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:ectoplasm-master",
@@ -613,7 +613,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Ectoplasm%20Master",
       "replaces": "Brew Potion",
       "aonSummary": "Alchemists capable of distilling spectral horrors into alchemical reagents.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:eldritch-poisoner",
@@ -624,7 +624,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Eldritch%20Poisoner",
       "replaces": "Bomb; Throw Anything; Mutagen; Persistent Mutagen; 4th-level Discovery",
       "aonSummary": "Eldritch poisoners are masters of the toxic arts, synthesizing lethal and incapacitating poisons with uncanny speed and expertise.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:energist",
@@ -635,7 +635,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Energist",
       "replaces": "Extracts; Bombs; Poison Immunity; Throw Anything; 2nd-level Discovery; Swift Poisoning; Poison Resistance",
       "aonSummary": "While most alchemists experiment mainly with chemicals and physical materials to create disparate effects, energists tap into the energy of life or death: positive energy or negative energy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:energy-scientist",
@@ -646,7 +646,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Energy%20Scientist",
       "replaces": "Class Skills; Alchemy; Poison Resistance; Poison Immunity; Poison Use; Swift Poisoning",
       "aonSummary": "Energy scientists fervently prepare themselves to overcome exposure to specific elemental hazards so that they can traverse the Elemental Planes in search of novel discoveries and reagents.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:fermenter",
@@ -657,7 +657,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Fermenter",
       "replaces": "Poison Resistance; 10th-level Discovery; Poison Use; Swift Poisoning",
       "aonSummary": "Little more than moonshiners to some, fermenters focus their efforts on imbibing substances, learning from the resulting effects on their bodies, and infusing this knowledge into their skill sets.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:fire-bomber",
@@ -668,7 +668,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Fire%20Bomber",
       "replaces": "Weapon/Armor Proficiency; Bomb; Throw Anything; 4th-level Discovery; Poison Resistance +6; Poison Immunity; Persistent Mutagen",
       "aonSummary": "(Goblin Only) Fire bombers are exceptionally good at using bombs to burn creatures and blow things up, but are not quite as good at creating other types of bombs or extracts.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:first-world-innovator",
@@ -679,7 +679,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20First%20World%20Innovator",
       "replaces": "Brew Potion; Poison Use; Swift Poisoning; Poison Immunity; Bombs; Poison Resistance",
       "aonSummary": "Those who can harness primal reagents—mundane reagents infused with the power of the First World—walk a fine line between genius and catastrophe.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:gloom-chymist",
@@ -690,7 +690,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Gloom%20Chymist",
       "replaces": "Bomb; Poison Resistance; Poison Use; Swift Poisoning",
       "aonSummary": "A breakthrough in Nidalese alchemy led to the creation of glooms, magical fields of darkness from the Shadow Plane that can be momentarily animated with the use of strange compounds.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:grenadier",
@@ -701,7 +701,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Grenadier",
       "replaces": "Brew Potion, Poison Resistance, Poison Use, Swift Poisoning, Poison Immunity",
       "aonSummary": "Grenadiers sacrifice their skill with poisons in order to become more adept at using alchemical bombs.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:grenadier-mc",
@@ -712,7 +712,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Grenadier%20[MC]",
       "replaces": "Brew Potion; Poison Resistance; Poison Use; Swift Poisoning; Poison Immunity",
       "aonSummary": "Grenadiers train to exercise their talents in the thick of battle, even when not under the influence of their mutagens. They learn methods of combining weapon attacks with their alchemical magic, and sacrifice skill with poisons in order to become more adept at using alchemical bombs or using alchemical items in conjunction with their martial skills.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:gun-chemist",
@@ -734,7 +734,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Herbalist",
       "replaces": "Alchemy; Key Ability Score; Throw Anything; Bombs; Poison Use; Poison Resistance; Poison Immunity",
       "aonSummary": "(Vine Leshy only) Vine leshys who study the physical and spiritual composition of their own bodies have discovered a strange herbal alchemy all their own.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:homunculist",
@@ -745,7 +745,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Homunculist",
       "replaces": "Poison Use; Poison Resistance; Poison Immunity; Swift Poisoning; Mutagen",
       "aonSummary": "One of the grand goals of alchemy is the ability to create new life. A homunculist has made this dream a reality, growing and modifying a familiar in his own laboratory.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:horticulturist",
@@ -756,7 +756,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Horticulturist",
       "replaces": "Mutagen; 2nd and 4th-level Discoveries; Bomb; Poison Resistance; Poison Use; Poison Immunity; Persistent Mutagen",
       "aonSummary": "A horticulturist spends his time cultivating plants and plant creatures, allowing him to experiment with strange and wondrous herbal concoctions.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:ice-chemist",
@@ -767,7 +767,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Ice%20Chemist",
       "replaces": "Bomb; Poison Resistance; Poison Immunity; 2nd-level Discovery",
       "aonSummary": "Reclusive alchemists who dwell in the highest mountains or on the frozen tundra devote their skills to mastering the cold.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:inspired-chemist",
@@ -778,7 +778,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Inspired%20Chemist",
       "replaces": "Mutagen",
       "aonSummary": "Akin to a mindchemistUM, inspired chemists use a type of cognatogen that instead of increasing their mental ability scores grants them inspiration like an investigator.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:internal-alchemist",
@@ -789,7 +789,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Internal%20Alchemist",
       "replaces": "Throw Anything; Swift Alchemy; Swift Poisoning",
       "aonSummary": "An internal alchemist studies medicine, diet, and the living body to purify the self in the hope of gaining immortality.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:interrogator",
@@ -800,7 +800,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Interrogator",
       "replaces": "Class Skills; Bomb; Mutagen; Persistent Mutagen",
       "aonSummary": "An interrogator extracts vital information from reluctant individuals using alchemical and traditional methods.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:mad-scientist",
@@ -811,7 +811,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Mad%20Scientist",
       "replaces": "Alchemy, 2nd, 4th-level Discovery; Mutagen",
       "aonSummary": "The mad scientist’s colleagues laughed at her insights, mocked her theories, and hounded her from the halls of academia, simply because they were too weak and frightened to understand her work.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:metamorph",
@@ -822,7 +822,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Metamorph",
       "replaces": "Class Skills; Bomb; Extracts; Throw Anything; Swift Alchemy; Swift Poisoning; Instant Alchemy",
       "aonSummary": "Metamorphs eschew traditional alchemy, focusing on internal chemistry and the transfiguration of living forms.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:mindchemist",
@@ -833,7 +833,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Mindchemist",
       "replaces": "Mutagen; Poison Use",
       "aonSummary": "A mindchemist can reach incredible levels of mental acuity, but suffers lingering debilitating effects to his physique.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:mixologist",
@@ -844,7 +844,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Mixologist",
       "replaces": "Alchemy; Brew Potion; Mutagen; 2nd-level Discovery; POison Resistance; Persistent Mutagen",
       "aonSummary": "Mixologists focus on mastering the chemical reactions between alcohol and the physical body.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:mnemostiller",
@@ -855,7 +855,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Mnemostiller",
       "replaces": "Key Ability Score; Alchemy; Throw Anything; Mutagen; Bombs; Poison Resistance; Poison Use",
       "aonSummary": "Mnemostillers extract memories; hey can return memories as easily as administering a potion, and experienced mnemostillers create a variety of effects through the careful administration of past traumas or victories",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:oenopion-researcher",
@@ -866,7 +866,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Oenopion%20Researcher",
       "replaces": "Poison Use, Swift Alchemy",
       "aonSummary": "The alchemist of Oenopion is incredibly skilled at making potions, elixirs, and other materials crucial to the country's economy and its monster-creating fleshforges.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:oozemaster",
@@ -877,7 +877,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Oozemaster",
       "replaces": "Class Skills; Bomb; Brew Potion; Poison Resistance; Poison Immunity",
       "aonSummary": "The oozemaster is a specialized alchemist who fights and ensnares oozes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:perfumer",
@@ -888,7 +888,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Perfumer",
       "replaces": "Extracts; Brew Potion; Bomb; Mutagen; Persistent Mutagen",
       "aonSummary": "A perfumer alchemist refines extracts to their most pure and rarefied forms to spread on the wind",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:plague-bringer",
@@ -899,7 +899,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Plague%20Bringer",
       "replaces": "Mutagen; Poison Resistance; Poison Immunity",
       "aonSummary": "(Ratfolk Only) The plague bringer sees disease as the ultimate weapon, and has worked tirelessly to master new diseases and disease-delivery systems.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:preservationist",
@@ -910,7 +910,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Preservationist",
       "replaces": "Poison Use; Poison Resistance +4; Poison Resistance +6; Poison Immunity; Persistant Mutagen; 18th-level Discovery",
       "aonSummary": "Some alchemists are obsessed with collecting and preserving exotic creatures.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:promethean-alchemist",
@@ -921,7 +921,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Promethean%20Alchemist",
       "replaces": "Brew Potion; Throw Anything; Bombs; Mutagen",
       "aonSummary": "Obsessed with discovering the origins of life, promethean alchemists build constructs they gradually endow with life.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:psychonaut",
@@ -932,7 +932,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Psychonaut",
       "replaces": "Bomb; Poison Resistance +4; Poison Resistance +6; Poison Immunity; 15th-level Bomb Damage Increase; 17th-level Bomb Damage Increase",
       "aonSummary": "A psychonaut uses his knowledge to explore altered states of consciousness and even other planes of existence.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:ragechemist",
@@ -943,7 +943,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Ragechemist",
       "replaces": "Poison Use; Swift Poisoning; Poison Immunity",
       "aonSummary": "Some alchemists create mutagens that tap into a primal anger that fuels their physical transformation.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:reanimator",
@@ -954,7 +954,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Reanimator",
       "replaces": "Bomb; 7th-level Bomb Damage Increase; 13th-level Bomb Damage Increase; 15th-level Bomb Damage Increase",
       "aonSummary": "A reanimator is an alchemist who has discovered how to infuse a corpse with a semblance of life.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:royal-alchemist",
@@ -965,7 +965,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Royal%20Alchemist",
       "replaces": "Class Skills; Poison Use; Swift Poisoning",
       "aonSummary": "Many rulers often hire specialized alchemists capable of concocting protections from both poisons and diseases for the nobles and their guests.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:saboteur",
@@ -976,7 +976,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Saboteur",
       "replaces": "Mutagen",
       "aonSummary": "(Gnome Only) The saboteur is an alchemist who specializes in destroying the plans, materials, and allies of his enemies.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:sacrament-alchemist",
@@ -987,7 +987,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Sacrament%20Alchemist",
       "replaces": "Deity; Mutagen; Swift Alchemy",
       "aonSummary": "Sacrament alchemists serve in a great variety of priestly roles for their deities.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:tinkerer",
@@ -998,7 +998,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Tinkerer",
       "replaces": "Mutagen; Poison Resistance; Poison Use; Swift Poisoning; Poison Immunity; Persistent Mutagen",
       "aonSummary": "Tinkerers constantly dabble in clockworking, creating special familiars that they regularly upgrade and with which they form bizarre bonds.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:toxicant",
@@ -1009,7 +1009,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Toxicant",
       "replaces": "Mutagen; Persistent Mutagen",
       "aonSummary": "In lands such as Daggermark and Katapesh where poisons are legal and may be openly studied and sold, some alchemists obsess over the myriad ways that poisons and venoms can be applied and delivered.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:trap-breaker",
@@ -1020,7 +1020,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Trap%20Breaker",
       "replaces": "Poison Use; Poison Resistance +2, +4, +6; Swift Poisoning; Poison Immunity",
       "aonSummary": "Trap breakers forgo the study of poison to instead master the construction and deployment of traps, using their nimble fingers to disable dangerous devices and their alchemical knowledge to create devastating land mines.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:vaultbreaker",
@@ -1031,7 +1031,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Vaultbreaker",
       "replaces": "Brew Potion; Bombs; Throw Anything; Poison Use",
       "aonSummary": "The vaultbreaker combines stealth with his bomb-making talents to construct special focused charges that can disable or destroy hinges, locks, and similar mechanisms.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:vivisectionist",
@@ -1053,7 +1053,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Wasteland%20Blightbreaker",
       "replaces": "Poison Resistance +2, +6; Swift Poisoning; 8th-level Discovery",
       "aonSummary": "The deleterious effects of the weird hazards of the Mana Wastes require special skill to remedy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "alchemist:winged-marauder",
@@ -1064,7 +1064,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Winged%20Marauder",
       "replaces": "Class Skills; Mutagen; Persistent Mutagen",
       "aonSummary": "(Goblin Only) Goblin alchemists have created a mixture of pheromones that they use to manipulate and entice giant vultures or dire bats to do their bidding.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "antipaladin:blighted-myrmidon",

@@ -1,0 +1,2408 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Alchemist parent value.",
+  "profiles": [
+    {
+      "id": "alchemist:aerochemist",
+      "name": "Aerochemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Blood of the Ancients pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Aerochemist",
+      "capabilityOverrides": {
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "air"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Aeromantic Concoction / Aerodynamic Prowess",
+          "reason": "Aeromantic Concoction / Aerodynamic Prowess materially changes combat mobility compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Aerochemists use scraps of Shory’s magic in their concoctions to gain personal powers of flight.",
+      "tradeoff": "Mutagen and most poison features are exchanged for limited-duration flight and aerial bomb techniques.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:alchemical-sapper",
+      "name": "Alchemical Sapper",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Intrigue pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Alchemical%20Sapper",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "stealth-subterfuge": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Demolition Bomb / Camouflage Bomb / Trip Mine",
+          "reason": "Demolition Bomb / Camouflage Bomb / Trip Mine materially changes battlefield control compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Demolition Bomb / Camouflage Bomb / Trip Mine",
+          "reason": "Demolition Bomb / Camouflage Bomb / Trip Mine materially changes stealth subterfuge compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Alchemical sappers are trained to create explosives.",
+      "tradeoff": "Extract capacity, mutagen and poison resilience are reduced to specialise in structures, mines and delayed explosives.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:alchemical-trapper",
+      "name": "Alchemical Trapper",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Monster Codex pg. 128",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Alchemical%20Trapper",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "stealth-subterfuge": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to kobold characters.",
+          "evidenceSection": "Requirements"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Bomb Trap / Trapfinding",
+          "reason": "Bomb Trap / Trapfinding materially changes battlefield control compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Bomb Trap / Trapfinding",
+          "reason": "Bomb Trap / Trapfinding materially changes stealth subterfuge compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Because kobolds rely on traps to soften up enemies, kobold alchemists learn to turn bombs into traps.",
+      "tradeoff": "Two discoveries are fixed into trapmaking and magical-trap handling; the strongest benefits require prepared terrain.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:aquachymist",
+      "name": "Aquachymist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Aquatic Adventures pg. 49",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Aquachymist",
+      "capabilityOverrides": {
+        "combat-mobility": "available",
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Underwater Bombs / Amphibious Mutagen",
+          "reason": "Underwater Bombs / Amphibious Mutagen materially changes combat mobility compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Underwater Bombs / Amphibious Mutagen",
+          "reason": "Underwater Bombs / Amphibious Mutagen materially changes wilderness affinity compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Aquachymists are those rare few alchemists of land-dwelling and aquatic races alike who strive to unlock new and fantastic secrets of alchemy that can be discovered only in the water’s depths.",
+      "tradeoff": "A discovery and ordinary bomb handling are redirected toward underwater adventures.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:beastmorph",
+      "name": "Beastmorph",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Combat pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Beastmorph",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "combat-mobility": "core",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Beastform Mutagen",
+          "reason": "Beastform Mutagen materially changes melee combat compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Beastform Mutagen",
+          "reason": "Beastform Mutagen materially changes combat mobility compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Beastform Mutagen",
+          "reason": "Beastform Mutagen materially changes transformation shapeshifting compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "A mutagen specialist who adopts increasingly powerful animalistic forms and fights through physical transformation.",
+      "tradeoff": "Alchemical speed and poison resilience are exchanged for a body-focused combat style.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:blazing-torchbearer",
+      "name": "Blazing Torchbearer",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Dungeoneer's Handbook pg. 21",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Blazing%20Torchbearer",
+      "capabilityOverrides": {
+        "offensive-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Everburning Flame / Explosive Torch",
+          "reason": "Everburning Flame / Explosive Torch materially changes offensive magic compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "The blazing torchbearer is especially adept at manipulating flames of all kinds.",
+      "tradeoff": "Potion brewing, poison use and one discovery are exchanged for a narrow dependence on torches and fire.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:blightseeker",
+      "name": "Blightseeker",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Heroes of the Darklands pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Blightseeker",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ],
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Spore Bomb / Blights",
+          "reason": "Spore Bomb / Blights materially changes battlefield control compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Spore Bomb / Blights",
+          "reason": "Spore Bomb / Blights materially changes debuffing enemies compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Blightseekers are alchemists devoted to the study of fungi native to the Darklands.",
+      "tradeoff": "Normal bombs and several discoveries become a fungal condition engine with limited effect on creatures immune to its spores.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:blood-alchemist",
+      "name": "Blood Alchemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Horror Adventures pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Blood%20Alchemist",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "absent",
+        "battlefield-control": "core",
+        "utility-magic": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "commitment",
+          "summary": "The defining lifeblood ability functions only while the Blood Alchemist is evil.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Lifeblood / Alchemical Circles / Blood Knowledge",
+          "reason": "Lifeblood / Alchemical Circles / Blood Knowledge materially changes area multi target damage compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Lifeblood / Alchemical Circles / Blood Knowledge",
+          "reason": "Lifeblood / Alchemical Circles / Blood Knowledge materially changes battlefield control compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Lifeblood / Alchemical Circles / Blood Knowledge",
+          "reason": "Lifeblood / Alchemical Circles / Blood Knowledge materially changes utility magic compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Lifeblood / Alchemical Circles / Blood Knowledge",
+          "reason": "Lifeblood / Alchemical Circles / Blood Knowledge materially changes knowledge investigation compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Most alchemists can transform matter and energy into other forms, but some wicked specialists realize that life itself is an energy that can greatly fuel their alchemy.",
+      "tradeoff": "Bombs and mutagen are lost, circles require preparation and fixed positioning, and the strongest resource recovery requires killing intelligent humanoids.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:bogborn-alchemist",
+      "name": "Bogborn Alchemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Advanced Race Guide pg. 191",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Bogborn%20Alchemist",
+      "capabilityOverrides": {
+        "combat-mobility": "available",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "wilderness",
+          "maritime"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to grippli characters.",
+          "evidenceSection": "Requirements"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Amphibious Mutagen",
+          "reason": "Amphibious Mutagen materially changes combat mobility compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Amphibious Mutagen",
+          "reason": "Amphibious Mutagen materially changes wilderness affinity compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Some grippli alchemists are particularly attuned to the swamps and the dangerous creatures that inhabit them; these serve as their laboratories and research subjects, respectively.",
+      "tradeoff": "Throw Anything is replaced by swamp and aquatic adaptations that are much less valuable outside those environments.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:bramble-brewer",
+      "name": "Bramble Brewer",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Advanced Race Guide pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Bramble%20Brewer",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "wood"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to half-elf characters.",
+          "evidenceSection": "Requirements"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Briar Bombs / Dendrite Mutagen",
+          "reason": "Briar Bombs / Dendrite Mutagen materially changes battlefield control compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Briar Bombs / Dendrite Mutagen",
+          "reason": "Briar Bombs / Dendrite Mutagen materially changes wilderness affinity compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Some half-elven alchemists merge human curiosity with their elven link to nature.",
+      "tradeoff": "Several discoveries and higher mutagens are locked into plant resilience and terrain-shaping effects.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:chirurgeon",
+      "name": "Chirurgeon",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Magic pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Chirurgeon",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "chirurgeon",
+          "evidenceSection": "Infused Curative",
+          "evidenceText": "The source explicitly presents the archetype as an anatomical healer."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Infused Curative / Power Over Death",
+          "reason": "Infused Curative / Power Over Death materially changes healing recovery compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "A medical Alchemist who turns prepared curatives into a central party-healing role.",
+      "tradeoff": "Several poison-related protections and abilities are exchanged for treatment and recovery.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:clone-master",
+      "name": "Clone Master",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Magic pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Clone%20Master",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Lesser Simulacrum / Simulacrum / Clone",
+          "reason": "Lesser Simulacrum / Simulacrum / Clone materially changes summoning companions compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Clone masters practice duplicating existing creatures in order to better understand how to create new life.",
+      "tradeoff": "Bomb damage and poison defences are weakened to gain expensive, high-level duplicate-creation tools.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:concocter",
+      "name": "Concocter",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Potions and Poisons pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Concocter",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Mutagenic Mixology / Extracting Mixology",
+          "reason": "Mutagenic Mixology / Extracting Mixology materially changes support buffing compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Concocters are experts at combining sets of chemicals to create unique effects.",
+      "tradeoff": "Three discoveries and swift poisoning are fixed into combining potions, extracts and mutagens, increasing preparation and resource complexity.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:construct-rider",
+      "name": "Construct Rider",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Cohorts and Companions pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Construct%20Rider",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Craft Mount / Internal Reservoir",
+          "reason": "Craft Mount / Internal Reservoir materially changes summoning companions compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Craft Mount / Internal Reservoir",
+          "reason": "Craft Mount / Internal Reservoir materially changes combat mobility compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "A construct rider creates arcane devices to emulate and surpass weak flesh.",
+      "tradeoff": "Mutagen, potion brewing, a discovery and some extracts are traded for maintaining a specialised construct mount.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:crimson-chymist",
+      "name": "Crimson Chymist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Adventurer's Guide pg. 156",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Crimson%20Chymist",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ],
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Arms of Achaekek / Mantis Mutagen",
+          "reason": "Arms of Achaekek / Mantis Mutagen materially changes melee combat compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Arms of Achaekek / Mantis Mutagen",
+          "reason": "Arms of Achaekek / Mantis Mutagen materially changes transformation shapeshifting compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Crimson chymists turn to the alchemical arts, infusing their bodies with the mutagenic essence of the Mantis God.",
+      "tradeoff": "The flexible mutagen is replaced by a strongly mantis-themed transformation package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:cruorchymist",
+      "name": "Cruorchymist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Construct Handbook pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Cruorchymist",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Blood Familiar / Blood Treatment / Blood Augmentation",
+          "reason": "Blood Familiar / Blood Treatment / Blood Augmentation materially changes summoning companions compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Blood Familiar / Blood Treatment / Blood Augmentation",
+          "reason": "Blood Familiar / Blood Treatment / Blood Augmentation materially changes support buffing compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Cruorchymists see their blood as just another tool for their experiments",
+      "tradeoff": "Mutagen, potion brewing and poison features are exchanged for a blood-created homunculus familiar and blood-powered support.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:crypt-breaker",
+      "name": "Crypt Breaker",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Inner Sea Magic pg. 33",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Crypt%20Breaker",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "enemySpecializationOverrides": {
+        "constructs": "core",
+        "undead": "core"
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Alkahest Bombs / Crypt Breaker’s Draught / Trapfinding",
+          "reason": "Alkahest Bombs / Crypt Breaker’s Draught / Trapfinding materially changes knowledge investigation compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Alkahest Bombs / Crypt Breaker’s Draught / Trapfinding",
+          "reason": "Alkahest Bombs / Crypt Breaker’s Draught / Trapfinding materially changes stealth subterfuge compared with the base Alchemist."
+        },
+        {
+          "field": "enemySpecializationOverrides.constructs",
+          "section": "Alkahest Bombs / Crypt Breaker’s Draught / Trapfinding",
+          "reason": "Alkahest Bombs / Crypt Breaker’s Draught / Trapfinding grants explicit advantages against constructs."
+        },
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Alkahest Bombs / Crypt Breaker’s Draught / Trapfinding",
+          "reason": "Alkahest Bombs / Crypt Breaker’s Draught / Trapfinding grants explicit advantages against undead."
+        }
+      ],
+      "playerSummary": "Crypt breakers use their powers of perception and alchemical adaptation to safely investigate the mysteries of the past.",
+      "tradeoff": "Bombs and mutagen become specialised for tomb exploration and perform substantially worse against other enemies.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:deep-bomber",
+      "name": "Deep Bomber",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Advanced Race Guide pg. 205",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Deep%20Bomber",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core",
+        "personal-durability": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "underground"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to svirfneblin characters.",
+          "evidenceSection": "Requirements"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Silent Bomb / Stonekin",
+          "reason": "Silent Bomb / Stonekin materially changes stealth subterfuge compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Silent Bomb / Stonekin",
+          "reason": "Silent Bomb / Stonekin materially changes personal durability compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Consumed with keeping hidden from the horrors below the surface, svirfneblin use their racial proclivity for alchemy and their inherent talent for obfuscation to strike their enemies from the darkness and retreat unseen.",
+      "tradeoff": "Poison and rapid-alchemy features are replaced by subterranean stealth and stone-based defence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:dimensional-excavator",
+      "name": "Dimensional Excavator",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Magic Tactics Toolbox pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Dimensional%20Excavator",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "planar"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Extradimensional Extract / Precipitous Discoveries",
+          "reason": "Extradimensional Extract / Precipitous Discoveries materially changes battlefield control compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Extradimensional Extract / Precipitous Discoveries",
+          "reason": "Extradimensional Extract / Precipitous Discoveries materially changes utility magic compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Dimensional excavators have discovered and recorded ways to cause their bombs to create minor tears in the fabric of reality, forming extradimensional pits to vex their foes.",
+      "tradeoff": "Its signature pits consume bombs and one discovery, and become less reliable against flying or highly mobile enemies.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:dragonblood-chymist",
+      "name": "Dragonblood Chymist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Legacy of Dragons pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Dragonblood%20Chymist",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "offensive-magic": "core",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "other"
+        ],
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Dragonblood Mutagen / Explosive Breath / Draconic Resistances",
+          "reason": "Dragonblood Mutagen / Explosive Breath / Draconic Resistances materially changes melee combat compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Dragonblood Mutagen / Explosive Breath / Draconic Resistances",
+          "reason": "Dragonblood Mutagen / Explosive Breath / Draconic Resistances materially changes offensive magic compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Dragonblood Mutagen / Explosive Breath / Draconic Resistances",
+          "reason": "Dragonblood Mutagen / Explosive Breath / Draconic Resistances materially changes transformation shapeshifting compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "The dragonblood chymist specializes in the reckless distillation of extracts and elixirs that allow them to experience the might of a dragon, however dangerous it might be\n.",
+      "tradeoff": "Multiple discoveries and poison features are locked into a dangerous draconic form and breath weapon.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:ectochymist",
+      "name": "Ectochymist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Occult Adventures pg. 112",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Ectochymist",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "enemySpecializationOverrides": {
+        "undead": "available",
+        "outsiders": "available"
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Ectoplasmic Blanche / Ghost Trap / Ectochymical Analysis",
+          "reason": "Ectoplasmic Blanche / Ghost Trap / Ectochymical Analysis materially changes anti magic disruption compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Ectoplasmic Blanche / Ghost Trap / Ectochymical Analysis",
+          "reason": "Ectoplasmic Blanche / Ghost Trap / Ectochymical Analysis materially changes knowledge investigation compared with the base Alchemist."
+        },
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Ectoplasmic Blanche / Ghost Trap / Ectochymical Analysis",
+          "reason": "Ectoplasmic Blanche / Ghost Trap / Ectochymical Analysis grants explicit advantages against undead."
+        },
+        {
+          "field": "enemySpecializationOverrides.outsiders",
+          "section": "Ectoplasmic Blanche / Ghost Trap / Ectochymical Analysis",
+          "reason": "Ectoplasmic Blanche / Ghost Trap / Ectochymical Analysis grants explicit advantages against outsiders."
+        }
+      ],
+      "playerSummary": "Ectochymists study the effects of alchemy on soul and spirit, focusing on fighting ghosts and other incorporeal creatures.",
+      "tradeoff": "Bombs and poison abilities are replaced by tools whose value is concentrated against incorporeal and possessing creatures.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:ectoplasm-master",
+      "name": "Ectoplasm Master",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Haunted Heroes Handbook pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Ectoplasm%20Master",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true,
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Ectoplasmic Mutagen / Ectoplasmic Servant",
+          "reason": "Ectoplasmic Mutagen / Ectoplasmic Servant materially changes summoning companions compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Ectoplasmic Mutagen / Ectoplasmic Servant",
+          "reason": "Ectoplasmic Mutagen / Ectoplasmic Servant materially changes transformation shapeshifting compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Alchemists capable of distilling spectral horrors into alchemical reagents.",
+      "tradeoff": "Potion brewing is lost and the servant and incorporeal mutagen draw from limited daily bomb and mutagen resources.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:eldritch-poisoner",
+      "name": "Eldritch Poisoner",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Black Markets pg. 28",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Eldritch%20Poisoner",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available",
+        "debuffing-enemies": "core",
+        "stealth-subterfuge": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-bombs": false,
+        "has-sneak-attack": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Arcanotoxin / Sneak Attack / Toxicologist",
+          "reason": "Arcanotoxin / Sneak Attack / Toxicologist materially changes area multi target damage compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Arcanotoxin / Sneak Attack / Toxicologist",
+          "reason": "Arcanotoxin / Sneak Attack / Toxicologist materially changes debuffing enemies compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Arcanotoxin / Sneak Attack / Toxicologist",
+          "reason": "Arcanotoxin / Sneak Attack / Toxicologist materially changes stealth subterfuge compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Eldritch poisoners are masters of the toxic arts, synthesizing lethal and incapacitating poisons with uncanny speed and expertise.",
+      "tradeoff": "Bombs and mutagen disappear in favour of poisons, whose delivery and creature immunities require more planning.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:energist",
+      "name": "Energist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Planar Adventures pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Energist",
+      "capabilityOverrides": {
+        "offensive-magic": "core",
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "other"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "element-choice",
+          "kind": "requirement",
+          "summary": "Choose positive or negative energy permanently; each path damages and heals different creature types.",
+          "evidenceSection": "Energy Focus"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Energy Focus / Energist Bombs / Healing Ampoule",
+          "reason": "Energy Focus / Energist Bombs / Healing Ampoule materially changes offensive magic compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Energy Focus / Energist Bombs / Healing Ampoule",
+          "reason": "Energy Focus / Energist Bombs / Healing Ampoule materially changes healing recovery compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "While most alchemists experiment mainly with chemicals and physical materials to create disparate effects, energists tap into the energy of life or death: positive energy or negative energy.",
+      "tradeoff": "The permanent positive-or-negative choice sharply limits valid bomb targets and recipients of healing.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:energy-scientist",
+      "name": "Energy Scientist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Elemental Master's Handbook pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Energy%20Scientist",
+      "capabilityOverrides": {
+        "defensive-protective-magic": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "planar"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.defensive-protective-magic",
+          "section": "Energy Bombs / Attuned Resistance / Salvage Energy",
+          "reason": "Energy Bombs / Attuned Resistance / Salvage Energy materially changes defensive protective magic compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Energy scientists fervently prepare themselves to overcome exposure to specific elemental hazards so that they can traverse the Elemental Planes in search of novel discoveries and reagents.",
+      "tradeoff": "Extracts, bombs and defences are narrowed around one selected energy type.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:fermenter",
+      "name": "Fermenter",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Potions and Poisons pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Fermenter",
+      "capabilityOverrides": {
+        "personal-durability": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Substance Tolerance / Volatile Bombs / Batch Brew",
+          "reason": "Substance Tolerance / Volatile Bombs / Batch Brew materially changes personal durability compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Little more than moonshiners to some, fermenters focus their efforts on imbibing substances, learning from the resulting effects on their bodies, and infusing this knowledge into their skill sets.",
+      "tradeoff": "Poison features and a discovery become alcohol and drug tolerance plus unstable, sometimes inaccurate bombs.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:fire-bomber",
+      "name": "Fire Bomber",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Advanced Race Guide pg. 117",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Fire%20Bomber",
+      "capabilityOverrides": {
+        "offensive-magic": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "mixed"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to goblin characters.",
+          "evidenceSection": "Requirements"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Fire Bombardier / Fiery Cocktail / Fire Body",
+          "reason": "Fire Bombardier / Fiery Cocktail / Fire Body materially changes offensive magic compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Fire bombers are exceptionally good at using bombs to burn creatures and blow things up, but are not quite as good at creating other types of bombs or extracts.",
+      "tradeoff": "Non-fire bombs and broad extract options are restricted, leaving the archetype vulnerable to fire resistance and immunity.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:first-world-innovator",
+      "name": "First World Innovator",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Legacy of the First World pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20First%20World%20Innovator",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Primal Reagents / Refined Reagents",
+          "reason": "Primal Reagents / Refined Reagents defines the archetype’s material departure from the base Alchemist."
+        }
+      ],
+      "playerSummary": "Those who can harness primal reagents—mundane reagents infused with the power of the First World—walk a fine line between genius and catastrophe.",
+      "tradeoff": "Bomb uses are halved and the extra power of primal reagents often depends on random outcomes.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:gloom-chymist",
+      "name": "Gloom Chymist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Blood of Shadows pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Gloom%20Chymist",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "debuffing-enemies": "core",
+        "stealth-subterfuge": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Gloom / Umbral Gloom",
+          "reason": "Gloom / Umbral Gloom materially changes battlefield control compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Gloom / Umbral Gloom",
+          "reason": "Gloom / Umbral Gloom materially changes debuffing enemies compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Gloom / Umbral Gloom",
+          "reason": "Gloom / Umbral Gloom materially changes stealth subterfuge compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "A breakthrough in Nidalese alchemy led to the creation of glooms, magical fields of darkness from the Shadow Plane that can be momentarily animated with the use of strange compounds.",
+      "tradeoff": "Ordinary bombs and poison tools are replaced by darkness effects that can hinder allies and face common magical counters.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:grenadier",
+      "name": "Grenadier",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Pathfinder Society Field Guide pg. 30",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Grenadier",
+      "capabilityOverrides": {
+        "single-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.single-target-damage",
+          "section": "Alchemical Weapon / Directed Blast / Staggering Blast",
+          "reason": "Alchemical Weapon / Directed Blast / Staggering Blast materially changes single target damage compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Grenadiers sacrifice their skill with poisons in order to become more adept at using alchemical bombs.",
+      "tradeoff": "Potion and poison features are sacrificed to combine weapons with alchemical items and shape bomb blasts.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:grenadier-mc",
+      "name": "Grenadier [MC]",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Monster Codex pg. 116",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Grenadier%20[MC]",
+      "capabilityOverrides": {
+        "single-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.single-target-damage",
+          "section": "Alchemical Weapon / Directed Blast / Staggering Blast",
+          "reason": "Alchemical Weapon / Directed Blast / Staggering Blast materially changes single target damage compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Grenadiers train to exercise their talents in the thick of battle, even when not under the influence of their mutagens. They learn methods of combining weapon attacks with their alchemical magic, and sacrifice skill with poisons in order to become more adept at using alchemical bombs or using alchemical items in conjunction with their martial skills.",
+      "tradeoff": "This Monster Codex version similarly sacrifices potion and poison features for martial weapon and bomb delivery.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:gun-chemist",
+      "name": "Gun Chemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "People of the Wastes pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Gun%20Chemist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "equipment-dependence": "high"
+      },
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alchemical Ordnance / Gunsmith",
+          "reason": "Alchemical Ordnance / Gunsmith defines the archetype’s material departure from the base Alchemist."
+        }
+      ],
+      "playerSummary": "An Alchemist who loads bomb-like ordnance into firearms and modifies it through specialised discoveries.",
+      "tradeoff": "Firearms, ammunition and unstable infused shots replace ordinary thrown-bomb flexibility.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:herbalist",
+      "name": "Herbalist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Wilderness pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Herbalist",
+      "capabilityOverrides": {
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "wood"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to vine leshy characters.",
+          "evidenceSection": "Requirements"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Herbalism / Natural Magic / Seedpods",
+          "reason": "Herbalism / Natural Magic / Seedpods materially changes wilderness affinity compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Vine leshys who study the physical and spiritual composition of their own bodies have discovered a strange herbal alchemy all their own.",
+      "tradeoff": "Bombs, poison and standard Intelligence-based alchemy are replaced by Wisdom-based leshy abilities.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:homunculist",
+      "name": "Homunculist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Familiar Folio pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Homunculist",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Homunculus Familiar / Experimentation",
+          "reason": "Homunculus Familiar / Experimentation materially changes summoning companions compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "One of the grand goals of alchemy is the ability to create new life. A homunculist has made this dream a reality, growing and modifying a familiar in his own laboratory.",
+      "tradeoff": "Most poison abilities and mutagen are exchanged for maintaining and evolving a laboratory-grown familiar.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:horticulturist",
+      "name": "Horticulturist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Wilderness pg. 35",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Horticulturist",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "wilderness-affinity": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "wood"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Seed Extract / Herbal Bombs / Plant Familiar",
+          "reason": "Seed Extract / Herbal Bombs / Plant Familiar materially changes summoning companions compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Seed Extract / Herbal Bombs / Plant Familiar",
+          "reason": "Seed Extract / Herbal Bombs / Plant Familiar materially changes wilderness affinity compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "A horticulturist spends his time cultivating plants and plant creatures, allowing him to experiment with strange and wondrous herbal concoctions.",
+      "tradeoff": "Mutagen, bombs and poison features become plant-specific extracts, attacks and a plant familiar.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:ice-chemist",
+      "name": "Ice Chemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Wilderness pg. 35",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Ice%20Chemist",
+      "capabilityOverrides": {
+        "offensive-magic": "core"
+      },
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "cold"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "mixed"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Icy Bombs / Frost Bomb",
+          "reason": "Icy Bombs / Frost Bomb materially changes offensive magic compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Reclusive alchemists who dwell in the highest mountains or on the frozen tundra devote their skills to mastering the cold.",
+      "tradeoff": "Bombs become cold-only, making the class far less adaptable against cold resistance or immunity.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:inspired-chemist",
+      "name": "Inspired Chemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Advanced Class Guide pg. 75",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Inspired%20Chemist",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Inspiring Cognatogen / Investigator Talents",
+          "reason": "Inspiring Cognatogen / Investigator Talents materially changes knowledge investigation compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Akin to a mindchemistUM, inspired chemists use a type of cognatogen that instead of increasing their mental ability scores grants them inspiration like an investigator.",
+      "tradeoff": "The normal mutagen and several flexible discovery choices are redirected into inspiration and investigator talents.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:internal-alchemist",
+      "name": "Internal Alchemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Magic pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Internal%20Alchemist",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Breath Mastery / Disease Resistance / Uncanny Dodge",
+          "reason": "Breath Mastery / Disease Resistance / Uncanny Dodge materially changes personal durability compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "An internal alchemist studies medicine, diet, and the living body to purify the self in the hope of gaining immortality.",
+      "tradeoff": "Throw Anything and rapid poison/alchemy features are traded for mostly personal defensive benefits.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:interrogator",
+      "name": "Interrogator",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Intrigue pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Interrogator",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true,
+        "has-bombs": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "interrogator",
+          "evidenceSection": "Injections / Serums",
+          "evidenceText": "The archetype is explicitly trained to extract information from unwilling subjects."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Injections / Serums",
+          "reason": "Injections / Serums materially changes debuffing enemies compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Injections / Serums",
+          "reason": "Injections / Serums materially changes social influence compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "An interrogator extracts vital information from reluctant individuals using alchemical and traditional methods.",
+      "tradeoff": "Bombs, mutagen and persistent mutagen are lost for close-range injections and interrogation serums.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:mad-scientist",
+      "name": "Mad Scientist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Horror Adventures pg. 45",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Mad%20Scientist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Mad Genius / Mad Mutagen",
+          "reason": "Mad Genius / Mad Mutagen defines the archetype’s material departure from the base Alchemist."
+        }
+      ],
+      "playerSummary": "The mad scientist’s colleagues laughed at her insights, mocked her theories, and hounded her from the halls of academia, simply because they were too weak and frightened to understand her work.",
+      "tradeoff": "Higher-level random extracts and flexible mutagen choices require Wisdom or sanity damage and can produce dangerous outcomes.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:metamorph",
+      "name": "Metamorph",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Intrigue pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Metamorph",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "area-multi-target-damage": "absent",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "factOverrides": {
+        "has-bombs": false,
+        "has-healing": false,
+        "has-shapeshifting": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "ranged weapon",
+          "supernatural attack"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Shapechanger / Adaptive Physiology",
+          "reason": "Shapechanger / Adaptive Physiology materially changes melee combat compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Shapechanger / Adaptive Physiology",
+          "reason": "Shapechanger / Adaptive Physiology materially changes ranged combat compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.offensive-magic",
+          "section": "Shapechanger / Adaptive Physiology",
+          "reason": "Shapechanger / Adaptive Physiology materially changes offensive magic compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Shapechanger / Adaptive Physiology",
+          "reason": "Shapechanger / Adaptive Physiology materially changes area multi target damage compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Shapechanger / Adaptive Physiology",
+          "reason": "Shapechanger / Adaptive Physiology materially changes transformation shapeshifting compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Metamorphs eschew traditional alchemy, focusing on internal chemistry and the transfiguration of living forms.",
+      "tradeoff": "Bombs, extracts and most traditional alchemy disappear; nearly all utility and combat power comes from personal forms.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:mindchemist",
+      "name": "Mindchemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Magic pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Mindchemist",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Cognatogen / Perfect Recall",
+          "reason": "Cognatogen / Perfect Recall materially changes knowledge investigation compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "A mindchemist can reach incredible levels of mental acuity, but suffers lingering debilitating effects to his physique.",
+      "tradeoff": "Physical mutagen benefits and poison use are exchanged for exceptional mental ability at a physical cost.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:mixologist",
+      "name": "Mixologist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Inner Sea Taverns pg. 57",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Mixologist",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Alcoholic Alchemy / Alcoholic Bombs",
+          "reason": "Alcoholic Alchemy / Alcoholic Bombs materially changes support buffing compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Mixologists focus on mastering the chemical reactions between alcohol and the physical body.",
+      "tradeoff": "Mutagen and several discoveries become alcohol-dependent enhancements with intoxication drawbacks.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:mnemostiller",
+      "name": "Mnemostiller",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Distant Realms pg. 52",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Mnemostiller",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core",
+        "social-influence": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "occult"
+        ],
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Anguish Bomb / Brewed Memories / Mind-Delver",
+          "reason": "Anguish Bomb / Brewed Memories / Mind-Delver materially changes debuffing enemies compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Anguish Bomb / Brewed Memories / Mind-Delver",
+          "reason": "Anguish Bomb / Brewed Memories / Mind-Delver materially changes social influence compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Anguish Bomb / Brewed Memories / Mind-Delver",
+          "reason": "Anguish Bomb / Brewed Memories / Mind-Delver materially changes knowledge investigation compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Mnemostillers extract memories; hey can return memories as easily as administering a potion, and experienced mnemostillers create a variety of effects through the careful administration of past traumas or victories",
+      "tradeoff": "The class becomes Charisma-based and gives up mutagen, normal bombs and poison abilities for memory manipulation.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:oenopion-researcher",
+      "name": "Oenopion Researcher",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Inner Sea Magic pg. 37",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Oenopion%20Researcher",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "acid"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Experimental Mutagen / Discoveries",
+          "reason": "Experimental Mutagen / Discoveries materially changes support buffing compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "The alchemist of Oenopion is incredibly skilled at making potions, elixirs, and other materials crucial to the country's economy and its monster-creating fleshforges.",
+      "tradeoff": "Poison use and swift alchemy are exchanged for experimental mutagens and specialised research options.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:oozemaster",
+      "name": "Oozemaster",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Monster Hunter's Handbook pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Oozemaster",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "enemySpecializationOverrides": {
+        "oozes": "core"
+      },
+      "identityAdds": {
+        "elementThemes": [
+          "acid"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Ooze Bomb / Ooze Toxin / Ooze Resistance",
+          "reason": "Ooze Bomb / Ooze Toxin / Ooze Resistance materially changes battlefield control compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Ooze Bomb / Ooze Toxin / Ooze Resistance",
+          "reason": "Ooze Bomb / Ooze Toxin / Ooze Resistance materially changes debuffing enemies compared with the base Alchemist."
+        },
+        {
+          "field": "enemySpecializationOverrides.oozes",
+          "section": "Ooze Bomb / Ooze Toxin / Ooze Resistance",
+          "reason": "Ooze Bomb / Ooze Toxin / Ooze Resistance grants explicit advantages against oozes."
+        }
+      ],
+      "playerSummary": "The oozemaster is a specialized alchemist who fights and ensnares oozes.",
+      "tradeoff": "Bombs and defences become strongly specialised around acid and oozes.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:perfumer",
+      "name": "Perfumer",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Wilderness Origins pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Perfumer",
+      "capabilityOverrides": {
+        "support-buffing": "core",
+        "social-influence": "core",
+        "battlefield-control": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Atomized Extracts / Effervescent Bombs / Pheromones",
+          "reason": "Atomized Extracts / Effervescent Bombs / Pheromones materially changes support buffing compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Atomized Extracts / Effervescent Bombs / Pheromones",
+          "reason": "Atomized Extracts / Effervescent Bombs / Pheromones materially changes social influence compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Atomized Extracts / Effervescent Bombs / Pheromones",
+          "reason": "Atomized Extracts / Effervescent Bombs / Pheromones materially changes battlefield control compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "A perfumer alchemist refines extracts to their most pure and rarefied forms to spread on the wind",
+      "tradeoff": "Extracts become inhaled clouds that are harder to target precisely, while mutagen and potion flexibility are lost.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:plague-bringer",
+      "name": "Plague Bringer",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Advanced Race Guide pg. 153",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Plague%20Bringer",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to ratfolk characters.",
+          "evidenceSection": "Requirements"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Plague Vial / Disease Resistance",
+          "reason": "Plague Vial / Disease Resistance materially changes debuffing enemies compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "The plague bringer sees disease as the ultimate weapon, and has worked tirelessly to master new diseases and disease-delivery systems.",
+      "tradeoff": "Mutagen and poison immunity are traded for disease effects that many enemies resist or ignore.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:preservationist",
+      "name": "Preservationist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Magic pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Preservationist",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Bottled Ally",
+          "reason": "Bottled Ally materially changes summoning companions compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Some alchemists are obsessed with collecting and preserving exotic creatures.",
+      "tradeoff": "Poison resilience and late discoveries are exchanged for daily summon-nature’s-ally extracts that add extra entities to manage.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:promethean-alchemist",
+      "name": "Promethean Alchemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Occult Adventures pg. 112",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Promethean%20Alchemist",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Homunculus Companion / Craft Construct",
+          "reason": "Homunculus Companion / Craft Construct materially changes summoning companions compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Obsessed with discovering the origins of life, promethean alchemists build constructs they gradually endow with life.",
+      "tradeoff": "Bombs, mutagen and two core alchemical features are lost to build and advance one construct companion.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:psychonaut",
+      "name": "Psychonaut",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Magic pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Psychonaut",
+      "capabilityOverrides": {
+        "utility-magic": "core",
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "planar"
+        ],
+        "spiritualThemes": [
+          "occult"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Precognition / Psychic Senses / Remote Consciousness",
+          "reason": "Precognition / Psychic Senses / Remote Consciousness materially changes utility magic compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Precognition / Psychic Senses / Remote Consciousness",
+          "reason": "Precognition / Psychic Senses / Remote Consciousness materially changes knowledge investigation compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "A psychonaut uses his knowledge to explore altered states of consciousness and even other planes of existence.",
+      "tradeoff": "Bomb damage and poison protection are weakened to gain divination, remote viewing and planar exploration formulae.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:ragechemist",
+      "name": "Ragechemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Combat pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Ragechemist",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "personal-durability": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Rage Mutagen / Sturdy Rage",
+          "reason": "Rage Mutagen / Sturdy Rage materially changes melee combat compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Rage Mutagen / Sturdy Rage",
+          "reason": "Rage Mutagen / Sturdy Rage materially changes personal durability compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Some alchemists create mutagens that tap into a primal anger that fuels their physical transformation.",
+      "tradeoff": "The stronger physical mutagen inflicts escalating Intelligence or Will penalties when the Ragechemist is hurt.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:reanimator",
+      "name": "Reanimator",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Magic pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Reanimator",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ],
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Simple Reanimation / Create Undead",
+          "reason": "Simple Reanimation / Create Undead materially changes summoning companions compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "A reanimator is an alchemist who has discovered how to infuse a corpse with a semblance of life.",
+      "tradeoff": "Bomb damage is reduced and expensive corpse-based minions bring substantial resource and table-management costs.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:royal-alchemist",
+      "name": "Royal Alchemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Heroes of the High Court pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Royal%20Alchemist",
+      "capabilityOverrides": {
+        "healing-recovery": "core",
+        "support-buffing": "core",
+        "social-influence": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "court alchemist",
+          "evidenceSection": "Royal Alchemist",
+          "evidenceText": "The source explicitly describes specialists hired by rulers to protect courts."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Alchemical Antidote",
+          "reason": "Alchemical Antidote materially changes healing recovery compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Alchemical Antidote",
+          "reason": "Alchemical Antidote materially changes support buffing compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Alchemical Antidote",
+          "reason": "Alchemical Antidote materially changes social influence compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Many rulers often hire specialized alchemists capable of concocting protections from both poisons and diseases for the nobles and their guests.",
+      "tradeoff": "Poison use and swift poisoning are exchanged for preventive antidotes rather than immediate healing.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:saboteur",
+      "name": "Saboteur",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Advanced Race Guide pg. 36",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Saboteur",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to gnome characters.",
+          "evidenceSection": "Requirements"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Chameleon Mutagen / Complex Bomb",
+          "reason": "Chameleon Mutagen / Complex Bomb materially changes battlefield control compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Chameleon Mutagen / Complex Bomb",
+          "reason": "Chameleon Mutagen / Complex Bomb materially changes stealth subterfuge compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "The saboteur is an alchemist who specializes in destroying the plans, materials, and allies of his enemies.",
+      "tradeoff": "The standard mutagen is replaced by concealment and sabotage abilities, several of which require infiltration or structures.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:sacrament-alchemist",
+      "name": "Sacrament Alchemist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Healer's Handbook pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Sacrament%20Alchemist",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "requires-deity": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A Sacrament Alchemist must worship a deity and remain within one alignment step.",
+          "evidenceSection": "Faithful"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Sacramental Cognatogen / Divinely Inspired Alchemy",
+          "reason": "Sacramental Cognatogen / Divinely Inspired Alchemy materially changes support buffing compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Sacrament alchemists serve in a great variety of priestly roles for their deities.",
+      "tradeoff": "Deity and alignment compatibility are mandatory, and mutagen flexibility is redirected into changing domain powers.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:tinkerer",
+      "name": "Tinkerer",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Inner Sea Intrigue pg. 46",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Tinkerer",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Clockwork Bond / Clockwork Familiar",
+          "reason": "Clockwork Bond / Clockwork Familiar materially changes summoning companions compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Tinkerers constantly dabble in clockworking, creating special familiars that they regularly upgrade and with which they form bizarre bonds.",
+      "tradeoff": "Mutagen and poison defences are exchanged for a clockwork familiar that requires upgrades and additional management.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:toxicant",
+      "name": "Toxicant",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Dirty Tactics Toolbox pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Toxicant",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Toxic Secretion / Toxic Digestion",
+          "reason": "Toxic Secretion / Toxic Digestion materially changes debuffing enemies compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "In lands such as Daggermark and Katapesh where poisons are legal and may be openly studied and sold, some alchemists obsess over the myriad ways that poisons and venoms can be applied and delivered.",
+      "tradeoff": "Mutagen and persistent mutagen are lost for a bodily poison whose effectiveness depends on delivery and enemy immunities.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:trap-breaker",
+      "name": "Trap Breaker",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Dungeoneer's Handbook pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Trap%20Breaker",
+      "capabilityOverrides": {
+        "battlefield-control": "core",
+        "stealth-subterfuge": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "trap specialist",
+          "evidenceSection": "Trapfinding / Land Mine",
+          "evidenceText": "The archetype explicitly specialises in disabling traps and deploying mines."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.battlefield-control",
+          "section": "Trapfinding / Explosive Disarm / Land Mine",
+          "reason": "Trapfinding / Explosive Disarm / Land Mine materially changes battlefield control compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Trapfinding / Explosive Disarm / Land Mine",
+          "reason": "Trapfinding / Explosive Disarm / Land Mine materially changes stealth subterfuge compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Trap breakers forgo the study of poison to instead master the construction and deployment of traps, using their nimble fingers to disable dangerous devices and their alchemical knowledge to create devastating land mines.",
+      "tradeoff": "All major poison features are exchanged for traps and land mines that reward preparation and positioning.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:vaultbreaker",
+      "name": "Vaultbreaker",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Villain Codex pg. 236",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Vaultbreaker",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "safecracker",
+          "evidenceSection": "Safecracking",
+          "evidenceText": "The archetype explicitly specialises in defeating locks, hinges and vault mechanisms."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Breaking and Entering / Safecracking",
+          "reason": "Breaking and Entering / Safecracking materially changes area multi target damage compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Breaking and Entering / Safecracking",
+          "reason": "Breaking and Entering / Safecracking materially changes stealth subterfuge compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "The vaultbreaker combines stealth with his bomb-making talents to construct special focused charges that can disable or destroy hinges, locks, and similar mechanisms.",
+      "tradeoff": "Ordinary bombs, Throw Anything and potion brewing become focused breaching charges and rogue-like infiltration tools.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:vivisectionist",
+      "name": "Vivisectionist",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Ultimate Magic pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Vivisectionist",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "area-multi-target-damage": "absent",
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-sneak-attack": true,
+        "has-bombs": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Sneak Attack",
+          "reason": "Sneak Attack materially changes melee combat compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Sneak Attack",
+          "reason": "Sneak Attack materially changes area multi target damage compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Sneak Attack",
+          "reason": "Sneak Attack materially changes stealth subterfuge compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "A surgical Alchemist who abandons bombs for full sneak attack, anatomical expertise and disturbing transformations.",
+      "tradeoff": "Reliable area damage disappears and the strongest offence depends on qualifying for sneak attack.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:wasteland-blightbreaker",
+      "name": "Wasteland Blightbreaker",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Healer's Handbook pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Wasteland%20Blightbreaker",
+      "capabilityOverrides": {
+        "healing-recovery": "core",
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Healing Infusion / Banish Blights",
+          "reason": "Healing Infusion / Banish Blights materially changes healing recovery compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Healing Infusion / Banish Blights",
+          "reason": "Healing Infusion / Banish Blights materially changes anti magic disruption compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "The deleterious effects of the weird hazards of the Mana Wastes require special skill to remedy.",
+      "tradeoff": "Poison defences and discoveries are exchanged for curatives and narrowly focused removal of magical afflictions.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "alchemist:winged-marauder",
+      "name": "Winged Marauder",
+      "parentClassId": "alchemist",
+      "sourceCitationText": "Monster Codex pg. 104",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Alchemist%20Winged%20Marauder",
+      "capabilityOverrides": {
+        "summoning-companions": "core",
+        "combat-mobility": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-animal-companion": true,
+        "has-mount": true,
+        "controls-additional-entity": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to goblin characters.",
+          "evidenceSection": "Requirements"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Flying Beast Tamer / Sipping Pet",
+          "reason": "Flying Beast Tamer / Sipping Pet materially changes summoning companions compared with the base Alchemist."
+        },
+        {
+          "field": "capabilityOverrides.combat-mobility",
+          "section": "Flying Beast Tamer / Sipping Pet",
+          "reason": "Flying Beast Tamer / Sipping Pet materially changes combat mobility compared with the base Alchemist."
+        }
+      ],
+      "playerSummary": "Goblin alchemists have created a mixture of pheromones that they use to manipulate and entice giant vultures or dire bats to do their bidding.",
+      "tradeoff": "Mutagen and related discoveries are lost, and the defining mobility depends on keeping a giant vulture or dire bat alive.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}
