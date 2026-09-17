@@ -1,40 +1,57 @@
-// Find Your Class v2 -- state controller and DOM renderer over the Compass v2
-// catalogue (24 three-level capabilities, 6 practical ratings, 16 boolean
-// facts, 8 identity categories). Same UMD dual-export pattern.
+// Find Your Class v2 ("Classfinder") -- state controller and DOM renderer
+// over the Compass v2 catalogue (24 three-level capabilities, 6 practical
+// ratings, 16 boolean facts, 8 identity categories). Same UMD dual-export
+// pattern.
 //
 // Two independent, mutually-exclusive input routes, chosen on an initial
 // "choice" screen:
-//   - "idea"    : free-text description (existing, unchanged). No
-//                 concept-lexicon parser exists yet, so idea text is
-//                 captured but does not feed structured preferences.
-//   - "profile" : manual 24-criterion capability builder. Each criterion is
+//   - "question" : the narrative Question mode (assets/find-your-class/v2/
+//                 narrative.js + narrative-questions.json) -- a branching,
+//                 fantasy-voiced dialogue with no open free-text input (this
+//                 repo has no LLM/AI call available client-side, and a
+//                 keyword-matched concept-lexicon parser -- the technical
+//                 ceiling here -- is not reliable enough to steer branching
+//                 dialogue logically, so the player only ever picks from a
+//                 small set of narrated options; see narrative.js's header
+//                 for the full reasoning). This REPLACED an earlier
+//                 free-text "idea" stage that captured text but never fed it
+//                 into structured preferences at all -- a dead end this
+//                 mode fixes by construction, since every option carries a
+//                 real preference-mutation patch.
+//   - "profile"  : manual 24-criterion capability builder. Each criterion is
 //                 a compact card (label + "Not relevant" chip); clicking the
 //                 label expands it to Absent/Available/Core. No 1-10
 //                 importance control here -- the chosen level IS the full
 //                 preference (see matcher.js's scoreCandidateManual, which
 //                 uses a distance-based fit with equal weight per criterion).
-// Both drafts (idea text and manual profile) persist independently --
-// switching between them never silently discards the other.
+//                 This is the plain, mechanical "choose exactly what you
+//                 want" mode -- deliberately NOT narrative, unlike Question
+//                 mode above.
+// Both drafts (the narrative history and the manual profile) persist
+// independently -- switching between them never silently discards the other.
 //
 // Scope: the manual-profile builder covers ONLY the 24 capability criteria.
 // The 6 practical ratings (build-complexity, play-complexity, etc.) are
 // deliberately left out of this first interface -- per product decision,
 // those describe HOW demanding a character is to play, not WHAT it does,
-// and belong in a later optional "Additional preferences" section.
+// and belong in a later optional "Additional preferences" section. The
+// narrative Question mode, by contrast, DOES reach practical ratings and
+// identity preferences (not just capabilities) through its questions.
 //
 // Multiple named searches: a player can save several searches side by side
 // (New/Save As/Rename/Delete, via the search bar shown on every stage) --
 // the same "saved character" concept Calc and the spellbook pages use.
-// Each search has its own idea text, manual profile, and its own locked (or
-// global-following) Sources selection, since a player running several
-// campaigns with different GMs may need different sourcebooks per search.
+// Each search has its own narrative history, manual profile, and its own
+// locked (or global-following) Sources selection, since a player running
+// several campaigns with different GMs may need different sourcebooks per
+// search.
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
-    module.exports = factory(require('./loader.js'), require('./matcher.js'));
+    module.exports = factory(require('./loader.js'), require('./matcher.js'), require('./narrative.js'));
   } else {
-    root.PFFindYourClassAppV2 = factory(root.PFFindYourClassV2, root.PFFindYourClassMatcherV2);
+    root.PFFindYourClassAppV2 = factory(root.PFFindYourClassV2, root.PFFindYourClassMatcherV2, root.PFFindYourClassNarrativeV2);
   }
-}(typeof self !== 'undefined' ? self : this, function (V2, Matcher) {
+}(typeof self !== 'undefined' ? self : this, function (V2, Matcher, Narrative) {
   'use strict';
 
   const STORAGE_KEY = 'pf_find_your_class_v2';
@@ -60,6 +77,14 @@
       idea: '',
       manualCapabilityPreferences: {}, manualExpanded: {}, manualSectionCollapsed: {},
       capabilityPreferences: {}, practicalPreferences: {}, factPreferences: {}, identityPreferences: {},
+      // Narrative Question-mode ("Classfinder" guided dialogue): a linear
+      // record of {questionId, optionId, storyLine} the player has answered
+      // so far, plus which question is currently shown. The four preference
+      // maps above are exactly what the narrative mutations feed -- no
+      // separate storage, so results run through the same matching pipeline
+      // as the manual-profile mode. narrativeQuestionId is null before the
+      // flow starts and again once it reaches a leaf question (next:null).
+      narrativeQuestionId: null, narrativeHistory: [],
       gateAnswers: {}, lastResult: null,
       // Sources (sourcebooks) filter: same pattern as the spellbook pages'
       // per-character "Sources" panel (assets/valid-sources.js). While
@@ -224,8 +249,14 @@
   function mount(container, deps) {
     const criteriaIndex = V2.indexCriteria(deps.criteriaDoc);
     const profiles = deps.profiles;
+    const narrativeDoc = deps.narrativeDoc;
     let store = loadStoreFromStorage() || createStore();
     if (!store.searches[store.active]) store.active = Object.keys(store.searches)[0];
+    // Migration safety net: the old free-text "idea" stage was replaced by
+    // the narrative question flow, so a stored search stuck mid-stage there
+    // (from before this change shipped) falls back to the choice screen
+    // instead of rendering nothing.
+    Object.values(store.searches).forEach(s => { if (s.stage === 'idea') s.stage = 'choice'; });
     Object.values(store.searches).forEach(s => applyGlobalSourcesToProfile(s, profiles));
     let state = store.searches[store.active];
     let uiError = null;
@@ -300,9 +331,9 @@
         <h1 id="fycHeading">How would you like to find your path?</h1>
         ${uiError ? `<p class="fycError" role="alert">${escapeHtml(uiError)}</p>` : ''}
         <div class="fycChoiceGrid">
-          <button type="button" class="fycChoiceCard" data-action="choose-idea">
-            <span class="fycChoiceTitle">Describe your idea</span>
-            <span class="fycChoiceDesc">Write freely about the character you're imagining.</span>
+          <button type="button" class="fycChoiceCard" data-action="choose-question">
+            <span class="fycChoiceTitle">Let the Classfinder guide you</span>
+            <span class="fycChoiceDesc">Answer a few questions about the hero you're imagining, and watch your legend take shape.</span>
           </button>
           <span class="fycChoiceOr">or&hellip;</span>
           <button type="button" class="fycChoiceCard" data-action="choose-profile">
@@ -314,17 +345,47 @@
     }
 
     // -----------------------------------------------------------------
-    // Idea (free-text) stage -- unchanged
+    // Narrative Question stage ("Classfinder"): a branching, fantasy-voiced
+    // dialogue (assets/find-your-class/v2/narrative-questions.json) that
+    // builds the SAME capabilityPreferences/practicalPreferences/
+    // factPreferences/identityPreferences the manual-profile mode uses --
+    // just gathered conversationally. No open free-text input: see
+    // narrative.js's file header for why (no reliable client-side NLU in
+    // this repo). Every question always offers a wry "not important to me"
+    // opt-out (data-driven, notRelevant:true on the option).
     // -----------------------------------------------------------------
-    function renderIdea() {
-      return `<section class="fycStage" aria-labelledby="fycHeading">
-        <h1 id="fycHeading">Describe your ideal character</h1>
+    function currentNarrativePreferences() {
+      return {
+        capabilityPreferences: state.capabilityPreferences,
+        practicalPreferences: state.practicalPreferences,
+        factPreferences: state.factPreferences,
+        identityPreferences: state.identityPreferences,
+      };
+    }
+
+    function applyNarrativePreferences(preferences) {
+      state.capabilityPreferences = preferences.capabilityPreferences;
+      state.practicalPreferences = preferences.practicalPreferences;
+      state.factPreferences = preferences.factPreferences;
+      state.identityPreferences = preferences.identityPreferences;
+    }
+
+    function renderQuestion() {
+      const storySoFar = state.narrativeHistory.map(h => h.storyLine);
+      const question = state.narrativeQuestionId ? Narrative.getQuestion(narrativeDoc, state.narrativeQuestionId) : null;
+      return `<section class="fycStage fycNarrative" aria-labelledby="fycHeading">
+        <h1 id="fycHeading">The Classfinder is listening</h1>
         ${uiError ? `<p class="fycError" role="alert">${escapeHtml(uiError)}</p>` : ''}
-        <p class="fycSupport">What kind of character appeals to you? A sneaky elf? A protective paladin? A mysterious wizard? Write freely.</p>
-        <textarea class="fycTextarea" data-action="set-idea" placeholder="e.g., A support character who heals and buffs the party, with some damage when needed...">${escapeHtml(state.idea)}</textarea>
+        ${storySoFar.length ? `<p class="fycNarrativeStory">${storySoFar.map(escapeHtml).join(' ')}</p>` : ''}
+        ${question ? `
+          <p class="fycNarrativePrompt">${escapeHtml(question.prompt)}</p>
+          <ul class="fycNarrativeOptions">
+            ${question.options.map(opt => `<li><button type="button" class="fycNarrativeOption${opt.notRelevant ? ' fycNarrativeOption--skip' : ''}" data-action="question-answer" data-question="${escapeHtml(state.narrativeQuestionId)}" data-option="${escapeHtml(opt.id)}">${escapeHtml(opt.label)}</button></li>`).join('')}
+          </ul>
+        ` : `<p class="fycSupport">Your path has come into focus.</p>`}
         <div class="fycActions">
-          <button type="button" class="fycPrimary" data-action="apply-idea">See results for my idea</button>
-          <button type="button" class="fycQuiet" data-action="back-to-choice">Back</button>
+          ${totalActivePreferenceCount(state) > 0 || state.narrativeHistory.length ? `<button type="button" class="fycSecondary" data-action="question-finish">I've heard enough -- show me my paths</button>` : ''}
+          ${state.narrativeHistory.length ? `<button type="button" class="fycQuiet" data-action="question-back">Back a step</button>` : `<button type="button" class="fycQuiet" data-action="back-to-choice">Back</button>`}
         </div>
       </section>`;
     }
@@ -442,18 +503,13 @@
 
     function render() {
       const html = state.stage === 'choice' ? renderChoice()
-        : state.stage === 'idea' ? renderIdea()
+        : state.stage === 'question' ? renderQuestion()
         : state.stage === 'profile' ? renderProfile()
         : renderResults();
       container.innerHTML = renderSearchBar() + renderSourcesPanel() + html;
       wireEvents();
-      if (state.stage === 'idea') {
-        const textarea = container.querySelector('textarea');
-        if (textarea) textarea.focus();
-      } else {
-        const heading = container.querySelector('#fycHeading');
-        if (heading) heading.focus();
-      }
+      const heading = container.querySelector('#fycHeading');
+      if (heading) heading.focus();
     }
 
     function wireEvents() {
@@ -555,22 +611,36 @@
         reRunLastSearchIfShowingResults();
         rerender();
         return;
-      } else if (action === 'choose-idea') {
-        goTo('idea');
+      } else if (action === 'choose-question') {
+        if (!state.narrativeQuestionId && !state.narrativeHistory.length) state.narrativeQuestionId = narrativeDoc.start;
+        goTo('question');
       } else if (action === 'choose-profile') {
         goTo('profile');
       } else if (action === 'back-to-choice') {
         goTo('choice');
-      } else if (action === 'set-idea') {
-        state.idea = el.value;
-        persist();
-      } else if (action === 'apply-idea') {
-        if (!state.idea.trim()) {
-          uiError = 'Describe what you\'re looking for, or go back and build a profile instead.';
-          render();
-          return;
+      } else if (action === 'question-answer') {
+        const questionId = el.getAttribute('data-question');
+        const optionId = el.getAttribute('data-option');
+        const result = Narrative.answerQuestion(narrativeDoc, questionId, optionId, currentNarrativePreferences());
+        applyNarrativePreferences(result.preferences);
+        state.narrativeHistory = state.narrativeHistory.concat([{ questionId, optionId, storyLine: result.storyLine }]);
+        state.narrativeQuestionId = result.nextQuestionId;
+        if (result.nextQuestionId === null) {
+          state.lastMode = 'question';
+          runMatching(state, profiles, criteriaIndex, { maxResults: 4 });
+          goTo('results');
+        } else {
+          rerender();
         }
-        state.lastMode = 'idea';
+      } else if (action === 'question-back') {
+        const popped = state.narrativeHistory[state.narrativeHistory.length - 1];
+        if (!popped) return;
+        state.narrativeHistory = state.narrativeHistory.slice(0, -1);
+        applyNarrativePreferences(Narrative.replayNarrative(narrativeDoc, state.narrativeHistory));
+        state.narrativeQuestionId = popped.questionId;
+        rerender();
+      } else if (action === 'question-finish') {
+        state.lastMode = 'question';
         runMatching(state, profiles, criteriaIndex, { maxResults: 4 });
         goTo('results');
       } else if (action === 'manual-toggle-expand') {
@@ -602,7 +672,7 @@
         runManualMatching(state, profiles, criteriaIndex, { maxResults: 4 });
         goTo('results');
       } else if (action === 'back-to-previous') {
-        goTo(state.lastMode === 'profile' ? 'profile' : 'idea');
+        goTo(state.lastMode === 'profile' ? 'profile' : 'question');
       } else if (action === 'start-over') {
         // Resets only the ACTIVE search, not the whole store -- with named
         // searches now, wiping every saved search on one "start over" click

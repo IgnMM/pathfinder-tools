@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><title>Find Your Class</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><title>Classfinder</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#10151d">
@@ -55,6 +55,15 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
 .fycChoiceTitle{font-family:'Cinzel Decorative',serif;font-size:1.1rem;color:var(--gold2)}
 .fycChoiceDesc{color:var(--muted);font-size:.85rem;line-height:1.4}
 @media(max-width:640px){.fycChoiceGrid{grid-template-columns:1fr}.fycChoiceOr{padding:2px 0}}
+
+/* Narrative Question mode ("Classfinder") */
+.fycNarrativeStory{font-style:italic;color:var(--gold2);line-height:1.7;font-size:.95rem;margin:0 0 22px;padding:14px 16px;background:var(--panel);border-left:3px solid var(--accent);border-radius:0 8px 8px 0}
+.fycNarrativePrompt{font-family:'Cinzel Decorative',serif;font-size:1.05rem;color:var(--text);line-height:1.5;margin:0 0 18px;text-wrap:balance}
+.fycNarrativeOptions{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:10px}
+.fycNarrativeOption{width:100%;text-align:left;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--text);font-size:.92rem;line-height:1.45;cursor:pointer;transition:border-color .15s,transform .15s,background .15s}
+.fycNarrativeOption:hover{border-color:var(--gold);background:var(--panel2);transform:translateX(2px)}
+.fycNarrativeOption--skip{border-style:dashed;color:var(--muted);font-style:italic}
+.fycNarrativeOption--skip:hover{border-color:var(--arcane-blue2)}
 
 /* Manual profile builder */
 .fycManualGroups{display:flex;flex-direction:column;gap:14px;margin-bottom:16px}
@@ -123,6 +132,7 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
 <script src="../assets/valid-sources.js"></script>
 <script src="../assets/find-your-class/v2/loader.js"></script>
 <script src="../assets/find-your-class/v2/matcher.js"></script>
+<script src="../assets/find-your-class/v2/narrative.js"></script>
 <script src="../assets/find-your-class/v2/app.js"></script>
 <script>
 (async function () {
@@ -134,9 +144,10 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
   }
   const container = document.getElementById('app');
   try {
-    const [criteriaDoc, model, batch1, batch2, batch3, batch4, batch5, batch6, pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10, slayerArchetypes, unchainedSummonerArchetypes, alchemistArchetypes, antipaladinArchetypes, arcanistArchetypes, barbarianArchetypes, bardArchetypes, bloodragerArchetypes, brawlerArchetypes, cavalierArchetypes, clericArchetypes, druidArchetypes, fighterArchetypes, gunslingerArchetypes, hunterArchetypes, inquisitorArchetypes, investigatorArchetypes, kineticistArchetypes, magusArchetypes, mediumArchetypes, mesmeristArchetypes, monkArchetypes, unchainedMonkArchetypes, ninjaArchetypes, occultistArchetypes, oracleArchetypes, paladinArchetypes, psychicArchetypes, rangerArchetypes, rogueArchetypes, samuraiArchetypes, shamanArchetypes, shifterArchetypes, skaldArchetypes, sorcererArchetypes, spiritualistArchetypes, summonerArchetypes, swashbucklerArchetypes, vigilanteArchetypes, warpriestArchetypes, witchArchetypes, wizardArchetypes, prestigeProfiles] = await Promise.all([
+    const [criteriaDoc, model, narrativeDoc, batch1, batch2, batch3, batch4, batch5, batch6, pilot1, pilot2, pilot3, pilot4, pilot5, pilot6, pilot7, pilot8, pilot9, pilot10, slayerArchetypes, unchainedSummonerArchetypes, alchemistArchetypes, antipaladinArchetypes, arcanistArchetypes, barbarianArchetypes, bardArchetypes, bloodragerArchetypes, brawlerArchetypes, cavalierArchetypes, clericArchetypes, druidArchetypes, fighterArchetypes, gunslingerArchetypes, hunterArchetypes, inquisitorArchetypes, investigatorArchetypes, kineticistArchetypes, magusArchetypes, mediumArchetypes, mesmeristArchetypes, monkArchetypes, unchainedMonkArchetypes, ninjaArchetypes, occultistArchetypes, oracleArchetypes, paladinArchetypes, psychicArchetypes, rangerArchetypes, rogueArchetypes, samuraiArchetypes, shamanArchetypes, shifterArchetypes, skaldArchetypes, sorcererArchetypes, spiritualistArchetypes, summonerArchetypes, swashbucklerArchetypes, vigilanteArchetypes, warpriestArchetypes, witchArchetypes, wizardArchetypes, prestigeProfiles] = await Promise.all([
       getJson('criteria.json'),
       getJson('classification-model.json'),
+      getJson('narrative-questions.json'),
       getJson('class-profiles-batch-01.json'),
       getJson('class-profiles-batch-02.json'),
       getJson('class-profiles-batch-03.json'),
@@ -184,7 +195,7 @@ h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin:0 0 6px;color:
       .flatMap(b => b.profiles).filter(profile => !['alchemist','antipaladin','arcanist','barbarian','bard','bloodrager','brawler','cavalier','cleric','druid','fighter','gunslinger','hunter','inquisitor','investigator','kineticist','magus','medium','mesmerist','monk','monk-unchained','ninja','occultist','oracle','paladin','psychic','ranger','rogue','samurai','shaman','shifter','skald','sorcerer','spiritualist','summoner','swashbuckler','vigilante','warpriest','witch','wizard'].includes(profile.parentClassId));
     const archetypeOverrides = pilotArchetypes.concat(slayerArchetypes.profiles, unchainedSummonerArchetypes.profiles, alchemistArchetypes.profiles, antipaladinArchetypes.profiles, arcanistArchetypes.profiles, barbarianArchetypes.profiles, bardArchetypes.profiles, bloodragerArchetypes.profiles, brawlerArchetypes.profiles, cavalierArchetypes.profiles, clericArchetypes.profiles, druidArchetypes.profiles, fighterArchetypes.profiles, gunslingerArchetypes.profiles, hunterArchetypes.profiles, inquisitorArchetypes.profiles, investigatorArchetypes.profiles, kineticistArchetypes.profiles, magusArchetypes.profiles, mediumArchetypes.profiles, mesmeristArchetypes.profiles, monkArchetypes.profiles, unchainedMonkArchetypes.profiles, ninjaArchetypes.profiles, occultistArchetypes.profiles, oracleArchetypes.profiles, paladinArchetypes.profiles, psychicArchetypes.profiles, rangerArchetypes.profiles, rogueArchetypes.profiles, samuraiArchetypes.profiles, shamanArchetypes.profiles, shifterArchetypes.profiles, skaldArchetypes.profiles, sorcererArchetypes.profiles, spiritualistArchetypes.profiles, summonerArchetypes.profiles, swashbucklerArchetypes.profiles, vigilanteArchetypes.profiles, warpriestArchetypes.profiles, witchArchetypes.profiles, wizardArchetypes.profiles);
     const profiles = window.PFFindYourClassV2.resolveAllProfiles(classProfiles, archetypeOverrides, prestigeProfiles.profiles);
-    window.PFFindYourClassAppV2.mount(container, { criteriaDoc: criteriaDoc, model: model, profiles: profiles });
+    window.PFFindYourClassAppV2.mount(container, { criteriaDoc: criteriaDoc, model: model, profiles: profiles, narrativeDoc: narrativeDoc });
   } catch (e) {
     container.innerHTML = '<p class="fycError" role="alert">The Arcane Compass could not load its data. Please try again shortly.</p>';
     if (window.console) console.error(e);

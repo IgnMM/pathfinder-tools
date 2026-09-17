@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "start": "q-opening",
+  "questions": {
+    "q-opening": {
+      "prompt": "The mist over the crossroads has not yet chosen your path. Before you take a single step -- when danger finds your company, what do you do?",
+      "options": [
+        {
+          "id": "frontline",
+          "label": "I plant my feet and become the wall between danger and my friends.",
+          "storyLine": "You plant your feet, shield raised, and let the enemy learn what it means to break against something that will not move.",
+          "next": "q-frontline",
+          "mutations": { "capability": [{ "id": "personal-durability", "desiredLevel": "core", "importance": 8 }, { "id": "protecting-allies", "desiredLevel": "core", "importance": 7 }] }
+        },
+        {
+          "id": "shadow",
+          "label": "I strike from where they'll never see me coming.",
+          "storyLine": "You melt into the dark between torches, and by the time anyone thinks to look for you, the fight is already over.",
+          "next": "q-shadow",
+          "mutations": { "capability": [{ "id": "stealth-subterfuge", "desiredLevel": "core", "importance": 8 }, { "id": "single-target-damage", "desiredLevel": "core", "importance": 6 }] }
+        },
+        {
+          "id": "caster",
+          "label": "I bend reality itself to my will.",
+          "storyLine": "You raise a hand, and the world listens -- fire, force, or fate itself rearranges to suit your purpose.",
+          "next": "q-caster",
+          "mutations": { "capability": [{ "id": "offensive-magic", "desiredLevel": "core", "importance": 8 }] }
+        },
+        {
+          "id": "ranged",
+          "label": "I let my arrows -- or worse -- do the talking, from somewhere safe.",
+          "storyLine": "You loose the first shot before anyone else has drawn a weapon, and you're already lining up the second.",
+          "next": "q-ranged",
+          "mutations": { "capability": [{ "id": "ranged-combat", "desiredLevel": "core", "importance": 8 }] }
+        },
+        {
+          "id": "skip",
+          "label": "This isn't important to me -- I just follow whoever looks like they know what they're doing.",
+          "storyLine": "You shrug. Someone else can be the hero this time; you're just here for the road trip.",
+          "next": "q-undecided",
+          "mutations": {},
+          "notRelevant": true
+        }
+      ]
+    },
+
+    "q-frontline": {
+      "prompt": "Your shield is raised and your resolve unshaken. When the odds stack against you, what carries you through?",
+      "options": [
+        {
+          "id": "endurance",
+          "label": "Raw endurance -- let them break their weapons on me.",
+          "storyLine": "Blow after blow lands and you're still standing, still smiling, still very much in the way.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "personal-durability", "desiredLevel": "core", "importance": 9 }] }
+        },
+        {
+          "id": "leadership",
+          "label": "I turn the tide with sheer force of will, calling my allies to greatness.",
+          "storyLine": "Your voice cuts through the chaos, and suddenly your allies are fighting like they've got something worth winning for.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "tactical-leadership", "desiredLevel": "core", "importance": 8 }, { "id": "support-buffing", "desiredLevel": "available", "importance": 6 }] }
+        },
+        {
+          "id": "control",
+          "label": "I bind their movements before they ever land a blow.",
+          "storyLine": "A well-placed trip, a shove into the chasm's edge, a grapple that turns a monster's own weight against it -- the battlefield bends to your positioning.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "battlefield-control", "desiredLevel": "core", "importance": 7 }, { "id": "combat-manoeuvres", "desiredLevel": "available", "importance": 6 }] }
+        },
+        {
+          "id": "skip",
+          "label": "This isn't important to me -- I'll just hit things until they stop moving.",
+          "storyLine": "You have a plan, and the plan is \"hit it again.\" So far, it has worked every single time.",
+          "next": "q-complexity",
+          "mutations": {},
+          "notRelevant": true
+        }
+      ]
+    },
+
+    "q-shadow": {
+      "prompt": "Darkness is your ally. How do you turn it against your enemies?",
+      "options": [
+        {
+          "id": "precision",
+          "label": "One perfect strike, and it's over before they realize you were there.",
+          "storyLine": "You find the gap in the armor, the half-second of inattention, and you take it -- once is usually enough.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "single-target-damage", "desiredLevel": "core", "importance": 9 }], "fact": [{ "id": "has-sneak-attack", "desired": true, "importance": 6 }] }
+        },
+        {
+          "id": "poison",
+          "label": "Poison in their cup, a knife in the dark, whispers that spread like plague.",
+          "storyLine": "By the time your target feels the sickness in their veins, you're already three streets away, sharpening the next blade.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "debuffing-enemies", "desiredLevel": "core", "importance": 7 }, { "id": "stealth-subterfuge", "desiredLevel": "core", "importance": 7 }] }
+        },
+        {
+          "id": "information",
+          "label": "I read a room before I ever set foot in it -- every secret is mine to know.",
+          "storyLine": "You've already counted the guards, mapped the exits, and overheard the one lie that matters, all before the door has even opened.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "knowledge-investigation", "desiredLevel": "available", "importance": 6 }, { "id": "social-influence", "desiredLevel": "available", "importance": 5 }] }
+        },
+        {
+          "id": "skip",
+          "label": "This isn't important to me -- being mysterious is a full-time job as it is.",
+          "storyLine": "You maintain an air of mystery mostly by never explaining anything, which, frankly, costs nothing and works great.",
+          "next": "q-complexity",
+          "mutations": {},
+          "notRelevant": true
+        }
+      ]
+    },
+
+    "q-caster": {
+      "prompt": "Magic answers to you. What shape does your power take?",
+      "options": [
+        {
+          "id": "destruction",
+          "label": "Fire, force, fury -- I end fights before they truly begin.",
+          "storyLine": "You speak three words that were never meant to be spoken aloud, and the clearing where your enemies stood is, briefly, on fire.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "offensive-magic", "desiredLevel": "core", "importance": 9 }, { "id": "area-multi-target-damage", "desiredLevel": "available", "importance": 6 }] }
+        },
+        {
+          "id": "healing",
+          "label": "I mend wounds and turn the tide with blessing and ward.",
+          "storyLine": "A hand on a fallen ally's shoulder, a whispered prayer, and the wound that should have ended them simply... doesn't.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "healing-recovery", "desiredLevel": "core", "importance": 8 }, { "id": "support-buffing", "desiredLevel": "core", "importance": 7 }], "fact": [{ "id": "has-healing", "desired": true, "importance": 5 }] }
+        },
+        {
+          "id": "utility",
+          "label": "Reality itself twists at my command -- walls become doors, minds become mine.",
+          "storyLine": "The locked vault, the sheer cliff face, the guard who was absolutely certain he'd never let you through -- none of them were ever really obstacles.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "utility-magic", "desiredLevel": "core", "importance": 7 }, { "id": "battlefield-control", "desiredLevel": "available", "importance": 6 }] }
+        },
+        {
+          "id": "summoning",
+          "label": "I call creatures from beyond to fight in my stead.",
+          "storyLine": "You draw a sigil in the dust, speak a name older than the kingdom you're standing in, and something answers.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "summoning-companions", "desiredLevel": "core", "importance": 8 }], "fact": [{ "id": "controls-additional-entity", "desired": true, "importance": 5 }] }
+        },
+        {
+          "id": "skip",
+          "label": "This isn't important to me -- I'll figure out what I cast when I cast it.",
+          "storyLine": "Your spell selection process is, roughly, \"point, mumble, hope.\" It has an alarming success rate.",
+          "next": "q-complexity",
+          "mutations": {},
+          "notRelevant": true
+        }
+      ]
+    },
+
+    "q-ranged": {
+      "prompt": "You keep your distance -- and your enemies keep dying before they close it. What's your method?",
+      "options": [
+        {
+          "id": "bow",
+          "label": "A bow, steady hands, and endless patience.",
+          "storyLine": "You don't need to be fast. You just need to be right, and you've had a lot of practice being right.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "ranged-combat", "desiredLevel": "core", "importance": 9 }], "identity": [{ "category": "primaryDelivery", "values": ["ranged weapon"], "mode": "prefer", "importance": 5 }] }
+        },
+        {
+          "id": "firearm",
+          "label": "Black powder and steel -- the future is loud.",
+          "storyLine": "The smoke hasn't even cleared before you're reloading, and by then everyone in the room already regrets their life choices.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "ranged-combat", "desiredLevel": "core", "importance": 8 }], "fact": [{ "id": "has-firearms", "desired": true, "importance": 6 }] }
+        },
+        {
+          "id": "hitrun",
+          "label": "I strike hard, then vanish before they can close the distance.",
+          "storyLine": "By the time your target has decided to charge you, you're already somewhere else, and they're wondering why that hurt so much.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "combat-mobility", "desiredLevel": "core", "importance": 7 }, { "id": "stealth-subterfuge", "desiredLevel": "available", "importance": 5 }] }
+        },
+        {
+          "id": "skip",
+          "label": "This isn't important to me -- point it at the loud thing, pull the trigger, repeat.",
+          "storyLine": "Your entire tactical doctrine fits on an index card, and so far the index card has not let you down.",
+          "next": "q-complexity",
+          "mutations": {},
+          "notRelevant": true
+        }
+      ]
+    },
+
+    "q-undecided": {
+      "prompt": "Fair enough. Let's try this differently -- when the company makes camp for the night, where do you actually end up?",
+      "options": [
+        {
+          "id": "scout",
+          "label": "Scouting the treeline, more at home under open sky than any roof.",
+          "storyLine": "You're back before anyone notices you left, having already mapped tomorrow's route and found the one place the goblins definitely aren't hiding.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "wilderness-affinity", "desiredLevel": "available", "importance": 5 }], "identity": [{ "category": "environmentThemes", "values": ["wilderness"], "mode": "prefer", "importance": 4 }] }
+        },
+        {
+          "id": "scholar",
+          "label": "Poring over a dusty tome, chasing one more secret before sleep.",
+          "storyLine": "The fire's died down and everyone else is asleep, but you're still squinting at a page that might just explain what that ruin was for.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "knowledge-investigation", "desiredLevel": "available", "importance": 5 }] }
+        },
+        {
+          "id": "social",
+          "label": "Charming the last coin out of the innkeeper's pocket, for no reason but sport.",
+          "storyLine": "You didn't need the free round of drinks. You just wanted to know you still could.",
+          "next": "q-complexity",
+          "mutations": { "capability": [{ "id": "social-influence", "desiredLevel": "available", "importance": 5 }] }
+        },
+        {
+          "id": "skip",
+          "label": "Already asleep. Adventuring is exhausting.",
+          "storyLine": "You were unconscious before the tents were even up. Truly, an inspiration to us all.",
+          "next": "q-complexity",
+          "mutations": {},
+          "notRelevant": true
+        }
+      ]
+    },
+
+    "q-complexity": {
+      "prompt": "One more thing, traveler -- how do you like to work? Some crave power that takes a lifetime to master. Others just want a blade they can pick up and swing on day one.",
+      "options": [
+        {
+          "id": "simple",
+          "label": "Simplicity above all -- give me a clear path and I'll walk it with confidence.",
+          "storyLine": "You don't need seventeen contingencies. You need one good plan, executed without hesitation.",
+          "next": "q-power-source",
+          "mutations": { "practical": [{ "id": "build-complexity", "desiredLevel": "low", "importance": 6 }, { "id": "play-complexity", "desiredLevel": "low", "importance": 5 }] }
+        },
+        {
+          "id": "balanced",
+          "label": "A bit of both -- some depth is welcome, as long as it never buries me.",
+          "storyLine": "You like having options. You just don't want to need a spreadsheet to use them.",
+          "next": "q-power-source",
+          "mutations": { "practical": [{ "id": "build-complexity", "desiredLevel": "medium", "importance": 4 }, { "id": "play-complexity", "desiredLevel": "medium", "importance": 4 }] }
+        },
+        {
+          "id": "complex",
+          "label": "Give me every lever, every combo, every contingency -- I thrive on complexity.",
+          "storyLine": "You have a plan for the plan's plan, and you genuinely enjoy the bookkeeping. The rest of the party finds this deeply unsettling.",
+          "next": "q-power-source",
+          "mutations": { "practical": [{ "id": "build-complexity", "desiredLevel": "high", "importance": 7 }, { "id": "play-complexity", "desiredLevel": "high", "importance": 6 }, { "id": "resource-management", "desiredLevel": "high", "importance": 5 }] }
+        },
+        {
+          "id": "skip",
+          "label": "This isn't important to me -- I'll figure it out around level three, like always.",
+          "storyLine": "Your character sheet is, charitably, \"a work in progress.\" It has been a work in progress since character creation.",
+          "next": "q-power-source",
+          "mutations": {},
+          "notRelevant": true
+        }
+      ]
+    },
+
+    "q-power-source": {
+      "prompt": "One last thing, before the mist finally parts. Where does your strength truly come from?",
+      "options": [
+        {
+          "id": "deity",
+          "label": "A god watches over me, and I answer to their will.",
+          "storyLine": "You've never walked entirely alone -- not really. Something older than you is always, quietly, paying attention.",
+          "next": null,
+          "mutations": { "identity": [{ "category": "spiritualThemes", "values": ["deity"], "mode": "prefer", "importance": 5 }], "fact": [{ "id": "requires-deity", "desired": true, "importance": 4 }] }
+        },
+        {
+          "id": "arcane",
+          "label": "No god, no master -- only the secrets I've clawed from the world myself.",
+          "storyLine": "You bent the rules of reality through study, stubbornness, and more than a few singed eyebrows. Nobody handed you this.",
+          "next": null,
+          "mutations": { "identity": [{ "category": "magicIdentity", "values": ["arcane"], "mode": "prefer", "importance": 5 }] }
+        },
+        {
+          "id": "nature",
+          "label": "The wild itself runs in my blood.",
+          "storyLine": "Cities make you nervous. The forest never has, not once, not even the parts that are supposed to be haunted.",
+          "next": null,
+          "mutations": { "identity": [{ "category": "spiritualThemes", "values": ["nature"], "mode": "prefer", "importance": 5 }], "capability": [{ "id": "wilderness-affinity", "desiredLevel": "available", "importance": 5 }] }
+        },
+        {
+          "id": "companion",
+          "label": "A loyal companion fights at my side -- I am only half of what we are together.",
+          "storyLine": "Where you go, they go. Where they fall, you will not be far behind. Nobody who has met the two of you together doubts it for a second.",
+          "next": null,
+          "mutations": { "capability": [{ "id": "summoning-companions", "desiredLevel": "available", "importance": 5 }] }
+        },
+        {
+          "id": "skip",
+          "label": "This isn't important to me -- power is power, I don't ask where it comes from.",
+          "storyLine": "You've never once asked a follow-up question about where the power came from. This has occasionally been a mistake.",
+          "next": null,
+          "mutations": {},
+          "notRelevant": true
+        }
+      ]
+    }
+  }
+}

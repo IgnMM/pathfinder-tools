@@ -59,10 +59,11 @@ test('an identity preference only counts as active in "prefer" mode, not require
   assert.equal(App.totalActivePreferenceCount(state), 1);
 });
 
-test('initial state stage is "choice" (pick idea vs. profile), with both drafts empty', () => {
+test('initial state stage is "choice" (pick the Classfinder’s questions vs. the manual profile), with both drafts empty', () => {
   const state = App.createSearch();
   assert.equal(state.stage, 'choice');
-  assert.equal(state.idea, '');
+  assert.equal(state.narrativeQuestionId, null);
+  assert.deepEqual(state.narrativeHistory, []);
   assert.deepEqual(state.manualCapabilityPreferences, {});
 });
 
@@ -133,16 +134,18 @@ test('deserializeStore rejects garbage and an empty searches map, returning null
 });
 
 // --- Manual-profile mode: required test #10 (switching modes preserves both drafts) ---
-test('switching between idea and profile stages preserves both drafts -- neither is silently cleared', () => {
+test('switching between the narrative question stage and the manual profile stage preserves both drafts -- neither is silently cleared', () => {
   const state = App.createSearch();
-  state.idea = 'A wandering swordsman';
+  state.narrativeQuestionId = 'q-frontline';
+  state.narrativeHistory = [{ questionId: 'q-opening', optionId: 'frontline', storyLine: 'You plant your feet.' }];
   state.manualCapabilityPreferences['melee-combat'] = 'core';
   state.manualCapabilityPreferences['personal-durability'] = 'available';
-  // simulate navigating: idea -> profile -> idea again
+  // simulate navigating: question -> profile -> question again
   state.stage = 'profile';
-  assert.equal(state.idea, 'A wandering swordsman', 'idea draft must survive entering profile mode');
-  state.stage = 'idea';
-  assert.deepEqual(state.manualCapabilityPreferences, { 'melee-combat': 'core', 'personal-durability': 'available' }, 'profile draft must survive returning to idea mode');
+  assert.equal(state.narrativeQuestionId, 'q-frontline', 'narrative question progress must survive entering profile mode');
+  assert.equal(state.narrativeHistory.length, 1);
+  state.stage = 'question';
+  assert.deepEqual(state.manualCapabilityPreferences, { 'melee-combat': 'core', 'personal-durability': 'available' }, 'profile draft must survive returning to question mode');
 });
 
 test('the app never mutates the source profiles or criteria doc it is given', () => {
