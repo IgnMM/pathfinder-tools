@@ -1,0 +1,638 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Swashbuckler parent value.",
+  "profiles": [
+    {
+      "id": "swashbuckler:arrow-champion",
+      "name": "Arrow Champion",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Ultimate Wilderness pg. 95",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Arrow%20Champion",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Arrow Champion’s Panache / Deeds / Retaliation / Precise Aim",
+          "reason": "The archetype’s Arrow Champion’s Panache / Deeds / Retaliation / Precise Aim package materially changes ranged combat from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "Arrow champions combine a swashbuckler’s agile style of combat with mastery over the bow",
+      "tradeoff": "It replaces or alters Panache; Opportune Parry and Riposte; Precise Strike; Swashbuckler's Initiative; Swashbuckler Weapon Training; Swashbuckler Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:azatariel",
+      "name": "Azatariel",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Planar Adventures pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Azatariel",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "An azatariel must be chaotic good and loses all archetype abilities if her alignment changes, until it returns to chaotic good.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Alignment / Deeds / Bralani’s Swiftness / Whimsical Riposte",
+          "reason": "The archetype’s Alignment / Deeds / Bralani’s Swiftness / Whimsical Riposte package materially changes combat manoeuvres from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "Azatariels are the champions of Elysium, dedicated to spreading its unpredictable whimsy and capricious goodness across the planes.",
+      "tradeoff": "It replaces or alters Alignment; Menacing Swordplay; Precise Strike; Targeted Strike; Bleeding Wound; Charmed Life; Nimble; Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:courser",
+      "name": "Courser",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Blood of the Beast pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Courser",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Swift Target / Nimble Toes / Confounding Target / Deeds",
+          "reason": "Swift Target / Nimble Toes / Confounding Target / Deeds defines the material change from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "Coursers move with grace and ease, racing across rooftops, dashing up walls, and clearing vast gaps between buildings.",
+      "tradeoff": "It replaces or alters Opportune Parry and Riposte; Nimble; Menacing Swordplay; Superior Feint; Bleeding Wound; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:daring-infiltrator",
+      "name": "Daring Infiltrator",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Advanced Class Guide pg. 124",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Daring%20Infiltrator",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "infiltrator"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Bonus Feats / Quick-Tongued / Deeds",
+          "reason": "The archetype’s Class Skills / Bonus Feats / Quick-Tongued / Deeds package materially changes stealth subterfuge from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "Not known for their flashy entrances or for standing out in a crowd, a daring infiltrator uses stealth, disguise, and ruthless guile to pursue her goals.",
+      "tradeoff": "It replaces or alters Class Skills; Bonus Feat; Swashbuckler Initiative; Menacing Swordplay; Bleeding Wound; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:dashing-thief",
+      "name": "Dashing Thief",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Adventurer's Guide pg. 51",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Dashing%20Thief",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "thief"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Bold Thief / Thief ’s Confidence / Rogue Talents / Dazing Charm Deed",
+          "reason": "The archetype’s Bold Thief / Thief ’s Confidence / Rogue Talents / Dazing Charm Deed package materially changes combat manoeuvres from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "The dashing thief relies on swift swordplay, dazzling charm, and spirited courage to commit audacious acts of thievery.",
+      "tradeoff": "It replaces or alters Class Skills; Derring-Do; Swashbuckler's Edge; Panache; Bonus Feats; Menacing Swordplay; Dizzying Defense; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:flying-blade",
+      "name": "Flying Blade",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Advanced Class Guide pg. 124",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Flying%20Blade",
+      "capabilityOverrides": {
+        "melee-combat": "available",
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "Most defining features require daggers or starknives.",
+          "evidenceSection": "Panache / Flying Blade Training"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Panache / Deeds / Subtle Throw / Disrupting Counter",
+          "reason": "The archetype’s Panache / Deeds / Subtle Throw / Disrupting Counter package materially changes melee combat from the Swashbuckler baseline."
+        },
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Panache / Deeds / Subtle Throw / Disrupting Counter",
+          "reason": "The archetype’s Panache / Deeds / Subtle Throw / Disrupting Counter package materially changes ranged combat from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "While most swashbucklers prefer their battles up close, others prefer dealing death from a distance.",
+      "tradeoff": "It replaces or alters Panache; Dodging Panache; Kip-Up; Menacing Swordplay; Targeted Strike; Bleeding Wound; Perfect Thrust; Swashbuckler Weapon Training; Swashbuckler Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:guiding-blade",
+      "name": "Guiding Blade",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Ultimate Intrigue pg. 52",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Guiding%20Blade",
+      "capabilityOverrides": {
+        "protecting-allies": "core",
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Daring Teamwork / Charmed Guardian / Interfering Blade / Deeds",
+          "reason": "The archetype’s Daring Teamwork / Charmed Guardian / Interfering Blade / Deeds package materially changes protecting allies from the Swashbuckler baseline."
+        },
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Daring Teamwork / Charmed Guardian / Interfering Blade / Deeds",
+          "reason": "The archetype’s Daring Teamwork / Charmed Guardian / Interfering Blade / Deeds package materially changes tactical leadership from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "Instead of parrying attacks against her, a guiding blade redirects her enemies’ ire away from her allies, interfering with enemies who attack her allies, whether that attack comes by blade or by spell.",
+      "tradeoff": "It replaces or alters Bonus Feats; 1st, 7th, 15th-level Deeds; Charmed Life; Nimble; Kip-up; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:inspired-blade",
+      "name": "Inspired Blade",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Advanced Class Guide pg. 125",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Inspired%20Blade",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "rapier"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Inspired Panache / Inspired Finesse / Deeds / Inspired Strike",
+          "reason": "Inspired Panache / Inspired Finesse / Deeds / Inspired Strike defines the material change from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "An inspired blade is both a force of personality and a sage of swordplay dedicated to the perfection of combat with the rapier.",
+      "tradeoff": "It replaces or alters Panache; Swashbuckler Finesse; Bleeding Wound; Swashbuckler Weapon Training; Swashbuckler Weapon Mastery; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:mouser",
+      "name": "Mouser",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Advanced Class Guide pg. 125",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Mouser",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Deeds / Underfoot Assault / Quick Steal / Hamstring",
+          "reason": "The archetype’s Deeds / Underfoot Assault / Quick Steal / Hamstring package materially changes combat manoeuvres from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "In the hands of a trained warrior, a well-sharpened blade is deadly regardless of size. A mouser moves in close, using her size and skill as an advantage.",
+      "tradeoff": "It replaces or alters Opportune Parry and Riposte; Menacing Swordplay; Targeted Strike; Bleeding Wound; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:musketeer",
+      "name": "Musketeer",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Advanced Class Guide pg. 126",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Musketeer",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon Proficiency / Musketeer Instruction / Deed / Quick Clear",
+          "reason": "The archetype’s Weapon Proficiency / Musketeer Instruction / Deed / Quick Clear package materially changes ranged combat from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "A number of organizations and kingdoms search for warriors who are brave (or foolish) enough to wield firearms on the battlefield.",
+      "tradeoff": "It replaces or alters Weapon Proficiencies; Swashbuckler Finesse; Dodging Panache; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:mysterious-avenger",
+      "name": "Mysterious Avenger",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Advanced Class Guide pg. 126",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Mysterious%20Avenger",
+      "capabilityOverrides": {
+        "personal-durability": "core",
+        "knowledge-investigation": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A mysterious avenger must be of a good alignment and loses her secret-identity and greater charmed life abilities if she ceases to be good or betrays those she protects.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Alignment / Class Skills / Weapon and Armor Proficiency / Avenger Finesse",
+          "reason": "The archetype’s Alignment / Class Skills / Weapon and Armor Proficiency / Avenger Finesse package materially changes personal durability from the Swashbuckler baseline."
+        },
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Alignment / Class Skills / Weapon and Armor Proficiency / Avenger Finesse",
+          "reason": "The archetype’s Alignment / Class Skills / Weapon and Armor Proficiency / Avenger Finesse package materially changes knowledge investigation from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "While some swashbucklers fight for queen and country, and others for coin, glory, or just the enhancement of their own reputations, the mysterious avenger fights directly for a cause.",
+      "tradeoff": "It replaces or alters Alignment; Class Skills; Weapon/Armor Proficiencies; Swashbuckler Finesse; Nimble; 4th-level Bonus Feat; Swashbuckler Weapon Training; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:noble-fencer",
+      "name": "Noble Fencer",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Ultimate Intrigue pg. 52",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Noble%20Fencer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "noble duelist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Deeds / Social Panache / Incredible Aspirations / Aristocratic Discipline",
+          "reason": "Deeds / Social Panache / Incredible Aspirations / Aristocratic Discipline defines the material change from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "Noble fencers use their quick wits and panache in both physical and social confrontations, and they rely on their training and discipline to emerge victorious, rather than merely trusting to luck.",
+      "tradeoff": "It replaces or alters Dodging Panache; Superior Feint; Subtle Blade; Charmed Life; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:okayo-corsair",
+      "name": "Okayo Corsair",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Martial Arts Handbook pg. 11",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Okayo%20Corsair",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "monk weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Okayo Finesse / Okayo Panache / Deeds",
+          "reason": "Weapon and Armor Proficiency / Okayo Finesse / Okayo Panache / Deeds defines the material change from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "An Okayo corsair practices a unique acrobatic martial art that draws inspiration from both the mysticism of monastic combat traditions and the flair of a swashbuckler.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiency; Swashbuckler Finesse; Panache; Menacing Swordplay; Superior Feint; Bleeding Wound; Dizzying Defense; Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:picaroon",
+      "name": "Picaroon",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Advanced Class Guide pg. 127",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Picaroon",
+      "capabilityOverrides": {
+        "ranged-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-firearms": true
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "The intended style pairs a one-handed firearm with a light or one-handed piercing weapon.",
+          "evidenceSection": "Two-Weapon Finesse"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.ranged-combat",
+          "section": "Weapon Proficiency / Panache / Melee Shooter / Quick Clear",
+          "reason": "The archetype’s Weapon Proficiency / Panache / Melee Shooter / Quick Clear package materially changes ranged combat from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "While some swashbucklers take pride in their ability to wear down an opponent with great skill at arms and clever positioning, there are those who use firearms to get in close and hit hard.",
+      "tradeoff": "It replaces or alters Weapon Proficiencies; Panache; Opportune Parry and Riposte; Kip-Up; Superior Feint; Bleeding Wound; Swashbuckler Finesse; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:rondelero-swashbuckler",
+      "name": "Rondelero Swashbuckler",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Weapon Master's Handbook pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Rondelero%20Swashbuckler",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "shield"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Falcata Emphasis / Rondelero Deeds / Shield Catch / Rondelero Chop",
+          "reason": "The archetype’s Falcata Emphasis / Rondelero Deeds / Shield Catch / Rondelero Chop package materially changes combat manoeuvres from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "Rondelero swashbucklers are Taldan specialists in an aggressive, lightly armored fighting style that utilizes the falcata and buckler.",
+      "tradeoff": "It replaces or alters Derring-Do; Kip-Up; Bleeding Wound; Perfect Thrust; Charmed Life; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:rostland-bravo",
+      "name": "Rostland Bravo",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Adventurer's Guide pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Rostland%20Bravo",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "single chosen weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Aldori Swashbuckler / Deeds / Inevitable Victory / Sweeping Wind Feint",
+          "reason": "The archetype’s Aldori Swashbuckler / Deeds / Inevitable Victory / Sweeping Wind Feint package materially changes debuffing enemies from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "While some duelists favor more technical approaches, others study flashier maneuvers, wielding the curved blade with artful flair. Disdainfully called “bravos” by classically trained rivals, students of this approach have claimed the label with pride.",
+      "tradeoff": "It replaces or alters Class Skills; Armor Proficiency; Menacing Swordplay; Superior Feint; Bleeding Wound; Swashbuckler's Edge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:shackles-corsair",
+      "name": "Shackles Corsair",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Advanced Class Origins pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Shackles%20Corsair",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "professionIdentity": [
+          "pirate"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Swagger / Deeds / Eyes of Abendego / Plunder",
+          "reason": "Swagger / Deeds / Eyes of Abendego / Plunder defines the material change from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "A Shackles corsair’s debonair charm and style make her a paradoxical celebrity even among the nations whose ships she plunders.",
+      "tradeoff": "It replaces or alters Nimble; Swashbuckler Initiative; Targeted Strike; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:veiled-blade",
+      "name": "Veiled Blade",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Ultimate Intrigue pg. 53",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Veiled%20Blade",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Deeds",
+          "reason": "The archetype’s Class Skills / Deeds package materially changes stealth subterfuge from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "Veiled blades specialize in subtlety, not through clandestine sneaking but simply by appearing to be someone harmless and unarmed.",
+      "tradeoff": "It replaces or alters Class Skills; Opportune Parry and Riposte; Menacing Swordplay; Swashbuckler's Grace; Swashbuckler's Edge; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:whirling-dervish",
+      "name": "Whirling Dervish",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Advanced Class Origins pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Whirling%20Dervish",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Dervish Finesse / Dawnflower’s Mercy / Dervish Dance / Deeds",
+          "reason": "The archetype’s Dervish Finesse / Dawnflower’s Mercy / Dervish Dance / Deeds package materially changes area multi target damage from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "In Qadira and throughout the Padishah Empire, Sarenrae’s worshipers praise the Dawnflower through dance. Her more warlike followers adapted these dances into graceful martial forms, and their swashbuckling style is feared throughout the Inner Sea region and beyond for its ability to devastate foes with a scimitar through motion and agility regardless of strength of arms.",
+      "tradeoff": "It replaces or alters Swashbuckler Finesse; Panache; Superior Feint; Targeted Strike; Bleeding Wound; Deadly Stab; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "swashbuckler:wildstrider",
+      "name": "Wildstrider",
+      "parentClassId": "swashbuckler",
+      "sourceCitationText": "Ultimate Wilderness pg. 96",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Wildstrider",
+      "capabilityOverrides": {
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "wilderness"
+        ]
+      },
+      "identityRemoves": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Class Skills / Deeds / Subterfuge / Adroit Step",
+          "reason": "The archetype’s Class Skills / Deeds / Subterfuge / Adroit Step package materially changes wilderness affinity from the Swashbuckler baseline."
+        }
+      ],
+      "playerSummary": "Most swashbucklers call cities their home, but some prefer deserts, marshlands, mountains, or woods, where the rough terrain grants them an advantage, and have little interest in the comforts of an urban lifestyle.",
+      "tradeoff": "It replaces or alters Class Skills; Dodging Panache; Derring-Do; Swashbuckler's Edge; Kip-Up; Subtle Blade; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T16:32:49.293Z",
+  "generatedAt": "2026-09-17T16:38:42.219Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
@@ -8,9 +8,9 @@
     "archetypes": 1275,
     "entities": 1319,
     "valuedClasses": 44,
-    "valuedArchetypes": 1123,
+    "valuedArchetypes": 1161,
     "pendingClasses": 0,
-    "pendingArchetypes": 152,
+    "pendingArchetypes": 114,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -12493,7 +12493,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Blood%20God%20Disciple",
       "replaces": "Summon Monster",
       "aonSummary": "(Half-Orc) A half-orc summoner who devotes himself to one of the bloody orc gods may believe his eidolon is an avatar of that god rather than a mere supernatural creature.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:blood-summoner",
@@ -12504,7 +12504,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Blood%20Summoner",
       "replaces": "Class Skills; Shield Ally; Transposition; Greater Shield Ally; Merge Forms",
       "aonSummary": "A blood summoner conjures an eidolon born from violence and blood.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:broodmaster",
@@ -12515,7 +12515,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Broodmaster",
       "replaces": "Eidolon; Life Link; Life Bond; Merge Forms",
       "aonSummary": "Most summoners bond with one eidolon for their entire lives, but the broodmaster forges a link with multiple smaller eidolons that make up his brood.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:counter-summoner",
@@ -12526,7 +12526,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Counter-Summoner",
       "replaces": "Summon Monster; Bond Senses; Aspect; Greater Aspect",
       "aonSummary": "While most summoners excel at conjuring monsters, there are those who focus instead on disrupting the conjurations of opponents.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:evolutionist",
@@ -12537,7 +12537,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Evolutionist",
       "replaces": "Maker’s Call; Transposition; Greater Shield Ally",
       "aonSummary": "An evolutionist possesses greater power over his eidolon’s form, and is able to evolve his eidolon and its abilities to meet any challenge or face any threat as it comes up, seemingly on a whim.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:first-worlder",
@@ -12548,7 +12548,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20First%20Worlder",
       "replaces": "Summon Monster I; Eidolon",
       "aonSummary": "A first worlder summoner has a more primal connection to nature, their power being tied to the First World.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:god-caller",
@@ -12559,7 +12559,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20God%20Caller",
       "replaces": "Class Skills; Life Link; Transposition; Aspect; Greater Aspect; Twin Eidolon",
       "aonSummary": "God callers follow a fractured tradition that originated in the now-lost nation of Sarkoris. They speak to an assortment of ancient divine powers to lead their communities and sometimes stir up reformations in faiths with ideals similar to their personal convictions.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:leshy-caller",
@@ -12570,7 +12570,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Leshy%20Caller",
       "replaces": "Eidolon; Summon Monster",
       "aonSummary": "A leshy caller summons creatures from the First World and forges a bond with a leshy eidolon.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:master-summoner",
@@ -12592,7 +12592,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Morphic%20Savant",
       "replaces": "Eidolon; Summon Monster; Spells",
       "aonSummary": "A morphic savant is an agent of change who draws power from the Abyss, Elysium, or the Maelstrom to fulfill whatever goals strike his fancy.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:naturalist",
@@ -12603,7 +12603,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Naturalist",
       "replaces": "Summon Monster; Shield Ally; Greater Shield Ally; Aspect Summoner; Life Bond; Greater Aspect",
       "aonSummary": "A naturalist is a summoner who is in tune with the natural world, using his magic like a lens to focus various animal aspects onto his eidolon.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:pyroclast",
@@ -12614,7 +12614,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Pyroclast",
       "replaces": "Spellcasting; Eidolon; Maker’s Call; Transposition",
       "aonSummary": "Pyroclasts harness the primal elemental energy of magma. Their eidolons often resemble elemental beings.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:shadow-caller",
@@ -12625,7 +12625,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Shadow%20Caller",
       "replaces": "Class Skills; Summon Monster; Eidolon",
       "aonSummary": "(Fetchling Only) While most summoners can call any manner of creature from across the planes to serve them in combat, supplementing the skills of their eidolon with a diverse range of creatures, others eschew this broad utility and instead concentrate upon calling forth entities from the Shadow Plane.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:shaitan-binder",
@@ -12636,7 +12636,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Shaitan%20Binder",
       "replaces": "Share Spells; Shield Ally; Greater Shield Ally; Aspect; Greater Aspect; Twin Eidolon",
       "aonSummary": "(Oread Only) Shaitan binders call upon a reflection of their genie ancestors to serve as their eidolons.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:spirit-summoner",
@@ -12647,7 +12647,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Spirit%20Summoner",
       "replaces": "Summon Monster; Eidolon; Aspect; Maker’s Call; Merge Forms; Transposition",
       "aonSummary": "A spirit summoner is an arcane spellcaster whose eidolon is a manifestation of a shamanic spirit.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:storm-caller",
@@ -12658,7 +12658,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Storm%20Caller",
       "replaces": "Eidolon; Summon Monster; Shield Ally; Greater Shield Ally; Maker's Call; Transposition",
       "aonSummary": "Many summoners beckon monsters from the Elemental Planes, but few are as specialized as storm callers, who channel the elemental energies of the Plane of Air.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:story-summoner",
@@ -12669,7 +12669,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Story%20Summoner",
       "replaces": "Eidolon; Bond Senses; Transposition",
       "aonSummary": "Story summoners rely on the harrow to weave the paths they walk, turning their tales into reality. They channel magic through their harrow decks to influence the strange extraplanar beings they summon, bringing familiar and fateful characters to life.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:synthesist",
@@ -12691,7 +12691,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Twinned%20Summoner",
       "replaces": "Shield Ally; Greater Shield Ally; Maker's Call; Transposition; Merge Forms",
       "aonSummary": "Reflecting the connected nature of Imbrex, a twinned summoner and his eidolon appear identical save for any obvious differences, such as evolutions or equipment.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:unwavering-conduit",
@@ -12702,7 +12702,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Unwavering%20Conduit",
       "replaces": "Eidolon; Summon Monster; Spells",
       "aonSummary": "Unwavering conduits work to keep everything ordered and regimented, drawing on power from the Eternal City of Axis, Heaven, or Hell to enforce whichever laws the summoner finds paramount.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:wild-caller-arg",
@@ -12713,7 +12713,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Wild%20Caller%20(ARG)",
       "replaces": "Summon Monster; Eidolon",
       "aonSummary": "(Half-Elf Only) The wild caller calls eidolons that take more natural and savage forms and summons from nature rather than the Great Beyond.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:wild-caller-hotw",
@@ -12724,7 +12724,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Wild%20Caller%20(HotW)",
       "replaces": "Eidolon; Summon Monster; Aspect; Greater Aspect",
       "aonSummary": "A wild caller summons creatures from the First World and forges a bond with an eidolon with a plant body.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner-unchained:construct-caller",
@@ -12834,7 +12834,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Arrow%20Champion",
       "replaces": "Panache; Opportune Parry and Riposte; Precise Strike; Swashbuckler's Initiative; Swashbuckler Weapon Training; Swashbuckler Weapon Mastery",
       "aonSummary": "Arrow champions combine a swashbuckler’s agile style of combat with mastery over the bow",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:azatariel",
@@ -12845,7 +12845,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Azatariel",
       "replaces": "Alignment; Menacing Swordplay; Precise Strike; Targeted Strike; Bleeding Wound; Charmed Life; Nimble; Bonus Feats",
       "aonSummary": "Azatariels are the champions of Elysium, dedicated to spreading its unpredictable whimsy and capricious goodness across the planes.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:courser",
@@ -12856,7 +12856,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Courser",
       "replaces": "Opportune Parry and Riposte; Nimble; Menacing Swordplay; Superior Feint; Bleeding Wound",
       "aonSummary": "Coursers move with grace and ease, racing across rooftops, dashing up walls, and clearing vast gaps between buildings.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:daring-infiltrator",
@@ -12867,7 +12867,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Daring%20Infiltrator",
       "replaces": "Class Skills; Bonus Feat; Swashbuckler Initiative; Menacing Swordplay; Bleeding Wound",
       "aonSummary": "Not known for their flashy entrances or for standing out in a crowd, a daring infiltrator uses stealth, disguise, and ruthless guile to pursue her goals.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:dashing-thief",
@@ -12878,7 +12878,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Dashing%20Thief",
       "replaces": "Class Skills; Derring-Do; Swashbuckler's Edge; Panache; Bonus Feats; Menacing Swordplay; Dizzying Defense",
       "aonSummary": "The dashing thief relies on swift swordplay, dazzling charm, and spirited courage to commit audacious acts of thievery.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:flying-blade",
@@ -12900,7 +12900,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Guiding%20Blade",
       "replaces": "Bonus Feats; 1st, 7th, 15th-level Deeds; Charmed Life; Nimble; Kip-up",
       "aonSummary": "Instead of parrying attacks against her, a guiding blade redirects her enemies’ ire away from her allies, interfering with enemies who attack her allies, whether that attack comes by blade or by spell.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:inspired-blade",
@@ -12911,7 +12911,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Inspired%20Blade",
       "replaces": "Panache; Swashbuckler Finesse; Bleeding Wound; Swashbuckler Weapon Training; Swashbuckler Weapon Mastery",
       "aonSummary": "An inspired blade is both a force of personality and a sage of swordplay dedicated to the perfection of combat with the rapier.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:mouser",
@@ -12922,7 +12922,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Mouser",
       "replaces": "Opportune Parry and Riposte; Menacing Swordplay; Targeted Strike; Bleeding Wound",
       "aonSummary": "In the hands of a trained warrior, a well-sharpened blade is deadly regardless of size. A mouser moves in close, using her size and skill as an advantage.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:musketeer",
@@ -12933,7 +12933,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Musketeer",
       "replaces": "Weapon Proficiencies; Swashbuckler Finesse; Dodging Panache",
       "aonSummary": "A number of organizations and kingdoms search for warriors who are brave (or foolish) enough to wield firearms on the battlefield.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:mysterious-avenger",
@@ -12944,7 +12944,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Mysterious%20Avenger",
       "replaces": "Alignment; Class Skills; Weapon/Armor Proficiencies; Swashbuckler Finesse; Nimble; 4th-level Bonus Feat; Swashbuckler Weapon Training",
       "aonSummary": "While some swashbucklers fight for queen and country, and others for coin, glory, or just the enhancement of their own reputations, the mysterious avenger fights directly for a cause.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:noble-fencer",
@@ -12955,7 +12955,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Noble%20Fencer",
       "replaces": "Dodging Panache; Superior Feint; Subtle Blade; Charmed Life",
       "aonSummary": "Noble fencers use their quick wits and panache in both physical and social confrontations, and they rely on their training and discipline to emerge victorious, rather than merely trusting to luck.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:okayo-corsair",
@@ -12966,7 +12966,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Okayo%20Corsair",
       "replaces": "Weapon and Armor Proficiency; Swashbuckler Finesse; Panache; Menacing Swordplay; Superior Feint; Bleeding Wound; Dizzying Defense; Bonus Feats",
       "aonSummary": "An Okayo corsair practices a unique acrobatic martial art that draws inspiration from both the mysticism of monastic combat traditions and the flair of a swashbuckler.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:picaroon",
@@ -12988,7 +12988,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Rondelero%20Swashbuckler",
       "replaces": "Derring-Do; Kip-Up; Bleeding Wound; Perfect Thrust; Charmed Life",
       "aonSummary": "Rondelero swashbucklers are Taldan specialists in an aggressive, lightly armored fighting style that utilizes the falcata and buckler.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:rostland-bravo",
@@ -12999,7 +12999,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Rostland%20Bravo",
       "replaces": "Class Skills; Armor Proficiency; Menacing Swordplay; Superior Feint; Bleeding Wound; Swashbuckler's Edge",
       "aonSummary": "While some duelists favor more technical approaches, others study flashier maneuvers, wielding the curved blade with artful flair. Disdainfully called “bravos” by classically trained rivals, students of this approach have claimed the label with pride.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:shackles-corsair",
@@ -13010,7 +13010,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Shackles%20Corsair",
       "replaces": "Nimble; Swashbuckler Initiative; Targeted Strike",
       "aonSummary": "A Shackles corsair’s debonair charm and style make her a paradoxical celebrity even among the nations whose ships she plunders.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:veiled-blade",
@@ -13021,7 +13021,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Veiled%20Blade",
       "replaces": "Class Skills; Opportune Parry and Riposte; Menacing Swordplay; Swashbuckler's Grace; Swashbuckler's Edge",
       "aonSummary": "Veiled blades specialize in subtlety, not through clandestine sneaking but simply by appearing to be someone harmless and unarmed.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:whirling-dervish",
@@ -13032,7 +13032,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Whirling%20Dervish",
       "replaces": "Swashbuckler Finesse; Panache; Superior Feint; Targeted Strike; Bleeding Wound; Deadly Stab",
       "aonSummary": "In Qadira and throughout the Padishah Empire, Sarenrae’s worshipers praise the Dawnflower through dance. Her more warlike followers adapted these dances into graceful martial forms, and their swashbuckling style is feared throughout the Inner Sea region and beyond for its ability to devastate foes with a scimitar through motion and agility regardless of strength of arms.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "swashbuckler:wildstrider",
@@ -13043,7 +13043,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Swashbuckler%20Wildstrider",
       "replaces": "Class Skills; Dodging Panache; Derring-Do; Swashbuckler's Edge; Kip-Up; Subtle Blade",
       "aonSummary": "Most swashbucklers call cities their home, but some prefer deserts, marshlands, mountains, or woods, where the rough terrain grants them an advantage, and have little interest in the comforts of an urban lifestyle.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "vigilante:agathiel",

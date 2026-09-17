@@ -1,0 +1,693 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Summoner parent value.",
+  "profiles": [
+    {
+      "id": "summoner:blood-god-disciple",
+      "name": "Blood God Disciple",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Advanced Race Guide pg. 53",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Blood%20God%20Disciple",
+      "capabilityOverrides": {
+        "support-buffing": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-rage": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Half-Orc characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Blood Feast / Bloody Gift / Avatar Gambit / Rage Power",
+          "reason": "The archetype’s Blood Feast / Bloody Gift / Avatar Gambit / Rage Power package materially changes support buffing from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "A half-orc summoner who devotes himself to one of the bloody orc gods may believe his eidolon is an avatar of that god rather than a mere supernatural creature.",
+      "tradeoff": "It replaces or alters Summon Monster; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:blood-summoner",
+      "name": "Blood Summoner",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Champions of Corruption pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Blood%20Summoner",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Skills / Blood Offering / Blood Travel / Fiendish Calling",
+          "reason": "The archetype’s Skills / Blood Offering / Blood Travel / Fiendish Calling package materially changes debuffing enemies from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "A blood summoner conjures an eidolon born from violence and blood.",
+      "tradeoff": "It replaces or alters Class Skills; Shield Ally; Transposition; Greater Shield Ally; Merge Forms; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:broodmaster",
+      "name": "Broodmaster",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Ultimate Magic pg. 78",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Broodmaster",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Eidolon Brood / Example / Brood Link / Bond Senses",
+          "reason": "The archetype’s Eidolon Brood / Example / Brood Link / Bond Senses package materially changes tactical leadership from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "Most summoners bond with one eidolon for their entire lives, but the broodmaster forges a link with multiple smaller eidolons that make up his brood.",
+      "tradeoff": "It replaces or alters Eidolon; Life Link; Life Bond; Merge Forms; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:counter-summoner",
+      "name": "Counter-Summoner",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Monster Summoner's Handbook pg. 8",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Counter-Summoner",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Counter-Summon / Detect Summons / Weaken Summons / Improved Weaken Summons",
+          "reason": "The archetype’s Counter-Summon / Detect Summons / Weaken Summons / Improved Weaken Summons package materially changes anti magic disruption from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "While most summoners excel at conjuring monsters, there are those who focus instead on disrupting the conjurations of opponents.",
+      "tradeoff": "It replaces or alters Summon Monster; Bond Senses; Aspect; Greater Aspect; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:evolutionist",
+      "name": "Evolutionist",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Ultimate Magic pg. 79",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Evolutionist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Mutate Eidolon / Evolve Base Form / Transmogrify",
+          "reason": "Mutate Eidolon / Evolve Base Form / Transmogrify defines the material change from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "An evolutionist possesses greater power over his eidolon’s form, and is able to evolve his eidolon and its abilities to meet any challenge or face any threat as it comes up, seemingly on a whim.",
+      "tradeoff": "It replaces or alters Maker’s Call; Transposition; Greater Shield Ally; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:first-worlder",
+      "name": "First Worlder",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Inner Sea Magic pg. 35",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20First%20Worlder",
+      "capabilityOverrides": {
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Summon Nature’s Ally / Fey Summons / Summon nature’s ally II / Summon nature’s ally III",
+          "reason": "The archetype’s Summon Nature’s Ally / Fey Summons / Summon nature’s ally II / Summon nature’s ally III package materially changes wilderness affinity from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "A first worlder summoner has a more primal connection to nature, their power being tied to the First World.",
+      "tradeoff": "It replaces or alters Summon Monster I; Eidolon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:god-caller",
+      "name": "God Caller",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Inner Sea Intrigue pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20God%20Caller",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Class Skills / Guidance / Divine Word / Divine Awareness",
+          "reason": "The archetype’s Class Skills / Guidance / Divine Word / Divine Awareness package materially changes social influence from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "God callers follow a fractured tradition that originated in the now-lost nation of Sarkoris. They speak to an assortment of ancient divine powers to lead their communities and sometimes stir up reformations in faiths with ideals similar to their personal convictions.",
+      "tradeoff": "It replaces or alters Class Skills; Life Link; Transposition; Aspect; Greater Aspect; Twin Eidolon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:leshy-caller",
+      "name": "Leshy Caller",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Ultimate Wilderness pg. 94",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Leshy%20Caller",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "wood"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Leshy Eidolon / Type / Base Form / Cactus",
+          "reason": "Leshy Eidolon / Type / Base Form / Cactus defines the material change from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "A leshy caller summons creatures from the First World and forges a bond with a leshy eidolon.",
+      "tradeoff": "It replaces or alters Eidolon; Summon Monster; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:master-summoner",
+      "name": "Master Summoner",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Ultimate Magic pg. 80",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Master%20Summoner",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Lesser Eidolon / Summoning Mastery / Augment Summoning",
+          "reason": "The archetype’s Lesser Eidolon / Summoning Mastery / Augment Summoning package materially changes tactical leadership from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "The master summoner sacrifices the power of his eidolon in favor of summoning a plethora of otherworldly creatures to aid him.",
+      "tradeoff": "It replaces or alters Summon Monster I; Shield Ally; Bond Senses; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:morphic-savant",
+      "name": "Morphic Savant",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Monster Summoner's Handbook pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Morphic%20Savant",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A morphic savant’s eidolon (and all creatures it summons) must be chaotically aligned.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Eidolon of Chaos / Morphic Monsters / Chaos Magic",
+          "reason": "Alignment / Eidolon of Chaos / Morphic Monsters / Chaos Magic defines the material change from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "A morphic savant is an agent of change who draws power from the Abyss, Elysium, or the Maelstrom to fulfill whatever goals strike his fancy.",
+      "tradeoff": "It replaces or alters Eidolon; Summon Monster; Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:naturalist",
+      "name": "Naturalist",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Advanced Class Guide pg. 123",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Naturalist",
+      "capabilityOverrides": {
+        "wilderness-affinity": "available",
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Nature’s Call / Animal Focus / Second Animal Focus / Shared Focus",
+          "reason": "The archetype’s Nature’s Call / Animal Focus / Second Animal Focus / Shared Focus package materially changes wilderness affinity from the Summoner baseline."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Nature’s Call / Animal Focus / Second Animal Focus / Shared Focus",
+          "reason": "The archetype’s Nature’s Call / Animal Focus / Second Animal Focus / Shared Focus package materially changes transformation shapeshifting from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "A naturalist is a summoner who is in tune with the natural world, using his magic like a lens to focus various animal aspects onto his eidolon.",
+      "tradeoff": "It replaces or alters Summon Monster; Shield Ally; Greater Shield Ally; Aspect Summoner; Life Bond; Greater Aspect; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:pyroclast",
+      "name": "Pyroclast",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Pathfinder #95: Anvil of Fire pg. 72",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Pyroclast",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "fire"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Diminished Spellcasting / Bound to Fire / Detonate / Heart of Earth and Fire",
+          "reason": "The archetype’s Diminished Spellcasting / Bound to Fire / Detonate / Heart of Earth and Fire package materially changes area multi target damage from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "Pyroclasts harness the primal elemental energy of magma. Their eidolons often resemble elemental beings.",
+      "tradeoff": "It replaces or alters Spellcasting; Eidolon; Maker’s Call; Transposition; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:shadow-caller",
+      "name": "Shadow Caller",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Advanced Race Guide pg. 110",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Shadow%20Caller",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Fetchling characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Class Skills / Shadow Summoning / Summon Monster I / Summon Monster II",
+          "reason": "The archetype’s Class Skills / Shadow Summoning / Summon Monster I / Summon Monster II package materially changes stealth subterfuge from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "While most summoners can call any manner of creature from across the planes to serve them in combat, supplementing the skills of their eidolon with a diverse range of creatures, others eschew this broad utility and instead concentrate upon calling forth entities from the Shadow Plane.",
+      "tradeoff": "It replaces or alters Class Skills; Summon Monster; Eidolon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:shaitan-binder",
+      "name": "Shaitan Binder",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Advanced Race Guide pg. 146",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Shaitan%20Binder",
+      "capabilityOverrides": {
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "earth"
+        ],
+        "environmentThemes": [
+          "underground"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Oread characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Base Form / Shaitan Magic / Earth Glide / Stone Curse",
+          "reason": "The archetype’s Base Form / Shaitan Magic / Earth Glide / Stone Curse package materially changes utility magic from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "Shaitan binders call upon a reflection of their genie ancestors to serve as their eidolons.",
+      "tradeoff": "It replaces or alters Share Spells; Shield Ally; Greater Shield Ally; Aspect; Greater Aspect; Twin Eidolon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:spirit-summoner",
+      "name": "Spirit Summoner",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Advanced Class Guide pg. 123",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Spirit%20Summoner",
+      "capabilityOverrides": {
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "spirits"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Spirit / Eidolon / Hex",
+          "reason": "The archetype’s Spirit / Eidolon / Hex package materially changes utility magic from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "A spirit summoner is an arcane spellcaster whose eidolon is a manifestation of a shamanic spirit.",
+      "tradeoff": "It replaces or alters Summon Monster; Eidolon; Aspect; Maker’s Call; Merge Forms; Transposition; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:storm-caller",
+      "name": "Storm Caller",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Elemental Master's Handbook pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Storm%20Caller",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "air"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Stormy Eidolon / Summon Storm’s Fury / Electrical Polarity / Storm’s Wings",
+          "reason": "The archetype’s Stormy Eidolon / Summon Storm’s Fury / Electrical Polarity / Storm’s Wings package materially changes area multi target damage from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "Many summoners beckon monsters from the Elemental Planes, but few are as specialized as storm callers, who channel the elemental energies of the Plane of Air.",
+      "tradeoff": "It replaces or alters Eidolon; Summon Monster; Shield Ally; Greater Shield Ally; Maker's Call; Transposition; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:story-summoner",
+      "name": "Story Summoner",
+      "parentClassId": "summoner",
+      "sourceCitationText": "The Harrow Handbook pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Story%20Summoner",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Storykin Eidolon / Summon Arcana / Evolve Base Form",
+          "reason": "Storykin Eidolon / Summon Arcana / Evolve Base Form defines the material change from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "Story summoners rely on the harrow to weave the paths they walk, turning their tales into reality. They channel magic through their harrow decks to influence the strange extraplanar beings they summon, bringing familiar and fateful characters to life.",
+      "tradeoff": "It replaces or alters Eidolon; Bond Senses; Transposition; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:synthesist",
+      "name": "Synthesist",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Ultimate Magic pg. 81",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Synthesist",
+      "capabilityOverrides": {
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "core",
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-shapeshifting": true,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "natural attacks"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Fused Eidolon / Fused Link / Shielded Meld / Maker’s Jump",
+          "reason": "The archetype’s Fused Eidolon / Fused Link / Shielded Meld / Maker’s Jump package materially changes summoning companions from the Summoner baseline."
+        },
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Fused Eidolon / Fused Link / Shielded Meld / Maker’s Jump",
+          "reason": "The archetype’s Fused Eidolon / Fused Link / Shielded Meld / Maker’s Jump package materially changes transformation shapeshifting from the Summoner baseline."
+        },
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Fused Eidolon / Fused Link / Shielded Meld / Maker’s Jump",
+          "reason": "The archetype’s Fused Eidolon / Fused Link / Shielded Meld / Maker’s Jump package materially changes personal durability from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "Rather than summon an eidolon to serve by his side, the synthesist fuses his eidolon’s essence to his own.",
+      "tradeoff": "It replaces or alters Eidolon; Life Link; Shield Ally; Maker’s Call; Transposition; Greater Shield Ally; Merge Forms; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:twinned-summoner",
+      "name": "Twinned Summoner",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Legacy of the First World pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Twinned%20Summoner",
+      "capabilityOverrides": {
+        "tactical-leadership": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Twinned Eidolon / Teamwork Feats / Twinned Transposition / Twin Summoner",
+          "reason": "The archetype’s Twinned Eidolon / Teamwork Feats / Twinned Transposition / Twin Summoner package materially changes tactical leadership from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "Reflecting the connected nature of Imbrex, a twinned summoner and his eidolon appear identical save for any obvious differences, such as evolutions or equipment.",
+      "tradeoff": "It replaces or alters Shield Ally; Greater Shield Ally; Maker's Call; Transposition; Merge Forms; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:unwavering-conduit",
+      "name": "Unwavering Conduit",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Monster Summoner's Handbook pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Unwavering%20Conduit",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "An unwavering conduit’s eidolon (and all creatures it summons) must be lawfully aligned.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Alignment / Eidolon of Law / Unwavering Monsters / Law Magic",
+          "reason": "Alignment / Eidolon of Law / Unwavering Monsters / Law Magic defines the material change from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "Unwavering conduits work to keep everything ordered and regimented, drawing on power from the Eternal City of Axis, Heaven, or Hell to enforce whichever laws the summoner finds paramount.",
+      "tradeoff": "It replaces or alters Eidolon; Summon Monster; Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:wild-caller-arg",
+      "name": "Wild Caller (ARG)",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Advanced Race Guide pg. 44",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Wild%20Caller%20(ARG)",
+      "capabilityOverrides": {
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Half-Elf characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Spells / Eidolon / Summon Nature’s Ally I",
+          "reason": "The archetype’s Spells / Eidolon / Summon Nature’s Ally I package materially changes wilderness affinity from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "The wild caller calls eidolons that take more natural and savage forms and summons from nature rather than the Great Beyond.",
+      "tradeoff": "It replaces or alters Summon Monster; Eidolon; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "summoner:wild-caller-hotw",
+      "name": "Wild Caller (HotW)",
+      "parentClassId": "summoner",
+      "sourceCitationText": "Heroes of the Wild pg. 25",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Summoner%20Wild%20Caller%20(HotW)",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "wood"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Plant Eidolon / Type / Base Form / Cactus",
+          "reason": "Plant Eidolon / Type / Base Form / Cactus defines the material change from the Summoner baseline."
+        }
+      ],
+      "playerSummary": "A wild caller summons creatures from the First World and forges a bond with an eidolon with a plant body.",
+      "tradeoff": "It replaces or alters Eidolon; Summon Monster; Aspect; Greater Aspect; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}
