@@ -1,0 +1,504 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Shaman parent value.",
+  "profiles": [
+    {
+      "id": "shaman:animist",
+      "name": "Animist",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Advanced Class Guide pg. 110",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Animist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Animist Spirit Magic / Wrangle Condition / Minor Conditions / Major Conditions",
+          "reason": "Animist Spirit Magic / Wrangle Condition / Minor Conditions / Major Conditions defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "Even among mystical practitioners, the animist has a strange perspective and even stranger magic. The animist perceives that all things have a spirit, including objects, constructs, illnesses, buildings, and the environment.",
+      "tradeoff": "It replaces or alters Spirit Magic Spells; 2nd, 8th, 10th, 12th, and 18th-level Hexes; Manifestation; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:benefactor",
+      "name": "Benefactor",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Healer's Handbook pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Benefactor",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Benefactor Ethos / Benefactor Hexes / Boon Reservoir / Expanded Boon",
+          "reason": "Benefactor Ethos / Benefactor Hexes / Boon Reservoir / Expanded Boon defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "A benefactor seeks to improve the lives of others by primarily offering powerful supportive abilities and magic to her allies and others she deems worthy.",
+      "tradeoff": "It replaces or alters Spellcasting; Hexes;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:crystal-tender",
+      "name": "Crystal Tender",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Heroes of the Darklands pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Crystal%20Tender",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "earth"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Scion of the Stones / Reciprocal Resonance / Invoke Latent Facets / Cabochon Form",
+          "reason": "Scion of the Stones / Reciprocal Resonance / Invoke Latent Facets / Cabochon Form defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "A crystal tender focuses on the spirits of metal and stone, using crystals as a means to focus the power of the spirits she venerates.",
+      "tradeoff": "It replaces or alters Spirit Animal; Wandering Spirit; 8th-level Shaman Hex; Manifestation; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:deep-shaman",
+      "name": "Deep Shaman",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Aquatic Adventures pg. 51",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Deep%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Deep Spirit / Aquatic Hexes / Buoyancy Control / Deep Heart",
+          "reason": "Deep Spirit / Aquatic Hexes / Buoyancy Control / Deep Heart defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "Deep shamans are tied to spirits from the depths.",
+      "tradeoff": "It replaces or alters Spirit; Spirit Animal; Class Skills; Spirit Abilities; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:draconic-shaman",
+      "name": "Draconic Shaman",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Legacy of Dragons pg. 24",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Draconic%20Shaman",
+      "capabilityOverrides": {
+        "summoning-companions": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Archetype Features",
+          "reason": "The archetype’s Archetype Features package materially changes summoning companions from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "Some shamans draw their powers from the might of dragons. These shamans each gain a powerful drake as an ally, and view caring for that drake as a sacred duty",
+      "tradeoff": "It replaces or alters Spirit; Spirit Animal; 4th, 10th-level Hexes; Spirit Magic; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:grasping-vine",
+      "name": "Grasping Vine",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Legacy of the First World pg. 16",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Grasping%20Vine",
+      "capabilityOverrides": {
+        "transformation-shapeshifting": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "wood"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.transformation-shapeshifting",
+          "section": "Spirit / Plant Spirit / Verdant Magic / Greentongue",
+          "reason": "The archetype’s Spirit / Plant Spirit / Verdant Magic / Greentongue package materially changes transformation shapeshifting from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "Grasping vine shamans are typically adherents of one of several scattered sects dedicated to the Green Mother. They revere plant life in all its forms, with a special fondness for poisonous or carnivorous plants.",
+      "tradeoff": "It replaces or alters Spirit Animal; Spirit Magic; 2nd, 8th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:name-keeper",
+      "name": "Name-Keeper",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Adventurer's Guide pg. 145",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Name-Keeper",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {
+        "professionIdentity": [
+          "pathfinder agent"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Inherited Wayfinder / Keeper Spirit Magic / Pathfinders Past",
+          "reason": "Class Skills / Inherited Wayfinder / Keeper Spirit Magic / Pathfinders Past defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "Name-keepers have delved into the storied histories etched into the Wall of Names and communed with the departed spirits of those whose names are memorialized on the monument.",
+      "tradeoff": "It replaces or alters Class Skills; Spirit Animal; Spirit Magic; Wandering Spirit; Wandering Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:overseer",
+      "name": "Overseer",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Magic Tactics Toolbox pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Overseer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Controlling Magic / Spirit Surge",
+          "reason": "Controlling Magic / Spirit Surge defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "While all shamans use their connection to the spirits of the world to draw upon otherworldly magic powers, the shamans of the Lands of the Linnorm Kings have a unique tradition in which they use the power of patron spirits to directly control their enemies.",
+      "tradeoff": "It replaces or alters Spirit Magic; Deliver Touch Spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:possessed-shaman",
+      "name": "Possessed Shaman",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Advanced Class Guide pg. 111",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Possessed%20Shaman",
+      "capabilityOverrides": {
+        "practical-expertise": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Shared Skill / Crowded Vessel / Wandering Skills",
+          "reason": "The archetype’s Shared Skill / Crowded Vessel / Wandering Skills package materially changes practical expertise from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "For a possessed shaman, merely communing with the spirit world is insufficient. Instead, she invites the spirits to share her body, granting them the chance to experience corporeal existence.",
+      "tradeoff": "It replaces or alters Spirit Magic; 2nd and 6th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:primal-warden",
+      "name": "Primal Warden",
+      "parentClassId": "shaman",
+      "sourceCitationText": "People of the Wastes pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Primal%20Warden",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Spirit Animal / Unstable Spellcasting / Hexes / Primal Blessing",
+          "reason": "Spirit Animal / Unstable Spellcasting / Hexes / Primal Blessing defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "A\nshaman who communes with spirits that linger in areas where primal magic reigns, learning to stabilize\nthese erratic energies and draw upon them to her benefit.",
+      "tradeoff": "It replaces or alters Spirit Animal; Spirit Magic; 4th, 8th, 12th-levle Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:serendipity-shaman",
+      "name": "Serendipity Shaman",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Blood of the Beast pg. 5",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Serendipity%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype requires a racial trait with “luck” in its name (such as cat’s luck or halfling luck), or the Defiant Luck feat.",
+          "evidenceSection": "Limited Calling"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Limited Calling / Luck Magic / Luck Hexes / Channel Luck",
+          "reason": "Limited Calling / Luck Magic / Luck Hexes / Channel Luck defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "The serendipitous, shamanistic rites associated with the traditional catfolk worship of the so-called “spirits of creation” focus upon attracting good fortune and banishing ill fortune in the name of these spirits.",
+      "tradeoff": "It replaces or alters Spirit Magic spells; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:speaker-for-the-past",
+      "name": "Speaker for the Past",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Advanced Class Guide pg. 111",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Speaker%20for%20the%20Past",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "ancestors"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Mysteries of the Past / Revelations of the Past",
+          "reason": "Mysteries of the Past / Revelations of the Past defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "A speaker for the past is a shaman who specifically serves as the voice for spirits from her people’s history.",
+      "tradeoff": "It replaces or alters Spirit Familiar; Wandering Spirit; Wandering Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:spirit-warden",
+      "name": "Spirit Warden",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Advanced Class Guide pg. 112",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Spirit%20Warden",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "enemySpecializationOverrides": {
+        "undead": "core"
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Unnatural Mien / Restless Magic / Rebuke Spirits / Laugh at Death",
+          "reason": "The archetype’s Unnatural Mien / Restless Magic / Rebuke Spirits / Laugh at Death package materially changes anti magic disruption from the Shaman baseline."
+        },
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Unnatural Mien / Restless Magic / Rebuke Spirits / Laugh at Death",
+          "reason": "The archetype’s Unnatural Mien / Restless Magic / Rebuke Spirits / Laugh at Death package grants explicit advantages against undead."
+        }
+      ],
+      "playerSummary": "Not all spirits deserve reverence and respect. Some are twisted and despicable. It’s a spirit warden’s duty to end these spirits’ existence.",
+      "tradeoff": "It replaces or alters Class Skills; Spirit Magic Spells; 2nd and 10th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:true-silvered-throne",
+      "name": "True Silvered Throne",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Occult Origins pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20True%20Silvered%20Throne",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "occult"
+        ],
+        "professionIdentity": [
+          "occultist"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Occult Grimoire / Ritual Hex / Scarab of the Second Throne",
+          "reason": "Class Skills / Occult Grimoire / Ritual Hex / Scarab of the Second Throne defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "Members in good standing who have risen to a prestigious rank within the Esoteric Order of the Palatine Eye, true silvered thrones have managed to discover rituals and occult secrets within the lore of their order.",
+      "tradeoff": "It replaces or alters Class Skills; Spirit Animal; Wandering Spirit; Wandering Hex; 8th-level Hex; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:unsworn-shaman",
+      "name": "Unsworn Shaman",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Advanced Class Guide pg. 112",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Unsworn%20Shaman",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Minor Spirit / Spirit Animal / Wandering Spirit / Spirit Magic",
+          "reason": "Minor Spirit / Spirit Animal / Wandering Spirit / Spirit Magic defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "An unsworn shaman never binds herself to one specific spirit, always making new deals as she deems necessary for the circumstances that she finds herself in.",
+      "tradeoff": "It replaces or alters Spirit; Hex; Spirit Animal; Wandering Spirit; Wandering Hex; Spirit Magic; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:visionary",
+      "name": "Visionary",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Advanced Class Guide pg. 112",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Visionary",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "seer"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Bonus Feat / Discern Magical Expertise / Vision Spirit Magic / Improved Divination",
+          "reason": "Bonus Feat / Discern Magical Expertise / Vision Spirit Magic / Improved Divination defines the material change from the Shaman baseline."
+        }
+      ],
+      "playerSummary": "The visionary is a master at divination, drawing upon her intimate relationship with the spirit world to ferret out all manner of secrets and insights about the world around her and beyond.",
+      "tradeoff": "It replaces or alters Wandering Spirit; Spirit Magic Spells; Wandering Hex; Greater Wandering Spirit; True Wandering Spirit; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "shaman:witch-doctor",
+      "name": "Witch Doctor",
+      "parentClassId": "shaman",
+      "sourceCitationText": "Advanced Class Guide pg. 113",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Shaman%20Witch%20Doctor",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "enemySpecializationOverrides": {
+        "undead": "available"
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A witch doctor cannot be of evil alignment.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [
+        {
+          "value": "witch doctor",
+          "evidenceSection": "Channel Energy / Counter Curse / Countering Hex",
+          "evidenceText": "The named vocation centres on healing energy and countering curses, hexes and hostile magic."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Alignment / Channel Energy / Counter Curse / Countering Hex",
+          "reason": "The archetype’s Alignment / Channel Energy / Counter Curse / Countering Hex package materially changes anti magic disruption from the Shaman baseline."
+        },
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Alignment / Channel Energy / Counter Curse / Countering Hex",
+          "reason": "The archetype’s Alignment / Channel Energy / Counter Curse / Countering Hex package grants explicit advantages against undead."
+        }
+      ],
+      "playerSummary": "The witch doctor is a healer who specializes in afflictions of the soul.",
+      "tradeoff": "It replaces or alters Alignment; 4th, 8th, 10th, and 12th-level Hexes; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

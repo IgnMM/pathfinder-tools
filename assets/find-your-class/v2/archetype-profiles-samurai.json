@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Samurai parent value.",
+  "profiles": [
+    {
+      "id": "samurai:brawling-blademaster",
+      "name": "Brawling Blademaster",
+      "parentClassId": "samurai",
+      "sourceCitationText": "Martial Arts Handbook pg. 10",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai%20Brawling%20Blademaster",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Weapon and Armor Proficiency / Empty Hand / Nimble / Dual Expertise",
+          "reason": "Weapon and Armor Proficiency / Empty Hand / Nimble / Dual Expertise defines the material change from the Samurai baseline."
+        }
+      ],
+      "playerSummary": "Brawling blademaster samurai use weapon strikes and unarmed attacks in equal measure",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiency; Mount; Weapon Expertise; Mounted Archer; Banner; Greater Banner; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "samurai:ironbound-sword",
+      "name": "Ironbound Sword",
+      "parentClassId": "samurai",
+      "sourceCitationText": "Blood of the Ancients pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai%20Ironbound%20Sword",
+      "capabilityOverrides": {
+        "combat-manoeuvres": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.combat-manoeuvres",
+          "section": "Merciful Combatant / Subduing Knockout / Blade Reversal",
+          "reason": "The archetype’s Merciful Combatant / Subduing Knockout / Blade Reversal package materially changes combat manoeuvres from the Samurai baseline."
+        }
+      ],
+      "playerSummary": "The ironbound sword’s fighting style, focused on incapacitating opponents rather than killing them, can subdue a foe without causing permanent harm, leaving the soul of the samurai unstained by deaths of her enemies.",
+      "tradeoff": "It replaces or alters Weapon Expertise; Banner; Greater Banner; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "samurai:sovereign-blade",
+      "name": "Sovereign Blade",
+      "parentClassId": "samurai",
+      "sourceCitationText": "Legacy of Dragons pg. 14",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai%20Sovereign%20Blade",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A sovereign blade’s alignment must be at least partially neutral.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Alignment / Golden Armor",
+          "reason": "The archetype’s Alignment / Golden Armor package materially changes area multi target damage from the Samurai baseline."
+        }
+      ],
+      "playerSummary": "In Tian Xia, many samurai are tutored in the ways of honor using lessons that originate from sovereign dragons and their dedication to safeguarding harmony.",
+      "tradeoff": "It replaces or alters Alignment; Mount; Mounted Archer; 6th, 12th, 18th-level bonus feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "samurai:sword-saint",
+      "name": "Sword Saint",
+      "parentClassId": "samurai",
+      "sourceCitationText": "Dragon Empires Primer pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai%20Sword%20Saint",
+      "capabilityOverrides": {
+        "area-multi-target-damage": "available",
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-mount": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.area-multi-target-damage",
+          "section": "Iaijutsu Strike / Brutal Slash / Terrifying Iaijutsu / Roaring Iaijutsu",
+          "reason": "The archetype’s Iaijutsu Strike / Brutal Slash / Terrifying Iaijutsu / Roaring Iaijutsu package materially changes area multi target damage from the Samurai baseline."
+        },
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Iaijutsu Strike / Brutal Slash / Terrifying Iaijutsu / Roaring Iaijutsu",
+          "reason": "The archetype’s Iaijutsu Strike / Brutal Slash / Terrifying Iaijutsu / Roaring Iaijutsu package materially changes debuffing enemies from the Samurai baseline."
+        }
+      ],
+      "playerSummary": "Sword saints hail from lands where samurai are prevalent, and are often ronin who wander the world seeking new challenges to perfect their intricate style of swordplay called iaijutsu.",
+      "tradeoff": "It replaces or alters Samurai's Mount; Mounted Charge; Banner; Greater Banner; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "samurai:ward-speaker",
+      "name": "Ward Speaker",
+      "parentClassId": "samurai",
+      "sourceCitationText": "Disciple's Doctrine pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai%20Ward%20Speaker",
+      "capabilityOverrides": {
+        "support-buffing": "core",
+        "healing-recovery": "available",
+        "utility-magic": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A ward speaker must be of a nonevil alignment.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.support-buffing",
+          "section": "Alignment / Propitiation / Jinushigami / Kodama",
+          "reason": "The archetype’s Alignment / Propitiation / Jinushigami / Kodama package materially changes support buffing from the Samurai baseline."
+        },
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Alignment / Propitiation / Jinushigami / Kodama",
+          "reason": "The archetype’s Alignment / Propitiation / Jinushigami / Kodama package materially changes healing recovery from the Samurai baseline."
+        },
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Alignment / Propitiation / Jinushigami / Kodama",
+          "reason": "The archetype’s Alignment / Propitiation / Jinushigami / Kodama package materially changes utility magic from the Samurai baseline."
+        }
+      ],
+      "playerSummary": "The ward speaker draws power from simple rituals to honor the spirits found throughout the world so that he might better protect those entrusted to his care.",
+      "tradeoff": "It replaces or alters Alignment; Resolve; Greater Resolve; True Resolve; Honorable Stand; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "samurai:warrior-poet",
+      "name": "Warrior Poet",
+      "parentClassId": "samurai",
+      "sourceCitationText": "Heroes from the Fringe pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai%20Warrior%20Poet",
+      "capabilityOverrides": {
+        "personal-durability": "available",
+        "summoning-companions": "absent"
+      },
+      "practicalOverrides": {
+        "equipment-dependence": "medium"
+      },
+      "factOverrides": {
+        "has-mount": false,
+        "controls-additional-entity": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Dancer’s Grace / Flourish / Chrysanthemum’s Blooming / Exodus of Jinin",
+          "reason": "The archetype’s Dancer’s Grace / Flourish / Chrysanthemum’s Blooming / Exodus of Jinin package materially changes personal durability from the Samurai baseline."
+        },
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Dancer’s Grace / Flourish / Chrysanthemum’s Blooming / Exodus of Jinin",
+          "reason": "The archetype’s Dancer’s Grace / Flourish / Chrysanthemum’s Blooming / Exodus of Jinin package materially changes summoning companions from the Samurai baseline."
+        }
+      ],
+      "playerSummary": "Warrior poets often study calligraphy, flower arrangement, poetry, and other courtly arts, but when called to battle, they treat combat as its own art form, fighting with beauty and grace.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiency; Mount; Weapon Expertise; Banner; Greater Banner; Challenge; Mounted Archer; Demanding Challange; Bonus Combat Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "samurai:yojimbo",
+      "name": "Yojimbo",
+      "parentClassId": "samurai",
+      "sourceCitationText": "Armor Master's Handbook pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai%20Yojimbo",
+      "capabilityOverrides": {
+        "protecting-allies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "bodyguard",
+          "evidenceSection": "Resolute Defense / Intercept",
+          "evidenceText": "The archetype explicitly guards a chosen ward and intercepts attacks aimed at that person."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.protecting-allies",
+          "section": "Resolute Defense / Armor Expertise / Intercept",
+          "reason": "The archetype’s Resolute Defense / Armor Expertise / Intercept package materially changes protecting allies from the Samurai baseline."
+        }
+      ],
+      "playerSummary": "Yojimbo are highly trained bodyguards favored by the nobles and warlords of distant Minkai.",
+      "tradeoff": "It replaces or alters Mount; Weapon Expertise; Mounted Archer; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}
