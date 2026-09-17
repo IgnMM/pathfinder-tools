@@ -1,0 +1,437 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Sorcerer parent value.",
+  "profiles": [
+    {
+      "id": "sorcerer:crossblooded",
+      "name": "Crossblooded",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Ultimate Magic pg. 69",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Crossblooded",
+      "capabilityOverrides": {},
+      "practicalOverrides": {
+        "versatility": "medium"
+      },
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bloodline-choice",
+          "kind": "commitment",
+          "summary": "Two bloodlines are chosen; their arcana combine but powers and spells must be selected between them.",
+          "evidenceSection": "Bloodline Powers / Drawbacks"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skill / Bonus Spells / Example / Bonus Feat",
+          "reason": "Class Skill / Bonus Spells / Example / Bonus Feat defines the material change from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "A crossblooded bloodline combines the powers of two distinct heritages.",
+      "tradeoff": "It replaces or alters Spells Known; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:dragon-drinker",
+      "name": "Dragon Drinker",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Dragonslayer's Handbook pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Dragon%20Drinker",
+      "capabilityOverrides": {
+        "personal-durability": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "dragons"
+        ]
+      },
+      "identityRemoves": {
+        "spiritualThemes": [
+          "none"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "bloodline-choice",
+          "kind": "requirement",
+          "summary": "A dragon drinker must belong to the draconic bloodline.",
+          "evidenceSection": "Bloodline"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Bloodline / Bleeding Spells / Blood Drinking / Energy Assimilation",
+          "reason": "The archetype’s Bloodline / Bleeding Spells / Blood Drinking / Energy Assimilation package materially changes personal durability from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "The blood of dragons not only flows through a dragon\r drinker’s veins, but also empowers her spells and\r magical abilities when consumed.",
+      "tradeoff": "It replaces or alters Bloodline Arcana; Claws Bloodline Power; 7th, 13th, and 19th-level Bloodline Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:eldritch-scrapper",
+      "name": "Eldritch Scrapper",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Advanced Class Guide pg. 122",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Eldritch%20Scrapper",
+      "capabilityOverrides": {
+        "melee-combat": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Martial Flexibility / Bloodline Weapons",
+          "reason": "The archetype’s Martial Flexibility / Bloodline Weapons package materially changes melee combat from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "An eldritch scrapper is usually spoiling for a fight, looking to prove that she’s just as tough as a martial character.",
+      "tradeoff": "It replaces or alters 1st, 9th, and 15th-level Bloodline Powers; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:mongrel-mage",
+      "name": "Mongrel Mage",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Advanced Class Guide pg. 122",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Mongrel%20Mage",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Mongrel Reservoir / Bloodline Spells",
+          "reason": "Mongrel Reservoir / Bloodline Spells defines the material change from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "A mongrel mage is a sorcerer whose bloodline is so weak, or mixed with so many others, that her power isn’t clearly associated with any bloodline source.",
+      "tradeoff": "It replaces or alters Bloodline; Bloodline Powers; Bloodline Spells; 7th, 13th, and 19th-level Bloodline Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:nine-tailed-heir",
+      "name": "Nine-Tailed Heir",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Blood of the Beast pg. 13",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Nine-Tailed%20Heir",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is available only to kitsune characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Magical Tail",
+          "reason": "Magical Tail defines the material change from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "Tian stories often tell of kitsune with multiple tails who have a magical quirk in their blood or have been blessed by their race’s deific matron, Daikitsu",
+      "tradeoff": "It replaces or alters Bloodline Spell; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:razmiran-priest",
+      "name": "Razmiran Priest",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Inner Sea Magic pg. 38",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Razmiran%20Priest",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "theme",
+          "summary": "Razmiran priesthood is a narrative identity, not a hard deity or institutional gate imposed by the engine.",
+          "evidenceSection": "False Piety"
+        }
+      ],
+      "professionIdentity": [
+        {
+          "value": "false priest",
+          "evidenceSection": "False Piety / Lay Healer",
+          "evidenceText": "The archetype explicitly impersonates divine authority and performs a priestly role through arcane deception."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "False Piety / Lay Healer / Razmiran Channel",
+          "reason": "The archetype’s False Piety / Lay Healer / Razmiran Channel package materially changes healing recovery from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "The Razmiran priest is a magical charlatan, missionary servant of the Living God.",
+      "tradeoff": "It replaces or alters Eschew Materials; 3rd-level Bloodline Spell; 5th-level Bloodline Spell; 9th-level Bloodline Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:seeker",
+      "name": "Seeker",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Pathfinder Society Field Guide pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Seeker",
+      "capabilityOverrides": {
+        "practical-expertise": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "seeker",
+          "evidenceSection": "Tinkering / Seeker Lore",
+          "evidenceText": "The archetype explicitly searches out magical secrets, disables devices and studies hidden lore."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.practical-expertise",
+          "section": "Tinkering / Seeker Lore / Seeker Magic",
+          "reason": "The archetype’s Tinkering / Seeker Lore / Seeker Magic package materially changes practical expertise from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "The seeker is obsessed with learning about their heritage and history, researching ancient texts and obscure ruins for clues.",
+      "tradeoff": "It replaces or alters Eschew Materials, 3rd-level Bloodline Power, 15th-level Bloodline Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:sorcerer-of-sleep",
+      "name": "Sorcerer of Sleep",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Black Markets pg. 26",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Sorcerer%20of%20Sleep",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "professionIdentity": [
+          "drug adept"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Pesh Expert / Sahir-Afiyun / Pesh Touch",
+          "reason": "Pesh Expert / Sahir-Afiyun / Pesh Touch defines the material change from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "Some sorcerers have trouble accessing their innate gifts and must find another way to unlock them. For a sorcerer of sleep, the mind-altering drug pesh is the key.",
+      "tradeoff": "It replaces or alters Bloodline Arcana; Eschew Materials; 1st-level Bloodline Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:stone-warder",
+      "name": "Stone Warder",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Arcane Anthology pg. 29",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Stone%20Warder",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "earth"
+        ],
+        "environmentThemes": [
+          "underground",
+          "mountains"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bloodline-choice",
+          "kind": "requirement",
+          "summary": "A stone warder must select an earth-themed bloodline (deep earth, copper dragon, earth elemental, orc, or shaitan).",
+          "evidenceSection": "Blood of the Earth"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Blood of the Earth / Power of Stone / Rune of Warding",
+          "reason": "Blood of the Earth / Power of Stone / Rune of Warding defines the material change from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "Stone warders have an innate ability to create runes that allow them to ward areas with magic traps built from their spells. These sorcerers are most common among dwarves, but have been known to appear among other races who have strong ties to earth, rock, stone, mountains, and the Darklands.",
+      "tradeoff": "It replaces or alters Eschew Materials; 3rd-level Bloodline Spell; 7th-level Bloodline Feat; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:tattooed-sorcerer",
+      "name": "Tattooed Sorcerer",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Inner Sea Magic pg. 40",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Tattooed%20Sorcerer",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "A familiar is embodied in a magical tattoo and replaces the normal 1st-level bloodline power.",
+          "evidenceSection": "Familiar Tattoo"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Familiar Tattoo / Varisian Tattoo / Bloodline Tattoos / Create Spell Tattoo",
+          "reason": "Familiar Tattoo / Varisian Tattoo / Bloodline Tattoos / Create Spell Tattoo defines the material change from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "The tattooed sorcerer has embraced the ancient traditions of Varisian spellcasting, and uses colorful and intricate tattoos to enhance her magical powers.",
+      "tradeoff": "It replaces or alters 1st-level Bloodline Power; Eschew Materials; 7th-level Bloodline Feat; 9th-level Bloodline Power; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:umbral-scion",
+      "name": "Umbral Scion",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Blood of Shadows pg. 19",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Umbral%20Scion",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "bloodline-choice",
+          "kind": "requirement",
+          "summary": "An umbral scion must have the shadow bloodline.",
+          "evidenceSection": "Bloodline"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Bloodline / Diminished Spellcasting / Shrouded Spells / Encroaching Darkness",
+          "reason": "The archetype’s Bloodline / Diminished Spellcasting / Shrouded Spells / Encroaching Darkness package materially changes stealth subterfuge from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "Umbral scions are sorcerers who are able to expertly control their especially potent shadow heritage. The majority of umbral sorcerers hail from the Darklands.",
+      "tradeoff": "It replaces or alters Bloodline (Shadow Only); Spellcasting; Shadowstrike Bloodline Power; 7th and 13th-level Bloodline Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:wildblooded",
+      "name": "Wildblooded",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Ultimate Magic pg. 70",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Wildblooded",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Archetype Features",
+          "reason": "Archetype Features defines the material change from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "A wildblooded sorcerer has a mutated version of a more common bloodline, with one arcana and at least one bloodline power that are different from those of an unmutated bloodline.",
+      "tradeoff": "It replaces or alters Bloodline; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "sorcerer:wishcrafter",
+      "name": "Wishcrafter",
+      "parentClassId": "sorcerer",
+      "sourceCitationText": "Advanced Race Guide pg. 128",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Wishcrafter",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "This archetype is restricted to Ifrit characters.",
+          "evidenceSection": "Archetype requirement"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Wishbound Arcana / Expanded Wishcraft / Heart’s Desire / Twisted Wish",
+          "reason": "The archetype’s Wishbound Arcana / Expanded Wishcraft / Heart’s Desire / Twisted Wish package materially changes social influence from the Sorcerer baseline."
+        }
+      ],
+      "playerSummary": "Wishcrafters are born with a talent for manipulating reality inherited from their efreeti ancestors.",
+      "tradeoff": "It replaces or alters Bloodline Arcana; Bloodline Bonus Spells; 7th, 13th, 19th-level Bloodline Bonus Feats; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

@@ -1,0 +1,768 @@
+{
+  "schemaVersion": 2,
+  "status": "reviewed",
+  "inheritanceRule": "Every omitted field inherits the resolved Spiritualist parent value.",
+  "profiles": [
+    {
+      "id": "spiritualist:drowned-channeler",
+      "name": "Drowned Channeler",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Aquatic Adventures pg. 52",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Drowned%20Channeler",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "maritime"
+        ],
+        "elementThemes": [
+          "water"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Class Skills / Drowned Phantom / Drowned Spells / Drowned Powers",
+          "reason": "Class Skills / Drowned Phantom / Drowned Spells / Drowned Powers defines the material change from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "When a drowned spirit doomed to a watery grave descends toward the evil of undeath and seeks refuge in a mortal shell, the result is an unusual spiritualist with powers that resonate with the drowned spirit’s demise.",
+      "tradeoff": "It replaces or alters Class Skills; Phantom; Shared Consciousness; Etheric Tether; Bonded Manifestation; Bonded Senses; Detect Undead; Calm Spirit; See Invisibility; Call Spirit; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:ectoplasmatist",
+      "name": "Ectoplasmatist",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Occult Adventures pg. 108",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Ectoplasmatist",
+      "capabilityOverrides": {
+        "melee-combat": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "primaryDelivery": [
+          "ectoplasmic weapon"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Ectoplasmic Lash / Spiritual Combat / Ectoplasmic Armor",
+          "reason": "The archetype’s Ectoplasmic Lash / Spiritual Combat / Ectoplasmic Armor package materially changes melee combat from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "Instead of calling upon a phantom from the Ethereal Plane, an ectoplasmatist infuses herself with the mysterious substance called ectoplasm.",
+      "tradeoff": "It replaces or alters Etheric Tether; Phantom; Shared Consciousness; Fused Consciousness; Spiritual Bond; Empowered Consciousness; Bonded Manifestation; Phantom Recall; Dual Bond; Spiritual Interference; Greater Spiritual Interference; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:exciter",
+      "name": "Exciter",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Horror Adventures pg. 68",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Exciter",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": false
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Merged Phantom / Rapture / Fast Movement / Excitation",
+          "reason": "The archetype’s Merged Phantom / Rapture / Fast Movement / Excitation package materially changes personal durability from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "The phantom that accompanies the exciter fills him with unbridled exultation, as he lets feeling and passion rule and sharpen his mind and body into a glorious fusion.",
+      "tradeoff": "It replaces or alters Phantom; Emotional Focus; Phantom Recall; Etheric Tether; Bonded Senses; Spiritual Bond; Spiritual Interference; Fused Consciousness; Spiritual Interference;; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:fated-guide",
+      "name": "Fated Guide",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Occult Origins pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Fated%20Guide",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "enemySpecializationOverrides": {
+        "undead": "core"
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Shepherd to the Dead / Phantom / Divine Purpose / Thanatopic Bonded Manifestation",
+          "reason": "The archetype’s Shepherd to the Dead / Phantom / Divine Purpose / Thanatopic Bonded Manifestation package materially changes anti magic disruption from the Spiritualist baseline."
+        },
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Shepherd to the Dead / Phantom / Divine Purpose / Thanatopic Bonded Manifestation",
+          "reason": "The archetype’s Shepherd to the Dead / Phantom / Divine Purpose / Thanatopic Bonded Manifestation package grants explicit advantages against undead."
+        }
+      ],
+      "playerSummary": "Not all phantoms are restless dead escaping the afterlife. On rare occasions, Pharasma returns a judged soul to the Material Plane—linking the spirit to a devout believer—to complete some final task, make amends for a crime, or grant a sharply divided soul a second chance.",
+      "tradeoff": "It replaces or alters Antagonistic; Bonded Manifestation; See Invisibility; Call Spirit; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:fractured-mind",
+      "name": "Fractured Mind",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Occult Adventures pg. 109",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Fractured%20Mind",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Emotional Spellcasting / Emotional Power / Anger / Dedication",
+          "reason": "Emotional Spellcasting / Emotional Power / Anger / Dedication defines the material change from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "Most spiritualists harbor the spirits of the deceased in their psyches, but a small number of them—known as fractured minds—draw their powers instead from a fraction of their own souls that resonates with extremely powerful emotions.",
+      "tradeoff": "It replaces or alters Spellcasting; Detect Undead; Calm Spirit; See Invisibility; Call Spirit; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:geist-channeler",
+      "name": "Geist Channeler",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Occult Adventures pg. 109",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Geist%20Channeler",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Geistform Phantom / Emotionless / Unnerving Touch / Poltergeist’s Knack",
+          "reason": "The archetype’s Geistform Phantom / Emotionless / Unnerving Touch / Poltergeist’s Knack package materially changes anti magic disruption from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "Some phantoms retain less of their personalities and memories than others. Though most phantoms maintain some semblance of their former selves, others of their kind, known as geists, came close to being lost forever before they became phantoms.",
+      "tradeoff": "It replaces or alters Phantom; Emotional Focus; Bonded Manifestation; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:grim-apostle",
+      "name": "Grim Apostle",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Pathfinder #144: Midwives to Death pg. 72",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Grim%20Apostle",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "outsiders"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Grim Phantom / Hardened Soul / Skills / Good Saves",
+          "reason": "The archetype’s Grim Phantom / Hardened Soul / Skills / Good Saves package materially changes personal durability from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "Some devotees of the Four Horsemen can form spiritual manifestations of the daemonic demigods.",
+      "tradeoff": "It replaces or alters Phantom; Emotional Focus; Shared Consciousness; Fused Consciousness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:hag-haunted",
+      "name": "Hag-Haunted",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Blood of the Coven pg. 23",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Hag-Haunted",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "arcane"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Hag Phantom / Hag Spellcasting / Death Curse",
+          "reason": "The archetype’s Hag Phantom / Hag Spellcasting / Death Curse package materially changes debuffing enemies from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "A hag who dies with a curse on her breath is often anchored to the Ethereal Plane by the power of her hatred— similar to vile and angry mortal souls—and some even claw their way back to the living world through the souls of those they despised or ruined... or those unfortunate souls they birthed. Hag-haunted spiritualists are tethered to these spiteful spirits, anchoring them once again in the world of the living.",
+      "tradeoff": "It replaces or alters Phantom; Shared Consciousness; Fused Consciousness; Spells; Spiritual Interference; Greater Spiritual Interference; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:haunted",
+      "name": "Haunted",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Occult Adventures pg. 110",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Haunted",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Usurp Manifestation / Usurp Spell / Teleplasmic Surge / Ferocious Phantom",
+          "reason": "Usurp Manifestation / Usurp Spell / Teleplasmic Surge / Ferocious Phantom defines the material change from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "The haunted are a dangerous breed of spellcasters bound to temperamental and unpredictable phantoms that leech power from their spiritualists.",
+      "tradeoff": "It replaces or alters Bonded Manifestation; Dual Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:involutionist",
+      "name": "Involutionist",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Adventurer's Guide pg. 167",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Involutionist",
+      "capabilityOverrides": {
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "divine"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Divine Spellcasting / Spirit Phantom / Spirit Manifestation / Spirit Awareness",
+          "reason": "The archetype’s Divine Spellcasting / Spirit Phantom / Spirit Manifestation / Spirit Awareness package materially changes utility magic from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "Rather than bond with an existing spirit as most Rivethun eventually do, the involutionist creates a spirit from a piece of her own soul.",
+      "tradeoff": "It replaces or alters Spellcasting; Phantom; Emotional Focus; Bonded Manifestation; Detect Undead, 11th, 15th, 17th-level uses of Calm Spirit; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:necrologist",
+      "name": "Necrologist",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Horror Adventures pg. 69",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Necrologist",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "Only an evil character can contact a malevolent undead phantom and take the necrologist archetype; the phantom stops granting benefits if the necrologist becomes nonevil.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Alignment / Spells / Shared Conciousness / Undead Phantom",
+          "reason": "The archetype’s Alignment / Spells / Shared Conciousness / Undead Phantom package materially changes debuffing enemies from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "The vile spiritualists known as necrologists reach toward the Negative Energy Plane and for whatever evil purpose, they bring back malevolent spirits whose passions have turned to vengeance and hate for all life.",
+      "tradeoff": "It replaces or alters Alignment; Share Consciousness; Share Spells; 5th, 13th-level slam damage increase; Devotion; Bonded Manifestation; Spiritual Interference; Greater Spiritual Interference; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:onmyoji",
+      "name": "Onmyoji",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Occult Adventures pg. 111",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Onmyoji",
+      "capabilityOverrides": {
+        "personal-durability": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "magicIdentity": [
+          "divine"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.personal-durability",
+          "section": "Divine Spellcasting / Spiritual Resistance / Divine Teachings",
+          "reason": "The archetype’s Divine Spellcasting / Spiritual Resistance / Divine Teachings package materially changes personal durability from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "Though most spiritualists are chosen by their phantoms, others deliberately call phantoms to them through years of careful preparation and study in obscure divine traditions.",
+      "tradeoff": "It replaces or alters Spellcasting; Shared Consciousness; Fused Consciousness; Spiritual Interference; Greater Spiritual Interference; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:phantom-blade",
+      "name": "Phantom Blade",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Psychic Anthology pg. 4",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Phantom%20Blade",
+      "capabilityOverrides": {
+        "melee-combat": "core",
+        "summoning-companions": "absent"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "controls-additional-entity": false
+      },
+      "identityAdds": {
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "identityRemoves": {
+        "primaryDelivery": [
+          "companion"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "bonded-entity",
+          "kind": "commitment",
+          "summary": "The phantom manifests as one bonded weapon rather than an independent companion.",
+          "evidenceSection": "Phantom Weapon"
+        }
+      ],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.melee-combat",
+          "section": "Weapon and Armor Proficiency / Phantom Weapon / Spell Combat / Spellstrike",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Phantom Weapon / Spell Combat / Spellstrike package materially changes melee combat from the Spiritualist baseline."
+        },
+        {
+          "field": "capabilityOverrides.summoning-companions",
+          "section": "Weapon and Armor Proficiency / Phantom Weapon / Spell Combat / Spellstrike",
+          "reason": "The archetype’s Weapon and Armor Proficiency / Phantom Weapon / Spell Combat / Spellstrike package materially changes summoning companions from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "A small selection of spiritualists are connected to spirits of combat and warfare, and manifest a weapon instead of a phantom.",
+      "tradeoff": "It replaces or alters Weapon and Armor Proficiencies; Phantom; Phantom Recall; Spiritual Bond; Dual Bond; Etheric Tether; Shared Consciousness; Fused Consciousness; Empowered Consciousness; Bonded Senses; Bonded Manifestation; Spiritual Interference; Greater Spiritual Interference; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:plague-eater",
+      "name": "Plague Eater",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Heroes of Golarion pg. 12",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Plague%20Eater",
+      "capabilityOverrides": {
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Plague Ward / Spiritual Inoculation / Remove Sickness / Disfiguring Touch",
+          "reason": "The archetype’s Plague Ward / Spiritual Inoculation / Remove Sickness / Disfiguring Touch package materially changes healing recovery from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "A plague eater bears the weight of many souls within her consciousness, spirits that remember the devastation of disease and seek to protect their host from infections, cleanse others of plague, and use disease itself as a weapon.",
+      "tradeoff": "It replaces or alters Phantom; Shared Consciousness; Spiritual Interference; Detect Undead; Calm Spirit; See Invisibility; Fused Consciousness; Greater Spiritual Interference; Call Spirit; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:priest-of-the-fallen",
+      "name": "Priest of the Fallen",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Heroes of Golarion pg. 17",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Priest%20of%20the%20Fallen",
+      "capabilityOverrides": {
+        "tactical-leadership": "core",
+        "healing-recovery": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-profession-identity": true
+      },
+      "enemySpecializationOverrides": {
+        "undead": "available"
+      },
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [
+        {
+          "value": "priest of fallen heroes",
+          "evidenceSection": "Mythmaker / Channel Energy",
+          "evidenceText": "The source explicitly presents a priest who invokes fallen hero-gods and channels their divine energy."
+        }
+      ],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.tactical-leadership",
+          "section": "Mythmaker / Archmage / Champion / Guardian",
+          "reason": "The archetype’s Mythmaker / Archmage / Champion / Guardian package materially changes tactical leadership from the Spiritualist baseline."
+        },
+        {
+          "field": "capabilityOverrides.healing-recovery",
+          "section": "Mythmaker / Archmage / Champion / Guardian",
+          "reason": "The archetype’s Mythmaker / Archmage / Champion / Guardian package materially changes healing recovery from the Spiritualist baseline."
+        },
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Mythmaker / Archmage / Champion / Guardian",
+          "reason": "The archetype’s Mythmaker / Archmage / Champion / Guardian package grants explicit advantages against undead."
+        }
+      ],
+      "playerSummary": "A priest of the fallen is a spiritualist who channels her land’s legends and provides a vessel for mighty heroes to perform heroic acts once more.",
+      "tradeoff": "It replaces or alters Phantom; Shared Consciousness; Bonded Manifestation; Phantom Recall; Fused Consciouness; Dual Bond; Empowered Consciousness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:quintessentialist",
+      "name": "Quintessentialist",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Distant Realms pg. 53",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Quintessentialist",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Unfocused Spellcasting / Exemplar",
+          "reason": "Unfocused Spellcasting / Exemplar defines the material change from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "The quintessentialist learns to project her best self—her exemplar—as an independent being, but in doing so leaves only the weakest and basest aspects behind in her body.",
+      "tradeoff": "It replaces or alters Spellcasting; Phantom; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:scourge",
+      "name": "Scourge",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Haunted Heroes Handbook pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Scourge",
+      "capabilityOverrides": {
+        "debuffing-enemies": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.debuffing-enemies",
+          "section": "Spell Scourge / Endure Torment / Inflict Pain / Ectoplasmic Swarm",
+          "reason": "The archetype’s Spell Scourge / Endure Torment / Inflict Pain / Ectoplasmic Swarm package materially changes debuffing enemies from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "Scourges are students of pain and have a rare connection to tormented and wracked spirits.",
+      "tradeoff": "It replaces or alters Spiritual Interference; Devotion; Calm Spirit; Greater Spiritual Interference; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:seeker-of-enlightenment",
+      "name": "Seeker of Enlightenment",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Disciple's Doctrine pg. 22",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Seeker%20of%20Enlightenment",
+      "capabilityOverrides": {
+        "knowledge-investigation": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {},
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.knowledge-investigation",
+          "section": "Echoes of Expertise / Words of the Past / Karmic Insight / Pinpoint Influence",
+          "reason": "The archetype’s Echoes of Expertise / Words of the Past / Karmic Insight / Pinpoint Influence package materially changes knowledge investigation from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "Sometimes a spiritualist is so haunted by a past life’s failure to reach enlightenment that the past life is reborn not as a new creature but as a phantom in a spiritualist’s consciousness.",
+      "tradeoff": "It replaces or alters Shared Consciousness; Detect Undead; Calm Spirit; See Invisibility; Fused Consciousness; Call Spirit; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:shadow-caller",
+      "name": "Shadow Caller",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Ultimate Intrigue pg. 50",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Shadow%20Caller",
+      "capabilityOverrides": {
+        "stealth-subterfuge": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "elementThemes": [
+          "void"
+        ]
+      },
+      "identityRemoves": {
+        "elementThemes": [
+          "none"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.stealth-subterfuge",
+          "section": "Shadowcaster / Shade / Emotionless / Weakening Touch",
+          "reason": "The archetype’s Shadowcaster / Shade / Emotionless / Weakening Touch package materially changes stealth subterfuge from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "While most spiritualists form a bond with the remnants of a creature’s soul, some explore ways to bind ephemeral shadows to their own souls in exchange for power.",
+      "tradeoff": "It replaces or alters Phantom; Emotional Focus; Shared Consciousness; Etheric Tether; Phantom Recall; See Invisibility; Fused Consciousness; Empowered Consciousness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:soul-warden",
+      "name": "Soul Warden",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Planar Adventures pg. 20",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Soul%20Warden",
+      "capabilityOverrides": {},
+      "practicalOverrides": {},
+      "factOverrides": {
+        "has-familiar": true
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "deity"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "playerSummary",
+          "section": "Nosoi Scribe / Psychopomp’s Bond / Warding Vessel / Phantom Elegy",
+          "reason": "Nosoi Scribe / Psychopomp’s Bond / Warding Vessel / Phantom Elegy defines the material change from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "Soul wardens have helped their phantoms pass on and have become wardens of the soulstream, serving Pharasma and working with psychopomps to protect vulnerable souls from those who seek to capture, corrupt, or devour them.",
+      "tradeoff": "It replaces or alters Phantom; Etheric Tether; Shared Consciousness; Spiritual Interference; Fused Consciousness; Greater Spiritual Interference; Bonded Senses; Phantom Recall; Bonded Manifestation; Dual Bond; Empowered Consciousness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:totem-spiritualist",
+      "name": "Totem Spiritualist",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Psychic Anthology pg. 6",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Totem%20Spiritualist",
+      "capabilityOverrides": {
+        "wilderness-affinity": "available"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.wilderness-affinity",
+          "section": "Phantom Animal / Shared Instincts / Animal Senses / Twin Phantoms",
+          "reason": "The archetype’s Phantom Animal / Shared Instincts / Animal Senses / Twin Phantoms package materially changes wilderness affinity from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "These specialized spiritualists call upon phantoms that are manifestations of animals and personifications of nature.",
+      "tradeoff": "It replaces or alters Phantom; Shared Consiousness; See Invisibility; Dual Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:usher-of-lost-souls",
+      "name": "Usher of Lost Souls",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Psychic Anthology pg. 7",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Usher%20of%20Lost%20Souls",
+      "capabilityOverrides": {
+        "anti-magic-disruption": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "enemySpecializationOverrides": {
+        "undead": "core"
+      },
+      "identityAdds": {
+        "spiritualThemes": [
+          "undead"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.anti-magic-disruption",
+          "section": "Etheric Channel / Spirit Senses / Disrupting Phantom / Locate Haunts",
+          "reason": "The archetype’s Etheric Channel / Spirit Senses / Disrupting Phantom / Locate Haunts package materially changes anti magic disruption from the Spiritualist baseline."
+        },
+        {
+          "field": "enemySpecializationOverrides.undead",
+          "section": "Etheric Channel / Spirit Senses / Disrupting Phantom / Locate Haunts",
+          "reason": "The archetype’s Etheric Channel / Spirit Senses / Disrupting Phantom / Locate Haunts package grants explicit advantages against undead."
+        }
+      ],
+      "playerSummary": "Ushers of lost souls are spiritualists who focus on bringing the souls of the dead to their final judgments at the end of the River of Souls.",
+      "tradeoff": "It replaces or alters Bonded Senses; Spiritual Interference; Greater Spiritual Interference; See Invisibility; Spiritual Bond; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:ward-spiritualist",
+      "name": "Ward Spiritualist",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Wilderness Origins pg. 18",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Ward%20Spiritualist",
+      "capabilityOverrides": {
+        "utility-magic": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "spiritualThemes": [
+          "nature"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.utility-magic",
+          "section": "Kami Phantom / Ward Implement / Merged Manifestation",
+          "reason": "The archetype’s Kami Phantom / Ward Implement / Merged Manifestation package materially changes utility magic from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "A ward spiritualist ventures into the wilderness and petitions a kami to help her in her travels, either taking an existing ward with her or becoming the kami’s new ward.",
+      "tradeoff": "It replaces or alters Phantom; Spellcasting; Bonded Senses; Phantom Recall; Greater Spiritual Interference; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "spiritualist:zeitgeist-binder",
+      "name": "Zeitgeist Binder",
+      "parentClassId": "spiritualist",
+      "sourceCitationText": "Ultimate Intrigue pg. 51",
+      "sourceUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Zeitgeist%20Binder",
+      "capabilityOverrides": {
+        "social-influence": "core"
+      },
+      "practicalOverrides": {},
+      "factOverrides": {},
+      "identityAdds": {
+        "environmentThemes": [
+          "urban"
+        ]
+      },
+      "identityRemoves": {},
+      "constraints": [],
+      "professionIdentity": [],
+      "evidence": [
+        {
+          "field": "capabilityOverrides.social-influence",
+          "section": "Zeitgeist / Settlement Aspect / Corruption / Crime",
+          "reason": "The archetype’s Zeitgeist / Settlement Aspect / Corruption / Crime package materially changes social influence from the Spiritualist baseline."
+        }
+      ],
+      "playerSummary": "Zeitgeist binders channel the emotional connections of a group of people into a unique phantom that personifies a community.",
+      "tradeoff": "It replaces or alters Phantom; Detect Undead; Calm Spirit; See Invisibility; Call Spirit; Bonded Senses; Fused Consciousness; those base-class tools are exchanged for the archetype’s more specialised package.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

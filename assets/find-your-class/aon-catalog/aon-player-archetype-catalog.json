@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T16:24:05.623Z",
+  "generatedAt": "2026-09-17T16:32:49.293Z",
   "source": "Archives of Nethys Pathfinder 1e",
   "scope": "Official player-class archetype index exposed by AoN, including alternate, unchained and occult classes.",
   "counts": {
@@ -8,9 +8,9 @@
     "archetypes": 1275,
     "entities": 1319,
     "valuedClasses": 44,
-    "valuedArchetypes": 1093,
+    "valuedArchetypes": 1123,
     "pendingClasses": 0,
-    "pendingArchetypes": 182,
+    "pendingArchetypes": 152,
     "newlyAddedDetailedArchetypes": 35,
     "newlyAddedSourceBooks": 19
   },
@@ -12097,7 +12097,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Dragon%20Drinker",
       "replaces": "Bloodline Arcana; Claws Bloodline Power; 7th, 13th, and 19th-level Bloodline Feats",
       "aonSummary": "(Requires Draconic Bloodline) The blood of dragons not only flows through a dragon\r drinker’s veins, but also empowers her spells and\r magical abilities when consumed.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "sorcerer:eldritch-scrapper",
@@ -12119,7 +12119,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Mongrel%20Mage",
       "replaces": "Bloodline; Bloodline Powers; Bloodline Spells; 7th, 13th, and 19th-level Bloodline Feats",
       "aonSummary": "A mongrel mage is a sorcerer whose bloodline is so weak, or mixed with so many others, that her power isn’t clearly associated with any bloodline source.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "sorcerer:nine-tailed-heir",
@@ -12130,7 +12130,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Nine-Tailed%20Heir",
       "replaces": "Bloodline Spell",
       "aonSummary": "(Kitsune only) Tian stories often tell of kitsune with multiple tails who have a magical quirk in their blood or have been blessed by their race’s deific matron, Daikitsu",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "sorcerer:razmiran-priest",
@@ -12163,7 +12163,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Sorcerer%20of%20Sleep",
       "replaces": "Bloodline Arcana; Eschew Materials; 1st-level Bloodline Power",
       "aonSummary": "Some sorcerers have trouble accessing their innate gifts and must find another way to unlock them. For a sorcerer of sleep, the mind-altering drug pesh is the key.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "sorcerer:stone-warder",
@@ -12174,7 +12174,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Stone%20Warder",
       "replaces": "Eschew Materials; 3rd-level Bloodline Spell; 7th-level Bloodline Feat",
       "aonSummary": "Stone warders have an innate ability to create runes that allow them to ward areas with magic traps built from their spells. These sorcerers are most common among dwarves, but have been known to appear among other races who have strong ties to earth, rock, stone, mountains, and the Darklands.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "sorcerer:tattooed-sorcerer",
@@ -12196,7 +12196,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Umbral%20Scion",
       "replaces": "Bloodline (Shadow Only); Spellcasting; Shadowstrike Bloodline Power; 7th and 13th-level Bloodline Feats",
       "aonSummary": "Umbral scions are sorcerers who are able to expertly control their especially potent shadow heritage. The majority of umbral sorcerers hail from the Darklands.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "sorcerer:wildblooded",
@@ -12207,7 +12207,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Wildblooded",
       "replaces": "Bloodline",
       "aonSummary": "A wildblooded sorcerer has a mutated version of a more common bloodline, with one arcana and at least one bloodline power that are different from those of an unmutated bloodline.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "sorcerer:wishcrafter",
@@ -12218,7 +12218,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer%20Wishcrafter",
       "replaces": "Bloodline Arcana; Bloodline Bonus Spells; 7th, 13th, 19th-level Bloodline Bonus Feats",
       "aonSummary": "(Ifrit Only) Wishcrafters are born with a talent for manipulating reality inherited from their efreeti ancestors.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:drowned-channeler",
@@ -12229,7 +12229,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Drowned%20Channeler",
       "replaces": "Class Skills; Phantom; Shared Consciousness; Etheric Tether; Bonded Manifestation; Bonded Senses; Detect Undead; Calm Spirit; See Invisibility; Call Spirit",
       "aonSummary": "When a drowned spirit doomed to a watery grave descends toward the evil of undeath and seeks refuge in a mortal shell, the result is an unusual spiritualist with powers that resonate with the drowned spirit’s demise.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:ectoplasmatist",
@@ -12240,7 +12240,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Ectoplasmatist",
       "replaces": "Etheric Tether; Phantom; Shared Consciousness; Fused Consciousness; Spiritual Bond; Empowered Consciousness; Bonded Manifestation; Phantom Recall; Dual Bond; Spiritual Interference; Greater Spiritual Interference",
       "aonSummary": "Instead of calling upon a phantom from the Ethereal Plane, an ectoplasmatist infuses herself with the mysterious substance called ectoplasm.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:exciter",
@@ -12251,7 +12251,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Exciter",
       "replaces": "Phantom; Emotional Focus; Phantom Recall; Etheric Tether; Bonded Senses; Spiritual Bond; Spiritual Interference; Fused Consciousness; Spiritual Interference;",
       "aonSummary": "The phantom that accompanies the exciter fills him with unbridled exultation, as he lets feeling and passion rule and sharpen his mind and body into a glorious fusion.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:fated-guide",
@@ -12262,7 +12262,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Fated%20Guide",
       "replaces": "Antagonistic; Bonded Manifestation; See Invisibility; Call Spirit",
       "aonSummary": "Not all phantoms are restless dead escaping the afterlife. On rare occasions, Pharasma returns a judged soul to the Material Plane—linking the spirit to a devout believer—to complete some final task, make amends for a crime, or grant a sharply divided soul a second chance.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:fractured-mind",
@@ -12273,7 +12273,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Fractured%20Mind",
       "replaces": "Spellcasting; Detect Undead; Calm Spirit; See Invisibility; Call Spirit",
       "aonSummary": "Most spiritualists harbor the spirits of the deceased in their psyches, but a small number of them—known as fractured minds—draw their powers instead from a fraction of their own souls that resonates with extremely powerful emotions.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:geist-channeler",
@@ -12284,7 +12284,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Geist%20Channeler",
       "replaces": "Phantom; Emotional Focus; Bonded Manifestation",
       "aonSummary": "Some phantoms retain less of their personalities and memories than others. Though most phantoms maintain some semblance of their former selves, others of their kind, known as geists, came close to being lost forever before they became phantoms.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:grim-apostle",
@@ -12295,7 +12295,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Grim%20Apostle",
       "replaces": "Phantom; Emotional Focus; Shared Consciousness; Fused Consciousness",
       "aonSummary": "Some devotees of the Four Horsemen can form spiritual manifestations of the daemonic demigods.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:hag-haunted",
@@ -12306,7 +12306,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Hag-Haunted",
       "replaces": "Phantom; Shared Consciousness; Fused Consciousness; Spells; Spiritual Interference; Greater Spiritual Interference",
       "aonSummary": "A hag who dies with a curse on her breath is often anchored to the Ethereal Plane by the power of her hatred— similar to vile and angry mortal souls—and some even claw their way back to the living world through the souls of those they despised or ruined... or those unfortunate souls they birthed. Hag-haunted spiritualists are tethered to these spiteful spirits, anchoring them once again in the world of the living.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:haunted",
@@ -12317,7 +12317,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Haunted",
       "replaces": "Bonded Manifestation; Dual Bond",
       "aonSummary": "The haunted are a dangerous breed of spellcasters bound to temperamental and unpredictable phantoms that leech power from their spiritualists.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:involutionist",
@@ -12328,7 +12328,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Involutionist",
       "replaces": "Spellcasting; Phantom; Emotional Focus; Bonded Manifestation; Detect Undead, 11th, 15th, 17th-level uses of Calm Spirit",
       "aonSummary": "Rather than bond with an existing spirit as most Rivethun eventually do, the involutionist creates a spirit from a piece of her own soul.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:necrologist",
@@ -12339,7 +12339,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Necrologist",
       "replaces": "Alignment; Share Consciousness; Share Spells; 5th, 13th-level slam damage increase; Devotion; Bonded Manifestation; Spiritual Interference; Greater Spiritual Interference",
       "aonSummary": "The vile spiritualists known as necrologists reach toward the Negative Energy Plane and for whatever evil purpose, they bring back malevolent spirits whose passions have turned to vengeance and hate for all life.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:onmyoji",
@@ -12350,7 +12350,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Onmyoji",
       "replaces": "Spellcasting; Shared Consciousness; Fused Consciousness; Spiritual Interference; Greater Spiritual Interference",
       "aonSummary": "Though most spiritualists are chosen by their phantoms, others deliberately call phantoms to them through years of careful preparation and study in obscure divine traditions.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:phantom-blade",
@@ -12372,7 +12372,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Plague%20Eater",
       "replaces": "Phantom; Shared Consciousness; Spiritual Interference; Detect Undead; Calm Spirit; See Invisibility; Fused Consciousness; Greater Spiritual Interference; Call Spirit",
       "aonSummary": "A plague eater bears the weight of many souls within her consciousness, spirits that remember the devastation of disease and seek to protect their host from infections, cleanse others of plague, and use disease itself as a weapon.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:priest-of-the-fallen",
@@ -12394,7 +12394,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Quintessentialist",
       "replaces": "Spellcasting; Phantom",
       "aonSummary": "The quintessentialist learns to project her best self—her exemplar—as an independent being, but in doing so leaves only the weakest and basest aspects behind in her body.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:scourge",
@@ -12405,7 +12405,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Scourge",
       "replaces": "Spiritual Interference; Devotion; Calm Spirit; Greater Spiritual Interference",
       "aonSummary": "Scourges are students of pain and have a rare connection to tormented and wracked spirits.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:seeker-of-enlightenment",
@@ -12416,7 +12416,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Seeker%20of%20Enlightenment",
       "replaces": "Shared Consciousness; Detect Undead; Calm Spirit; See Invisibility; Fused Consciousness; Call Spirit",
       "aonSummary": "Sometimes a spiritualist is so haunted by a past life’s failure to reach enlightenment that the past life is reborn not as a new creature but as a phantom in a spiritualist’s consciousness.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:shadow-caller",
@@ -12427,7 +12427,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Shadow%20Caller",
       "replaces": "Phantom; Emotional Focus; Shared Consciousness; Etheric Tether; Phantom Recall; See Invisibility; Fused Consciousness; Empowered Consciousness",
       "aonSummary": "While most spiritualists form a bond with the remnants of a creature’s soul, some explore ways to bind ephemeral shadows to their own souls in exchange for power.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:soul-warden",
@@ -12438,7 +12438,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Soul%20Warden",
       "replaces": "Phantom; Etheric Tether; Shared Consciousness; Spiritual Interference; Fused Consciousness; Greater Spiritual Interference; Bonded Senses; Phantom Recall; Bonded Manifestation; Dual Bond; Empowered Consciousness",
       "aonSummary": "Soul wardens have helped their phantoms pass on and have become wardens of the soulstream, serving Pharasma and working with psychopomps to protect vulnerable souls from those who seek to capture, corrupt, or devour them.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:totem-spiritualist",
@@ -12449,7 +12449,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Totem%20Spiritualist",
       "replaces": "Phantom; Shared Consiousness; See Invisibility; Dual Bond",
       "aonSummary": "These specialized spiritualists call upon phantoms that are manifestations of animals and personifications of nature.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:usher-of-lost-souls",
@@ -12460,7 +12460,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Usher%20of%20Lost%20Souls",
       "replaces": "Bonded Senses; Spiritual Interference; Greater Spiritual Interference; See Invisibility; Spiritual Bond",
       "aonSummary": "Ushers of lost souls are spiritualists who focus on bringing the souls of the dead to their final judgments at the end of the River of Souls.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:ward-spiritualist",
@@ -12471,7 +12471,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Ward%20Spiritualist",
       "replaces": "Phantom; Spellcasting; Bonded Senses; Phantom Recall; Greater Spiritual Interference",
       "aonSummary": "A ward spiritualist ventures into the wilderness and petitions a kami to help her in her travels, either taking an existing ward with her or becoming the kami’s new ward.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "spiritualist:zeitgeist-binder",
@@ -12482,7 +12482,7 @@
       "aonUrl": "https://aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist%20Zeitgeist%20Binder",
       "replaces": "Phantom; Detect Undead; Calm Spirit; See Invisibility; Call Spirit; Bonded Senses; Fused Consciousness",
       "aonSummary": "Zeitgeist binders channel the emotional connections of a group of people into a unique phantom that personifies a community.",
-      "valuationStatus": "pending"
+      "valuationStatus": "valued"
     },
     {
       "id": "summoner:blood-god-disciple",
