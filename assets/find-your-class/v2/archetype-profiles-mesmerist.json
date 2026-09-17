@@ -120,7 +120,13 @@
       },
       "identityRemoves": {},
       "constraints": [],
-      "professionIdentity": [],
+      "professionIdentity": [
+        {
+          "value": "cult leader",
+          "evidenceSection": "Insidious Personality / Faithful Followers",
+          "evidenceText": "The source explicitly builds a cult leader who recruits, manipulates and commands a cohort and followers."
+        }
+      ],
       "evidence": [
         {
           "field": "capabilityOverrides.tactical-leadership",

@@ -450,7 +450,13 @@
       },
       "identityRemoves": {},
       "constraints": [],
-      "professionIdentity": [],
+      "professionIdentity": [
+        {
+          "value": "herbal healer",
+          "evidenceSection": "Master Herbalist / Healer’s Way",
+          "evidenceText": "The archetype explicitly practises herbal medicine and delivers scaling treatment and condition removal."
+        }
+      ],
       "evidence": [
         {
           "field": "playerSummary",

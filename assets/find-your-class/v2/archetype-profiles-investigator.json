@@ -350,7 +350,13 @@
       },
       "identityRemoves": {},
       "constraints": [],
-      "professionIdentity": [],
+      "professionIdentity": [
+        {
+          "value": "forensic physician",
+          "evidenceSection": "Medical Expertise / Blood Lore",
+          "evidenceText": "The archetype explicitly practises medicine, treats disease and analyses bodies, blood and medical evidence."
+        }
+      ],
       "evidence": [
         {
           "field": "playerSummary",

@@ -89,7 +89,13 @@
       "identityAdds": {},
       "identityRemoves": {},
       "constraints": [],
-      "professionIdentity": [],
+      "professionIdentity": [
+        {
+          "value": "healer",
+          "evidenceSection": "Channel Energy / Inspiring Healing",
+          "evidenceText": "The named archetype explicitly converts performance and channel energy into group healing."
+        }
+      ],
       "evidence": [
         {
           "field": "playerSummary",
@@ -116,7 +122,13 @@
       "identityAdds": {},
       "identityRemoves": {},
       "constraints": [],
-      "professionIdentity": [],
+      "professionIdentity": [
+        {
+          "value": "archaeologist",
+          "evidenceSection": "Clever Explorer",
+          "evidenceText": "The archetype explicitly represents an archaeologist skilled with traps, locks and dangerous exploration."
+        }
+      ],
       "evidence": [
         {
           "field": "capabilityOverrides.tactical-leadership",
@@ -581,7 +593,13 @@
       "identityAdds": {},
       "identityRemoves": {},
       "constraints": [],
-      "professionIdentity": [],
+      "professionIdentity": [
+        {
+          "value": "detective",
+          "evidenceSection": "Eye for Detail / Arcane Investigation",
+          "evidenceText": "The archetype explicitly investigates evidence, lies, magical traps and hidden information."
+        }
+      ],
       "evidence": [
         {
           "field": "playerSummary",
@@ -1817,7 +1835,13 @@
       "identityAdds": {},
       "identityRemoves": {},
       "constraints": [],
-      "professionIdentity": [],
+      "professionIdentity": [
+        {
+          "value": "street performer",
+          "evidenceSection": "Gladhanding / Streetwise",
+          "evidenceText": "The archetype explicitly earns money performing and specialises in crowds, disguises and gathering street information."
+        }
+      ],
       "evidence": [
         {
           "field": "playerSummary",

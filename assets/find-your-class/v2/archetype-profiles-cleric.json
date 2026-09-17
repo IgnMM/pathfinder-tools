@@ -772,7 +772,13 @@
       "identityAdds": {},
       "identityRemoves": {},
       "constraints": [],
-      "professionIdentity": [],
+      "professionIdentity": [
+        {
+          "value": "healer",
+          "evidenceSection": "Combat Medic",
+          "evidenceText": "The archetype explicitly specialises in healing safely during combat and removing harmful conditions."
+        }
+      ],
       "evidence": [
         {
           "field": "capabilityOverrides.offensive-magic",
