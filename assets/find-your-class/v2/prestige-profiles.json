@@ -9689,6 +9689,1005 @@
       "playerSummary": "A good-aligned scarification devotee of Vildeis who unlocks a growing menu of enduring scars -- a vicious weapon buff, doubled lay on hands healing at self-cost, damage reduction, or sharing an ally’s damage -- and can push past his daily limit by taking real Hit-Dice-scaled damage, eventually sacrificing himself for allies in a final act.",
       "tradeoff": "Entry requires a good alignment, worship of Vildeis, base attack bonus +5, Toughness, and Heal/Intimidate/Knowledge (religion) ranks, and his signature painful purification ability lets him exceed his daily uses only by taking real damage that only a full night’s rest can heal.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:shackles-pirate",
+      "name": "Shackles Pirate",
+      "sourceCitationText": "Pathfinder Campaign Setting pg. 232",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Shackles%20Pirate",
+      "requirementsText": "To qualify to become a Shackles pirate, a character must fulfill all the following criteria.\nAlignment: Any nonlawful.\nBase Attack: +3.\nSkills: Appraise 8 ranks, Profession (boater or sailor) 8 ranks, Swim 8 ranks, Use Rope 8 ranks.\nSpecial: +2d6 sneak attack.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "low",
+        "equipment-dependence": "medium",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "pirate"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Shackles pirate must be any nonlawful.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [
+        "pirate"
+      ],
+      "playerSummary": "A swamp-savvy Shackles river pirate who moves stealthily and swiftly through bogs and marshes, grapples enemy ships to a halt, briefly merges her mind with her own ship to pilot it as an extension of her body, and eventually conjures a temporary vessel out of solid fog.",
+      "tradeoff": "Entry requires any nonlawful alignment, base attack +3, Appraise/Profession (sailor or boater)/Swim/Use Rope 8 ranks, and sneak attack +2d6, and her most striking abilities (shipmind, fogcraft) only matter when she actually has a ship to command.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:shieldmarshal",
+      "name": "Shieldmarshal",
+      "sourceCitationText": "Paths of Prestige pg. 48",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Shieldmarshal",
+      "requirementsText": "To qualify to become a shieldmarshal, a character must fulfill all the following criteria.\nFeats: Gunsmithing, Quick Draw.\nSkills: Diplomacy 5 ranks, Intimidate 5 ranks, Knowledge (local) 5 ranks, Perception 5 ranks, Sense Motive 5 ranks.\nSpecial: Must have a grit pool of at least 1 grit point and proficiency with at least two firearms.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "core",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": true,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "lawman"
+        ],
+        "primaryDelivery": [
+          "firearm"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A shieldmarshal must be a law-enforcement official of the Grand Duchy of Alkenstar, with a grit pool and proficiency in at least two firearms.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "lawman"
+      ],
+      "playerSummary": "An Alkenstar gunslinging lawman who pronounces a flexible legal judgment for bonuses like damage reduction, extra firearm damage, or fast healing, gains gunslinger deeds, and moves through urban terrain and crowds with total ease, eventually pronouncing two judgments at once.",
+      "tradeoff": "Entry requires Gunsmithing, Quick Draw, Diplomacy/Intimidate/Knowledge (local)/Perception/Sense Motive 5 ranks, a grit pool, and proficiency with two firearms, and most of his best abilities (urban commando, gunhunter, labyrinthine cunning) only shine in cities.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:skyseeker",
+      "name": "Skyseeker",
+      "sourceCitationText": "Paths of Prestige pg. 50",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Skyseeker",
+      "requirementsText": "To qualify to become a skyseeker, a character must fulfill all the following criteria.\nSkills: Knowledge (dungeoneering) 5 ranks, Knowledge (history) 5 ranks.\nSpecial: Favored enemy (giant, goblin, or orc) class feature.\nSpellcasting: Able to cast 2nd-level divine spells.\nTraits: Any dwarf racial trait or the adopted social trait (see the Advanced Player’s Guide, pages 331 and 329 respectively).",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "ancestors"
+        ],
+        "elementThemes": [
+          "earth"
+        ],
+        "professionIdentity": [
+          "explorer"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        "explorer"
+      ],
+      "playerSummary": "A dwarven ancestral-history explorer who forges a weapon into a rune-marked ancestral blade dealing extra damage against giants, goblins, and orcs, gains armor-based spell resistance and magic resistance, and eventually summons a handful of ghostly dwarven allies wielding warhammers to fight beside her.",
+      "tradeoff": "Entry requires Knowledge (dungeoneering)/Knowledge (history) 5 ranks, a giant/goblin/orc favored enemy, 2nd-level divine spells, and being a dwarf or having the adopted trait, and most of her defensive tricks (rune-carved armor, runes of resistance, stalwart) only function while wearing armor.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:sleepless-detective",
+      "name": "Sleepless Detective",
+      "sourceCitationText": "Paths of Prestige pg. 52",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Sleepless%20Detective",
+      "requirementsText": "To qualify to become a Sleepless detective, a character must fulfill all the following criteria.\nFeats: Alertness.\nSkills: Craft (alchemy) 5 ranks, Knowledge (local) 2 ranks, Perception 5 ranks, Sense Motive 5 ranks.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "detective"
+        ],
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        "detective"
+      ],
+      "playerSummary": "An Ustalavic Sleepless Agency detective who casts detect magic at will to read lingering auras, follows clues and tracks with Perception, extracts scrying-like information from blood or bodily fluid, and eventually mentally reconstructs the past 24 hours of an examined item or place as if she had watched it happen.",
+      "tradeoff": "Entry requires Alertness, Craft (alchemy) 5 ranks, Knowledge (local) 2 ranks, Perception/Sense Motive 5 ranks, and she gains no additional weapon or armor proficiencies, staying purely an investigator rather than a combatant.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:souldrinker",
+      "name": "Souldrinker",
+      "sourceCitationText": "Book of the Damned pg. 212",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Souldrinker",
+      "requirementsText": "To qualify to become a souldrinker, a character must fulfill all of the following criteria.\nAlignment: Neutral evil.\nFeats: Fiendish Obedience, Great Fortitude.\nSkills: Knowledge (arcana) 7 ranks, Knowledge (planes) 7 ranks, Spellcraft 7 ranks.\nLanguage: Abyssal or Infernal.\nSpells: Ability to cast at least two necromancy spells of two different spell levels.\nSpecial: Must worship one of the Four Horsemen or a daemon harbinger; must have died or experienced her soul leaving her body (such as via casting magic jar).",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "high",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": true,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A souldrinker must be neutral evil.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A souldrinker must worship one of the Four Horsemen or a daemon harbinger and perform a daily obedience; when she dies, her soul is claimed by her patron and is extremely difficult to resurrect.",
+          "evidenceSection": "Obedience / Apocalyptic Vow"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A neutral evil proxy of the Four Horsemen bonded to a cacodaemon familiar who blasts foes with enervation to fuel a soul-point pool spent on crafting items, recovering spells, or warding off negative levels, and eventually gains at-will daemonic spell-like abilities powered by stolen souls.",
+      "tradeoff": "Entry requires neutral evil alignment, Fiendish Obedience, Great Fortitude, Knowledge (arcana)/Knowledge (planes)/Spellcraft 7 ranks, Abyssal or Infernal, two necromancy spells, worship of a Horseman or harbinger, and a prior brush with death, and dying makes her nearly impossible to resurrect since her soul belongs to her patron.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:sphere-singer",
+      "name": "Sphere Singer",
+      "sourceCitationText": "Paths of the Righteous pg. 28",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Sphere%20Singer",
+      "requirementsText": "To qualify to become a sphere singer, a character must fulfill all of the following criteria.\nAlignment: Neutral good, chaotic good, or chaotic neutral.\nDeity: Must worship Desna.\nSkills: Knowledge (geography) 3 ranks, Perform (sing) 6 ranks.\nFeats: Weapon Finesse.\nSpells: Able to cast 2nd-level spells.\nSpecial: Must be proficient with the starknife.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "core",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "core",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "wanderer"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A sphere singer must be neutral good, chaotic good, or chaotic neutral.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A sphere singer must worship Desna.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "wanderer"
+      ],
+      "playerSummary": "A wandering Desnan bard-singer who boosts her own speed and eventually flight through song, protects sleepers from nightmares, contacts distant loved ones through dreams, and finally transcends mortality into a fey creature with butterfly wings and cold immunity.",
+      "tradeoff": "Entry requires a good-or-chaotic-neutral alignment, worship of Desna, Knowledge (geography)/Perform (sing) ranks, Weapon Finesse, starknife proficiency, and 2nd-level spells, and her starsong performance is audible-only, so silence or deafness shuts it down.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:spherewalker",
+      "name": "Spherewalker",
+      "sourceCitationText": "Pathfinder #2: The Skinsaw Murders pg. 73",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Spherewalker",
+      "requirementsText": "To qualify to become a spherewalker, a character must fulfill all of the following criteria:\nDeity: Desna.\nBase Attack Bonus: +5\nSkills: 5 ranks in any two of the following skills: Climb, Knowledge (geography), Knowledge (nature), Knowledge (religion), Perform, Ride, Survival, or Swim.\nFeats: Martial Weapon Proficentcy (starknife), one survivor feat (Great Fortitude, Iron Will, or Lightning Reflexes), one explorer feat (Acrobatic, Agile, Athletic, Endurance, Run, or Self-Sufficient).\nSpecial: A spherewalker-to-be must have journeyed far in his lifetime, visiting two locations sacred to Desna that are at least 200 miles apart.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "core",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "low",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "wanderer"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A spherewalker must worship Desna.",
+          "evidenceSection": "Deity"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A spherewalker must have journeyed to two locations sacred to Desna at least 200 miles apart.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "wanderer"
+      ],
+      "playerSummary": "A far-traveling Desnan adventurer who marks mental landmarks for scrying and easier teleportation, gains a returning starknife and a telepathic dream-link with a loved one, adds a luck bonus to any roll after seeing the result, and eventually transforms into a swarm of butterflies.",
+      "tradeoff": "Entry requires worship of Desna, base attack bonus +5, two skills at 5 ranks from a fixed list, a survivor feat, an explorer feat, starknife proficiency, and proof of a long pilgrimage, and the class caps out at only 5 levels, making it a short capstone rather than a long-term path.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:stargazer",
+      "name": "Stargazer",
+      "sourceCitationText": "Paths of the Righteous pg. 30",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Stargazer",
+      "requirementsText": "To qualify to become a stargazer, a character must fulfill all of the following criteria.\nAlignment: Neutral good, chaotic good, or chaotic neutral.\nDeity: Must worship Pulura.\nSkills: Knowledge (geography) 5 ranks, Knowledge (planes) 5 ranks, Survival 3 ranks.\nSpells: Able to cast 3rd-level spells.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": true,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "astrologer"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A stargazer must be neutral good, chaotic good, or chaotic neutral.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A stargazer must worship Pulura.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "astrologer"
+      ],
+      "playerSummary": "A Puluran star-worshiping mystic of the Worldwound frontier who gains witch hexes and oracle-style revelations, picks flexible sidereal arcana boons -- cold resistance, fear immunity, a starlight steed, extra healing -- with special bonuses against demons, and can swap one boon per day.",
+      "tradeoff": "Entry requires a good-or-chaotic-neutral alignment, worship of Pulura, Knowledge (geography)/Knowledge (planes)/Survival ranks, and 3rd-level spells, and several of her strongest sidereal arcana only grant their full benefit against demons specifically.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:steel-falcon",
+      "name": "Steel Falcon",
+      "sourceCitationText": "Adventurer's Guide pg. 70",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Steel%20Falcon",
+      "requirementsText": "To become a Steel Falcon, a character must fulfill the following criteria.\nAlignment: Any good.\nFeat: Iron Will.\nSkills: Diplomacy 5 ranks, Knowledge (history) 2 ranks, Knowledge (local) 2 ranks, Sense Motive 5 ranks.\nSpecial: A senior Eagle Knight must invite the character into the organization.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "core",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "core",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "diplomat"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Steel Falcon must be any good.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A senior Eagle Knight must invite the character into the Steel Falcons.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "diplomat"
+      ],
+      "playerSummary": "A good-aligned Andoren diplomat-vanguard of the Eagle Knights who gains growing bonuses against slavers, inspires allies with a bardic-style speech, learns ranger-style natural traps, rerolls a die once per day, and eventually unleashes a fear aura that also frees allies from charm and compulsion.",
+      "tradeoff": "Entry requires a good alignment, Iron Will, Diplomacy/Sense Motive 5 ranks, Knowledge (history or local) 2 ranks each, and a formal invitation from a senior Eagle Knight, and many of her sharpest bonuses only trigger against slavers specifically.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:storm-kindler",
+      "name": "Storm Kindler",
+      "sourceCitationText": "Adventurer's Guide pg. 180",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Storm%20Kindler",
+      "requirementsText": "To qualify to become a Storm Kindler, a character must fulfill the following criteria.\nAlignment: Any neutral.\nDeity: Must worship Gozreh.\nFeat: Storm-Lashed (see page 184).\nSkills: Fly 3 ranks, Knowledge (history) 6 ranks, Knowledge (nature) 6 ranks, Swim 3 ranks.\nSpells: Able to cast 2nd-level spells.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "available",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "core",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": true,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "air",
+          "water"
+        ],
+        "professionIdentity": [
+          "storm rider"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Storm Kindler must be any neutral.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A Storm Kindler must worship Gozreh.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "storm rider"
+      ],
+      "playerSummary": "A neutral Gozrehite storm-mystic who transforms into a growing whirlwind or underwater vortex dealing electricity or cold damage, gains resistance to electricity and sonic, shields allies from wind and water effects, and eventually gains an at-will storm shape with a fast fly speed and amphibious nature.",
+      "tradeoff": "Entry requires any neutral alignment, worship of Gozreh, the Storm-Lashed feat, Fly/Knowledge (history)/Knowledge (nature)/Swim ranks, and 2nd-level spells, and her signature storm shape ability is limited to a pool of minutes per day until 10th level.",
+      "reviewStatus": "reviewed"
     }
   ]
 }
