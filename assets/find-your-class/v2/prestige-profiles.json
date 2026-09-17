@@ -2792,6 +2792,295 @@
       "playerSummary": "A corporate spy-adventurer for the Aspis Consortium who rigs recovered traps to ambush rivals, masks her alignment from detection magic, and picks up an ever-growing menu of agency secrets -- bonus feats, rogue talents, or caster level boosts -- to stay one step ahead.",
       "tradeoff": "Entry requires whip proficiency plus trap sense or detect secret doors, and heavy investment across seven different skills (Appraise/Bluff/Craft [traps]/Disable Device/Intimidate/Knowledge [history]/Perception).",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:chevalier",
+      "name": "Chevalier",
+      "sourceCitationText": "Pathfinder #14: Children of the Void pg. 62",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Chevalier",
+      "requirementsText": "To qualify to become a chevalier, a character must fulfill all of the following criteria:\nAlignment: Good. Most are neutral good or chaotic good, with a rare few lawful good.\nBase Attack Bonus: +6.\nSkills: Gather Information 4 ranks, Knowledge (local) 4 ranks.\nSpecial: A would-be chevalier must have succeeded at a challenge requiring great heroism; for example, they must participate in an encounter with an EL at least 3 levels greater than their level. (Being carried through an encounter by a group of more experienced heroes is not courageous.)",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "low",
+        "play-complexity": "low",
+        "attribute-demands": "low",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A chevalier must be good.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A swashbuckling good-aligned adventurer who charges fearlessly into battle -- immune to fear and poison, striking harder in the opening round of a fight, and smiting evil once per day like a paladin.",
+      "tradeoff": "Entry requires good alignment, base attack bonus +6, and proof of genuine heroism (surviving a fight well above your level), and the class caps out at just 3 levels.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:justicar",
+      "name": "Justicar",
+      "sourceCitationText": "Pathfinder #8: Seven Days to the Grave pg. 69",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Justicar",
+      "requirementsText": "To qualify to become a justiciar, a character must fulfill all of the following criteria:\nAlignment: Any lawful.\nSkills: Diplomacy 4 ranks, Knowledge (local) 8 ranks, and 6 ranks total in Craft, Knowledge (arcana, architecture and engineering, history, nobility and royalty, or religion), or Profession skills in any combination.\nFeats: Investigator or Negotiator, prof iciency with any crossbow.\nSpecial: A justiciar must be appointed by a lawful religious or secular authority, typically a governing official of higher rank than the character.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "available",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "core",
+        "knowledge-investigation": "core",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "low",
+        "play-complexity": "low",
+        "attribute-demands": "low",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": true,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "ranged weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A justiciar must be lawful and must be formally appointed by a lawful religious or secular authority.",
+          "evidenceSection": "Alignment / Special"
+        },
+        {
+          "type": "code-of-conduct",
+          "kind": "commitment",
+          "summary": "A justiciar may never violate her code or any oath or contract she willingly agrees to (even in spirit), or she loses all prestige class abilities until she receives an atonement or an official pardon.",
+          "evidenceSection": "Lawkeeper"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A lawful magistrate-adventurer with absolute authority to judge and punish -- backing up Diplomacy and Intimidate with the force of law, sniping with a crossbow, and magically sealing oaths so betrayal is always eventually revealed.",
+      "tradeoff": "Entry requires lawful alignment, formal appointment by a lawful authority, the Investigator or Negotiator feat, crossbow proficiency, and heavy skill investment, and the class caps out at just 3 levels with a strict code that revokes all abilities if ever broken.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:knight-of-ozem",
+      "name": "Knight of Ozem",
+      "sourceCitationText": "Paths of Prestige pg. 30",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Knight%20of%20Ozem",
+      "requirementsText": "To qualify to become a Knight of Ozem, a character must fulfill all of the following criteria.\nArmor Proficiency: Must be proficient with heavy armor and shields (not including tower shields).\nDeity: Must worship Iomedae.\nSkills: Knowledge (religion) 5 ranks.\nWeapon Proficiency: Must be proficient with the longsword.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "available",
+        "personal-durability": "core",
+        "protecting-allies": "available",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "core",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": true,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity",
+          "undead"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A Knight of Ozem must worship Iomedae.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [],
+      "playerSummary": "A shield-bearing holy knight of Iomedae sworn to hunt undead and thwart the return of the Whispering Tyrant -- countering undead spellcasters with disruption and dispelling, growing an arsenal of shield and teamwork feats, and transfiguring gear into holy relics for one glorious minute at the peak of her power.",
+      "tradeoff": "Entry requires proficiency with heavy armor, shields, and the longsword, worship of Iomedae specifically, and Knowledge (religion) ranks, and most of its scaling bonuses only apply against undead.",
+      "reviewStatus": "reviewed"
     }
   ]
 }

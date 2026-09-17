@@ -310,6 +310,33 @@ const PROFILES = [
     playerSummary: 'A corporate spy-adventurer for the Aspis Consortium who rigs recovered traps to ambush rivals, masks her alignment from detection magic, and picks up an ever-growing menu of agency secrets -- bonus feats, rogue talents, or caster level boosts -- to stay one step ahead.',
     tradeoff: 'Entry requires whip proficiency plus trap sense or detect secret doors, and heavy investment across seven different skills (Appraise/Bluff/Craft [traps]/Disable Device/Intimidate/Knowledge [history]/Perception).',
   }),
+  author('chevalier', {
+    c: {'melee-combat': 'core', 'single-target-damage': 'available', 'personal-durability': 'available', 'combat-mobility': 'available'},
+    p: {'build-complexity': 'low', 'play-complexity': 'low', 'attribute-demands': 'low', 'equipment-dependence': 'low', 'resource-management': 'low', versatility: 'low'},
+    f: {'requires-alignment': true},
+    identity: {magicIdentity: ['none'], castingMethod: ['none'], castingExtent: ['none'], spiritualThemes: ['none'], elementThemes: ['none'], primaryDelivery: ['melee weapon']},
+    constraints: [{type: 'alignment', kind: 'requirement', summary: 'A chevalier must be good.', evidenceSection: 'Alignment'}],
+    playerSummary: 'A swashbuckling good-aligned adventurer who charges fearlessly into battle -- immune to fear and poison, striking harder in the opening round of a fight, and smiting evil once per day like a paladin.',
+    tradeoff: 'Entry requires good alignment, base attack bonus +6, and proof of genuine heroism (surviving a fight well above your level), and the class caps out at just 3 levels.',
+  }),
+  author('justicar', {
+    c: {'social-influence': 'core', 'ranged-combat': 'available', 'debuffing-enemies': 'available', 'knowledge-investigation': 'core'},
+    p: {'build-complexity': 'low', 'play-complexity': 'low', 'attribute-demands': 'low', 'equipment-dependence': 'low', 'resource-management': 'low', versatility: 'medium'},
+    f: {'has-code-of-conduct': true, 'requires-alignment': true},
+    identity: {magicIdentity: ['none'], castingMethod: ['none'], castingExtent: ['none'], spiritualThemes: ['none'], elementThemes: ['none'], primaryDelivery: ['ranged weapon']},
+    constraints: [{type: 'alignment', kind: 'requirement', summary: 'A justiciar must be lawful and must be formally appointed by a lawful religious or secular authority.', evidenceSection: 'Alignment / Special'}, {type: 'code-of-conduct', kind: 'commitment', summary: 'A justiciar may never violate her code or any oath or contract she willingly agrees to (even in spirit), or she loses all prestige class abilities until she receives an atonement or an official pardon.', evidenceSection: 'Lawkeeper'}],
+    playerSummary: 'A lawful magistrate-adventurer with absolute authority to judge and punish -- backing up Diplomacy and Intimidate with the force of law, sniping with a crossbow, and magically sealing oaths so betrayal is always eventually revealed.',
+    tradeoff: 'Entry requires lawful alignment, formal appointment by a lawful authority, the Investigator or Negotiator feat, crossbow proficiency, and heavy skill investment, and the class caps out at just 3 levels with a strict code that revokes all abilities if ever broken.',
+  }),
+  author('knight-of-ozem', {
+    c: {'melee-combat': 'core', 'single-target-damage': 'available', 'personal-durability': 'core', 'protecting-allies': 'available', 'anti-magic-disruption': 'core', 'tactical-leadership': 'available'},
+    p: {'build-complexity': 'medium', 'play-complexity': 'medium', 'attribute-demands': 'medium', 'equipment-dependence': 'high', 'resource-management': 'low', versatility: 'medium'},
+    f: {'requires-deity': true, 'depends-on-specific-equipment': true},
+    identity: {magicIdentity: ['none'], castingMethod: ['none'], castingExtent: ['none'], spiritualThemes: ['deity', 'undead'], elementThemes: ['none'], primaryDelivery: ['melee weapon']},
+    constraints: [{type: 'deity', kind: 'requirement', summary: 'A Knight of Ozem must worship Iomedae.', evidenceSection: 'Deity'}],
+    playerSummary: 'A shield-bearing holy knight of Iomedae sworn to hunt undead and thwart the return of the Whispering Tyrant -- countering undead spellcasters with disruption and dispelling, growing an arsenal of shield and teamwork feats, and transfiguring gear into holy relics for one glorious minute at the peak of her power.',
+    tradeoff: 'Entry requires proficiency with heavy armor, shields, and the longsword, worship of Iomedae specifically, and Knowledge (religion) ranks, and most of its scaling bonuses only apply against undead.',
+  }),
 ];
 
 const seen = new Set(PROFILES.map(p => p.id));
