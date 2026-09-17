@@ -5671,6 +5671,1018 @@
       "playerSummary": "A Kaer Magan monk-guardian who ignores hardness when smashing objects, dispels magical wards and glyphs with an unsealing touch, and knocks foes into obstacles or other creatures with an ever-more-devastating Awesome Blow, eventually shattering even stationary force effects.",
       "tradeoff": "Entry requires any lawful alignment, Improved Unarmed Strike, Stunning Fist, Knowledge (arcana) 5 ranks, and the flurry of blows class feature, and his signature Awesome Blow and unsealing tricks both burn through his limited daily Stunning Fist/ki uses.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:chernasardo-warden",
+      "name": "Chernasardo Warden",
+      "sourceCitationText": "Pathfinder #116: Fangs of War pg. 68",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Chernasardo%20Warden",
+      "requirementsText": "To qualify to become a Chernasardo warden, a character must fulfill all the following criteria.\nAlignment: Any nonevil and nonlawful.\nBase Attack Bonus: +5.\nSkills: Stealth 5 ranks, Survival 5 ranks.\nSpecial: You must defeat an evil enemy of a CR 5 levels higher than your character level. This victory must be witnessed by a Chernasardo Ranger.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "core"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "nature"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "nature"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "scout"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Chernasardo warden must be any nonevil and nonlawful.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A Chernasardo warden must defeat an evil enemy of CR 5 higher than her level, witnessed by a Chernasardo Ranger.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "scout"
+      ],
+      "playerSummary": "A Nirmathi freedom-fighter ranger who gains forest-themed spell-like abilities, keeps advancing an earlier class through the aligned class feature, and switches between guerrilla tactics on the fly -- flanking punishment, growing sneak attack, near-invisible sniping, or terrain mastery.",
+      "tradeoff": "Entry requires any nonevil and nonlawful alignment, base attack bonus +5, Stealth/Survival 5 ranks, and proof of defeating a much stronger evil enemy witnessed by a Chernasardo Ranger, and she can only benefit from one guerrilla tactic at a time until high level.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:crimson-templar",
+      "name": "Crimson Templar",
+      "sourceCitationText": "Paths of the Righteous pg. 8",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Crimson%20Templar",
+      "requirementsText": "To qualify to become a crimson templar, a character must fulfill all of following criteria.\nAlignment: Lawful good.\nDeity: Must worship Ragathiel.\nBase Attack Bonus: +6.\nFeats: Exotic Weapon Proficiency (bastard sword), Power Attack, Vital Strike.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "core",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "available",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "low",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "divine assassin"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A crimson templar must be lawful good, and loses all class features if he ceases to be lawful good or kills a good creature.",
+          "evidenceSection": "Alignment / Ex-Crimson Templars"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A crimson templar must worship Ragathiel.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "divine assassin"
+      ],
+      "playerSummary": "A lawful good assassin of Heaven who studies a single evil outsider for escalating bonuses against it, manifests burning wings for flight and fire resistance, and eventually incinerates or fully disintegrates unaware evil foes with sneak attacks empowered by celestial fire.",
+      "tradeoff": "Entry requires lawful good alignment, worship of Ragathiel, base attack bonus +6, Exotic Weapon Proficiency (bastard sword), Power Attack, and Vital Strike, and losing his alignment or killing a good creature strips all his class features until he atones.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:daggermark-poisoner",
+      "name": "Daggermark Poisoner",
+      "sourceCitationText": "Paths of Prestige pg. 18",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Daggermark%20Poisoner",
+      "requirementsText": "To qualify to become a Daggermark poisoner, a character must fulfill all of the following criteria.\nSkills: Craft (alchemy) 5 ranks, Craft (traps) 5 ranks, Heal 5 ranks, Sleight of Hand 5 ranks.\nSpecial: Poison use class ability. The character must craft at least 1,000 gp worth of poisons and donate them to the Daggermark Poisoners’ Guild.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "available",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "medium",
+        "resource-management": "high",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "alchemical"
+        ],
+        "castingMethod": [
+          "other"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "poisoner"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A Daggermark poisoner must have crafted and donated at least 1,000 gp worth of poisons to the Daggermark Poisoners’ Guild.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "poisoner"
+      ],
+      "playerSummary": "A master toxin-crafter of the Daggermark Poisoners’ Guild who applies poison as a move or swift action, builds toward total poison immunity, and picks up a growing menu of toxic tricks -- smoke bombs, poison traps, tailored toxins against a chosen creature type, and combining two poisons on one weapon.",
+      "tradeoff": "Entry requires Craft (alchemy)/Craft (traps)/Heal/Sleight of Hand 5 ranks, the poison use class feature, and donating 1,000 gp of crafted poisons to the guild, and her toxic tricks are capped by a limited daily pool tied to Intelligence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:daivrat",
+      "name": "Daivrat",
+      "sourceCitationText": "Qadira, Gateway to the East pg. 20",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Daivrat",
+      "requirementsText": "In order to qualify to become a daivrat, a character must fulfill all the following criteria.\nSkills: Knowledge (arcana) 7 ranks, Knowledge (planes) 7 ranks, Spellcraft 5 ranks.\nFeats: Spell Focus (conjuration).\nSpellcasting: Ability to cast 3rd-level spells.\nLanguages: Aquan, Auran, Ignan or Terran.\nSpecial: The character must have had peaceful contact with a true genie (djinni, efreeti, marid, or shaitan).",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": true,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "outsiders"
+        ],
+        "elementThemes": [
+          "fire",
+          "water",
+          "earth",
+          "air"
+        ],
+        "professionIdentity": [
+          "diplomat"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A daivrat is never evil.",
+          "evidenceSection": "Alignment"
+        }
+      ],
+      "professionIdentity": [
+        "diplomat"
+      ],
+      "playerSummary": "A Qadiran mage who treats genies as friends rather than slaves -- gaining an elemental affinity that boosts one energy descriptor toward Spell Focus and beyond, conjuring a minor genie to fetch unusual spells from any list, and eventually taking on a genie-kin outsider type with multiple energy resistances and damage reduction.",
+      "tradeoff": "Entry requires never being evil, Knowledge (arcana)/Knowledge (planes) 7 ranks, Spellcraft 5 ranks, Spell Focus (conjuration), 3rd-level spells, an elemental language, and proof of peaceful contact with a true genie, and fetched spells cost extra spell levels to prepare or cast.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:darechaser",
+      "name": "Darechaser",
+      "sourceCitationText": "Paths of the Righteous pg. 10",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Darechaser",
+      "requirementsText": "To qualify to become a darechaser, a character must fulfill all of the following criteria.\nBase Attack Bonus: +5.\nAlignment: Lawful good, neutral good, or chaotic good.\nDeity: Must worship Kurgess.\nFeats: Athletic.\nSkills: Acrobatics 5 ranks, Climb 5 ranks, Swim 5 ranks.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "core",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "athlete"
+        ],
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A darechaser must be lawful good, neutral good, or chaotic good.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A darechaser must worship Kurgess.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "athlete"
+      ],
+      "playerSummary": "A good-aligned athletic fanatic of Kurgess who fuels an adrenaline rush to boost physical checks, dares herself to add exploding bonus dice to a single crucial roll, and picks up customizable adrenaline deeds like extra speed, a climb or swim speed, or temporary hit points.",
+      "tradeoff": "Entry requires a good alignment, worship of Kurgess, base attack bonus +5, the Athletic feat, and Acrobatics/Climb/Swim 5 ranks, and her adrenaline rush leaves her fatigued afterward for double the rounds she used it.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:dawnflower-anchorite",
+      "name": "Dawnflower Anchorite",
+      "sourceCitationText": "Paths of the Righteous pg. 12",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Dawnflower%20Anchorite",
+      "requirementsText": "To qualify to become a Dawnflower anchorite, a character must fulfill all of the following criteria.\nAlignment: Neutral good.\nDeity: Must be a worshiper of Sarenrae.\nSkills: Knowledge (nature) 5 ranks or Knowledge (religion) 5 ranks.\nSpells: Able to cast 2nd-level spells.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "core",
+        "healing-recovery": "available",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "fire"
+        ],
+        "professionIdentity": [
+          "hermit"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Dawnflower anchorite must be neutral good.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A Dawnflower anchorite must worship Sarenrae.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "hermit"
+      ],
+      "playerSummary": "A neutral good hermit of Sarenrae who invokes the sun to gain bonuses against evil creatures and share them with allies, picks a personal credence like flaming weapons or bonus feats, and eventually casts sunbeam and unleashes an extended solar invocation even indoors.",
+      "tradeoff": "Entry requires neutral good alignment, worship of Sarenrae, Knowledge (nature) or Knowledge (religion) 5 ranks, and 2nd-level spells, and his solar invocation only functions outdoors in some light while presenting his holy symbol or a scimitar (until a late-game credence removes that restriction).",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:dawnflower-dissident",
+      "name": "Dawnflower Dissident",
+      "sourceCitationText": "Paths of Prestige pg. 20",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Dawnflower%20Dissident",
+      "requirementsText": "To qualify to become a Dawnflower dissident, a character must fulfill all of the following criteria.\nDeity: Must worship Sarenrae.\nFeats: Dervish Dance (The Inner Sea World Guide 286), Weapon Finesse.\nSkills: Bluff 5 ranks, Disguise 5 ranks, Knowledge (religion) 5 ranks, Sleight of Hand 5 ranks.\nSpells: Able to cast daylight as a divine spell.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "available",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "core",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "secret agent"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A Dawnflower dissident must worship Sarenrae.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "secret agent"
+      ],
+      "playerSummary": "A covert agent of Sarenrae who disguises her spellcasting with Bluff and Sleight of Hand checks so onlookers never notice, deceives attackers into striking the wrong target, and can even come back from death as a fiery phoenix before being reborn nearby.",
+      "tradeoff": "Entry requires worship of Sarenrae, Dervish Dance and Weapon Finesse, Bluff/Disguise/Knowledge (religion)/Sleight of Hand 5 ranks, and the ability to cast daylight, and disguising a spellcast slows its casting time to a full-round action or worse.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:death-slayer",
+      "name": "Death Slayer",
+      "sourceCitationText": "Adventurer's Guide pg. 152",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Death%20Slayer",
+      "requirementsText": "To qualify to become a death slayer, a character must fulfill the following criteria.\nFeats: Exotic Weapon Proficiency (sawtooth sabre), Great Fortitude, Weapon Focus (sawtooth sabre).\nSkills: Knowledge (religion) 5 ranks, Perception 5 ranks, Stealth 5 ranks.\nSpells: Ability to cast 3rd-level divine spells.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "high",
+        "equipment-dependence": "high",
+        "resource-management": "medium",
+        "versatility": "low"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "undead"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "assassin"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A death slayer must be affiliated with the Red Mantis, trained as their specialized agent for hunting undead targets.",
+          "evidenceSection": "Flavor text"
+        },
+        {
+          "type": "weapon-or-armour-restriction",
+          "kind": "commitment",
+          "summary": "A death slayer’s signature abilities revolve around the exotic sawtooth sabre.",
+          "evidenceSection": "Feats / Infuse Sabre"
+        }
+      ],
+      "professionIdentity": [
+        "assassin"
+      ],
+      "playerSummary": "A Red Mantis specialist hunting undead who channels positive energy purely to harm them, gains undead as a favored enemy, and infuses her sawtooth sabre with positive energy to weaken undead saves, eventually radiating a fast-healing aura that damages every undead nearby each round.",
+      "tradeoff": "Entry requires Exotic Weapon Proficiency and Weapon Focus (sawtooth sabre), Great Fortitude, Knowledge (religion)/Perception/Stealth 5 ranks, and 3rd-level divine spells, and her channel energy can only ever harm undead, never heal the living.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:devoted-muse",
+      "name": "Devoted Muse",
+      "sourceCitationText": "Paths of the Righteous pg. 14",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Devoted%20Muse",
+      "requirementsText": "To qualify to become a devoted muse, a character must fulfill all of the following criteria.\nBase Attack Bonus: +5.\nAlignment: Lawful good, neutral good, or chaotic good.\nDeity: Must worship Shelyn.\nSkills: Bluff 3 ranks, Knowledge (history) 3 ranks, Perform (dance) 5 ranks.\nFeats: Combat Expertise, Improved Feint, and Weapon Finesse.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "available",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "high",
+        "equipment-dependence": "medium",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "performer"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A devoted muse must be lawful good, neutral good, or chaotic good.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "A devoted muse must worship Shelyn.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "performer"
+      ],
+      "playerSummary": "A good-aligned finesse duelist of Shelyn who gains swashbuckler deeds and panache, then spends panache after a successful feint to distract, confuse, stagger, or daze a foe with mind-affecting artistic flourishes, capping off each strike with bonus precision damage or a rallying inspirational strike.",
+      "tradeoff": "Entry requires a good alignment, worship of Shelyn, base attack bonus +5, Combat Expertise, Improved Feint, Weapon Finesse, and Bluff/Knowledge (history)/Perform (dance) ranks, and nearly every signature trick requires first landing a feint and then spending a limited pool of panache points.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:enchanting-courtesan",
+      "name": "Enchanting Courtesan",
+      "sourceCitationText": "Inner Sea Intrigue pg. 34",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Enchanting%20Courtesan",
+      "requirementsText": "In order to qualify to become an enchanting courtesan, a character must fulfill the following criteria.\nFeats: Either Spell Focus (divination) or Spell Focus (enchantment).\nSkills: Bluff 5 ranks; Knowledge (arcana) 2 ranks; Sense Motive 5 ranks; Perform (act) or Perform (dance) 2 ranks.\nSpells: Ability to cast two different divination spells and two different enchantment spells. One of each must be 2nd level or higher.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "core",
+        "knowledge-investigation": "available",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "spy"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        "spy"
+      ],
+      "playerSummary": "An elite information-broker seductress who casts divination and enchantment spells covertly with a Bluff/Sleight of Hand check, delivers them through a willing touch or kiss, and eventually stuns or staggers a target outright with a touch of overwhelming, pain-suppressing ecstasy.",
+      "tradeoff": "Entry requires Spell Focus (divination) or (enchantment), Bluff/Knowledge (arcana)/Sense Motive/Perform ranks, and two divination and two enchantment spells including one of each at 2nd level or higher, and her whole kit is built around social manipulation and divination/enchantment magic rather than direct combat power.",
+      "reviewStatus": "reviewed"
     }
   ]
 }
