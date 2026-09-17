@@ -10688,6 +10688,882 @@
       "playerSummary": "A neutral Gozrehite storm-mystic who transforms into a growing whirlwind or underwater vortex dealing electricity or cold damage, gains resistance to electricity and sonic, shields allies from wind and water effects, and eventually gains an at-will storm shape with a fast fly speed and amphibious nature.",
       "tradeoff": "Entry requires any neutral alignment, worship of Gozreh, the Storm-Lashed feat, Fly/Knowledge (history)/Knowledge (nature)/Swim ranks, and 2nd-level spells, and her signature storm shape ability is limited to a pool of minutes per day until 10th level.",
       "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:student-of-perfection",
+      "name": "Student of Perfection",
+      "sourceCitationText": "Adventurer's Guide pg. 102",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Student%20of%20Perfection",
+      "requirementsText": "To qualify to become a student of perfection, a character must fulfill the following criteria.\nAlignment: Any lawful.\nFeats: Improved Unarmed Strike, Perfect Style†.\nSkills: 5 ranks in Acrobatics, Climb, Escape Artist, Stealth, or Swim; 5 ranks in Craft, Knowledge (any), Perception, Perform, or Sense Motive.\nSpecial: Must be a member of one of the Houses of Perfection.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "core",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "available",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "martial artist"
+        ],
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A student of perfection must be any lawful.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A student of perfection must be a member of one of the Houses of Perfection.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "martial artist"
+      ],
+      "playerSummary": "A lawful monastic martial artist who advances flurry of blows and ki pool as if gaining monk levels, unlocks a growing menu of unchained-style ki powers -- elemental strikes, extra grapple damage, suggestion-on-a-hit -- from her chosen House of Perfection, and eventually permanently boosts an ability score by 2.",
+      "tradeoff": "Entry requires any lawful alignment, Improved Unarmed Strike, the Perfect Style feat, ranks in two different skill categories, and membership in a House of Perfection, and most of her strongest ki powers are locked to whichever specific monastery she belongs to.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:tattooed-mystic",
+      "name": "Tattooed Mystic",
+      "sourceCitationText": "Paths of Prestige pg. 56",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Tattooed%20Mystic",
+      "requirementsText": "To qualify to become a tattooed mystic, a character must fulfill all the following criteria.\nFeats: Varisian Tattoo (The Inner Sea World Guide 289).\nSkills: Craft (tattoo) 5 ranks, Spellcraft 5 ranks.\nSpells: Able to cast 2nd-level spells.\nSpecial: Able to speak Thassilonian.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "available",
+        "utility-magic": "core",
+        "summoning-companions": "available",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": true,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "tattoo artist"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        "tattoo artist"
+      ],
+      "playerSummary": "A Varisian Thassilonian-tattooed mystic who inscribes magical tattoos onto herself for growing benefits -- binding hostile spells, surrounding herself in elemental damage auras, casting summons faster, or turning invisible while concentrating on illusions -- and eventually crafts her own magical tattoos with enhanced potency.",
+      "tradeoff": "Entry requires the Varisian Tattoo feat, Craft (tattoo)/Spellcraft 5 ranks, Thassilonian, and 2nd-level spells, and every mystic tattoo is chosen permanently at the level it’s gained, with no ability to swap them out later.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:thuvian-alchemist",
+      "name": "Thuvian Alchemist",
+      "sourceCitationText": "People of the Sands pg. 26",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Thuvian%20Alchemist",
+      "requirementsText": "To qualify to become a Thuvian alchemist, a character must fulfill all the following criteria.\nFeat: Brew Potion.\nSkills: Craft (alchemy) 5 ranks, Knowledge (nature) 5 ranks, Profession (herbalist) 5 ranks, Spellcraft 5 ranks.\nSpecial: Ability to cast 2nd-level arcane spells or create 2nd-level extracts.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "available",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "core",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": true,
+        "has-firearms": false,
+        "has-bombs": true,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "alchemical"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "herbalist"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        "herbalist"
+      ],
+      "playerSummary": "A Thuvian herbalist-alchemist who converts pairs of spells or extracts into potent curative extracts, layers on enhancements to also cure conditions like blindness or paralysis, gains alchemist discoveries and bomb damage even without alchemist levels, and eventually formulates her own imperfect eternal-youth elixir.",
+      "tradeoff": "Entry requires Brew Potion, Craft (alchemy)/Knowledge (nature)/Profession (herbalist)/Spellcraft 5 ranks, and 2nd-level arcane spells or extracts, and her signature healing solution always costs two full spell slots or extracts to produce one cure.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:twilight-talon",
+      "name": "Twilight Talon",
+      "sourceCitationText": "Adventurer's Guide pg. 72",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Twilight%20Talon",
+      "requirementsText": "To qualify to become a Twilight Talon, a character must fulfill the following criteria.\nAlignment: Any nonevil.\nFeats: Catch Off-Guard, Twilight Tattoo†.\nSkills: Bluff 5 ranks, Disguise 5 ranks, Knowledge (local) 2 ranks, Linguistics 2 ranks, Stealth 5 ranks.\nSpecial: A senior Eagle Knight must invite the character into the organization.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "available",
+        "social-influence": "core",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "spy"
+        ],
+        "primaryDelivery": [
+          "unarmed"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Twilight Talon must be any nonevil.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A senior Eagle Knight must invite the character into the secretive Twilight Talons.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "spy"
+      ],
+      "playerSummary": "A nonevil deep-cover Eagle Knight spy who fakes professions with a Sense Motive check, uses improvised weapons with growing damage and critical range, unlocks disguise- and memory-altering spell-like abilities through her Twilight Tattoo, and can tap a hidden dead-drop fund for emergency gear in the field.",
+      "tradeoff": "Entry requires any nonevil alignment, Catch Off-Guard, the Twilight Tattoo feat, Bluff/Disguise/Stealth ranks, and a formal invitation from a senior Eagle Knight, and her dead drop fund only pays out core rulebook gear and must be pre-funded and located before it can be used.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:ulfen-guard",
+      "name": "Ulfen Guard",
+      "sourceCitationText": "Inner Sea Combat pg. 34",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Ulfen%20Guard",
+      "requirementsText": "To qualify to become an Ulfen Guard, a character must fulfill all of the following criteria.\nBase Attack Bonus: +5.\nSkills: Knowledge (nobility) 2 ranks, Perception 5 ranks, Sense Motive 3 ranks.\nSpecial: Ulfen descent.",
+      "hitDie": "d10",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "available",
+        "protecting-allies": "core",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "medium",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": true,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "none"
+        ],
+        "castingMethod": [
+          "none"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "bodyguard"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "race",
+          "kind": "requirement",
+          "summary": "An Ulfen Guard must be of at least half-Ulfen descent.",
+          "evidenceSection": "Special"
+        }
+      ],
+      "professionIdentity": [
+        "bodyguard"
+      ],
+      "playerSummary": "A raging Ulfen bodyguard who trades a bit of her own AC to shield a chosen ally while adjacent, rages and picks flexible guard dedications like deflecting arrows meant for her charge, borrowing a teamwork feat, or gaining uncanny dodge, and eventually becomes unbreakable while defending that ally.",
+      "tradeoff": "Entry requires base attack bonus +5, Knowledge (nobility)/Perception/Sense Motive ranks, and at least half-Ulfen descent, and nearly every defining ability only functions while raging and adjacent to or near her one chosen ally.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:umbral-court-agent",
+      "name": "Umbral Court Agent",
+      "sourceCitationText": "Paths of Prestige pg. 58",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Umbral%20Court%20Agent",
+      "requirementsText": "To qualify to become an Umbral Court agent, a character must fulfill all of the following criteria.\nAlignment: Lawful evil.\nDeity: Must worship Zon-Kuthon.\nFeats: Deceitful.\nSkills: Bluff 5 ranks, Knowledge (nobility) 7 ranks, Knowledge (religion) 7 ranks.\nSpells: Able to cast 2nd-level spells.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "available",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "core",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "absent",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "available",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "available",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": true,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "divine"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "spy"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "An Umbral Court agent must be lawful evil.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "deity",
+          "kind": "requirement",
+          "summary": "An Umbral Court agent must worship Zon-Kuthon.",
+          "evidenceSection": "Deity"
+        }
+      ],
+      "professionIdentity": [
+        "spy"
+      ],
+      "playerSummary": "A lawful evil Kuthite enforcer of Nidal who extends melee touch reach with shadowy chains that entangle or grapple foes, teleports between shadows, unnerves enemies with a fear-inducing gaze, and eventually constricts a grappled victim for heavy ongoing damage while silencing them.",
+      "tradeoff": "Entry requires lawful evil alignment, worship of Zon-Kuthon, the Deceitful feat, Bluff/Knowledge (nobility)/Knowledge (religion) ranks, and 2nd-level spells, and her signature grappling and unnerving abilities work best in dim light or darkness.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:veiled-illusionist",
+      "name": "Veiled Illusionist",
+      "sourceCitationText": "Paths of Prestige pg. 60",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Veiled%20Illusionist",
+      "requirementsText": "To qualify to become a veiled illusionist, a character must fulfill all the following criteria.\nFeats: Spell Focus (illusion).\nSkills: Bluff 5 ranks, Disguise 5 ranks, Knowledge (arcana) 2 ranks.\nSpells: Able to cast three different illusion spells, one of which must be of 2nd level or higher.",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "core",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "mixed"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "deity"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "wanderer"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [
+        "wanderer"
+      ],
+      "playerSummary": "A shapeshifting disciple of Sivanah who spends veil pool points to disguise herself as human, halfling, elf, gnome, cyclops, or naga -- each granting a unique power like disguising her spellcasting or rerolling to beat spell resistance -- and eventually turns her disguise into a true polymorph-like transformation.",
+      "tradeoff": "Entry requires Spell Focus (illusion), Bluff/Disguise/Knowledge (arcana) ranks, and three known illusion spells including one of 2nd level or higher, and every glamer and racial veil draws from the same small daily pool of veil points.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:westcrown-devil",
+      "name": "Westcrown Devil",
+      "sourceCitationText": "Adventurer's Guide pg. 48",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Westcrown%20Devil",
+      "requirementsText": "To qualify to become a Westcrown devil, a character must fulfill the following criteria.\nAlignment: Any nonlawful.\nFeats: Weapon Finesse plus any one of the following: Alertness, Athletic, Deceitful, Deft Hands, Magical Aptitude, Persuasive, or Stealthy.\nReligion: Cannot worship Norgorber.\nSkills: Knowledge (local) 5 ranks, 5 ranks each in any three of the following skills: Acrobatics, Bluff, Climb, Disable Device, Knowledge (history), Knowledge (nobility), Sense Motive, Sleight of Hand, Stealth, or Use Magic Device.",
+      "hitDie": "d8",
+      "capabilities": {
+        "melee-combat": "available",
+        "ranged-combat": "absent",
+        "offensive-magic": "absent",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "absent",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "core",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "core",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "high",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "medium",
+        "versatility": "high"
+      },
+      "facts": {
+        "has-spellcasting": false,
+        "has-animal-companion": false,
+        "has-familiar": false,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": true,
+        "has-shapeshifting": false,
+        "has-sneak-attack": true,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": true,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "other"
+        ],
+        "castingMethod": [
+          "spell-like"
+        ],
+        "castingExtent": [
+          "none"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "none"
+        ],
+        "elementThemes": [
+          "none"
+        ],
+        "professionIdentity": [
+          "spy"
+        ],
+        "primaryDelivery": [
+          "melee weapon"
+        ]
+      },
+      "constraints": [
+        {
+          "type": "alignment",
+          "kind": "requirement",
+          "summary": "A Westcrown devil must be any nonlawful.",
+          "evidenceSection": "Alignment"
+        },
+        {
+          "type": "organization",
+          "kind": "requirement",
+          "summary": "A Westcrown devil is a premier agent of the Council of Thieves, and cannot worship Norgorber.",
+          "evidenceSection": "Religion"
+        }
+      ],
+      "professionIdentity": [
+        "spy"
+      ],
+      "playerSummary": "A nonlawful Council of Thieves agent who wields a longsword with Weapon Finesse and spends favor points on skill boosts and founder-inspired powers -- seeing through walls, melding into wood, breathing underwater, or issuing a suggestion -- while gaining a growing menu of rogue talents.",
+      "tradeoff": "Entry requires Weapon Finesse plus one of several social/physical feats, Knowledge (local) 5 ranks plus three more skills at 5 ranks, any nonlawful alignment, and never worshiping Norgorber, and nearly every founders’ favor power costs a limited daily favor point.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "prestige:winter-witch",
+      "name": "Winter Witch",
+      "sourceCitationText": "Reign of Winter Player's Guide pg. 12",
+      "sourceUrl": "https://aonprd.com/PrestigeClassesDisplay.aspx?ItemName=Winter%20Witch",
+      "requirementsText": "To qualify to become a winter witch, a character must fulfill all the following criteria.\nSkills: Knowledge (arcana) 5 ranks, Spellcraft 5 ranks.\nSpells: Able to cast at least three different spells with the cold descriptor, one of which must be of 3rd level or higher.\nSpecial: Must have a patron and the ice magic class feature (Inner Sea Magic 43).",
+      "hitDie": "d6",
+      "capabilities": {
+        "melee-combat": "absent",
+        "ranged-combat": "absent",
+        "offensive-magic": "core",
+        "single-target-damage": "absent",
+        "area-multi-target-damage": "absent",
+        "combat-manoeuvres": "absent",
+        "tactical-leadership": "absent",
+        "personal-durability": "absent",
+        "protecting-allies": "absent",
+        "battlefield-control": "available",
+        "combat-mobility": "absent",
+        "debuffing-enemies": "absent",
+        "anti-magic-disruption": "absent",
+        "support-buffing": "absent",
+        "healing-recovery": "absent",
+        "defensive-protective-magic": "absent",
+        "utility-magic": "available",
+        "summoning-companions": "absent",
+        "transformation-shapeshifting": "absent",
+        "practical-expertise": "absent",
+        "social-influence": "absent",
+        "knowledge-investigation": "absent",
+        "stealth-subterfuge": "absent",
+        "wilderness-affinity": "absent"
+      },
+      "practical": {
+        "build-complexity": "high",
+        "play-complexity": "medium",
+        "attribute-demands": "medium",
+        "equipment-dependence": "low",
+        "resource-management": "low",
+        "versatility": "medium"
+      },
+      "facts": {
+        "has-spellcasting": true,
+        "has-animal-companion": false,
+        "has-familiar": true,
+        "has-mount": false,
+        "has-code-of-conduct": false,
+        "requires-deity": false,
+        "requires-alignment": false,
+        "has-shapeshifting": false,
+        "has-sneak-attack": false,
+        "has-healing": false,
+        "has-firearms": false,
+        "has-bombs": false,
+        "has-rage": false,
+        "has-profession-identity": false,
+        "depends-on-specific-equipment": false,
+        "controls-additional-entity": false
+      },
+      "identity": {
+        "magicIdentity": [
+          "arcane"
+        ],
+        "castingMethod": [
+          "prepared"
+        ],
+        "castingExtent": [
+          "partial"
+        ],
+        "environmentThemes": [],
+        "spiritualThemes": [
+          "patron"
+        ],
+        "elementThemes": [
+          "water"
+        ],
+        "professionIdentity": [
+          "witch"
+        ],
+        "primaryDelivery": [
+          "spellcasting"
+        ]
+      },
+      "constraints": [],
+      "professionIdentity": [],
+      "playerSummary": "An Irriseni-flavored witch who advances her patron and hexes as if gaining witch levels, makes cold spells hit harder by halving resistance, freezes or melts ice and water with a touch, sculpts ice and snow like stone shape, and eventually glides silently through solid ice and snow.",
+      "tradeoff": "Entry requires Knowledge (arcana)/Spellcraft 5 ranks, an existing patron and ice magic class feature, and three known cold-descriptor spells including one at 3rd level or higher, and her entire kit is built around cold-descriptor magic rather than general arcane versatility.",
+      "reviewStatus": "reviewed"
     }
   ]
 }
