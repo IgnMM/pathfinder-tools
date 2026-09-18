@@ -92,10 +92,11 @@
 
   .circle-wrap{
     position:relative;
-    width:min(88vw,760px);
+    width:min(88vw,74vh,760px);
     aspect-ratio:1/1;
     margin:0 auto;
     z-index:2;
+    container-type:inline-size;
   }
   .circle-wrap img.bg{
     position:absolute;
@@ -117,7 +118,7 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    width:clamp(96px,17vw,180px);
+    width:clamp(96px,19.3cqw,180px);
     text-decoration:none;
     cursor:pointer;
     -webkit-tap-highlight-color:transparent;
@@ -155,7 +156,7 @@
     margin-top:10px;
     font-family:'Cinzel',Georgia,serif;
     font-weight:600;
-    font-size:clamp(.66rem,1.15vw,.85rem);
+    font-size:clamp(.66rem,1.31cqw,.85rem);
     letter-spacing:.11em;
     text-transform:uppercase;
     color:var(--parchment);
@@ -167,7 +168,7 @@
   .node .rune{
     display:block;
     font-family:'Cinzel Decorative',Georgia,serif;
-    font-size:clamp(.5rem,.85vw,.68rem);
+    font-size:clamp(.5rem,.97cqw,.68rem);
     letter-spacing:.05em;
     color:var(--ember-glow);
     opacity:.92;
@@ -222,12 +223,12 @@
      rather than a 6th equal-weight section, and nudged down from the raw
      5-point centroid (~47%) since the "top" node's own label/rune otherwise
      visually crowds it at 48% -- confirmed by live rendering, not just math. */
-  .node[data-pos="center"]{ left:50%; top:54%; width:clamp(52px,8.5vw,92px); }
-  .node[data-pos="center"] .label{ font-size:clamp(.56rem,1vw,.72rem); margin-top:6px; }
-  .node[data-pos="center"] .rune{ font-size:clamp(.42rem,.72vw,.58rem); }
+  .node[data-pos="center"]{ left:50%; top:54%; width:clamp(52px,9.66cqw,92px); }
+  .node[data-pos="center"] .label{ font-size:clamp(.56rem,1.14cqw,.72rem); margin-top:6px; }
+  .node[data-pos="center"] .rune{ font-size:clamp(.42rem,.82cqw,.58rem); }
 
   @media (max-width:560px){
-    .circle-wrap{ width:94vw; }
+    .circle-wrap{ width:min(94vw,70vh); }
     .node[data-pos="top"]{ top:19%; }
     .node[data-pos="upper-left"]{ left:25%; top:37%; }
     .node[data-pos="upper-right"]{ left:75%; top:37%; }
@@ -242,12 +243,33 @@
     .node:hover .ring::before{ animation:none; }
   }
 
-  #helpBtn:hover, #helpBtn:focus-visible{ border-color:var(--gold-bright); box-shadow:0 0 0 2px rgba(241,215,139,.25), 0 4px 12px rgba(0,0,0,.35); }
+  .rune-btn{
+    z-index:500;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:radial-gradient(circle at 50% 42%, rgba(40,32,20,.9) 0%, rgba(10,8,5,.92) 68%, rgba(10,8,5,.92) 100%);
+    border:1px solid rgba(233,200,116,.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    padding:0;
+    box-shadow:0 0 0 1px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.5), inset 0 0 10px rgba(233,200,116,.08);
+    transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+  }
+  .rune-btn:hover, .rune-btn:focus-visible{
+    border-color:var(--gold-bright);
+    box-shadow:0 0 0 1px rgba(0,0,0,.4), 0 0 16px rgba(241,215,139,.45), inset 0 0 12px rgba(233,200,116,.18);
+    transform:scale(1.06);
+  }
   #helpDialog::backdrop{ background:rgba(6,4,3,.72); backdrop-filter:blur(2px); }
   #helpDialog dt{ text-transform:uppercase; letter-spacing:.04em; }
   #helpDialogClose:hover, #helpDialogClose:focus-visible{ background:rgba(233,200,116,.2); }
   @media (max-width:480px){
-    #helpBtn{ right:56px; }
+    .rune-btn{ width:38px; height:38px; }
+    #helpBtn{ right:54px; }
+    .stage{ padding-top:56px; }
   }
 </style>
 </head>
@@ -270,9 +292,11 @@
     </div>
   </div>
 </div>
-<button id="sanctumLogout" type="button" title="Log out" style="position:fixed;top:10px;right:10px;z-index:500;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid rgba(233,200,116,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.35)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#e9c874" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button>
-<button id="helpBtn" type="button" title="What is each of these?" aria-haspopup="dialog" style="position:fixed;top:8px;right:60px;z-index:500;width:46px;height:46px;border-radius:10px;background:rgba(0,0,0,.88);border:1px solid rgba(233,200,116,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.35);padding:0">
-  <img src="assets/sanctum/help-glyph.png" alt="" width="26" height="39" style="display:block;filter:drop-shadow(0 0 6px rgba(110,190,255,.55))">
+<button id="sanctumLogout" type="button" title="Log out" class="rune-btn" style="position:fixed;top:10px;right:10px;">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e9c874" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+</button>
+<button id="helpBtn" type="button" title="What is each of these?" aria-haspopup="dialog" class="rune-btn" style="position:fixed;top:10px;right:60px;">
+  <img src="assets/sanctum/help-glyph.png" alt="" width="21" height="31" style="display:block;filter:drop-shadow(0 0 6px rgba(110,190,255,.55))">
 </button>
 <dialog id="helpDialog" aria-labelledby="helpDialogTitle" style="border:1px solid rgba(233,200,116,.4);border-radius:14px;background:#100c07;color:var(--parchment);max-width:min(92vw,520px);padding:0;box-shadow:0 20px 60px rgba(0,0,0,.6)">
   <div style="padding:20px 22px 22px">
