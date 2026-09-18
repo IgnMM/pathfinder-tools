@@ -26,9 +26,9 @@ test('index.html stays small (under 100KB) -- the whole point of moving images o
   assert.ok(sizeKB < 100, `index.html is ${sizeKB.toFixed(0)}KB -- should be well under 100KB now that images live in separate files`);
 });
 
-test('the pentacle background and all 5 vertex node icons reference real files that exist on disk', () => {
+test('the pentacle background, all 5 vertex node icons and the help glyph reference real files that exist on disk', () => {
   const files = [...homeHtml.matchAll(/src="(assets\/sanctum\/[^"]+)"/g)].map(m => m[1]);
-  assert.equal(files.length, 6, 'expected exactly 6 assets/sanctum/ references: 1 background + 5 vertex node icons');
+  assert.equal(files.length, 7, 'expected exactly 7 assets/sanctum/ references: 1 background + 5 vertex node icons + 1 help-glyph icon (the "what lives in the Sanctum" popup trigger)');
   for (const rel of files) {
     const full = path.join(root, rel);
     assert.ok(fs.existsSync(full), `${rel} must exist on disk`);
