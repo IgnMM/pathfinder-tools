@@ -56,6 +56,10 @@ body.theme-companion::before{ background-image:linear-gradient(180deg, rgba(6,10
 body.theme-find-class::before{ background-image:linear-gradient(180deg, rgba(5,8,14,.4), rgba(5,8,14,.7)), url('tool-backgrounds/find-class-observatory.webp'); background-position:center top; }
 body.theme-characters::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.4), rgba(9,7,4,.7)), url('tool-backgrounds/characters-hall.webp'); background-position:center top; }
 body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11,.4), rgba(4,8,11,.7)), url('tool-backgrounds/sources-archive.webp'); background-position:center top; }
+/* Character Spell Sheets reuse the already-approved class-seal scene (same image the
+   hub's own class picker uses) rather than a new tool-backgrounds asset -- no separate
+   mobile crop exists for it, so the one image is used at every width. */
+body.theme-spell-sheet::before{ background-image:linear-gradient(180deg, rgba(6,7,11,.45), rgba(6,7,11,.75)), url('stone-runes/arcane-seals-background.png'); background-position:center top; }
 
 @media (max-width:700px){
   body.theme-calc::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.45), rgba(9,7,4,.75)), url('tool-backgrounds/calc-war-room-mobile.webp'); }
@@ -111,6 +115,24 @@ body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11
 .arc-topbar .arc-sep{ opacity:.5; }
 .arc-topbar .arc-tool-name{ color:var(--arc-text); font-weight:600; }
 .arc-topbar .arc-spacer{ flex:1 1 auto; }
+/* Optional back-navigation button (pages nested deeper than one level under the
+   Sanctum, e.g. a Character Spell Sheet) -- same plate as .arc-home, own element so it
+   can sit beside the breadcrumb without being mistaken for the Sanctum link itself. */
+.arc-topbar .arc-back{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  background:rgba(0,0,0,.4);
+  border:1px solid var(--arc-line);
+  color:var(--arc-muted);
+  cursor:pointer;
+  flex:none;
+}
+.arc-topbar .arc-back svg{ width:15px; height:15px; }
+.arc-topbar .arc-back:hover, .arc-topbar .arc-back:focus-visible{ color:var(--arc-gold-light); border-color:var(--arc-line-strong); }
 
 /* ---------- 3. Section rune ---------- */
 .arc-rune{
@@ -130,6 +152,9 @@ body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11
    (e.g. the topbar) that wants the same plate treatment. */
 body.theme-calc .card, body.theme-calc header,
 body.theme-companion .card, body.theme-companion header,
+body.theme-spell-sheet header,
+body.theme-characters .card, body.theme-characters header,
+body.theme-sources #pageHeader, body.theme-sources details.section,
 .arc-panel{
   /* Deliberately does NOT touch border-color: each tool's existing per-category
      top-border color (gold/blue/green/violet) must remain exactly as-is, and a
@@ -141,8 +166,34 @@ body.theme-companion .card, body.theme-companion header,
   border-radius:var(--arc-radius);
   box-shadow:var(--arc-shadow), inset 0 1px 0 rgba(255,255,255,.03);
 }
+/* theme-spell-sheet's own .card is one-per-spell (dozens to hundreds on screen at
+   once) -- the full section-level shadow/texture treatment above would turn a dense,
+   scannable grid into a blurry mess and cost real paint time, so it gets a much
+   lighter version: same faint sheen, a small tight shadow instead of the big soft one,
+   no repeating-gradient grain layer. Classfinder's own "fyc*Card" family (its own
+   bespoke component names, not the shared .card class) gets the same light treatment
+   for the same reason -- several of these (manual-mode cards, narrative options) can
+   also appear many at once. */
+body.theme-spell-sheet .card,
+body.theme-find-class .fycCard,
+body.theme-find-class .fycResultCard,
+body.theme-find-class .fycChoiceCard,
+body.theme-find-class .fycManualGroup,
+body.theme-find-class .fycManualCard,
+body.theme-find-class .fycNarrativeOption,
+body.theme-find-class .fycManualSummary,
+body.theme-find-class .fycSourcesPanel{
+  position:relative;
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.025) 0%, rgba(255,255,255,0) 22%),
+    var(--arc-panel);
+  box-shadow:0 2px 6px rgba(0,0,0,.28);
+}
 body.theme-calc .card::before, body.theme-calc header::before,
 body.theme-companion .card::before, body.theme-companion header::before,
+body.theme-spell-sheet header::before,
+body.theme-characters .card::before, body.theme-characters header::before,
+body.theme-sources #pageHeader::before, body.theme-sources details.section::before,
 .arc-panel::before{
   /* Faint stone/metal grain — CSS-only, no bitmap. */
   content:"";
