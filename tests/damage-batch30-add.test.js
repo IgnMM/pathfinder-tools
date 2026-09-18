@@ -54,9 +54,9 @@ test('Batch 30: Regenerate Muscles grants +2 enhancement to Strength', () => {
   assert.match(b, /abilityBuffBonus\(ctx,'str',2\)/);
 });
 
-test('Batch 30: Scorching Weapons grants a flat +1 fire damage (crit-multiplied like a weapon special ability, unlike extraDice)', () => {
+test('Batch 30: Scorching Weapons adds 1 point of fire damage via extraDice (not multiplied on a crit, same convention as other weapon-elemental-damage entries like Holy Sword)', () => {
   const b = block('scorching-weapons');
-  assert.match(b, /compute:\(\)=>\(\{attack:0,damage:1,/);
+  assert.match(b, /extraDice:\{normal:'1'\}/);
 });
 
 test('Batch 30: Serren\'s Masterstroke scales its precision damage by BAB tier (2d6 base, 3d6 at BAB 11, 4d6 at BAB 16)', () => {
