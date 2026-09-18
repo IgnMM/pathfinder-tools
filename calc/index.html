@@ -4624,6 +4624,10 @@ const MODIFIERS = [
 {id:'long-nose-form',name:'Long-Nose Form',category:'feat',source:'Advanced Race Guide pg. 165',appliesTo:['attack','damage'],type:'untyped',
  desc:"+2 bonus to Strength score while in this alter-self-like form (once/day), also grants the scent ability, not modeled here. Only actually changes your attack/damage here if Strength is your selected attack/damage ability above.",
  compute:(ctx)=>{let r=abilityBuffBonus(ctx,'str',2);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (untyped)'):"no effect — Strength isn't your selected attack/damage ability above"}}},
+{id:'octopus-focus',name:'Octopus Focus',category:'feat',source:'Martial Arts Handbook pg. 14',appliesTo:['attack'],type:'special',
+ configFields:[{key:'enemies',label:'Enemies currently threatening you',type:'number',default:1}],
+ desc:"While using this style, +1 melee attack bonus per enemy threatening you, up to your Dexterity modifier (also reduces the two-hands-free grapple penalty from -4 to -2, not modeled here).",
+ compute:(ctx,cfg)=>{let cap=Math.max(0,ctx.dex||0);let v=Math.max(0,Math.min(cap,cfg.enemies||0));return {attack:v,damage:0,note:v?('+'+v+' atk (melee only, capped at your Dexterity modifier)'):"no effect — no enemies threatening you, or your Dexterity modifier is 0 or negative"}}},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
