@@ -247,22 +247,20 @@
     z-index:500;
     width:44px;
     height:44px;
-    border-radius:50%;
-    background:radial-gradient(circle at 50% 42%, rgba(40,32,20,.9) 0%, rgba(10,8,5,.92) 68%, rgba(10,8,5,.92) 100%);
-    border:1px solid rgba(233,200,116,.4);
+    background:none;
+    border:none;
     display:flex;
     align-items:center;
     justify-content:center;
     cursor:pointer;
     padding:0;
-    box-shadow:0 0 0 1px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.5), inset 0 0 10px rgba(233,200,116,.08);
-    transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+    transition:transform .3s ease, filter .3s ease;
   }
   .rune-btn:hover, .rune-btn:focus-visible{
-    border-color:var(--gold-bright);
-    box-shadow:0 0 0 1px rgba(0,0,0,.4), 0 0 16px rgba(241,215,139,.45), inset 0 0 12px rgba(233,200,116,.18);
-    transform:scale(1.06);
+    transform:scale(1.1);
+    filter:brightness(1.25);
   }
+  .rune-btn:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:4px; border-radius:50%; }
   #helpDialog::backdrop{ background:rgba(6,4,3,.72); backdrop-filter:blur(2px); }
   #helpDialog dt{ text-transform:uppercase; letter-spacing:.04em; }
   #helpDialogClose:hover, #helpDialogClose:focus-visible{ background:rgba(233,200,116,.2); }
