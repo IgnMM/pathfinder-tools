@@ -4631,6 +4631,10 @@ const MODIFIERS = [
 {id:'stunning-assault',name:'Stunning Assault',category:'feat',source:"Advanced Player's Guide pg. 171",appliesTo:['attack'],type:'untyped',
  desc:"You can choose to take a -5 penalty on all melee attack rolls (and combat maneuver checks) to stun a target for 1 round on a hit (Fortitude DC 10 + your base attack bonus negates). Toggle on only for a round where you actually invoke this feat before the attack roll.",
  compute:()=>({attack:-5,damage:0,note:"-5 atk (melee only, self-penalty) -- to stun the target for 1 round on a hit (Fort DC 10+BAB negates, not modeled here)"})},
+{id:'whispered-knowledge',name:'Whispered Knowledge',category:'feat',source:'Faction Guide pg. 58',appliesTo:['attack','damage'],type:'special',
+ configFields:[{key:'secret',label:'Secret chosen',type:'select',options:[{v:'blood',label:'Secret of Blood (+2 enhancement Strength)'},{v:'brains',label:'Secret of Brains (+2 enhancement Intelligence)'}],default:'blood'}],
+ desc:"After dealing damage to a living creature with a melee attack, you can spend a swift action to consume its blood, gaining 1d8 temporary hit points, a +1 caster level bonus (not modeled here) and a +2 enhancement bonus to Strength (Secret of Blood) or Intelligence (Secret of Brains). Only actually changes your attack/damage here if the chosen ability is your selected attack/damage ability above. Toggle on only for the round after you've triggered it.",
+ compute:(ctx,cfg)=>{let ability=cfg.secret==='brains'?'int':'str';let r=abilityBuffBonus(ctx,ability,2,'enhancement');return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):("no effect — "+(ability==='str'?'Strength':'Intelligence')+" isn't your selected attack/damage ability above")}}},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
