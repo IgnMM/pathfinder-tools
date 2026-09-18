@@ -4587,6 +4587,9 @@ const MODIFIERS = [
 {id:'weapon-evoker-mastery',name:'Weapon Evoker Mastery',category:'feat',source:'Magic Tactics Toolbox pg. 31',appliesTo:['damage'],type:'special',
  desc:"+1d4 damage of the same energy type as your weapon's elemental special ability (acid/cold/fire/electricity/sonic), for 1 round after a swift action. Requires that weapon special ability to already be active/selected above.",
  compute:()=>({attack:0,damage:0,extraDice:{normal:'1d4'},note:"+1d4 elemental damage, matching your weapon's own elemental special ability (not multiplied on a crit) -- toggle on only for the 1 round after activating"})},
+{id:'diva-strike',name:'Diva Strike',category:'feat',source:"Adventurer's Guide pg. 176",appliesTo:['damage'],type:'special',
+ desc:"While using Diva Style, the first melee hit each round against a target denied its Dexterity bonus to AC deals extra precision damage equal to your Charisma modifier (not multiplied on a crit).",
+ compute:(ctx)=>{let cha=ctx.cha||0;if(cha<=0)return{attack:0,damage:0,note:"no effect — Charisma modifier is 0 or negative"};return {attack:0,damage:0,extraDice:{normal:String(cha)},note:'+'+cha+" precision damage (= Charisma modifier, not multiplied on a crit) -- first melee hit per round only, vs. a target denied its Dex bonus to AC, while using Diva Style"}}},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
