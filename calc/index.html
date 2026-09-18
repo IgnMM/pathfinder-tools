@@ -4621,6 +4621,9 @@ const MODIFIERS = [
  configFields:[{key:'burn',label:'Burn reduction points spent this way (max 5)',type:'number',default:1}],
  desc:"When you gather power, spend burn reduction points to instead gain a +2 alchemical bonus to Strength, Dexterity and Constitution per point (max 5 points = +10) until the end of your turn. Only actually changes your attack/damage here if Strength or Dexterity is your selected attack/damage ability above.",
  compute:(ctx,cfg)=>{let n=Math.max(0,Math.min(5,cfg.burn||0));let bonus=n*2;let r1=abilityBuffBonus(ctx,'str',bonus,'alchemical'),r2=abilityBuffBonus(ctx,'dex',bonus,'alchemical');let a=r1.attack+r2.attack,d=r1.damage+r2.damage;return {attack:a,damage:d,note:(a||d)?('+'+a+' atk / +'+d+' dmg (alchemical, +'+bonus+' to Strength/Dexterity/Constitution until end of turn)'):"no effect — neither Strength nor Dexterity is your selected attack/damage ability above"}}},
+{id:'long-nose-form',name:'Long-Nose Form',category:'feat',source:'Advanced Race Guide pg. 165',appliesTo:['attack','damage'],type:'untyped',
+ desc:"+2 bonus to Strength score while in this alter-self-like form (once/day), also grants the scent ability, not modeled here. Only actually changes your attack/damage here if Strength is your selected attack/damage ability above.",
+ compute:(ctx)=>{let r=abilityBuffBonus(ctx,'str',2);return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (untyped)'):"no effect — Strength isn't your selected attack/damage ability above"}}},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
