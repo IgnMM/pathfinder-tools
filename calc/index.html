@@ -4694,6 +4694,16 @@ const MODIFIERS = [
 {id:'resounding-blow',name:'Resounding Blow',category:'spell',source:"Advanced Player's Guide pg. 238",appliesTo:['damage'],type:'special',
  desc:"+1d6 sonic damage on a successful melee hit (not multiplied on a crit; also a Fortitude-save-triggered stagger/stun/deafen when combined with a smite or judgment, not modeled here). Requires wielding a melee weapon; ends immediately if the weapon leaves your hand.",
  compute:()=>({attack:0,damage:0,extraDice:{normal:'1d6'},note:'+1d6 sonic dmg (not multiplied on a crit, melee weapon only)'})},
+{id:'sensory-amplifier',name:'Sensory Amplifier',category:'spell',source:'Occult Origins pg. 29',appliesTo:['damage'],type:'special',
+ desc:"+2d6 damage of the same type, the first time each round a creature in the spell's area takes damage from you (also grants nearby creatures a Perception bonus, low-light vision and scent, not modeled here). Toggle on only for the first hit each round against a creature standing in the area.",
+ compute:()=>({attack:0,damage:0,extraDice:{normal:'2d6'},note:'+2d6 dmg (not multiplied on a crit, once per round, first hit vs a creature in the area only)'})},
+{id:'sun-metal',name:'Sun Metal',category:'spell',source:'Ultimate Combat',appliesTo:['damage'],type:'special',
+ desc:"+1d4 fire damage on a hit with the touched weapon (not multiplied on a crit; doesn't stack with flaming/flaming burst or other fire-adding weapon effects; doesn't work on a weapon with frost/icy burst or other cold-adding effects; ends if submerged in water).",
+ compute:()=>({attack:0,damage:0,extraDice:{normal:'1d4'},note:'+1d4 fire dmg (not multiplied on a crit; doesn\'t stack with other fire-adding weapon effects, such as flaming)'})},
+{id:'threefold-aspect',name:'Threefold Aspect',category:'spell',source:"Advanced Player's Guide pg. 249",appliesTo:['attack','damage'],type:'special',
+ configFields:[{key:'aspect',label:'Chosen aspect',type:'select',options:[{v:'young',label:'Young adult (+2 enh. Dex/Con, -2 Wis)'},{v:'adult',label:'Adult (+2 enh. Wis/Int, -2 Dex)'},{v:'elderly',label:'Elderly (+4 enh. Wis/Int, -2 Str/Dex)'}],default:'young'}],
+ desc:"Shifts your ability scores as an enhancement bonus/penalty based on the chosen aspect (Young adult: +2 Dex/+2 Con, -2 Wis; Adult: +2 Wis/+2 Int, -2 Dex; Elderly: +4 Wis/+4 Int, -2 Str/-2 Dex). Only the Strength/Dexterity portions are modeled here (Wis/Int/Con have no attack/damage channel). Only actually changes your attack/damage here if Strength and/or Dexterity is your selected attack/damage ability above.",
+ compute:(ctx,cfg)=>{let aspect=cfg.aspect||'young';let rStr={attack:0,damage:0},rDex={attack:0,damage:0};if(aspect==='young'){rDex=abilityBuffBonus(ctx,'dex',2,'enhancement');}else if(aspect==='adult'){rDex=abilityBuffBonus(ctx,'dex',-2,'enhancement');}else if(aspect==='elderly'){rStr=abilityBuffBonus(ctx,'str',-2,'enhancement');rDex=abilityBuffBonus(ctx,'dex',-2,'enhancement');}let a=rStr.attack+rDex.attack,d=rStr.damage+rDex.damage;return {attack:a,damage:d,note:(a||d)?(signed(a)+' atk / '+signed(d)+' dmg (enhancement)'):"no effect — neither Strength nor Dexterity is your selected attack/damage ability above, or this aspect doesn't touch either"}}},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
