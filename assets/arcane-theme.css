@@ -1,0 +1,207 @@
+/* Arcane Instruments — shared visual shell for Pathfinder Tools.
+   Include AFTER each page's own <style> block so these rules win as overrides.
+   Body classes: theme-calc, theme-companion, theme-find-class, theme-characters,
+   theme-sources, theme-spell-sheet, theme-spell-library.
+   Visual shell only — never touches calculation logic, catalogues, persistence or routing. */
+
+:root{
+  --arc-bg: #0b0f14;
+  --arc-panel: rgba(18, 24, 32, .94);
+  --arc-panel-strong: rgba(13, 18, 25, .97);
+  --arc-line: rgba(206, 177, 105, .24);
+  --arc-line-strong: rgba(225, 198, 126, .46);
+  --arc-gold: #d6b35f;
+  --arc-gold-light: #f1d78b;
+  --arc-text: #edf3f8;
+  --arc-muted: #aebdcc;
+  --arc-radius: 14px;
+  --arc-shadow: 0 12px 30px rgba(0,0,0,.38);
+}
+
+/* ---------- 1. Background layer ---------- */
+/* A fixed pseudo-element behind everything, never in flow, never intercepting pointer
+   events, never affecting page height. Each theme-* class supplies its own image + crop
+   position; the solid/gradient body background already set by the page is the fallback
+   drawn first, so a failed image load still leaves a usable dark page. */
+body[class*="theme-"]{ position:relative; }
+body[class*="theme-"]::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center top;
+  opacity:.9;
+}
+/* Darken enough that the art reads as atmosphere, not content — a two-stop vertical
+   wash plus a soft vignette keeps the very center of every supplied image quiet under
+   whatever panel sits on top of it. */
+body[class*="theme-"]::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(8,10,14,.35) 0%, rgba(8,10,14,.72) 62%, rgba(6,8,11,.9) 100%),
+    linear-gradient(180deg, rgba(6,8,11,.55) 0%, rgba(6,8,11,.25) 22%, rgba(6,8,11,.55) 78%, rgba(6,8,11,.88) 100%);
+}
+/* Everything the page already renders sits above the background/scrim pair. */
+body[class*="theme-"] > *:not(.arc-bg-sizer){ position:relative; z-index:2; }
+
+body.theme-calc::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.4), rgba(9,7,4,.7)), url('tool-backgrounds/calc-war-room.webp'); background-position:center top; }
+body.theme-companion::before{ background-image:linear-gradient(180deg, rgba(6,10,6,.35), rgba(6,10,6,.65)), url('tool-backgrounds/companion-sanctuary.webp'); background-position:48% top; }
+body.theme-find-class::before{ background-image:linear-gradient(180deg, rgba(5,8,14,.4), rgba(5,8,14,.7)), url('tool-backgrounds/find-class-observatory.webp'); background-position:center top; }
+body.theme-characters::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.4), rgba(9,7,4,.7)), url('tool-backgrounds/characters-hall.webp'); background-position:center top; }
+body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11,.4), rgba(4,8,11,.7)), url('tool-backgrounds/sources-archive.webp'); background-position:center top; }
+
+@media (max-width:700px){
+  body.theme-calc::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.45), rgba(9,7,4,.75)), url('tool-backgrounds/calc-war-room-mobile.webp'); }
+  body.theme-companion::before{ background-image:linear-gradient(180deg, rgba(6,10,6,.4), rgba(6,10,6,.7)), url('tool-backgrounds/companion-sanctuary-mobile.webp'); }
+  body.theme-find-class::before{ background-image:linear-gradient(180deg, rgba(5,8,14,.45), rgba(5,8,14,.75)), url('tool-backgrounds/find-class-observatory-mobile.webp'); }
+  body.theme-characters::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.45), rgba(9,7,4,.75)), url('tool-backgrounds/characters-hall-mobile.webp'); }
+  body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11,.45), rgba(4,8,11,.75)), url('tool-backgrounds/sources-archive-mobile.webp'); }
+  /* background-attachment:fixed is desktop-only per brief -- default (scroll) applies here. */
+}
+
+/* theme-spell-sheet and theme-spell-library intentionally get NO background-image rule:
+   they keep their own already-approved scenes (arcane-seals-background.png /
+   library-map.png) and only pick up the shared header/panel/motion rules below. */
+
+/* ---------- 2. Shared compact tool header ---------- */
+.arc-topbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:10px 14px;
+  margin:0 0 12px;
+  background:var(--arc-panel-strong);
+  border:1px solid var(--arc-line);
+  border-radius:var(--arc-radius);
+  box-shadow:var(--arc-shadow);
+  min-height:44px;
+}
+.arc-topbar .arc-crumb{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  color:var(--arc-muted);
+  font-size:.78rem;
+  letter-spacing:.02em;
+  white-space:nowrap;
+}
+.arc-topbar .arc-crumb .arc-home{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  background:rgba(0,0,0,.4);
+  border:1px solid var(--arc-line);
+  flex:none;
+}
+.arc-topbar .arc-crumb .arc-home svg{ width:15px; height:15px; }
+.arc-topbar .arc-crumb:hover, .arc-topbar .arc-crumb:focus-visible{ color:var(--arc-gold-light); }
+.arc-topbar .arc-crumb:hover .arc-home, .arc-topbar .arc-crumb:focus-visible .arc-home{ border-color:var(--arc-line-strong); }
+.arc-topbar .arc-sep{ opacity:.5; }
+.arc-topbar .arc-tool-name{ color:var(--arc-text); font-weight:600; }
+.arc-topbar .arc-spacer{ flex:1 1 auto; }
+
+/* ---------- 3. Section rune ---------- */
+.arc-rune{
+  display:inline-block;
+  width:1em;
+  height:1em;
+  vertical-align:-.15em;
+  margin-right:.4em;
+  opacity:.85;
+  flex:none;
+}
+
+/* ---------- 4. Panels: restrained dark arcane plates ---------- */
+/* Restyles each tool's EXISTING .card/header containers directly, theme-scoped, so no
+   page needs a single class added to its markup (semantic order stays untouched). A
+   reusable .arc-panel utility is also provided for anything added purely by this theme
+   (e.g. the topbar) that wants the same plate treatment. */
+body.theme-calc .card, body.theme-calc header,
+body.theme-companion .card, body.theme-companion header,
+.arc-panel{
+  /* Deliberately does NOT touch border-color: each tool's existing per-category
+     top-border color (gold/blue/green/violet) must remain exactly as-is, and a
+     shorthand here would out-specificity and overwrite it. */
+  position:relative;
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.025) 0%, rgba(255,255,255,0) 22%),
+    var(--arc-panel);
+  border-radius:var(--arc-radius);
+  box-shadow:var(--arc-shadow), inset 0 1px 0 rgba(255,255,255,.03);
+}
+body.theme-calc .card::before, body.theme-calc header::before,
+body.theme-companion .card::before, body.theme-companion header::before,
+.arc-panel::before{
+  /* Faint stone/metal grain — CSS-only, no bitmap. */
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  opacity:.5;
+  background-image:
+    repeating-linear-gradient(115deg, rgba(255,255,255,.015) 0px, rgba(255,255,255,.015) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(25deg, rgba(0,0,0,.08) 0px, rgba(0,0,0,.08) 1px, transparent 1px, transparent 4px);
+}
+
+/* ---------- 5. Results hierarchy ---------- */
+/* Attack/Damage/Critical/CMB/CMD stay separate readable cells (unchanged layout) --
+   only their number gets stronger hierarchy: bigger, tabular, a restrained gold glow.
+   .arc-result-value is also available for any result value added directly by this
+   theme in the future. */
+body.theme-calc .result .big,
+body.theme-companion .result .big,
+.arc-result-value{
+  font-size:1.5em;
+  font-variant-numeric: tabular-nums;
+  text-shadow:0 0 16px rgba(214,179,95,.4);
+}
+/* Companion's CMB/CMD cells aren't inside a shared .result wrapper (custom inline-styled
+   flex cells) -- .result-big supplies the same base look (font-weight/color/margin) plus
+   the enhancement in one place, since removing their inline styles left them unstyled. */
+.result-big{
+  display:block;
+  margin-top:4px;
+  font-weight:800;
+  color:#fff;
+  font-size:1.5em;
+  font-variant-numeric: tabular-nums;
+  text-shadow:0 0 16px rgba(214,179,95,.4);
+}
+
+/* ---------- 6. Motion & accessibility ---------- */
+.arc-topbar .arc-crumb,
+.arc-panel .pinBtn,
+.arc-panel button{
+  transition:color .18s ease, background-color .18s ease, border-color .18s ease, transform .18s ease;
+}
+@media (prefers-reduced-motion: reduce){
+  .arc-topbar .arc-crumb,
+  .arc-panel .pinBtn,
+  .arc-panel button{ transition:none; }
+}
+:focus-visible{ outline:2px solid var(--arc-gold-light); outline-offset:2px; }
+
+/* Opaque, legible controls over any background — never let the arcane backdrop show
+   through an input, select or button face. */
+body[class*="theme-"] input,
+body[class*="theme-"] select,
+body[class*="theme-"] textarea{
+  background-color:#0f161f;
+}
+
+@media (max-width:700px){
+  .arc-topbar{ padding:8px 10px; min-height:40px; }
+}
