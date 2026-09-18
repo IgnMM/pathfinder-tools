@@ -782,6 +782,77 @@ const MODIFIERS = [
 {id:'hr-pa-no-crit',name:'Power Attack damage not multiplied on critical hits',category:'houserule',source:'House Rule',appliesTo:[],type:'special',
  desc:'Standard PF1e RAW: Power Attack\'s damage bonus IS multiplied by the crit multiplier. Some tables house-rule this to NOT be multiplied — add this entry if that\'s how your table plays it.',
  compute:()=>({attack:0,damage:0,note:'Power Attack damage excluded from the crit multiplier — see Critical Damage per line'})},
+
+// ---------------- CMB/CMD FEATS (batch 1, CMB-CMD-FEAT-001) ----------------
+// Same batch as calc/index.html's own copy of this comment -- only the feats (traits are
+// GM-approval-only per the reviewed shortlist, and this file has no "GM-approved traits"
+// toggle infrastructure yet, so they're intentionally left out of this entity's own
+// MODIFIERS for now rather than silently computing as if always allowed). Only add these
+// to a companion that can legally possess the feat and meets every prerequisite --
+// this calculator doesn't enforce that mechanically, same as every other feat here.
+{id:'improved-bull-rush',name:'Improved Bull Rush',category:'feat',source:'Core Rulebook',appliesTo:['cmb','cmd'],type:'untyped',
+ desc:'Str 13, Power Attack, BAB +1. No AoO when bull rushing. +2 on checks to bull rush a foe, +2 CMD vs bull rush.',
+ compute:()=>({attack:0,damage:0,cmb:2,cmd:2,note:'+2 CMB (bull rush only) / +2 CMD (vs bull rush)'})},
+{id:'improved-disarm',name:'Improved Disarm',category:'feat',source:'Core Rulebook',appliesTo:['cmb','cmd'],type:'untyped',
+ desc:'Int 13, Combat Expertise. No AoO when disarming. +2 on checks to disarm a foe, +2 CMD vs disarm.',
+ compute:()=>({attack:0,damage:0,cmb:2,cmd:2,note:'+2 CMB (disarm only) / +2 CMD (vs disarm)'})},
+{id:'improved-drag',name:'Improved Drag',category:'feat',source:"Advanced Player's Guide",appliesTo:['cmb','cmd'],type:'untyped',
+ desc:'Str 13, Power Attack, BAB +1. No AoO when dragging. +2 on checks to drag a foe, +2 CMD vs drag.',
+ compute:()=>({attack:0,damage:0,cmb:2,cmd:2,note:'+2 CMB (drag only) / +2 CMD (vs drag)'})},
+{id:'improved-grapple',name:'Improved Grapple',category:'feat',source:'Core Rulebook',appliesTo:['cmb','cmd'],type:'untyped',
+ desc:'Dex 13, Improved Unarmed Strike. No AoO when grappling. +2 on checks to grapple a foe, +2 CMD vs grapple.',
+ compute:()=>({attack:0,damage:0,cmb:2,cmd:2,note:'+2 CMB (grapple only) / +2 CMD (vs grapple)'})},
+{id:'improved-overrun',name:'Improved Overrun',category:'feat',source:'Core Rulebook',appliesTo:['cmb','cmd'],type:'untyped',
+ desc:'Str 13, Power Attack, BAB +1. No AoO when overrunning; targets can\'t choose to avoid you. +2 on checks to overrun a foe, +2 CMD vs overrun.',
+ compute:()=>({attack:0,damage:0,cmb:2,cmd:2,note:'+2 CMB (overrun only) / +2 CMD (vs overrun)'})},
+{id:'improved-reposition',name:'Improved Reposition',category:'feat',source:"Advanced Player's Guide",appliesTo:['cmb','cmd'],type:'untyped',
+ desc:'Int 13, Combat Expertise. No AoO when repositioning. +2 on checks to reposition a foe, +2 CMD vs reposition.',
+ compute:()=>({attack:0,damage:0,cmb:2,cmd:2,note:'+2 CMB (reposition only) / +2 CMD (vs reposition)'})},
+{id:'improved-steal',name:'Improved Steal',category:'feat',source:"Advanced Player's Guide",appliesTo:['cmb','cmd'],type:'untyped',
+ desc:'Int 13, Combat Expertise. No AoO when stealing. +2 on checks to steal an item, +2 CMD vs steal.',
+ compute:()=>({attack:0,damage:0,cmb:2,cmd:2,note:'+2 CMB (steal only) / +2 CMD (vs steal)'})},
+{id:'improved-sunder',name:'Improved Sunder',category:'feat',source:'Core Rulebook',appliesTo:['cmb','cmd'],type:'untyped',
+ desc:'Str 13, Power Attack, BAB +1. No AoO when sundering. +2 on checks to sunder an item, +2 CMD vs sunder.',
+ compute:()=>({attack:0,damage:0,cmb:2,cmd:2,note:'+2 CMB (sunder only) / +2 CMD (vs sunder)'})},
+{id:'improved-trip',name:'Improved Trip',category:'feat',source:'Core Rulebook',appliesTo:['cmb','cmd'],type:'untyped',
+ desc:'Int 13, Combat Expertise. No AoO when tripping. +2 on checks to trip a foe, +2 CMD vs trip.',
+ compute:()=>({attack:0,damage:0,cmb:2,cmd:2,note:'+2 CMB (trip only) / +2 CMD (vs trip)'})},
+{id:'greater-bull-rush',name:'Greater Bull Rush',category:'feat',source:'Core Rulebook',appliesTo:['cmb'],type:'untyped',
+ desc:'Improved Bull Rush, Power Attack, BAB +6, Str 13. +2 on checks to bull rush a foe (stacks with Improved Bull Rush).',
+ compute:()=>({attack:0,damage:0,cmb:2,note:'+2 CMB (bull rush only), stacks with Improved Bull Rush'})},
+{id:'greater-disarm',name:'Greater Disarm',category:'feat',source:'Core Rulebook',appliesTo:['cmb'],type:'untyped',
+ desc:'Combat Expertise, Improved Disarm, BAB +6, Int 13. +2 on checks to disarm a foe (stacks with Improved Disarm).',
+ compute:()=>({attack:0,damage:0,cmb:2,note:'+2 CMB (disarm only), stacks with Improved Disarm'})},
+{id:'greater-drag',name:'Greater Drag',category:'feat',source:"Advanced Player's Guide",appliesTo:['cmb'],type:'untyped',
+ desc:'Str 13, Improved Drag, Power Attack, BAB +6. +2 on checks to drag a foe (stacks with Improved Drag).',
+ compute:()=>({attack:0,damage:0,cmb:2,note:'+2 CMB (drag only), stacks with Improved Drag'})},
+{id:'greater-grapple',name:'Greater Grapple',category:'feat',source:'Core Rulebook',appliesTo:['cmb'],type:'untyped',
+ desc:'Improved Grapple, Improved Unarmed Strike, BAB +6, Dex 13. +2 on checks to grapple a foe (stacks with Improved Grapple).',
+ compute:()=>({attack:0,damage:0,cmb:2,note:'+2 CMB (grapple only), stacks with Improved Grapple'})},
+{id:'greater-overrun',name:'Greater Overrun',category:'feat',source:'Core Rulebook',appliesTo:['cmb'],type:'untyped',
+ desc:'Improved Overrun, Power Attack, BAB +6, Str 13. +2 on checks to overrun a foe (stacks with Improved Overrun).',
+ compute:()=>({attack:0,damage:0,cmb:2,note:'+2 CMB (overrun only), stacks with Improved Overrun'})},
+{id:'greater-reposition',name:'Greater Reposition',category:'feat',source:"Advanced Player's Guide",appliesTo:['cmb'],type:'untyped',
+ desc:'Int 13, Combat Expertise, Improved Reposition, BAB +6. +2 on checks to reposition a foe (stacks with Improved Reposition).',
+ compute:()=>({attack:0,damage:0,cmb:2,note:'+2 CMB (reposition only), stacks with Improved Reposition'})},
+{id:'greater-steal',name:'Greater Steal',category:'feat',source:"Advanced Player's Guide",appliesTo:['cmb'],type:'untyped',
+ desc:'Int 13, Combat Expertise, Improved Steal, BAB +6. +2 on checks to steal an item (stacks with Improved Steal).',
+ compute:()=>({attack:0,damage:0,cmb:2,note:'+2 CMB (steal only), stacks with Improved Steal'})},
+{id:'greater-sunder',name:'Greater Sunder',category:'feat',source:'Core Rulebook',appliesTo:['cmb'],type:'untyped',
+ desc:'Improved Sunder, Power Attack, BAB +6, Str 13. +2 on checks to sunder an item (stacks with Improved Sunder).',
+ compute:()=>({attack:0,damage:0,cmb:2,note:'+2 CMB (sunder only), stacks with Improved Sunder'})},
+{id:'greater-trip',name:'Greater Trip',category:'feat',source:'Core Rulebook',appliesTo:['cmb'],type:'untyped',
+ desc:'Combat Expertise, Improved Trip, BAB +6, Int 13. +2 on checks to trip a foe (stacks with Improved Trip).',
+ compute:()=>({attack:0,damage:0,cmb:2,note:'+2 CMB (trip only), stacks with Improved Trip'})},
+{id:'advanced-defensive-combat-training',name:'Advanced Defensive Combat Training',category:'feat',source:'Faction Guide',appliesTo:['cmd'],type:'untyped',
+ desc:'Defensive Combat Training, Bellflower Network 10 TPA. +4 bonus to your CMD.',
+ compute:()=>({attack:0,damage:0,cmd:4,note:'+4 CMD (universal)'})},
+{id:'feline-grace',name:'Feline Grace',category:'feat',source:'Advanced Race Guide',appliesTo:['cmd'],type:'untyped',
+ desc:'Dex 13, catfolk. +2 bonus to your CMD against bull rush, grapple, overrun, reposition and trip combat maneuvers.',
+ compute:()=>({attack:0,damage:0,cmd:2,note:'+2 CMD vs bull rush/grapple/overrun/reposition/trip'})},
+{id:'kobold-style',name:'Kobold Style',category:'feat',source:'Kobolds of Golarion',appliesTo:['cmb'],type:'untyped',
+ desc:'Combat Expertise, Small size or smaller. +4 bonus on combat maneuver checks against enemies denied their Dexterity bonus to AC.',
+ compute:()=>({attack:0,damage:0,cmb:4,note:'+4 CMB vs enemies denied their Dex bonus to AC'})},
 ];
 
 // MYTHIC-SCOPE-001: no 'mythic' category here (Character Calculator keeps its own,
@@ -2914,7 +2985,11 @@ function customEffectMeetsRuntimeRequirements(effect, profile){
 // stackTotal() now lives in ../assets/calc-engine.js (SHARED-ENGINE-001).
 function collectContributions(ctx){
   let p=currentProfile();
-  let atkEntries=[], dmgEntries=[], extraDice=[], breakdown=[];
+  // CMB-CMD-FEAT-001: cmbEntries/cmdEntries mirror atkEntries/dmgEntries exactly (same
+  // {value,type} shape, same stackTotal() same-type-doesn't-stack rule), fed by an
+  // optional {cmb,cmd} on a modifier's compute() return -- see calc/index.html's own
+  // copy of this comment for the full design rationale.
+  let atkEntries=[], dmgEntries=[], cmbEntries=[], cmdEntries=[], extraDice=[], breakdown=[];
   let powerAttackOn=false, powerAttackDmgVal=0, powerAttackAtkVal=0;
   // SITUATIONAL-COMBAT-001: Outflank's own compute() needs to know whether Flanking is
   // ALSO active, regardless of which order the two happen to sit in p.active -- resolved
@@ -2954,6 +3029,8 @@ function collectContributions(ctx){
         // effect's own dice field already feeds -- scoped by the SAME attackScope/
         // attackNames/attackLineIds as its flat atk/dmg contribution above.
         if(r.extraDice) extraDice.push({dice:r.extraDice.dice,type:r.extraDice.type||'',multiplies:!!r.extraDice.multiplies,source:m.name,attackScope:scope,attackNames:names,attackLineIds:lineIds});
+        if(r.cmb) cmbEntries.push({value:r.cmb,type:effType,source:m.name});
+        if(r.cmd) cmdEntries.push({value:r.cmd,type:effType,source:m.name});
       }
     }
     let noteText = perLineAbility ? 'Ability adjustment applied separately to each attack line that uses this ability'+(m.id==='animal-growth'?'; includes the shared -1 size attack penalty':'') : r.note;
@@ -3052,7 +3129,7 @@ function collectContributions(ctx){
       breakdown.push({name:'Energy Attacks ('+etype+')',category:'other',type:'extra-damage',atk:null,dmg:null,note:'+1d6 '+etype+' damage on natural attacks only; not multiplied on a critical hit',suppressed:false,off:false});
     });
   }
-  return {atkEntries,dmgEntries,extraDice,breakdown,powerAttackOn,powerAttackDmgVal,powerAttackAtkVal};
+  return {atkEntries,dmgEntries,cmbEntries,cmdEntries,extraDice,breakdown,powerAttackOn,powerAttackDmgVal,powerAttackAtkVal};
 }
 
 function finalAbilityMods(ctx){
@@ -3149,7 +3226,7 @@ function compute(){
     int:mod(+$('int').value+progressionAbilityAdj.int), wis:mod(+$('wis').value+progressionAbilityAdj.wis), cha:mod(+$('cha').value+progressionAbilityAdj.cha),
     atkStat:$('atkStat').value, dmgStat:$('dmgStat').value
   };
-  let {atkEntries,dmgEntries,extraDice,breakdown,powerAttackOn,powerAttackDmgVal,powerAttackAtkVal}=collectContributions(ctx);
+  let {atkEntries,dmgEntries,cmbEntries,cmdEntries,extraDice,breakdown,powerAttackOn,powerAttackDmgVal,powerAttackAtkVal}=collectContributions(ctx);
   markSuppressed(atkEntries, breakdown.filter(b=>b.atk!==null));
   markSuppressed(dmgEntries, breakdown.filter(b=>b.dmg!==null));
   renderBreakdown(breakdown);
@@ -3162,10 +3239,13 @@ function compute(){
   let animalGrowthDef=MODIFIERS.find(m=>m.id==='animal-growth');
   let animalGrowthOn = p.active.some(a=>a.id==='animal-growth' && a.on!==false) && modifierAppliesToCurrentEntity(animalGrowthDef,p);
   let cmbCmd=computeCMBCMD(ctx, p, finalMods, animalGrowthOn);
+  let cmbFromFeatsTraits=stackTotal(cmbEntries), cmdFromFeatsTraits=stackTotal(cmdEntries);
+  cmbCmd.cmb+=cmbFromFeatsTraits; cmbCmd.cmd+=cmdFromFeatsTraits;
   $('cmb').textContent=signed(cmbCmd.cmb);
   $('cmd').textContent=String(cmbCmd.cmd);
   let cmbCmdNoteParts=['Size: '+cmbCmd.effSize+(cmbCmd.sizeUpActive?' (base '+($('creatureSize').value||'Medium')+', +1 category from Animal Growth)':'')+'.'];
   if(cmbCmd.usedDexForCmb) cmbCmdNoteParts.push('CMB uses Dexterity modifier instead of Strength (Tiny or smaller).');
+  if(cmbFromFeatsTraits||cmdFromFeatsTraits) cmbCmdNoteParts.push('Includes '+signed(cmbFromFeatsTraits)+' CMB / '+signed(cmdFromFeatsTraits)+' CMD from active Feats below (only if this entity legally has the feat and meets its prerequisites).');
   $('cmbCmdNote').textContent=cmbCmdNoteParts.join(' ');
   // TARGETED-NATURAL-001: Improved Natural Attack's one-step die increase, read directly
   // (same pattern as strongJawOn/animalGrowthOn above) rather than through the flat atk/
