@@ -194,7 +194,7 @@ button.danger{background:#3a1d21;border-color:#8c474f;color:#ffb4bc}
   <option value="int">INT</option><option value="wis">WIS</option><option value="cha">CHA</option>
 </select></div>
 <div id="phantomFocusRow" class="row" style="display:none"><label>Emotional focus</label><select id="phantomFocus"><option value="">Choose focus…</option></select></div>
-<div id="creatureSizeRow" class="row" style="display:none"><label>Preset size</label><select id="creatureSize"><option>Small</option><option selected>Medium</option><option>Large</option><option>Huge</option></select></div>
+<div id="creatureSizeRow" class="row"><label>Size (for CMB/CMD)</label><select id="creatureSize"><option>Fine</option><option>Diminutive</option><option>Tiny</option><option>Small</option><option selected>Medium</option><option>Large</option><option>Huge</option><option>Gargantuan</option><option>Colossal</option></select></div>
 <div id="manifestationRow" class="row" style="display:none"><label>Manifestation</label><select id="manifestation"><option value="ectoplasmic">Ectoplasmic</option><option value="incorporeal">Incorporeal</option></select></div>
 <div class="row"><label></label><button id="applySpeciesPreset" type="button">Apply preset stats &amp; attacks</button></div>
 <div id="speciesPresetNote" class="emptyNote">A species preset fills the Core Rulebook starting scores and attacks, including its 4th/7th-level advancement when reached. Everything remains manually editable afterward.</div>
@@ -275,6 +275,11 @@ button.danger{background:#3a1d21;border-color:#8c474f;color:#ffb4bc}
 
 <section class="card card-results">
 <h2>Results</h2>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+  <div style="flex:1;min-width:110px;background:#0e151e;border:1px solid var(--border,#2a3140);border-radius:12px;padding:10px 12px"><div class="small" style="font-size:11px;color:var(--muted)">CMB</div><div class="big" id="cmb" style="font-size:18px;font-weight:800;margin-top:4px;color:#fff">+0</div></div>
+  <div style="flex:1;min-width:110px;background:#0e151e;border:1px solid var(--border,#2a3140);border-radius:12px;padding:10px 12px"><div class="small" style="font-size:11px;color:var(--muted)">CMD</div><div class="big" id="cmd" style="font-size:18px;font-weight:800;margin-top:4px;color:#fff">10</div></div>
+</div>
+<div id="cmbCmdNote" style="font-size:.68rem;color:var(--muted);margin-bottom:10px"></div>
 <div id="attackResults"></div>
 <div id="furiousFocusFirstAttackBox" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border,#2a3140)">
   <div class="small" style="color:var(--muted);font-size:.85rem">Furious Focus (two-handed weapon only)</div>
@@ -1077,7 +1082,9 @@ function applyEntityTypeUI(){
   $('mainCalcArea').style.display=implemented?'block':'none';
   $('eidolonSubtypeRow').style.display=type==='eidolon-unchained'?'grid':'none';
   $('phantomFocusRow').style.display=type==='phantom'?'grid':'none';
-  $('creatureSizeRow').style.display=['eidolon-chained','eidolon-unchained','phantom'].includes(type)?'grid':'none';
+  // Size now drives CMB/CMD for every entity type (not just Eidolon/Phantom, which also
+  // use it for their own evolution/preset logic elsewhere) -- always visible.
+  $('creatureSizeRow').style.display='grid';
   $('manifestationRow').style.display=type==='phantom'?'grid':'none';
   $('eidolonEvolutionPanel').style.display=['eidolon-chained','eidolon-unchained'].includes(type)?'block':'none';
   $('speciesPresetLabel').textContent=type==='familiar'?'Familiar species':(['eidolon-chained','eidolon-unchained'].includes(type)?'Base form':(type==='phantom'?'Phantom preset':'Species preset (optional)'));
@@ -1749,6 +1756,29 @@ $('addEidolonEvolution').onclick=()=>{
 function sizeAttackModifier(size){
   return ({Fine:8,Diminutive:4,Tiny:2,Small:1,Medium:0,Large:-1,Huge:-2,Gargantuan:-4,Colossal:-8})[size]||0;
 }
+// CMB-CMD-001: CMB = BAB + Strength modifier (Dexterity instead, for Tiny or smaller) +
+// special size modifier. CMD = 10 + BAB + Strength modifier + Dexterity modifier +
+// special size modifier. The special size modifier is the OPPOSITE sign of the normal
+// attack/AC size modifier (sizeAttackModifier above) -- e.g. Large is -1 to attack but
+// +1 to CMB/CMD, since a bigger creature is harder to move/trip but has a worse AC.
+// Mirrors calc/index.html's computeCMBCMD; only an actual size-category increase
+// (Animal Growth here) shifts it, never an "effective size" effect like Strong Jaw.
+const CMB_CMD_SIZE_ORDER=['Fine','Diminutive','Tiny','Small','Medium','Large','Huge','Gargantuan','Colossal'];
+function computeCMBCMD(ctx, p, finalMods, sizeUpActive){
+  let baseSize=$('creatureSize').value||p.creatureSize||'Medium';
+  let baseIdx=CMB_CMD_SIZE_ORDER.indexOf(baseSize);
+  if(baseIdx<0) baseIdx=CMB_CMD_SIZE_ORDER.indexOf('Medium');
+  let sizeIdx=sizeUpActive?Math.min(baseIdx+1,CMB_CMD_SIZE_ORDER.length-1):baseIdx;
+  let effSize=CMB_CMD_SIZE_ORDER[sizeIdx];
+  let sizeMod=-sizeAttackModifier(effSize);
+  let strMod=finalMods.str, dexMod=finalMods.dex;
+  let usedDexForCmb=sizeIdx<=CMB_CMD_SIZE_ORDER.indexOf('Tiny');
+  return {
+    cmb: ctx.bab + (usedDexForCmb?dexMod:strMod) + sizeMod,
+    cmd: 10 + ctx.bab + strMod + dexMod + sizeMod,
+    effSize, sizeUpActive, usedDexForCmb,
+  };
+}
 // MULTIATTACK-001: level-9 Multiattack / extra-attack rule, shared by Eidolon (chained
 // and unchained) and Animal Companion/Mount progressions. Verified rule text (AoN/
 // d20pfsrd, 2026-09):
@@ -2043,6 +2073,7 @@ function applyAnimalCompanionPresetCore(speciesId, explicit){
     // they are; the player's next explicit "Apply preset" click establishes one.
   }
   let size=speciesSizeFor(species,advanced);
+  $('creatureSize').value=size; p.creatureSize=size; // keep the CMB/CMD size field in sync with the species preset
   let attackRules=speciesAttackRulesFor(species,advanced);
   let bab=+$('bab').value||0;
   let oldLines=p.attackLines||[];
@@ -2531,11 +2562,11 @@ function applyFamiliarPreset(){
   p.attackLines=generatedLines.concat(manualLines).concat(preservedOriginless);
   p.speciesPreset=fam.key;
   syncUIIntoProfile();
-  // Familiars are commonly Tiny/Diminutive, sizes the creatureSize <select> doesn't even
-  // list (it only covers Eidolon/Phantom's Small-Huge range) -- set the real size straight
-  // on the profile after sync so it isn't lost, and so a later-added attack line gets the
-  // right size modifier.
+  // Familiars are commonly Tiny/Diminutive -- the creatureSize <select> now covers the
+  // full Fine-Colossal range (CMB-CMD-001), so set it directly alongside the profile
+  // field so a later-added attack line and the CMB/CMD block both get the right size.
   p.creatureSize=fam.size;
+  if([...$('creatureSize').options].some(o=>o.value===fam.size)) $('creatureSize').value=fam.size;
   saveStore(); renderAttackLines(); compute();
   $('speciesPresetNote').textContent=fam.name+' familiar applied. To-hit uses master BAB + the better of its STR/DEX; damage uses its Strength modifier dynamically, so temporary Strength changes update it correctly.';
 }
@@ -3130,6 +3161,12 @@ function compute(){
   let strongJawOn = p.active.some(a=>a.id==='strong-jaw' && a.on!==false);
   let animalGrowthDef=MODIFIERS.find(m=>m.id==='animal-growth');
   let animalGrowthOn = p.active.some(a=>a.id==='animal-growth' && a.on!==false) && modifierAppliesToCurrentEntity(animalGrowthDef,p);
+  let cmbCmd=computeCMBCMD(ctx, p, finalMods, animalGrowthOn);
+  $('cmb').textContent=signed(cmbCmd.cmb);
+  $('cmd').textContent=String(cmbCmd.cmd);
+  let cmbCmdNoteParts=['Size: '+cmbCmd.effSize+(cmbCmd.sizeUpActive?' (base '+($('creatureSize').value||'Medium')+', +1 category from Animal Growth)':'')+'.'];
+  if(cmbCmd.usedDexForCmb) cmbCmdNoteParts.push('CMB uses Dexterity modifier instead of Strength (Tiny or smaller).');
+  $('cmbCmdNote').textContent=cmbCmdNoteParts.join(' ');
   // TARGETED-NATURAL-001: Improved Natural Attack's one-step die increase, read directly
   // (same pattern as strongJawOn/animalGrowthOn above) rather than through the flat atk/
   // dmg pipeline -- its real effect is a per-line die-size step, computed live below
