@@ -4532,6 +4532,18 @@ const MODIFIERS = [
 {id:'burn-burn-burn',name:'Burn! Burn! Burn!',category:'feat',source:'Advanced Race Guide pg. 118, Goblins of Golarion pg. 24',appliesTo:['damage'],type:'special',
  desc:"+1d4 fire damage when attacking with fire from an alchemical or nonmagical source (torches, alchemical fire -- not magical attacks like an alchemist's bomb, and not splash damage). Also +4 competence on Reflex saves vs. catching/putting out fire, not modeled here. Toggle on only for a qualifying fire attack.",
  compute:()=>({attack:0,damage:0,extraDice:{normal:'1d4'},note:"+1d4 fire damage (not multiplied on a crit) -- toggle on only for a nonmagical/alchemical fire attack (torch, alchemical fire, etc.), not a magical attack or splash damage"})},
+{id:'eternal-enmity',name:'Eternal Enmity',category:'feat',source:'Inner Sea Races pg. 205',appliesTo:['damage'],type:'special',
+ desc:"+1d6 precision damage against targets of your hatred racial trait (stacks with other precision damage, such as sneak attack). This calculator has no hatred-racial-trait/chosen-race field, so it is not gated automatically -- only add this when actually facing your chosen enemy race.",
+ compute:()=>({attack:0,damage:0,extraDice:{normal:'1d6'},note:"+1d6 precision damage (not multiplied on a crit) -- toggle on only vs. your hated race, chosen when you took this feat"})},
+{id:'gilded-weapons',name:'Gilded Weapons',category:'feat',source:"Plane-Hopper's Handbook pg. 15",appliesTo:['damage'],type:'special',
+ desc:"+1d6 damage to creatures with the chaotic subtype, for 1 round after a swift action coating up to two weapons in crystalline dust (doesn't stack with other alignment-based weapon damage, such as axiomatic). Set Current Target above to Chaotic for the bonus to apply.",
+ compute:(ctx)=>{let vs=targetMatches(ctx,'chaotic');return {attack:0,damage:0,extraDice:vs?{normal:'1d6'}:undefined,note:vs?"+1d6 vs chaotic subtype (not multiplied on a crit)":"no chaotic target selected above, so no effect"}}},
+{id:'greater-beast-hunter',name:'Greater Beast Hunter',category:'feat',source:'Ultimate Wilderness pg. 112',appliesTo:['attack'],type:'trait',
+ desc:"+4 bonus to confirm critical threats against animals native to your chosen Beast Hunter terrain(s) (also lets you act normally, though still flat-footed, if surprised by such an animal -- not modeled here).",
+ compute:()=>({attack:0,damage:0,note:"A crit-confirmation bonus (+4), not a flat attack number -- crit confirmation isn't rolled separately in this calculator."})},
+{id:'horn-of-the-criosphinx',name:'Horn of the Criosphinx',category:'feat',source:'People of the Sands pg. 13',appliesTo:['damage'],type:'special',
+ desc:"On a successful charge while wielding a two-handed weapon in both hands, add 2x your Strength bonus to damage instead of the normal 1-1/2x for a two-handed weapon -- shown here as the extra +1/2x Strength bonus on top of what Fighting Style already adds. Gated by Fighting Style above (Two-Handed); toggle on only when actually charging.",
+ compute:(ctx)=>{if(ctx.style!=='twoHanded')return{attack:0,damage:0,note:"no effect — Fighting Style above isn't Two-Handed"};if(ctx.dmgStat!=='str')return{attack:0,damage:0,note:"no effect — Strength isn't your selected damage ability above"};let extra=roundFrac((ctx.str||0)*0.5);return {attack:0,damage:extra,note:(extra>=0?'+':'')+extra+" dmg (extra 1/2x Strength bonus on a successful charge, on top of the normal 1.5x two-handed multiplier already applied above) -- toggle on only when actually charging"}}},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
