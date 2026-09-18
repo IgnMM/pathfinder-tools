@@ -4345,6 +4345,133 @@ const MODIFIERS = [
  configFields:[{key:'dodgeBonus',label:'Dodge bonus to AC gained from fighting defensively/total defense this turn',type:'number',default:0}],
  desc:'While fighting defensively or using total defense: bonus to CMD equal to half the dodge bonus to AC gained from that action (rounded down).',
  compute:(ctx,cfg)=>{let v=Math.floor(Math.max(0,cfg.dodgeBonus||0)/2); return {attack:0,damage:0,cmd:v,note:'+'+v+' CMD (= half the dodge bonus from fighting defensively/total defense this turn only)'};}},
+
+// ---------------- CMB/CMD FEATS/TRAITS (batch 7, CMB-CMD-FEAT-001) ----------------
+// Final tranche of the 78 "weird" entries. Effective-size entries (Hefty Brute, Eidolon
+// Mount, Powerful Shape, Wall of Flesh) read currentProfile().size directly and use the
+// existing SIZE_ORDER/SIZE_MOD tables to compute a CMB/CMD-only size delta -- the only
+// entries in the whole project that call currentProfile() from inside a compute(), since
+// ctx doesn't carry size (computeCMBCMD needs collectContributions to run first for
+// _finalAbilityMods, so it can't hand size to the modifiers themselves). Approximate if a
+// simultaneous REAL size increase (Enlarge Person/Animal Growth) is also active.
+{id:'trait-arcane-malignancies',name:'Arcane Malignancies',category:'trait',source:'Blood of the Coven pg. 10',appliesTo:['cmb','cmd'],type:'untyped',
+ configFields:[{key:'roll',label:'d100 result rolled',type:'select',options:[{v:'',label:'— pick —'},{v:'26-28',label:'26–28: -2 CMB to escape grapple/pin'},{v:'58-60',label:'58–60: -2 CMD vs disarm, grapple, trip'},{v:'87-89',label:'87–89: -2 CMD vs bull rush, trip'},{v:'other',label:'Other result (attack/damage only, no CMB/CMD effect)'}],default:''}],
+ desc:'Drawback trait. Roll d100 once (permanent malignancy). Only 3 of the possible results affect CMB/CMD; others affect attack/damage rolls instead (not shown here). Never combine two results.',
+ compute:(ctx,cfg)=>{
+   if(cfg.roll==='26-28') return {attack:0,damage:0,cmb:-2,note:'-2 CMB (escaping a grapple or pin only)'};
+   if(cfg.roll==='58-60') return {attack:0,damage:0,cmd:-2,note:'-2 CMD (vs disarm, grapple and trip only)'};
+   if(cfg.roll==='87-89') return {attack:0,damage:0,cmd:-2,note:'-2 CMD (vs bull rush and trip only)'};
+   if(cfg.roll==='other') return {attack:0,damage:0,note:'rolled result affects attack/damage, not CMB/CMD'};
+   return {attack:0,damage:0,note:'pick your rolled d100 result above'};
+ }},
+{id:'bulette-leap',name:'Bulette Leap',category:'feat',source:"Armor Master's Handbook pg. 10",appliesTo:['cmb'],type:'untyped',
+ configFields:[{key:'overrunNumber',label:'This overrun is # this round (1 = first)',type:'number',default:1}],
+ desc:'Requires Bulette Charge Style active. Your first overrun each round is unpenalized; each subsequent overrun that round takes a cumulative -2 penalty.',
+ compute:(ctx,cfg)=>{let n=Math.max(1,Math.round(cfg.overrunNumber||1)); let v=-2*(n-1); return {attack:0,damage:0,cmb:v,note:(v>=0?'+':'')+v+' CMB (overrun only, = -2 per overrun already attempted this round, while using Bulette Charge Style)'};}},
+{id:'crashing-wave-buffet',name:'Crashing Wave Buffet',category:'feat',source:'Ultimate Wilderness pg. 108',appliesTo:[],type:'special',
+ desc:'Requires Crashing Wave Style. Doesn\'t improve your own drag/reposition CMB. After a successful drag or reposition, the target makes a Fortitude save (DC = 10 + floor(character level/2) + Wis mod + 2 per 5 ft. moved); on a failure it takes -2 to attack rolls and CMB until the end of its next turn.',
+ compute:()=>({attack:0,damage:0,note:'No bonus to your own CMB. Imposes a -2 attack/CMB penalty on the TARGET (after a successful drag/reposition and a failed Fortitude save), not modeled on your own sheet'})},
+{id:'eidolon-mount',name:'Eidolon Mount',category:'feat',source:'Ultimate Wilderness pg. 110',appliesTo:['cmb','cmd'],type:'special',
+ desc:'Eidolon only. While assuming mount form: actual size treated as one category larger than your summoner\'s base size, for CMB/CMD (and AC/attack) purposes only -- no bonus to Str/Dex, reach or damage dice from this feat. (If mount form is instead a size decrease per your subtype, adjust manually -- this toggle only models a size increase.)',
+ compute:()=>{
+   let p=currentProfile();
+   let idx=SIZE_ORDER.indexOf(p.size); if(idx<0) idx=SIZE_ORDER.indexOf('Medium');
+   let nextIdx=Math.min(idx+1, SIZE_ORDER.length-1);
+   let delta=SIZE_MOD[SIZE_ORDER[nextIdx]]-SIZE_MOD[SIZE_ORDER[idx]];
+   return {attack:0,damage:0,cmb:delta,cmd:delta,note:(delta>=0?'+':'')+delta+' CMB / '+(delta>=0?'+':'')+delta+' CMD (effective size '+SIZE_ORDER[nextIdx]+' for CMB/CMD only, while in mount form; doesn\'t change Str/Dex, reach or damage dice) -- Eidolon only'};
+ }},
+{id:'trait-failed-aspirant',name:'Failed Aspirant',category:'trait',source:'Advanced Class Origins pg. 11',appliesTo:['cmb'],type:'trait',
+ desc:'Once per day, +2 trait bonus on one chosen combat maneuver check; that attempt also doesn\'t provoke an attack of opportunity.',
+ compute:()=>({attack:0,damage:0,cmb:2,note:'+2 CMB (one chosen maneuver only, once per day), trait bonus'})},
+{id:'trait-favored-champion',name:'Favored Champion',category:'trait',source:'Inner Sea Races pg. 195',appliesTo:[],type:'special',
+ desc:'Once per day as an immediate action, reroll a failed combat maneuver check and take the second result (even if worse).',
+ compute:()=>({attack:0,damage:0,note:'A once/day reroll of a failed CMB check, not a flat bonus -- don\'t simulate as +X'})},
+{id:'hefty-brute',name:'Hefty Brute',category:'feat',source:'Wilderness Origins pg. 22',appliesTo:['cmb','cmd'],type:'special',
+ desc:'Use one size category larger exclusively for your CMB/CMD size modifier and for special-attack size limits. Doesn\'t change actual size, Str, Dex, AC, attack, reach or damage dice. Animal Companion or Familiar (or an eligible Mount).',
+ compute:()=>{
+   let p=currentProfile();
+   let idx=SIZE_ORDER.indexOf(p.size); if(idx<0) idx=SIZE_ORDER.indexOf('Medium');
+   let nextIdx=Math.min(idx+1, SIZE_ORDER.length-1);
+   let delta=SIZE_MOD[SIZE_ORDER[nextIdx]]-SIZE_MOD[SIZE_ORDER[idx]];
+   return {attack:0,damage:0,cmb:delta,cmd:delta,note:(delta>=0?'+':'')+delta+' CMB / '+(delta>=0?'+':'')+delta+' CMD (effective size '+SIZE_ORDER[nextIdx]+' for CMB/CMD and special-attack size limits only; doesn\'t change actual size, Str/Dex, AC, reach or dice)'};
+ }},
+{id:'knocking-blows',name:'Knocking Blows',category:'feat',source:"Armor Master's Handbook pg. 17",appliesTo:[],type:'special',
+ desc:'After hitting with Power Attack (target at most one size larger): the target takes -4 CMD against maneuvers that move or knock it down, until the start of your next turn.',
+ compute:()=>({attack:0,damage:0,note:'Imposes -4 CMD on the TARGET (vs move/knockdown maneuvers only), not a bonus to your own CMB/CMD'})},
+{id:'mounted-onslaught',name:'Mounted Onslaught',category:'feat',source:"Adventurer's Guide pg. 15",appliesTo:['cmb'],type:'untyped',
+ configFields:[{key:'overrunNumber',label:'This overrun is # this round (1 = first)',type:'number',default:1}],
+ desc:'Rider only, while mounted. Each overrun attempt this round after the first takes a cumulative -5 penalty. Your mount separately gets one hoof attack against one of the creatures knocked down.',
+ compute:(ctx,cfg)=>{let n=Math.max(1,Math.round(cfg.overrunNumber||1)); let v=-5*(n-1); return {attack:0,damage:0,cmb:v,note:(v>=0?'+':'')+v+' CMB (overrun only, = -5 per overrun already attempted this round, while mounted) -- Rider only'};}},
+{id:'poppet-familiar',name:'Poppet Familiar',category:'feat',source:'Adventurer\'s Armory 2 pg. 31',appliesTo:[],type:'special',
+ desc:'Poppet familiar, caster level 5th+: instead of two augmentations, you may permanently change the poppet from Tiny to Small, recalculating its real size-based stats.',
+ compute:()=>({attack:0,damage:0,note:'A genuine actual-size change (Tiny to Small), not a CMB/CMD-only effect -- if chosen, set this familiar\'s Creature Size to Small directly in its own profile rather than toggling this entry'})},
+{id:'powerful-shape',name:'Powerful Shape',category:'feat',source:'Ultimate Magic pg. 154',appliesTo:['cmb','cmd'],type:'special',
+ desc:'While using Wild Shape: effective size +1 for CMB, CMD, carrying capacity and size-based special attacks only. Doesn\'t change Str, Dex, AC, attack, reach or damage dice from this feat. Character use only, unless an independent creature has both Wild Shape and this feat.',
+ compute:()=>{
+   let p=currentProfile();
+   let idx=SIZE_ORDER.indexOf(p.size); if(idx<0) idx=SIZE_ORDER.indexOf('Medium');
+   let nextIdx=Math.min(idx+1, SIZE_ORDER.length-1);
+   let delta=SIZE_MOD[SIZE_ORDER[nextIdx]]-SIZE_MOD[SIZE_ORDER[idx]];
+   return {attack:0,damage:0,cmb:delta,cmd:delta,note:(delta>=0?'+':'')+delta+' CMB / '+(delta>=0?'+':'')+delta+' CMD (effective size '+SIZE_ORDER[nextIdx]+' for CMB/CMD only, while using Wild Shape; doesn\'t change Str/Dex, AC, attack, reach or dice)'};
+ }},
+{id:'ranged-disarm',name:'Ranged Disarm',category:'feat',source:'Ranged Tactics Toolbox pg. 8',appliesTo:['cmb'],type:'special',
+ configFields:[{key:'incrementPenalty',label:'Range-increment penalty steps beyond the first',type:'number',default:0},{key:'over30ft',label:'Target beyond 30 ft.?',type:'select',options:[{v:'',label:'— pick —'},{v:'yes',label:'Yes'},{v:'no',label:'No'}],default:''}],
+ desc:'Full-round action, ranged weapon. Disarm CMB uses Dexterity instead of Strength (regardless of size), at -2, minus 2 per range-increment penalty step, minus 2 more if the target is beyond 30 ft. On a hit, deals the weapon\'s normal damage. Assumes your baseline CMB normally uses Strength -- if you\'re Tiny or smaller (already Dex-based), don\'t also add the Dex-Str delta below.',
+ compute:(ctx,cfg)=>{let steps=Math.max(0,cfg.incrementPenalty||0); let v=((ctx.dex||0)-(ctx.str||0))-2-2*steps-(cfg.over30ft==='yes'?2:0); return {attack:0,damage:0,cmb:v,note:(v>=0?'+':'')+v+' CMB (ranged disarm only; = Dex mod - Str mod - 2 - 2/increment step - 2 if beyond 30 ft.)'};}},
+{id:'ranged-trip',name:'Ranged Trip',category:'feat',source:'Ranged Tactics Toolbox pg. 9',appliesTo:['cmb'],type:'special',
+ configFields:[{key:'incrementPenalty',label:'Range-increment penalty steps beyond the first',type:'number',default:0},{key:'over30ft',label:'Target beyond 30 ft.?',type:'select',options:[{v:'',label:'— pick —'},{v:'yes',label:'Yes'},{v:'no',label:'No'}],default:''}],
+ desc:'Full-round action, ranged weapon. Trip CMB uses Dexterity instead of Strength (regardless of size), at -2, minus 2 per range-increment penalty step, minus 2 more if the target is beyond 30 ft. You don\'t fall prone on a failure. Assumes your baseline CMB normally uses Strength -- if you\'re Tiny or smaller (already Dex-based), don\'t also add the Dex-Str delta below.',
+ compute:(ctx,cfg)=>{let steps=Math.max(0,cfg.incrementPenalty||0); let v=((ctx.dex||0)-(ctx.str||0))-2-2*steps-(cfg.over30ft==='yes'?2:0); return {attack:0,damage:0,cmb:v,note:(v>=0?'+':'')+v+' CMB (ranged trip only; = Dex mod - Str mod - 2 - 2/increment step - 2 if beyond 30 ft.)'};}},
+{id:'sabotaging-sunder',name:'Sabotaging Sunder',category:'feat',source:'Ultimate Intrigue pg. 90',appliesTo:['cmb'],type:'special',
+ configFields:[{key:'ddRanks',label:'Disable Device ranks',type:'number',default:0}],
+ desc:'Standard action, melee, one hand free, the object is carried but not held/hidden by its owner (provokes an AoO even with Improved Sunder). This special sunder CMB uses your Disable Device ranks + Dexterity modifier instead of BAB + Strength. Assumes your baseline CMB normally uses BAB + Strength -- if you\'re Tiny or smaller (already Dex-based), the Dex portion is already counted once in your baseline.',
+ compute:(ctx,cfg)=>{let ranks=Math.max(0,cfg.ddRanks||0); let v=(ranks+(ctx.dex||0))-((ctx.bab||0)+(ctx.str||0)); return {attack:0,damage:0,cmb:v,note:(v>=0?'+':'')+v+' CMB (this specific sunder only; = Disable Device ranks + Dex mod, replacing BAB + Str entirely)'};}},
+{id:'savage-slam',name:'Savage Slam',category:'feat',source:'Martial Arts Handbook pg. 23',appliesTo:[],type:'special',
+ desc:'Standard action, only at the start of your turn while already grappling. Normal grapple check to slam the target into a chosen destination; if the destination is hazardous, the TARGET gets +4 CMD against this specific attempt. On success the grapple ends, the target is prone, and takes unarmed damage if it lands on something solid.',
+ compute:()=>({attack:0,damage:0,note:'Uses your normal grapple CMB -- no bonus number of its own. A hazardous destination raises the TARGET\'s CMD by +4 against this attempt, not modeled on your own sheet'})},
+{id:'shambling-monolith',name:'Shambling Monolith',category:'feat',source:'Dungeon Denizens Revisited pg. 61',appliesTo:[],type:'special',
+ desc:'Shambling Mound only. Full-round activation: reuses the Animal Growth effect entirely (including its actual size increase) -- toggling this ALSO drives this calculator\'s existing size-up engine, exactly like Animal Growth itself, so CMB/CMD (and everything else Animal Growth touches) update automatically. Maintenance save each turn: DC 10 (forest/jungle) or 15 (swamp/underground), +1 per round elapsed; failure ends it early and leaves you fatigued for 8 hours.',
+ compute:()=>({attack:0,damage:0,note:'Drives the same actual size-up as Animal Growth (handled automatically by this calculator\'s size engine, not a separate CMB/CMD number here) -- Shambling Mound only'})},
+{id:'shield-slam',name:'Shield Slam',category:'feat',source:'PRPG Core Rulebook pg. 133',appliesTo:[],type:'special',
+ desc:'When a shield bash hits, you may immediately attempt a free bull rush. That bull rush uses the shield bash\'s own attack roll TOTAL directly as its CMB result -- it isn\'t calculated separately.',
+ compute:()=>({attack:0,damage:0,note:'The free bull rush reuses your shield bash\'s own attack roll as its result -- this calculator computes a static CMB modifier, not a rolled total, so this substitution can\'t be represented as a number here'})},
+{id:'shield-snag',name:'Shield Snag',category:'feat',source:'Magical Marketplace pg. 6',appliesTo:[],type:'special',
+ desc:'When a shield bash hits, you may immediately attempt a free disarm. That disarm uses the shield bash\'s own attack roll TOTAL directly as its CMB result -- it isn\'t calculated separately. Not usable the same round as Shield Slam or similar shield-bash-altering abilities.',
+ compute:()=>({attack:0,damage:0,note:'The free disarm reuses your shield bash\'s own attack roll as its result -- this calculator computes a static CMB modifier, not a rolled total, so this substitution can\'t be represented as a number here'})},
+{id:'surprise-maneuver',name:'Surprise Maneuver',category:'feat',source:'Advanced Class Guide pg. 157',appliesTo:['cmb'],type:'untyped',
+ configFields:[{key:'route',label:'Route',type:'select',options:[{v:'',label:'— pick —'},{v:'sneak',label:'Sneak attack (requires flanking or denied-Dex target)'},{v:'studied',label:'Studied strike (consumes one use)'}],default:''},{key:'dice',label:'Number of sneak attack / studied strike dice',type:'number',default:0}],
+ desc:'Bonus to a combat maneuver check equal to your current sneak attack dice (requires flanking or a target denied its Dex to AC), OR equal to your studied strike dice if you consume a use of studied strike. Never both routes on the same attempt.',
+ compute:(ctx,cfg)=>{ if(!cfg.route) return {attack:0,damage:0,cmb:0,note:'pick a route above'}; let v=Math.max(0,cfg.dice||0); return {attack:0,damage:0,cmb:v,note:'+'+v+' CMB ('+(cfg.route==='sneak'?'requires flanking or a denied-Dex target':'consumes one studied strike use')+', = your current dice count)'}; }},
+{id:'tangled-limbs',name:'Tangled Limbs',category:'feat',source:'Martial Arts Handbook pg. 25',appliesTo:['cmb'],type:'untyped',
+ configFields:[{key:'targetLegsBonus',label:"Target's CMD bonus from having more than two legs",type:'number',default:0}],
+ desc:'When tripping with your chosen reach weapon, ignore the target\'s CMD bonus for having more than two legs entirely (not a flat +X -- it exactly cancels that specific bonus).',
+ compute:(ctx,cfg)=>{let v=Math.max(0,cfg.targetLegsBonus||0); return {attack:0,damage:0,cmb:v,note:'+'+v+' CMB (trip with your chosen reach weapon only; = the target\'s own CMD bonus for extra legs, exactly cancelled)'};}},
+{id:'topple-foe',name:'Topple Foe',category:'feat',source:'Rival Guide pg. 35',appliesTo:['cmb'],type:'untyped',
+ desc:'Requires a qualifying ally with this feat flanking the same target, which must be larger than you. +1 bonus on a trip attempt against that target. BLOCKED: the source text\'s per-ally, per-round scaling clause ("+2 bonus on your CMD check" from additional allies/rounds) is grammatically incoherent -- CMD isn\'t a check -- and isn\'t implemented pending an errata/print-source check; only the safe base +1 is modeled here.',
+ compute:()=>({attack:0,damage:0,cmb:1,note:'+1 CMB (trip vs a larger, flanked target with a qualifying ally only) -- the source\'s further per-ally/per-round scaling is NOT implemented, its wording is ambiguous/likely erratic'})},
+{id:'trick-spell',name:'Trick Spell',category:'feat',source:'Dirty Tactics Toolbox pg. 17',appliesTo:['cmb'],type:'special',
+ configFields:[{key:'casterLevel',label:'Caster level',type:'number',default:0}],
+ desc:'Metamagic-like feat, +1 spell level. An enchantment spell you cast this way makes a special dirty trick check instead of its normal effect (Will negates; on a failed save the dirty trick applies): 1d20 + caster level + Cha mod (+ any feat bonus that applies specifically to dirty trick, e.g. Improved/Greater Dirty Trick, already counted separately). BAB, Strength and size are NOT used for this check.',
+ compute:(ctx,cfg)=>{
+   let p=currentProfile();
+   let idx=SIZE_ORDER.indexOf(p.size); if(idx<0) idx=SIZE_ORDER.indexOf('Medium');
+   let sizeMod=SIZE_MOD[SIZE_ORDER[idx]];
+   let v=(Math.max(0,cfg.casterLevel||0)+(ctx.cha||0))-((ctx.bab||0)+(ctx.str||0)+sizeMod);
+   return {attack:0,damage:0,cmb:v,note:(v>=0?'+':'')+v+' CMB (this specific spell-triggered dirty trick check only; = caster level + Cha mod, replacing BAB + Str + size entirely)'};
+ }},
+{id:'unbound-bravery',name:'Unbound Bravery',category:'feat',source:'Divine Anthology pg. 8',appliesTo:['cmb'],type:'untyped',
+ configFields:[{key:'braveryBonus',label:'Current Bravery bonus',type:'number',default:0}],
+ desc:'Add your current Bravery bonus to CMB checks to escape a grapple. Once per day, as an immediate action if Bravery is +2 or higher, you may instead grant this same bonus to an ally within 30 ft. before their roll is revealed.',
+ compute:(ctx,cfg)=>{let v=Math.max(0,cfg.braveryBonus||0); return {attack:0,damage:0,cmb:v,note:'+'+v+' CMB (escaping a grapple only, = your Bravery bonus); the once/day ally-granting option isn\'t modeled here (it doesn\'t change your own CMB)'};}},
+{id:'wall-of-flesh',name:'Wall of Flesh',category:'feat',source:'Kobolds of Golarion pg. 25',appliesTo:['cmd'],type:'special',
+ desc:'While adjacent to an ally who also has this feat: effective size +1 for CMD, and for how maneuvers/abilities treat your size, only. Doesn\'t change actual size, Str, Dex, AC, attack, reach or damage dice.',
+ compute:()=>{
+   let p=currentProfile();
+   let idx=SIZE_ORDER.indexOf(p.size); if(idx<0) idx=SIZE_ORDER.indexOf('Medium');
+   let nextIdx=Math.min(idx+1, SIZE_ORDER.length-1);
+   let delta=SIZE_MOD[SIZE_ORDER[nextIdx]]-SIZE_MOD[SIZE_ORDER[idx]];
+   return {attack:0,damage:0,cmd:delta,note:(delta>=0?'+':'')+delta+' CMD (effective size '+SIZE_ORDER[nextIdx]+' for CMD only, while adjacent to a qualifying ally; doesn\'t change actual size, Str/Dex, AC, attack, reach or dice)'};
+ }},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
@@ -5468,10 +5595,11 @@ const ABIL_LABEL={str:'STR',dex:'DEX',con:'CON',int:'INT',wis:'WIS',cha:'CHA',no
 function computeCMBCMD(ctx, p){
   let baseIdx = SIZE_ORDER.indexOf(p.size);
   if(baseIdx<0) baseIdx = SIZE_ORDER.indexOf('Medium');
-  // Enlarge Person / Animal Growth: an ACTUAL size-category increase (unlike Strong Jaw's
+  // Enlarge Person / Animal Growth / Shambling Monolith (which explicitly reuses Animal
+  // Growth's own effect): an ACTUAL size-category increase (unlike Strong Jaw's
   // "effective" size-up, which explicitly does NOT change actual size) -- temporarily
-  // shifts the size used for CMB/CMD's size modifier up one step while either is active.
-  let sizeUpActive = p.active.some(a=>(a.id==='enlarge-person'||a.id==='animal-growth') && a.on!==false);
+  // shifts the size used for CMB/CMD's size modifier up one step while any is active.
+  let sizeUpActive = p.active.some(a=>(a.id==='enlarge-person'||a.id==='animal-growth'||a.id==='shambling-monolith') && a.on!==false);
   let sizeIdx = sizeUpActive ? Math.min(baseIdx+1, SIZE_ORDER.length-1) : baseIdx;
   let effSize = SIZE_ORDER[sizeIdx];
   let sizeMod = SIZE_MOD[effSize];
