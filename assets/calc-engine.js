@@ -60,6 +60,23 @@ function stackTotal(entries){
   return dodgeAndUntyped+typedSum+penalties;
 }
 
+// DAMAGE-BATCH-ENGINE-001 (Batch 00): a shared "base, plus 1 step per N levels of some
+// counter (BAB / caster level / mythic tier / class level), capped" formula -- the single
+// most common shape of scaling bonus in the rules text (e.g. "+2, plus 1 per 4 caster
+// levels beyond 1st, maximum +7"), previously always hand-written per modifier as its own
+// Math.floor/Math.min/Math.max expression (still fine to do for anything this shape
+// doesn't fit). Centralizing it removes the main copy-paste-arithmetic-mistake risk for
+// the ~1068-entry batch project without changing how any existing modifier computes.
+// level: the raw counter (BAB, caster level, etc.) -- never pre-floored by the caller.
+// per: levels needed for one +step (must be >=1).
+// base/step: value at floorAt, and the increment added every `per` levels past it.
+// cap/floorAt: inclusive value ceiling, and the level below which no bonus accrues.
+function scaledByLevel(level, {per=1, base=0, step=1, cap=Infinity, floorAt=0}={}){
+  let lvl=Math.max(floorAt, Number(level)||0);
+  let v=base + step*Math.floor((lvl-floorAt)/Math.max(1,per));
+  return Math.min(cap, v);
+}
+
 // Marks, per type group, which named-type entries in a breakdown list don't actually
 // count toward stackTotal()'s result -- including ties: only the FIRST entry that
 // reaches the group's max is "active", every other one (lower or tied) is redundant per

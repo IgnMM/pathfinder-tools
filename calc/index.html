@@ -5826,6 +5826,13 @@ function compute(){
     if(a.on===false) return false;
     if(a.id==='haste' || a.id==='speed') return true;
     if(a.id==='blessing-of-fervor' && a.cfg && a.cfg.choice==='extraAttack') return true;
+    // GRANTS-EXTRA-ATTACK-001 (Batch 00 primitive): any modifier can opt into this same
+    // shared "one extra attack at full BAB, never stacks with another such source"
+    // bucket by returning grantsExtraAttack:true from its own compute(), instead of
+    // needing this id list hand-edited for every future source. Existing ids above are
+    // left as-is (zero behavior change) -- this is purely additive.
+    let m=MODIFIERS.find(x=>x.id===a.id);
+    if(m){ try{ if(m.compute(ctx,a.cfg||{}).grantsExtraAttack) return true; }catch(e){} }
     return false;
   });
   // Rapid Shot is a mundane feat, not a magical "extra-attack effect" like the ones
