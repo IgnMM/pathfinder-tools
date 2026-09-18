@@ -4605,6 +4605,9 @@ const MODIFIERS = [
 {id:'great-hatred',name:'Great Hatred',category:'feat',source:'Advanced Race Guide pg. 37',appliesTo:['attack'],type:'special',
  desc:"+1 bonus on melee and thrown weapon attacks against targets of your hatred racial trait. This calculator has no hatred-racial-trait/chosen-race field, so it is not gated automatically -- only add this when actually facing your hated race.",
  compute:()=>({attack:1,damage:0,note:"+1 atk (melee/thrown only, vs. your hated race)"})},
+{id:'kirin-strike',name:'Kirin Strike',category:'feat',source:'Ultimate Combat pg. 107',appliesTo:['damage'],type:'special',
+ desc:"While using Kirin Style against a creature you've identified with that feat: as a swift action after a hit, add twice your Intelligence modifier in damage (minimum 2). Toggle on only after identifying the target and using Kirin Style.",
+ compute:(ctx)=>{let v=Math.max(2,2*(ctx.int||0));return {attack:0,damage:v,note:'+'+v+" dmg (= 2x Intelligence modifier, minimum 2) -- swift action, vs. a creature identified with Kirin Style only"}}},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
