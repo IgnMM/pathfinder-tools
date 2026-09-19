@@ -44,12 +44,17 @@ test('all 6 nodes get their own min-width:861px coordinates, distinct from the b
   ]) assert.match(block, rule);
 });
 
-test('the desktop breakpoint shrinks node width and label/rune font-size, since the new art\'s pentagram vertices sit closer together than the old square layout\'s and would otherwise collide, and pulls the label closer to its icon', () => {
+test('the desktop breakpoint shrinks node width and label/rune font-size, since the new art\'s pentagram vertices sit closer together than the old square layout\'s and would otherwise collide, and pulls most labels a little closer to their icon', () => {
   const block = html.slice(html.indexOf('@media (min-width:861px)'), html.indexOf('@media (max-width:560px)'));
   assert.match(block, /\.node\{ width:clamp\(72px,12cqw,128px\); \}/);
-  assert.match(block, /\.node \.label\{ font-size:clamp\(\.56rem,\.95cqw,\.7rem\); margin-top:4px; \}/);
+  assert.match(block, /\.node \.label\{ font-size:clamp\(\.56rem,\.95cqw,\.7rem\); margin-top:2px; \}/);
   assert.match(block, /\.node \.rune\{ font-size:clamp\(\.42rem,\.72cqw,\.56rem\); \}/);
-  assert.match(block, /\.node\[data-pos="center"\] \.label\{ margin-top:4px; \}/);
+  assert.match(block, /\.node\[data-pos="center"\] \.label\{ margin-top:2px; \}/);
+});
+
+test('Spell Library and Sources\' labels get pushed further from their icon instead (margin-top:18px), since the icon-only ring nudges below moved those two icons down/sideways and the tightened default margin-top:2px would otherwise overlap them', () => {
+  const block = html.slice(html.indexOf('@media (min-width:861px)'), html.indexOf('@media (max-width:560px)'));
+  assert.match(block, /\.node\[data-pos="lower-left"\] \.label, \.node\[data-pos="lower-right"\] \.label\{ margin-top:18px; \}/);
 });
 
 test('Sources and Spell Library get their own icon-only nudges (each .ring, not the node anchor) so both bottom icons sit on the art\'s sparkle points while their label/rune stay correctly placed -- Sources moved down+left, Spell Library matches its downward shift and moves right at half that horizontal magnitude', () => {

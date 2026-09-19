@@ -284,9 +284,16 @@
     .node[data-pos="lower-right"]{ left:59.6%; top:85.5%; }
     .node[data-pos="center"]{ left:50%; top:69%; }
     .node{ width:clamp(72px,12cqw,128px); }
-    .node .label{ font-size:clamp(.56rem,.95cqw,.7rem); margin-top:4px; }
+    .node .label{ font-size:clamp(.56rem,.95cqw,.7rem); margin-top:2px; }
     .node .rune{ font-size:clamp(.42rem,.72cqw,.56rem); }
-    .node[data-pos="center"] .label{ margin-top:4px; }
+    .node[data-pos="center"] .label{ margin-top:2px; }
+    /* icons are confirmed correctly placed now (do not move them) -- but
+       Spell Library/Sources' labels, still anchored to the un-nudged node
+       position, now sit too close to their icons after the ring offsets
+       above pushed the icons down/sideways. Every OTHER label was pulled a
+       little closer to its icon (margin-top 4px->2px, above); these two get
+       pushed further away instead so nothing overlaps. */
+    .node[data-pos="lower-left"] .label, .node[data-pos="lower-right"] .label{ margin-top:18px; }
     /* Sources' own icon (not its label/rune, which stay anchored to the node's
        top:85.5%) sits noticeably above the art's blue sparkle point below it --
        nudge only the ring down via a relative offset, which shifts it visually
