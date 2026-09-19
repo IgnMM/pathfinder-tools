@@ -66,6 +66,13 @@ test('Sources and Spell Library get their own icon-only nudges (each .ring, not 
   assert.match(block, /\.node\[data-pos="lower-left"\]\{ left:40\.2%; top:85\.5%; \}/);
 });
 
+test('the whole composition (pentacle + every node + the title) shifts up together as one unit on desktop, since every icon/label was confirmed correctly positioned relative to each other and to the art -- only the OS taskbar/browser chrome was clipping the bottom labels', () => {
+  const block = html.slice(html.indexOf('@media (min-width:861px)'), html.indexOf('@media (max-width:560px)'));
+  assert.match(block, /\.circle-wrap\{ transform:translateY\(-24px\); \}/);
+  // .crest's own horizontal centering (translateX(-50%)) must be preserved, not clobbered
+  assert.match(block, /\.crest\{ transform:translateX\(-50%\) translateY\(-24px\); \}/);
+});
+
 test('the mobile (max-width:560px) square-art node overrides are untouched', () => {
   assert.match(html, /@media \(max-width:560px\)\{\s*\.circle-wrap\{ width:min\(94vw,70vh\); \}/);
 });

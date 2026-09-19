@@ -5,7 +5,7 @@
 // cache is invalidated by a version bump (activate() deletes every cache key
 // that isn't the current CACHE_NAME). HTML itself is network-first and does
 // not need a bump to be seen fresh, but any .js/.json it references does.
-const CACHE_NAME = "pathfinder-paladins-folders-v229";
+const CACHE_NAME = "pathfinder-paladins-folders-v230";
 // SW-CACHE-001: precache only the app shell needed to open the Sanctum offline --
 // every other tool's page, manifest, icons and per-page assets are cached on demand
 // by the fetch handler below (cache-first for subresources, network-first for HTML)

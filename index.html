@@ -306,6 +306,16 @@
        (rightward) direction, per request. */
     .node[data-pos="lower-right"] .ring{ position:relative; top:30px; left:-20px; }
     .node[data-pos="lower-left"] .ring{ position:relative; top:30px; left:10px; }
+    /* Confirmed: every icon and label sits correctly on the art now -- the
+       whole composition just needs to shift up a little as a UNIT (title +
+       pentacle + every node together, none of their relative positions
+       touched) since the bottom labels were getting clipped by the OS
+       taskbar/browser chrome eating into the usable viewport height.
+       Shifting .circle-wrap up leaves a sliver of the body's own near-black
+       background exposed at the bottom instead of image, which is not
+       visually distinguishable from the art's own dark edges. */
+    .circle-wrap{ transform:translateY(-24px); }
+    .crest{ transform:translateX(-50%) translateY(-24px); }
   }
 
   @media (max-width:560px){
