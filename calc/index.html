@@ -4792,6 +4792,14 @@ const MODIFIERS = [
  configFields:[{key:'cl',label:'Caster level',type:'number',default:1}],
  desc:"+1 luck bonus per 3 caster levels (max +6) on attack rolls and weapon damage rolls (also Strength checks, not shown here), plus one extra attack at full BAB on a full attack -- applied automatically to the Full Attack line above (doesn't stack with haste/a speed weapon/Blessing of Fervor's extra attack). Temporary hit points not modeled.",
  compute:(ctx,cfg)=>{let v=Math.min(6,1+Math.floor(Math.max(0,(cfg.cl||1)-1)/3));return {attack:v,damage:v,grantsExtraAttack:true,note:'+'+v+' atk / +'+v+' dmg (luck), plus one extra attack at full BAB — applied automatically to Full Attack above'}}},
+{id:'halfling-vengeance-mass',name:'Halfling Vengeance, Mass',category:'spell',source:"Pathfinder #131: The Reaper's Right Hand pg. 72",appliesTo:['damage'],type:'special',
+ configFields:[{key:'cl',label:'Caster level',type:'number',default:1}],
+ desc:"+1d6 precision damage per 4 caster levels (starting at 1d6, max +5d6 at 19th), daggers/slings only, vs a foe denied its Dexterity bonus to AC or that you flank. Toggle on only when using a dagger or sling against such a foe.",
+ compute:(ctx,cfg)=>{let n=Math.min(5,1+Math.floor((cfg.cl||1)/4));return {attack:0,damage:0,extraDice:{normal:n+'d6'},note:'+'+n+'d6 precision dmg (not multiplied on a crit; daggers/slings only, vs a foe denied its Dex bonus to AC or that you flank)'}}},
+{id:'harrowing-greater',name:'Harrowing, Greater',category:'spell',source:'The Harrow Handbook pg. 9',appliesTo:['attack','damage'],type:'special',
+ configFields:[{key:'suit',label:"Suit drawn (this round's activated ability)",type:'select',options:[{v:'hammers',label:'Hammers (+4 enhancement Strength; can reroll bull rush/grapple/sunder checks, not modeled here)'},{v:'keys',label:'Keys (+4 enhancement Dexterity; evasion, not modeled here)'},{v:'other',label:'Shields/Books/Stars/Crowns (no attack/damage effect)'}],default:'hammers'}],
+ desc:"As a standard action, grant yourself a +4 enhancement bonus to Strength (Hammers) or Dexterity (Keys) for 1 minute -- the other four suits (Shields/Books/Stars/Crowns) grant no attack/damage bonus and aren't modeled. Only actually changes your attack/damage here if the affected ability is your selected attack/damage ability above.",
+ compute:(ctx,cfg)=>{let suit=cfg.suit||'hammers';if(suit==='other')return {attack:0,damage:0,note:'no effect — this suit grants no attack/damage bonus'};let ability=suit==='keys'?'dex':'str';let r=abilityBuffBonus(ctx,ability,4,'enhancement');return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):("no effect — "+(ability==='str'?'Strength':'Dexterity')+" isn't your selected attack/damage ability above")}}},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
