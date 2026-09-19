@@ -64,6 +64,10 @@ test('every other .links-based section (Spell Libraries, Character Spell Sheets,
   assert.ok(sourcesLinksCount >= 1, 'other sections must still use the plain .links container');
 });
 
+test('#section-damage strips the shared details.section panel box (background/border/border-top accent) since the deep-link routing script hides its own summary, leaving the panel wrapping nothing but the two already-bordered cards', () => {
+  assert.match(hubHtml, /#section-damage\{background:none;border:none;border-radius:0;box-shadow:none\}/);
+});
+
 test('the tool-choice CSS is scoped to its own classes, not a global override of .links or .card', () => {
   const cssStart = hubHtml.indexOf('.tool-choice-grid{');
   assert.ok(cssStart >= 0);
