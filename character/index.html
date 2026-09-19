@@ -315,9 +315,24 @@ function scanAllCharacters(){
   let byName={};
   function ensure(name){ if(!byName[name]) byName[name]={name, calc:false, spellClasses:[], mergedEntry:null}; return byName[name]; }
 
+  // A tool auto-creates a profile named "New <Thing>" the instant its page is opened,
+  // even if the visitor never touches anything -- calc/index.html's own loadStore()
+  // and every class's spellbook store do this unconditionally. That phantom entry then
+  // autosaves to localStorage on the very first render, so simply having opened a tool
+  // once is enough to make it show up here forever. Treat a profile as a "ghost" (skip
+  // it entirely, don't list it) only when its name is EXACTLY that tool's own default
+  // name AND it is the ONLY profile in that store -- i.e. nothing was ever renamed or
+  // added alongside it, the strongest available signal that it was never actually used.
+  // A default-named profile that coexists with other real profiles in the same store
+  // (or was kept on purpose after real edits) still counts as real and is shown.
   try{
     let raw=localStorage.getItem('pf1_universal_damage_calc_profiles_v1');
-    if(raw){ let store=JSON.parse(raw); (store.profiles||[]).forEach(p=>{ ensure(p.name).calc=true; }); }
+    if(raw){
+      let store=JSON.parse(raw);
+      let profiles=store.profiles||[];
+      let calcIsGhost = profiles.length===1 && profiles[0].name==='New Character';
+      if(!calcIsGhost) profiles.forEach(p=>{ ensure(p.name).calc=true; });
+    }
   }catch(e){}
 
   ALL_CLASSES.forEach(cls=>{
@@ -325,7 +340,10 @@ function scanAllCharacters(){
       let raw=localStorage.getItem(cls+'UniversalSpellbookPF1V1');
       if(!raw) return;
       let store=JSON.parse(raw);
-      Object.keys(store.profiles||{}).forEach(name=>{ ensure(name).spellClasses.push(cls); });
+      let names=Object.keys(store.profiles||{});
+      let defaultName='New '+(CLASS_LABELS[cls]||cls);
+      let spellIsGhost = names.length===1 && names[0]===defaultName;
+      if(!spellIsGhost) names.forEach(name=>{ ensure(name).spellClasses.push(cls); });
     }catch(e){}
   });
 

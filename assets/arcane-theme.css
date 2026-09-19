@@ -56,22 +56,34 @@ body[class*="theme-"]::after{
 /* Everything the page already renders sits above the background/scrim pair. */
 body[class*="theme-"] > *:not(.arc-bg-sizer){ position:relative; z-index:2; }
 
-body.theme-calc::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.22), rgba(9,7,4,.42)), url('tool-backgrounds/calc-war-room.webp'); background-position:center top; }
+body.theme-calc::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.1), rgba(9,7,4,.22)), url('tool-backgrounds/calc-war-room.webp'); background-position:center top; }
 body.theme-companion::before{ background-image:linear-gradient(180deg, rgba(6,10,6,.2), rgba(6,10,6,.4)), url('tool-backgrounds/companion-sanctuary.webp'); background-position:48% top; }
 body.theme-find-class::before{ background-image:linear-gradient(180deg, rgba(5,8,14,.22), rgba(5,8,14,.42)), url('tool-backgrounds/find-class-observatory.webp'); background-position:center top; }
-body.theme-characters::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.22), rgba(9,7,4,.42)), url('tool-backgrounds/characters-hall.webp'); background-position:center top; }
-body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11,.22), rgba(4,8,11,.42)), url('tool-backgrounds/sources-archive.webp'); background-position:center top; }
+body.theme-characters::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.1), rgba(9,7,4,.22)), url('tool-backgrounds/characters-hall.webp'); background-position:center top; }
+body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11,.1), rgba(4,8,11,.22)), url('tool-backgrounds/sources-archive.webp'); background-position:center top; }
 /* Character Spell Sheets reuse the already-approved class-seal scene (same image the
    hub's own class picker uses) rather than a new tool-backgrounds asset -- no separate
    mobile crop exists for it, so the one image is used at every width. */
 body.theme-spell-sheet::before{ background-image:linear-gradient(180deg, rgba(6,7,11,.25), rgba(6,7,11,.45)), url('stone-runes/arcane-seals-background.png'); background-position:center top; }
 
+/* Calc, My Characters and Sources still read as too dark against the shared ::after
+   scrim above even after the first easing pass -- lightened specifically for these
+   three (reported live as "flat black"), left untouched for Companion/Find-Class/
+   Spell-Sheet since only these three were flagged. Same specificity as the shared
+   body[class*="theme-"]::after rule (one class selector each), so source order alone
+   makes these win -- declared after it. */
+body.theme-calc::after, body.theme-characters::after, body.theme-sources::after{
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(8,10,14,.08) 0%, rgba(8,10,14,.22) 62%, rgba(6,8,11,.32) 100%),
+    linear-gradient(180deg, rgba(6,8,11,.16) 0%, rgba(6,8,11,.06) 22%, rgba(6,8,11,.16) 78%, rgba(6,8,11,.3) 100%);
+}
+
 @media (max-width:700px){
-  body.theme-calc::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.25), rgba(9,7,4,.45)), url('tool-backgrounds/calc-war-room-mobile.webp'); }
+  body.theme-calc::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.12), rgba(9,7,4,.25)), url('tool-backgrounds/calc-war-room-mobile.webp'); }
   body.theme-companion::before{ background-image:linear-gradient(180deg, rgba(6,10,6,.22), rgba(6,10,6,.4)), url('tool-backgrounds/companion-sanctuary-mobile.webp'); }
   body.theme-find-class::before{ background-image:linear-gradient(180deg, rgba(5,8,14,.25), rgba(5,8,14,.45)), url('tool-backgrounds/find-class-observatory-mobile.webp'); }
-  body.theme-characters::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.25), rgba(9,7,4,.45)), url('tool-backgrounds/characters-hall-mobile.webp'); }
-  body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11,.25), rgba(4,8,11,.45)), url('tool-backgrounds/sources-archive-mobile.webp'); }
+  body.theme-characters::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.12), rgba(9,7,4,.25)), url('tool-backgrounds/characters-hall-mobile.webp'); }
+  body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11,.12), rgba(4,8,11,.25)), url('tool-backgrounds/sources-archive-mobile.webp'); }
   /* background-attachment:fixed is desktop-only per brief -- default (scroll) applies here. */
 }
 

@@ -36,12 +36,20 @@ test('arcane-theme.css darkening layers were eased so the supplied (already-dark
   assert.match(themeCss, /rgba\(6,8,11,\.55\)\s*100%/);
   // Every theme's own background-image gradient overlay was eased too (desktop rules).
   for (const themeRule of [
-    /body\.theme-calc::before\{ background-image:linear-gradient\(180deg, rgba\(9,7,4,\.22\), rgba\(9,7,4,\.42\)\)/,
+    /body\.theme-calc::before\{ background-image:linear-gradient\(180deg, rgba\(9,7,4,\.1\), rgba\(9,7,4,\.22\)\)/,
     /body\.theme-companion::before\{ background-image:linear-gradient\(180deg, rgba\(6,10,6,\.2\), rgba\(6,10,6,\.4\)\)/,
     /body\.theme-find-class::before\{ background-image:linear-gradient\(180deg, rgba\(5,8,14,\.22\), rgba\(5,8,14,\.42\)\)/,
-    /body\.theme-characters::before\{ background-image:linear-gradient\(180deg, rgba\(9,7,4,\.22\), rgba\(9,7,4,\.42\)\)/,
-    /body\.theme-sources::before\{ background-image:linear-gradient\(180deg, rgba\(4,8,11,\.22\), rgba\(4,8,11,\.42\)\)/,
+    /body\.theme-characters::before\{ background-image:linear-gradient\(180deg, rgba\(9,7,4,\.1\), rgba\(9,7,4,\.22\)\)/,
+    /body\.theme-sources::before\{ background-image:linear-gradient\(180deg, rgba\(4,8,11,\.1\), rgba\(4,8,11,\.22\)\)/,
   ]) assert.match(themeCss, themeRule);
+});
+
+test('calc, characters and sources get a second, even lighter ::after scrim override (reported live as still "flat black" after the first easing pass), left untouched for companion/find-class/spell-sheet', () => {
+  assert.match(themeCss, /body\.theme-calc::after, body\.theme-characters::after, body\.theme-sources::after\{/);
+  assert.match(themeCss, /rgba\(8,10,14,\.08\) 0%, rgba\(8,10,14,\.22\) 62%, rgba\(6,8,11,\.32\) 100%/);
+  assert.match(themeCss, /rgba\(6,8,11,\.16\) 0%, rgba\(6,8,11,\.06\) 22%, rgba\(6,8,11,\.16\) 78%, rgba\(6,8,11,\.3\) 100%/);
+  assert.doesNotMatch(themeCss, /theme-companion::after/);
+  assert.doesNotMatch(themeCss, /theme-find-class::after/);
 });
 
 test('help-glyph.png now has real alpha transparency at every corner (no baked-in background)', () => {
