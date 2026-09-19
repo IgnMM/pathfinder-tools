@@ -76,6 +76,12 @@
       schemaVersion: 2, stage: 'choice',
       idea: '',
       manualCapabilityPreferences: {}, manualExpanded: {}, manualSectionCollapsed: {},
+      // Discreet, opt-in filter on the "Build your profile" (manual-criteria)
+      // screen: when set, results show ONLY prestige classes -- for a player
+      // deliberately browsing "what could I evolve into" instead of "what
+      // should I start as" -- rather than the default pool that excludes
+      // prestige classes entirely and only ever surfaces one as a bonus tip.
+      manualPrestigeOnly: false,
       capabilityPreferences: {}, practicalPreferences: {}, factPreferences: {}, identityPreferences: {},
       // Narrative Question-mode ("Classfinder" guided dialogue): a linear
       // record of {questionId, optionId, storyLine} the player has answered
@@ -453,6 +459,7 @@
         <p class="fycSupport">Click a criterion to choose Absent, Available or Core. Leave it "Not relevant" to skip it entirely.</p>
         <div class="fycManualGroups">${groups}</div>
         ${manualSummary()}
+        <label class="fycPrestigeOnlyToggle"><input type="checkbox" data-action="manual-toggle-prestige-only" ${state.manualPrestigeOnly ? 'checked' : ''}> Only show prestige classes</label>
         <div class="fycActions">
           <button type="button" class="fycPrimary" data-action="manual-find-paths" ${activeCount === 0 ? 'disabled' : ''}>Find my paths</button>
           <button type="button" class="fycSecondary" data-action="manual-clear-profile">Clear profile</button>
@@ -466,7 +473,9 @@
     // -----------------------------------------------------------------
     function recommendationCard(rec) {
       const roleLabel = { 'best-overall': 'Best overall', 'different-approach': 'Different approach', 'more-approachable': 'More approachable', 'unexpected-fit': 'Unexpected fit' }[rec.role] || rec.role;
-      const typeText = rec.entityType === 'class-path' ? 'Class path' : `Archetype · Parent class: ${escapeHtml(rec.parentLabel)}`;
+      const typeText = rec.entityType === 'class-path' ? 'Class path'
+        : rec.entityType === 'prestige-class' ? 'Prestige class'
+        : `Archetype · Parent class: ${escapeHtml(rec.parentLabel)}`;
       const provisional = rec.fitBand === 'provisional' ? `<p class="fycProvisional">This is the closest path so far, but your answers do not point strongly enough in one direction yet.</p>` : '';
       return `<article class="fycResultCard" data-role="${rec.role}">
         <p class="fycResultRole">${escapeHtml(roleLabel)}</p>
@@ -475,6 +484,7 @@
         <p class="fycResultSummary">${escapeHtml(rec.summary)}</p>
         ${provisional}
         ${rec.whyItFits.length ? `<div class="fycWhy"><h3>Why it fits</h3><ul>${rec.whyItFits.map(w => `<li>${escapeHtml(w)}</li>`).join('')}</ul></div>` : ''}
+        ${rec.requirementsText ? `<div class="fycWatch"><h3>How to qualify</h3><p>${escapeHtml(rec.requirementsText)}</p></div>` : ''}
         ${rec.watchFor.length ? `<div class="fycWatch"><h3>Watch for</h3><ul>${rec.watchFor.map(w => `<li>${escapeHtml(w)}</li>`).join('')}</ul></div>` : ''}
         ${rec.requirements.length ? `<div class="fycRequirements"><h3>Requirements &amp; commitments</h3><ul>${rec.requirements.map(r => `<li>${escapeHtml(r)}</li>`).join('')}</ul></div>` : ''}
         <div class="fycResultActions"><a class="fycPrimary" href="${escapeHtml(rec.sourceUrl || '#')}" target="_blank" rel="noopener">View rules source</a></div>
@@ -538,7 +548,7 @@
 
     function reRunLastSearchIfShowingResults() {
       if (state.stage !== 'results') return;
-      if (state.lastMode === 'profile') runManualMatching(state, profiles, criteriaIndex, { maxResults: 4 });
+      if (state.lastMode === 'profile') runManualMatching(state, profiles, criteriaIndex, { maxResults: 4, prestigeOnly: state.manualPrestigeOnly });
       else runMatching(state, profiles, criteriaIndex, { maxResults: 4 });
     }
 
@@ -672,6 +682,9 @@
         if (value === 'not-relevant') delete state.manualCapabilityPreferences[id];
         else state.manualCapabilityPreferences[id] = value;
         rerender();
+      } else if (action === 'manual-toggle-prestige-only') {
+        state.manualPrestigeOnly = el.checked;
+        rerender();
       } else if (action === 'manual-clear-profile') {
         if (typeof confirm === 'function' && !confirm('Clear your entire profile? This cannot be undone.')) return;
         state.manualCapabilityPreferences = {};
@@ -684,7 +697,7 @@
           return;
         }
         state.lastMode = 'profile';
-        runManualMatching(state, profiles, criteriaIndex, { maxResults: 4 });
+        runManualMatching(state, profiles, criteriaIndex, { maxResults: 4, prestigeOnly: state.manualPrestigeOnly });
         goTo('results');
       } else if (action === 'back-to-previous') {
         goTo(state.lastMode === 'profile' ? 'profile' : 'question');

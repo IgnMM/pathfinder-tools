@@ -363,14 +363,21 @@
     return buildResult(best, 'prestige-tip', criteriaIndex);
   }
 
+  // options.prestigeOnly (manual-profile mode only, opt-in): instead of the
+  // default class-path/archetype pool with prestige classes surfaced as a
+  // single bonus tip, restrict the main pool to prestige classes ONLY -- a
+  // player deliberately browsing "what could I evolve into" rather than
+  // "what should I start as". No prestige tip in this mode (it would just
+  // repeat the top result).
   function matchProfiles(request, profiles, criteriaIndex, options) {
-    const mainPool = profiles.filter(p => !isPrestigeClass(p));
+    const prestigeOnly = !!(options && options.prestigeOnly);
+    const mainPool = profiles.filter(p => isPrestigeClass(p) === prestigeOnly);
     const ranked = rankCandidates(mainPool, request);
     const roles = selectRoles(ranked, request, (options && options.maxResults) || 4);
     const recommendations = roles.map(c => buildResult(c, c.role, criteriaIndex));
     const bestFit = ranked.find(r => r.eligibility.status !== 'ineligible');
     const confidence = !bestFit ? 'low' : bestFit.overallFit >= 0.72 ? 'high' : bestFit.overallFit >= FIT_FLOOR ? 'medium' : 'low';
-    const prestigeTip = buildPrestigeTip(profiles, request, criteriaIndex);
+    const prestigeTip = prestigeOnly ? null : buildPrestigeTip(profiles, request, criteriaIndex);
     return { recommendations, confidence, prestigeTip, _internal: { ranked } };
   }
 
