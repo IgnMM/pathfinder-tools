@@ -112,6 +112,10 @@
     50%{ filter:saturate(1.1) brightness(1.06); }
   }
 
+  @media (min-width: 861px){
+    .circle-wrap{ width:min(92vw,124vh,1180px); aspect-ratio:16/9; }
+  }
+
   .node{
     position:absolute;
     transform:translate(-50%,-50%);
@@ -227,6 +231,23 @@
   .node[data-pos="center"] .label{ font-size:clamp(.56rem,1.14cqw,.72rem); margin-top:6px; }
   .node[data-pos="center"] .rune{ font-size:clamp(.42rem,.82cqw,.58rem); }
 
+  @media (min-width:861px){
+    /* the wide desktop art's pentagram is more compact than the old square
+       image's (vertices located via canvas brightness-peak sampling against
+       the actual pentacle-background-desktop.png, not eyeballed), so nodes
+       sit closer together here than on the square layout -- width/font
+       overrides below keep labels from colliding at that tighter spacing. */
+    .node[data-pos="top"]{ left:50%; top:37%; }
+    .node[data-pos="upper-left"]{ left:37.7%; top:52.5%; }
+    .node[data-pos="upper-right"]{ left:58.2%; top:52.1%; }
+    .node[data-pos="lower-left"]{ left:40.2%; top:83.8%; }
+    .node[data-pos="lower-right"]{ left:59.6%; top:83.8%; }
+    .node[data-pos="center"]{ left:50%; top:58%; }
+    .node{ width:clamp(72px,12cqw,128px); }
+    .node .label{ font-size:clamp(.56rem,.95cqw,.7rem); margin-top:6px; }
+    .node .rune{ font-size:clamp(.42rem,.72cqw,.56rem); }
+  }
+
   @media (max-width:560px){
     .circle-wrap{ width:min(94vw,70vh); }
     .node[data-pos="top"]{ top:19%; }
@@ -330,7 +351,10 @@
   </div>
 
   <div class="circle-wrap">
-    <img class="bg" src="assets/sanctum/pentacle-background.jpg" width="1400" height="1400" alt="A pentacle inscribed in cracked stone">
+    <picture>
+      <source media="(min-width: 861px)" srcset="assets/sanctum/pentacle-background-desktop.png">
+      <img class="bg" src="assets/sanctum/pentacle-background.jpg" width="1400" height="1400" alt="A pentacle inscribed in cracked stone">
+    </picture>
 
     <a class="node" data-pos="top" href="character/" tabindex="0">
       <span class="ring"><img class="icon" src="assets/sanctum/my-characters-icon.png" width="300" height="300" alt="An ornate crest bearing three armored heroes" onload="this.classList.add('loaded')"></span>
