@@ -36,19 +36,20 @@ test('all 6 nodes get their own min-width:861px coordinates, distinct from the b
   const block = html.slice(html.indexOf('@media (min-width:861px)'), html.indexOf('@media (max-width:560px)'));
   for (const rule of [
     /\.node\[data-pos="top"\]\{ left:50%; top:37%; \}/,
-    /\.node\[data-pos="upper-left"\]\{ left:37\.7%; top:52\.5%; \}/,
-    /\.node\[data-pos="upper-right"\]\{ left:58\.2%; top:52\.1%; \}/,
-    /\.node\[data-pos="lower-left"\]\{ left:40\.2%; top:83\.8%; \}/,
-    /\.node\[data-pos="lower-right"\]\{ left:59\.6%; top:83\.8%; \}/,
-    /\.node\[data-pos="center"\]\{ left:50%; top:63%; \}/,
+    /\.node\[data-pos="upper-left"\]\{ left:37\.7%; top:56%; \}/,
+    /\.node\[data-pos="upper-right"\]\{ left:62\.5%; top:56%; \}/,
+    /\.node\[data-pos="lower-left"\]\{ left:40\.2%; top:85\.5%; \}/,
+    /\.node\[data-pos="lower-right"\]\{ left:59\.6%; top:85\.5%; \}/,
+    /\.node\[data-pos="center"\]\{ left:50%; top:69%; \}/,
   ]) assert.match(block, rule);
 });
 
-test('the desktop breakpoint shrinks node width and label/rune font-size, since the new art\'s pentagram vertices sit closer together than the old square layout\'s and would otherwise collide', () => {
+test('the desktop breakpoint shrinks node width and label/rune font-size, since the new art\'s pentagram vertices sit closer together than the old square layout\'s and would otherwise collide, and pulls the label closer to its icon', () => {
   const block = html.slice(html.indexOf('@media (min-width:861px)'), html.indexOf('@media (max-width:560px)'));
   assert.match(block, /\.node\{ width:clamp\(72px,12cqw,128px\); \}/);
-  assert.match(block, /\.node \.label\{ font-size:clamp\(\.56rem,\.95cqw,\.7rem\); margin-top:6px; \}/);
+  assert.match(block, /\.node \.label\{ font-size:clamp\(\.56rem,\.95cqw,\.7rem\); margin-top:4px; \}/);
   assert.match(block, /\.node \.rune\{ font-size:clamp\(\.42rem,\.72cqw,\.56rem\); \}/);
+  assert.match(block, /\.node\[data-pos="center"\] \.label\{ margin-top:4px; \}/);
 });
 
 test('the mobile (max-width:560px) square-art node overrides are untouched', () => {

@@ -268,16 +268,25 @@
        browser window (full width, less than full monitor height) that
        decouples, letting oversized text collide with a neighbour below it;
        centre was reported overlapping "top"'s own label at 1600x800 and
-       nudged from 58%->63% to clear it at that and other short heights. */
+       nudged from 58%->63% to clear it at that and other short heights.
+       Further live feedback (screenshot at ~1380x1000): calculator/spellbook
+       sat visibly above their own points on the art and spellbook's own
+       point sits further right than the mirrored 58.2% guess -- re-verified
+       by sampling the actual rendered (post-cover-crop) pixels at that ratio,
+       moving upper-left/upper-right down to 56%, upper-right right to 62.5%,
+       lower pair down to 85.5%, and centre further down to 69% to stay clear
+       of the (now lower) upper pair. Label margin-top also trimmed to sit
+       closer under each icon, per request ("un poco", not flush). */
     .node[data-pos="top"]{ left:50%; top:37%; }
-    .node[data-pos="upper-left"]{ left:37.7%; top:52.5%; }
-    .node[data-pos="upper-right"]{ left:58.2%; top:52.1%; }
-    .node[data-pos="lower-left"]{ left:40.2%; top:83.8%; }
-    .node[data-pos="lower-right"]{ left:59.6%; top:83.8%; }
-    .node[data-pos="center"]{ left:50%; top:63%; }
+    .node[data-pos="upper-left"]{ left:37.7%; top:56%; }
+    .node[data-pos="upper-right"]{ left:62.5%; top:56%; }
+    .node[data-pos="lower-left"]{ left:40.2%; top:85.5%; }
+    .node[data-pos="lower-right"]{ left:59.6%; top:85.5%; }
+    .node[data-pos="center"]{ left:50%; top:69%; }
     .node{ width:clamp(72px,12cqw,128px); }
-    .node .label{ font-size:clamp(.56rem,.95cqw,.7rem); margin-top:6px; }
+    .node .label{ font-size:clamp(.56rem,.95cqw,.7rem); margin-top:4px; }
     .node .rune{ font-size:clamp(.42rem,.72cqw,.56rem); }
+    .node[data-pos="center"] .label{ margin-top:4px; }
   }
 
   @media (max-width:560px){
