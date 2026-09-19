@@ -169,6 +169,28 @@ details.subsection .links{padding:0}
 .sourcesList label:hover{background:rgba(255,255,255,.04)}
 .sourcesList input{width:auto;flex:none}
 .sourcesStatus{color:var(--muted);font-size:.75rem;margin-top:8px}
+
+/* Damage Calculator picker -- two illustrated nav cards replacing the plain .links
+   text buttons, scoped to their own tool-choice-* classes so .links itself (still
+   used by every other section: Spell Libraries, Character Spell Sheets, Sources)
+   is untouched. */
+.tool-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px)}
+.tool-choice-card{position:relative;display:block;min-width:0;aspect-ratio:3/2;overflow:hidden;border:1px solid rgba(212,177,92,.34);border-radius:18px;background:#0d121a;color:#fff;text-decoration:none;box-shadow:0 16px 42px rgba(0,0,0,.28);isolation:isolate;transition:transform 180ms ease,border-color 180ms ease,box-shadow 180ms ease}
+.tool-choice-art,.tool-choice-art img,.tool-choice-overlay{position:absolute;inset:0;width:100%;height:100%}
+.tool-choice-art img{display:block;object-fit:cover}
+.tool-choice-overlay{z-index:1;background:linear-gradient(to top,rgba(6,9,14,.96) 0%,rgba(6,9,14,.68) 28%,rgba(6,9,14,.08) 67%),linear-gradient(to right,rgba(6,9,14,.28),transparent 58%)}
+.tool-choice-copy{position:absolute;z-index:2;left:clamp(18px,2.2vw,30px);right:clamp(18px,2.2vw,30px);bottom:clamp(18px,2.2vw,28px);display:grid;gap:6px;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.tool-choice-copy strong{font-size:clamp(1.15rem,1.65vw,1.6rem);line-height:1.12}
+.tool-choice-copy>span{color:rgba(231,235,244,.88);font-size:clamp(.88rem,1vw,1rem);line-height:1.35}
+.tool-choice-card:hover{transform:translateY(-3px);border-color:rgba(226,191,102,.82);box-shadow:0 20px 52px rgba(0,0,0,.38)}
+.tool-choice-card:focus-visible{outline:3px solid #e1bd67;outline-offset:4px}
+@media (max-width:720px){
+  .tool-choice-grid{grid-template-columns:1fr}
+  .tool-choice-card{aspect-ratio:2/3;min-height:440px}
+}
+@media (prefers-reduced-motion:reduce){
+  .tool-choice-card{transition:none}
+}
 </style>
 <link rel="stylesheet" href="assets/arcane-theme.css">
 </head>
@@ -217,9 +239,29 @@ setTimeout(()=>{ const v=document.getElementById('loadVeil'); if(v) v.remove(); 
 <span class="section-title"><span class="name">Damage Calculator</span><span class="count">2 tools — save by name</span></span>
 <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
 </summary>
-<div class="links">
-<a href="calc/">Character Hit&amp;Damage Calculator<br><small>Any character — feats, traits, spells &amp; more</small></a>
-<a href="companion/">Companion &amp; Mount Hit&amp;Damage Calculator<br><small>Animal companions, mounts &amp; similar allies — natural attacks</small></a>
+<div class="tool-choice-grid">
+<a class="tool-choice-card" href="calc/">
+<picture class="tool-choice-art" aria-hidden="true">
+<source media="(max-width: 720px)" srcset="assets/tool-choice/character-combat-mobile.webp">
+<img src="assets/tool-choice/character-combat-desktop.webp" alt="" width="1536" height="1024" loading="eager" fetchpriority="high">
+</picture>
+<span class="tool-choice-overlay"></span>
+<span class="tool-choice-copy">
+<strong>Character Hit&amp;Damage Calculator</strong>
+<span>Any character — feats, traits, spells &amp; more</span>
+</span>
+</a>
+<a class="tool-choice-card" href="companion/">
+<picture class="tool-choice-art" aria-hidden="true">
+<source media="(max-width: 720px)" srcset="assets/tool-choice/mounts-companions-mobile.webp">
+<img src="assets/tool-choice/mounts-companions-desktop.webp" alt="" width="1536" height="1024" loading="eager">
+</picture>
+<span class="tool-choice-overlay"></span>
+<span class="tool-choice-copy">
+<strong>Companion &amp; Mount Hit&amp;Damage Calculator</strong>
+<span>Animal companions, mounts &amp; similar allies — natural attacks</span>
+</span>
+</a>
 </div>
 </details>
 
