@@ -23,9 +23,13 @@ test('assets/sanctum/pentacle-background-desktop.png exists', () => {
   assert.ok(fs.existsSync(path.join(root, 'assets/sanctum/pentacle-background-desktop.png')));
 });
 
-test('.circle-wrap widens to a 16:9 box only inside the min-width:861px breakpoint, leaving the base square layout as the default', () => {
+test('.circle-wrap stays a bounded square box by default (mobile/tablet), but becomes a fixed full-viewport backdrop (object-fit:cover, no letterboxing) at min-width:861px, with .crest pulled out of flow to overlay its dark top band', () => {
   assert.match(html, /\.circle-wrap\{[^}]*width:min\(88vw,74vh,760px\);[^}]*aspect-ratio:1\/1;/);
-  assert.match(html, /@media \(min-width: 861px\)\{\s*\.circle-wrap\{ width:min\(92vw,124vh,1180px\); aspect-ratio:16\/9; \}\s*\}/);
+  const block = html.slice(html.indexOf('@media (min-width: 861px)'), html.indexOf('.node{\n    position:absolute'));
+  assert.match(block, /\.stage\{ padding-top:0; \}/);
+  assert.match(block, /\.circle-wrap\{\s*position:fixed;\s*inset:0;\s*width:100vw;\s*height:100vh;\s*aspect-ratio:auto;\s*z-index:0;\s*\}/);
+  assert.match(block, /\.circle-wrap img\.bg\{ object-fit:cover; \}/);
+  assert.match(block, /\.crest\{\s*position:absolute;\s*top:clamp\(28px,6vh,56px\);\s*left:50%;\s*transform:translateX\(-50%\);\s*width:100%;\s*z-index:3;\s*\}/);
 });
 
 test('all 6 nodes get their own min-width:861px coordinates, distinct from the base square-art coordinates', () => {

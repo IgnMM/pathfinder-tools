@@ -113,7 +113,33 @@
   }
 
   @media (min-width: 861px){
-    .circle-wrap{ width:min(92vw,124vh,1180px); aspect-ratio:16/9; }
+    /* Full-bleed treatment: the desktop art (pentacle-background-desktop.png)
+       was drawn deliberately dark across its top band so the page title can
+       sit directly over it -- .circle-wrap becomes a fixed, full-viewport
+       backdrop (object-fit:cover, no letterboxing) instead of a bounded box
+       in the page flow, and .crest is pulled out of the flow to overlay its
+       top edge. Node percentages are unchanged from the bounded 16:9 box
+       they were calibrated against -- cover-cropping at typical desktop
+       aspect ratios (16:9/16:10) stays close enough to that calibration;
+       only unusually tall or ultrawide windows will drift a little. */
+    .stage{ padding-top:0; }
+    .circle-wrap{
+      position:fixed;
+      inset:0;
+      width:100vw;
+      height:100vh;
+      aspect-ratio:auto;
+      z-index:0;
+    }
+    .circle-wrap img.bg{ object-fit:cover; }
+    .crest{
+      position:absolute;
+      top:clamp(28px,6vh,56px);
+      left:50%;
+      transform:translateX(-50%);
+      width:100%;
+      z-index:3;
+    }
   }
 
   .node{
