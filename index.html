@@ -262,13 +262,19 @@
        image's (vertices located via canvas brightness-peak sampling against
        the actual pentacle-background-desktop.png, not eyeballed), so nodes
        sit closer together here than on the square layout -- width/font
-       overrides below keep labels from colliding at that tighter spacing. */
+       overrides below keep labels from colliding at that tighter spacing.
+       .node sizing scales with the container's WIDTH (cqw) while vertical
+       gaps between nodes scale with viewport HEIGHT -- on a wide-but-short
+       browser window (full width, less than full monitor height) that
+       decouples, letting oversized text collide with a neighbour below it;
+       centre was reported overlapping "top"'s own label at 1600x800 and
+       nudged from 58%->63% to clear it at that and other short heights. */
     .node[data-pos="top"]{ left:50%; top:37%; }
     .node[data-pos="upper-left"]{ left:37.7%; top:52.5%; }
     .node[data-pos="upper-right"]{ left:58.2%; top:52.1%; }
     .node[data-pos="lower-left"]{ left:40.2%; top:83.8%; }
     .node[data-pos="lower-right"]{ left:59.6%; top:83.8%; }
-    .node[data-pos="center"]{ left:50%; top:58%; }
+    .node[data-pos="center"]{ left:50%; top:63%; }
     .node{ width:clamp(72px,12cqw,128px); }
     .node .label{ font-size:clamp(.56rem,.95cqw,.7rem); margin-top:6px; }
     .node .rune{ font-size:clamp(.42rem,.72cqw,.56rem); }
@@ -322,7 +328,7 @@
 <div class="vignette"></div>
 <div id="syncGate" style="display:none;position:fixed;inset:0;z-index:9999;
   background-image:linear-gradient(to bottom, rgba(6,4,3,.1) 0%, rgba(6,4,3,.15) 50%, rgba(6,4,3,.94) 100%), url('assets/gate-bg-desktop.png');
-  background-size:cover;background-position:center;
+  background-size:cover;background-position:center 20%;
   align-items:flex-end;justify-content:center;padding:0 16px 26px">
   <div style="max-width:380px;width:100%;background:rgba(12,9,6,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(233,200,116,.35);border-radius:12px;padding:18px 20px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.55)">
     <h2 style="font-family:'Cinzel Decorative',serif;margin:0 0 6px;color:#e9c874;font-size:1.15rem;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.7)">Welcome, Traveler</h2>

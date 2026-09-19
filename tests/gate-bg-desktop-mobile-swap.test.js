@@ -39,6 +39,14 @@ test('every sync-gate page references gate-bg-desktop.png as its default backgro
   }
 });
 
+test('every sync-gate page positions the background at center 20% (not plain center), so the top of the art -- where the rogue and warrior\'s heads sit -- is not cropped off by background-size:cover', () => {
+  for (const page of PAGES) {
+    const html = fs.readFileSync(path.join(root, page), 'utf8');
+    assert.match(html, /background-size:cover;background-position:center 20%;/, `${page} should use the raised background-position`);
+    assert.doesNotMatch(html, /background-position:center;/, `${page} should not have the old plain-center position left over`);
+  }
+});
+
 test('service-worker.js precaches both new gate-bg images, not the old one', () => {
   const sw = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');
   assert.match(sw, /"\.\/assets\/gate-bg-desktop\.png"/);

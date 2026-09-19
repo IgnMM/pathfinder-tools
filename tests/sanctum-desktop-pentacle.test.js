@@ -40,7 +40,7 @@ test('all 6 nodes get their own min-width:861px coordinates, distinct from the b
     /\.node\[data-pos="upper-right"\]\{ left:58\.2%; top:52\.1%; \}/,
     /\.node\[data-pos="lower-left"\]\{ left:40\.2%; top:83\.8%; \}/,
     /\.node\[data-pos="lower-right"\]\{ left:59\.6%; top:83\.8%; \}/,
-    /\.node\[data-pos="center"\]\{ left:50%; top:58%; \}/,
+    /\.node\[data-pos="center"\]\{ left:50%; top:63%; \}/,
   ]) assert.match(block, rule);
 });
 
