@@ -52,6 +52,13 @@ test('the desktop breakpoint shrinks node width and label/rune font-size, since 
   assert.match(block, /\.node\[data-pos="center"\] \.label\{ margin-top:4px; \}/);
 });
 
+test('Sources gets its own icon-only nudge (its ring, not the node anchor) since its icon sat above the art\'s blue sparkle point while its label/rune stayed correctly placed', () => {
+  const block = html.slice(html.indexOf('@media (min-width:861px)'), html.indexOf('@media (max-width:560px)'));
+  assert.match(block, /\.node\[data-pos="lower-right"\] \.ring\{ position:relative; top:14px; \}/);
+  // the node's own anchor (and therefore its label/rune) must stay untouched
+  assert.match(block, /\.node\[data-pos="lower-right"\]\{ left:59\.6%; top:85\.5%; \}/);
+});
+
 test('the mobile (max-width:560px) square-art node overrides are untouched', () => {
   assert.match(html, /@media \(max-width:560px\)\{\s*\.circle-wrap\{ width:min\(94vw,70vh\); \}/);
 });

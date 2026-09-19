@@ -287,6 +287,11 @@
     .node .label{ font-size:clamp(.56rem,.95cqw,.7rem); margin-top:4px; }
     .node .rune{ font-size:clamp(.42rem,.72cqw,.56rem); }
     .node[data-pos="center"] .label{ margin-top:4px; }
+    /* Sources' own icon (not its label/rune, which stay anchored to the node's
+       top:85.5%) sits noticeably above the art's blue sparkle point below it --
+       nudge only the ring down via a relative offset, which shifts it visually
+       without pushing the label/rune that follow it in the flex column. */
+    .node[data-pos="lower-right"] .ring{ position:relative; top:14px; }
   }
 
   @media (max-width:560px){
