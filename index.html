@@ -290,8 +290,15 @@
     /* Sources' own icon (not its label/rune, which stay anchored to the node's
        top:85.5%) sits noticeably above the art's blue sparkle point below it --
        nudge only the ring down via a relative offset, which shifts it visually
-       without pushing the label/rune that follow it in the flex column. */
-    .node[data-pos="lower-right"] .ring{ position:relative; top:14px; }
+       without pushing the label/rune that follow it in the flex column.
+       Reported still not covering the point after a first (top:22px,
+       left:-12px) attempt -- pushed further down and left again. Spell
+       Library's own icon gets a matching offset so the two bottom icons
+       read as a level pair: same top shift (vertically aligned with
+       Sources), half of Sources' leftward shift but in the opposite
+       (rightward) direction, per request. */
+    .node[data-pos="lower-right"] .ring{ position:relative; top:30px; left:-20px; }
+    .node[data-pos="lower-left"] .ring{ position:relative; top:30px; left:10px; }
   }
 
   @media (max-width:560px){

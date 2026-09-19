@@ -52,11 +52,13 @@ test('the desktop breakpoint shrinks node width and label/rune font-size, since 
   assert.match(block, /\.node\[data-pos="center"\] \.label\{ margin-top:4px; \}/);
 });
 
-test('Sources gets its own icon-only nudge (its ring, not the node anchor) since its icon sat above the art\'s blue sparkle point while its label/rune stayed correctly placed', () => {
+test('Sources and Spell Library get their own icon-only nudges (each .ring, not the node anchor) so both bottom icons sit on the art\'s sparkle points while their label/rune stay correctly placed -- Sources moved down+left, Spell Library matches its downward shift and moves right at half that horizontal magnitude', () => {
   const block = html.slice(html.indexOf('@media (min-width:861px)'), html.indexOf('@media (max-width:560px)'));
-  assert.match(block, /\.node\[data-pos="lower-right"\] \.ring\{ position:relative; top:14px; \}/);
-  // the node's own anchor (and therefore its label/rune) must stay untouched
+  assert.match(block, /\.node\[data-pos="lower-right"\] \.ring\{ position:relative; top:30px; left:-20px; \}/);
+  assert.match(block, /\.node\[data-pos="lower-left"\] \.ring\{ position:relative; top:30px; left:10px; \}/);
+  // the nodes' own anchors (and therefore their label/rune) must stay untouched
   assert.match(block, /\.node\[data-pos="lower-right"\]\{ left:59\.6%; top:85\.5%; \}/);
+  assert.match(block, /\.node\[data-pos="lower-left"\]\{ left:40\.2%; top:85\.5%; \}/);
 });
 
 test('the mobile (max-width:560px) square-art node overrides are untouched', () => {
