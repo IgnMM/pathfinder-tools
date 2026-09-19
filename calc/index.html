@@ -4822,6 +4822,14 @@ const MODIFIERS = [
 {id:'vex-giant',name:'Vex Giant',category:'spell',source:'Inner Sea Magic pg. 63',appliesTo:['damage'],type:'special',
  desc:"+1d6 damage (not multiplied on a crit) on the first successful melee attack you make each round against your focused foe, which must be at least one size category larger than you. Also grants no AoO for moving through that foe's threatened area and a +4 insight bonus on CMB checks against it, neither modeled here.",
  compute:()=>({attack:0,damage:0,extraDice:{normal:'1d6'},note:'+1d6 dmg (not multiplied on a crit, once per round, first melee hit only, vs a focused foe at least one size category larger than you)'})},
+{id:'resilient-reservoir',name:'Resilient Reservoir',category:'spell',source:"Advanced Race Guide pg. 49",appliesTo:['attack','damage'],type:'insight',
+ configFields:[{key:'points',label:'Reservoir points spent on this roll (built from damage taken; up to your caster level, max 20)',type:'number',default:0}],
+ desc:"Spend reservoir points (built 1 per melee/touch hit you absorb) as an immediate action before a roll for an equal insight bonus on that attack, damage, skill, or CMB check. Only the attack/damage use is modeled here; the automatic force-damage burst if you drop to negative HP isn't modeled.",
+ compute:(ctx,cfg)=>{let v=Math.max(0,cfg.points||0);return {attack:v,damage:v,note:v?('+'+v+' atk / +'+v+' dmg (insight, spent from the reservoir on this roll)'):"no effect — no reservoir points spent on this roll"}}},
+{id:'siphon-might',name:'Siphon Might',category:'spell',source:"Giant Hunter's Handbook pg. 27",appliesTo:['attack','damage'],type:'enhancement',
+ configFields:[{key:'bonus',label:"Strength enhancement bonus granted to yourself (1d6+1 per 2 CL, roll separately; min 2, max 11)",type:'number',default:2}],
+ desc:"You can grant an adjacent creature (including yourself) an enhancement bonus to Strength equal to the Strength penalty this spell inflicts on its target (1d6+1 per 2 caster levels, max 1d6+5 -- roll this separately and enter the result). Only actually changes your attack/damage here if Strength is your selected attack/damage ability above, and you chose to grant the bonus to yourself.",
+ compute:(ctx,cfg)=>{let bonus=Math.floor(Math.max(0,cfg.bonus||0)/2)*2;let r=abilityBuffBonus(ctx,'str',bonus,'enhancement');return {attack:r.attack,damage:r.damage,note:(r.attack||r.damage)?('+'+r.attack+' atk / +'+r.damage+' dmg (enhancement)'):"no effect — Strength isn't your selected attack/damage ability above"}}},
 ];
 
 const CATS=[{k:'feat',label:'Feats'},{k:'trait',label:'Traits'},{k:'spell',label:'Spells'},{k:'other',label:'Other Effects'},
