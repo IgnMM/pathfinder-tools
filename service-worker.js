@@ -5,7 +5,7 @@
 // cache is invalidated by a version bump (activate() deletes every cache key
 // that isn't the current CACHE_NAME). HTML itself is network-first and does
 // not need a bump to be seen fresh, but any .js/.json it references does.
-const CACHE_NAME = "pathfinder-paladins-folders-v221";
+const CACHE_NAME = "pathfinder-paladins-folders-v222";
 // SW-CACHE-001: precache only the app shell needed to open the Sanctum offline --
 // every other tool's page, manifest, icons and per-page assets are cached on demand
 // by the fetch handler below (cache-first for subresources, network-first for HTML)
@@ -16,7 +16,7 @@ const CACHE_NAME = "pathfinder-paladins-folders-v221";
 const ASSETS = [
   "./","./index.html","./hub.html","./sanctum.html","./manifest.webmanifest",
   "./icon-192.png","./icon-512.png","./favicon-32.png","./favicon-48.png",
-  "./assets/gate-bg.jpg","./assets/valid-sources.js","./assets/class-visuals.js","./assets/class-visuals.css"
+  "./assets/gate-bg-desktop.png","./assets/gate-bg-mobile.png","./assets/valid-sources.js","./assets/class-visuals.js","./assets/class-visuals.css"
 ];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
