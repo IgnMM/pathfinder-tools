@@ -37,7 +37,12 @@ body[class*="theme-"]::before{
 }
 /* Darken enough that the art reads as atmosphere, not content — a two-stop vertical
    wash plus a soft vignette keeps the very center of every supplied image quiet under
-   whatever panel sits on top of it. */
+   whatever panel sits on top of it.
+   NOTE: the supplied tool-backgrounds art is already very dark on its own (avg. pixel
+   brightness ~18/255) -- the original opacities here (up to .9 radial / .88 linear)
+   compounded with each theme's own gradient below to fully hide the art behind solid
+   near-black, confirmed by sampling actual rendered pixels. Values below are roughly
+   halved so the art reads clearly as atmosphere instead of not reading at all. */
 body[class*="theme-"]::after{
   content:"";
   position:fixed;
@@ -45,28 +50,28 @@ body[class*="theme-"]::after{
   z-index:1;
   pointer-events:none;
   background:
-    radial-gradient(ellipse at 50% 38%, rgba(8,10,14,.35) 0%, rgba(8,10,14,.72) 62%, rgba(6,8,11,.9) 100%),
-    linear-gradient(180deg, rgba(6,8,11,.55) 0%, rgba(6,8,11,.25) 22%, rgba(6,8,11,.55) 78%, rgba(6,8,11,.88) 100%);
+    radial-gradient(ellipse at 50% 38%, rgba(8,10,14,.18) 0%, rgba(8,10,14,.4) 62%, rgba(6,8,11,.58) 100%),
+    linear-gradient(180deg, rgba(6,8,11,.32) 0%, rgba(6,8,11,.12) 22%, rgba(6,8,11,.32) 78%, rgba(6,8,11,.55) 100%);
 }
 /* Everything the page already renders sits above the background/scrim pair. */
 body[class*="theme-"] > *:not(.arc-bg-sizer){ position:relative; z-index:2; }
 
-body.theme-calc::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.4), rgba(9,7,4,.7)), url('tool-backgrounds/calc-war-room.webp'); background-position:center top; }
-body.theme-companion::before{ background-image:linear-gradient(180deg, rgba(6,10,6,.35), rgba(6,10,6,.65)), url('tool-backgrounds/companion-sanctuary.webp'); background-position:48% top; }
-body.theme-find-class::before{ background-image:linear-gradient(180deg, rgba(5,8,14,.4), rgba(5,8,14,.7)), url('tool-backgrounds/find-class-observatory.webp'); background-position:center top; }
-body.theme-characters::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.4), rgba(9,7,4,.7)), url('tool-backgrounds/characters-hall.webp'); background-position:center top; }
-body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11,.4), rgba(4,8,11,.7)), url('tool-backgrounds/sources-archive.webp'); background-position:center top; }
+body.theme-calc::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.22), rgba(9,7,4,.42)), url('tool-backgrounds/calc-war-room.webp'); background-position:center top; }
+body.theme-companion::before{ background-image:linear-gradient(180deg, rgba(6,10,6,.2), rgba(6,10,6,.4)), url('tool-backgrounds/companion-sanctuary.webp'); background-position:48% top; }
+body.theme-find-class::before{ background-image:linear-gradient(180deg, rgba(5,8,14,.22), rgba(5,8,14,.42)), url('tool-backgrounds/find-class-observatory.webp'); background-position:center top; }
+body.theme-characters::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.22), rgba(9,7,4,.42)), url('tool-backgrounds/characters-hall.webp'); background-position:center top; }
+body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11,.22), rgba(4,8,11,.42)), url('tool-backgrounds/sources-archive.webp'); background-position:center top; }
 /* Character Spell Sheets reuse the already-approved class-seal scene (same image the
    hub's own class picker uses) rather than a new tool-backgrounds asset -- no separate
    mobile crop exists for it, so the one image is used at every width. */
-body.theme-spell-sheet::before{ background-image:linear-gradient(180deg, rgba(6,7,11,.45), rgba(6,7,11,.75)), url('stone-runes/arcane-seals-background.png'); background-position:center top; }
+body.theme-spell-sheet::before{ background-image:linear-gradient(180deg, rgba(6,7,11,.25), rgba(6,7,11,.45)), url('stone-runes/arcane-seals-background.png'); background-position:center top; }
 
 @media (max-width:700px){
-  body.theme-calc::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.45), rgba(9,7,4,.75)), url('tool-backgrounds/calc-war-room-mobile.webp'); }
-  body.theme-companion::before{ background-image:linear-gradient(180deg, rgba(6,10,6,.4), rgba(6,10,6,.7)), url('tool-backgrounds/companion-sanctuary-mobile.webp'); }
-  body.theme-find-class::before{ background-image:linear-gradient(180deg, rgba(5,8,14,.45), rgba(5,8,14,.75)), url('tool-backgrounds/find-class-observatory-mobile.webp'); }
-  body.theme-characters::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.45), rgba(9,7,4,.75)), url('tool-backgrounds/characters-hall-mobile.webp'); }
-  body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11,.45), rgba(4,8,11,.75)), url('tool-backgrounds/sources-archive-mobile.webp'); }
+  body.theme-calc::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.25), rgba(9,7,4,.45)), url('tool-backgrounds/calc-war-room-mobile.webp'); }
+  body.theme-companion::before{ background-image:linear-gradient(180deg, rgba(6,10,6,.22), rgba(6,10,6,.4)), url('tool-backgrounds/companion-sanctuary-mobile.webp'); }
+  body.theme-find-class::before{ background-image:linear-gradient(180deg, rgba(5,8,14,.25), rgba(5,8,14,.45)), url('tool-backgrounds/find-class-observatory-mobile.webp'); }
+  body.theme-characters::before{ background-image:linear-gradient(180deg, rgba(9,7,4,.25), rgba(9,7,4,.45)), url('tool-backgrounds/characters-hall-mobile.webp'); }
+  body.theme-sources::before{ background-image:linear-gradient(180deg, rgba(4,8,11,.25), rgba(4,8,11,.45)), url('tool-backgrounds/sources-archive-mobile.webp'); }
   /* background-attachment:fixed is desktop-only per brief -- default (scroll) applies here. */
 }
 

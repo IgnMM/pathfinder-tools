@@ -3135,7 +3135,7 @@ function renderCategories(){
     addRow.innerHTML=`<input list="${listId}" placeholder="Search ${cat.label.toLowerCase()} to add..." id="add_${cat.k}"><datalist id="${listId}"></datalist><button data-cat="${cat.k}" class="addBtn">Add</button><button data-cat="${cat.k}" class="addCustomBtn">+ Custom</button>`;
     block.appendChild(addRow);
     let dl=addRow.querySelector('datalist');
-    availableCatalog(cat.k).filter(m=>(m.allowMultiple || (!p.active.some(a=>a.id===m.id)&&!p.custom.some(c=>c.catalogId===m.id))) && !p.excludedSources[m.source]).forEach(m=>{
+    availableCatalog(cat.k).filter(m=>(m.allowMultiple || (!p.active.some(a=>a.id===m.id)&&!p.custom.some(c=>c.catalogId===m.id))) && !p.excludedSources[m.source]).sort((a,b)=>a.name.localeCompare(b.name)).forEach(m=>{
       let o=document.createElement('option'); o.value=m.name; dl.appendChild(o);
     });
     if(!availableCatalog(cat.k).some(m=>!p.excludedSources[m.source])){
